@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/hurtmapa",
+  "title": "Hurt Mapa",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
+

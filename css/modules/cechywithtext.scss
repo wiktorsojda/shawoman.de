@@ -1,0 +1,1493 @@
+@media only screen and (max-width: 768px) {
+    .ikony-cechy-desktop {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .ikony-cechy-mobile {
+        display: none !important;
+    }
+}
+
+.features-flex {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px !important;
+    margin: 0;
+
+}
+
+.feature-item,
+.feature-item1 {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.feature-item:hover,
+.feature-item1:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    display: flex;
+    margin-top: 10px;
+    width: 15px;
+    height: 15px !important;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    // border-radius: 30px;
+    // background-color:  #ffffffcc;
+    border-radius: 20%;
+    box-shadow: 0 4px 12px rgba(58, 86, 240, 0.3);
+    background: linear-gradient(to right, #000, #0983A0 40.01%);
+}
+
+.feature-title {
+    // font-size: $body_small;
+    // font-family: $font-family-primary;
+    font-style: normal;
+    font-weight: 600;
+
+    color: #fff;
+    margin: 0;
+    line-height: normal;
+
+    @media (max-width: 415px) {
+        font-size: 13px;
+    }
+}
+
+.feature-text {
+    // font-size: $body_small;
+    // font-family: $font-family-secondary;
+    font-style: normal;
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+
+    @media (max-width: 415px) {
+        font-size: 12px;
+    }
+}
+
+
+/* Nowe style dla sekcji z wideo */
+.desktop-video-section {
+    display: none;
+    /* Domyślnie ukryte na mobile */
+    padding: 0 !important;
+}
+
+.desktop-video-wrapper {
+    display: flex;
+    height: 80vh;
+    width: 100vw;
+
+    .text-column {
+        justify-content: center;
+
+        .text-cechy-container {
+            text-align: center;
+
+            .line-rest {
+                text-align: center;
+            }
+        }
+    }
+
+}
+
+.desktop-video-wrapper-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 80vh;
+    width: 100vw;
+
+    .text-column {
+        justify-content: center;
+
+        .text-cechy-container {
+            text-align: center;
+
+            .line-rest {
+                text-align: center;
+            }
+        }
+    }
+
+}
+
+.text-column {
+    flex: 1;
+    background: #000;
+    display: flex;
+    align-items: center;
+    // padding: 2rem;
+}
+
+.video-column {
+    flex: 1;
+    position: relative;
+}
+
+.cutfree-video {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+}
+
+.mobile-video-section {
+    position: relative;
+    height: 50vh;
+    display: block;
+}
+
+.mobile-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Ukrywanie niepotrzebnych elementów */
+.cechy-image-1 {
+    background-image: none !important;
+}
+
+/* Responsywność */
+@media (min-width: 769px) {
+    .desktop-video-section {
+        display: block;
+    }
+
+    .mobile-video-section {
+        display: none;
+    }
+
+    // .cechy-image-container:not(.mobile-video-section) {
+    //     display: none;
+    // }
+}
+
+@media (max-width: 768px) {
+    .desktop-video-section {
+        display: none;
+    }
+
+    .mobile-video-section {
+        display: block;
+    }
+
+    .desktop-video-wrapper {
+        height: 100%;
+
+        .text-column {
+            display: none;
+        }
+    }
+
+    .desktop-video-wrapper-reverse {
+        height: 100%;
+
+        .text-column {
+            display: none;
+        }
+    }
+}
+
+
+
+.cechy-image-container {
+
+    background-size: cover;
+    /* Or use 'contain' depending on the effect you want */
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    min-height: 80vh;
+}
+
+.cechy-image-1 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-cutfree-desktop.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 260px;
+        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+
+        z-index: 1;
+    }
+
+}
+
+.cechy-image-najlepszy {
+    background-image: url(https://shav.pl/wp-content/uploads/najlepszy-2-1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 260px;
+        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+
+        z-index: 1;
+    }
+
+}
+
+.cechy-image-trymer-1 {
+    background-image: url(https://shav.pl/wp-content/uploads/trymer-desktop-cehy-cutfree.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 260px;
+        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+
+        z-index: 1;
+    }
+
+}
+
+.cechy-image-handler-3 {
+    background-image: url(https://shav.pl/wp-content/uploads/baner1-2000x1000-1.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 260px;
+        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+
+        z-index: 1;
+    }
+
+}
+
+.cechy-image-shavwomen-1 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/szachownica-1-2-1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-shavwomen-2 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/szachownica-ruda-2-1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-shavwomen-3 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/shavwoman-szachownica-1.jpg) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+
+}
+
+.cechy-image-shavwomen-4 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/shavwoman-szachownica-2.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+/* MYJKA WOMAN */
+.cechy-image-myjkaszach-1 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/myjkaszach1.webp) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-myjkaszach-2 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/myjkaszach2.webp) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-myjkaszach-3 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/myjkaszach4.webp) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+
+}
+
+.cechy-image-myjkaszach-4 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/myjkaszach3.webp) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+@media (min-width: 769px) {
+
+    .cechy-image-myjkaszach-1 .text-cechy-container,
+    .cechy-image-myjkaszach-3 .text-cechy-container {
+        transform: translateX(-2vw);
+    }
+
+    .cechy-image-myjkaszach-2 .text-cechy-container,
+    .cechy-image-myjkaszach-4 .text-cechy-container {
+        transform: translateX(2vw);
+    }
+}
+
+.cechy-image-crowner-1 {
+    background-image: url(https://shav.pl/wp-content/uploads/glowa-2-1_.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-crowner-2 {
+    background-image: url(https://shav.pl/wp-content/uploads/reka-2-1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-crowner-3 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-crowner-szachownica2v2.jpg) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 260px;
+        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+
+        z-index: 1;
+    }
+
+}
+
+.cechy-image-crowner-4 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-crowner-szachownica1v2.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+
+.cechy-image-bokserki-1 {
+    background-image: url(https://shav.pl/wp-content/uploads/bokserki-2-2-1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-bokserki-2 {
+    background-image: url(https://shav.pl/wp-content/uploads/GYATTTTT-2_1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-bokserki-3 {
+    background-image: url(https://shav.pl/wp-content/uploads/bokserki-1-2-1.png) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 260px;
+        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+
+        z-index: 1;
+    }
+
+}
+
+.cechy-image-bokserki-4 {
+    background-image: url(https://shav.pl/wp-content/uploads/bokserki-4-2-1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-2 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-wodoodporna-desktop.jpg) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-pewnosc {
+    background-image: url(https://shav.pl/wp-content/uploads/szachownicanew-2-1.png) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-trymer-2 {
+    background-image: url(https://shav.pl/wp-content/uploads/wodoodpornosc-desktop-szachownica.png) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-handler-1 {
+    background-image: url(https://shav.pl/wp-content/uploads/handler-lewy-2-2-1.png) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-balsam-1 {
+    background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki1-desktop.png) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-dezo-1 {
+    background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-desktop5.png) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-balsam-3 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-grafika-balsam.jpg) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-dezo-3 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-grafika-dezodorant.jpg) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-3 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-zero-desktop.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-trymer-3 {
+    background-image: url(https://shav.pl/wp-content/uploads/trymer-komfort-desktop.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-handler-2 {
+    background-image: url(https://shav.pl/wp-content/uploads/handler-prawy-2-1.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-balsam-2 {
+    background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-desktop6.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-dezo-2 {
+    background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-desktop4.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-balsam-4 {
+    background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-desktop2.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-dezo-4 {
+    background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-desktop3.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-4 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-led-desktop.jpg) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-5 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-dwa-ostrza-desktop.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-trymer-4 {
+    background-image: url(https://shav.pl/wp-content/uploads/trymer-cechy-stalowe-desktop.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-handler-4 {
+    background-image: url(https://shav.pl/wp-content/uploads/baner-2-2000x1000-1.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-ostrzestalowe {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-stalowe-desktop.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-ostrzeklasyczne {
+    background-image: url(https://shav.pl/wp-content/uploads/shav_1_desktop-scaled.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-maszynkatrymerzestaw {
+    background-image: url(https://shav.pl/wp-content/uploads/maszynkatrymer-zestaw-desktop.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-pelnyzestaw {
+    background-image: url(https://shav.pl/wp-content/uploads/pelnyzestaw-desktop.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-ostrzefoliowe {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-foliowe-desktop.jpg) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-ostrzefoliowe2 {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-foliowe-desktop.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-ostrzetrymer {
+    background-image: url(https://shav.pl/wp-content/uploads/desktop_ostrze.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-etui {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-etui-desktop.jpg) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-hurt {
+    background-image: url(https://shav.pl/wp-content/uploads/shav-mapa.png) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+    padding: 0 !important;
+}
+
+.content-position-helper-mapa {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 140px;
+    // background: linear-gradient(181deg, #000 0%, rgba(0, 0, 0, 0.38) 57.5%, rgba(0, 0, 0, 0.00) 100%);
+
+    .text-cechy-container-mapa {
+        max-width: 900px !important;
+    }
+
+    .text-cechy-container {
+        text-align: center;
+
+        .desktop-cechy {
+            text-align: center !important;
+        }
+    }
+}
+
+.cechy-inner-wrapper-mapa {
+    height: 100% !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    background: linear-gradient(1deg, #000 0%, rgba(0, 0, 0, 0.38) 15%, rgba(0, 0, 0, 0) 48%);
+}
+
+.content-position-helper-mapa-text {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 39px;
+    width: 100%;
+    padding-bottom: 50px;
+    padding-top: 190px;
+    // background: linear-gradient(1deg, #000 0%, rgba(0, 0, 0, 0.38) 69%, rgba(0, 0, 0, 0.00) 100%);
+
+    span {
+        color: #FFF;
+        font-family: "bebas-neue-pro", sans-serif;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 117.75%;
+        /* 37.68px */
+        text-transform: uppercase;
+    }
+}
+
+.hurtdesign-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.hurt-swiper-container {
+    height: 39vh !important;
+
+    .about-us-logos {
+        margin-top: 0 !important;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+
+    .mobile-cechy-container {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .cechy-image-bokserki-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: url(https://shav.pl/wp-content/uploads/bokserki-2-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+    .cechy-image-bokserki-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/GYATTT-4_5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+    .cechy-image-bokserki-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -200px;
+
+
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/bokserki-1-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+        &::before {
+            display: none;
+        }
+    }
+
+
+    .cechy-image-bokserki-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -148px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/bokserki-4-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+        // background-size: contain !important;
+        // min-height: auto !important;
+    }
+
+    .mapa-cechy {
+        margin-bottom: -39px !important;
+    }
+
+    #etui-cechy.mobile-cechy-container {
+        margin-top: -50px;
+    }
+
+
+    .content-position-helper-mapa-text {
+        flex-direction: column !important;
+        gap: 16px !important;
+        padding-bottom: 66px !important;
+        padding-top: 54px !important;
+
+        span {
+            color: #FFF;
+
+            font-family: "bebas-neue-pro", sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 117.75%;
+            /* 18.84px */
+            text-transform: uppercase;
+        }
+    }
+
+    #hurt-swiper-container-id {
+        height: 25vh !important;
+    }
+
+
+
+    .cechy-image-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -200px;
+
+
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-cutfree-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .cechy-image-najlepszy {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -200px;
+
+
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/najlepszy-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+        &::before {
+            display: none;
+        }
+    }
+
+
+    .cechy-image-trymer-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -200px;
+
+
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/trymer-cechy-cutfree-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .cechy-image-handler-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -200px;
+
+
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/baner-1-800x1000-1.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+        &::before {
+            display: none;
+        }
+    }
+
+    .cechy-image-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-wodoodporna-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-pewnosc {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/szachownicanew-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+
+    .cechy-image-trymer-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: url(https://shav.pl/wp-content/uploads/wodoodpornosc-mobile.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-handler-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: url(https://shav.pl/wp-content/uploads/handler-2-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+    .cechy-image-balsam-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki1-mobile.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+    .cechy-image-dezo-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-mobile5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-balsam-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: url(https://shav.pl/wp-content/uploads/asdf.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+    .cechy-image-dezo-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -845px;
+        background-image: url(https://shav.pl/wp-content/uploads/asdas.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-zero-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-trymer-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/komfort-mobile.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+    .cechy-image-shavwomen-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/szachownica-1-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-shavwomen-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/szachownica-ruda-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-shavwomen-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/shavwoman-szachownica-mobile-1.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-shavwomen-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/shavwoman-szachownica-mobile-2.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    /* MYJKA WOMAN */
+    .cechy-image-myjkaszach-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/myjkamobile1.webp) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-myjkaszach-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/myjkamobile2.webp) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-myjkaszach-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/myjkamobile3.webp) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-myjkaszach-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shavwoman.pl/wp-content/uploads/myjkamobile4.webp) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+
+
+    .cechy-image-crowner-1 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/glowa-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-crowner-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/reka-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-crowner-3 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/2-2.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-crowner-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/1.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+
+    .cechy-image-handler-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/handler-1-4-5.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-balsam-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-mobile6.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-dezo-2 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-mobile4.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-balsam-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-mobile2.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-dezo-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -213px;
+        background-image: url(https://shav.pl/wp-content/uploads/szachownica-kosmetyki-mobile3.png) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -1000px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-led-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+    }
+
+    .cechy-image-5 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -148px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-dwa-ostrza-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+        // background-size: contain !important;
+        // min-height: auto !important;
+    }
+
+    .cechy-image-trymer-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -148px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/trymer-cechy-stalowe-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+        // background-size: contain !important;
+        // min-height: auto !important;
+    }
+
+    .cechy-image-handler-4 {
+        // background-size: contain; /* Adjust as needed for smaller screens */
+        // background-position: -148px;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/baner-2-800x1000-1.jpg) !important;
+        background-size: cover;
+        background-position: center;
+
+        // background-size: contain !important;
+        // min-height: auto !important;
+    }
+
+    .cechy-image-ostrzestalowe {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-stalowe-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-ostrzeklasyczne {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav_1_mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-maszynkatrymerzestaw {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/Shav_zestaw.png) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-pelnyzestaw {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/zestaw_pelny_mobile.png) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-ostrzefoliowe {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-foliowe-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-ostrzefoliowe2 {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-foliowe-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-ostrzetrymer {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/mobile_ostrze.png) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-etui {
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-etui-mobile.jpg) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .desktop-cechy {
+
+        display: none;
+
+    }
+
+
+    .mobile-cechy-container {
+        // position: relative;
+        // color: #fff;
+        padding: 20px;
+        background-color: #000 !important;
+        background: linear-gradient(0deg, #000 -4.62%, rgba(0, 0, 0, 0) 40.75%);
+
+        height: 50vh;
+        display: flex;
+
+        // justify-content: center;
+        align-items: center;
+        justify-content: flex-end;
+        transition: color 1s;
+        margin-top: -1px;
+
+        .text-cechy-container-mobile {
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            // gap: 2rem;
+            max-width: 1300px;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+            margin: 15px;
+
+            // z-index: 1;
+
+            .line {
+                // font-size: 20px;
+                opacity: 1;
+                /* Start hidden */
+
+            }
+
+
+        }
+    }
+}
+
+
+
+.cechy-container {
+    // position: relative;
+    // color: #fff;
+    padding: 20px;
+
+    ////
+    height: 80vh;
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    // justify-content: flex-end;
+    transition: color 1s;
+
+    .text-cechy-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        // gap: 2rem;
+        max-width: 600px;
+        text-align: left;
+        color: #fff;
+        padding: 0;
+        margin: 0;
+
+        // z-index: 1;
+
+        .line {
+            // font-size: 20px;
+            opacity: 1;
+            /* Start hidden */
+
+        }
+
+        .line-head {
+            font-family: "bebas-neue-pro", sans-serif !important;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-transform: uppercase !important;
+            margin-bottom: 5px !important;
+        }
+
+        .line-rest {
+            font-size: 20px !important;
+            max-width: 800px;
+            text-align: left;
+            font-family: "Roboto", sans-serif;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+
+        }
+    }
+}
+
+@media (max-width: 1050px) {
+    .text-cechy-container {
+        .line-head {
+            font-family: "bebas-neue-pro", sans-serif !important;
+            font-size: 43px !important;
+            text-transform: uppercase !important;
+
+        }
+
+        .line-rest {
+            font-size: 20px !important;
+        }
+    }
+
+    .text-cechy-container-mobile {
+        .line-head {
+            font-family: "bebas-neue-pro", sans-serif !important;
+            font-size: 48px !important;
+            text-transform: uppercase !important;
+            margin-bottom: 5px !important;
+        }
+
+        .line-rest {
+            font-size: 20px !important;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .cechy-image-container {
+        height: 0;
+        min-height: 0;
+    }
+
+    .cechy-container {
+        height: 50vh !important;
+        padding: 0;
+
+    }
+
+    .cechy-container::after {
+        // content: "";
+        // position: absolute;
+        // bottom: 0;
+        // left: 0;
+        // width: 100%;
+        // height: 140px;
+        // background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+        // z-index: 1;
+        display: none;
+    }
+
+    .cechy-container-2 {
+        height: 39vh !important;
+        padding: 0;
+
+    }
+
+    .cechy-container-2::after {
+        // content: "";
+        // position: absolute;
+        // bottom: 0;
+        // left: 0;
+        // width: 100%;
+        // height: 140px;
+        // background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+        // z-index: 1;
+        display: none;
+    }
+
+    .cechy-image-5 {
+        height: 57vh !important;
+    }
+
+    .text-cechy-container {
+        text-align: center !important;
+
+        .line-head {
+            font-family: "bebas-neue-pro", sans-serif !important;
+            font-size: 36px !important;
+            text-transform: uppercase !important;
+        }
+
+        .line-rest {
+            font-size: 14px !important;
+            text-align: center !important;
+        }
+    }
+
+    .text-cechy-container-mobile {
+        .line-head {
+            font-family: "bebas-neue-pro", sans-serif !important;
+            text-align: center !important;
+            font-size: 36px !important;
+            text-transform: uppercase !important;
+        }
+
+        .line-rest {
+            font-size: 14px !important;
+            text-align: center !important;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .text-cechy-container-mobile {
+        .line-head {
+            font-family: "bebas-neue-pro", sans-serif !important;
+            text-align: center !important;
+            font-size: 36px !important;
+            text-transform: uppercase !important;
+        }
+
+        .line-rest {
+
+            font-size: 14px !important;
+            text-align: center !important;
+        }
+    }
+
+    .text-cechy-container-mobile {
+        .line-head {
+            font-family: "bebas-neue-pro", sans-serif !important;
+            font-size: 36px !important;
+            text-align: center !important;
+            text-transform: uppercase !important;
+        }
+
+        .line-rest {
+
+            font-size: 14px !important;
+            text-align: center !important;
+        }
+    }
+}
+
+
+.cechy-inner-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.cechy-inner-wrapper-start {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+
+/* MASAZER WOMAN - PEŁNA SZACHOWNICA I RESPONSYWNOŚĆ */
+
+/* DESKTOP - TŁA DLA SEKPCJI MASAZERWOMAN 1-4 */
+.cechy-image-masazerwoman-1 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/masazer1.webp) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-masazerwoman-2 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/masazer2.webp) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+.cechy-image-masazerwoman-3 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/masazer3.webp) !important;
+    justify-content: flex-start;
+    margin-top: -1px;
+}
+
+.cechy-image-masazerwoman-4 {
+    background-image: url(https://shavwoman.pl/wp-content/uploads/masazer4.webp) !important;
+    justify-content: flex-end;
+    margin-top: -1px;
+}
+
+/* OFFSET TEKSTU DLA DESKTOPU (ZGODNIE Z LOGIKĄ MYJKI) */
+@media (min-width: 769px) {
+
+    .cechy-image-masazerwoman-1 .text-cechy-container,
+    .cechy-image-masazerwoman-3 .text-cechy-container {
+        transform: translateX(-2vw);
+    }
+
+    .cechy-image-masazerwoman-2 .text-cechy-container,
+    .cechy-image-masazerwoman-4 .text-cechy-container {
+        transform: translateX(2vw);
+    }
+}
+
+/* MOBILE - TŁA I DOPASOWANIE DLA WIDOKU TELEFONICZNEGO */
+@media (max-width: 768px) {
+    .cechy-image-masazerwoman-1 {
+        background-image: url(https://shavwoman.pl/wp-content/uploads/masazermobile1.webp) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-masazerwoman-2 {
+        background-image: url(https://shavwoman.pl/wp-content/uploads/masazermobile2.webp) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-masazerwoman-3 {
+        background-image: url(https://shavwoman.pl/wp-content/uploads/masazermobile3.webp) !important;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .cechy-image-masazerwoman-4 {
+        background-image: url(https://shavwoman.pl/wp-content/uploads/masazermobile4.webp) !important;
+        background-size: cover;
+        background-position: center;
+    }
+}

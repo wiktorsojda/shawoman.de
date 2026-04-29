@@ -1,0 +1,342 @@
+
+.team{
+	position: relative;
+	width: 100%;
+	// height: 100vh;
+	background: #000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    gap: 64px;
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+        h2 {
+            color: #FFF;
+            /* Heading_1 */
+            font-family: "bebas-neue-pro", sans-serif;
+            font-size: 64px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 117.75%; /* 75.36px */
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .center-span {
+            color: #FFF;
+
+            /* Heading_2 */
+            font-family: 'bebas-neue-pro', sans-serif;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+    }
+}
+
+
+
+
+.team-content{
+	width: 100%;
+	max-width: 1350px;
+	margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Dokładnie 4 kolumny w każdym rzędzie */
+    column-gap: 10px; /* Większy odstęp między kolumnami */
+    row-gap: 32px; /* Mniejszy odstęp między rzędami */
+	align-items: center;
+	// gap: 2rem;
+	text-align: center;
+	margin-top: 1rem;
+    cursor: auto;
+}
+.team-content img{
+	// width: 100%;
+	// height: auto;
+	// border-radius: 15px;
+	// margin-bottom: 15px;
+}
+.center h2{
+	color: #fff;
+	text-align: center;
+}
+
+.box-1 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-dawid.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+
+}
+
+.box-2 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-michal.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.box-3 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-jonasz.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+
+.box-4 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-asia.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.box-5 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-ewa.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.box-6 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-gosia.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-7 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-kacper.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-8 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-grzesiek.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-9 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-kuba.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-10 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-lukasz.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-11 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-maniek.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-12 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-martyna.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-13 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-matic.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.box-15 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-natalia.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-16 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-olak.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-17 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-olaw.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-18 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-oliwia.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-19 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-sylwia.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-20 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-seba.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.box-21 {
+    background-image: url('https://shavwoman.pl/wp-content/uploads/shav-strona-paulina.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.team-content .box {
+    display: none; // Initially hide all boxes
+}
+
+.team-content .box:nth-child(-n+8) {
+    display: flex; // Show only the first 8 boxes (4 rows on mobile, 2 rows on desktop)
+}
+
+@media(min-width: 768px) { 
+    .team-content .box:nth-child(-n+4) {
+        display: flex; // Show only the first 4 boxes on desktop (2 rows)
+    }
+}
+
+.show-more {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #0983A0;
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'bebas-neue-pro', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.show-more:hover {
+    background-color: #076d82;
+}
+
+.box{
+    // display: flex;
+    width: auto;
+    padding: 32px 32px 0px 32px;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 8px;
+    background: #F0F0F4;
+    gap: 0;
+    height: 427px;
+
+        .imie {
+            margin: 0;
+            padding: 0;
+            color: #000;
+            font-family: 'bebas-neue-pro', sans-serif;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 117.75%; /* 42.39px */
+            text-transform: uppercase;
+        }
+
+        .stanowisko {
+            margin: 0;
+            padding: 0;
+            color: #0983A0;
+            font-family: 'roboto', sans-serif;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 200;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+}
+
+
+
+.box:hover{
+	transform: translateY(-10px);
+	cursor: pointer;
+}
+
+@media(max-width: 1240px){
+	.team{
+		width: 100%;
+		height: auto;
+		padding: 90px 0;
+	}
+	.center h1{
+		font-size: 3.2rem;
+	}
+}
+
+@media(max-width:786px) {
+
+    .team {
+        gap: 28px !important;
+        padding: 90px 0 28px 0 !important
+    }
+    .center {
+        gap: 12px !important;
+    }
+
+    h3.imie {
+        font-size: 24px !important;
+    }
+
+    h3.stanowisko {
+        font-size: 12px !important;
+        text-align: left !important;
+    }
+
+    .team-content {
+        margin-top: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        column-gap: 5px;
+        row-gap: 16px;
+        width: 95%;
+        
+        .box {
+        width: 180px;
+        height: 289px;
+        justify-self: center;
+        padding: 16px 16px 0 16px;
+        }
+    }
+    .team .center {
+        padding: 22px;
+    }
+
+    .team .center h2 {
+        font-size: 36px !important;
+    }
+
+    .team .center-span {
+        font-size: 16px !important;
+        text-align: center;
+    }
+}
+
+@media(max-width:600px) { 
+    .team-content {
+        .box {
+            width: 175px !important;
+        }
+    }
+}
+@media(max-width:500px) {
+    .team-content {
+        .box {
+            width: 165px !important;
+        }
+    }
+ }
+
+ @media(max-width:420px) {
+    .team-content {
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+
+        .box {
+            width: 148px !important;
+            height: 262px !important;
+        }
+    }
+ }

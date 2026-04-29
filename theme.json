@@ -1,0 +1,74 @@
+{
+  "version": 2,
+  "styles": {
+    "blocks": {
+      "core/button": {
+        "color": {
+          "text": "#FFFFFF",
+          "background": "var(--wp--preset--color--pizza)"
+        }
+      }
+    }
+  },
+  "settings": {
+    "appearanceTools": true,
+    "typography": {
+      "fontSizes": []
+    },
+    "blocks": {
+      "core/button": {
+        "border": {
+          "color": false,
+          "radius": false,
+          "style": false,
+          "width": false
+        }
+      }
+    },
+    "color": {
+      "palette": [
+        {
+          "slug": "pizza",
+          "color": "#0d3b66",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#ee964b",
+          "name": "Secondary"
+        },
+        {
+          "slug": "background",
+          "color": "#FFFFFF",
+          "name": "Background"
+        },
+        {
+          "slug": "foreground",
+          "color": "#FFFFFF",
+          "name": "Foreground"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1840px"
+    },
+    "settings": {
+      "general": {
+        "custom": {
+          "templates": {
+            "Front Page": "templates/front-page",
+            "Faq": "templates/faq",
+            "Patents": "templates/patents",
+            "About us": "templates/about-us",
+            "Wholesale": "templates/wholesale",
+            "Returns": "templates/returns",
+            "Contact": "templates/contact",
+            "Payment methods": "templates/payment-methods",
+            "Delivery methods": "templates/delivery-methods",
+            "Carrier": "templates/kariera"
+          }
+        }
+      }
+    }
+  }
+}

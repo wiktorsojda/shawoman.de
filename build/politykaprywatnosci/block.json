@@ -1,0 +1,8 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/politykaprywatnosci",
+  "title": "Polityka Prywatnosci",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

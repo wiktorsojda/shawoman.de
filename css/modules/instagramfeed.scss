@@ -1,0 +1,71 @@
+#sb_instagram .sb_instagram_header, .sb_instagram_header  {
+    color: #FFF;
+    /* Body */
+    font-family: Roboto !important;
+    font-size: 20px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: normal !important;
+    align-self: stretch !important;
+    margin-bottom: 64px !important;
+    }
+
+.instagram-carousel-container {
+    overflow: hidden !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+#sbi_images {
+    display: flex !important;
+    transition: transform 0.5s ease !important;
+}
+
+@media only screen and (max-width: 768px) {
+
+#sbi_images {
+    width: 1500px !important;
+    gap: 30px !important;
+
+    img {
+        width: 350px !important;
+        height: 350px !important;
+    }
+}
+}
+
+#sb_instagram {
+    padding: 0 !important;
+}
+
+.sbi_item {
+    flex: 1 0 25% !important; /* Display 4 items per view */
+    box-sizing: border-box !important;
+}
+
+.carousel-buttons {
+    width: 100%;
+    display: flex !important;
+    gap: 27px;
+    justify-content: flex-end !important;
+    transform: translateY(-50%) !important;
+}
+
+.carousel-buttons { 
+button, button:hover, button:active {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}}
+
+// .carousel-buttons svg {
+//     width: 43px;
+//     height: 44px;
+// }
+
+// #sbi_images {
+//     display: flex !important;
+//     transition: transform 0.5s ease !important;
+//     animation: 13s slide infinite linear !important;
+// }

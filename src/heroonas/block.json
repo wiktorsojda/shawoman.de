@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/heroonas",
+  "title": "Hero o nas",
+ "category": "common",
+  "icon": "format-video",
+  "description": "A block with a video background, title, subtitle, and description.",
+  "attributes": {
+    "videoURL": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": "Title"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Subtitle"
+    },
+    "description": {
+      "type": "string",
+      "default": "Description"
+    }
+  },
+  "supports": {
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+
+}
+

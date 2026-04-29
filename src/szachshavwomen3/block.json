@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/szachshavwomen3",
+  "title": "Szach Sha Women 3",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
+

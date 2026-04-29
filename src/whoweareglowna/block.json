@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/whoweareglowna",
+  "title": "Who we are Główna",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
+
