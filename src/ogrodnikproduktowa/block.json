@@ -3,7 +3,67 @@
   "apiVersion": 3,
   "name": "ourblocktheme/ogrodnikproduktowa",
   "title": "Ogrodnik Produktowa",
+  "attributes": {
+    "titleBefore": {
+      "type": "string",
+      "default": "Twoje kule"
+    },
+    "titleHighlight": {
+      "type": "string",
+      "default": "gładkie jak nigdy"
+    },
+    "titleAfter": {
+      "type": "string",
+      "default": "wcześniej"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "zadbaj o nie z shav 2!"
+    },
+    "highlightColor": {
+      "type": "string",
+      "default": "#0983A0"
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

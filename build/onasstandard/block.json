@@ -1,0 +1,96 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/onasstandard",
+  "title": "O nas — Tworzymy nowy standard",
+  "category": "design",
+  "icon": "format-image",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "TWORZYMY NOWY STANDARD<br>DAMSKIEJ PIELĘGNACJI"
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundVideo": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundVideoMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "logo1Image": {
+      "type": "string",
+      "default": ""
+    },
+    "logo2Image": {
+      "type": "string",
+      "default": ""
+    },
+    "logo3Image": {
+      "type": "string",
+      "default": ""
+    },
+    "logo4Image": {
+      "type": "string",
+      "default": ""
+    },
+    "logo1Svg": {
+      "type": "string",
+      "default": ""
+    },
+    "logo2Svg": {
+      "type": "string",
+      "default": ""
+    },
+    "logo3Svg": {
+      "type": "string",
+      "default": ""
+    },
+    "logo4Svg": {
+      "type": "string",
+      "default": ""
+    },
+    "titleSizeDesktop": {
+      "type": "number",
+      "default": 44
+    },
+    "titleSizeMobile": {
+      "type": "number",
+      "default": 32
+    },
+    "logoHeightDesktop": {
+      "type": "number",
+      "default": 31
+    },
+    "logoHeightMobile": {
+      "type": "number",
+      "default": 24
+    },
+    "marginTopDesktop": {
+      "type": "number",
+      "default": 80
+    },
+    "marginTopMobile": {
+      "type": "number",
+      "default": 24
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ]
+  }
+}

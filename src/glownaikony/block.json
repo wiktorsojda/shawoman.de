@@ -3,7 +3,67 @@
   "apiVersion": 3,
   "name": "ourblocktheme/glownaikony",
   "title": "Główna Ikony",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Dlaczego <span class=\"shav-color\">Shav</span> jest najlepszy?"
+    },
+    "label1": {
+      "type": "string",
+      "default": "zadowolone klientki"
+    },
+    "label2": {
+      "type": "string",
+      "default": "zaufana marka"
+    },
+    "label3": {
+      "type": "string",
+      "default": "najwyższa jakość"
+    },
+    "label4": {
+      "type": "string",
+      "default": "absolutne bezpieczeństwo"
+    },
+    "label5": {
+      "type": "string",
+      "default": "najlepsza obsługa"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

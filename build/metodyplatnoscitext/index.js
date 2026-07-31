@@ -16,15 +16,215 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+
+
+// Migracja legacy method1..4 -> methods[]
+function migrateLegacy(a) {
+  const list = [];
+  for (let i = 1; i <= 4; i++) {
+    const title = a[`method${i}Title`];
+    const desc = a[`method${i}Desc`];
+    const icon = a[`method${i}Icon`];
+    const iconSvg = a[`method${i}IconSvg`];
+    if (title || desc || icon || iconSvg) {
+      list.push({
+        title: title || "",
+        desc: desc || "",
+        icon: icon || "",
+        iconSvg: iconSvg || ""
+      });
+    }
+  }
+  return list;
+}
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const methods = Array.isArray(a.methods) && a.methods.length > 0 ? a.methods : migrateLegacy(a);
+
+  // Jednorazowa migracja przy pierwszym otwarciu
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    if (!Array.isArray(a.methods) || a.methods.length === 0) {
+      const migrated = migrateLegacy(a);
+      if (migrated.length > 0) setAttributes({
+        methods: migrated
+      });
+    }
+  }, []);
+  const updateMethod = (idx, patch) => {
+    const next = methods.map((m, i) => i === idx ? {
+      ...m,
+      ...patch
+    } : m);
+    setAttributes({
+      methods: next
+    });
+  };
+  const addMethod = () => {
+    setAttributes({
+      methods: [...methods, {
+        title: "",
+        desc: "",
+        icon: "",
+        iconSvg: ""
+      }]
+    });
+  };
+  const removeMethod = idx => {
+    setAttributes({
+      methods: methods.filter((_, i) => i !== idx)
+    });
+  };
+  const moveMethod = (idx, dir) => {
+    const next = [...methods];
+    const j = idx + dir;
+    if (j < 0 || j >= next.length) return;
+    [next[idx], next[j]] = [next[j], next[idx]];
+    setAttributes({
+      methods: next
+    });
+  };
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "blacktext-container-wysylka container"
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Metody p\u0142atno\u015Bci",
+    initialOpen: true
+  }, methods.map((m, idx) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: idx,
+    style: {
+      border: "1px solid #ddd",
+      padding: 12,
+      borderRadius: 4,
+      marginBottom: 12
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", {
+    style: {
+      display: "block",
+      marginBottom: 8
+    }
+  }, "Metoda ", idx + 1), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: 12,
+      opacity: 0.7,
+      margin: "0 0 8px"
+    }
+  }, "Wybierz obraz z biblioteki ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "lub"), " wklej kod SVG (inline). Inline ma priorytet."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => updateMethod(idx, {
+      icon: media.url
+    }),
+    allowedTypes: ["image"],
+    value: m.icon,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, m.icon ? "Zmień ikonę (URL)" : "Wybierz ikonę z biblioteki")
+  })), m.icon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => updateMethod(idx, {
+      icon: ""
+    }),
+    style: {
+      marginTop: 8,
+      marginBottom: 8
+    }
+  }, "Usu\u0144 URL"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    label: "Inline SVG (kod)",
+    help: "Wklej ca\u0142y tag <svg>...</svg>",
+    value: m.iconSvg || "",
+    onChange: v => updateMethod(idx, {
+      iconSvg: v
+    }),
+    rows: 5
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    style: {
+      display: "flex",
+      gap: 4,
+      marginTop: 8,
+      flexWrap: "wrap"
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "tertiary",
+    onClick: () => moveMethod(idx, -1),
+    disabled: idx === 0
+  }, "\u2191"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "tertiary",
+    onClick: () => moveMethod(idx, 1),
+    disabled: idx === methods.length - 1
+  }, "\u2193"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => removeMethod(idx)
+  }, "Usu\u0144 metod\u0119")))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: addMethod
+  }, "+ Dodaj metod\u0119"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "metody-wysylki-textcontainer container--narrow2-important"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h2",
+    className: "metody-wysylki-header",
+    value: a.header,
+    onChange: v => setAttributes({
+      header: v
+    }),
+    placeholder: "Nag\u0142\xF3wek"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "p",
+    className: "metody-wysylki-p",
+    value: a.description,
+    onChange: v => setAttributes({
+      description: v
+    }),
+    placeholder: "Opis"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", {
+    className: "metody-platnosci-ul"
+  }, methods.map((m, idx) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: idx,
+    className: "metody-platnosci-list"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "Metody P\u0142atno\u015Bci Text"));
+    className: "metody-platnosci-list-left"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "li",
+    value: m.title,
+    onChange: v => updateMethod(idx, {
+      title: v
+    }),
+    placeholder: `Tytuł ${idx + 1}`
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: m.desc,
+    onChange: v => updateMethod(idx, {
+      desc: v
+    }),
+    placeholder: `Opis ${idx + 1}`
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "metody-platnosci-list-right"
+  }, m.iconSvg ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "metody-platnosci-icon-svg",
+    dangerouslySetInnerHTML: {
+      __html: m.iconSvg
+    }
+  }) : m.icon ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: m.icon,
+    alt: "",
+    style: {
+      maxHeight: 50
+    }
+  }) : null))))));
 }
 
 /***/ },
@@ -10025,13 +10225,33 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
+/***/ "@wordpress/element"
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["element"];
+
+/***/ },
+
 /***/ "./src/metodyplatnoscitext/block.json"
 /*!********************************************!*\
   !*** ./src/metodyplatnoscitext/block.json ***!
   \********************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/metodyplatnoscitext","title":"Metody Płatności Text","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/metodyplatnoscitext","title":"Metody Płatności Tekst","attributes":{"header":{"type":"string","default":"Dostępne metody płatności"},"description":{"type":"string","default":"Oferujemy różnorodne metody płatności, aby zapewnić Ci wygodę i bezpieczeństwo podczas zakupów. Złóż zamówienie i zdecyduj jaką metodę wybierzesz dla siebie."},"methods":{"type":"array","default":[],"items":{"type":"object"}},"method1Title":{"type":"string","default":"Blik"},"method1Desc":{"type":"string","default":"Szybkie i wygodne płatności kodem BLIK w naszej witrynie lub przez PayU."},"method1Icon":{"type":"string","default":""},"method1IconSvg":{"type":"string","default":""},"method2Title":{"type":"string","default":"Płatność przy odbiorze"},"method2Desc":{"type":"string","default":"Zapłać gotówką u kuriera przy odbiorze. Dodatkowy koszt: 4,99 zł."},"method2Icon":{"type":"string","default":""},"method2IconSvg":{"type":"string","default":""},"method3Title":{"type":"string","default":""},"method3Desc":{"type":"string","default":""},"method3Icon":{"type":"string","default":""},"method3IconSvg":{"type":"string","default":""},"method4Title":{"type":"string","default":""},"method4Desc":{"type":"string","default":""},"method4Icon":{"type":"string","default":""},"method4IconSvg":{"type":"string","default":""}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

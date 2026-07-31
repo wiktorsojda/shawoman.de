@@ -17,10 +17,11 @@
 }
 
 body {
-  color: #333;
-  font-family: "Roboto", sans-serif;
+  color: $color-neutral-800;
+  font-family: $font-family-base;
   overflow-x: hidden;
   position: relative;
+  background-color: $color-neutral-50;
 }
 
 img {

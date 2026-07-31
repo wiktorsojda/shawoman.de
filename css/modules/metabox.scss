@@ -1,13 +1,12 @@
 .metabox {
-  background-color: $beige;
-  border-radius: 3px;
-  padding: 10px 15px;
+  background-color: $color-peach-50;
+  border-radius: $radius-xs;
+  padding: $space-8 $space-16;
   display: inline-block;
-  margin-bottom: 30px;
+  margin-bottom: $space-32;
   box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.07);
 
   &--position-up {
-    // position: absolute;
     top: 0;
     transform: translateY(-50%);
   }
@@ -17,17 +16,17 @@
   }
 
   &__main {
-    padding: 10px 15px 10px 11px;
+    padding: $space-8 $space-16 $space-8 $space-12;
   }
 
   p {
     margin: 0;
-    font-size: 0.9rem;
-    color: adjust-color($beige, $lightness: -45%, $saturation: -33%);
+    font-size: $font-size-body-m;
+    color: $color-neutral-700;
   }
 
   a {
-    color: adjust-color($beige, $lightness: -45%, $saturation: -33%);
+    color: $color-neutral-700;
     text-decoration: none;
     font-weight: bold;
   }
@@ -37,16 +36,16 @@
   }
 
   & &__blog-home-link {
-    background-color: $mainBlue;
-    color: #fff;
+    background-color: $color-neutral-900;
+    color: $color-white;
     display: inline-block;
-    padding: 10px 15px;
-    border-radius: 3px 0 0 3px;
+    padding: $space-8 $space-16;
+    border-radius: $radius-xs 0 0 $radius-xs;
     font-weight: normal;
   }
 
   & &__blog-home-link:hover {
     text-decoration: none;
-    background-color: adjust-color($mainBlue, $lightness: -5%);
+    background-color: $color-black;
   }
 }

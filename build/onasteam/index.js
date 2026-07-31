@@ -16,15 +16,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "team container"
+  });
+  const memberCount = 20;
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "O Nas Team"));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Kolor wyr\xF3\u017Cnienia",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ColorPicker, {
+    color: a.highlightColor,
+    onChange: c => setAttributes({
+      highlightColor: c
+    }),
+    enableAlpha: false
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "center"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.sectionTitleBefore,
+    onChange: v => setAttributes({
+      sectionTitleBefore: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), " ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.sectionTitleHighlight,
+    onChange: v => setAttributes({
+      sectionTitleHighlight: v
+    }),
+    placeholder: "Wyr\xF3\u017Cnienie",
+    style: {
+      color: a.highlightColor
+    }
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    className: "center-span",
+    value: a.sectionSubtitle,
+    onChange: v => setAttributes({
+      sectionSubtitle: v
+    }),
+    placeholder: "Podtytu\u0142"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "team-content"
+  }, Array.from({
+    length: memberCount
+  }, (_, idx) => idx + 1).map(i => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: i,
+    className: `box ${a[`member${i}BoxClass`] || ""}`
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h3",
+    className: "imie",
+    value: a[`member${i}Name`],
+    onChange: v => setAttributes({
+      [`member${i}Name`]: v
+    }),
+    placeholder: "Imi\u0119"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h3",
+    className: "stanowisko",
+    value: a[`member${i}Role`],
+    onChange: v => setAttributes({
+      [`member${i}Role`]: v
+    }),
+    placeholder: "Stanowisko"
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "button",
+    id: "toggleButton",
+    className: "show-more",
+    value: a.showMoreLabel,
+    onChange: v => setAttributes({
+      showMoreLabel: v
+    }),
+    placeholder: "Etykieta przycisku"
+  }));
 }
 
 /***/ },
@@ -10025,13 +10101,23 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/onasteam/block.json"
 /*!*********************************!*\
   !*** ./src/onasteam/block.json ***!
   \*********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/onasteam","title":"O Nas Team","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/onasteam","title":"O Nas Zespół","attributes":{"sectionTitleBefore":{"type":"string","default":"Zespół"},"sectionTitleHighlight":{"type":"string","default":"Shava"},"sectionSubtitle":{"type":"string","default":"Poznajcie osoby, które są odpowiedzialne za rozwój marki"},"highlightColor":{"type":"string","default":"#0983A0"},"showMoreLabel":{"type":"string","default":"Zobacz wszystkich"},"member1Name":{"type":"string","default":"Dawid"},"member1Role":{"type":"string","default":"współzałożyciel"},"member1BoxClass":{"type":"string","default":"box-1"},"member2Name":{"type":"string","default":"Jonasz"},"member2Role":{"type":"string","default":"współzałożyciel"},"member2BoxClass":{"type":"string","default":"box-3"},"member3Name":{"type":"string","default":"Michał"},"member3Role":{"type":"string","default":"współzałożyciel"},"member3BoxClass":{"type":"string","default":"box-2"},"member4Name":{"type":"string","default":"Asia"},"member4Role":{"type":"string","default":"content marketing"},"member4BoxClass":{"type":"string","default":"box-4"},"member5Name":{"type":"string","default":"Oliwia"},"member5Role":{"type":"string","default":"influencer marketing"},"member5BoxClass":{"type":"string","default":"box-18"},"member6Name":{"type":"string","default":"Kacper"},"member6Role":{"type":"string","default":"Technologia Produktu"},"member6BoxClass":{"type":"string","default":"box-7"},"member7Name":{"type":"string","default":"Sebastian"},"member7Role":{"type":"string","default":"digital marketing"},"member7BoxClass":{"type":"string","default":"box-20"},"member8Name":{"type":"string","default":"Gosia"},"member8Role":{"type":"string","default":"produkcja foto/wideo"},"member8BoxClass":{"type":"string","default":"box-6"},"member9Name":{"type":"string","default":"Mateusz"},"member9Role":{"type":"string","default":"produkcja foto/wideo"},"member9BoxClass":{"type":"string","default":"box-13"},"member10Name":{"type":"string","default":"Grzesiek"},"member10Role":{"type":"string","default":"księgowość"},"member10BoxClass":{"type":"string","default":"box-8"},"member11Name":{"type":"string","default":"Kuba"},"member11Role":{"type":"string","default":"software/web developer"},"member11BoxClass":{"type":"string","default":"box-9"},"member12Name":{"type":"string","default":"Martyna"},"member12Role":{"type":"string","default":"UX/UI designer"},"member12BoxClass":{"type":"string","default":"box-12"},"member13Name":{"type":"string","default":"Ewa"},"member13Role":{"type":"string","default":"influencer marketing"},"member13BoxClass":{"type":"string","default":"box-5"},"member14Name":{"type":"string","default":"Natalia"},"member14Role":{"type":"string","default":"influencer marketing"},"member14BoxClass":{"type":"string","default":"box-15"},"member15Name":{"type":"string","default":"Ola"},"member15Role":{"type":"string","default":"influencer marketing"},"member15BoxClass":{"type":"string","default":"box-17"},"member16Name":{"type":"string","default":"Sylwia"},"member16Role":{"type":"string","default":"influencer marketing"},"member16BoxClass":{"type":"string","default":"box-19"},"member17Name":{"type":"string","default":"Maniek"},"member17Role":{"type":"string","default":"marketplace"},"member17BoxClass":{"type":"string","default":"box-11"},"member18Name":{"type":"string","default":"Ola"},"member18Role":{"type":"string","default":"obsługa klienta"},"member18BoxClass":{"type":"string","default":"box-16"},"member19Name":{"type":"string","default":"Paulina"},"member19Role":{"type":"string","default":"obsługa klienta"},"member19BoxClass":{"type":"string","default":"box-21"},"member20Name":{"type":"string","default":"Łukasz"},"member20Role":{"type":"string","default":"logistyka"},"member20BoxClass":{"type":"string","default":"box-10"}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

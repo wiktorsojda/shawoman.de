@@ -2,7 +2,244 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/footer",
-  "title": "Fictional University Footer",
+  "title": "Footer",
+  "attributes": {
+    "ctaTitleBefore": {
+      "type": "string",
+      "default": "Shav "
+    },
+    "ctaTitleAccent": {
+      "type": "string",
+      "default": "woman."
+    },
+    "ctaSubtitle": {
+      "type": "string",
+      "default": "Nr. 1 maszynka do bikinii i ciała."
+    },
+    "ctaButtonLabel": {
+      "type": "string",
+      "default": "Kup teraz"
+    },
+    "ctaButtonURL": {
+      "type": "string",
+      "default": "/sklep"
+    },
+    "col1Title": {
+      "type": "string",
+      "default": "Shav Woman"
+    },
+    "col1Link1Label": {
+      "type": "string",
+      "default": "Produkty"
+    },
+    "col1Link1URL": {
+      "type": "string",
+      "default": "/sklep"
+    },
+    "col1Link2Label": {
+      "type": "string",
+      "default": "O nas"
+    },
+    "col1Link2URL": {
+      "type": "string",
+      "default": "/o-nas"
+    },
+    "col1Link3Label": {
+      "type": "string",
+      "default": "Kariera"
+    },
+    "col1Link3URL": {
+      "type": "string",
+      "default": "/kariera"
+    },
+    "col1Link4Label": {
+      "type": "string",
+      "default": "Patent"
+    },
+    "col1Link4URL": {
+      "type": "string",
+      "default": "/patent"
+    },
+    "col1Link5Label": {
+      "type": "string",
+      "default": ""
+    },
+    "col1Link5URL": {
+      "type": "string",
+      "default": ""
+    },
+    "col1Link6Label": {
+      "type": "string",
+      "default": ""
+    },
+    "col1Link6URL": {
+      "type": "string",
+      "default": ""
+    },
+    "col2Title": {
+      "type": "string",
+      "default": "Pomoc"
+    },
+    "col2Link1Label": {
+      "type": "string",
+      "default": "Metody płatności"
+    },
+    "col2Link1URL": {
+      "type": "string",
+      "default": "/metody-platnosci"
+    },
+    "col2Link2Label": {
+      "type": "string",
+      "default": "Metody wysyłki"
+    },
+    "col2Link2URL": {
+      "type": "string",
+      "default": "/metody-wysylki"
+    },
+    "col2Link3Label": {
+      "type": "string",
+      "default": "Zwroty i reklamacje"
+    },
+    "col2Link3URL": {
+      "type": "string",
+      "default": "/zwrot"
+    },
+    "col2Link4Label": {
+      "type": "string",
+      "default": "Sprzedaż hurtowa"
+    },
+    "col2Link4URL": {
+      "type": "string",
+      "default": "/sprzedaz-hurtowa"
+    },
+    "col2Link5Label": {
+      "type": "string",
+      "default": "Kontakt"
+    },
+    "col2Link5URL": {
+      "type": "string",
+      "default": "/kontakt"
+    },
+    "col2Link6Label": {
+      "type": "string",
+      "default": ""
+    },
+    "col2Link6URL": {
+      "type": "string",
+      "default": ""
+    },
+    "social1Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "social1Label": {
+      "type": "string",
+      "default": "Facebook"
+    },
+    "social1URL": {
+      "type": "string",
+      "default": "https://www.facebook.com/"
+    },
+    "social2Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "social2Label": {
+      "type": "string",
+      "default": "TikTok"
+    },
+    "social2URL": {
+      "type": "string",
+      "default": "https://www.tiktok.com/"
+    },
+    "social3Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "social3Label": {
+      "type": "string",
+      "default": "Instagram"
+    },
+    "social3URL": {
+      "type": "string",
+      "default": "https://www.instagram.com/"
+    },
+    "social4Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "social4Label": {
+      "type": "string",
+      "default": "YouTube"
+    },
+    "social4URL": {
+      "type": "string",
+      "default": "https://www.youtube.com/"
+    },
+    "copyright": {
+      "type": "string",
+      "default": "© Shav Woman 2026. Wszelkie prawa zastrzeżone."
+    },
+    "bottomLogo": {
+      "type": "string",
+      "default": ""
+    },
+    "policyLabel": {
+      "type": "string",
+      "default": "Polityka prywatności"
+    },
+    "policyURL": {
+      "type": "string",
+      "default": "/polityka-prywatnosci"
+    },
+    "termsLabel": {
+      "type": "string",
+      "default": "Regulamin"
+    },
+    "termsURL": {
+      "type": "string",
+      "default": "/regulamin"
+    },
+    "showBackToTop": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

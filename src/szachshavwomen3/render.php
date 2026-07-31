@@ -1,16 +1,39 @@
-<section class="container mobile-cechy-container cechy-mobile-container-2"  style="background-color: #f8f7f3 !important; background: none !important;">
-    <div class="text-cechy-container-mobile cechy-mobile-2" style="color: #000;">
-    <div class="line line-head">Podwójna precyzja</div>
-    <div class="line line-rest">Dwa ostrza w zestawie - bazowe foliowe oraz okrągłe foliowe do precyzyjnego wykończenia. Dzięki nim ogolisz każdą długość włosków i każdą część ciała – szybko, dokładnie i bez stresu.</div>
+<?php
+$backgroundImage       = isset($attributes['backgroundImage'])       ? $attributes['backgroundImage']       : '';
+$backgroundImageMobile = isset($attributes['backgroundImageMobile']) ? $attributes['backgroundImageMobile'] : '';
+$title                 = isset($attributes['title'])                 ? $attributes['title']                 : '';
+$description           = isset($attributes['description'])           ? $attributes['description']           : '';
+$titleSize             = isset($attributes['titleSize'])             ? (int) $attributes['titleSize']       : 42;
+$descriptionSize       = isset($attributes['descriptionSize'])       ? (int) $attributes['descriptionSize'] : 18;
+$glassPositionX        = isset($attributes['glassPositionX'])        ? $attributes['glassPositionX']        : 'left';
+$glassPositionY        = isset($attributes['glassPositionY'])        ? $attributes['glassPositionY']        : 'middle';
+$glassWidth            = isset($attributes['glassWidth'])            ? (int) $attributes['glassWidth']      : 726;
+
+$allowed_x = ['left', 'center', 'right'];
+$allowed_y = ['top', 'middle', 'bottom'];
+if (!in_array($glassPositionX, $allowed_x, true)) $glassPositionX = 'left';
+if (!in_array($glassPositionY, $allowed_y, true)) $glassPositionY = 'middle';
+
+$style_parts = [];
+if ($backgroundImage) {
+    $style_parts[] = '--bg-desktop:url(' . esc_url($backgroundImage) . ')';
+}
+// Mobile fallback: jezeli mobile pusty, uzywa desktop (ten sam URL)
+$mobile_url = $backgroundImageMobile ?: $backgroundImage;
+if ($mobile_url) {
+    $style_parts[] = '--bg-mobile:url(' . esc_url($mobile_url) . ')';
+}
+$wrapper_style = $style_parts ? implode(';', $style_parts) . ';' : '';
+
+$card_style = 'width:' . $glassWidth . 'px;max-width:100%;';
+?>
+<section class="szachglass szachglass--x-<?php echo esc_attr($glassPositionX); ?> szachglass--y-<?php echo esc_attr($glassPositionY); ?>" style="<?php echo esc_attr($wrapper_style); ?>">
+    <div class="szachglass__card" style="<?php echo esc_attr($card_style); ?>">
+        <?php if ($title): ?>
+            <h2 class="szachglass__title" style="font-size:<?php echo $titleSize; ?>px;"><?php echo wp_kses_post($title); ?></h2>
+        <?php endif; ?>
+        <?php if ($description): ?>
+            <p class="szachglass__description" style="font-size:<?php echo $descriptionSize; ?>px;"><?php echo wp_kses_post($description); ?></p>
+        <?php endif; ?>
     </div>
-    </section>
-    <section class="cechy-container cechy-image-container cechy-image-shavwomen-3 container ">
-    <div class="cechy-inner-wrapper-start">
-        <div class="container--narrow2-important content-position-helper">
-    <div class="text-cechy-container cechy-2" style="color: #000;">
-    <div class="line line-head desktop-cechy">Podwójna precyzja</div>
-    <div class="line line-rest desktop-cechy">Dwa ostrza w zestawie - bazowe foliowe oraz okrągłe foliowe do precyzyjnego wykończenia. Dzięki nim ogolisz każdą długość włosków i każdą część ciała – szybko, dokładnie i bez stresu.</div>
-    </div>
-    </div>
-    </div>
-    </section>
+</section>

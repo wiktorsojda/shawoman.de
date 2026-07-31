@@ -1,0 +1,193 @@
+// =============================================================================
+// GŁOWNAOPINIE — strona glowna, slider opinii klientow (Figma: 182:63510)
+// =============================================================================
+// Tytul + slider z N kartami opinii (3 widoczne na desktop, 1 na mobile)
+// =============================================================================
+
+.glownaopinie {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-48;
+  width: 100%;
+  padding: $space-32 0;
+  box-sizing: border-box;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: $space-32 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Tytul
+  // ---------------------------------------------------------------------------
+  &__title {
+    margin: 0;
+    text-align: center;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-tight;
+    line-height: 1;
+    font-size: $font-size-h2;          // 42 mobile
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h1;        // 64
+      max-width: 746px !important;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Slider — viewport + track + nav
+  // ---------------------------------------------------------------------------
+  &__viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    gap: $space-16;
+    transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    will-change: transform;
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-y;            // swipe-X dla karuzeli, scroll-Y dla strony
+
+    &:active,
+    .is-dragging & {
+      cursor: grabbing;
+    }
+  }
+
+  // Dots — paginacja pod sliderem, klikalne + auto-aktualizowane przez JS
+  &__dots {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-12;
+    margin-top: $space-8;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background-color: $color-neutral-300;
+    cursor: pointer;
+    transition: background-color 0.2s ease, width 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: $color-neutral-500;
+    }
+
+    &--active {
+      background-color: $color-primary-medium;
+      width: 28px;
+      border-radius: 5px;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Karta opinii
+  // ---------------------------------------------------------------------------
+  &__card {
+    flex: 0 0 100%;                     // mobile: pelna szerokosc
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $space-32;
+    padding: $space-32;
+    background-color: $color-neutral-100;
+    border-radius: $radius-s;           // 16
+    box-sizing: border-box;
+    min-height: 375px;
+
+    @media (min-width: $breakpoint-tablet) {
+      // 3 widoczne karty: kazda zajmuje 1/3 (minus gapy)
+      flex: 0 0 calc((100% - #{$space-16 * 2}) / 3);
+    }
+  }
+
+  // Pill z imieniem + ocena + gwiazdki
+  &__card-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-16;
+    align-self: flex-start;
+    padding: $space-8 $space-16;
+    background-color: $color-neutral-50;
+    border-radius: 72px;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-body-l;       // 16
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-500;
+    white-space: nowrap;
+  }
+
+  &__card-pill-sep {
+    width: 1px;
+    height: 18px;
+    background-color: $color-neutral-300;
+    flex-shrink: 0;
+  }
+
+  &__card-pill-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  // Tresc opinii
+  &__card-text {
+    margin: 0;
+    color: $color-neutral-700;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  // Stopka karty (zaufana opinia + ikona)
+  &__card-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-16;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-body-l;       // 16
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  &__card-verified-sep {
+    width: 1px;
+    height: 30px;
+    background-color: $color-neutral-300;
+    flex-shrink: 0;
+  }
+
+  &__card-verified-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: $color-neutral-800;
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

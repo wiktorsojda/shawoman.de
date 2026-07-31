@@ -3,6 +3,67 @@
   "apiVersion": 3,
   "name": "ourblocktheme/hurtmapa",
   "title": "Hurt Mapa",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Dystrybucja hurtowa to nasz priorytet"
+    },
+    "description": {
+      "type": "string",
+      "default": "W zespole Shav traktujemy sprzedaż hurtową tak samo priorytetowo jak detaliczną i dbamy o dogodne warunki współpracy."
+    },
+    "stat1": {
+      "type": "string",
+      "default": "+5 krajów dystrybucji"
+    },
+    "stat2": {
+      "type": "string",
+      "default": "+50 tys. sprzedanych sztuk"
+    },
+    "stat3": {
+      "type": "string",
+      "default": "+20 stałych partnerów"
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

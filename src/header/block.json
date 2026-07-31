@@ -2,10 +2,100 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/header",
-  "title": "Fictional University Header",
+  "title": "Header",
+  "attributes": {
+    "logoImage": {
+      "type": "string",
+      "default": ""
+    },
+    "logoAlt": {
+      "type": "string",
+      "default": "Shav Logo"
+    },
+    "logoURL": {
+      "type": "string",
+      "default": "/"
+    },
+    "nav1Label": {
+      "type": "string",
+      "default": "Produkty"
+    },
+    "nav1URL": {
+      "type": "string",
+      "default": "/sklep"
+    },
+    "nav2Label": {
+      "type": "string",
+      "default": "Kontakt"
+    },
+    "nav2URL": {
+      "type": "string",
+      "default": "/kontakt"
+    },
+    "nav3Label": {
+      "type": "string",
+      "default": ""
+    },
+    "nav3URL": {
+      "type": "string",
+      "default": ""
+    },
+    "nav4Label": {
+      "type": "string",
+      "default": ""
+    },
+    "nav4URL": {
+      "type": "string",
+      "default": ""
+    },
+    "showCart": {
+      "type": "boolean",
+      "default": true
+    },
+    "cartURL": {
+      "type": "string",
+      "default": "/koszyk"
+    },
+    "hamburgerLabel": {
+      "type": "string",
+      "default": "Otwórz menu"
+    }
+  },
   "editorScript": "file:./index.js",
   "render": "file:./render.php",
   "supports": {
-    "align": ["full"]
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
   }
 }

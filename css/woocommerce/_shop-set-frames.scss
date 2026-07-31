@@ -1,0 +1,48 @@
+// =============================================================================
+// Shop — ramki gradientowe zestawow (top stripe 16px)
+// Figma: 898:1634 — pasek na samej gorze karty, nie border dookola.
+// Wariant ustawiany przez meta produktu `_shav_frame_variant` -> klasa
+// `.product-card--frame-{slug}`. Definicja gradientow w jednym miejscu.
+// =============================================================================
+
+$shop-frame-gradients: (
+    zloty:     linear-gradient(177.46deg, #d28f33 23.78%, #c17627 9.03%, #f3ceaa 51.08%, #c17627 87.59%, #c99b70 132.32%, #b06b23 158.8%),
+    srebrny:   linear-gradient(177.46deg, #999999 23.78%, #b2b2b2 35%, #f5f5f5 50%, #cccccc 75%, #999999 95%, #f5f5f5 110%),
+    platynowy: linear-gradient(177.46deg, #3a3a3a 23.78%, #606060 35%, #8f8f8f 50%, #cecece 75%, #888888 95%, #464646 110%),
+    duo:       linear-gradient(177.46deg, $color-peach-200 0%, $color-peach-400 40%, #000 70%, #000 100%),
+    wojownik:  linear-gradient(177.46deg, $color-accent-medium 0%, #1c0b02 35%, $color-neutral-900 70%, $color-accent-medium 100%),
+    handler:   linear-gradient(177.46deg, #9e8976 23.78%, #7a5e50 35%, #b8977e 50%, #f6d0ab 75%, #9d774e 95%, #8b6b50 110%),
+);
+
+// Wysokosc paska: 16px desktop, 8px mobile (Figma 898:1855 → Frame 7235 h=8)
+.product-card__frame-stripe {
+    display: block;
+    width: 100%;
+    height: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    border-radius: 24px 24px 0 0;
+
+    @media (min-width: 900px) {
+        height: 16px;
+    }
+}
+
+@each $variant, $gradient in $shop-frame-gradients {
+    .product-card--frame-#{$variant} {
+        padding-top: 8px;
+        @media (min-width: 900px) { padding-top: 16px; }
+
+        .product-card__frame-stripe {
+            background: $gradient;
+        }
+
+        .product-card__badges {
+            top: 8px;
+            @media (min-width: 900px) { top: 16px; }
+        }
+    }
+}

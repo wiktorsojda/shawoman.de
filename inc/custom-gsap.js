@@ -1,6 +1,7 @@
 
 
 const lenis = new Lenis();
+window.lenis = lenis; // ekspozycja dla floating back-to-top i innych handlerow
 
 lenis.on("scroll", (e) => {
   // console.log(e);
@@ -14,9 +15,25 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 
-// top bar menu when scrolling down 
+// Marquee logos (.about-us-swiper) — duplikuje zawartosc dla plynnego infinity loop
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.about-us-swiper').forEach((track) => {
+    if (track.dataset.marqueeReady) return;
+    const clone = track.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    // Wstaw klonowane dzieci do tego samego trackera (zamiast osobnego elementu)
+    Array.from(clone.children).forEach((child) => {
+      track.appendChild(child);
+    });
+    track.dataset.marqueeReady = '1';
+  });
+});
+
+
+// top bar menu when scrolling down
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.getElementById('top-menu');
+  if (!header) return;
 
   window.addEventListener('scroll', function() {
     if (window.scrollY > 150) {
@@ -38,12 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".placeholder-video-new-film")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-// window.addEventListener("load", testvideo);
-DAppendVideo();
 
   }
 });
@@ -58,12 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".placeholder-video")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -74,16 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/golarka-do-glowy-crowner")) {
 
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/lowG.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
-    
-    
+
+
     const dHomeBanner = document.querySelector(".placeholder-video-crowner")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -94,16 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/golarka-do-twarzy-handler")) {
 
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/handler.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
-    
-    
+
+
     const dHomeBanner = document.querySelector(".placeholder-video-handler")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -118,12 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".placeholder-video")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -138,12 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".placeholder-video-shav1")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -158,12 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".placeholder-video-balsam")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -178,12 +174,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".placeholder-video-dezo")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -202,12 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-1")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -225,12 +215,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-2")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -246,12 +233,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".placeholder-video-woman")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -269,12 +253,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-3")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -292,12 +273,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-4")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -315,12 +293,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-5")
 
-    function DAppendVideo() {
+    if (dHomeBanner) {
         dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
 
   }
 });
@@ -351,29 +326,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function instagramFeed() {
     const carousel = document.querySelector('#sbi_images'); // Container for the carousel
+    if (!carousel) return;
+
     const items = carousel.querySelectorAll('.sbi_item'); // Individual carousel items
     const itemsPerView = 4; // Number of items to display at once
     const itemCount = items.length;
     let currentIndex = 0;
 
-    // Update carousel position
     function updateCarousel() {
         const newTransform = -(currentIndex * 100 / itemsPerView) + '%';
         carousel.style.transform = 'translateX(' + newTransform + ')';
     }
 
-    // Button click events
-    document.querySelector('.next-instagram').addEventListener('click', function() {
-        currentIndex = Math.min(currentIndex + 1, itemCount - itemsPerView);
-        updateCarousel();
-    });
+    const nextBtn = document.querySelector('.next-instagram');
+    const prevBtn = document.querySelector('.prev-instagram');
 
-    document.querySelector('.prev-instagram').addEventListener('click', function() {
-        currentIndex = Math.max(currentIndex - 1, 0);
-        updateCarousel();
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            currentIndex = Math.min(currentIndex + 1, itemCount - itemsPerView);
+            updateCarousel();
+        });
+    }
 
-    // Initialize carousel
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            currentIndex = Math.max(currentIndex - 1, 0);
+            updateCarousel();
+        });
+    }
+
     updateCarousel();
   }
 
@@ -553,41 +534,9 @@ const addHeroSlide = function () {
 
   
 
-// FOOTER BACK TO TOP BUTTON
-document.addEventListener("DOMContentLoaded", function() {
-    const lenis = new Lenis({
-        duration: 1.2, // Customize the duration to your liking
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-    });
-
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    const backToTopButton = document.getElementById('backToTop');
-    const footer = document.querySelector('footer');
-
-    function isFooterInView() {
-        const footerRect = footer.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        return (footerRect.top <= windowHeight && footerRect.bottom >= 0);
-    }
-
-    window.addEventListener('scroll', () => {
-        if (isFooterInView()) {
-            backToTopButton.classList.add('show');
-        } else {
-            backToTopButton.classList.remove('show');
-        }
-    });
-
-    backToTopButton.addEventListener('click', () => {
-        lenis.scrollTo(0, { duration: 5.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
-    });
-});
+// FOOTER BACK TO TOP BUTTON — usuniete (zastapione floating .back-to-top w functions.php).
+// Wczesniej tworzylo TRZECIA instancje Lenis co powodowalo konflikt scrollowania
+// (pierwszy klik sie "gubil"). Globalna instancja Lenis siedzi na window.lenis (gora pliku).
 
 
     // Toggle mobile menu

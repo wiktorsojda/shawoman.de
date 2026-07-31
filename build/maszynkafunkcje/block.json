@@ -3,6 +3,95 @@
   "apiVersion": 3,
   "name": "ourblocktheme/maszynkafunkcje",
   "title": "Maszynka Funkcje",
+  "attributes": {
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "feature1Line1": {
+      "type": "string",
+      "default": "Wymienne ostrza:"
+    },
+    "feature1Line2": {
+      "type": "string",
+      "default": "stalowe i foliowe"
+    },
+    "feature2Line1": {
+      "type": "string",
+      "default": "Matowa, antypoślizgowa"
+    },
+    "feature2Line2": {
+      "type": "string",
+      "default": "powierzchnia"
+    },
+    "feature3Line1": {
+      "type": "string",
+      "default": "3-stopniowy"
+    },
+    "feature3Line2": {
+      "type": "string",
+      "default": "wskaźnik naładowania"
+    },
+    "feature4Line1": {
+      "type": "string",
+      "default": "Zintegrowana"
+    },
+    "feature4Line2": {
+      "type": "string",
+      "default": "lampka LED"
+    },
+    "feature5Line1": {
+      "type": "string",
+      "default": "Poręczny design,"
+    },
+    "feature5Line2": {
+      "type": "string",
+      "default": "wszędzie dotrze"
+    },
+    "feature6Line1": {
+      "type": "string",
+      "default": "Port ładowania"
+    },
+    "feature6Line2": {
+      "type": "string",
+      "default": "USB-C"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

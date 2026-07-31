@@ -1,43 +1,33 @@
-<section class="faq-container">
-<div class="faq-wrapper container--narrow2-important">
-      <div class="faq-title">Często zadawane pytania</div>
-    
-      <div class="faq-wrapper-questions">
-      <div class="faq">
-        <button class="faq-accordion">
-        <h2 class="faq-header">Czy ostrze foliowe Shav jest bezpieczne dla skóry?</h2>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="faq-pannel">
-          <p>
-          Tak, <strong>ostrze foliowe</strong> jest produkowane z dbałością o każdy szczegół. Pracuje również w technologii CutFree minimalizującej ryzyko zacięć.
-        </p>
-        </div>
-      </div>
+<?php
+$title           = isset($attributes['title'])           ? $attributes['title']           : '';
+$showTitle       = isset($attributes['showTitle'])       ? $attributes['showTitle']       : true;
+$headingTag      = isset($attributes['headingTag'])      ? $attributes['headingTag']      : 'h2';
+$containerClass  = isset($attributes['containerClass'])  ? $attributes['containerClass']  : 'faq-container';
 
-      <div class="faq">
-        <button class="faq-accordion">
-        <h2 class="faq-header">Jak czyścić ostrze foliowe Shav?</h2>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="faq-pannel">
-          <p>
-          Zalecamy czyszczenie <strong>ostrza foliowego</strong> po każdym użyciu. W tym celu należy zdemontować ostrze, a następnie umyć je pod bieżącą wodą.
-        </p>
+$allowed_tags = ['h2', 'h3', 'h4', 'div'];
+if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
+?>
+<section class="<?php echo esc_attr($containerClass); ?>">
+    <div class="faq-wrapper container--narrow2-important">
+        <?php if ($showTitle && $title): ?>
+            <div class="faq-title"><?php echo wp_kses_post($title); ?></div>
+        <?php endif; ?>
+        <div class="faq-wrapper-questions">
+            <?php for ($i = 1; $i <= 10; $i++):
+                $q   = isset($attributes["question{$i}"]) ? $attributes["question{$i}"] : '';
+                $ans = isset($attributes["answer{$i}"])   ? $attributes["answer{$i}"]   : '';
+                if (!$q && !$ans) continue;
+            ?>
+                <div class="faq">
+                    <button class="faq-accordion" type="button">
+                        <<?php echo $headingTag; ?> class="faq-header"><?php echo wp_kses_post($q); ?></<?php echo $headingTag; ?>>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-pannel">
+                        <p><?php echo wp_kses_post($ans); ?></p>
+                    </div>
+                </div>
+            <?php endfor; ?>
         </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-accordion">
-        <h2 class="faq-header">Jak często należy wymieniać ostrze foliowe w maszynce do miejsc intymnych Shav 2?</h2>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="faq-pannel">
-          <p>
-          Zalecamy regularną <strong>wymianę ostrza foliowego</strong>, aby <strong>golarka Shav 2</strong> mogła gwarantować maksymalną wydajność i odpowiednie warunki higieniczne. Optymalny czas użytkowania jednego ostrza to 2-3 miesiące, jednak zależy on od częstotliwości użytkowania i konkretnych potrzeb. Sugerujemy wymianę po czasie nie dłuższym niż 3 miesiące.
-        </p>
-        </div>
-      </div>
-      </div>
     </div>
-    </section>
+</section>

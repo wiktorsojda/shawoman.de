@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/rosegoldfeatured",
+  "title": "Drop — Produkt wyróżniony",
+  "category": "theme",
+  "icon": "star-filled",
+  "description": "Duża karta wyróżnionego produktu/zestawu: obraz z przyciskiem koszyka, opis i ceny. Klik w obraz = strona produktu, klik w koszyk = dodanie do koszyka.",
+  "attributes": {
+    "badge":         { "type": "string", "default": "EDYCJA LIMITOWANA" },
+    "image":         { "type": "string", "default": "" },
+    "imageAlt":      { "type": "string", "default": "Zestaw Rose Gold" },
+    "title":         { "type": "string", "default": "Idealne połączenie" },
+    "description":   { "type": "string", "default": "Maksymalna delikatność golarki Shav Woman połączona z niezawodną precyzją Shav Woman Razor. Limitowany duet Rose Gold to odpowiedź dla kobiet, które oczekują szybkiego efektu i skóry wolnej od podrażnień." },
+    "namePart1":     { "type": "string", "default": "Zestaw " },
+    "nameBrand":     { "type": "string", "default": "Shav Woman " },
+    "namePart2":     { "type": "string", "default": "Rose Gold" },
+    "productSub":    { "type": "string", "default": "Golarka Damska Shav Woman + Shav Woman Razor" },
+    "discountBadge": { "type": "string", "default": "OSZCZĘDZASZ 30%" },
+    "oldPrice":      { "type": "string", "default": "229,00 zł" },
+    "newPrice":      { "type": "string", "default": "179,00 zł" },
+    "productId":     { "type": "number", "default": 0 },
+    "variationId":   { "type": "number", "default": 0 },
+    "linkUrl":       { "type": "string", "default": "" },
+    "showCart":      { "type": "boolean", "default": true }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": { "margin": true, "padding": true }
+  }
+}

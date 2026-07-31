@@ -1,0 +1,60 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/misjaslider",
+  "title": "Misja — Slider",
+  "category": "design",
+  "icon": "images-alt2",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Chcemy też oswajać tematy związane z kobiecą pielęgnacją, ciałem i codziennym komfortem, które zbyt długo były traktowane jak tabu"
+    },
+    "description": {
+      "type": "string",
+      "default": "Wychodzimy do ludzi, rozmawiamy otwarcie i pokazujemy, że o tych rzeczach można mówić naturalnie - bez skrępowania i bez niepotrzebnego dystansu."
+    },
+    "images": {
+      "type": "array",
+      "default": []
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Odwiedź naszego Instagrama i zobacz więcej"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "https://instagram.com/"
+    },
+    "titleSizeDesktop": {
+      "type": "number",
+      "default": 42
+    },
+    "titleSizeMobile": {
+      "type": "number",
+      "default": 26
+    },
+    "descriptionSizeDesktop": {
+      "type": "number",
+      "default": 18
+    },
+    "descriptionSizeMobile": {
+      "type": "number",
+      "default": 16
+    },
+    "buttonSize": {
+      "type": "number",
+      "default": 12
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ]
+  }
+}

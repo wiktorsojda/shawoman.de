@@ -3,6 +3,103 @@
   "apiVersion": 3,
   "name": "ourblocktheme/glownabaner",
   "title": "Główna Baner",
+  "attributes": {
+    "showRating": {
+      "type": "boolean",
+      "default": true
+    },
+    "avatar1": {
+      "type": "string",
+      "default": ""
+    },
+    "avatar2": {
+      "type": "string",
+      "default": ""
+    },
+    "avatar3": {
+      "type": "string",
+      "default": ""
+    },
+    "avatar4": {
+      "type": "string",
+      "default": ""
+    },
+    "avatar5": {
+      "type": "string",
+      "default": ""
+    },
+    "ratingCount": {
+      "type": "string",
+      "default": "+300K Opinii"
+    },
+    "ratingScore": {
+      "type": "string",
+      "default": "4.9"
+    },
+    "bannerImage": {
+      "type": "string",
+      "default": ""
+    },
+    "bannerImageMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "bannerTitle": {
+      "type": "string",
+      "default": "Shav "
+    },
+    "bannerTitleAccent": {
+      "type": "string",
+      "default": "Days"
+    },
+    "bannerSubtitle": {
+      "type": "string",
+      "default": "-25% z kodem: SHAV25"
+    },
+    "bannerCtaLabel": {
+      "type": "string",
+      "default": "Dowiedz się więcej"
+    },
+    "bannerCtaURL": {
+      "type": "string",
+      "default": "/sklep"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/glownaoceny",
+  "title": "Główna Oceny",
+  "attributes": {
+    "titleBefore": {
+      "type": "string",
+      "default": "Shav "
+    },
+    "titleAccent": {
+      "type": "string",
+      "default": "woman."
+    },
+    "titleAfter": {
+      "type": "string",
+      "default": " Dlaczego warto wybrać?"
+    },
+    "card1Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "card1TextStrong": {
+      "type": "string",
+      "default": "Zaufana marka."
+    },
+    "card1TextLight": {
+      "type": "string",
+      "default": "+50K sprzedanych produktów."
+    },
+    "card2Title": {
+      "type": "string",
+      "default": "Zadowoleni klienci."
+    },
+    "card2Avatar1": {
+      "type": "string",
+      "default": ""
+    },
+    "card2Avatar2": {
+      "type": "string",
+      "default": ""
+    },
+    "card2Avatar3": {
+      "type": "string",
+      "default": ""
+    },
+    "card2Avatar4": {
+      "type": "string",
+      "default": ""
+    },
+    "card2Avatar5": {
+      "type": "string",
+      "default": ""
+    },
+    "card2RatingCount": {
+      "type": "string",
+      "default": "+300K Opinii"
+    },
+    "card2RatingScore": {
+      "type": "string",
+      "default": "4.9"
+    },
+    "card3Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "card3TextStrong": {
+      "type": "string",
+      "default": "Do bikini i całego ciała."
+    },
+    "card3TextLight": {
+      "type": "string",
+      "default": "Delikatne golenie do zera."
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
+}

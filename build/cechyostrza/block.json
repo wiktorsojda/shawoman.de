@@ -3,6 +3,63 @@
   "apiVersion": 3,
   "name": "ourblocktheme/cechyostrza",
   "title": "Cechy Ostrza",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "WYJĄTKOWO SKUTECZNY"
+    },
+    "description": {
+      "type": "string",
+      "default": "Shav 2 jest wyposażony w dwa wymienne ostrza - stalowe do skutecznego golenia i foliowe do wykończenia na absolutne zero. Golenie miejsc intymnych nigdy nie było prostsze i bardziej komfortowe."
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "feature1Title": {
+      "type": "string",
+      "default": "Golenie do absolutnego zera"
+    },
+    "feature2Title": {
+      "type": "string",
+      "default": "Dwa ostrza - stalowe i foliowe"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

@@ -3,7 +3,59 @@
   "apiVersion": 3,
   "name": "ourblocktheme/hurtdesign",
   "title": "Hurt Design",
+  "attributes": {
+    "tagline": {
+      "type": "string",
+      "default": "Ochrona prawna"
+    },
+    "heading": {
+      "type": "string",
+      "default": "Jedyny w swoim rodzaju"
+    },
+    "description": {
+      "type": "string",
+      "default": "Shav 2 to rezultat naszych starań i długich miesięcy intensywnej pracy nad stworzeniem produktu, który możemy uznać za prawdziwe arcydzieło. Nowy model jest owocem naszej pasji i zaangażowania, zaprojektowany z myślą o najbardziej wymagających klientach. Jesteśmy jedyną firmą oferującą model Shav 2 na świecie. Nasze innowacje są chronione zarejestrowanym wzorem przemysłowym, a wszelkie próby wykorzystywania materiałów graficznych dotyczących Shav bez naszej zgody są całkowicie zabronione."
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

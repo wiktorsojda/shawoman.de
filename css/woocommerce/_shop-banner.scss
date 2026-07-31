@@ -1,0 +1,89 @@
+// =============================================================================
+// Shop — banner sklepu (poza grid, nad sekcjami)
+// Figma: 898:1591 — 1428x452 z 64px top padding pod headerem.
+// Markup generowany przez display_shop_banner_image_with_text() w functions.php.
+// =============================================================================
+
+.shop-banner-image {
+    position: relative;
+    width: auto;
+    margin: 24px 20px 32px 20px;       // mobile: 20px po bokach (rownanie z headerem)
+    border-radius: 24px;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    @media (min-width: 900px) {
+        width: 100%;
+        margin: 64px auto 48px auto;
+    }
+
+    img {
+        // UWAGA: brak `display: block` tutaj — selektor `.shop-banner-image img`
+        // ma specificity (0,1,1) i nadpisywalby `.shop-banner-image-desktop`
+        // (specificity 0,1,0). Sterowanie display zostawiamy klasom ponizej.
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Klasy wariantow z taka sama specificity (0,1,0) jak .shop-banner-image img,
+// ale przez `img.shop-banner-image-*` podbijamy specificity do (0,1,1) =
+// remis i wygrywaja te ktore sa pozniej w kaskadzie. Najbezpieczniej je
+// uczynic bardziej specyficznymi.
+img.shop-banner-image-desktop {
+    display: none;
+
+    @media (min-width: 900px) {
+        display: block;
+    }
+}
+
+img.shop-banner-image-mobile {
+    display: block;
+
+    @media (min-width: 900px) {
+        display: none;
+    }
+}
+
+.shop-banner-textcontainer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+    pointer-events: none;
+
+    @media (min-width: 900px) {
+        padding: 64px;
+    }
+
+    .banner-text-1,
+    .banner-text-2 {
+        color: $color-white;
+        font-family: $font-family-base;
+        letter-spacing: -0.04em;
+    }
+
+    .banner-text-1 {
+        font-weight: $font-weight-medium;
+        font-size: 14px;
+        line-height: 1.2;
+
+        @media (min-width: 900px) {
+            font-size: 18px;
+        }
+    }
+
+    .banner-text-2 {
+        font-weight: $font-weight-bold;
+        font-size: 28px;
+        line-height: 1.1;
+        margin-top: 4px;
+
+        @media (min-width: 900px) {
+            font-size: 48px;
+        }
+    }
+}

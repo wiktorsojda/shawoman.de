@@ -2,8 +2,140 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/faqostrzefoliowe",
-  "title": "FAQ ostrze foliowe",
+  "title": "FAQ Ostrze Foliowe",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Często zadawane pytania"
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "containerClass": {
+      "type": "string",
+      "default": "faq-container"
+    },
+    "question1": {
+      "type": "string",
+      "default": "Czy ostrze foliowe Shav jest bezpieczne dla skóry?"
+    },
+    "answer1": {
+      "type": "string",
+      "default": "Tak, <strong>ostrze foliowe</strong> jest produkowane z dbałością o każdy szczegół. Pracuje również w technologii CutFree minimalizującej ryzyko zacięć."
+    },
+    "question2": {
+      "type": "string",
+      "default": "Jak czyścić ostrze foliowe Shav?"
+    },
+    "answer2": {
+      "type": "string",
+      "default": "Zalecamy czyszczenie <strong>ostrza foliowego</strong> po każdym użyciu. W tym celu należy zdemontować ostrze, a następnie umyć je pod bieżącą wodą."
+    },
+    "question3": {
+      "type": "string",
+      "default": "Jak często należy wymieniać ostrze foliowe w maszynce do miejsc intymnych Shav 2?"
+    },
+    "answer3": {
+      "type": "string",
+      "default": "Zalecamy regularną <strong>wymianę ostrza foliowego</strong>, aby <strong>golarka Shav 2</strong> mogła gwarantować maksymalną wydajność i odpowiednie warunki higieniczne. Optymalny czas użytkowania jednego ostrza to 2-3 miesiące, jednak zależy on od częstotliwości użytkowania i konkretnych potrzeb. Sugerujemy wymianę po czasie nie dłuższym niż 3 miesiące."
+    },
+    "question4": {
+      "type": "string",
+      "default": ""
+    },
+    "answer4": {
+      "type": "string",
+      "default": ""
+    },
+    "question5": {
+      "type": "string",
+      "default": ""
+    },
+    "answer5": {
+      "type": "string",
+      "default": ""
+    },
+    "question6": {
+      "type": "string",
+      "default": ""
+    },
+    "answer6": {
+      "type": "string",
+      "default": ""
+    },
+    "question7": {
+      "type": "string",
+      "default": ""
+    },
+    "answer7": {
+      "type": "string",
+      "default": ""
+    },
+    "question8": {
+      "type": "string",
+      "default": ""
+    },
+    "answer8": {
+      "type": "string",
+      "default": ""
+    },
+    "question9": {
+      "type": "string",
+      "default": ""
+    },
+    "answer9": {
+      "type": "string",
+      "default": ""
+    },
+    "question10": {
+      "type": "string",
+      "default": ""
+    },
+    "answer10": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

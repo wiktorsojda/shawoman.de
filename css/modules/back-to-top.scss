@@ -1,0 +1,54 @@
+// Floating back-to-top — przycisk w prawym dolnym rogu, pojawia sie po przescrollowaniu.
+// Globalny, dolacza sie w footer.php (poza blokiem footer).
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 999;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+
+  background-color: $color-primary-medium;
+  color: $color-white;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: $shadow-card;
+  cursor: pointer;
+
+  // Stan ukryty (przed scrollem) — niewidoczny i nieklikalny
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease, background-color 0.15s ease;
+
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary-dark;
+    outline-offset: 2px;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 600px) {
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+  }
+}

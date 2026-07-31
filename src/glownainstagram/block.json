@@ -3,7 +3,67 @@
   "apiVersion": 3,
   "name": "ourblocktheme/glownainstagram",
   "title": "Główna Instagram",
+  "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "default": "Znajdziesz nas na Instagramie"
+    },
+    "profileLogo": {
+      "type": "string",
+      "default": ""
+    },
+    "profileName": {
+      "type": "string",
+      "default": "shav_woman"
+    },
+    "profileFollowers": {
+      "type": "string",
+      "default": "19 tysięcy obserwujących"
+    },
+    "profileURL": {
+      "type": "string",
+      "default": "https://www.instagram.com/shav_woman/"
+    },
+    "shortcode": {
+      "type": "string",
+      "default": "[instagram-feed feed=1]"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

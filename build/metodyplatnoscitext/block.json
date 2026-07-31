@@ -2,7 +2,123 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/metodyplatnoscitext",
-  "title": "Metody Płatności Text",
+  "title": "Metody Płatności Tekst",
+  "attributes": {
+    "header": {
+      "type": "string",
+      "default": "Dostępne metody płatności"
+    },
+    "description": {
+      "type": "string",
+      "default": "Oferujemy różnorodne metody płatności, aby zapewnić Ci wygodę i bezpieczeństwo podczas zakupów. Złóż zamówienie i zdecyduj jaką metodę wybierzesz dla siebie."
+    },
+    "methods": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object"
+      }
+    },
+    "method1Title": {
+      "type": "string",
+      "default": "Blik"
+    },
+    "method1Desc": {
+      "type": "string",
+      "default": "Szybkie i wygodne płatności kodem BLIK w naszej witrynie lub przez PayU."
+    },
+    "method1Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "method1IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "method2Title": {
+      "type": "string",
+      "default": "Płatność przy odbiorze"
+    },
+    "method2Desc": {
+      "type": "string",
+      "default": "Zapłać gotówką u kuriera przy odbiorze. Dodatkowy koszt: 4,99 zł."
+    },
+    "method2Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "method2IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "method3Title": {
+      "type": "string",
+      "default": ""
+    },
+    "method3Desc": {
+      "type": "string",
+      "default": ""
+    },
+    "method3Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "method3IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "method4Title": {
+      "type": "string",
+      "default": ""
+    },
+    "method4Desc": {
+      "type": "string",
+      "default": ""
+    },
+    "method4Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "method4IconSvg": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

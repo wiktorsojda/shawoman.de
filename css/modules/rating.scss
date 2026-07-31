@@ -1,0 +1,73 @@
+// =============================================================================
+// RATING — rzad gwiazdek + etykieta (Figma: 104:62872)
+// =============================================================================
+// Uzycie (z kafelkami):
+//
+//   <div class="rating">
+//     <ul class="rating__stars">
+//       <li class="rating__star">
+//         <svg class="rating__icon">...</svg>
+//       </li>
+//       ...
+//     </ul>
+//     <span class="rating__label">4.9 - świetny</span>
+//   </div>
+//
+// Dla standalone gwiazdki (bez kafelka):
+//
+//   <svg class="rating__star-standalone">...</svg>
+// =============================================================================
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: $rating-row-gap;
+
+  &__stars {
+    display: inline-flex;
+    align-items: center;
+    gap: $rating-tile-gap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__star {
+    width: $rating-tile-size;
+    height: $rating-tile-size;
+    background-color: $rating-tile-bg;
+    border-radius: $rating-tile-radius;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__icon {
+    width: $rating-icon-size;
+    height: $rating-icon-size;
+    color: $rating-icon-color;
+    fill: currentColor;            // dla SVG przez fill
+    flex-shrink: 0;
+  }
+
+  &__label {
+    // Z Figmy: BVP Medium 24px, tracking -0.04em, uppercase, neutral/900.
+    // Rozmiar 24px nie wystepuje w skali H1-H4/Subtitle/Body — wartosc lokalna.
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 24px;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    color: $rating-label-color;
+    text-transform: uppercase;
+  }
+
+  // Standalone gwiazdka (poza rzedem)
+  &__star-standalone {
+    width: $rating-star-size;
+    height: $rating-star-size;
+    color: $color-neutral-900;
+    fill: currentColor;
+  }
+}

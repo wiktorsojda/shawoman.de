@@ -16,15 +16,136 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "patent-father-container"
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Obraz: Znak towarowy",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      znakImage: media.url
+    }),
+    allowedTypes: ["image"],
+    value: a.znakImage,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, a.znakImage ? "Zmień obraz" : "Wybierz obraz")
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Obraz: Wz\xF3r przemys\u0142owy",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      wzorImage: media.url
+    }),
+    allowedTypes: ["image"],
+    value: a.wzorImage,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, a.wzorImage ? "Zmień obraz" : "Wybierz obraz")
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Link do PDF",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "URL pliku PDF",
+    value: a.pdfLinkURL,
+    onChange: v => setAttributes({
+      pdfLinkURL: v
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "container--narrow2-important patent-container"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "Patent Text"));
+    className: "zarejestrowano-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "zarejestrowano-title-subcontainer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    value: a.topTitle,
+    onChange: v => setAttributes({
+      topTitle: v
+    }),
+    placeholder: "Tytu\u0142"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "zarejestrowano-rest",
+    value: a.topDescription,
+    onChange: v => setAttributes({
+      topDescription: v
+    }),
+    placeholder: "Opis"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "znak-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "znak-subcontainer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "znak-image-container"
+  }, a.znakImage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: a.znakImage,
+    alt: ""
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "znak-subcontainer-text"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.znakLabel,
+    onChange: v => setAttributes({
+      znakLabel: v
+    }),
+    placeholder: "Etykieta"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wzor-subcontainer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wzor-subcontainer-text"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.wzorLabel,
+    onChange: v => setAttributes({
+      wzorLabel: v
+    }),
+    placeholder: "Etykieta"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "wzor-image-container"
+  }, a.wzorImage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: a.wzorImage,
+    alt: ""
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "zarejestrowano-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "zarejestrowano-title-subcontainer"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.pdfTitle,
+    onChange: v => setAttributes({
+      pdfTitle: v
+    }),
+    placeholder: "Tytu\u0142 sekcji PDF"
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "znak-dokumenty"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "a",
+    value: a.pdfLinkText,
+    onChange: v => setAttributes({
+      pdfLinkText: v
+    }),
+    placeholder: "Tekst linku"
+  }))));
 }
 
 /***/ },
@@ -10025,13 +10146,23 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/patenttext/block.json"
 /*!***********************************!*\
   !*** ./src/patenttext/block.json ***!
   \***********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/patenttext","title":"Patent Text","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/patenttext","title":"Patent Text","attributes":{"topTitle":{"type":"string","default":"Zarejestrowano"},"topDescription":{"type":"string","default":"Zarówno znak towarowy Shav, jak i wzór przemysłowy naszej maszynki zostały zarejestrowane w EUIPO i gwarantują unikatowość produktu, którego jesteśmy jedynym producentem."},"znakImage":{"type":"string","default":""},"znakLabel":{"type":"string","default":"ZNAK TOWAROWY"},"wzorImage":{"type":"string","default":""},"wzorLabel":{"type":"string","default":"WZÓR PRZEMYSŁOWY"},"pdfTitle":{"type":"string","default":"podgląd dokumentów"},"pdfLinkText":{"type":"string","default":"Znak towarowy SHAV"},"pdfLinkURL":{"type":"string","default":"https://shav.pl/wp-content/uploads/2024-07-22-Swiadectwo-rejestracji_maszynka-SHAV_wzor-przemyslowy-EUIPO_63624.pdf"}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

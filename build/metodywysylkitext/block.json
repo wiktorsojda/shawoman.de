@@ -3,6 +3,87 @@
   "apiVersion": 3,
   "name": "ourblocktheme/metodywysylkitext",
   "title": "Metody Wysyłki Text",
+  "attributes": {
+    "header": {
+      "type": "string",
+      "default": "Ekspresowa wysyłka"
+    },
+    "description": {
+      "type": "string",
+      "default": "Zamówienia złożone u nas wysyłamy w ciągu 24 godzin, a dostarczamy w ciągu kolejnych 24 godzin! To oznacza, że Twoje zakupy będą u Ciebie w maksymalnie 2 dni robocze!"
+    },
+    "subheader": {
+      "type": "string",
+      "default": "Sprawdź nasze opcje wysyłki:"
+    },
+    "option1Title": {
+      "type": "string",
+      "default": "Kurier InPost - 0zł"
+    },
+    "option1Desc": {
+      "type": "string",
+      "default": "Przy zamówienieniach poniżej 100zł: 9,99zł"
+    },
+    "option2Title": {
+      "type": "string",
+      "default": "Paczkomat InPost - 0zł"
+    },
+    "option2Desc": {
+      "type": "string",
+      "default": "Przy zamówienieniach poniżej 100zł: 9,99zł"
+    },
+    "option1Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "option1IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "option2Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "option2IconSvg": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

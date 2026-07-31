@@ -1,0 +1,259 @@
+// =============================================================================
+// GŁOWNABANER — strona glowna, hero (Figma: 135:63212)
+// =============================================================================
+// Sekcje:
+//   .glownabaner
+//     .promo-bar              -> moduly z header.scss (peach pasek)
+//     .glownabaner__rating    -> pasek opinii (avatars + count + score + stars)
+//     .glownabaner__hero      -> banner z duzym zdjeciem + tytulem + CTA
+// =============================================================================
+
+.glownabaner {
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+  // Promo bar zostaje stylem z modulu header.scss
+
+  // ---------------------------------------------------------------------------
+  // RATING — pill z avatarami + opiniami + ocena + gwiazdki, otoczony liniami
+  // ---------------------------------------------------------------------------
+  &__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-4;
+    width: 100%;
+    padding: 0 20px;                   // mobile: 20px (jak reszta sekcji)
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0 $space-32;
+    }
+  }
+
+  &__rating-line {
+    flex: 1 0 0;
+    height: 1px;
+    background-color: $color-neutral-200;
+    display: none;                     // mobile: ukryte (zostaje sam pill na 100%)
+
+    @media (min-width: $breakpoint-tablet) {
+      display: block;
+    }
+  }
+
+  &__rating-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;                   // zeby zawartosc nie rozpychala szerokosci
+    gap: $space-4;
+    width: 100%;                       // mobile: pelna szerokosc kontenera (= jak reszta sekcji)
+    padding: $space-8 $space-4;
+    background-color: $color-neutral-100;
+    border-radius: 72px;
+    box-sizing: border-box;
+
+    @media (min-width: $breakpoint-tablet) {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      gap: $space-12;
+      width: auto;
+      flex-shrink: 0;
+      padding: $space-8 $space-12;
+    }
+
+    .avatars__item {
+      width: 36px;
+      height: 36px;
+
+       @media (max-width: 786px) { 
+        width: 34px;
+        height: 34px;
+       }
+    }
+  }
+
+  &__rating-sep {
+    width: 1px;
+    height: 18px;
+    background-color: $color-neutral-300;
+  }
+
+  &__rating-count,
+  &__rating-score {
+    font-family: $font-family-base;
+    font-size: $font-size-body-l;
+    font-weight: $font-weight-medium;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-600;
+    white-space: nowrap;
+     @media (max-width: 786px) { 
+        font-size: 15px;
+     }
+  }
+ 
+  &__rating-score {
+    text-transform: uppercase;
+  }
+
+  &__rating-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // HERO — banner z duzym zdjeciem + tytulem + subtitle + CTA
+  // ---------------------------------------------------------------------------
+  &__hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: $radius-s;            // 16px
+    margin: 0 $space-32;
+    display: grid;                       // 1 komorka — picture + content nakladane
+    grid-template-areas: "stack";
+
+    @media (min-width: $breakpoint-tablet) {
+      margin: 0 auto;
+      padding-bottom: 120px;
+    }
+
+    > * {
+      grid-area: stack;                  // wszystkie dzieci w tej samej komorce
+      min-width: 0;
+    }
+  }
+
+  &__hero-picture {
+    display: block;
+    width: 100%;
+    line-height: 0;
+  }
+
+  &__hero-image {
+    display: block;
+    width: 100%;
+    height: auto;                        // proporcje zdjecia dyktuja wysokosc kontenera
+  }
+
+  &__hero-image {
+    position: relative;
+    border-radius: 24px;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+
+    &--placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: $color-neutral-100;
+      color: $color-neutral-600;
+      font-size: $font-size-body-m;
+    }
+  }
+
+  &__hero-content {
+    position: relative;                  // grid stack ustawia overlay
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $space-16;                      // tight gap miedzy title i subtitle
+    padding: $space-40;
+    color: $color-green-700;            // (zielen z Figmy: green/900 #15331b nie jest w skali; uzywamy najblizszego)
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: $space-64;
+      max-width: 60%;
+    }
+  }
+
+  &__hero-title {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 43px;
+    line-height: 1.1;
+    letter-spacing: $letter-spacing-tight;
+    color: inherit;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 108px;
+    }
+  }
+
+  &__hero-title-accent {
+    font-family: $font-family-accent;   // Dolce
+    font-weight: $font-weight-accent-medium;
+    font-size: 1.5em;                   // ~ 1.5x rozmiaru zwyklego (Figma: 161 vs 107)
+    line-height: 1;
+  }
+
+  &__hero-subtitle {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 17px;            // 20
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    color: inherit;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h3;          // 32
+    }
+  }
+
+  // CTA — wzorzec z .button --primary --lg ale z arrow w czarnym kolku po prawej.
+  // Wlasny margin-top: 24px (mobile) / 64px (desktop) — separacja od textow.
+  &__hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-12;
+    align-self: flex-start;
+    margin-top: $space-24;
+    padding: 6px 12px;
+    background-color: rgba($color-white, 0.7);
+    border-radius: $radius-xs;           // 8px
+    text-decoration: none;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: $letter-spacing-tight;
+    transition: background-color 0.15s ease;
+
+    @media (min-width: $breakpoint-tablet) {
+      margin-top: $space-64;
+      padding: $space-16 $space-32;
+    }
+
+    &:hover {
+      background-color: $color-white;
+    }
+  }
+
+  &__hero-cta-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background-color: $color-neutral-900;
+    color: $color-white;
+    border-radius: $radius-m;            // 24
+    flex-shrink: 0;
+  }
+}

@@ -1,93 +1,58 @@
+// Tresc generyczna (artykul / post / WYSIWYG). Nadpisuje style nagłówków
+// i akapitów wewnątrz `.generic-content` na bazie design system.
+
 .generic-content {
   p,
   li {
-    font-family: "roboto", sans-serif;
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
+    font-weight: $font-weight-regular;
+    line-height: $line-height-base;
   }
 
   blockquote,
   blockquote p {
-    font-size: 1.5rem;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-style: italic;
   }
 
-h1 {
-  font-family: "bebas-neue-pro", sans-serif;
-font-size: 64px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-margin: 0;
-
-@media (max-width: 786px) { 
-  font-family: "bebas-neue-pro", sans-serif;
-font-size: 36px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-}
-}
-
-h2 {
-  font-family: "Roboto", sans-serif;
-font-size: 32px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-  margin: 0;
-
-@media (max-width: 786px) { 
-  font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-}
-
-  
-
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "bebas-neue-pro", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    margin-top: 0;
-    margin-bottom: 1rem;
+  h1 {
+    @include type-h1;
+    margin: 0;
   }
 
+  h2 {
+    @include type-h2;
+    margin: 0;
+  }
 
- 
   h3 {
-    font-size: 2.6rem;
+    @include type-h3;
+    margin: 0 0 $space-16;
   }
+
   h4 {
-    font-size: 2.1rem;
+    @include type-h4;
+    margin: 0 0 $space-16;
   }
+
   h5 {
-    font-size: 1.6rem;
+    font-family: $font-family-base;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-h3-mob;
+    line-height: $line-height-tight;
+    margin: 0 0 $space-16;
+    @include atSmall {
+      font-size: $font-size-h3-mob;
+    }
   }
+
   h6 {
-    font-size: 1.15rem;
-  }
-
-  @include atSmall {
-
-    h3 {
-      font-size: 3.125rem;
-    }
-    h4 {
-      font-size: 2.4rem;
-    }
-    h5 {
-      font-size: 1.9rem;
-    }
-    h6 {
-      font-size: 1.15rem;
-    }
+    font-family: $font-family-base;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-body-l;
+    line-height: $line-height-tight;
+    margin: 0 0 $space-16;
   }
 }

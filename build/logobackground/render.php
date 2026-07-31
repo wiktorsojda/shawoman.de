@@ -1,22 +1,26 @@
-
-
+<?php
+$videoDesktop = isset($attributes['videoDesktop']) && $attributes['videoDesktop']
+    ? $attributes['videoDesktop']
+    : esc_url(home_url('/wp-content/uploads/animacja-shav-logo-desktop.mp4'));
+$videoMobile  = isset($attributes['videoMobile']) && $attributes['videoMobile']
+    ? $attributes['videoMobile']
+    : esc_url(home_url('/wp-content/uploads/animacja-shav-logo-mobile.mp4'));
+$title       = isset($attributes['title'])       ? $attributes['title']       : '';
+$description = isset($attributes['description']) ? $attributes['description'] : '';
+?>
 <section class="video-container">
-
-<!-- for scroll it will be class video-scroll -->
-<video class="logovideo-desktop" autoplay muted playsinline>
-
-    <source src="<?php echo esc_url(home_url('/wp-content/uploads/animacja-shav-logo-desktop.mp4')); ?>" type="video/mp4">
-  </video>
-  <div class="logovideo-mobile">
-  <video class="logovideo-mobile" autoplay muted playsinline>
-    <source src="<?php echo esc_url(home_url('/wp-content/uploads/animacja-shav-logo-mobile.mp4')); ?>" type="video/mp4">
-  </video>
-  <section class="blacktext-container-mobile container">
-    <div id="text-container-mobile">
-    <div class="line line-head-mobile">#1 Maszynka do zadań specjalnych</div>
-    <div class="line line-rest-mobile">Stworzona specjalnie w jednym celu. Proste i bezpieczne rozwiązanie problemu niechcianego owłosienia miejsc intymnych.</div>
-    <!-- <div class="line line-rest">rozwiązanie problemu niechcianego owłosienia miejsc intymnych.</div> -->
+    <video class="logovideo-desktop" autoplay muted playsinline>
+        <source src="<?php echo esc_url($videoDesktop); ?>" type="video/mp4">
+    </video>
+    <div class="logovideo-mobile">
+        <video class="logovideo-mobile" autoplay muted playsinline>
+            <source src="<?php echo esc_url($videoMobile); ?>" type="video/mp4">
+        </video>
+        <section class="blacktext-container-mobile container">
+            <div id="text-container-mobile">
+                <div class="line line-head-mobile"><?php echo wp_kses_post($title); ?></div>
+                <div class="line line-rest-mobile"><?php echo wp_kses_post($description); ?></div>
+            </div>
+        </section>
     </div>
-    </section>
-  </div>
 </section>

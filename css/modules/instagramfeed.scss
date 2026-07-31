@@ -1,71 +1,66 @@
-#sb_instagram .sb_instagram_header, .sb_instagram_header  {
-    color: #FFF;
-    /* Body */
-    font-family: Roboto !important;
-    font-size: 20px !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    line-height: normal !important;
-    align-self: stretch !important;
-    margin-bottom: 64px !important;
-    }
+// Wewnetrzne klasy pluginu Smash Balloon (#sb_instagram, #sbi_images, .sbi_item)
+// wymagaja !important — bez tego style pluginu wygrywaja specyfika.
+
+#sb_instagram .sb_instagram_header,
+.sb_instagram_header {
+  color: $color-white;
+  font-family: $font-family-base !important;
+  font-size: $font-size-h4 !important;
+  font-weight: $font-weight-regular !important;
+  line-height: normal !important;
+  align-self: stretch !important;
+  margin-bottom: 20px !important;
+
+  @media (min-width: $breakpoint-tablet) {
+    margin-bottom: $space-64 !important;
+  }
+}
 
 .instagram-carousel-container {
-    overflow: hidden !important;
-    position: relative !important;
-    width: 100% !important;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 #sbi_images {
-    display: flex !important;
-    transition: transform 0.5s ease !important;
+  display: flex !important;
+  transition: transform 0.5s ease !important;
 }
 
 @media only screen and (max-width: 768px) {
-
-#sbi_images {
+  #sbi_images {
     width: 1500px !important;
-    gap: 30px !important;
+    gap: $space-32 !important;
 
     img {
-        width: 350px !important;
-        height: 350px !important;
+      width: 350px !important;
+      height: 350px !important;
     }
-}
+  }
 }
 
 #sb_instagram {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .sbi_item {
-    flex: 1 0 25% !important; /* Display 4 items per view */
-    box-sizing: border-box !important;
+  flex: 1 0 25% !important;
+  box-sizing: border-box !important;
 }
 
 .carousel-buttons {
-    width: 100%;
-    display: flex !important;
-    gap: 27px;
-    justify-content: flex-end !important;
-    transform: translateY(-50%) !important;
-}
+  width: 100%;
+  display: flex;
+  gap: $space-24;
+  justify-content: flex-end;
+  transform: translateY(-50%);
 
-.carousel-buttons { 
-button, button:hover, button:active {
+  button:not(.glownainstagram__nav-btn),
+  button:not(.glownainstagram__nav-btn):hover,
+  button:not(.glownainstagram__nav-btn):active {
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-}}
-
-// .carousel-buttons svg {
-//     width: 43px;
-//     height: 44px;
-// }
-
-// #sbi_images {
-//     display: flex !important;
-//     transition: transform 0.5s ease !important;
-//     animation: 13s slide infinite linear !important;
-// }
+  }
+}

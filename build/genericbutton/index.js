@@ -232,7 +232,7 @@ module.exports = window["wp"]["primitives"];
   \**************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/genericbutton","title":"Fictional University Generic Button","attributes":{"text":{"type":"string"},"size":{"type":"string","default":"large"},"linkObject":{"type":"object","default":{"url":""}},"colorName":{"type":"string","default":"blue"}},"editorScript":"file:./index.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/genericbutton","title":"Fictional University Generic Button","attributes":{"text":{"type":"string"},"size":{"type":"string","default":"large"},"linkObject":{"type":"object","default":{"url":""}},"colorName":{"type":"string","default":"blue"}},"editorScript":"file:./index.js","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

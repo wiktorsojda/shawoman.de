@@ -3,6 +3,51 @@
   "apiVersion": 3,
   "name": "ourblocktheme/textkariera",
   "title": "Text Kariera",
+  "attributes": {
+    "mainTitle": {
+      "type": "string",
+      "default": "Wierzymy, że efekty przychodzą tam, gdzie jest pasja i odpowiedzialność."
+    },
+    "description": {
+      "type": "string",
+      "default": "Za Shav stoi zespół ludzi, dla których \" dobrze\" to zdecydowanie za mało. Każdego dnia działamy z maksymalnym zaangażowaniem, szukając rozwiązań, które robią różnicę. Działamy sprawnie, testujemy pomysły i nie boimy się wyzwań – bo wiemy, że tylko tak można zbudować coś trwałego."
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

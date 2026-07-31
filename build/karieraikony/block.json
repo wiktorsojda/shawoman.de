@@ -3,6 +3,75 @@
   "apiVersion": 3,
   "name": "ourblocktheme/karieraikony",
   "title": "Kariera Ikony",
+  "attributes": {
+    "sectionMainTitle": {
+      "type": "string",
+      "default": "Dlaczego powinnaś pracować właśnie z nami?"
+    },
+    "sectionText": {
+      "type": "string",
+      "default": "Pracując w Shav zyskujesz:"
+    },
+    "feature1": {
+      "type": "string",
+      "default": "Wyjazdy integracyjne, w tym m.in. wspólne wyjazdy zagraniczne"
+    },
+    "feature2": {
+      "type": "string",
+      "default": "Swobodę działania, masz realny wpływ na rozwój marki"
+    },
+    "feature3": {
+      "type": "string",
+      "default": "Brak nudnego dress code'u i sztywnych korpo-reguł"
+    },
+    "feature4": {
+      "type": "string",
+      "default": "Niezbędny sprzęt do pracy"
+    },
+    "feature5": {
+      "type": "string",
+      "default": "Ekspresowe, atrakcyjne wynagrodzenie"
+    },
+    "feature6": {
+      "type": "string",
+      "default": "Pracę hybrydową w biurowcu w Krakowie"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

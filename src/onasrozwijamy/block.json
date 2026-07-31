@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/onasrozwijamy",
+  "title": "O nas — Rozwijamy",
+  "category": "design",
+  "icon": "format-aside",
+  "attributes": {
+    "leftImage":    { "type": "string", "default": "" },
+    "paragraph1":   { "type": "string", "default": "Shav Woman rozwijamy z myślą o kobietach, które cenią <strong>komfort, jakość i dobrze przemyślane rozwiązania.</strong> Chcemy, żeby pielęgnacja była prostsza, bardziej naturalna i pozbawiona niepotrzebnego tabu." },
+    "paragraph2":   { "type": "string", "default": "Tworzymy produkty, które mają nie tylko dobrze działać, ale też sprawiać, że codzienna pielęgnacja staje się po prostu przyjemniejsza. Bardziej intuicyjna, bardziej estetyczna i lepiej <strong>dopasowana do realnych potrzeb.</strong>" },
+    "paragraph3":   { "type": "string", "default": "Wokół Shav powstała już <strong>społeczność setek tysięcy klientów.</strong> To dla nas nie tylko powód do dumy, ale też zobowiązanie, by z każdym kolejnym produktem podnosić poprzeczkę jeszcze wyżej i dalej wyznaczać nowy standard damskiej pielęgnacji." },
+    "signatureText": { "type": "string", "default": "Zespół" },
+    "signatureImage": { "type": "string", "default": "" },
+    "signatureSvg":   { "type": "string", "default": "" },
+    "textSizeDesktop":       { "type": "number", "default": 16 },
+    "textSizeMobile":        { "type": "number", "default": 16 },
+    "signatureSizeDesktop":  { "type": "number", "default": 36 },
+    "signatureSizeMobile":   { "type": "number", "default": 28 }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "anchor": true, "align": ["wide", "full"] }
+}

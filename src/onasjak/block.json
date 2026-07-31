@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/onasjak",
+  "title": "O nas — Jak tworzymy",
+  "category": "design",
+  "icon": "format-gallery",
+  "attributes": {
+    "title":       { "type": "string", "default": "Jak tworzymy nasze produkty?" },
+    "description": { "type": "string", "default": "Każdy produkt Shav został zaprojektowany z myślą o jednym: żeby damska pielęgnacja była prosta, komfortowa i dopracowana. Nie tworzymy przypadkowych urządzeń do wszystkiego - stawiamy na konkretne rozwiązania do konkretnych zastosowań, które mają być naprawdę świetne w tym, do czego zostały stworzone." },
+    "image1":      { "type": "string", "default": "" },
+    "image2":      { "type": "string", "default": "" },
+    "image3":      { "type": "string", "default": "" },
+    "titleSizeDesktop":       { "type": "number", "default": 32 },
+    "titleSizeMobile":        { "type": "number", "default": 26 },
+    "descriptionSizeDesktop": { "type": "number", "default": 16 },
+    "descriptionSizeMobile":  { "type": "number", "default": 16 }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "anchor": true, "align": ["wide", "full"] }
+}

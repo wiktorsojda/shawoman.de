@@ -6,8 +6,91 @@
 
 }
 
+// =============================================================================
+// SHAV: globalne ograniczenie content do 1300px
+// =============================================================================
+// Zasada: tla sekcji (background-color, background-image) na cala szerokosc,
+// ale wewnetrzny content max 1300px wysrodkowany.
+// Realizacja: wszystkie nasze sekcje strony glownej dostaja max-width:none na
+// wrapperze (full-bleed dla tla), a ich bezposrednie dzieci sa ograniczone.
+// =============================================================================
+// Sekcje gdzie content stack-uje sie pionowo — tlo full, content centrowany do 1300
+$shav-fullbleed-sections:
+  '.glownabaner',
+  '.glownacechy',
+  '.glownagrid',
+  '.glownaoceny',
+  '.glownaopinie',
+  '.glownainstagram',
+  '.faqglowna',
+  '.footer';
+
+@each $sel in $shav-fullbleed-sections {
+  #{$sel} {
+    max-width: none !important;
+    width: 100%;
+
+    // Bezposredni content sekcji — constrained do 1300px.
+    // BEZ !important na max-width — zeby lokalne mniejsze max-width (np. 746px na
+    // tytulach) mialy pierwszenstwo. Z !important zostaja tylko margin i padding,
+    // ktore sa ramowe dla layoutu.
+    > * {
+      max-width: 1300px;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      // Fluid horizontal padding 20-32 — bez "skoku" na granicy 1024-1300
+      padding-left: clamp(20px, 2vw, 32px) !important;
+      padding-right: clamp(20px, 2vw, 32px) !important;
+      box-sizing: border-box;
+    }
+  }
+}
+
+// Szachglass + whoweareshavwomen — sekcja jest full-width (tlo z bg-image / overlay),
+// ale content (.szachglass__card / .about-us-second-title) ma byc constrained do 1300.
+// Tutaj NIE uzywamy `> *` bo positioning jest oparty o flex/absolute.
+.szachglass {
+  max-width: none !important;
+  width: 100%;
+}
+.szachglass__card {
+  max-width: min(1300px, 100%) !important; // respektuje glassWidth jesli mniejsze
+}
+
+.video-background-container {
+  max-width: none !important;
+  width: 100%;
+}
+.about-us-second {
+  > * {
+    max-width: 1300px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    box-sizing: border-box;
+  }
+}
+
+// Header — wyjatek: cala ramka header pill ma byc 1300px (a nie inner).
+// 768-1340px: 20px marginesu po bokach (jak content sekcji).
+// >1340px: marginesy auto — header pinuje na 1300px, viewport ma rezerwe.
+.header {
+  @media (min-width: $breakpoint-tablet) {
+    box-sizing: border-box;
+    max-width: 1300px !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
+
+  @media (min-width: 1340px) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 .background-red {
-  background-color: #AC0000 !important;
+  background-color: $color-accent-medium !important;
 }
 
 // @media(max-width:850px){
@@ -23,14 +106,14 @@ del {
 }
 
 .woocommerce div.product p.price del {
-  font-size: 16px;
+  font-size: $font-size-body-l;
   opacity: 1;
 
   span  {
-    color: #7A7A7A !important;
+    color: $color-neutral-600 !important;
 
     bdi {
-      color: #7A7A7A !important;
+      color: $color-neutral-600 !important;
     }
   }
 }
@@ -49,7 +132,7 @@ del::before {
   left: 0;
   width: 90%;
   height: 2px;
-  background-color: #AC0000;
+  background-color: #727272 !important;
   transform: rotate(0deg);
   transform-origin: center;
 
@@ -57,10 +140,10 @@ del::before {
 }
 del {
   span {
-    color: #AC0000;
+    color: $color-accent-medium;
 
       bdi {
-        color: #AC0000 !important;
+        color: $color-accent-medium !important;
      
       }
   }
@@ -92,16 +175,16 @@ ins {
 //
 .pin-spacer {
   margin-bottom: -1px;
-  background-color: #000;
+  background-color: $color-neutral-900;
 }
 
 
 .wp-site-blocks {
-  margin-top: 87px;
+  margin-top: $space-40;
 
 
   @media (max-width: 768px) {
-    margin-top: 55px;
+    margin-top: $space-24;
   }
 }
 
@@ -141,8 +224,8 @@ ins {
 
 .section-break {
   border: none;
-  border-top: 1px solid #ddd;
-  margin: 2.5rem 0;
+  border-top: 1px solid $color-neutral-200;
+  margin: $space-40 0;
 }
 
 .min-list {
@@ -155,21 +238,21 @@ ins {
 }
 
 .p-top-small {
-  padding-top: 1rem;
+  padding-top: $space-16;
 }
 .p-top-large {
-  padding-top: 1.6rem;
+  padding-top: $space-24;
 }
 .p-bottom-large {
-  padding-bottom: 1.6rem;
+  padding-bottom: $space-24;
 }
 
 @include atSmall {
   .p-top-large {
-    padding-top: 3.5rem;
+    padding-top: $space-56;
   }
   .p-bottom-large {
-    padding-bottom: 3.5rem;
+    padding-bottom: $space-56;
   }
 }
 
@@ -194,7 +277,7 @@ ins {
 }
 
 .t-small {
-  font-size: 0.85rem;
+  font-size: $font-size-body-m;
 }
 
 .float-left {
@@ -204,7 +287,7 @@ ins {
   float: right;
 }
 .push-right {
-  margin-right: 20px;
+  margin-right: $space-16;
 }
 
 .container:before,
@@ -237,9 +320,9 @@ ins {
 }
 
 .padding-20 {
-  padding: 20px;
+  padding: $space-16;
 }
 
 .text-size-24 {
-  font-size: 24px;
+  font-size: $font-size-h4;
 }

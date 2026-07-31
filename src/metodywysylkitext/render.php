@@ -1,28 +1,53 @@
-    <section class="blacktext-container-wysylka container ">
+<?php
+$header       = isset($attributes['header'])       ? $attributes['header']       : '';
+$description  = isset($attributes['description'])  ? $attributes['description']  : '';
+$subheader    = isset($attributes['subheader'])    ? $attributes['subheader']    : '';
+$option1Title = isset($attributes['option1Title']) ? $attributes['option1Title'] : '';
+$option1Desc  = isset($attributes['option1Desc'])  ? $attributes['option1Desc']  : '';
+$option1Icon    = isset($attributes['option1Icon'])    ? $attributes['option1Icon']    : '';
+$option1IconSvg = isset($attributes['option1IconSvg']) ? $attributes['option1IconSvg'] : '';
+$option2Title = isset($attributes['option2Title']) ? $attributes['option2Title'] : '';
+$option2Desc  = isset($attributes['option2Desc'])  ? $attributes['option2Desc']  : '';
+$option2Icon    = isset($attributes['option2Icon'])    ? $attributes['option2Icon']    : '';
+$option2IconSvg = isset($attributes['option2IconSvg']) ? $attributes['option2IconSvg'] : '';
+
+// Whitelist SVG dla wp_kses (inline SVG z atrybutu)
+$svg_allowed = [
+    'svg'      => ['xmlns' => 1, 'viewbox' => 1, 'width' => 1, 'height' => 1, 'fill' => 1, 'stroke' => 1, 'class' => 1, 'aria-hidden' => 1],
+    'path'     => ['d' => 1, 'fill' => 1, 'stroke' => 1, 'stroke-width' => 1, 'stroke-linecap' => 1, 'stroke-linejoin' => 1, 'clip-rule' => 1, 'fill-rule' => 1, 'opacity' => 1],
+    'g'        => ['fill' => 1, 'stroke' => 1, 'transform' => 1, 'clip-path' => 1, 'opacity' => 1],
+    'circle'   => ['cx' => 1, 'cy' => 1, 'r' => 1, 'fill' => 1, 'stroke' => 1, 'stroke-width' => 1],
+    'rect'     => ['x' => 1, 'y' => 1, 'width' => 1, 'height' => 1, 'rx' => 1, 'ry' => 1, 'fill' => 1, 'stroke' => 1],
+    'polygon'  => ['points' => 1, 'fill' => 1, 'stroke' => 1],
+    'polyline' => ['points' => 1, 'fill' => 1, 'stroke' => 1],
+    'line'     => ['x1' => 1, 'y1' => 1, 'x2' => 1, 'y2' => 1, 'stroke' => 1, 'stroke-width' => 1],
+    'defs'     => [],
+    'clippath' => ['id' => 1],
+    'use'      => ['href' => 1, 'xlink:href' => 1],
+];
+
+$options = [
+    ['title' => $option1Title, 'desc' => $option1Desc, 'icon' => $option1Icon, 'svg' => $option1IconSvg],
+    ['title' => $option2Title, 'desc' => $option2Desc, 'icon' => $option2Icon, 'svg' => $option2IconSvg],
+];
+?>
+<section class="blacktext-container-wysylka container">
     <div class="metody-wysylki-textcontainer container--narrow2-important">
-        <h2 class="metody-wysylki-header">Ekspresowa wysyłka</h2>
-        <p class="metody-wysylki-p">Zamówienia złożone u nas wysyłamy w ciągu 24 godzin, a dostarczamy w ciągu kolejnych 24 godzin! To oznacza, że Twoje zakupy będą u Ciebie w maksymalnie 2 dni robocze! </p>
-        <h2 class="metody-wysylki-h2">Sprawdź nasze opcje wysyłki:</h2>
+        <h2 class="metody-wysylki-header"><?php echo wp_kses_post($header); ?></h2>
+        <p class="metody-wysylki-p"><?php echo wp_kses_post($description); ?></p>
+        <h2 class="metody-wysylki-h2"><?php echo wp_kses_post($subheader); ?></h2>
         <ul class="metody-wysylki-ul">
-        <div class="metody-wysylki-list">
-            <li>Kurier InPost - 0zł</li>
-            <span>Przy zamówienieniach poniżej 100zł: 9,99zł</span>    
-        </div>
-        <div class="metody-wysylki-list">
-            <li>Paczkomat InPost - 0zł</li>
-            <span>Przy zamówienieniach poniżej 100zł: 9,99zł</span>  
-            </div>
+            <?php foreach ($options as $opt): ?>
+                <div class="metody-wysylki-list">
+                    <?php if (!empty($opt['svg'])): ?>
+                        <span class="metody-wysylki-list-icon"><?php echo wp_kses($opt['svg'], $svg_allowed); ?></span>
+                    <?php elseif (!empty($opt['icon'])): ?>
+                        <img class="metody-wysylki-list-icon" src="<?php echo esc_url($opt['icon']); ?>" alt="" style="max-height: 50px;">
+                    <?php endif; ?>
+                    <li><?php echo wp_kses_post($opt['title']); ?></li>
+                    <span><?php echo wp_kses_post($opt['desc']); ?></span>
+                </div>
+            <?php endforeach; ?>
         </ul>
-        <div class="metody-wysylki-icons">
-        <svg xmlns="http://www.w3.org/2000/svg" width="106" height="47" viewBox="0 0 106 47" fill="none">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M66.8816 25.0667C68.0785 23.8804 68.6785 22.2847 68.6785 20.3216C68.6785 18.2617 68.0817 16.637 66.9107 15.4636C65.7138 14.2935 64.004 13.7003 61.7748 13.7003H54.8873V32.9452H58.1004V26.859H61.9974C64.0427 26.859 65.6848 26.2659 66.8816 25.0667ZM62.0523 16.8208C64.2911 16.8208 65.4202 17.9909 65.4202 20.3216C65.4202 21.4079 65.1138 22.2557 64.5169 22.8618C63.9201 23.471 63.0685 23.7644 61.9974 23.7644H58.0875V16.8175H62.0555L62.0523 16.8208ZM36.3764 13.7422H33.1601V32.9871H36.3764V13.7422ZM103.342 33.2997C103.897 33.2997 104.442 33.2288 104.955 33.1031H104.971V30.4469C104.703 30.4856 104.432 30.5049 104.165 30.5049C103.358 30.5049 102.829 30.3211 102.577 29.9827C102.368 29.7151 102.258 29.1639 102.258 28.3161V20.5214H105.026V17.9393H102.258V13.7745H99.1385V28.5127C99.1385 30.2792 99.3611 31.4623 99.8192 32.1006C100.39 32.9065 101.558 33.303 103.339 33.303L103.342 33.2997ZM48.5837 33.0161H51.7419V23.2454C51.7419 21.6078 51.2838 20.3345 50.3934 19.4319C49.5031 18.5131 48.3062 17.978 46.8029 17.978C43.3382 17.978 39.496 18.8387 39.496 18.8387V33.0128H42.6542V21.1114C43.7543 20.8696 45.2705 20.6439 46.2158 20.7149C47.7481 20.8438 48.5804 21.8882 48.5804 23.8224V33.0128L48.5837 33.0161ZM83.5666 25.3633C83.5666 27.6778 82.9278 29.5443 81.6471 30.9562C80.3664 32.3681 78.7082 33.0741 76.679 33.0741C74.6499 33.0741 72.9756 32.3681 71.711 30.9562C70.4302 29.5443 69.7915 27.681 69.7915 25.3665C69.7915 23.052 70.4302 21.1887 71.711 19.7897C72.9917 18.3939 74.6466 17.6847 76.679 17.6847C78.7114 17.6847 80.3954 18.3906 81.6761 19.7897C82.9278 21.2016 83.5666 23.052 83.5666 25.3665V25.3633ZM80.3115 25.3762C80.3115 23.9223 79.9792 22.7779 79.3244 21.9301C78.6566 21.0823 77.7791 20.66 76.679 20.66C75.579 20.66 74.7015 21.0856 74.0369 21.943C73.3691 22.8037 73.0498 23.9481 73.0498 25.3762C73.0498 26.8042 73.382 27.9744 74.0369 28.8222C74.7047 29.67 75.5822 30.0923 76.679 30.0923C77.7759 30.0923 78.6566 29.6668 79.3244 28.8222C79.9792 27.9744 80.3115 26.83 80.3115 25.3762ZM95.6061 31.6203C96.719 30.6886 97.2771 29.4895 97.2771 28.0356C97.2771 25.7759 95.8996 24.393 93.1285 23.8707C91.9607 23.658 90.7767 23.4452 89.5799 23.2615C88.7314 23.0358 88.3153 22.6135 88.3153 22.0043C88.3153 20.9469 89.2347 20.4247 91.0832 20.4247C92.5284 20.4247 93.8253 20.9341 94.9512 21.9495L96.8287 19.9444C95.2705 18.4745 93.393 17.7427 91.18 17.7427C89.3573 17.7427 87.8959 18.1811 86.7958 19.0708C85.6957 19.9573 85.1538 21.0759 85.1538 22.3879C85.1538 23.6999 85.599 24.6605 86.5022 25.3117C87.2829 25.8468 88.5604 26.2433 90.3735 26.5109C91.8768 26.7494 92.7962 26.9332 93.1414 27.0621C93.7382 27.2878 94.0318 27.71 94.0318 28.3193C94.0318 28.8415 93.7672 29.2928 93.2511 29.6474C92.7349 30.002 92.0413 30.1825 91.1509 30.1825C89.5637 30.1825 88.1701 29.5894 86.9732 28.4031L84.5795 30.4372C86.1377 32.1618 88.3378 33.0193 91.1896 33.0193C93.0123 33.0193 94.4866 32.5551 95.5996 31.6235L95.6061 31.6203Z" fill="#98958F"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M12.2456 23.5261C12.2456 23.5261 9.72289 24.5029 6.60979 24.5029C3.49668 24.5029 0.973938 23.5261 0.973938 23.5261C0.973938 23.5261 3.49668 22.5494 6.60979 22.5494C9.72289 22.5494 12.2456 23.5261 12.2456 23.5261Z" fill="#97948E"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M20.0363 9.17111C20.0363 9.17111 17.8007 7.66247 16.0586 5.13196C14.3198 2.59821 13.7327 0 13.7327 0C13.7327 0 15.9683 1.50542 17.7103 4.03916C19.4524 6.5729 20.0363 9.17111 20.0363 9.17111Z" fill="#97948E"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M14.3295 15.3632C14.3295 15.3632 11.6358 15.0634 8.88719 13.6289C6.13862 12.1944 4.37722 10.17 4.37722 10.17C4.37722 10.17 7.07094 10.4698 9.8195 11.9043C12.5681 13.3388 14.3295 15.3632 14.3295 15.3632Z" fill="#97948E"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M20.0363 37.829C20.0363 37.829 17.8007 39.3376 16.0586 41.8681C14.3198 44.3987 13.7327 47.0001 13.7327 47.0001C13.7327 47.0001 15.9683 45.4947 17.7103 42.9609C19.4524 40.4304 20.0363 37.829 20.0363 37.829Z" fill="#97948E"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M14.3295 31.6356C14.3295 31.6356 11.6358 31.9353 8.88719 33.3698C6.13862 34.8043 4.37722 36.8288 4.37722 36.8288C4.37722 36.8288 7.07094 36.529 9.8195 35.0945C12.5681 33.66 14.3295 31.6356 14.3295 31.6356Z" fill="#97948E"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M20.872 28.2288C22.9012 33.422 26.1627 37.1452 31.9889 38.0285C31.3243 38.1188 30.6501 38.1736 29.9597 38.1768C21.7044 38.2122 14.9781 31.6748 14.9426 23.5739C14.9071 15.473 21.5689 8.87435 29.8242 8.83889C30.5598 8.83566 31.2824 8.88724 31.9921 8.98395C25.3175 9.81564 20.8656 14.9927 19.9849 21.5817C19.7042 25.5983 24.3852 26.9555 24.3852 26.9555C24.3852 26.9555 22.4689 28.2062 20.872 28.232V28.2288Z" fill="#97948E"/>
-</svg>
-        </div>
     </div>
-    </section>
+</section>

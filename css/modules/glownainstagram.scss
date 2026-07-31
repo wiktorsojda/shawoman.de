@@ -1,0 +1,147 @@
+// =============================================================================
+// GŁOWNAINSTAGRAM — strona glowna, feed Instagram (Figma: 211:55)
+// =============================================================================
+// Core (siatka zdjec) renderowany przez plugin Smash Balloon Instagram Feed.
+// Tutaj stylizujemy tylko: tytul, sekcja profilu, navigacje (prev/next).
+// =============================================================================
+
+.glownainstagram {
+  display: flex;
+  flex-direction: column;
+  gap: $space-32;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+
+  @media (min-width: $breakpoint-tablet) {
+    gap: $space-64;
+    padding: $space-32 $space-120;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Tytul: "Znajdziesz nas na Instagramie"
+  // ---------------------------------------------------------------------------
+  &__title {
+    margin: 0;
+    text-align: center;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-h2;          // 42 mobile
+    line-height: 1;
+    letter-spacing: $letter-spacing-tight;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h1;        // 64
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Sekcja profilu (avatar + nazwa + obserwujacy)
+  // ---------------------------------------------------------------------------
+  &__profile {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-24;
+    text-decoration: none;
+    color: inherit;
+    align-self: flex-start;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &__profile-avatar {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: $color-neutral-100;
+    overflow: hidden;
+
+    img {
+      width: 64%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+
+  &__profile-text {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-h4;          // 20
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  &__profile-name,
+  &__profile-followers {
+    margin: 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Feed (renderowany przez plugin) — radius zdjec + gap
+  // ---------------------------------------------------------------------------
+  &__feed {
+    width: 100%;
+
+    // Plugin Smash Balloon kontenery (#sbi_images, .sbi_item) i ich style
+    // sa zalatwione w `css/modules/instagramfeed.scss`. Tu tylko nadpisanie
+    // radiusa kafelkow zeby pasowal do Figmy (12 / najblizsze 16).
+    .sbi_item,
+    .sbi_photo_wrap,
+    .sbi_photo {
+      border-radius: $radius-s !important;  // 16
+      overflow: hidden !important;
+    }
+
+    img {
+      border-radius: $radius-s;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Nawigacja prev / next (peach circles, prawa strona)
+  // ---------------------------------------------------------------------------
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $space-16;
+    width: 100%;
+  }
+
+  &__nav-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: $color-peach-600;       // peach-600 (#C68E7A) — kolo z designu
+    color: $color-neutral-50;                 // strzalka #FAFAFA
+    border: 0;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &--prev svg { transform: scaleX(-1); }    // odbicie SVG w lewo dla "poprzednie"
+
+    &:hover {
+      background-color: $color-peach-700;
+      color: $color-white;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+}

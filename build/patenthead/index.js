@@ -16,15 +16,121 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    videoURL,
+    backgroundImage,
+    title,
+    subtitle
+  } = attributes;
+  const wrapperStyle = backgroundImage ? {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+  } : {};
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "video-background-container-wysylka",
+    style: wrapperStyle
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "Patent Head"));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "T\u0142o wideo",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      videoURL: media.url
+    }),
+    allowedTypes: ["video"],
+    value: videoURL,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, videoURL ? "Zmień wideo" : "Wybierz wideo")
+  })), videoURL && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      videoURL: ""
+    }),
+    style: {
+      marginTop: 8
+    }
+  }, "Usu\u0144 wideo")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "T\u0142o \u2014 obraz (alternatywnie)",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      backgroundImage: media.url
+    }),
+    allowedTypes: ["image"],
+    value: backgroundImage,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, backgroundImage ? "Zmień obraz" : "Wybierz obraz")
+  })), backgroundImage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      backgroundImage: ""
+    }),
+    style: {
+      marginTop: 8
+    }
+  }, "Usu\u0144 obraz t\u0142a"))), videoURL && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("video", {
+    className: "video-background-wysylka",
+    src: videoURL,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    playsInline: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+    className: "about-us-second-wysylka container--narrow2-important"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    className: "about-us-second-title-wysylka"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    className: "about-us-span-wysylka-first container--narrow2-important",
+    value: title,
+    onChange: v => setAttributes({
+      title: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "about-us-span-wysylka-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    className: "about-us-span-wysylka-second",
+    value: subtitle,
+    onChange: v => setAttributes({
+      subtitle: v
+    }),
+    placeholder: "Podtytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    width: "25",
+    height: "15",
+    viewBox: "0 0 25 15",
+    fill: "none"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M0.512563 0.858103C1.19598 0.158413 2.30402 0.158413 2.98744 0.858103L12.25 10.3412L21.5126 0.858103C22.196 0.158413 23.304 0.158413 23.9874 0.858103C24.6709 1.55779 24.6709 2.69221 23.9874 3.3919L13.4874 14.1419C12.804 14.8416 11.696 14.8416 11.0126 14.1419L0.512563 3.3919C-0.170854 2.69221 -0.170854 1.55779 0.512563 0.858103Z",
+    fill: "#065C70"
+  }))))));
 }
 
 /***/ },
@@ -10025,13 +10131,23 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/patenthead/block.json"
 /*!***********************************!*\
   !*** ./src/patenthead/block.json ***!
   \***********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/patenthead","title":"Patent Head","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/patenthead","title":"Patent Head","attributes":{"videoURL":{"type":"string","default":""},"backgroundImage":{"type":"string","default":""},"title":{"type":"string","default":"Patent i znak towarowy"},"subtitle":{"type":"string","default":"Poznaj szczegóły"}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

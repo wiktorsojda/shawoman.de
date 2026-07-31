@@ -3,7 +3,79 @@
   "apiVersion": 3,
   "name": "ourblocktheme/szachshavwomen2",
   "title": "Szach Shav Women 2",
+  "attributes": {
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": "Aksamitna gładkość"
+    },
+    "description": {
+      "type": "string",
+      "default": "Shav Woman goli na absolutne zero, pozostawiając skórę jedwabiście gładką w dotyku. Bez pieczenia, bez podrażnień, bez efektu truskawkowych nóg. Rezultat, którego nie da Ci żadna jednorazówka."
+    },
+    "titleSize": {
+      "type": "number",
+      "default": 42
+    },
+    "descriptionSize": {
+      "type": "number",
+      "default": 18
+    },
+    "glassPositionX": {
+      "type": "string",
+      "default": "left"
+    },
+    "glassPositionY": {
+      "type": "string",
+      "default": "middle"
+    },
+    "glassWidth": {
+      "type": "number",
+      "default": 726
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

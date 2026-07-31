@@ -1,17 +1,55 @@
-<div class="video-background-container-wysylka">
+<?php
+$backgroundImage       = isset($attributes['backgroundImage'])       ? $attributes['backgroundImage']       : '';
+$backgroundImageMobile = isset($attributes['backgroundImageMobile']) ? $attributes['backgroundImageMobile'] : '';
+$title                 = isset($attributes['title'])                 ? $attributes['title']                 : 'Metody dostawy';
 
-    <video class="video-background-wysylka" src="<?php echo esc_url(home_url('/wp-content/uploads/animacja-shav-podstrony.mp4')); ?>" autoplay loop muted playsinline></video>
-    <section class="about-us-second-wysylka container--narrow2-important">
-        <h1 class="about-us-second-title-wysylka">
-            <span class="about-us-span-wysylka-first container--narrow2-important">Metody Wysyłki</span>    
-            <div class="about-us-span-wysylka-container">
-            <span class="about-us-span-wysylka-second">
-                Poznaj szczegóły 
-            </span>    
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="15" viewBox="0 0 25 15" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.512563 0.858103C1.19598 0.158413 2.30402 0.158413 2.98744 0.858103L12.25 10.3412L21.5126 0.858103C22.196 0.158413 23.304 0.158413 23.9874 0.858103C24.6709 1.55779 24.6709 2.69221 23.9874 3.3919L13.4874 14.1419C12.804 14.8416 11.696 14.8416 11.0126 14.1419L0.512563 3.3919C-0.170854 2.69221 -0.170854 1.55779 0.512563 0.858103Z" fill="#065C70"/>
-                </svg>
-            </div>
-        </h1>
+// CSS vars — desktop i mobile osobne. Mobile fallback na desktop.
+$style_parts = [];
+if ($backgroundImage) {
+    $style_parts[] = '--bg-desktop:url(' . esc_url($backgroundImage) . ')';
+}
+$mobile_url = $backgroundImageMobile ?: $backgroundImage;
+if ($mobile_url) {
+    $style_parts[] = '--bg-mobile:url(' . esc_url($mobile_url) . ')';
+}
+$wrapper_style = $style_parts ? implode(';', $style_parts) . ';' : '';
+
+$wrapper_attrs = get_block_wrapper_attributes([
+    'class' => 'video-background-container-wysylka',
+    'style' => $wrapper_style,
+]);
+?>
+<div <?php echo $wrapper_attrs; ?>>
+    <section class="about-us-second-wysylka">
+        <h1 class="about-us-second-title-wysylka"><?php echo wp_kses_post($title); ?></h1>
+        <button class="about-us-second-scroll" type="button" aria-label="Przewiń w dół" onclick="this.closest('.video-background-container-wysylka').nextElementSibling?.scrollIntoView({behavior:'smooth',block:'start'})">
+            <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g filter="url(#filter0_d_wysylka)">
+                    <path d="M6.2 30.2C6.2 14.736 18.736 2.2 34.2 2.2C49.6639 2.2 62.2 14.736 62.2 30.2C62.2 45.664 49.6639 58.2 34.2 58.2C18.736 58.2 6.2 45.664 6.2 30.2Z" fill="url(#paint0_wysylka)" fill-opacity="0.1" shape-rendering="crispEdges"/>
+                    <path d="M34.2 2.7C49.3878 2.7 61.7 15.0122 61.7 30.2C61.7 45.3878 49.3878 57.7 34.2 57.7C19.0121 57.7 6.7 45.3878 6.7 30.2C6.7 15.0122 19.0121 2.7 34.2 2.7Z" stroke="url(#paint1_wysylka)" shape-rendering="crispEdges"/>
+                    <path d="M34.2065 39.7C34.9084 39.6934 35.5796 39.4057 36.0745 38.8993L41.8119 33.0772C42.0605 32.8229 42.2 32.4789 42.2 32.1204C42.2 31.7618 42.0605 31.4179 41.8119 31.1636C41.6879 31.0364 41.5403 30.9354 41.3777 30.8665C41.2151 30.7976 41.0407 30.7621 40.8646 30.7621C40.6885 30.7621 40.5141 30.7976 40.3515 30.8665C40.1889 30.9354 40.0413 31.0364 39.9173 31.1636L35.5408 35.6286V22.0572C35.5408 21.6972 35.4002 21.352 35.15 21.0975C34.8997 20.843 34.5603 20.7 34.2065 20.7C33.8526 20.7 33.5132 20.843 33.263 21.0975C33.0128 21.352 32.8722 21.6972 32.8722 22.0572V35.6286L28.4823 31.1636C28.2329 30.908 27.8938 30.7637 27.5397 30.7625C27.1856 30.7612 26.8456 30.903 26.5943 31.1568C26.3431 31.4106 26.2012 31.7554 26.2 32.1156C26.1987 32.4757 26.3382 32.8216 26.5876 33.0772L32.3251 38.8993C32.8233 39.409 33.4999 39.697 34.2065 39.7Z" fill="white"/>
+                </g>
+                <defs>
+                    <filter id="filter0_d_wysylka" x="0" y="0" width="70.4" height="70.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dx="1" dy="5"/>
+                        <feGaussianBlur stdDeviation="3.6"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                    </filter>
+                    <linearGradient id="paint0_wysylka" x1="17.91" y1="7.71" x2="44.21" y2="58.19" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.122" stop-color="#9E9E9E"/>
+                        <stop offset="0.44" stop-color="white"/>
+                    </linearGradient>
+                    <linearGradient id="paint1_wysylka" x1="15.36" y1="8.56" x2="43.79" y2="59.89" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="white"/>
+                        <stop offset="1" stop-color="white" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </button>
     </section>
 </div>

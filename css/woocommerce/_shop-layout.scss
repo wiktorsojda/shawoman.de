@@ -1,0 +1,69 @@
+// =============================================================================
+// Shop — layout (container + sekcje + grid)
+// Figma: 898:1585 (desktop), container 1428 w 1728 viewport.
+// =============================================================================
+
+.shop-archive {
+    // Tlo strony (Figma — neutral/100). Container ma 150px po bokach na desktop.
+    // Mobile: pelna szerokosc z 16px bocznym paddingiem.
+    background: $color-neutral-50;
+    padding: 0;
+
+    @media (min-width: 900px) {
+       margin: 0 auto;
+        max-width: 1300px;
+        padding: 0;
+    }
+
+    @media (min-width: 1728px) {
+        padding: 0;
+        max-width: 1300px;
+        margin: 0 auto;
+    }
+}
+
+.shop-section {
+    margin-block: 32px;
+
+    @media (min-width: 900px) {
+        margin-block: 64px;
+    }
+
+    &__header {
+        margin-bottom: 24px;
+
+        @media (min-width: 900px) {
+            margin-bottom: 32px;
+        }
+    }
+
+    // Grid kart — 3 kolumny na desktop, 1 kolumna mobile (pozioma karta).
+    // Niestety WooCommerce dorzuca klasy .products i .columns-3 — zostawiamy
+    // je dla wstecznej kompatybilnosci, ale layout robimy CSS Gridem.
+    &__grid {
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: grid !important;
+        gap: 16px !important;
+        justify-content: start !important;
+        justify-items: stretch !important;
+        align-items: stretch !important;
+        grid-template-columns: 1fr !important;
+        text-align: left !important;
+
+        @media (min-width: 900px) {
+            grid-template-columns: repeat(3, 1fr) !important;
+        }
+
+        // ----- KLUCZOWY FIX: ukryj pseudo-elementy WC -----
+        // WooCommerce plugin CSS ma `.woocommerce ul.products::before/after`
+        // ze `display: table` dla float-clearing. W gridzie te pseudo sa traktowane
+        // jako grid items i pchaja pojedyncza karte do srodkowej kolumny.
+        &::before,
+        &::after {
+            content: none !important;
+            display: none !important;
+        }
+    }
+}

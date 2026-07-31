@@ -1,0 +1,147 @@
+// =============================================================================
+// O NAS — Sekcja "Tworzymy nowy standard" (Figma 848:346)
+// Wartosci 1:1 z Figmy + edytowalne CSS vars + !important wszedzie.
+// =============================================================================
+
+.onasstandard {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 24px !important;
+    background-image: var(--bg-mobile) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-color: $color-neutral-900 !important;
+    box-sizing: border-box !important;
+    padding: 64px 20px !important;
+    min-height: 420px !important;
+    margin-top: 42px !important;
+    overflow: hidden !important;
+
+    @media (min-width: 900px) {
+        gap: 32px !important;
+        padding: 96px 150px !important;
+        height: 780px !important;
+        min-height: 0 !important;
+        margin-top: 120px !important;
+        background-image: var(--bg-desktop) !important;
+    }
+
+    // Gradient overlay nad wideo/tlem (Figma)
+    &::after {
+        content: '' !important;
+        position: absolute !important;
+        inset: 0 !important;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%) !important;
+        z-index: 1 !important;
+        pointer-events: none !important;
+    }
+
+    &__video {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        z-index: 0 !important;
+        pointer-events: none !important;
+
+        &--desktop {
+            display: none !important;
+            @media (min-width: 900px) { display: block !important; }
+        }
+        &--mobile {
+            display: block !important;
+            @media (min-width: 900px) { display: none !important; }
+        }
+    }
+
+    &__content {
+        position: relative !important;
+        z-index: 2 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 24px !important;
+        width: 100% !important;
+
+        @media (min-width: 900px) {
+            gap: 32px !important;
+        }
+    }
+
+    // Title — H1 (Figma 44/52.8 Medium)
+    &__title {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: 26px !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-50 !important;
+        text-align: center !important;
+        text-transform: uppercase !important;
+
+        @media (min-width: 900px) {
+            font-size: 64px !important;
+            line-height: 63.8px !important;            // Figma: 52.8 / 44 = 1.2 → explicit px
+        }
+
+        br { display: block !important; }
+    }
+
+    &__logos {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 24px !important;
+        padding: 12px 24px !important;
+        border-radius: 46px !important;
+        border: 1px solid $color-white !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+        box-shadow: 1px 5px 64px 0 rgba(0, 0, 0, 0.12) !important;
+        background-image: linear-gradient(176deg, rgba(158, 158, 158, 0.1) 22.84%, rgba(255, 255, 255, 0.1) 46.79%) !important;
+        opacity: 0.92 !important;
+        flex-wrap: wrap !important;
+
+        @media (min-width: 900px) {
+            gap: 46px !important;
+            padding: 16px 32px !important;
+        }
+    }
+
+    &__logo {
+        display: inline-flex !important;
+        align-items: center !important;
+        height: var(--logo-height-mobile, 24px) !important;
+        width: auto !important;
+        filter: brightness(0) invert(1) !important;
+        flex-shrink: 0 !important;
+
+        @media (min-width: 900px) {
+            height: var(--logo-height-desktop, 31px) !important;
+        }
+
+        // wariant <img>
+        &:not(.onasstandard__logo--svg) {
+            display: block !important;
+            object-fit: contain !important;
+        }
+
+        // wariant inline SVG (span > svg)
+        &--svg {
+            > svg {
+                display: block !important;
+                height: 100% !important;
+                width: auto !important;
+                max-width: none !important;
+            }
+        }
+    }
+}

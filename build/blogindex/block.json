@@ -2,7 +2,64 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/blogindex",
-  "title": "Fictional University Blog Index",
+  "title": "Blog Index",
+  "attributes": {
+    "bannerTitle": {
+      "type": "string",
+      "default": "Welcome to our blog!"
+    },
+    "bannerSubtitle": {
+      "type": "string",
+      "default": "Keep up with our latest news."
+    },
+    "continueLabel": {
+      "type": "string",
+      "default": "Continue reading »"
+    },
+    "postedByPrefix": {
+      "type": "string",
+      "default": "Posted by"
+    },
+    "inText": {
+      "type": "string",
+      "default": "in"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

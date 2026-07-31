@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/misjaheader",
+  "title": "Misja — Header",
+  "category": "design",
+  "icon": "format-image",
+  "attributes": {
+    "subtitle": {
+      "type": "string",
+      "default": "Misja społeczna"
+    },
+    "title": {
+      "type": "string",
+      "default": "Jesteśmy dla Kobiet"
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "titleSizeDesktop": {
+      "type": "number",
+      "default": 64
+    },
+    "titleSizeMobile": {
+      "type": "number",
+      "default": 32
+    },
+    "subtitleSizeDesktop": {
+      "type": "number",
+      "default": 18
+    },
+    "subtitleSizeMobile": {
+      "type": "number",
+      "default": 14
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ]
+  }
+}

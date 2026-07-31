@@ -1,10 +1,10 @@
 .page-links {
   position: relative;
   z-index: 1;
-  background-color: $beige;
-  margin: 0 0 40px 0;
+  background-color: $color-peach-50;
+  margin: 0 0 $space-40 0;
   @include atSmallMedium {
-    margin: 0 0 40px 20px;
+    margin: 0 0 $space-40 $space-16;
     width: 300px;
     float: right;
   }
@@ -13,19 +13,19 @@
     margin: 0;
     font-weight: normal;
     text-align: center;
-    padding: 20px 0;
-    background-color: $mainBlue;
-    color: #fff;
+    padding: $space-16 0;
+    background-color: $color-neutral-900;
+    color: $color-white;
 
     a {
-      color: #fff;
+      color: $color-white;
       text-decoration: none;
-      background-color: $mainBlue;
+      background-color: $color-neutral-900;
     }
   }
 
   li {
-    border-top: 1px solid adjust-color($beige, $lightness: -14%);
+    border-top: 1px solid $color-peach-200;
   }
 
   li:first-child {
@@ -35,22 +35,22 @@
   &__active,
   & .current_page_item {
     text-align: center;
-    background-color: scale-color($beige, $lightness: -7%, $saturation: -10%);
-    color: $mainBlue;
+    background-color: $color-peach-100;
+    color: $color-neutral-900;
     font-weight: bold;
   }
 
   li a {
     display: block;
     text-align: center;
-    padding: 17px 10px;
+    padding: $space-16 $space-8;
     text-decoration: none;
-    color: $mainBlue;
+    color: $color-neutral-900;
     transition: all 0.3s;
   }
 
   li a:hover {
-    color: adjust-color($mainBlue, $lightness: -6%);
-    background-color: scale-color($beige, $lightness: -9%, $saturation: -12%);
+    color: $color-neutral-800;
+    background-color: $color-peach-200;
   }
 }

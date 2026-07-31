@@ -16,15 +16,128 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: a.containerClass || "glownafaq"
+  });
+  const Heading = a.headingTag || "h3";
+
+  // W edytorze nadpisujemy max-height/opacity, zeby panel z odpowiedzia byl
+  // zawsze widoczny i edytowalny (front zachowuje accordion).
+  const panelEditorStyle = {
+    maxHeight: "none",
+    opacity: 1,
+    paddingBottom: 16
+  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "FAQ G\u0142\xD3WNA"));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Ustawienia FAQ",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    label: "Poka\u017C g\u0142\xF3wny tytu\u0142 sekcji",
+    checked: a.showTopTitle,
+    onChange: v => setAttributes({
+      showTopTitle: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    label: "Poka\u017C dodatkowy tytu\u0142 (mniejszy)",
+    checked: a.showTitle,
+    onChange: v => setAttributes({
+      showTitle: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: "Tag nag\u0142\xF3wka pytania",
+    value: a.headingTag,
+    options: [{
+      label: "h2",
+      value: "h2"
+    }, {
+      label: "h3",
+      value: "h3"
+    }, {
+      label: "h4",
+      value: "h4"
+    }, {
+      label: "div",
+      value: "div"
+    }],
+    onChange: v => setAttributes({
+      headingTag: v
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownafaq__inner"
+  }, a.showTopTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h2",
+    className: "glownafaq__top-title",
+    value: a.topTitle,
+    onChange: v => setAttributes({
+      topTitle: v
+    }),
+    placeholder: "Tytu\u0142 sekcji"
+  }), a.showTitle && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "glownafaq__title",
+    value: a.title,
+    onChange: v => setAttributes({
+      title: v
+    }),
+    placeholder: "Dodatkowy tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownafaq__list"
+  }, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const q = a[`question${i}`];
+    const ans = a[`answer${i}`];
+    if (!q && !ans) return null;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: i,
+      className: "glownafaq__item"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "glownafaq__trigger faq-accordion",
+      style: {
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 16
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      tagName: Heading,
+      className: "glownafaq__question faq-header",
+      value: q,
+      onChange: v => setAttributes({
+        [`question${i}`]: v
+      }),
+      placeholder: `Pytanie ${i}`
+    }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "glownafaq__chevron",
+      "aria-hidden": "true"
+    }, "\u25BE")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "glownafaq__panel faq-pannel",
+      style: panelEditorStyle
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      tagName: "p",
+      value: ans,
+      onChange: v => setAttributes({
+        [`answer${i}`]: v
+      }),
+      placeholder: `Odpowiedź ${i}`
+    })));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: 12,
+      color: "#999",
+      marginTop: 16
+    }
+  }, "Aby doda\u0107 kolejne pytania, wpisz je w slotach 1-10 (puste s\u0105 pomijane na froncie)."))));
 }
 
 /***/ },
@@ -10025,13 +10138,23 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/faqglowna/block.json"
 /*!**********************************!*\
   !*** ./src/faqglowna/block.json ***!
   \**********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/faqglowna","title":"FAQ GŁÓWNA","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/faqglowna","title":"FAQ Główna","attributes":{"title":{"type":"string","default":""},"showTitle":{"type":"boolean","default":false},"headingTag":{"type":"string","default":"h3"},"containerClass":{"type":"string","default":"glownafaq"},"showTopTitle":{"type":"boolean","default":true},"topTitle":{"type":"string","default":"Najczęściej zadawane pytania"},"question1":{"type":"string","default":"Shav Woman – Innowacyjna golarka dla kobiet, która odmieni pielęgnację miejsc intymnych."},"answer1":{"type":"string","default":"Golenie okolic krocza bywa dla wielu kobiet dość problematyczną kwestią. To delikatna strefa, która wymaga specjalnego traktowania – by ułatwić ten proces powstała <strong>golarka do miejsc intymnych Shav Woman</strong>, która sprawia, że golenie bez podrażnień jest możliwe."},"question2":{"type":"string","default":"Golenie miejsc intymnych bez podrażnień – z Shav Woman to możliwe!"},"answer2":{"type":"string","default":"Każda kobieta, <strong>która goli miejsca intymne regularnie</strong>, doznała choć raz nieprzyjemnych podrażnień czy zacięć. Aby tego uniknąć, warto zaopatrzyć się z <strong>odpowiednią maszynkę do golenia miejsc intymnych</strong>, która zapewni Ci komfort."},"question3":{"type":"string","default":"Golenie miejsc intymnych u kobiet. Ciesz się gładką skórą bez podrażnień."},"answer3":{"type":"string","default":"Zalecamy <strong>regularną wymianę ostrza</strong>, aby urządzenie mogło gwarantować maksymalną wydajność i należyte warunki higieniczne. <strong>Optymalny czas użytkowania jednego ostrza</strong> to 2-3 miesiące."},"question4":{"type":"string","default":""},"answer4":{"type":"string","default":""},"question5":{"type":"string","default":""},"answer5":{"type":"string","default":""},"question6":{"type":"string","default":""},"answer6":{"type":"string","default":""},"question7":{"type":"string","default":""},"answer7":{"type":"string","default":""},"question8":{"type":"string","default":""},"answer8":{"type":"string","default":""},"question9":{"type":"string","default":""},"answer9":{"type":"string","default":""},"question10":{"type":"string","default":""},"answer10":{"type":"string","default":""}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

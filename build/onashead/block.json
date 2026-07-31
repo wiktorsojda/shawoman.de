@@ -3,6 +3,59 @@
   "apiVersion": 3,
   "name": "ourblocktheme/onashead",
   "title": "O Nas Head",
+  "attributes": {
+    "brand": {
+      "type": "string",
+      "default": "Shav"
+    },
+    "headline": {
+      "type": "string",
+      "default": "Kim jesteśmy?"
+    },
+    "description": {
+      "type": "string",
+      "default": "Tworzymy zespół, który dał sobie za zadanie stworzenie największej społeczności kobiet na świecie. Kobiet świadomych, którzy dbają o swoje miejsca intymne i regularnie pozbywają się zbędnego owłosienia. Nasza pasja i zaangażowanie pozwoliły stworzyć Shav w obecnej formule - marki uwielbianej przez tysiące kobiet."
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

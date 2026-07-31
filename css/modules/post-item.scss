@@ -1,7 +1,7 @@
 .post-item {
-  border-bottom: 1px dotted #DEDEDE;
-  padding-bottom: 1.7rem;
-  margin-bottom: 1.7rem;
+  border-bottom: 1px dotted $color-neutral-200;
+  padding-bottom: $space-24;
+  margin-bottom: $space-24;
 
   &:last-of-type {
     border-bottom: none;

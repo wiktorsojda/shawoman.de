@@ -1,0 +1,116 @@
+// =============================================================================
+// MISJA — Header banner (Figma 845:81)
+// !important wszedzie zeby przebic theme.json / global styles WP.
+// =============================================================================
+
+.misjaheader {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: center !important;
+    gap: 16px !important;
+    background-image: var(--bg-mobile) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    margin: 24px 20px !important;
+    padding: 24px !important;
+    min-height: 244px !important;
+
+    @media (min-width: 900px) {
+        max-width: 1300px !important;
+        width: auto !important;
+        height: 450px !important;
+        min-height: 0 !important;
+        margin: 32px auto !important;
+        padding: 0 100px !important;
+        gap: 32px !important;
+        background-image: var(--bg-desktop) !important;
+    }
+
+    &__content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0 1px 0.5px rgba(0, 0, 0, 0.25)) !important;
+
+        @media (min-width: 900px) {
+            gap: 12px !important;
+        }
+    }
+
+    &__subtitle {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--subtitle-size-mobile, 14px) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-white !important;
+        text-align: right !important;
+        text-shadow: none !important;
+        text-transform: none !important;
+
+        @media (min-width: 900px) {
+            font-size: var(--subtitle-size-desktop, 18px) !important;
+            line-height: 1.2 !important;
+        }
+    }
+
+    &__title {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--title-size-mobile, 32px) !important;
+        line-height: 1.0 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-white !important;
+        text-align: right !important;
+        text-shadow: none !important;
+        text-transform: none !important;
+
+        @media (min-width: 900px) {
+            font-size: var(--title-size-desktop, 64px) !important;
+            line-height: 0.99 !important;
+        }
+    }
+
+    &__scroll {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        border: 0 !important;
+        cursor: pointer !important;
+        transition: transform 0.2s ease !important;
+
+        &:hover { transform: translateY(2px) !important; }
+
+        &:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.6) !important;
+            outline-offset: 4px !important;
+            border-radius: 50% !important;
+        }
+
+        svg {
+            display: block !important;
+            width: 56px !important;
+            height: 56px !important;
+
+            @media (min-width: 900px) {
+                width: 71px !important;
+                height: 71px !important;
+            }
+        }
+    }
+}

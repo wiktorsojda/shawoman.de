@@ -16,15 +16,243 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "faq-container faq-container-kontakt"
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Linki kontaktowe",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "Telefon (link tel:)",
+    value: a.phoneHref,
+    onChange: v => setAttributes({
+      phoneHref: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "Email (link mailto:)",
+    value: a.emailHref,
+    onChange: v => setAttributes({
+      emailHref: v
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Sekcja: Sprzeda\u017C hurtowa",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "URL przycisku",
+    value: a.hurtButtonURL,
+    onChange: v => setAttributes({
+      hurtButtonURL: v
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Sekcja: Zwroty",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "URL przycisku",
+    value: a.zwrotyButtonURL,
+    onChange: v => setAttributes({
+      zwrotyButtonURL: v
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Sekcja: Reklamacje",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "URL przycisku",
+    value: a.reklamacjeButtonURL,
+    onChange: v => setAttributes({
+      reklamacjeButtonURL: v
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "container--narrow2-important"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "regulamin-title",
+    value: a.title,
+    onChange: v => setAttributes({
+      title: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "regulamin-subtitle",
+    value: a.subtitle,
+    onChange: v => setAttributes({
+      subtitle: v
+    }),
+    placeholder: "Podtytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "grid-container-kontakt"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "Kontakt"));
+    className: "item1-kontakt"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "item-kontakt-title",
+    value: a.obsługaTitle,
+    onChange: v => setAttributes({
+      obsługaTitle: v
+    }),
+    placeholder: "Tytu\u0142 sekcji"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.obsługaIntro,
+    onChange: v => setAttributes({
+      obsługaIntro: v
+    }),
+    placeholder: "Wprowadzenie"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.phone,
+    onChange: v => setAttributes({
+      phone: v
+    }),
+    placeholder: "Numer telefonu"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.email,
+    onChange: v => setAttributes({
+      email: v
+    }),
+    placeholder: "Email"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.hours,
+    onChange: v => setAttributes({
+      hours: v
+    }),
+    placeholder: "Godziny"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "item2-kontakt"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "faq-wrapper-kontakt kontakt-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "item-kontakt-title",
+    value: a.faqTitle,
+    onChange: v => setAttributes({
+      faqTitle: v
+    }),
+    placeholder: "Tytu\u0142 FAQ"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "faq-wrapper-questions-kontakt"
+  }, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => {
+    const q = a[`kontaktQuestion${i}`];
+    const ans = a[`kontaktAnswer${i}`];
+    if (!q && !ans) return null;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: i,
+      className: "faq-kontakt"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      className: "faq-accordion-kontakt",
+      type: "button"
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      tagName: "span",
+      value: q,
+      onChange: v => setAttributes({
+        [`kontaktQuestion${i}`]: v
+      }),
+      placeholder: `Pytanie ${i}`
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "faq-pannel-kontakt",
+      style: {
+        maxHeight: "none",
+        opacity: 1,
+        paddingBottom: 12
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      tagName: "p",
+      value: ans,
+      onChange: v => setAttributes({
+        [`kontaktAnswer${i}`]: v
+      }),
+      placeholder: `Odpowiedź ${i}`
+    })));
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "item3-kontakt background-white"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "item-kontakt-title",
+    value: a.hurtTitle,
+    onChange: v => setAttributes({
+      hurtTitle: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.hurtIntro,
+    onChange: v => setAttributes({
+      hurtIntro: v
+    }),
+    placeholder: "Wprowadzenie"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "button",
+    className: "background-white",
+    value: a.hurtButtonLabel,
+    onChange: v => setAttributes({
+      hurtButtonLabel: v
+    }),
+    placeholder: "Etykieta"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "item4-kontakt background-white"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "item-kontakt-title",
+    value: a.zwrotyTitle,
+    onChange: v => setAttributes({
+      zwrotyTitle: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.zwrotyIntro,
+    onChange: v => setAttributes({
+      zwrotyIntro: v
+    }),
+    placeholder: "Wprowadzenie"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "button",
+    className: "background-white",
+    value: a.zwrotyButtonLabel,
+    onChange: v => setAttributes({
+      zwrotyButtonLabel: v
+    }),
+    placeholder: "Etykieta"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "item5-kontakt background-white"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "item-kontakt-title",
+    value: a.reklamacjeTitle,
+    onChange: v => setAttributes({
+      reklamacjeTitle: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.reklamacjeIntro,
+    onChange: v => setAttributes({
+      reklamacjeIntro: v
+    }),
+    placeholder: "Wprowadzenie"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "button",
+    className: "background-white",
+    value: a.reklamacjeButtonLabel,
+    onChange: v => setAttributes({
+      reklamacjeButtonLabel: v
+    }),
+    placeholder: "Etykieta"
+  })))));
 }
 
 /***/ },
@@ -10025,13 +10253,23 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/kontakt/block.json"
 /*!********************************!*\
   !*** ./src/kontakt/block.json ***!
   \********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/kontakt","title":"Kontakt","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/kontakt","title":"Kontakt","attributes":{"title":{"type":"string","default":"Kontakt"},"subtitle":{"type":"string","default":"Biuro obsługi klienta"},"obsługaTitle":{"type":"string","default":"Obsługa klienta"},"obsługaIntro":{"type":"string","default":"Masz pytanie? Skontaktuj się z nami!"},"phone":{"type":"string","default":"690 801 270"},"phoneHref":{"type":"string","default":"tel:+48690801270"},"email":{"type":"string","default":"kontakt@shavwoman.pl"},"emailHref":{"type":"string","default":"mailto:kontakt@shavwoman.pl"},"hours":{"type":"string","default":"poniedziałek - piątek: 8:00 - 16:00"},"faqTitle":{"type":"string","default":"Najczęściej zadawane pytania"},"hurtTitle":{"type":"string","default":"Sprzedaż hurtowa"},"hurtIntro":{"type":"string","default":"Jesteś zainteresowany współpracą z nami?"},"hurtButtonLabel":{"type":"string","default":"Dowiedz się więcej"},"hurtButtonURL":{"type":"string","default":"/sprzedaz-hurtowa"},"zwrotyTitle":{"type":"string","default":"Zwroty"},"zwrotyIntro":{"type":"string","default":"W ciągu 14 dni możesz zwrócić produkt kupiony przez internet."},"zwrotyButtonLabel":{"type":"string","default":"Dowiedz się więcej"},"zwrotyButtonURL":{"type":"string","default":"/zwrot"},"reklamacjeTitle":{"type":"string","default":"Reklamacje"},"reklamacjeIntro":{"type":"string","default":"Chcesz dowiedzieć się jak złożyć reklamację?"},"reklamacjeButtonLabel":{"type":"string","default":"Dowiedz się więcej"},"reklamacjeButtonURL":{"type":"string","default":"/zwrot"},"kontaktQuestion1":{"type":"string","default":"Ile trwa realizacja zamówienia?"},"kontaktAnswer1":{"type":"string","default":"Realizacja i dostawa wszystkich zamówień ze strony Shav odbywa się w ciągu 1-2 dni roboczych."},"kontaktQuestion2":{"type":"string","default":"Jakie są dostępne formy dostawy?"},"kontaktAnswer2":{"type":"string","default":"Oferujemy trzy opcje dostawy: przesyłkę kurierską InPost (darmowa), Paczkomaty InPost (darmowa) oraz przesyłkę kurierską InPost pobraniową (+4,99 zł). Dla zamówień poniżej 100 zł koszt wysyłki zwiększa się o 9,99 zł."},"kontaktQuestion3":{"type":"string","default":"Jakie są dostępne formy płatności?"},"kontaktAnswer3":{"type":"string","default":"Akceptujemy płatności poprzez PayU, BLIK, płatności kartą oraz płatności za pobraniem."},"kontaktQuestion4":{"type":"string","default":"Jak mogę śledzić status mojego zamówienia?"},"kontaktAnswer4":{"type":"string","default":"Link do śledzenia paczki otrzymasz w momencie przekazania zamówienia do realizacji (maksymalnie kolejnego dnia roboczego) na adres email podany w zamówieniu."},"kontaktQuestion5":{"type":"string","default":"Czy jest możliwa wysyłka zagranicę?"},"kontaktAnswer5":{"type":"string","default":"Tak, w takim przypadku prosimy o kontakt mailowy: kontakt@shavwoman.pl"},"kontaktQuestion6":{"type":"string","default":"Gdzie znajdę dowód zakupu?"},"kontaktAnswer6":{"type":"string","default":"Paragon lub fakturę otrzymasz w momencie przekazania zamówienia do realizacji (maksymalnie kolejnego dnia roboczego) na adres email podany w zamówieniu."},"kontaktQuestion7":{"type":"string","default":""},"kontaktAnswer7":{"type":"string","default":""},"kontaktQuestion8":{"type":"string","default":""},"kontaktAnswer8":{"type":"string","default":""},"kontaktQuestion9":{"type":"string","default":""},"kontaktAnswer9":{"type":"string","default":""},"kontaktQuestion10":{"type":"string","default":""},"kontaktAnswer10":{"type":"string","default":""}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

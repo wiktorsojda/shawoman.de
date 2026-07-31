@@ -1,0 +1,98 @@
+// =============================================================================
+// Shop — badges karty produktu
+// NOWOSC + BESTSELLER: gradient pomaranczowo-bronzowy (Figma 898:1596)
+// RABAT -X%:            tlo red/50, tekst red/600
+// OSZCZEDZASZ X zl:     tlo green/700, tekst green/100 (pill, uppercase)
+// =============================================================================
+
+.product-card__badges {
+    display: flex !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    list-style: none !important;
+    z-index: 3 !important;
+    // position absolute juz w .product-card __badges scoped scss
+}
+
+.product-card__badge {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 4px !important;
+    font-family: $font-family-base !important;
+    font-weight: 500 !important;                  // Be Vietnam Pro Medium
+    letter-spacing: -0.04em !important;
+    white-space: nowrap !important;
+    text-transform: none !important;
+    text-decoration: none !important;
+    line-height: 1.2 !important;
+
+    // Mobile: 87x21, padding 16/2 (Figma 898:1827)
+    padding: 2px 16px !important;
+    font-size: 12px !important;
+
+    @media (min-width: 900px) {
+        // Desktop: 113x29, padding 24/6 (Figma 898:1596)
+        padding: 6px 24px !important;
+        font-size: 14px !important;
+        line-height: 16.8px !important;
+    }
+
+    // -- NOWOSC + BESTSELLER (pomaranczowo-bronzowy gradient z Figmy) --
+    &--new,
+    &--bestseller {
+        background-image: linear-gradient(
+            103.95deg,
+            #aa6d56 27.6%,
+            #dfad92 55.5%,
+            #97604c 126.6%,
+            #dbaa91 213.5%,
+            #c3856c 365%
+        ) !important;
+        background-color: transparent !important;
+        color: $color-red-50 !important;          // #fff0f0 (Figma)
+    }
+
+    // -- RABAT -X% (czerwony pill) --
+    &--discount {
+        background: $color-red-50 !important;     // #fff0f0
+        color: $color-red-600 !important;         // #ac0000
+    }
+}
+
+// =============================================================================
+// OSZCZEDZASZ X zl — zielony pill w pricing (nie w badges container)
+// Figma 898:1644: tlo green/700, tekst green/100, padding 12/4, radius 24, uppercase
+// =============================================================================
+.product-card__savings {
+    display: inline-flex !important;
+    align-self: flex-start !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;  // przerwa miedzy "OSZCZEDZASZ" a kwota
+    padding: 4px 12px !important;
+    border-radius: 24px !important;
+    background: $color-green-700 !important;      // #2d773d
+    color: $color-green-100 !important;           // #cff2d6
+    font-family: $font-family-base !important;
+    font-weight: 600 !important;                  // Be Vietnam Pro SemiBold (Figma)
+    font-size: 12px !important;
+    line-height: 1.6 !important;                  // Figma 1.6
+    letter-spacing: -0.04em !important;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+
+@media (max-width: 899px) { 
+        font-size: 10px !important;
+}
+
+    // WC w wc_price() generuje swoj markup ceny — wymuszamy spojny styl
+    .woocommerce-Price-amount,
+    .amount,
+    bdi {
+        color: inherit !important;
+        font: inherit !important;
+        text-decoration: none !important;
+    }
+}

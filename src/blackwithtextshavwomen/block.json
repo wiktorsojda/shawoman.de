@@ -1,0 +1,9 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/blackwithtextshavwomen",
+  "title": "Black With Text Shav Women",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}
+

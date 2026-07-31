@@ -1,12 +1,10 @@
-
-// cta glowna
+// CTA glowna
 .cta-glowna {
   display: flex;
-  /* width: 702px; */
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin-top: 5px;
+  gap: $space-8;
+  margin-top: $space-4;
 
   a {
     color: transparent;
@@ -17,196 +15,151 @@
     cursor: pointer;
     background: transparent;
     border: none;
-    color: #1CC9F2;
+    color: $color-info-light;
     text-align: center;
-    text-shadow: 0px 16px 8px rgba(0, 0, 0, 0.25);
-    font-family: 'bebas-neue-pro', sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 117.75%;
+    text-shadow: 0px 16px 8px rgba($color-black, 0.25);
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
+    font-weight: $font-weight-regular;
+    line-height: 1.1775;
     text-transform: uppercase;
   }
 }
 
 .about-us-second {
-    // background-color: #000;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center  ;
-    position: relative;
-    overflow: hidden;
-  }
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  color: $color-white;
+}
 
-  .zdjecie-baner-glowna {
-    background-image: url('https://shav.pl/wp-content/uploads/szachownicanew-2-1.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    min-height: 60vh;              /* Możesz zmienić na 100vh jeśli chcesz na całą wysokość */
-    width: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 16px;
-    overflow: hidden;              /* Na wszelki wypadek jeśli coś wystaje poza kontener */
-    z-index: 1;
+.zdjecie-baner-glowna {
+  background-image: url('https://shav.pl/wp-content/uploads/szachownicanew-2-1.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 60vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $space-40 $space-16;
+  overflow: hidden;
+  z-index: 1;
 
-    @media(max-width:799px) {
-      background-image: url('https://shav.pl/wp-content/uploads/szachownicanew-2-1.png');
-    }
-  }
-
-
-  .video-background-container {
-    position: relative;
-    width: 100%;
-    height: 80vh;
-    overflow: hidden;
-    background-color: #000;
-    z-index: 0;
-
-    margin-top: -1px;
-
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 260px;
-        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
-        
-        z-index: 1;
-    }
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 160px;
-      // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-      // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
-      
-      z-index: 1;
+  &::before {
+    background: none !important;
   }
 }
 
+.video-background-container {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+  background-color: $color-neutral-900;
+  z-index: 0;
+  margin-top: -1px;
 
-.zdjecie-baner-glowna::before {
-  background: none !important;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(0deg, rgba($color-black, 0) 0%, $color-black 100%);
+    z-index: 1;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(180deg, rgba($color-black, 0) 0%, $color-black 100%);
+    z-index: 1;
+  }
 }
 
 .video-background-container-trymer::before {
   background: none !important;
 }
- 
+
 .video-background {
-  // display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: auto;
-    min-height: 100%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
 }
 
-.about-us-second {
-    position: relative;
-    z-index: 1;
-    color: #fff; /* Ensure text is visible over the video */
+.about-us-second-title {
+  max-width: 800px;
+  text-align: center;
+  font-size: 47px;
+  font-weight: $font-weight-medium;
+  line-height: normal;
+  font-family: $font-family-base;
+  color: $color-white;
+  padding: $space-24;
+  margin: 0;
+  z-index: 1;
+  margin-top: -$space-120 !important;
+  text-transform: uppercase;
 }
 
-
-
-
-
-    
+@media (max-width: 799px) {
   .about-us-second-title {
-    max-width: 800px;
-    text-align: center;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    font-family: "bebas-neue-pro", sans-serif;
-    color: #fff;
-    padding: 22px;
-    margin: 0;
-    z-index: 1;
-    margin-top: -10rem !important;
-    text-transform: uppercase;
-
-
-  
+    font-size: 22px !important;
+    margin-top: -$space-80 !important;
   }
+}
 
-  @media(max-width:799px){
-    .about-us-second-title{
-      font-size: 36px !important;
-      margin-top: -5rem !important;
-    } }
+@keyframes scale {
+  100% { transform: scale(1); }
+}
 
-  @keyframes scale {
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .about-us-span {
-    display: inline-block;
-    // opacity: 0;
-    // filter: blur(4px);
-    // filter: none;
-  }
-  
-  
-  // .about-us-span.first {
-  // animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  // }
-  
-  // .about-us-span.second {
-  // animation: fade-in 0.8s 0.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
-  // }
-  
-  @keyframes fade-in {
-    100% {
+.about-us-span {
+  display: inline-block;
+}
+
+@keyframes fade-in {
+  100% {
     opacity: 1;
     filter: blur(0);
-    }
   }
-  
-  @keyframes slide {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  
-  .about-us-logos {
-    overflow: hidden;
-    padding: 60px 0;
-    white-space: nowrap;
-    position: absolute;
-    margin-top: 17rem !important;
-  }
-  
-  .about-us-logos:before,
-  .about-us-logos:after {
+}
+
+@keyframes slide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.about-us-logos {
+  overflow: hidden;
+  padding: $space-56 0;
+  white-space: nowrap;
+  position: absolute;
+  margin-top: 20rem !important;
+  width: 100%;
+
+  &:before,
+  &:after {
     position: absolute;
     top: 0;
     width: 250px;
@@ -214,136 +167,132 @@
     content: "";
     z-index: 2;
   }
-  
-  .about-us-logos:before {
-    left: 0;
-    /* Uncomment if you want fading effect
-    background: linear-gradient(to left, rgba(255, 255, 255, 0), white); */
+
+  &:before { left: 0; }
+  &:after  { right: 0; }
+}
+
+.about-us-swiper {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: slide 30s linear infinite;
+  will-change: transform;
+
+  // Pauza po hover (ladniejszy UX)
+  &:hover {
+    animation-play-state: paused;
   }
-  
-  .about-us-logos:after {
-    right: 0;
-    /* Uncomment if you want fading effect
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), white); */
-  }
-  
-  .about-us-swiper {
-    display: inline-block;
-    white-space: nowrap;
-    animation: slide infinite linear;
-  }
-  
-  .about-us-swiper img {
+
+  img {
     height: 50px;
-    margin: 0 40px;
+    margin: 0 $space-40;
     opacity: 0.5;
+    flex-shrink: 0;
   }
 
-  .about-us-swiper svg {
+  svg {
     height: 50px;
-    margin: 0 40px;
+    margin: 0 $space-40;
     opacity: 0.9;
+    flex-shrink: 0;
   }
-///////
+}
 
-  // METODY WYSYLKI
-  .video-background-container-wysylka {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
 
-    margin-top: -1px;
+// METODY WYSYLKI
+.video-background-container-wysylka,
+.wp-block-ourblocktheme-metodyplatnoscihead,
+.wp-block-ourblocktheme-metodywysylkihead {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  margin-top: 30px;
+  background-color: $color-neutral-100;
+  background-size: cover;
+  background-position: center;
 
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(0deg, #000 -4.62%, rgba(0, 0, 0, 0.00) 40.75%),
-        linear-gradient(271deg, #000 20%, rgba(0, 0, 0, 0.00) 100%);
-        z-index: 1;
-    }
+  // Subtelny gradient dla czytelności tekstu na jasnym tle/zdjeciu
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   // background: linear-gradient(180deg, rgba($color-white, 0) 0%, rgba($color-white, 0.4) 100%);
+  //   z-index: 1;
+  //   pointer-events: none;
+  // }
 }
 
 .video-background-wysylka {
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    width: 100%;
-    height: auto;
-    min-height: 100%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -1;
 }
 
-
 .about-us-second-wysylka {
-  // background-color: #000;
   height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  // justify-content: center;
   top: 25%;
-  // text-align: center  ;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  color: #fff;
+  color: $color-neutral-900;
 }
 
 .about-us-second-title-wysylka {
   display: flex;
   flex-direction: column;
   z-index: 1;
-  gap: 10px;
-
+  gap: $space-8;
 }
 
 .about-us-span-wysylka-first {
-  color: #FFF;
-
-text-shadow: 0px -4px 8px rgba(0, 0, 0, 0.68);
-/* Roboto */
-font-family: "bebas-neue-pro", sans-serif;
-font-size: 64px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-text-transform: uppercase;
+  color: $color-neutral-900;
+  text-shadow: none;
+  font-family: $font-family-base;
+  font-size: $font-size-h1;
+  font-weight: $font-weight-medium;
+  line-height: normal;
+  text-transform: uppercase;
 }
-
 
 .about-us-span-wysylka-container {
   display: inline-flex;
   height: 55px;
   justify-content: flex-end;
   align-items: center;
-  gap: 10px;
+  gap: $space-8;
   flex-shrink: 0;
+  color: $color-primary-medium;     // SVG strzalki dziedziczy przez currentColor
 }
 
 .about-us-span-wysylka-second {
-  color: #0983A0;
-
-  font-family: Roboto;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 400;
+  color: $color-primary-medium;
+  font-family: $font-family-base;
+  font-size: $font-size-h3;
+  font-weight: $font-weight-regular;
   line-height: normal;
 }
 
 .about-us-span-wysylka-icon {
   display: flex;
-justify-content: center;
-align-items: center;
-gap: 10px;
-background-color: #0983A0;
+  justify-content: center;
+  align-items: center;
+  gap: $space-8;
+  background-color: $color-primary-medium;
 }
 
 
@@ -356,24 +305,31 @@ background-color: #0983A0;
   }
 
   .about-us-logos {
-    margin-top: 20rem !important;
+    margin-top: 17rem !important;
   }
 
   .video-background-container-wysylka::before {
-    background: linear-gradient(0deg, #000 -4.62%, rgba(0, 0, 0, 0.00) 40.75%);
+    // background: linear-gradient(180deg, rgba($color-white, 0) 0%, rgba($color-white, 0.4) 100%);
   }
-  .video-background-container-wysylka {
-    height: 40vh !important;
+  .video-background-container-wysylka,
+  .wp-block-ourblocktheme-metodyplatnoscihead,
+  .wp-block-ourblocktheme-metodywysylkihead {
+    height: auto;
+  }
+
+  // Wymus peach na SVG strzalki (na wypadek lokalnego overridu fill)
+  .about-us-span-wysylka-container svg path {
+    fill: $color-primary-medium !important;
   }
 
   .video-background-wysylka {
     left: 50%;
   }
 
-  .about-us-second-wysylka { 
+  .about-us-second-wysylka {
     align-items: center;
     top: 67%;
-  } 
+  }
 
   .about-us-span-wysylka-container {
     justify-content: center;
@@ -381,18 +337,14 @@ background-color: #0983A0;
 
   .about-us-span-wysylka-first {
     text-align: center;
-    font-family: "bebas-neue-pro", sans-serif;
-    font-size: 36px;
-    font-style: normal;
+    font-family: $font-family-base;
+    font-size: $font-size-h3;
   }
 
   .about-us-span-wysylka-second {
-    font-family: Roboto;
-font-size: 20px !important;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    font-family: $font-family-base;
+    font-size: $font-size-h4 !important;
+    font-weight: $font-weight-regular;
+    line-height: normal;
   }
-
-
 }

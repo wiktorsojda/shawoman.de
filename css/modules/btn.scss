@@ -1,23 +1,23 @@
 .btn {
   display: inline-block;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: $radius-xs;
   overflow: hidden;
   text-decoration: none;
   color: #fff;
-  font-size: 1.19rem;
-  padding: 12px 24px;
+  font-size: $font-size-h4;
+  padding: $space-12 $space-24;
   border: none;
   outline: none;
 
   &--small {
-    font-size: 0.88rem;
-    padding: 7px 13px;
+    font-size: $font-size-body-m;
+    padding: $space-8 $space-12;
     font-weight: 300;
   }
 
   &--with-photo {
-    padding-left: 40px;
+    padding-left: $space-40;
     position: relative;
   }
 
@@ -77,11 +77,11 @@
   }
 
   &--large {
-    font-size: 1.3rem;
-    padding: 16px 34px;
-    border-radius: 7px;
+    font-size: $font-size-h4;
+    padding: $space-16 $space-32;
+    border-radius: $radius-xs;
     @include atSmall {
-      font-size: 1.9rem;
+      font-size: $font-size-h3-mob;
     }
   }
 

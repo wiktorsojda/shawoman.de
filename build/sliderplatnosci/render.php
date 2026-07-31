@@ -1,10 +1,7 @@
-<section class="platnosci-container">
-    <div class="gallery">
-
-	<div class="actions">
-		<button class="prev">Prev</button>
-		<button class="next">Next</button>
-	</div>
-</div>
-<div class="drag-proxy"></div>
-</section>
+<?php
+$backgroundImage = isset($attributes['backgroundImage']) ? $attributes['backgroundImage'] : '';
+$inline_style = $backgroundImage
+    ? 'background-image:url(' . esc_url($backgroundImage) . ');background-size:cover;background-position:center;'
+    : '';
+?>
+<section class="platnosci-container" <?php echo $inline_style ? 'style="' . $inline_style . '"' : ''; ?>></section>

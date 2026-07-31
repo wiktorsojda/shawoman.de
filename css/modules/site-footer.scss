@@ -4,7 +4,7 @@
   position: relative;
   // height: 700px;
   width: 100%;
-  padding: 2rem 0 0 0;
+  padding: $space-32 0 0 0;
   background: linear-gradient(179deg, #000 78.69%, #0983A0 116.67%);
   margin-top: -1px;
 
@@ -12,7 +12,7 @@
 
 .footer-container {
   // margin: 0 2.5rem 0 2.5rem;
-  margin-top: 65px;
+  margin-top: $space-64;
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@ align-items: flex-start;
 
 /* Roboto */
 font-family: Roboto;
-font-size: 16px;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -60,8 +60,8 @@ text-decoration: none;
 align-self: stretch;
 // max-width: 300px;
 max-height: 180px;
-margin-top: -20px;
-margin-right: 50px;
+margin-top: -$space-16;
+margin-right: $space-48;
     }
   }
 
@@ -69,7 +69,7 @@ margin-right: 50px;
     display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: $space-16;
   flex-shrink: 0;
 
   .footer-column-title {
@@ -77,7 +77,7 @@ margin-right: 50px;
     margin: 0;
     padding: 0;
 font-family: Roboto;
-font-size: 20px;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -88,7 +88,7 @@ line-height: normal;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: $space-12;
   .footer-icon-container {
     display: flex;
 width: 24px;
@@ -96,7 +96,7 @@ height: 22px;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-gap: 10px;
+gap: $space-8;
   }
 }
 
@@ -106,14 +106,14 @@ gap: 10px;
     display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 16px;
+gap: $space-16;
 align-self: stretch;
   }
 
   .paylogos-footer {
     display: flex;
 align-items: center;
-gap: 16px;
+gap: $space-16;
 
     .paylogos-footer-icon {
       width: 50px;
@@ -125,7 +125,7 @@ gap: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: $space-16;
   flex-shrink: 0;
 
   .footer-column-title {
@@ -133,7 +133,7 @@ gap: 16px;
   margin: 0;
   padding: 0;
 font-family: Roboto;
-font-size: 20px;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -144,7 +144,7 @@ line-height: normal;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: $space-16;
   align-self: stretch;
  }
 }
@@ -153,7 +153,7 @@ line-height: normal;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 20px;
+  gap: $space-16;
   flex-shrink: 0;
 
   .footer-column-title {
@@ -161,7 +161,7 @@ line-height: normal;
   margin: 0;
   padding: 0;
 font-family: Roboto;
-font-size: 20px;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -172,7 +172,7 @@ line-height: normal;
   display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 16px;
+gap: $space-16;
 align-self: stretch;
 }
 }
@@ -205,7 +205,7 @@ align-items: center;
       margin: 0;
       /* Roboto */
 font-family: Roboto;
-font-size: 12px;
+font-size: $font-size-body-s;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -218,7 +218,7 @@ color: #E5E5E5;
 
 /* Roboto */
 font-family: Roboto;
-font-size: 12px;
+font-size: $font-size-body-s;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -246,11 +246,11 @@ cursor: pointer;
 
 @media (max-width: 1300px) {
   .footer-group {
-    margin: 0 2.5rem;
+    margin: 0 $space-40;
   }
 
   .footer-bottom {
-    margin: 0 2.5rem;
+    margin: 0 $space-40;
   }
 }
 
@@ -258,26 +258,26 @@ cursor: pointer;
   .footer-bottom {
     flex-direction: column-reverse;
     height: auto;
-    gap: 10px;
-    padding: 16px;
+    gap: $space-8;
+    padding: $space-16;
     a {
-      font-size: 10px;
+      font-size: $font-size-body-s;
     }
 
     p {
-      font-size: 10px;
+      font-size: $font-size-body-s;
     }
   }
 
   .footer-group {
 
     h3 {
-      font-size: 16px !important;
+      font-size: $font-size-body-l !important;
     }
 
 
     a {
-      font-size: 14px !important;
+      font-size: $font-size-body-m !important;
     }
   }
 
@@ -301,7 +301,7 @@ cursor: pointer;
     display: flex;
 justify-content: center !important;
 align-items: center !important;
-gap: 24px;
+gap: $space-24;
     flex-direction: column;
     height: auto !important;
   }
@@ -315,7 +315,7 @@ gap: 24px;
     margin: 0;
     /* Roboto */
 font-family: Roboto;
-font-size: 10px;
+font-size: $font-size-body-s;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -357,7 +357,7 @@ color: #E5E5E5;
   flex-direction: row !important;
   width: auto;
   height: auto;
-  gap: 24px;
+  gap: $space-24;
   order: 3;
 }
 
@@ -368,9 +368,9 @@ color: #E5E5E5;
 .paylogos-footer-mobile {
   display: flex !important;
   align-items: center !important;
-  gap: 16px !important;
-  margin-bottom: 26px !important;
-  margin-top: 10px;
+  gap: $space-16 !important;
+  margin-bottom: $space-24 !important;
+  margin-top: $space-8;
   
       .paylogos-footer-icon {
         width: 50px !important;
@@ -379,7 +379,7 @@ color: #E5E5E5;
 }
 
 .footer-column-inside {
-  gap: 8px !important;
+  gap: $space-8 !important;
 }
 }
 
@@ -396,11 +396,11 @@ color: #E5E5E5;
   display: flex;
   
   a:first-child {
-    padding-right: 15px;
+    padding-right: $space-16;
     border-right: 1px solid #fff;
   }
   a {
-    padding-left: 15px;
+    padding-left: $space-16;
   }
   
 }

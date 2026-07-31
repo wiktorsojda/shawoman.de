@@ -1,0 +1,667 @@
+// =============================================================================
+// SHOP — LEGACY (do stopniowego usuniecia w Etapie 3)
+// =============================================================================
+// Zachowuje override'y bloku Gutenberg WC i staromudych klas
+// (.wp-container-core-post-template-is-layout-*, .wp-block-post, .product-title-subtitle-wrapper).
+// Te selektory dzialaja TYLKO gdy ktos uzyje bloku Query Loop / Products na innej
+// stronie — nowy /sklep/ uzywa archive-product.php i NIE trafia w nie.
+//
+// USUNIETE:
+//   - Ramki gradientowe per .post-{ID} (przeniesione do _shop-set-frames.scss
+//     na bazie meta-field `_shav_frame_variant`)
+//   - .has-text-align-center { text-align: left !important; } — globalna patologia
+// =============================================================================
+/* Domyślnie wyświetlany jest baner desktopowy */
+.shop-banner-image-mobile {
+    display: none;
+}
+
+/* Na urządzeniach mobilnych (np. max-width: 767px) wyświetlany jest baner mobilny */
+@media (max-width: 900px) {
+    .shop-banner-image-desktop {
+        display: none;
+    }
+    .shop-banner-image-mobile {
+        display: block;
+    }
+}
+
+
+// grid
+
+.wp-container-core-post-template-is-layout-572542b5 {
+
+ 
+
+    .post-68 {
+        order: 1;
+    } 
+
+/* Shav woman, zestaw srebrny, trymer do nosa, zestaw złoty, shav basic, myjka do ciała shav, zestaw do paznokci, zestaw kosmetyków, dezodorant shav, balsam shav, handler, bokserki shav, 3 bokserki shav, 5 bokserek shav, crowner,  zestaw dla dwojga, zestaw platynowy woman */
+    .post-68, .post-209201, .post-209188, .post-185780, .post-210446, .post-130, .post-213962, .post-228537, .post-228536, .post-228529, .post-230511,  .post-232124, .post-232131, .post-232132, .post-233723, .post-238308, .post-342   {
+        .wc-block-components-product-price {
+            text-align: left !important;
+        }
+
+
+        del::before {
+            background-color: $color-neutral-600;
+        }
+
+        del span {
+            color: $color-neutral-600 !important;
+        }
+        ins span bdi  {
+            color: $color-accent-medium !important;
+        }
+
+        del span bdi {
+            color: $color-neutral-600 !important;
+            font-size: $font-size-body-l !important;
+        }
+
+    }
+
+    /* zestaw złoty */
+    .post-210446 {
+        order: 2;
+    }
+
+    /* trymer do nosa */
+    .post-209188 {
+        order: 3;
+    }
+
+    /* etui */
+    .post-128 {
+        order: 4;
+    }
+
+    /* ostrze bazowe foliowe */
+    .post-105 {
+        order: 5;
+    }
+
+    /* myjka do ciała */ 
+    .post-130 {
+        order: 6;
+    }
+
+    /* zestaw do paznokci */
+    .post-213962 {
+        order: 7;
+    }
+
+    /* ostrze foliowe okrągłe */
+    .post-127 {
+        order: 8;
+    }
+
+    /* ostrze klasyczne */
+    .post-190815 {
+        order: 9;
+    }
+
+    /* zestaw srebrny */
+    .post-209201 {
+        order: 10;
+    }
+
+    /* zestaw złoty woman */
+    .post-129 {
+        order: 11;
+    }
+
+}
+
+
+@media(max-width:1200px) {
+.wp-container-core-post-template-is-layout-572542b5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+
+@media(max-width:786px) {
+    .wp-container-core-post-template-is-layout-572542b5  {
+        grid-template-columns: 1fr;
+    }
+
+    .is-layout-grid {
+        gap: $space-40 !important;
+    }
+
+
+    }
+
+
+
+    .products-block-post-template {
+        .custom-shop-image {
+            margin-top: $space-8 !important;
+        }}
+
+
+.shop-title {
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0 !important; 
+    order: 2;
+}
+
+.shop-group {
+    display: flex;
+    // width: 1428px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-48;
+
+
+    .shop-banner-image {
+        order: 1;
+        margin: 0 !important;
+        padding: 0 !important;
+        margin-top: -$space-8 !important;
+    }
+
+    .wp-block-query  {
+        order: 3;
+    }
+}
+
+.product-title-subtitle-wrapper {
+    
+    margin: 0 !important;
+    .woocommerce-loop-product__title {
+        margin: 0 !important;
+        color: $color-neutral-900;
+        font-family: $font-family-base;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 117.75%;
+        text-transform: uppercase;
+        text-decoration: none;
+        text-align: left;
+    }
+    .product-subtitle-shop {
+        margin: 0 !important;
+        color: $color-neutral-900;
+        font-family: $font-family-base;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+        text-align: left;
+    }
+}
+
+.products-block-post-template {
+.wp-block-post {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    max-width: 460px !important;
+    max-height: 260px;
+    padding: $space-16 $space-32;
+    padding-right: 0 !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    border-radius: $radius-xs;
+    background: $color-neutral-100;
+
+        .wp-block-post-title {
+            display: none !important;
+        }
+
+    .wp-block-group {
+        flex-basis: 56%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: $space-32;
+        flex-shrink: 0;
+        margin-bottom: 0;
+
+        .wc-block-components-product-price {
+            margin-bottom: 0 !important;
+        }
+ 
+
+
+            h3 {
+                margin: 0 !important;
+                a {
+                    color: $color-neutral-900;
+                    font-family: $font-family-base;
+                    font-size: $font-size-h3;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 117.75%;
+                    text-transform: uppercase;
+                    text-decoration: none;
+                    text-align: left;
+                    
+                }
+            }
+
+           .product-promotion-tag {
+
+                // line-height: normal;
+                // margin: 0 !important;
+                display: flex;
+                height: 20px;
+                min-height: 20px;
+                // width: 94px;
+
+                justify-content: center;
+                align-items: center;
+                gap: $space-8;
+                border-radius: $radius-xs;
+                // background: linear-gradient(85deg, $color-accent-medium -7.37%, $color-warning-dark 107.37%);
+                color: $color-white;
+                font-family: $font-family-base;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 117.75%;
+                text-transform: uppercase;
+                margin: 0 !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+
+                padding: $space-4 $space-8 $space-4 $space-8;
+                width: 94px;
+                font-size: $font-size-body-l;
+            
+            }
+
+            div.wp-block-woocommerce-product-price {
+                margin: 0 !important;
+                color: $color-neutral-900;
+                font-family: $font-family-base;
+                font-size: $font-size-h4;
+                font-style: normal;
+                font-weight: 600;
+                line-height: normal;
+
+                bdi {
+                    color: $color-neutral-900;
+                    font-family: $font-family-base;
+                    font-size: $font-size-h4;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                    margin-right: $space-8;
+                    text-decoration: none !important;
+                }
+            }
+    }
+
+    .wc-block-components-product-image {
+        display: none !important;
+    }
+
+
+    .wc-block-components-product-image-new {
+        flex-basis: 44%;
+        width: 177px;
+height: 177px;
+    }
+}
+}
+
+// /* zestaw srebrny, Zestaw zloty woman — przeniesione do _shop-set-frames.scss */
+
+.custom-product-listing {
+    display: flex;
+    align-items: center;
+    gap: $space-16;
+}
+
+
+
+.custom-product-listing .wp-block-woocommerce-featured-image,
+.custom-product-listing .wp-block-woocommerce-product-title,
+.custom-product-listing .wp-block-woocommerce-product-price,
+.custom-product-listing .wp-block-woocommerce-add-to-cart {
+    margin: 0;
+    padding: 0;
+}
+
+.product-item {
+    margin-bottom: $space-16;
+}
+
+@media (max-width: 768px) {
+    .custom-product-listing {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.shop-group {
+    gap: $space-32 !important;
+    .wp-block-query.alignwide.container.container--narrow2-important.is-layout-flow.wp-block-query-is-layout-flow {
+        width: 100% !important;
+    }}
+
+
+.shop-banner-image {
+    display: flex;
+    overflow: hidden; /* Ensures that any part of the image exceeding the height is hidden */
+    border-radius: $radius-xs;
+    background: $color-neutral-900;
+    height: 411px;
+    width: 100%; /* This makes the container as wide as the rest of the content */
+
+
+    @media(max-width:786px) {
+    //     max-width: 460px !important;
+    // max-height: 246px !important;
+        height: auto;
+    }
+}
+
+.shop-banner-image img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: top center; /* Aligns image to the top of the container */
+
+
+    @media(max-width:786px) {
+        // max-width: 460px !important;
+        height: 100% !important;
+    object-position: top left;
+}
+}
+
+.shop-banner-textcontainer {
+    display: flex;
+width: 322px;
+height: 150px;
+flex-direction: column;
+align-items: flex-start;
+gap: $space-4;
+flex-shrink: 0;
+position: absolute;
+top: 145px;
+left: 42px;
+
+@media(max-width:786px) {
+    top: 32%;
+    width: 173px;
+    left: 23px !important;
+}
+
+
+    .banner-text {
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+    }
+
+    .banner-text-1 {
+        color: $color-white;
+        font-family: $font-family-base;
+        font-size: $font-size-h1-mob;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 117.75%; /* 56.52px */
+        text-transform: uppercase;
+        
+        @media(max-width:786px) {
+            font-size: $font-size-h4;
+        }
+    }
+
+    .banner-text-2 {
+        color: $color-white;
+        font-family: $font-family-base;
+        font-size: $font-size-h4;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+
+        @media(max-width:786px) {
+          font-size: $font-size-body-m;
+        }
+    }
+}
+
+
+@media(max-width:786px) {
+.wp-block-post {
+    max-height: 184px !important;
+    padding: $space-16 $space-32 !important;
+
+}
+
+.wp-block-group {
+    gap: $space-24 !important;
+
+}
+
+.product-title-subtitle-wrapper {
+    .woocommerce-loop-product__title { 
+        font-size: 22px !important;
+    }}
+
+    .product-subtitle-shop {
+        font-size: 12 !important;
+    }
+
+
+.products-block-post-template {
+    .custom-shop-image {
+        margin-top: $space-32 !important;
+    }}
+}
+
+
+
+
+
+
+
+
+// usuniecie na sztywno ze sklepu nieposortowanej listy produktow bo inaczej nie dziala
+.wc-block-product-template__responsive.columns-3  {
+    display: none !important;
+}
+
+
+h2.sklep-tytul-kategoria {
+    display: flex;
+    gap: $space-4;
+}
+
+
+// sklep tytul i ikony
+.sklep-tytul-kategoria {
+    display: flex;
+    align-items: center;
+}
+
+
+h2.sklep-tytul-kategoria {
+
+    text-align: left;
+    margin-bottom: $space-8 !important;
+    line-height: normal;
+    font-weight: 600
+}
+
+.archive {
+#wp--skip-link--target {
+    margin-top: $space-12 !important;
+}
+}
+
+.archive main {
+    padding: 0;
+
+    @media (max-width: 1300px) {
+        padding: 20px;
+    }
+}
+
+.wc-block-product-template__responsive.columns-5 {
+    grid-template-columns: repeat(auto-fill, minmax(max(180px, calc(32% - 1em)), 1fr)) !important;
+}
+
+
+
+ul.wc-block-product-template__responsive {
+    margin-bottom: $space-40 !important;
+
+   @media (max-width: 450px) {
+       display: flex !important;
+        flex-direction: column !important;
+    }
+
+}
+/* */
+
+.wc-block-product {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    max-width: 460px !important;
+    max-height: 260px;
+    padding: $space-24 $space-32;
+    padding-right: 0 !important;
+    justify-content: space-between !important;
+    // align-items: center !important;
+    border-radius: $radius-xs;
+    background: $color-neutral-100;
+
+
+    .wc-block-components-product-image {
+        display: none !important;
+    }
+    .wp-block-post-title {
+        display: none !important;
+    }
+
+     
+  
+    
+            .wp-block-post-title {
+                display: none !important;
+            }
+    
+        .wp-block-group {
+            flex-basis: 56%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: $space-32;
+            flex-shrink: 0;
+            margin-bottom: 0;
+            justify-content: center;
+    
+            .wc-block-components-product-price {
+                margin-bottom: 0 !important;
+            }
+     
+    
+    
+                h3 {
+                    margin: 0 !important;
+                    a {
+                        color: $color-neutral-900;
+                        font-family: $font-family-base;
+                        font-size: $font-size-h3;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 117.75%;
+                        text-transform: uppercase;
+                        text-decoration: none;
+                        text-align: left;
+                        
+                    }
+                }
+    
+               .product-promotion-tag {
+    
+                    // line-height: normal;
+                    // margin: 0 !important;
+                    display: flex;
+                    height: 20px;
+                    min-height: 20px;
+                    // width: 94px;
+    
+                    justify-content: center;
+                    align-items: center;
+                    gap: $space-8;
+                    border-radius: $radius-xs;
+                    // background: linear-gradient(85deg, $color-accent-medium -7.37%, $color-warning-dark 107.37%);
+                    color: $color-white;
+                    font-family: $font-family-base;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: 117.75%;
+                    text-transform: uppercase;
+                    margin: 0 !important;
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+    
+                    padding: $space-4 $space-8 $space-4 $space-8;
+                    width: 94px;
+                    font-size: $font-size-body-l;
+                
+                }
+    
+                div.wp-block-woocommerce-product-price {
+                    margin: 0 !important;
+                    color: $color-neutral-900;
+                    font-family: $font-family-base;
+                    font-size: $font-size-h4;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+    
+                    bdi {
+                        color: $color-neutral-900;
+                        font-family: $font-family-base;
+                        font-size: $font-size-h4;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+                        margin-right: $space-8;
+                        text-decoration: none !important;
+                    }
+                }
+        }
+    
+        .wc-block-components-product-image {
+            display: none !important;
+        }
+    
+    
+        .custom-image-container {
+            flex-basis: 44%;
+            width: 177px;
+    height: 177px;
+        }
+    
+
+    
+}
+
+.wc-block-components-product-price.wc-block-grid__product-price {
+    font-size: 20px !important;
+
+    del {
+        color: #AC0000 !important;
+    }
+    del::before {
+        top: 50% !important;
+    }
+}

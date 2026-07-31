@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/rosegoldslider",
+  "title": "Drop — Slider banerów",
+  "category": "theme",
+  "icon": "images-alt2",
+  "description": "Karuzela banerów w stylu peek (aktywny slajd wyśrodkowany, sąsiednie przygaszone). Kropki, przeciąganie i auto-przewijanie. Do 5 slajdów, każdy z opcjonalnym linkiem.",
+  "attributes": {
+    "autoScroll":   { "type": "boolean", "default": true },
+    "autoScrollMs": { "type": "number", "default": 5000 },
+    "slide1Image": { "type": "string", "default": "" },
+    "slide1Url":   { "type": "string", "default": "" },
+    "slide1Alt":   { "type": "string", "default": "" },
+    "slide2Image": { "type": "string", "default": "" },
+    "slide2Url":   { "type": "string", "default": "" },
+    "slide2Alt":   { "type": "string", "default": "" },
+    "slide3Image": { "type": "string", "default": "" },
+    "slide3Url":   { "type": "string", "default": "" },
+    "slide3Alt":   { "type": "string", "default": "" },
+    "slide4Image": { "type": "string", "default": "" },
+    "slide4Url":   { "type": "string", "default": "" },
+    "slide4Alt":   { "type": "string", "default": "" },
+    "slide5Image": { "type": "string", "default": "" },
+    "slide5Url":   { "type": "string", "default": "" },
+    "slide5Alt":   { "type": "string", "default": "" },
+    "slide1ImageMobile": { "type": "string", "default": "" },
+    "slide2ImageMobile": { "type": "string", "default": "" },
+    "slide3ImageMobile": { "type": "string", "default": "" },
+    "slide4ImageMobile": { "type": "string", "default": "" },
+    "slide5ImageMobile": { "type": "string", "default": "" }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": ["full"],
+    "spacing": { "margin": true }
+  }
+}

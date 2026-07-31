@@ -18,13 +18,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "faq-container-glowna"
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "Kariera Oferty"));
+    className: "faq-wrapper container--narrow2-important"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "section-main-title",
+    value: a.sectionTitle,
+    onChange: v => setAttributes({
+      sectionTitle: v
+    }),
+    placeholder: "Tytu\u0142 sekcji"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "faq-wrapper-questions"
+  }, [1, 2, 3, 4, 5, 6].map(i => {
+    const t = a[`offer${i}Title`];
+    const c = a[`offer${i}Content`];
+    if (!t && !c) return null;
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      key: i,
+      className: "faq",
+      style: {
+        marginBottom: 16
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+      className: "faq-accordion",
+      type: "button",
+      style: {
+        background: "#f7f7f7",
+        padding: 20,
+        borderRadius: 8
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      tagName: "h3",
+      className: "faq-header",
+      value: t,
+      onChange: v => setAttributes({
+        [`offer${i}Title`]: v
+      }),
+      placeholder: `Tytuł oferty ${i}`
+    })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "faq-pannel",
+      style: {
+        padding: 20
+      }
+    }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+      tagName: "div",
+      value: c,
+      onChange: v => setAttributes({
+        [`offer${i}Content`]: v
+      }),
+      placeholder: "Tre\u015B\u0107 oferty (HTML)"
+    })));
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: 12,
+      color: "#999",
+      marginTop: 16
+    }
+  }, "Aby doda\u0107 kolejne oferty, wpisz je w slotach 1-6 (puste s\u0105 pomijane na froncie)."))));
 }
 
 /***/ },
@@ -10031,7 +10092,7 @@ module.exports = window["wp"]["blocks"];
   \**************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/karieraoferty","title":"Kariera Oferty","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/karieraoferty","title":"Kariera Oferty","attributes":{"sectionTitle":{"type":"string","default":"Zobacz kogo szukamy - oferty pracy w Shav"},"offer1Title":{"type":"string","default":"Junior Wholesale Sales Specialist"},"offer1Content":{"type":"string","default":"<div><h4>Twój zakres obowiązków</h4><ul><li>Sprzedaż produktów w kanale hurtowym,</li><li>Obsługa stałych kontrahentów,</li><li>Prowadzenie sprzedaży do sieci oraz dystrybutorów na rynkach Polskim i Europejskim,</li><li>Przeprowadzanie klienta przez cały proces sprzedaży (od momentu dotarcia do decydenta, poprzez negocjacje i rozwój sprzedaży w danej sieci, aż po budżety marketingowe i rozwój półki o nowe produkty),</li><li>Analiza działań konkurencji, poziomów cenowych i działań dystrybucyjnych,</li><li>Przygotowanie strategii wejścia do sieci oraz dystrybutorów.</li></ul></div><div><h4>Nasze wymagania</h4><ul><li>Znajomość języka angielskiego na poziomie C1,</li><li>Komunikatywność - łatwość nawiązywania relacji,</li><li>Umiejętności negocjacyjne,</li><li>Umiejętność posługiwania się arkuszem kalkulacyjnym,</li><li>Doświadczenie w sprzedaży B2B,</li><li>Proaktywna postawa i pozytywne usposobienie.</li></ul></div><div><h4>To oferujemy</h4><ul><li>praca w marce Shav,</li><li>praca w nowoczesnym, przeszklonym biurze przy ul. Marcika 4 w Krakowie,</li><li>niekorporacyjna kultura pracy i swoboda w działaniu,</li><li>ogromne możliwości rozwoju,</li><li>zatrudnienie w oparciu o umowę B2B lub umowę o pracę,</li><li>system premiowy oraz premie roczną,</li><li>1 dzień pracy zdalnej w tygodniu,</li><li>firmowy telefon i komputer.</li></ul></div>"},"offer2Title":{"type":"string","default":"Junior Performance Marketing Specialist"},"offer2Content":{"type":"string","default":"<div><h4>Twój zakres obowiązków</h4><ul><li>Planowanie, wdrażanie oraz optymalizowanie kampanii reklamowych w ramach platformy Google Ads, Facebook Ads, Tiktok Ads,</li><li>Monitorowanie trendów branży,</li><li>Praca przy ciekawych projektach z viralowymi, markowymi produktami ~ Shav,</li><li>Analizowanie i raportowanie efektywności prowadzonych działań,</li><li>Planowanie oraz realizacja działań sprzedażowych w kanale e-mail marketingu w ramach platformy Mailchimp.</li></ul></div><div><h4>Nasze wymagania</h4><ul><li>Doświadczenie na podobnym stanowisku,</li><li>Minimum podstawowa znajomość platform reklamowych Google Ads, Tik Tok Ads, Facebook Ads,</li><li>Łatwość w pisaniu sprzedażowych treści i ofert,</li><li>Zdolność analitycznego i strategicznego myślenia,</li><li>Odpowiedzialność, otwartość i proaktywność,</li><li>Znajomość języka angielskiego na poziomie umożliwiającym swobodną komunikację.</li></ul></div><div><h4>To oferujemy</h4><ul><li>Możliwość dołączenia do nowoczesnej organizacji,</li><li>Ogromne możliwości rozwoju,</li><li>Zatrudnienie w oparciu o umowę o pracę lub rozliczenie B2B,</li><li>System premiowy oraz premie roczną,</li><li>1 dzień pracy zdalnej w tygodniu,</li><li>Pracę w nowoczesnym, przeszklonym biurze przy ul. Marcika w Krakowie,</li><li>Niekorporacyjna kultura pracy.</li></ul></div>"},"offer3Title":{"type":"string","default":""},"offer3Content":{"type":"string","default":""},"offer4Title":{"type":"string","default":""},"offer4Content":{"type":"string","default":""},"offer5Title":{"type":"string","default":""},"offer5Content":{"type":"string","default":""},"offer6Title":{"type":"string","default":""},"offer6Content":{"type":"string","default":""}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

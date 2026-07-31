@@ -3,6 +3,139 @@
   "apiVersion": 3,
   "name": "ourblocktheme/faq",
   "title": "FAQ",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Często zadawane pytania"
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "containerClass": {
+      "type": "string",
+      "default": "faq-container"
+    },
+    "question1": {
+      "type": "string",
+      "default": "Czy golarka Shav  jest przeznaczona tylko do miejsc intymnych?"
+    },
+    "answer1": {
+      "type": "string",
+      "default": "Ze względu na zastosowaną technologię <strong>golarka Shav 2</strong> zapewni najwyższy komfort golenia nie tylko w miejscach intymnych. Zapewni gładkie golenie na całym ciele - również we wszystkich trudno dostępnych miejscach."
+    },
+    "question2": {
+      "type": "string",
+      "default": "Na jaką długość włosa goli maszynka Shav 2?"
+    },
+    "answer2": {
+      "type": "string",
+      "default": "<strong>Maszynka do golenia Shav 2</strong> z zamontowanym ostrzem stalowym zapewnia gładkie golenie, pozostawiając włoski o minimalnej długości (ok. 1 mm). Ostrze foliowe Shav zapewnia natomiast golenie do absolutnego zera."
+    },
+    "question3": {
+      "type": "string",
+      "default": "Czy golarka Shav 2 jest bezpieczna dla skóry?"
+    },
+    "answer3": {
+      "type": "string",
+      "default": "Tak, <strong>golarka do miejsc intymnych Shav 2</strong> jest produkowana z dbałością o każdy szczegół. Dodatkowo maszynka posiada technologię CutFree minimalizującą ryzyko zacięć."
+    },
+    "question4": {
+      "type": "string",
+      "default": "Jak czyścić maszynkę do golenia SHAV?"
+    },
+    "answer4": {
+      "type": "string",
+      "default": "Zalecamy czyszczenie <strong>maszynki do golenia</strong> po każdym użyciu, a w szczególności ostrza stalowego i ostrza foliowego. W tym celu należy umieścić maszynkę, a następnie zdemontowane ostrza pod bieżącą wodą."
+    },
+    "question5": {
+      "type": "string",
+      "default": "Na jak długo starcza bateria?"
+    },
+    "answer5": {
+      "type": "string",
+      "default": "Jedno pełne naładowanie baterii starcza na 120 minut ciągłej pracy."
+    },
+    "question6": {
+      "type": "string",
+      "default": "Jak często należy wymieniać ostrze w maszynce do miejsc intymnych Shav 2?"
+    },
+    "answer6": {
+      "type": "string",
+      "default": "Zalecamy regularną wymianę <strong>ostrza stalowego oraz foliowego</strong>, aby <strong>golarka Shav 2</strong> mogła gwarantować maksymalną wydajność i odpowiednie warunki higieniczne. Optymalny czas użytkowania jednego ostrza to 2-3 miesiące, jednak zależy on od częstotliwości użytkowania i konkretnych potrzeb. Sugerujemy wymianę po czasie nie dłuższym niż 3 miesiące."
+    },
+    "question7": {
+      "type": "string",
+      "default": "Gdzie można dokupić ostrza do maszynki do golenia miejsc intymnych dla mężczyzn Shav?"
+    },
+    "answer7": {
+      "type": "string",
+      "default": "<strong>Wymienne ostrze stalowe</strong> znajdziesz <a href=\"/produkt/wymienne-ostrze-shav\">TUTAJ</a>, natomiast <strong>wymienne ostrze foliowe</strong> znajdziesz <a href=\"/produkt/ostrze-foliowe\">TUTAJ</a>."
+    },
+    "question8": {
+      "type": "string",
+      "default": ""
+    },
+    "answer8": {
+      "type": "string",
+      "default": ""
+    },
+    "question9": {
+      "type": "string",
+      "default": ""
+    },
+    "answer9": {
+      "type": "string",
+      "default": ""
+    },
+    "question10": {
+      "type": "string",
+      "default": ""
+    },
+    "answer10": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

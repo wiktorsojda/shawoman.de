@@ -1,12 +1,15 @@
-    <section class="container blacktext-container-kariera" style="background-color: #000; height: auto !important;">
+<?php
+$mainTitle   = isset($attributes['mainTitle'])   ? $attributes['mainTitle']   : '';
+$description = isset($attributes['description']) ? $attributes['description'] : '';
+?>
+<section class="container blacktext-container-kariera">
     <div id="text-container">
-        <div class="section-main-title" style="color: #fff; margin-bottom: 30px;">Wierzymy, że efekty przychodzą tam, gdzie jest pasja i odpowiedzialność.</div>
-    <div class="section-text" style="color: #fff; max-width: 1000px; margin: auto;">Za Shav stoi zespół ludzi, dla których “ dobrze” to zdecydowanie za mało. Każdego dnia działamy z maksymalnym zaangażowaniem, szukając rozwiązań, które robią różnicę. Działamy sprawnie, testujemy pomysły i nie boimy się wyzwań – bo wiemy, że tylko tak można zbudować coś trwałego.</div>
-    <!-- <div class="line line-rest">rozwiązanie problemu niechcianego owłosienia miejsc intymnych.</div> -->
+        <div class="section-main-title"><?php echo wp_kses_post($mainTitle); ?></div>
+        <div class="section-text"><?php echo wp_kses_post($description); ?></div>
     </div>
-    </section>
+</section>
 
-    <style>
+<style>
 #text-container {
     margin: 0 auto;
     max-width: 1300px;

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/rosegoldzestaw",
+  "title": "Drop — Zestaw",
+  "category": "theme",
+  "icon": "screenoptions",
+  "description": "Sekcja zestawu: zdjęcie + treść (badge, tytuł, lista elementów, box z ceną w zestawie i poza zestawem, przycisk). Przycisk prowadzi do strony produktu.",
+  "attributes": {
+    "image":         { "type": "string", "default": "" },
+    "imageAlt":      { "type": "string", "default": "Zestaw urodzinowy" },
+    "imageSide":     { "type": "string", "default": "left" },
+    "badge":         { "type": "string", "default": "EDYCJA LIMITOWANA" },
+    "title":         { "type": "string", "default": "Zestaw urodzinowy" },
+    "item1":         { "type": "string", "default": "Golarka damska Shav Woman" },
+    "item2":         { "type": "string", "default": "Ostrze bazowe" },
+    "item3":         { "type": "string", "default": "Ostrze foliowe" },
+    "item4":         { "type": "string", "default": "" },
+    "priceInLabel":  { "type": "string", "default": "Cena za zestaw:" },
+    "discountBadge": { "type": "string", "default": "OSZCZĘDZASZ 30%" },
+    "priceIn":       { "type": "string", "default": "179,00 zł" },
+    "priceOutLabel": { "type": "string", "default": "Cena poza zestawem:" },
+    "priceOut":      { "type": "string", "default": "230,00 zł" },
+    "buttonLabel":   { "type": "string", "default": "Zobacz zestaw" },
+    "buttonURL":     { "type": "string", "default": "" },
+    "productId":     { "type": "number", "default": 0 }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": ["full"],
+    "spacing": { "margin": true, "padding": true }
+  }
+}

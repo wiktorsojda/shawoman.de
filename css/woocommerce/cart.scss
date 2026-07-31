@@ -1,9 +1,9 @@
 /* komunikat koszyk */
 .woocommerce.wc-block-store-notices.alignwide.alignwide {
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin-top: $space-16;
+    margin-bottom: $space-40;
 .wc-block-components-notice-banner {
-    margin: 56px 0 0 0;
+    margin: $space-56 0 0 0;
 }
 }
 
@@ -32,10 +32,10 @@
     transform: translate(-50%, -50%);
     
     background-color: black;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba($color-black, 0.3);
     z-index: 9999;
-    padding: 20px;
-    border-radius: 8px;
+    padding: $space-16;
+    border-radius: $radius-xs;
 }
 
 @media(min-width:1800px){ 
@@ -55,11 +55,11 @@
 
         .cart-popup-header {
             .text-header {
-                font-size: 30px;
+                font-size: $font-size-h3-mob;
             }
 
             p {
-                font-size: 12px;
+                font-size: $font-size-body-s;
             }
         }
         
@@ -70,18 +70,18 @@
         }
 
         .cart-popup-product-container {
-            gap: 24px;
+            gap: $space-24;
 
             .cart-popup-rest-title {
-                font-size: 24px;
+                font-size: $font-size-h4;
             }
         }
     .cart-popup-content {
-        gap: 13px;
+        gap: $space-12;
     }
 
     .cart-popup-product {
-        padding: 8px !important;
+        padding: $space-8 !important;
     }
 
     .cart-popup-product-container {
@@ -102,9 +102,9 @@
 }
 
 .close-cart-popup {
-    color: #FFF;
-    font-family: 'Roboto', sans-serif;
-font-size: 32px;
+    color: $color-white;
+    font-family: $font-family-base;
+font-size: $font-size-h3;
 font-style: normal;
 font-weight: 500;
 line-height: 117.75%; 
@@ -117,11 +117,11 @@ line-height: 117.75%;
 
 .cart-popup-header {
     display: flex;
-    padding: 0px 20px;
+    padding: 0px $space-16;
     flex-direction: column;
     justify-content: center;
     align-items: left;
-    gap: 8px;
+    gap: $space-8;
    
 
     .header-promotion {
@@ -134,11 +134,11 @@ line-height: 117.75%;
 
                 justify-content: center;
                 align-items: center;
-                gap: 10px;
-                border-radius: 4px;
-                background: linear-gradient(85deg, #630303 -7.37%, #F00 107.37%);
-                color: #FFF;
-                font-family: "bebas-neue-pro", sans-serif;
+                gap: $space-8;
+                border-radius: $radius-xs;
+                background: linear-gradient(85deg, $color-accent-dark -7.37%, $color-accent-light 107.37%);
+                color: $color-white;
+                font-family: $font-family-base;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 117.75%;
@@ -147,16 +147,16 @@ line-height: 117.75%;
                 margin-left: 0 !important;
                 margin-right: 0 !important;
 
-                padding: 4px 8px 4px 8px;
+                padding: $space-4 $space-8 $space-4 $space-8;
                 width: 94px;
-                font-size: 16px;
+                font-size: $font-size-body-l;
     }
 
      .text-header {
-        color: #FFF;
+        color: $color-white;
         text-align: center;
-        font-family: 'bebas-neue-pro', sans-serif;
-        font-size: 36px;
+        font-family: $font-family-base;
+        font-size: $font-size-h3;
         font-style: normal;
         font-weight: 500;
         line-height: 117.75%; /* 56.52px */
@@ -167,13 +167,13 @@ line-height: 117.75%;
 
      p {
         text-align: center;
-        font-family: 'Roboto', sans-serif;
-        font-size: 13px;
+        font-family: $font-family-base;
+        font-size: $font-size-body-s;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
-        color: #FFF;
-        margin-bottom: 32px;
+        color: $color-white;
+        margin-bottom: $space-32;
         text-align: left;
         margin-bottom: 0;
      }
@@ -184,7 +184,7 @@ line-height: 117.75%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: $space-24;
     align-self: stretch;
 
     .cart-popup-zestaw {
@@ -198,19 +198,19 @@ line-height: 117.75%;
         }
             
         button {
-            border-radius: 6px;
-            background: linear-gradient(85deg, #630303 -7.37%, #F00 107.37%);
+            border-radius: $radius-xs;
+            background: linear-gradient(85deg, $color-accent-dark -7.37%, $color-accent-light 107.37%);
             text-transform: uppercase;
             display: flex;
             height: 51px;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: $space-8;
             align-self: stretch;
-            color: #FFF;
+            color: $color-white;
             border: none;
-            font-family: 'bebas-neue-pro', sans-serif;
-            font-size: 20px;
+            font-family: $font-family-base;
+            font-size: $font-size-h4;
             font-style: normal;
             font-weight: 500;
             line-height: 117.75%; /* 23.55px */
@@ -223,14 +223,14 @@ line-height: 117.75%;
             height: 42px;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: $space-8;
             flex-shrink: 0;
             align-self: stretch;
-            color: #FFF;
+            color: $color-white;
 
             text-align: center;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
+            font-family: $font-family-base;
+            font-size: $font-size-body-l;
             font-style: normal;
             font-weight: 400;
             line-height: 117.75%; /* 18.84px */
@@ -243,12 +243,12 @@ line-height: 117.75%;
     position: absolute;
     top: 10px;
     right: 15px;
-    font-size: 24px;
+    font-size: $font-size-h4;
     cursor: pointer;
 }
 
 .cart-popup-items {
-    margin-bottom: 20px;
+    margin-bottom: $space-16;
     display: flex;
     
     justify-content: space-between;
@@ -258,15 +258,15 @@ line-height: 117.75%;
 
     .cart-popup-product {
         display: flex;
-        border-radius: 8px;
+        border-radius: $radius-xs;
     //     max-width: 460px !important;
     // max-height: 260px !important;
-    padding: 0px 17px;
+    padding: 0px $space-16;
 
         .cart-popup-product-container {
             display: flex;
             justify-content: space-between;
-            gap: 24px;
+            gap: $space-24;
             .cart-popup-product-img {
         img {
             width: 150px;
@@ -276,7 +276,7 @@ line-height: 117.75%;
         .cart-popup-product-rest {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: $space-4;
             justify-content: space-evenly;
            
             
@@ -284,13 +284,13 @@ line-height: 117.75%;
                 text-decoration: none;
                 display: flex;
                 flex-direction: column;
-                gap: 5px;
+                gap: $space-4;
             }
 
             .cart-popup-rest-title {
-                color: #fff;
-                font-family: "bebas-neue-pro", sans-serif;
-                font-size: 24px;
+                color: $color-white;
+                font-family: $font-family-base;
+                font-size: $font-size-h4;
                 font-style: normal;
                 font-weight: 400;
                 line-height: 117.75%; /* 42.39px */
@@ -301,15 +301,15 @@ line-height: 117.75%;
             }
 
             span {
-                // color: #fff;
-                font-family: 'Roboto', sans-serif;
-                font-size: 16px;
+                // color: $color-white;
+                font-family: $font-family-base;
+                font-size: $font-size-body-l;
                 font-style: normal;
                 font-weight: 600;
                 line-height: normal;
 
                 bdi {
-                    color: #fff;
+                    color: $color-white;
                 }
             }
 
@@ -321,16 +321,16 @@ line-height: 117.75%;
                 align-items: center;
                 // gap: 10px;
                 align-self: stretch;
-                border-radius: 4px;
-                background: linear-gradient(90deg, #0983A0 0%, #032F3A 100%);
+                border-radius: $radius-xs;
+                background: linear-gradient(90deg, $color-info-medium 0%, $color-info-dark 100%);
                 width: 100%;
 
                 a {
                     background: transparent;
                     padding: 0;
-                    color: #FFF;
-                font-family: 'roboto', sans-serif;
-                font-size: 12px;
+                    color: $color-white;
+                font-family: $font-family-base;
+                font-size: $font-size-body-s;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 117.75%; 
@@ -366,22 +366,22 @@ line-height: 117.75%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    margin-bottom: 70px;
+    gap: $space-32;
+    margin-bottom: $space-64;
 
     .custom-image-section-cart {
-        padding-bottom: 28px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);;
+        padding-bottom: $space-24;
+        border-bottom: 1px solid rgba($color-black, 0.1);;
     }
     
     .cart-icons {
-        margin-top: 32px;
+        margin-top: $space-32;
     }
 
     .col-md-8 {
         flex-basis: 62%;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
-        padding-right: 30px;
+        border-right: 1px solid rgba($color-black, 0.1);
+        padding-right: $space-32;
     }
 
     .col-md-4 {
@@ -392,9 +392,9 @@ line-height: 117.75%;
     border: none;
 
         th {
-            color: #000;
-            font-family: 'roboto', sans-serif;
-            font-size: 12px;
+            color: $color-neutral-900;
+            font-family: $font-family-base;
+            font-size: $font-size-body-s;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -403,7 +403,7 @@ line-height: 117.75%;
         }
         
          .cart_item {
-            border-bottom: 1px solid rgba(0, 0, 0, .1);
+            border-bottom: 1px solid rgba($color-black, .1);
 
     .product-subtotal {
         display: flex;
@@ -412,14 +412,14 @@ justify-content: flex-end;
 align-items: center;
 /* text-align: center; */
 height: 120px;
-gap: 35px;
+gap: $space-32;
 
         a {
-            color: #000 !important;
+            color: $color-neutral-900 !important;
 
 text-align: right;
-font-family: 'roboto', sans-serif;
-font-size: 12px;
+font-family: $font-family-base;
+font-size: $font-size-body-s;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -435,7 +435,7 @@ text-transform: uppercase;
 
         td {
             text-align: center;
-            background-color: #FFF;
+            background-color: $color-neutral-50;
         
     }
 
@@ -445,25 +445,25 @@ text-transform: uppercase;
 
             input {
                 margin: 0 !important;
-                padding: 6px;
+                padding: $space-4;
             }
         }
 
         .product-name {
             // text-align: center;
-            color: #000;
-            font-family: "roboto", sans-serif;
-            font-size: 16px;
+            color: $color-neutral-900;
+            font-family: $font-family-base;
+            font-size: $font-size-body-l;
             font-style: normal;
             font-weight: 700;
             line-height: normal;
             text-decoration: none;
-            background-color: #FFF;
+            background-color: $color-neutral-50;
 
             a {
-                color: #000;
-                font-family: 'roboto', sans-serif;
-                font-size: 16px;
+                color: $color-neutral-900;
+                font-family: $font-family-base;
+                font-size: $font-size-body-l;
                 font-style: normal;
                 font-weight: 700;
                 line-height: normal;
@@ -476,24 +476,24 @@ text-transform: uppercase;
         margin: 0;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: $space-8;
         align-self: stretch;
 
     
         a:first-child {
-            color: #000;
+            color: $color-neutral-900;
             text-decoration: none;
-            font-family: 'roboto', sans-serif;
-            font-size: 14px;
+            font-family: $font-family-base;
+            font-size: $font-size-body-m;
             font-style: normal;
             font-weight: 700;
             line-height: normal;
         }
         
         a {
-            color: rgba(0, 0, 0, 0.70);
-            font-family: 'roboto', sans-serif;
-            font-size: 12px;
+            color: rgba($color-black, 0.70);
+            font-family: $font-family-base;
+            font-size: $font-size-body-s;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
@@ -503,10 +503,10 @@ text-transform: uppercase;
 
     .cart-title {
         margin: 0;
-        color: #000;
+        color: $color-neutral-900;
 
-font-family: 'roboto', sans-serif;
-font-size: 24px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -514,7 +514,7 @@ line-height: normal;
 
     .row {
         display: flex;
-        gap: 30px;
+        gap: $space-32;
         justify-content: space-between;
 
 
@@ -527,7 +527,7 @@ line-height: normal;
                 .cart_totals {
                     display: flex;
                     flex-direction: column;
-                    gap: 32px;
+                    gap: $space-32;
                     width: 100%;
 
                     tr {
@@ -538,15 +538,15 @@ line-height: normal;
                         justify-content: space-between;
                     }
                     th {
-                        color: #000;
+                        color: $color-neutral-900;
                         padding: 0 !important;
                         margin: 0 !important;
-                        font-family: 'roboto', sans-serif;
-                        font-size: 16px;
+                        font-family: $font-family-base;
+                        font-size: $font-size-body-l;
                         font-style: normal;
                         font-weight: 400;
                         line-height: normal;
-                        padding-bottom: 32px !important;
+                        padding-bottom: $space-32 !important;
                         text-align: left;
                         border: none;
                         text-transform: none;
@@ -555,7 +555,7 @@ line-height: normal;
                     td {
                         padding: 0 !important;
                         margin: 0 !important;
-                        padding-bottom: 25px !important;
+                        padding-bottom: $space-24 !important;
                         border: none;
 
                          p {
@@ -564,28 +564,28 @@ line-height: normal;
                     }
 
                   .order-total {
-                    border-top: 1px solid rgba(0, 0, 0, .1);
+                    border-top: 1px solid rgba($color-black, .1);
                     td {
-                        padding-top: 32px !important;
+                        padding-top: $space-32 !important;
                         padding-bottom: 0 !important;
-                        font-size: 20px;
+                        font-size: $font-size-h4;
                         font-weight: 600;
                     }
 
                     th {
-                        padding-top: 32px !important;
+                        padding-top: $space-32 !important;
                         padding-bottom: 0 !important;
-                        font-size: 20px;
+                        font-size: $font-size-h4;
                         font-weight: 600;
                     }
                   }
 
                     bdi {
-                        color: #000;
+                        color: $color-neutral-900;
 
                         text-align: right;
-                        font-family: 'roboto', sans-serif;
-                        font-size: 16px;
+                        font-family: $font-family-base;
+                        font-size: $font-size-body-l;
                         font-style: normal;
                         // font-weight: 600;
                         line-height: normal;
@@ -602,9 +602,9 @@ line-height: normal;
                                 height: 36px;
                                 justify-content: center;
                                 align-items: center;
-                                gap: 10px;
-                                border-radius: 4px;
-                                background: #0983A0;
+                                gap: $space-8;
+                                border-radius: $radius-xs;
+                                background: $color-info-medium;
                             }
                         }
                 }
@@ -616,9 +616,9 @@ line-height: normal;
                     h2 {
                         margin: 0 !important;
                         order: 1;
-                        color: #000;
-                        font-family: 'roboto', sans-serif;
-                        font-size: 24px;
+                        color: $color-neutral-900;
+                        font-family: $font-family-base;
+                        font-size: $font-size-h4;
                         font-style: normal;
                         font-weight: 600;
                         line-height: normal;
@@ -632,9 +632,9 @@ line-height: normal;
                         a {
                             width: auto !important;
                             margin: 0;
-                            margin-bottom: 28px;
-                            border-radius: 4px;
-                                background: #AC0000;
+                            margin-bottom: $space-24;
+                            border-radius: $radius-xs;
+                                background: $color-accent-medium;
                         }
                     }
                 }
@@ -654,14 +654,14 @@ line-height: normal;
         display: flex;
 justify-content: left;
 align-items: center;
-gap: 16px;
+gap: $space-16;
 
         span {
-            font-size: 12px;
-            color: #000;
+            font-size: $font-size-body-s;
+            color: $color-neutral-900;
 
-            font-family: 'roboto', sans-serif   ;
-            font-size: 12px;
+            font-family: $font-family-base   ;
+            font-size: $font-size-body-s;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -687,12 +687,12 @@ gap: 16px;
     display: flex;
 width: 198px;
 height: 43px;
-padding: 0px 30px;
+padding: 0px $space-32;
 justify-content: center;
 align-items: center;
-gap: 10px;
-border-radius: 4px;
-background: #FAFAFA;
+gap: $space-8;
+border-radius: $radius-xs;
+background: $color-neutral-50;
 border: none;
 }
 
@@ -702,9 +702,9 @@ border: none;
         height: 43px;
         justify-content: center;
         align-items: center;
-        gap: 10px;
-        border-radius: 4px;
-        background: #0983A0;
+        gap: $space-8;
+        border-radius: $radius-xs;
+        background: $color-peach-600
     }
 
 
@@ -715,7 +715,7 @@ border: none;
     }
     
     #custom-cart .cart-title {
-        margin-bottom: 20px; /* Adjust spacing below the title */
+        margin-bottom: $space-16; /* Adjust spacing below the title */
     }
     
     #custom-cart .woocommerce-cart-form {
@@ -724,7 +724,7 @@ border: none;
     }
 
     #wp--skip-link--target {
-        margin-top: -50px !important;
+        margin-top: -$space-48 !important;
     }
 
     @media(max-width:950px){
@@ -743,11 +743,11 @@ border: none;
     }
 
         .cart-title {
-            margin-bottom: 20px !important;
+            margin-bottom: $space-16 !important;
         }
 
         .woocommerce-cart main .woocommerce {
-            gap: 24px !important;
+            gap: $space-24 !important;
          }
 
         .woocommerce-page table.cart .product-thumbnail {
@@ -765,11 +765,11 @@ border: none;
                 display: grid !important;
                 grid-template-columns: 2fr 1fr; /* Two equal-width columns */
                 grid-template-rows: repeat(5, auto); /* Five rows with equal height */
-                gap: 2px; /* Gap between the items */
+                gap: $space-0; /* Gap between the items */
                 width: 100%;
                 max-width: 800px; /* Adjust based on your design */
                 margin: auto; /* Center the grid container */
-                margin-top: 10px;
+                margin-top: $space-8;
             
             
             .product-thumbnail {
@@ -779,7 +779,7 @@ border: none;
                 margin: 0;
                 width: auto;
                 justify-self: flex-start;
-                background: #fff;
+                background: $color-neutral-50;
                 border: none;
                     img {
                         width: 140px !important;
@@ -813,15 +813,15 @@ max-width: none;
         border-top: none;
         margin: 0;
         justify-self: flex-end;
-        margin-top: 24px;
-        margin-bottom: 24px;
+        margin-top: $space-24;
+        margin-bottom: $space-24;
                 
                 .quantity {
                     display: block;
                     margin: 0;
                     padding: 0;
                     max-width: none;
-                    background-color: #FFF;
+                    background-color: $color-neutral-50;
                 }
             }
 
@@ -831,7 +831,7 @@ max-width: none;
                 padding: 0;
         border-top: none;
         margin: 0;
-        background-color: #fff;
+        background-color: $color-neutral-50;
 
                 // flex-direction: column-reverse;
                 height: auto;
@@ -839,7 +839,7 @@ max-width: none;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: repeat(2 auto);
-                gap: 30px;
+                gap: $space-32;
 
 
 
@@ -861,7 +861,7 @@ max-width: none;
         }
         
         .woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals {
-            gap: 32px;
+            gap: $space-32;
         }
 
      
@@ -870,7 +870,7 @@ max-width: none;
         display: flex;
         width: 100%;
         justify-content: space-between;
-        background-color: #fff;
+        background-color: $color-neutral-50;
     }
 
 

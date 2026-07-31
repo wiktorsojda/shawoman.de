@@ -1,0 +1,319 @@
+// =============================================================================
+// O NAS — Sekcja "To dla nas ważne" + "Oswajamy tematy tabu" (Figma 990:2675)
+// Desktop: 2 karty side-by-side, gap 24, padding 120/150. Każda flex-1, radius 36, padding 64.
+//   LEFT: bg neutral-100 #f2f2f2, items-end justify-end, w środku: title+desc+logo-circle.
+//   RIGHT: bg peach-500 #d6ab9a, items-center gap 32, lewa kolumna text+CTA, prawa sylwetka.
+// Mobile: stacked column, każda karta full width.
+// =============================================================================
+
+.onaswazne {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 16px !important;
+    padding: 48px 20px !important;
+    box-sizing: border-box !important;
+
+    @media (min-width: 900px) {
+        flex-direction: row !important;
+        align-items: stretch !important;
+        gap: 24px !important;
+        padding: 120px 32px !important;
+        justify-content: center !important;
+        max-width: 1420px;
+        margin: 0 auto;
+    }
+
+    // ---- Karta wspolna ----
+    &__card {
+        display: flex !important;
+        flex-direction: column !important;
+        border-radius: 24px !important;
+        padding: 32px !important;
+        box-sizing: border-box !important;
+
+        @media (min-width: 900px) {
+            flex: 1 1 0 !important;
+            border-radius: 36px !important;
+            padding: 64px !important;
+        }
+
+        &--left {
+            background: $color-neutral-100 !important;     // #f2f2f2
+        }
+        &--right {
+            background: $color-peach-500 !important;       // #d6ab9a
+            position: relative !important;
+            overflow: hidden !important;
+        }
+    }
+
+    &__card-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+        flex: 1 1 auto !important;
+
+        @media (min-width: 900px) {
+            gap: 32px !important;
+        }
+    }
+
+    // ---- Lewa karta: text-center + circle z logo ----
+    &__card--left &__card-content {
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    &__card--left &__text-block {
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    &__text-block {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+
+        @media (min-width: 900px) {
+            gap: 24px !important;
+        }
+    }
+
+    // Title — H2 Figma 32/38.4 Medium
+    &__title {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--title-size-mobile, 26px) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-900 !important;
+        text-transform: none !important;
+
+        @media (min-width: 900px) {
+            font-size: 42px !important;
+            line-height: 50.4px !important;
+        }
+
+        &--light { color: $color-neutral-50 !important; }
+    }
+
+    // Description — Body L Figma 16/22.4 Regular
+    &__description {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 400 !important;
+        font-size: var(--description-size-mobile, 16px) !important;
+        line-height: 22.4px !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-800 !important;
+
+        @media (min-width: 900px) {
+            font-size: 18px !important;
+            line-height: 29.8px !important;
+        }
+
+        &--light { color: $color-neutral-100 !important; }
+    }
+
+    // ---- Logo (Rak'n Roll) w okręgu ----
+    &__logo {
+        flex-shrink: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 24px !important;
+        border-radius: 50% !important;
+        border: 0.5px solid $color-white !important;
+        box-shadow: 0.5px 2.5px 9.6px 0 rgba(0, 0, 0, 0.12) !important;
+        background-image: linear-gradient(152deg, rgba(158, 158, 158, 0.04) 22.84%, rgba(255, 255, 255, 0.04) 46.79%) !important;
+        box-sizing: border-box !important;
+        margin-top: 16px !important;
+
+        @media (min-width: 900px) {
+            padding: 48px !important;
+            margin-top: 0 !important;
+        }
+    }
+
+    &__logo-inner {
+        width: 120px !important;
+        height: 120px !important;
+        border-radius: 50% !important;
+        // background: $color-white !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        @media (min-width: 900px) {
+            width: 175px !important;
+            height: 175px !important;
+        }
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        // Wariant inline SVG — uzywa span > svg zamiast img
+        &--svg {
+            > svg {
+                display: block !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+    }
+
+    // ---- Wariant z dwoma logami (--duo): zaokraglona karta zamiast okregu,
+    // jak w bloku misjarakroll (Figma 1258:171) ----
+    &__logo--duo {
+        border-radius: 24px !important;
+        gap: 16px !important;
+        padding: 24px !important;
+
+        @media (min-width: 900px) {
+            border-radius: 32px !important;
+            gap: 32px !important;
+            padding: 48px !important;
+        }
+
+        // logo 1 w duo — mniejsze kolo z bialym tlem (spojnie z misjarakroll)
+        .onaswazne__logo-inner {
+            width: 110px !important;
+            height: 110px !important;
+            background: $color-white !important;
+
+            @media (min-width: 900px) {
+                width: 140px !important;
+                height: 140px !important;
+            }
+        }
+    }
+
+    // logo 2 (np. Fundacja Pokonac Endometrioze) — proporcje jak w misjarakroll
+    &__logo-second {
+        flex-shrink: 0 !important;
+        width: 160px !important;
+        height: 85px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        @media (min-width: 900px) {
+            width: 220px !important;
+            height: 117px !important;
+        }
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+        }
+    }
+
+    // ---- Prawa karta: lewa kolumna text+CTA, prawa sylwetka ----
+    &__card--right {
+        gap: 24px !important;
+        align-items: center;
+
+        @media (min-width: 900px) {
+            flex-direction: row !important;
+            align-items: center !important;
+            gap: 32px !important;
+        }
+    }
+
+    &__card--right &__card-content {
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+
+    // CTA button
+    &__cta {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        padding: 12px 24px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.7) !important;
+        color: $color-neutral-900 !important;
+        text-decoration: none !important;
+        transition: background 0.2s ease !important;
+        align-self: flex-start !important;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.85) !important;
+        }
+    }
+
+    // Button text — Subtitle M Figma 12/16.8 Medium #252525
+    &__cta-text {
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--button-size, 12px) !important;
+        line-height: 16.8px !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-900 !important;
+    }
+
+    &__cta-icon {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 24px !important;
+        height: 24px !important;
+        border-radius: 50% !important;
+        background: $color-neutral-900 !important;
+        color: $color-white !important;
+        flex-shrink: 0 !important;
+
+        svg { display: block !important; }
+    }
+
+    // Dekoracja (sylwetka kobiety) — opcjonalna grafika po prawej stronie karty
+    &__decoration {
+        // display: none !important;
+
+        @media (min-width: 900px) {
+            display: block !important;
+            flex-shrink: 0 !important;
+            width: 245px !important;
+            max-height: 100% !important;
+            opacity: 0.95 !important;
+        }
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+
+        // Wariant inline SVG
+        &--svg {
+            > span {
+                display: block !important;
+                width: 100% !important;
+                height: 100% !important;
+            }
+            svg {
+                display: block !important;
+                width: 100% !important;
+                height: auto !important;
+                max-height: 100% !important;
+                max-width: 24ppx !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/misjarakroll",
+  "title": "Misja — Rak'n Roll",
+  "category": "design",
+  "icon": "heart",
+  "attributes": {
+    "logoImage": {
+      "type": "string",
+      "default": ""
+    },
+    "logoImage2": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": "Angażujemy się w inicjatywy charytatywne wspierające kobiety"
+    },
+    "description": {
+      "type": "string",
+      "default": "Do tej pory wsparliśmy Fundację Rak'n'Roll, przekazując darowizny na działania, które realnie pomagają kobietom."
+    },
+    "titleSizeDesktop": {
+      "type": "number",
+      "default": 42
+    },
+    "titleSizeMobile": {
+      "type": "number",
+      "default": 26
+    },
+    "descriptionSizeDesktop": {
+      "type": "number",
+      "default": 18
+    },
+    "descriptionSizeMobile": {
+      "type": "number",
+      "default": 16
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ]
+  }
+}

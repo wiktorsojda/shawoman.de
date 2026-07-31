@@ -1,0 +1,347 @@
+// =============================================================================
+// FOOTER — stopka strony (Figma: 193:63671)
+// =============================================================================
+// Layout: zaokraglony wrapper neutral-50 + border, padding 64.
+// Gora: karta CTA (lewa) + 2 kolumny linkow + 4 social icons (prawa).
+// Dol: copyright + logo srodku + polityka/regulamin + back-to-top button.
+// =============================================================================
+
+.footer {
+  width: 100%;
+  // Padding boczny fluid: 20px → 32px (clamp)
+  padding: $space-32 clamp(20px, 3vw, $space-32);
+  box-sizing: border-box;
+
+  // ---------------------------------------------------------------------------
+  // Wrapper — fluid padding 24-64
+  // ---------------------------------------------------------------------------
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(#{$space-24}, 3vw, #{$space-32});
+    padding: clamp(#{$space-24}, 4vw, #{$space-64});
+    background-color: $color-neutral-100;
+    border: 1px solid $color-neutral-200;
+    border-radius: $radius-s;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Gorna sekcja — fluid gap 32-80
+  // ---------------------------------------------------------------------------
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: $space-32;
+    width: 100%;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+      align-items: stretch;
+      gap: clamp(#{$space-32}, 4vw, #{$space-80});
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Karta CTA — fluid width zamiast sztywnych 569px
+  // ---------------------------------------------------------------------------
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $space-32;
+    padding: clamp(#{$space-24}, 3vw, #{$space-48}) clamp(#{$space-16}, 2vw, #{$space-24});
+    background-color: $color-neutral-50;
+    border-radius: $radius-xs;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex: 0 1 569px;                 // base 569px, zezwol na shrink
+      min-width: 0;                    // dopuszcza skurczenie ponizej content
+    }
+  }
+
+  &__cta-title {
+    margin: 0;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    // Fluid 32px (mobile) → 64px (desktop). Skaluje sie plynnie wraz z viewport.
+    font-size: clamp(32px, 5.5vw, 64px);
+    line-height: 1;
+    letter-spacing: $letter-spacing-tight;
+    text-align: center;
+  }
+
+  &__cta-title-accent {
+    font-family: $font-family-accent;  // Dolce
+    font-weight: $font-weight-accent-medium;
+    font-size: 1.875em;                // ~ 1.875x (Figma: 120 vs 64)
+    line-height: 1;
+  }
+
+  &__cta-subtitle {
+    margin: 0;
+    color: $color-neutral-500;
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: clamp(18px, 2.5vw, 32px);  // fluid 20 → 32
+    line-height: 1;
+    letter-spacing: $letter-spacing-tight;
+    text-align: center;
+  }
+
+  // CTA button — wzorzec z `.button --primary --lg` ale z arrow w neutral-900 circle
+  &__cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-16;
+    padding: $space-16 $space-32;
+    background-color: rgba($color-white, 0.7);
+    border-radius: $radius-xs;
+    text-decoration: none;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-h4;          // 20
+    line-height: 24px;
+    letter-spacing: $letter-spacing-tight;
+    transition: background-color 0.15s ease;
+    border: 1px solid $color-neutral-300;
+
+    &:hover {
+      background-color: $color-white;
+    }
+  }
+
+  &__cta-button-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background-color: $color-neutral-900;
+    color: $color-white;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Linki (2 kolumny + social)
+  // ---------------------------------------------------------------------------
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: $space-32;
+    text-align: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex: 1 1 0%;
+      min-width: 0;
+      flex-direction: row;
+      flex-wrap: wrap;                  // zawijaj kolumny gdy brak miejsca
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: clamp(#{$space-24}, 3vw, #{$space-40});
+      text-align: left;
+    }
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: $space-32;
+  }
+
+  &__col-title {
+    margin: 0;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-h4;          // 20 mobile / 24 desktop
+    line-height: 1;
+    letter-spacing: $letter-spacing-tight;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 24px;
+    }
+  }
+
+  &__col-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-16;
+
+    li {
+      margin: 0;
+    }
+
+    a {
+      color: $color-neutral-700;
+      font-family: $font-family-base;
+      font-weight: $font-weight-medium;
+      font-size: $font-size-body-l;    // 16
+      line-height: 1;
+      letter-spacing: $letter-spacing-tight;
+      text-decoration: none;
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: $color-neutral-900;
+      }
+    }
+  }
+
+  // Social icons (4 kolumna)
+  &__social {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $space-16;
+    justify-content: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: column;
+    }
+  }
+
+  &__social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background-color: $color-white;
+    border: 2px solid $color-neutral-900;
+    border-radius: 50%;
+    color: $color-neutral-900;
+    text-decoration: none;
+    overflow: hidden;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background-color: $color-neutral-900;
+      color: $color-white;
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Separator linia
+  // ---------------------------------------------------------------------------
+  &__separator {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    border: 0;
+    background-color: $color-neutral-200;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Dolny pasek (copyright + logo + legal + back-to-top)
+  // ---------------------------------------------------------------------------
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-16;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__copyright {
+    margin: 0;
+    color: $color-neutral-700;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-body-m;      // 14
+    line-height: 1;
+    letter-spacing: $letter-spacing-tight;
+    text-align: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      max-width: 356px;
+      text-align: left;
+    }
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 73px;
+      height: 42px;
+      object-fit: contain;
+    }
+  }
+
+  &__legal {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-24;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    a {
+      color: $color-neutral-700;
+      font-family: $font-family-base;
+      font-weight: $font-weight-medium;
+      font-size: $font-size-body-m;    // 14
+      line-height: 1;
+      letter-spacing: $letter-spacing-tight;
+      text-decoration: none;
+      transition: color 0.15s ease;
+
+      &:hover {
+        color: $color-neutral-900;
+      }
+    }
+  }
+
+  &__legal-sep {
+    width: 1px;
+    height: 18px;
+    background-color: $color-neutral-300;
+    flex-shrink: 0;
+  }
+
+  &__back-to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    background-color: $color-peach-600;
+    color: $color-white;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: $color-peach-700;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+}

@@ -1,329 +1,263 @@
 // REGULAMIN, POLITYKA PRYWATNOSCI
 .faq-accordion-kontakt.active {
-    margin-bottom: 12px;
-
+  margin-bottom: $space-12;
 }
-.regulamin-title {
-    color: #000;
 
-/* Heading_1 */
-font-family: "bebas-neue-pro", sans-serif;
-font-size: 64px;
-font-style: normal;
-font-weight: 500;
-line-height: 117.75%; /* 75.36px */
-text-transform: uppercase;
-// margin-bottom: 16px !important;
+.regulamin-title {
+  color: $color-neutral-900;
+  font-family: $font-family-base;
+  font-size: $font-size-h1;
+  font-weight: $font-weight-medium;
+  line-height: 1.1775;
+  text-transform: uppercase;
 }
 
 .regulamin-subtitle {
-    color: #0983A0;
-
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-text-transform: uppercase;
-margin-bottom: 60px !important;
+  color: $color-primary-medium;
+  font-family: $font-family-base;
+  font-size: $font-size-h4;
+  font-weight: $font-weight-regular;
+  line-height: normal;
+  text-transform: uppercase;
+  margin-bottom: $space-56 !important;
 }
 
 .regulamin-list {
-    list-style: none;
-    margin: 0 !important;
-    padding-left: 0 !important;
+  list-style: none;
+  margin: 0 !important;
+  padding-left: 0 !important;
 
+  .regulamin-list-title {
+    font-weight: $font-weight-bold !important;
+    margin-top: $space-56;
+    margin-bottom: $space-16;
+  }
 
-    .regulamin-list-title {
-        font-weight: 700 !important;
-        margin-top: 60px;
-        margin-bottom: 20px;
-    }
-        li {
-            color: #000 !important;
-            font-family: 'Roboto', sans-serif !important;
-            font-size: 20px ;
-            font-style: normal !important;
-            font-weight: 400 !important;
-            line-height: normal !important;
-            // text-transform: capitalize !important;
-
-            
-        }
+  li {
+    color: $color-neutral-900 !important;
+    font-family: $font-family-base !important;
+    font-size: $font-size-h4;
+    font-weight: $font-weight-regular !important;
+    line-height: normal !important;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-    .regulamin-title {
-        font-size: 36px !important;
-    }
+  .regulamin-title {
+    font-size: $font-size-h3 !important;
+  }
 
-    li {
-        font-size: 16px !important;
-    }
+  li {
+    font-size: $font-size-body-l !important;
+  }
 
-    .regulamin-subtitle {
-        font-size: 16px;
-        margin-bottom: 40px !important;
-    }
-    .item1-kontakt {
-        gap: 14px !important;
-    }
+  .regulamin-subtitle {
+    font-size: $font-size-body-l;
+    margin-bottom: $space-40 !important;
+  }
 
-    .faq-wrapper-kontakt {
-        gap: 14px !important;
-    }
+  .item1-kontakt {
+    gap: $space-12 !important;
+  }
+
+  .faq-wrapper-kontakt {
+    gap: $space-12 !important;
+  }
 }
-
 
 
 // FAQ PRODUKTOWA
-h3.faq-header, h2.faq-header {
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 20px !important;
-    text-align: left;
-}
+h3.faq-header,
+h2.faq-header {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 17px !important;
+  text-align: left;
 
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-h4 !important;
+  }
+}
 
 .faq-container {
-    // height: 100vh;
-    background-color: #fff;
-    color: #000;
-    padding: 48px 48px;
-    margin-top: -1px;
-// optional gradient
-        // background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 5%),
-        // linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 5%);
+  background-color: $color-neutral-50;
+  color: $color-neutral-900;
+  padding: $space-48 $space-48;
+  margin-top: -1px;
 
-    .faq-wrapper {
-
-
-        .faq-wrapper-questions {
-            border-top: 1px solid #e5e5e5;
-          }
-        
-        .faq-title {
-            font-family: 'bebas-neue-pro', sans-serif;
-            text-transform: uppercase;
-            font-size: 64px;
-            line-height: 1.20;
-            font-weight: 500;
-            margin-bottom: 48px;
-            margin-top: 0.67em;
-        }
-
-        .faq {
-            border-bottom: 1px solid #e5e5e5;
-            margin: 10px 0;
-
-
-            .faq-accordion {
-                background-color: white;
-                color: rgba(0, 0, 0, 0.8);
-                cursor: pointer;
-
-                width: 100%;
-                padding: 25px 0 24px;
-                // padding: 2rem 2.5rem;
-                border: none;
-                outline: none;
-                transition: 0.4s;
-                display: flex !important;
-                justify-content: space-between;
-                align-items: center;
-                font-weight: bold;
-                font-size: 20px;
-                line-height: normal;
-                padding-right: 0px;
-
-      
-
-                i {
-                    font-size: 1.6rem;
-                }
-            }
-
-            .faq-accordion:hover {
-                // background-color: #e5e5e5;
-            }
-
-            .faq-pannel {
-                // padding: 0 2rem 2.5rem 2rem;
-                padding-bottom: 15px;
-                background-color: white;
-                overflow: hidden;
-                // background-color: #f1f7f5;
-                // display: none;
-                max-height: 0;
-                opacity: 0;
-                transition: max-height 0.6s ease-out, opacity 0.6s ease-out;
-
-                p {
-                    color: rgba(0, 0, 0, 0.7);
-                    font-size: 20px;
-                    line-height: normal;
-                    margin-bottom: 15px;
-                }
-            }
-        }
+  .faq-wrapper {
+    .faq-wrapper-questions {
+      border-top: 1px solid $color-neutral-200;
     }
+
+    .faq-title {
+      font-family: $font-family-base;
+      text-transform: uppercase;
+      font-size: $font-size-h1;
+      line-height: 1.20;
+      font-weight: $font-weight-medium;
+      margin-bottom: $space-48;
+      margin-top: 0.67em;
+    }
+
+    .faq {
+      border-bottom: 1px solid $color-neutral-200;
+      margin: $space-8 0;
+
+      .faq-accordion {
+        background-color: $color-neutral-50;
+        color: rgba($color-neutral-900, 0.8);
+        cursor: pointer;
+        width: 100%;
+        padding: $space-24 0 $space-24;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+        font-size: $font-size-h4;
+        line-height: normal;
+        // padding-right: 0px;
+
+        i {
+          font-size: $font-size-h3-mob;
+        }
+      }
+
+      .faq-pannel {
+        padding-bottom: $space-16;
+        background-color: $color-neutral-50;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.6s ease-out, opacity 0.6s ease-out;
+
+        p {
+          color: rgba($color-neutral-900, 0.7);
+          font-size: $font-size-h4;
+          line-height: normal;
+          margin-bottom: $space-16;
+        }
+      }
+    }
+  }
 }
 
 .faq.active {
-    border: none;
+  border: none;
+}
 
-  }
-
-  .faq.active .faq-pannel {
-    max-height: 500px; /* Adjust this value if necessary */
-    opacity: 1;
+.faq.active .faq-pannel {
+  max-height: 500px;
+  opacity: 1;
 }
 
 
-
-
-
-  @media (max-width: 800px) {
-
-    .faq-container-glowna {
-        padding: 40px 30px !important;
-    }
-    .faq-wrapper {
-        h1 {
-            font-size: 36px !important;
-        }
-    }
-
-    .faq-accordion {
-        padding-right: 0 !important;
-        gap: 30px !important;
-        text-align: left;
-
-
-    }
-    
-    .faq-pannel {
-        p {
-            font-size: 16px !important;
-        }
-    }
-  }
-
-  // FAQ GLOWNA
+@media (max-width: 800px) {
   .faq-container-glowna {
-    // height: 100vh;
-    background-color: #000;
-    color: #fff;
-    padding: 48px 48px;
-    margin-top: -1px;
-// optional gradient
-        // background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 5%),
-        // linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 5%);
-
-    .faq-wrapper {
-
-
-        h1 {
-            font-family: 'bebas-neue-pro', sans-serif;
-            text-transform: uppercase;
-            font-size: 64px;
-            line-height: 1.20;
-            font-weight: 500;
-            margin-bottom: 48px;
-        }
-
-        .faq {
-            border-bottom: 1px solid rgba(149, 149, 149, 0.60);
-            margin: 10px 0;
-
-
-            .faq-accordion {
-                background-color: #000;
-                color: rgba(255, 255, 255, 0.8);
-                cursor: pointer;
-
-                width: 100%;
-                padding: 25px 0 24px;
-                // padding: 2rem 2.5rem;
-                border: none;
-                outline: none;
-                transition: 0.4s;
-                display: flex !important;
-                justify-content: space-between;
-                align-items: center;
-                font-weight: 700;
-                font-size: 20px;
-                line-height: normal;
-                padding-right: 0;
-
-
-
-                i {
-                    font-size: 1.6rem;
-                }
-            }
-            .faq-accordion:hover {
-                // background-color: #e5e5e5;
-            }
-
-            .faq-pannel {
-                // padding: 0 2rem 2.5rem 2rem;
-                padding-bottom: 15px;
-                background-color: #000;
-                overflow: hidden;
-                // background-color: #f1f7f5;
-                // display: none;
-                max-height: 0;
-                opacity: 0;
-                transition: max-height 0.6s ease-out, opacity 0.6s ease-out;
-
-                p {
-                    color: rgba(255, 255, 255, 0.7);
-                    font-size: 20px;
-                    line-height: normal;
-                    margin-bottom: 15px;
-                }
-            }
-        }
-    }
-}
-
-.faq.active {
-    border: none;
-
+    padding: $space-40 $space-32 !important;
   }
 
-  .faq.active .faq-pannel {
-    max-height: 500px; /* Adjust this value if necessary */
-    opacity: 1;
+  .faq-wrapper {
+    h1 {
+      font-size: $font-size-h3 !important;
+    }
+  }
+
+  .faq-accordion {
+    padding-right: 4px !important;
+    gap: $space-32 !important;
+    text-align: left;
+  }
+
+  .faq-pannel {
+    p {
+      font-size: $font-size-body-l !important;
+    }
+  }
 }
 
 
+// FAQ GLOWNA (wariant ciemny)
+.faq-container-glowna {
+  background-color: $color-neutral-900;
+  color: $color-white;
+  padding: $space-48 $space-48;
+  margin-top: -1px;
 
+  .faq-wrapper {
+    h1 {
+      font-family: $font-family-base;
+      text-transform: uppercase;
+      font-size: $font-size-h1;
+      line-height: 1.20;
+      font-weight: $font-weight-medium;
+      margin-bottom: $space-48;
+    }
 
+    .faq {
+      border-bottom: 1px solid rgba($color-neutral-400, 0.6);
+      margin: $space-8 0;
 
-  .faq-wrapper-questions {
-    // border-top: 1px solid #e5e5e5;
-  }
+      .faq-accordion {
+        background-color: $color-neutral-900;
+        color: rgba($color-white, 0.8);
+        cursor: pointer;
+        width: 100%;
+        padding: $space-24 0 $space-24;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-h4;
+        line-height: normal;
+        // padding-right: 0;
 
-  @media (max-width: 800px) {
-    .faq-wrapper {
-        .faq-title {
-            font-size: 36px !important;
+        i {
+          font-size: $font-size-h3-mob;
         }
-    }
+      }
 
-    .faq-accordion {
-        padding-right: 0 !important;
-        gap: 30px !important;
-        text-align: left;
+      .faq-pannel {
+        padding-bottom: $space-16;
+        background-color: $color-neutral-900;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.6s ease-out, opacity 0.6s ease-out;
 
-
-    }
-    
-    .faq-pannel {
         p {
-            font-size: 16px !important;
+          color: rgba($color-white, 0.7);
+          font-size: $font-size-h4;
+          line-height: normal;
+          margin-bottom: $space-16;
         }
+      }
     }
   }
+}
+
+@media (max-width: 800px) {
+  .faq-wrapper {
+    .faq-title {
+      font-size: $font-size-h3-mob !important;
+    }
+  }
+
+  .faq-accordion {
+    // padding-right: 0 !important;
+    gap: $space-32 !important;
+    text-align: left;
+  }
+
+  .faq-pannel {
+    p {
+      font-size: $font-size-body-l !important;
+    }
+  }
+}

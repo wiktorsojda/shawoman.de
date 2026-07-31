@@ -2,7 +2,56 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/cechycutfree",
-  "title": "Cechy Cutfree",
+  "title": "Cechy CutFree",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Technologia CutFree"
+    },
+    "description": {
+      "type": "string",
+      "default": "Precyzja i bezpieczeństwo w trakcie zadań specjalnych. Zaufaj zaawansowanemu rozwiązaniu, które skutecznie redukuje ryzyko zacięć. Golenie miejsc intymnych nigdy nie było prostsze i bardziej komfortowe."
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

@@ -18,13 +18,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    mainTitle,
+    description
+  } = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "container blacktext-container-kariera"
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "Text Kariera"));
+    id: "text-container"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "section-main-title",
+    value: mainTitle,
+    onChange: v => setAttributes({
+      mainTitle: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "section-text",
+    value: description,
+    onChange: v => setAttributes({
+      description: v
+    }),
+    placeholder: "Opis"
+  })));
 }
 
 /***/ },
@@ -10031,7 +10056,7 @@ module.exports = window["wp"]["blocks"];
   \************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/textkariera","title":"Text Kariera","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/textkariera","title":"Text Kariera","attributes":{"mainTitle":{"type":"string","default":"Wierzymy, że efekty przychodzą tam, gdzie jest pasja i odpowiedzialność."},"description":{"type":"string","default":"Za Shav stoi zespół ludzi, dla których \\" dobrze\\" to zdecydowanie za mało. Każdego dnia działamy z maksymalnym zaangażowaniem, szukając rozwiązań, które robią różnicę. Działamy sprawnie, testujemy pomysły i nie boimy się wyzwań – bo wiemy, że tylko tak można zbudować coś trwałego."}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

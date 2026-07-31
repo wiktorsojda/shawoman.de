@@ -1,10 +1,21 @@
-<div class="video-background-container">
-<div class="placeholder-video"></div>
-<!-- <video class="video-background" src="<3?php echo esc_url(home_url('/wp-content/uploads/animacja-shav-2.mp4')); ?>" autoplay loop muted playsinline></video> -->
-<section class="about-us-second">
+<?php
+$title           = isset($attributes['title'])           ? $attributes['title']           : '';
+$videoURL        = isset($attributes['videoURL'])        ? $attributes['videoURL']        : '';
+$backgroundImage = isset($attributes['backgroundImage']) ? $attributes['backgroundImage'] : '';
+
+$inline_style = $backgroundImage
+    ? 'background-image:url(' . esc_url($backgroundImage) . ');background-size:cover;background-position:center;'
+    : '';
+?>
+<div class="video-background-container" <?php echo $inline_style ? 'style="' . $inline_style . '"' : ''; ?>>
+    <?php if ($videoURL && !$backgroundImage): ?>
+        <video class="video-background" src="<?php echo esc_url($videoURL); ?>" autoplay loop muted playsinline></video>
+    <?php else: ?>
+        <div class="placeholder-video"></div>
+    <?php endif; ?>
+    <section class="about-us-second">
         <div class="about-us-second-title">
-            <span class="about-us-span first container--narrow2-important">Dołącz do społeczności 200 tysięcy zadowolonych mężczyzn</span>    
-            <!-- <span class="about-us-span second"></span>     -->
+            <span class="about-us-span first container--narrow2-important"><?php echo wp_kses_post($title); ?></span>
         </div>
         <div class="about-us-logos">
             <div class="about-us-swiper">

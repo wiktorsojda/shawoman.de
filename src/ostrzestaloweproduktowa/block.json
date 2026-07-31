@@ -3,7 +3,55 @@
   "apiVersion": 3,
   "name": "ourblocktheme/ostrzestaloweproduktowa",
   "title": "Ostrze Stalowe Produktowa",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Moc stali, perfekcja cięcia"
+    },
+    "description": {
+      "type": "string",
+      "default": "Stalowe ostrza do golarki Shav z technologią CutFree gwarantują maksymalną efektywność i bezpieczeństwo. Regularna wymiana co 2-3 miesiące zapewnia pełną funkcjonalność, higienę i komfort golenia. Zachowaj swoją maszynkę w najlepszej formie."
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

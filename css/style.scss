@@ -1,48 +1,85 @@
-/* 3rd party packages */
+// =============================================================================
+// 3rd party
+// =============================================================================
 @import "normalize.css";
 @import "../node_modules/@glidejs/glide/dist/css/glide.core.min.css";
 
-/* SASS and Global'ish Stuff */
-@import "base/variables";
+
+// =============================================================================
+// Base — design tokens + global stuff
+// =============================================================================
+@import "base/tokens";       // design system (z Figmy)
+@import "base/variables";    // legacy zmienne (uzywane tylko przez btn.scss)
 @import "base/baseline";
 @import "base/utility-classes";
 
+
+// =============================================================================
+// WooCommerce
+// =============================================================================
 @import "woocommerce/single-product.scss";
 @import "woocommerce/cart.scss";
 @import "woocommerce/shop.scss";
 
-/* BEM Blocks */
-@import "modules/info-sections.scss";
-@import "modules/onasimages.scss";
-@import "modules/onasteam.scss";
-@import "modules/instagramfeed.scss";
-@import "modules/faq.scss";
-@import "modules/cechywithtext.scss";
-@import "modules/blackwithtext";
-@import "modules/maszynkafunkcje";
-@import "modules/logobackground";
-@import "modules/sliderplatnosci";
-@import "modules/slideronas";
-@import "modules/timeline";
-@import "modules/whoweare";
-@import "modules/mountains";
-@import "modules/shame";
-@import "modules/login";
+
+// =============================================================================
+// Design system modules (nowe, na bazie tokens)
+// =============================================================================
+@import "modules/button";
+@import "modules/avatar";
+@import "modules/rating";
+@import "modules/header";
+@import "modules/card";
+@import "modules/glownabaner";
+@import "modules/glownacechy";
+@import "modules/glownagrid";
+@import "modules/glownaoceny";
+@import "modules/glownaopinie";
+@import "modules/glownainstagram";
+@import "modules/faqglowna";
+@import "modules/methods-head";
+@import "modules/misjaheader";
+@import "modules/misjarakroll";
+@import "modules/misjaslider";
+@import "modules/onasstandard";
+@import "modules/onasrozwijamy";
+@import "modules/onasjak";
+@import "modules/onaswazne";
+@import "modules/rosegold";
+
+
+// =============================================================================
+// Legacy modules (do refactoru w Etapie 3)
+// =============================================================================
 @import "modules/btn";
-@import "modules/my-notes";
-@import "modules/site-header";
-@import "modules/site-footer";
-@import "modules/main-navigation";
+// @import "modules/site-header";  // legacy — wylaczony, zastapiony przez `modules/header`
+// @import "modules/site-footer";  // legacy — wylaczony, zastapiony przez `modules/footer`
+@import "modules/footer";
+@import "modules/back-to-top";
+@import "modules/product-gallery";
+@import "modules/product-summary";
+@import "modules/shav-cartpopup";
+@import "modules/szachglass";
 @import "modules/page-banner";
+@import "modules/page-links";
 @import "modules/hero-slider";
-@import "modules/search-overlay";
-@import "modules/professor-card";
 @import "modules/headline";
 @import "modules/generic-content";
-@import "modules/full-width-split";
-@import "modules/event-summary";
-@import "modules/page-links";
-@import "modules/acf-map";
-@import "modules/link-list";
-@import "modules/metabox";
 @import "modules/post-item";
+@import "modules/metabox";
+@import "modules/login";
+@import "modules/timeline";
+@import "modules/faq";
+
+// Sekcje stron (do przepisania razem z templatami)
+@import "modules/info-sections";
+@import "modules/blackwithtext";
+@import "modules/cechywithtext";
+@import "modules/whoweare";
+@import "modules/maszynkafunkcje";
+@import "modules/onasimages";
+@import "modules/onasteam";
+@import "modules/logobackground";
+@import "modules/sliderplatnosci";
+@import "modules/instagramfeed";
+@import "modules/shame";

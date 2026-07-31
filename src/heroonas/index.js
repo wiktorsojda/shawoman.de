@@ -1,5 +1,4 @@
 import { registerBlockType } from "@wordpress/blocks";
-import '../../css/modules/logobackground.scss';
 import { useBlockProps } from "@wordpress/block-editor";
 import metadata from "./block.json";
 import Edit from "./edit";

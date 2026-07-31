@@ -5,9 +5,9 @@
 
 .pudelko-container {
     // position: relative;
-    // background: #000;
+    // background: $color-neutral-900;
     background-image: url(https://shav.pl/wp-content/uploads/shav-zawartosc-pudelka.jpg);
-    // color: #fff;
+    // color: $color-white;
     // padding: 20px;
     background-size: cover; /* Or use 'contain' depending on the effect you want */
     background-position: center;
@@ -25,9 +25,9 @@
 
 .pudelko-container-trymer {
     // position: relative;
-    // background: #000;
+    // background: $color-neutral-900;
     background-image: url(https://shav.pl/wp-content/uploads/trymer-zawartosc-pudelka.png);
-    // color: #fff;
+    // color: $color-white;
     // padding: 20px;
     background-size: cover; /* Or use 'contain' depending on the effect you want */
     background-position: center;
@@ -46,9 +46,9 @@
 
 .pudelko-container-handler {
     // position: relative;
-    // background: #000;
+    // background: $color-neutral-900;
     background-image: url(https://shav.pl/wp-content/uploads/Projekt-bez-nazwy-14.png);
-    // color: #fff;
+    // color: $color-white;
     // padding: 20px;
     background-size: cover; /* Or use 'contain' depending on the effect you want */
     background-position: center;
@@ -111,7 +111,7 @@
             // margin-top: 6rem;
 
             #text-container-ogrodnik {
-                margin-top: -69px !important;
+                margin-top: -$space-64 !important;
                 max-width: 248px !important;
                 margin: 0  !important;
             }
@@ -122,7 +122,7 @@
 
             .line-rest {
                 // text-align: center !important;
-                font-size: 16px !important;
+                font-size: $font-size-body-l !important;
             }
         }
     }
@@ -136,10 +136,10 @@
         align-items: flex-start !important;
 
         .text-ogrodnik-father {
-            margin-top: 3rem;
+            margin-top: $space-48;
 
             #text-container-ogrodnik {
-                margin-top: -69px !important;
+                margin-top: -$space-64 !important;
                 max-width: 329px !important;
                 margin: 0 auto !important;
             }
@@ -150,7 +150,7 @@
 
             .line-rest {
                 // text-align: center !important;
-                font-size: 16px !important;
+                font-size: $font-size-body-l !important;
             }
         }
     }
@@ -160,10 +160,10 @@
 // ogrodnik produktowa
 .ogrodnik-container {
         // position: relative;
-        // background: #000;
+        // background: $color-neutral-900;
         background-image: url(https://shav.pl/wp-content/uploads/kule-produktowa-16-9.png);
-        // color: #fff;
-        padding: 20px;
+        // color: $color-white;
+        padding: $space-16;
         background-size: cover; /* Or use 'contain' depending on the effect you want */
         background-position: top;
         background-repeat: no-repeat;
@@ -185,38 +185,38 @@
         flex-direction: column;
         max-width: 476px;
         text-align: left;
-        color: #fff;
+        color: $color-white;
         padding: 0;
         margin: 0;
 
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif;
+            font-family: $font-family-base;
             font-weight: 500;
             font-style: normal;
             line-height: normal;
-            font-size: 64px;
-            margin-bottom: 5px !important;
+            font-size: $font-size-h1;
+            margin-bottom: $space-4 !important;
             text-transform: uppercase !important;
-            color: #FFF;
+            color: $color-white;
             text-align: left;
           }
 
           .line-rest {
-            font-family: "Roboto", sans-serif;
-            font-size: 20px;
+            font-family: $font-family-base;
+            font-size: $font-size-h4;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
             max-width: 800px;
             text-transform: uppercase;
             // margin-top: 8px;
-            // font-family: "bebas-neue-pro-expanded", sans-serif;
+            // font-family: $font-family-base;
 font-weight: 400;
 // font-style: italic;
-            // font-family: "bebas-neue-pro", sans-serif;
+            // font-family: $font-family-base;
             font-weight: 500;
             font-style: normal;
-            color: #FFF;
+            color: $color-white;
             text-align: left;
           }
         }
@@ -227,10 +227,10 @@ font-weight: 400;
 // ogrodnik produktowa
 .model-trymer-container {
     // position: relative;
-    // background: #000;
+    // background: $color-neutral-900;
     background-image: url(https://shav.pl/wp-content/uploads/trymer-50_50.png);
-    // color: #fff;
-    padding: 20px;
+    // color: $color-white;
+    padding: $space-16;
     background-size: cover; /* Or use 'contain' depending on the effect you want */
     background-position: center;
     background-repeat: no-repeat;
@@ -252,38 +252,38 @@ width: 100%;
     flex-direction: column;
     max-width: 476px;
     text-align: left;
-    color: #fff;
+    color: $color-white;
     padding: 0;
     margin: 0;
 
     .line-head {
-        font-family: "bebas-neue-pro", sans-serif;
+        font-family: $font-family-base;
         font-weight: 500;
         font-style: normal;
         line-height: normal;
-        font-size: 64px;
-        margin-bottom: 5px !important;
+        font-size: $font-size-h1;
+        margin-bottom: $space-4 !important;
         text-transform: uppercase !important;
-        color: #FFF;
+        color: $color-white;
         text-align: center;
       }
 
       .line-rest {
-        font-family: "Roboto", sans-serif;
-        font-size: 20px;
+        font-family: $font-family-base;
+        font-size: $font-size-h4;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
         max-width: 800px;
         text-transform: uppercase;
         // margin-top: 8px;
-        // font-family: "bebas-neue-pro-expanded", sans-serif;
+        // font-family: $font-family-base;
 font-weight: 400;
 // font-style: italic;
-        // font-family: "bebas-neue-pro", sans-serif;
+        // font-family: $font-family-base;
         font-weight: 500;
         font-style: normal;
-        color: #FFF;
+        color: $color-white;
         text-align: left;
       }
     }
@@ -302,10 +302,10 @@ font-weight: 400;
 // napis na logu na telefonie
 .blacktext-container-mobile {
     // position: relative;
-    background: #000;
+    background: $color-neutral-900;
 
-    // color: #fff;
-    padding: 20px;
+    // color: $color-white;
+    padding: $space-16;
     min-height: 50vh;
     height: 80vh;
     display: flex;
@@ -318,9 +318,9 @@ font-weight: 400;
         margin: 0 auto;
         max-width: 1300px;
         text-align: center;
-        color: #fff;
-        padding: 20px;
-        margin: 15px;
+        color: $color-white;
+        padding: $space-16;
+        margin: $space-16;
 
         // z-index: 1;
 
@@ -331,29 +331,29 @@ font-weight: 400;
               }
         
               .line-head-mobile {
-                font-family: "bebas-neue-pro", sans-serif;
+                font-family: $font-family-base;
                 font-weight: 500;
                 font-style: normal;
                 line-height: normal;
-                font-size: 64px;
-                margin-bottom: 5px !important;
+                font-size: $font-size-h1;
+                margin-bottom: $space-4 !important;
                 text-transform: uppercase !important;
                 margin-top: 0.67em;
               }
 
               .line-rest-mobile {
-                font-family: "Roboto", sans-serif;
-                font-size: 20px;
+                font-family: $font-family-base;
+                font-size: $font-size-h4;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
                 max-width: 800px;
                 text-align: center;
                 // margin-top: 8px;
-                // font-family: "bebas-neue-pro-expanded", sans-serif;
+                // font-family: $font-family-base;
 font-weight: 400;
 // font-style: italic;
-                // font-family: "bebas-neue-pro", sans-serif;
+                // font-family: $font-family-base;
                 font-weight: 500;
                 font-style: normal;
               }
@@ -362,33 +362,33 @@ font-weight: 400;
 
 @media (max-width: 1050px) {
     .line-head-mobile {
-        font-size: 64px !important;
+        font-size: $font-size-h1 !important;
     }
 
     .line-rest-mobile {
-        font-size: 20px !important;
+        font-size: $font-size-h4 !important;
     }
 
 }
 
 @media (max-width: 800px) {
     .line-head-mobile {
-        font-size: 36px !important;
+        font-size: $font-size-h3 !important;
     }
 
     .line-rest-mobile {
-        font-size: 14px !important;
+        font-size: $font-size-body-m !important;
     }
 
 }
 
 @media (max-width: 600px) {
     .line-head-mobile {
-        font-size: 36px !important;
+        font-size: $font-size-h3 !important;
     }
 
     .line-rest-mobile {
-        font-size: 14px !important;
+        font-size: $font-size-body-m !important;
     }
 
 }
@@ -399,7 +399,7 @@ font-weight: 400;
     min-height: 20vh !important;
     height: 30vh !important;
     z-index: 1 !important;
-    margin-top: 207px;        
+    margin-top: $space-120;        
 }
 
 .blacktext-container-shav1 {
@@ -422,10 +422,10 @@ font-weight: 400;
         margin: 0 auto;
         max-width: 1300px;
         text-align: center;
-        color: #fff;
-        padding: 20px;
-        margin: 15px;
-        gap: 32px;
+        color: $color-white;
+        padding: $space-16;
+        margin: $space-16;
+        gap: $space-32;
         z-index: 2;
     
         // z-index: 1;
@@ -444,10 +444,10 @@ font-weight: 400;
               }
         
               .line-head-1 {
-                font-family: "bebas-neue-pro", sans-serif;
-                color: #FFF;
+                font-family: $font-family-base;
+                color: $color-white;
                 text-align: center;
-                font-size: 64px;
+                font-size: $font-size-h1;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 117.75%; /* 75.36px */
@@ -455,10 +455,10 @@ font-weight: 400;
               }
     
               .line-head-2 {
-                color: #0983A0;
+                color: $color-primary-medium;
                 text-align: center;
-                font-family: "bebas-neue-pro", sans-serif;
-                font-size: 32px;
+                font-family: $font-family-base;
+                font-size: $font-size-h3;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 117.75%; /* 37.68px */
@@ -466,10 +466,10 @@ font-weight: 400;
               }
     
               .line-rest {
-                font-family: "roboto", sans-serif !important;
-                color: #FFF;
+                font-family: $font-family-base !important;
+                color: $color-white;
                 text-align: center;
-                font-size: 20px;
+                font-size: $font-size-h4;
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
@@ -489,12 +489,12 @@ font-weight: 400;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    background: linear-gradient(to top, rgba($color-black, 1), rgba($color-black, 0));
     z-index: 1;
 }
 
 .onas-head-container {
-    padding: 20px;
+    padding: $space-16;
     min-height: 50vh;
     height: 80vh;
     display: flex;
@@ -516,10 +516,10 @@ font-weight: 400;
     margin: 0 auto;
     max-width: 1300px;
     text-align: center;
-    color: #fff;
-    padding: 20px;
-    margin: 15px;
-    gap: 32px;
+    color: $color-white;
+    padding: $space-16;
+    margin: $space-16;
+    gap: $space-32;
     z-index: 2;
 
     // z-index: 1;
@@ -538,10 +538,10 @@ align-items: center;
           }
     
           .line-head-1 {
-            font-family: "bebas-neue-pro", sans-serif;
-            color: #FFF;
+            font-family: $font-family-base;
+            color: $color-white;
             text-align: center;
-            font-size: 64px;
+            font-size: $font-size-h1;
             font-style: normal;
             font-weight: 500;
             line-height: 117.75%; /* 75.36px */
@@ -549,10 +549,10 @@ align-items: center;
           }
 
           .line-head-2 {
-            color: #0983A0;
+            color: $color-primary-medium;
             text-align: center;
-            font-family: "bebas-neue-pro", sans-serif;
-            font-size: 32px;
+            font-family: $font-family-base;
+            font-size: $font-size-h3;
             font-style: normal;
             font-weight: 500;
             line-height: 117.75%; /* 37.68px */
@@ -560,10 +560,10 @@ align-items: center;
           }
 
           .line-rest {
-            font-family: "roboto", sans-serif !important;
-            color: #FFF;
+            font-family: $font-family-base !important;
+            color: $color-white;
             text-align: center;
-            font-size: 20px;
+            font-size: $font-size-h4;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -577,10 +577,10 @@ align-items: center;
 //////
 .blacktext-container, .blacktext-container-shav1 {
     // position: relative;
-    background: #000;
+    background: $color-neutral-900;
 
-    // color: #fff;
-    padding: 20px;
+    // color: $color-white;
+    padding: $space-16;
     min-height: 50vh;
     height: 80vh;
     display: flex;
@@ -593,9 +593,9 @@ align-items: center;
         margin: 0 auto;
         max-width: 1300px;
         text-align: center;
-        color: #fff;
-        padding: 20px;
-        margin: 15px;
+        color: $color-white;
+        padding: $space-16;
+        margin: $space-16;
 
         // z-index: 1;
 
@@ -606,29 +606,29 @@ align-items: center;
               }
         
               .line-head {
-                font-family: "bebas-neue-pro", sans-serif;
+                font-family: $font-family-base;
                 font-weight: 500;
                 font-style: normal;
                 line-height: normal;
-                font-size: 64px;
-                margin-bottom: 5px !important;
+                font-size: $font-size-h1;
+                margin-bottom: $space-4 !important;
                 text-transform: uppercase !important;
                 margin-top: 0.67em;
               }
 
               .line-rest {
-                font-family: "Roboto", sans-serif;
-                font-size: 20px;
+                font-family: $font-family-base;
+                font-size: $font-size-h4;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
                 max-width: 800px;
                 text-align: center;
                 // margin-top: 8px;
-                // font-family: "bebas-neue-pro-expanded", sans-serif;
+                // font-family: $font-family-base;
 font-weight: 400;
 // font-style: italic;
-                // font-family: "bebas-neue-pro", sans-serif;
+                // font-family: $font-family-base;
                 font-weight: 500;
                 font-style: normal;
               }
@@ -637,33 +637,33 @@ font-weight: 400;
 
 @media (max-width: 1050px) {
     .line-head {
-        font-size: 64px !important;
+        font-size: $font-size-h1 !important;
     }
 
     .line-rest {
-        font-size: 20px !important;
+        font-size: $font-size-h4 !important;
     }
 
 }
 
 @media (max-width: 800px) {
     .line-head {
-        font-size: 36px !important;
+        font-size: $font-size-h3 !important;
     }
 
     .line-rest {
-        font-size: 14px !important;
+        font-size: $font-size-body-m !important;
     }
 
 }
 
 @media (max-width: 600px) {
     .line-head {
-        font-size: 36px !important;
+        font-size: $font-size-h3 !important;
     }
 
     .line-rest {
-        font-size: 14px !important;
+        font-size: $font-size-body-m !important;
     }
 
 }
@@ -671,9 +671,9 @@ font-weight: 400;
 // METODY WYSYLKI TEXT
 .blacktext-container-wysylka {
     // position: relative;
-    background: #000;
-    color: #fff;
-    padding: 20px;
+    background: transparent;
+    color: $color-neutral-900;
+    padding: $space-16;
 
     ////
     
@@ -691,16 +691,16 @@ font-weight: 400;
         flex-direction: column;
         // justify-content: center;
         align-items: center;
-        padding-top: 95px;
-        gap: 32px;
+        padding-top: $space-80;
+        gap: $space-32;
     
     
         .metody-wysylki-header {
-            color: #0983A0;
+            color: $color-primary-medium;
             text-align: center;
             /* Roboto */
-            font-family: "bebas-neue-pro", sans-serif;
-font-size: 64px;
+            font-family: $font-family-base;
+font-size: $font-size-h1;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -713,11 +713,11 @@ line-height: normal;
         .metody-wysylki-p {
             max-width: 916px;
             // height: 54px;
-            color: #fff;
+            color: $color-neutral-800;
             text-align: center;
             /* Roboto */
-            font-family: Roboto;
-            font-size: 20px;
+            font-family: $font-family-base;
+            font-size: $font-size-h4;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
@@ -725,12 +725,12 @@ line-height: normal;
         }
 
         .metody-wysylki-h2 {
-            color: #FFF;
+            color: $color-neutral-900;
 
 text-align: center;
 /* Roboto */
-font-family: Roboto;
-font-size: 32px;
+font-family: $font-family-base;
+font-size: $font-size-h3;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -740,7 +740,7 @@ text-transform: uppercase;
         .metody-wysylki-ul {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: $space-32;
             list-style-position: inside;
             margin-bottom: 0;
             padding-left: 0;
@@ -749,14 +749,14 @@ text-transform: uppercase;
         .metody-wysylki-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: $space-8;
 
             li {
-               
-                color: #FFF;
+
+                color: $color-neutral-900;
                 text-align: center;
-                font-family: Roboto;
-                font-size: 20px;
+                font-family: $font-family-base;
+                font-size: $font-size-h4;
                 font-style: normal;
                 font-weight: 700;
                 line-height: normal;
@@ -765,9 +765,9 @@ text-transform: uppercase;
 
             span {
                 text-align: center;
-                color: #FFF;
-                font-family: Roboto;
-                font-size: 20px;
+                color: $color-neutral-800;
+                font-family: $font-family-base;
+                font-size: $font-size-h4;
                 font-style: normal;
                 font-weight: 300;
                 line-height: 30px;
@@ -780,36 +780,36 @@ text-transform: uppercase;
     .metody-platnosci-ul {
             display: flex;
             flex-direction: column;
-            gap: 32px;
+            gap: $space-32;
             // list-style-position: inside;
             margin-bottom: 0;
-            margin-top: 24px;
+            margin-top: $space-24;
 
             .metody-platnosci-list {
                     display: flex;
                     justify-content:space-between;
                     align-items: center;
-                    gap: 16px;
+                    gap: $space-16;
 
                     .metody-platnosci-list-left {
                         max-width: 560px;
                         flex: 1 0 0;
 
                         li {
-                            color: #FFF;
-                            font-family: "roboto", sans-serif;
-                            font-size: 20px;
+                            color: $color-neutral-900;
+                            font-family: $font-family-base;
+                            font-size: $font-size-h4;
                             font-style: normal;
                             font-weight: 700;
                             line-height: 30px;
                             list-style: none !important;
                             text-transform: uppercase;
                         }
-                    
+
                         span {
-                            color: #FFF;
-                            font-family: Roboto;
-                            font-size: 20px;
+                            color: $color-neutral-800;
+                            font-family: $font-family-base;
+                            font-size: $font-size-h4;
                             font-style: normal;
                             font-weight: 300;
                             line-height: 30px;
@@ -831,7 +831,7 @@ text-transform: uppercase;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 53px;
+    gap: $space-56;
 align-self: stretch;
     
 
@@ -839,26 +839,26 @@ align-self: stretch;
 
 @media (max-width: 786px) { 
     .metody-platnosci-ul {
-        padding-left: 35px !important;
-        padding-right: 35px !important;
+        padding-left: $space-32 !important;
+        padding-right: $space-32 !important;
     }
 
     .metody-platnosci-list-left {
         flex-basis: 70% !important;
         li {
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
         }
 
         span {
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
         }
     }
 
     .blacktext-container-wysylka {
-        padding-top: 35px;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-bottom: 35px;
+        padding-top: $space-32;
+        padding-left: $space-16;
+        padding-right: $space-16;
+        padding-bottom: $space-32;
         height: auto !important;
         margin-top: -1px;
 
@@ -868,31 +868,31 @@ align-self: stretch;
         // gap: 24px !important;
     }
     .metody-wysylki-header {
-        font-size: 36px !important;
+        font-size: $font-size-h3 !important;
     }
 
     .metody-wysylki-p {
-        font-size: 14px !important;
-        padding-right: 35px !important;
-        padding-left: 35px !important;
+        font-size: $font-size-body-m !important;
+        padding-right: $space-32 !important;
+        padding-left: $space-32 !important;
     }
     .metody-wysylki-h2 {
-        font-size: 14px !important;
+        font-size: $font-size-body-m !important;
         font-weight: 700 !important;
     }
 
     .metody-wysylki-list {
         
         li {
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
         }
         
         span {
-        font-size: 14px !important;
+        font-size: $font-size-body-m !important;
         }
     }
     .metody-wysylki-icons {
-        gap: 24px;
+        gap: $space-24;
 
         svg {
             width: 53px;
@@ -915,7 +915,7 @@ align-self: stretch;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 25px;
+    margin-top: $space-24;
     // height: 80vh;
     width: 100%;
 
@@ -923,14 +923,14 @@ align-self: stretch;
     .metody-wysylki-left-container {
         flex-basis: 65%;
         align-items: flex-start;    
-        gap: 32px;
+        gap: $space-32;
         max-width: 700px;
     
         .kup-text {
             // position: relative;
-            color: #fff;
-            font-family: Roboto;
-            font-size: 20px;
+            color: $color-neutral-900;
+            font-family: $font-family-base;
+            font-size: $font-size-h4;
             font-style: normal;
             font-weight: 400;
             line-height: 30px; /* 150% */
@@ -941,51 +941,53 @@ align-self: stretch;
         }
 
         h1, h2 {
-            color: #FFF;
+            color: $color-neutral-900;
 
-            font-family: "bebas-neue-pro", sans-serif;
-            font-size: 64px;
+            font-family: $font-family-base;
+            font-size: $font-size-h1;
             font-style: normal;
             font-weight: 500;
             line-height: 117.75%; /* 75.36px */
             text-transform: uppercase;
-            margin-bottom: 16px;
+            margin-bottom: $space-16;
             margin-top: 0;
         }
 
         p {
-            color: #FFF;
+            color: $color-neutral-800;
 
             /* Roboto */
-            font-family: Roboto;
-            font-size: 20px;
+            font-family: $font-family-base;
+            font-size: $font-size-h4;
             font-style: normal;
             font-weight: 400;
             line-height: 30px;
-            margin-bottom: 26px;
+            margin-bottom: $space-24;
         }
 
         button {
-                border-radius: 8px;
-                background: #065C70;
+                border-radius: 24px;
+                background: $color-primary-medium;
                 display: flex;
                 width: 462px;
                 height: 52px;
-                padding: 10px 30px;
+                padding: $space-8 $space-32;
                 justify-content: center;
                 align-items: center;
-                gap: 10px;
-                color: #fff;
-                font-family: Roboto;
-                font-size: 16px;
+                gap: $space-8;
+                color: $color-white;
+                font-family: $font-family-base;
+                font-size: $font-size-body-l;
                 font-style: normal;
-                font-weight: 400;
+                font-weight: 500;
                 line-height: normal;
                 border: 0;
+                cursor: pointer;
+                transition: background-color 0.15s ease;
         }
 
         button:hover {
-            background-color: #03343F; /* Darker shade on hover */
+            background-color: $color-primary-dark;
             cursor: pointer;
             border: 0;
         }
@@ -993,18 +995,14 @@ align-self: stretch;
 
     .metody-wysylki-right-container {
 
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 55%;
-            width: 38%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 40%, #000 80%);
-            // background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
-            z-index: 1;
+        @media (max-width: 786px) {
+            img,
+            .metody-wysylki-right-image {
+                max-height: 350px;
+                width: auto;
+                height: auto;
+            }
         }
-
 
         .metody-wysylki-right-image {
           
@@ -1023,8 +1021,8 @@ align-self: stretch;
         //     right: 0;
         //     width: 7%;
         //     height: 100%;
-        //     background: linear-gradient(90deg, rgba(0, 0, 0, 0.00) 40%, #000 80%);
-        //     // background: linear-gradient(90deg, #000 -3.52%, rgba(0, 0, 0, 0.00) 100%);
+        //     background: linear-gradient(90deg, rgba($color-black, 0.00) 40%, $color-neutral-900 80%);
+        //     // background: linear-gradient(90deg, $color-neutral-900 -3.52%, rgba($color-black, 0.00) 100%);
         //     z-index: 1;
         // }
 
@@ -1066,12 +1064,12 @@ align-self: stretch;
 
 .changebox {
     
-    margin: 0 5px;
+    margin: 0 $space-4;
     // overflow: hidden;
     white-space: nowrap;
-    color: #fff;
-    font-family: Roboto;
-    font-size: 20px;
+    color: $color-white;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-style: normal;
     font-weight: 400;
     line-height: 30px; /* 150% */
@@ -1084,7 +1082,7 @@ align-self: stretch;
 }
 
 .changebox span {
-    color: #0983A0;
+    color: $color-primary-medium;
     display: block;
     position: absolute;
     width: 100%;
@@ -1105,7 +1103,7 @@ align-self: stretch;
 }
 
 .shav-color {
-    color: #0983A0;
+    color: $color-primary-medium;
     font-weight: 500;
 }
 
@@ -1118,26 +1116,17 @@ align-self: stretch;
     .metody-wysylki-kup-container {
         display: flex;
         flex-direction: column-reverse;
-        gap: 32px;
+        gap: $space-32;
     }
 
     .ikony-subcontainer {
-        gap: 45px !important;
+        gap: $space-48 !important;
     }
 
 
     .metody-wysylki-right-container {
 
-        &::before {
-    content: "";
-    position: absolute;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 69% !important;
-    background: linear-gradient(177deg, rgba(0, 0, 0, 0) 22%, #000 99%) !important;
-    z-index: 1;
-        }
+
 
         img {
             max-width: 100%;
@@ -1152,13 +1141,13 @@ align-self: stretch;
         flex-direction: column;
         justify-content: center !important;
         align-items: center !important;
-        gap: 16px !important;
+        gap: $space-16 !important;
         h2, h1 {
 
             text-align: center !important;
-            color: #FFF;
-            font-family: "bebas-neue-pro", sans-serif !important;
-            font-size: 34px  !important;
+            color: $color-white;
+            font-family: $font-family-base !important;
+            font-size: $font-size-h3  !important;
             font-style: normal;
             font-weight: 500;
             line-height: 117.75%;
@@ -1168,11 +1157,11 @@ align-self: stretch;
         }
 
         p {
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
             margin: 0;
             text-align: center;
-            margin-bottom: 4px !important;
-            padding: 0 15px;
+            margin-bottom: $space-4 !important;
+            padding: 0 $space-16;
             line-height: normal !important;
         }
 
@@ -1191,7 +1180,7 @@ align-items: center  !important;
 
     .test-flex {
         width: 79vw !important;
-        margin-top: 48px;
+        margin-top: $space-48;
 
         .kup-text {
             padding-right: 0 !important;
@@ -1199,35 +1188,23 @@ align-items: center  !important;
     }
 
     .changebox {
-        font-size: 16px !important;
+        font-size: $font-size-body-l !important;
 font-style: normal !important;
 font-weight: 400  !important;
 line-height: 30px !important; /* 187.5% */
-margin-top: -4px !important;
+margin-top: -$space-4 !important;
     }
 }
 
-@media (max-width: 600px) { 
-    .metody-wysylki-right-container::before {
-        height: 62% !important;
-    }
-
-
-} 
-
-@media (max-width: 500px) { 
-    .metody-wysylki-right-container::before {
-        height: 60% !important;
-    }}
 
 
 
     /// glowna ikony
     .blacktext-container-glowna {
         // position: relative;
-        background: #000;
-        color: #fff;
-        padding: 20px;
+        background: $color-neutral-900;
+        color: $color-white;
+        padding: $space-16;
     
         ////
         height: 70vh;
@@ -1243,21 +1220,21 @@ margin-top: -4px !important;
         flex-direction: column;
         justify-content: center;
         align-items: left;
-        gap: 60px;
+        gap: $space-56;
    
     
         .title-container {
     
             h1, h2 {
-                color: #FFF;
+                color: $color-white;
     
-                font-family: "bebas-neue-pro", sans-serif;
-                font-size: 64px;
+                font-family: $font-family-base;
+                font-size: $font-size-h1;
                 font-style: normal;
                 font-weight: 500;
                 line-height: 117.75%; /* 75.36px */
                 text-transform: uppercase;
-                margin-bottom: 16px !important;
+                margin-bottom: $space-16 !important;
             }
         }
 
@@ -1266,7 +1243,7 @@ margin-top: -4px !important;
 flex-direction: column;
 justify-content: flex-end;
 align-items: center;
-gap: 60px;
+gap: $space-56;
 align-self: stretch;
 
 
@@ -1283,18 +1260,18 @@ align-self: stretch;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 16px;
+                gap: $space-16;
             }
 
             span {
                 text-transform: uppercase;
                 text-align: center;
-                font-family: 'roboto', sans-serif;
-                font-size: 16px;
+                font-family: $font-family-base;
+                font-size: $font-size-body-l;
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
-                color: #FFF;
+                color: $color-white;
             }
         }
     }
@@ -1302,27 +1279,27 @@ align-self: stretch;
 @media (max-width: 786px) {
     .blacktext-container-glowna {
         height: auto !important;
-        padding-top: 36px !important;
+        padding-top: $space-32 !important;
     }
     .glowna-ikony-container {
         height: auto !important;
-        gap: 27px !important;
+        gap: $space-24 !important;
         
     .title-container {
     
         h1, h2 { 
-            font-size: 36px !important;
+            font-size: $font-size-h3 !important;
 font-style: normal !important;
 font-weight: 500 !important;
 line-height: 117.75% !important; /* 42.39px */
-text-shadow: 0px -4px 8px rgba(0, 0, 0, 0.68) !important;
+text-shadow: 0px -4px 8px rgba($color-black, 0.68) !important;
 text-align: center;
         }
     }}
 
     .ikony-container {
         flex-direction: column;
-        gap: 54px !important;
+        gap: $space-56 !important;
     }
 }
 
@@ -1354,9 +1331,9 @@ text-align: center;
     left: 0;
     width: 100%;
     height: 260px;
-    // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-    // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+    // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+    // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+    background: linear-gradient(0deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
     
     z-index: 1;
 }
@@ -1368,9 +1345,9 @@ text-align: center;
     left: 0;
     width: 100%;
     height: 260px;
-    // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-    // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+    // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+    // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+    background: linear-gradient(180deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
     
     z-index: 1;
 }

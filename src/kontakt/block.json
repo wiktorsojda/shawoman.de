@@ -3,7 +3,211 @@
   "apiVersion": 3,
   "name": "ourblocktheme/kontakt",
   "title": "Kontakt",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Kontakt"
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Biuro obsługi klienta"
+    },
+    "obsługaTitle": {
+      "type": "string",
+      "default": "Obsługa klienta"
+    },
+    "obsługaIntro": {
+      "type": "string",
+      "default": "Masz pytanie? Skontaktuj się z nami!"
+    },
+    "phone": {
+      "type": "string",
+      "default": "690 801 270"
+    },
+    "phoneHref": {
+      "type": "string",
+      "default": "tel:+48690801270"
+    },
+    "email": {
+      "type": "string",
+      "default": "kontakt@shavwoman.pl"
+    },
+    "emailHref": {
+      "type": "string",
+      "default": "mailto:kontakt@shavwoman.pl"
+    },
+    "hours": {
+      "type": "string",
+      "default": "poniedziałek - piątek: 8:00 - 16:00"
+    },
+    "faqTitle": {
+      "type": "string",
+      "default": "Najczęściej zadawane pytania"
+    },
+    "hurtTitle": {
+      "type": "string",
+      "default": "Sprzedaż hurtowa"
+    },
+    "hurtIntro": {
+      "type": "string",
+      "default": "Jesteś zainteresowany współpracą z nami?"
+    },
+    "hurtButtonLabel": {
+      "type": "string",
+      "default": "Dowiedz się więcej"
+    },
+    "hurtButtonURL": {
+      "type": "string",
+      "default": "/sprzedaz-hurtowa"
+    },
+    "zwrotyTitle": {
+      "type": "string",
+      "default": "Zwroty"
+    },
+    "zwrotyIntro": {
+      "type": "string",
+      "default": "W ciągu 14 dni możesz zwrócić produkt kupiony przez internet."
+    },
+    "zwrotyButtonLabel": {
+      "type": "string",
+      "default": "Dowiedz się więcej"
+    },
+    "zwrotyButtonURL": {
+      "type": "string",
+      "default": "/zwrot"
+    },
+    "reklamacjeTitle": {
+      "type": "string",
+      "default": "Reklamacje"
+    },
+    "reklamacjeIntro": {
+      "type": "string",
+      "default": "Chcesz dowiedzieć się jak złożyć reklamację?"
+    },
+    "reklamacjeButtonLabel": {
+      "type": "string",
+      "default": "Dowiedz się więcej"
+    },
+    "reklamacjeButtonURL": {
+      "type": "string",
+      "default": "/zwrot"
+    },
+    "kontaktQuestion1": {
+      "type": "string",
+      "default": "Ile trwa realizacja zamówienia?"
+    },
+    "kontaktAnswer1": {
+      "type": "string",
+      "default": "Realizacja i dostawa wszystkich zamówień ze strony Shav odbywa się w ciągu 1-2 dni roboczych."
+    },
+    "kontaktQuestion2": {
+      "type": "string",
+      "default": "Jakie są dostępne formy dostawy?"
+    },
+    "kontaktAnswer2": {
+      "type": "string",
+      "default": "Oferujemy trzy opcje dostawy: przesyłkę kurierską InPost (darmowa), Paczkomaty InPost (darmowa) oraz przesyłkę kurierską InPost pobraniową (+4,99 zł). Dla zamówień poniżej 100 zł koszt wysyłki zwiększa się o 9,99 zł."
+    },
+    "kontaktQuestion3": {
+      "type": "string",
+      "default": "Jakie są dostępne formy płatności?"
+    },
+    "kontaktAnswer3": {
+      "type": "string",
+      "default": "Akceptujemy płatności poprzez PayU, BLIK, płatności kartą oraz płatności za pobraniem."
+    },
+    "kontaktQuestion4": {
+      "type": "string",
+      "default": "Jak mogę śledzić status mojego zamówienia?"
+    },
+    "kontaktAnswer4": {
+      "type": "string",
+      "default": "Link do śledzenia paczki otrzymasz w momencie przekazania zamówienia do realizacji (maksymalnie kolejnego dnia roboczego) na adres email podany w zamówieniu."
+    },
+    "kontaktQuestion5": {
+      "type": "string",
+      "default": "Czy jest możliwa wysyłka zagranicę?"
+    },
+    "kontaktAnswer5": {
+      "type": "string",
+      "default": "Tak, w takim przypadku prosimy o kontakt mailowy: kontakt@shavwoman.pl"
+    },
+    "kontaktQuestion6": {
+      "type": "string",
+      "default": "Gdzie znajdę dowód zakupu?"
+    },
+    "kontaktAnswer6": {
+      "type": "string",
+      "default": "Paragon lub fakturę otrzymasz w momencie przekazania zamówienia do realizacji (maksymalnie kolejnego dnia roboczego) na adres email podany w zamówieniu."
+    },
+    "kontaktQuestion7": {
+      "type": "string",
+      "default": ""
+    },
+    "kontaktAnswer7": {
+      "type": "string",
+      "default": ""
+    },
+    "kontaktQuestion8": {
+      "type": "string",
+      "default": ""
+    },
+    "kontaktAnswer8": {
+      "type": "string",
+      "default": ""
+    },
+    "kontaktQuestion9": {
+      "type": "string",
+      "default": ""
+    },
+    "kontaktAnswer9": {
+      "type": "string",
+      "default": ""
+    },
+    "kontaktQuestion10": {
+      "type": "string",
+      "default": ""
+    },
+    "kontaktAnswer10": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

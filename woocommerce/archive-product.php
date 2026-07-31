@@ -1,97 +1,64 @@
 <?php
 /**
- * The Template for displaying product archives, including the main shop page which is a post type archive
+ * Archive Product — strona /sklep/ wg projektu Figma "Sklep - desktop - v2".
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/archive-product.php.
+ * Struktura:
+ *   1. Header (FSE template-part)
+ *   2. Banner sklepu (hook woocommerce_before_main_content @ 5)
+ *   3. Lista sekcji (config: shav_get_shop_sections)
+ *      każda sekcja = tytuł + grid kart produktow
+ *   4. Footer (FSE template-part)
  *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
+ * Notatka: nie uzywamy domyslnej petli WC bo strona ma byc kuratorowana
+ * po kategoriach (sekcjach), a nie paginowanym archiwum produktow.
  *
- * @see https://woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates
- * @version 8.6.0
+ * @package ShavWoman
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
-get_header( 'shop' );
+get_header('shop');
 
 /**
  * Hook: woocommerce_before_main_content.
- *
- * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
- * @hooked woocommerce_breadcrumb - 20
- * @hooked WC_Structured_Data::generate_website_data() - 30
+ * @hooked display_shop_banner_image_with_text - 5  (banner z meta master-product)
  */
-do_action( 'woocommerce_before_main_content' );
+do_action('woocommerce_before_main_content');
 
-/**
- * Hook: woocommerce_shop_loop_header.
- *
- * @since 8.6.0
- *
- * @hooked woocommerce_product_taxonomy_archive_header - 10
- */
-do_action( 'woocommerce_shop_loop_header' );
+$shop_sections = shav_get_shop_sections();
+?>
 
-if ( woocommerce_product_loop() ) {
+<div class="shop-archive">
+    <?php foreach ($shop_sections as $section) :
+        $query = shav_get_shop_section_query($section);
+        if (!$query->have_posts()) {
+            continue;
+        }
+        $title_class = 'shop-section--' . sanitize_html_class($section['category'] ?? 'default');
+        ?>
+        <section class="shop-section <?php echo esc_attr($title_class); ?>">
+            <header class="shop-section__header">
+                <h2 class="shop-section__title">
+                    <span class="shop-section__title-main"><?php echo esc_html($section['title'] ?? ''); ?></span>
+                    <?php if (!empty($section['brand_label'])) : ?>
+                        <span class="shop-section__title-brand"><?php echo esc_html($section['brand_label']); ?></span>
+                    <?php endif; ?>
+                </h2>
+            </header>
 
-	/**
-	 * Hook: woocommerce_before_shop_loop.
-	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
-	 */
-	do_action( 'woocommerce_before_shop_loop' );
+            <ul class="shop-section__grid products columns-3">
+                <?php while ($query->have_posts()) :
+                    $query->the_post();
+                    wc_get_template_part('content', 'product');
+                endwhile; ?>
+            </ul>
+        </section>
+    <?php
+    wp_reset_postdata();
+    endforeach; ?>
+</div>
 
-	woocommerce_product_loop_start();
+<?php
+do_action('woocommerce_after_main_content');
 
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
-
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action( 'woocommerce_shop_loop' );
-
-			wc_get_template_part( 'content', 'product' );
-		}
-	}
-
-	woocommerce_product_loop_end();
-
-	/**
-	 * Hook: woocommerce_after_shop_loop.
-	 *
-	 * @hooked woocommerce_pagination - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop' );
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 *
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action( 'woocommerce_no_products_found' );
-}
-
-/**
- * Hook: woocommerce_after_main_content.
- *
- * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
- */
-do_action( 'woocommerce_after_main_content' );
-
-/**
- * Hook: woocommerce_sidebar.
- *
- * @hooked woocommerce_get_sidebar - 10
- */
-do_action( 'woocommerce_sidebar' );
-
-get_footer( 'shop' );
+get_footer('shop');

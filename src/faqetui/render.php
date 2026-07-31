@@ -1,43 +1,33 @@
-<section class="faq-container">
-<div class="faq-wrapper container--narrow2-important">
-      <div class="faq-title">Często zadawane pytania</div>
-    
-      <div class="faq-wrapper-questions">
-      <div class="faq">
-        <button class="faq-accordion">
-        <h2 class="faq-header">Do czego jest mi potrzebne etui podróżne Shav?</h2>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="faq-pannel">
-          <p>
-          <strong>Etui podróżne Shav</strong> to wytrzymałe i ergonomiczne opakowanie na maszynkę oraz akcesoria, które możesz zabrać w każdą podróż, nawet na koniec świata. Etui wyposażone jest w solidny zamek, a oprócz tego posiada wewnętrzną kieszeń na akcesoria i pasek, który zabezpiecza maszynkę Shav 2.
-        </p>
-        </div>
-      </div>
+<?php
+$title           = isset($attributes['title'])           ? $attributes['title']           : '';
+$showTitle       = isset($attributes['showTitle'])       ? $attributes['showTitle']       : true;
+$headingTag      = isset($attributes['headingTag'])      ? $attributes['headingTag']      : 'h2';
+$containerClass  = isset($attributes['containerClass'])  ? $attributes['containerClass']  : 'faq-container';
 
-      <div class="faq">
-        <button class="faq-accordion">
-        <h2 class="faq-header">Czy etui Shav pomieści wszystkie akcesoria?</h2>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="faq-pannel">
-          <p>
-          Tak, <strong>w etui podróżnym Shav</strong> zmieści się maszynka, ostrze metalowe, ostrze foliowe, dodatkowe nasadki oraz przewód ładujący maszynkę.
-        </p>
+$allowed_tags = ['h2', 'h3', 'h4', 'div'];
+if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
+?>
+<section class="<?php echo esc_attr($containerClass); ?>">
+    <div class="faq-wrapper container--narrow2-important">
+        <?php if ($showTitle && $title): ?>
+            <div class="faq-title"><?php echo wp_kses_post($title); ?></div>
+        <?php endif; ?>
+        <div class="faq-wrapper-questions">
+            <?php for ($i = 1; $i <= 10; $i++):
+                $q   = isset($attributes["question{$i}"]) ? $attributes["question{$i}"] : '';
+                $ans = isset($attributes["answer{$i}"])   ? $attributes["answer{$i}"]   : '';
+                if (!$q && !$ans) continue;
+            ?>
+                <div class="faq">
+                    <button class="faq-accordion" type="button">
+                        <<?php echo $headingTag; ?> class="faq-header"><?php echo wp_kses_post($q); ?></<?php echo $headingTag; ?>>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-pannel">
+                        <p><?php echo wp_kses_post($ans); ?></p>
+                    </div>
+                </div>
+            <?php endfor; ?>
         </div>
-      </div>
-
-      <div class="faq">
-        <button class="faq-accordion">
-        <h2 class="faq-header">Czy maszynkę Shav 2 w etui podróżnym Shav mogę wnieść do samolotu jako bagaż podręczny, czy muszę ją umieścić w bagażu rejestrowanym?</h2>
-          <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="faq-pannel">
-          <p>
-          <strong>Maszynkę Shav 2 w etui podróżnym Shav</strong> można transportować zarówno w bagażu podręcznym, jak i w bagażu rejestrowanym. Maszynka w etui jest całkowicie bezpieczna i nie ma możliwości, aby włączyła się w trakcie podróży.
-        </p>
-        </div>
-      </div>
-      </div>
     </div>
-    </section>
+</section>

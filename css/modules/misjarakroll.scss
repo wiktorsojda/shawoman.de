@@ -1,0 +1,145 @@
+// =============================================================================
+// MISJA — Sekcja Rak'n Roll (Figma desktop 1258:162, mobile 845:1123)
+// Karta z dwoma logotypami: Rak'n'Roll (kolo, biale tlo) + Fundacja Pokonac
+// Endometrioze. Desktop: karta po lewej, tekst po prawej; mobile: tekst na
+// gorze (column-reverse), karta pod spodem.
+// !important wszedzie zeby przebic theme.json / global styles WP.
+// =============================================================================
+
+.misjarakroll {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 24px !important;
+    background: $color-neutral-100 !important;
+    padding: 45px 20px !important;
+    box-sizing: border-box !important;
+
+    @media (min-width: 900px) {
+        flex-direction: row !important;
+        gap: 64px !important;
+        padding: 96px 150px !important;
+    }
+
+    // karta z logotypami — Figma 1258:171 (desktop) / 1258:177 (mobile)
+    &__card {
+        flex-shrink: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        padding: 32px !important;
+        border-radius: 24px !important;
+        border: 1px solid $color-white !important;
+        box-shadow: 1px 5px 64px 0 rgba(0, 0, 0, 0.06) !important;
+        background-image: linear-gradient(165deg, rgba(158, 158, 158, 0.1) 22.84%, rgba(255, 255, 255, 0.1) 46.79%) !important;
+        box-sizing: border-box !important;
+
+        @media (min-width: 900px) {
+            gap: 32px !important;
+            padding: 64px !important;
+            border-radius: 32px !important;
+        }
+    }
+
+    // logo 1: Rak'n'Roll — kolo z bialym tlem (Figma: 110px mobile / 140px desktop)
+    &__logo {
+        flex-shrink: 0 !important;
+        width: 110px !important;
+        height: 110px !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+        background: $color-white !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        @media (min-width: 900px) {
+            width: 140px !important;
+            height: 140px !important;
+        }
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+    }
+
+    // logo 2: Fundacja Pokonac Endometrioze (Figma: 160x85 mobile / 220x117 desktop)
+    &__logo2 {
+        flex-shrink: 0 !important;
+        width: 160px !important;
+        height: 85px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        @media (min-width: 900px) {
+            width: 220px !important;
+            height: 117px !important;
+        }
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+        }
+    }
+
+    &__text {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        text-align: center !important;
+        max-width: 100% !important;
+
+        @media (min-width: 900px) {
+            gap: 24px !important;
+            max-width: 842px !important;
+            width: 842px !important;
+        }
+    }
+
+    &__title {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--title-size-mobile, 26px) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-800 !important;
+        text-align: center !important;
+        text-transform: none !important;
+
+        @media (min-width: 900px) {
+            font-size: var(--title-size-desktop, 42px) !important;
+            line-height: 1.2 !important;
+            max-width: 746px !important;
+        }
+    }
+
+    &__description {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 400 !important;
+        font-size: var(--description-size-mobile, 16px) !important;
+        line-height: 1.4 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-700 !important;
+        text-align: center !important;
+
+        @media (min-width: 900px) {
+            font-size: var(--description-size-desktop, 18px) !important;
+            line-height: 1.4 !important;
+            max-width: 549px !important;
+        }
+    }
+}

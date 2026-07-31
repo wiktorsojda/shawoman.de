@@ -1,0 +1,982 @@
+// =============================================================================
+// PRODUCT SUMMARY — prawa kolumna strony produktu (Figma: 390:1471)
+// =============================================================================
+// Budowane etapami: tytul + subtitle (ETAP 1), reszta sekcji dolaczana stopniowo.
+// =============================================================================
+
+.summary.entry-summary {
+  // -----------------------------------------------------------------------------
+  // Tytul (h1) — dwuczesciowy: "main" (Be Vietnam Pro Medium) + accent (Dolce kursywa)
+  // -----------------------------------------------------------------------------
+  .product_title {
+    margin: 0 0 $space-4;
+    color: $color-neutral-900 !important;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 32px;                // mobile
+    line-height: 1;
+    letter-spacing: -0.06em;        // -2.52px @ 42 (Figma: -2.52px)
+    text-transform: none !important;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 42px;
+    }
+
+    &__main {
+      display: inline;
+    }
+
+    &__accent {
+      font-family: $font-family-accent; // Dolce
+      font-weight: $font-weight-accent-medium;
+      font-size: 56px;                // mobile
+      line-height: 1;
+      display: inline-block;
+      vertical-align: baseline;
+      color: $color-neutral-900;
+      text-transform: none;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 80px;              // Figma desktop (390:1475)
+      }
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Rating pill (avatars + count + score + stars) — Figma 390:1478
+  // -----------------------------------------------------------------------------
+  .product-summary__rating-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-8;                    // mobile: ciasniej
+    height: 32px;                     // mobile: mniejszy
+    padding: 4px 10px;
+    background-color: $color-neutral-100;
+    border-radius: 72px;
+    max-width: 100%;
+    margin-bottom: $space-12;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-16;
+      height: 40px;
+      padding: 6px $space-16;
+    }
+  }
+
+  .product-summary__rating-avatars {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .product-summary__rating-avatar {
+    width: 22px;                      // mobile mniejsze
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $color-neutral-100;
+    margin-right: -7px;
+    flex-shrink: 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 28px;
+      height: 28px;
+      margin-right: -9.6px;
+    }
+  }
+
+  .product-summary__rating-sep {
+    width: 1px;
+    height: 14px;
+    background-color: $color-neutral-300;
+    flex-shrink: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      height: 18.72px;
+    }
+  }
+
+  .product-summary__rating-count,
+  .product-summary__rating-score {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 13px;                  // mobile mniejszy
+    letter-spacing: -0.04em;
+    color: $color-neutral-500;
+    white-space: nowrap;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-body-l;   // 16
+    }
+  }
+
+  .product-summary__rating-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+
+    svg {
+      flex-shrink: 0;
+      width: 11px;                    // mobile mniejsze
+      height: 11px;
+
+      @media (min-width: $breakpoint-tablet) {
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Info pills (czarny + czerwony) pod ratingiem — Figma 390:1507
+  // -----------------------------------------------------------------------------
+  .product-summary__info-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-12;
+    margin-bottom: $space-32;
+  }
+
+  .product-summary__info-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px $space-12;
+    border-radius: 24px;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+    text-shadow: 0 1px 1px rgba(37, 37, 37, 0.5);
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: $space-8 $space-16;
+      font-size: $font-size-body-l;     // 16
+      line-height: 24px;
+    }
+
+    &--dark {
+      background-color: $color-neutral-900;
+      color: $color-neutral-50;
+    }
+
+    &--red {
+      background-color: #ac0000;
+      color: #fff0f0;
+    }
+  }
+
+  // Pill "OSZCZĘDZASZ X ZŁ" — zielony, pozycjonowany absolutnie na linii ceny.
+  // `.custom-price-add-to-cart` w single-product.scss ma juz `position: relative`.
+  .custom-price-add-to-cart .product-summary__savings-pill {
+    position: absolute;
+    top: $space-32;                  // = padding boxa, na poziomie linii ceny
+    right: $space-32;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px $space-12;
+    background-color: #2d773d;
+    color: #cff2d6;
+    font-family: $font-family-base;
+    font-weight: $font-weight-semibold;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    border-radius: 24px;
+    white-space: nowrap;
+    z-index: 1;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 14px;
+      line-height: 24px;
+      // wycentruj pionowo wzgledem 1. linii (font-size $font-size-h3 ~32px)
+      top: calc(#{$space-32} + 4px);
+    }
+    
+
+     @media (max-width: 400px) {
+   top: 28px;
+   right: 28px;
+   padding: $space-4 8px;
+   font-size: 11px;
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Podtytul (h2.product-subtitle)
+  // -----------------------------------------------------------------------------
+  .product-subtitle {
+    margin: 0 0 $space-32;
+    color: $color-neutral-700;
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-body-l;     // 16 mobile
+    line-height: 1;
+    letter-spacing: -0.06em;          // -1.08px @ 18 (Figma)
+    text-transform: none;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 18px;
+      margin-bottom: $space-40;
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Pasek magazynowy (.shav-stock) — Figma 390:1589
+  // Namespace shav-stock — wlasny, izolowany, nic nie nadpisuje.
+  // -----------------------------------------------------------------------------
+  .shav-stock {
+    display: flex;
+    align-items: center;
+    gap: $space-16;
+    padding: $space-24;
+    border: 1px solid $color-neutral-200;
+    border-radius: 8px;
+    margin: $space-24 0;
+    box-sizing: border-box;
+
+        @media (max-width: $breakpoint-tablet) {
+        padding : 12px;
+      }
+
+  }
+
+  .shav-stock__icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: $color-neutral-100;
+    border-radius: 8px;
+
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  .shav-stock__content {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $space-16;
+  }
+
+  .shav-stock__label {
+    margin: 0;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-body-l;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .shav-stock__bar {
+    width: 100%;
+    height: 12px;
+    background-color: $color-neutral-200;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .shav-stock__bar-fill {
+    height: 100%;
+    background-color: #ac0000;
+    border-radius: 24px;
+    transition: width 0.4s ease;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Akordeony (.shav-accordion) — Figma 390:1609
+  // Wrapper ma tez klase .custom-accordion (kompatybilnosc z legacy CSS).
+  // -----------------------------------------------------------------------------
+  .shav-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: $space-12;
+    padding: $space-24;
+    border: 1px solid $color-neutral-200;
+    border-radius: 8px;
+    margin: $space-24 0;
+    box-sizing: border-box;
+    font-family: $font-family-base;
+    color: $color-neutral-800;
+
+        @media (max-width: $breakpoint-tablet) {
+        padding : 12px;
+      }
+
+
+    .shav-accordion__item {
+      margin: 0 !important;
+      border: 0;
+      border-radius: 8px;
+      background-color: $color-neutral-100;
+      overflow: hidden;
+    }
+
+    .shav-accordion__header {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      gap: $space-12;
+      padding: $space-24 !important;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .shav-accordion__left {
+      display: flex;
+      align-items: center;
+      gap: $space-12;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .shav-accordion__icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: $color-neutral-800;
+
+      // SVG z meta moze nie miec wlasnych wymiarow — wymuszamy
+      svg, img {
+        width: 24px !important;
+        height: 24px !important;
+        display: block;
+      }
+    }
+
+    .shav-accordion__title {
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-body-l;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: $color-neutral-800;
+
+      &--green {
+        color: #2d773d;
+      }
+    }
+
+    // Plus/minus icon — kreska pionowa znika gdy akordeon otwarty
+    .shav-accordion__plus {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      transform: none !important;       // wylacz rotate z legacy CSS dla .accordion-icon
+    }
+
+    .shav-accordion__item.is-open .shav-accordion__plus-v {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .shav-accordion__content {
+      padding: 0 $space-24 $space-24 !important;
+      color: $color-neutral-700;
+      font-family: $font-family-base;
+      font-size: 14px;
+      line-height: 1.5;
+
+      p {
+        margin: 0 0 $space-8;
+        &:last-child { margin-bottom: 0; }
+      }
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Zestaw promocyjny (.shav-bundle) — Figma 493:205
+  // Wrapper ma tez klase .zestaw-container — kompatybilnosc z legacy CSS w
+  // single-product.scss (`.zestaw-title` ukryty inline w PHP).
+  // -----------------------------------------------------------------------------
+  .shav-bundle {
+    display: flex;
+    flex-direction: column;
+    padding: $space-24;
+    border: 1px solid $color-neutral-200;
+    border-radius: 8px;
+    margin: $space-24 0;
+    box-sizing: border-box;
+    background: transparent !important;  // override legacy `.zestaw-container`
+
+      @media (max-width: $breakpoint-tablet) {
+        padding : 12px;
+      }
+
+    .shav-bundle__card {
+      display: flex;
+      flex-direction: column;
+      gap: $space-24;
+    }
+
+    .shav-bundle__top {
+      display: flex;
+      gap: $space-16;
+      align-items: flex-start;
+
+      @media (min-width: $breakpoint-tablet) {
+        gap: $space-24;
+      }
+    }
+
+    .shav-bundle__thumb {
+      flex-shrink: 0;
+      width: 165px;
+      height: 165px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: $color-neutral-100;
+
+      @media (min-width: $breakpoint-tablet) {
+        width: 180px;
+        height: 180px;
+      }
+       @media (max-width: 400px) {
+        width: 135px;
+        height: 145px;
+      }
+
+      img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+        margin: 0 !important;
+      }
+    }
+
+    .shav-bundle__content {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: $space-8;
+    }
+
+    .shav-bundle__badge {
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      justify-content: center;
+      padding: 4px $space-12;
+      background-color: $color-neutral-900;
+      color: $color-neutral-50;
+      border-radius: 24px;
+      font-family: $font-family-base;
+      font-weight: $font-weight-semibold;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 12px;
+      }
+    }
+
+    .shav-bundle__title {
+      margin: 0 !important;
+      color: $color-neutral-800 !important;
+      font-family: $font-family-base !important;
+      font-weight: $font-weight-medium !important;
+      font-size: 18px !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.04em !important;
+      text-transform: none !important;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 22px !important;
+      }
+    }
+
+    .shav-bundle__list {
+      list-style: disc;
+      margin: 0 0 !important;
+      padding: 0 0 0 $space-24 !important;
+      color: $color-neutral-800;
+      font-family: $font-family-base;
+      font-size: $font-size-body-l;
+      line-height: 1.4;
+      letter-spacing: -0.04em;
+
+      li {
+        margin: 0 0 1px !important;
+        color: $color-neutral-800;
+        font-size: $font-size-body-l;
+        font-weight: $font-weight-regular;
+        list-style: disc;
+      }
+    }
+
+    .shav-bundle__price-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: $space-24;
+      background-color: $color-neutral-100;
+      border-radius: 8px;
+
+       @media (min-width: $breakpoint-tablet) {
+       padding: $space-24 $space-12;
+      }
+    }
+
+    .shav-bundle__price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: $space-12;
+      flex-wrap: wrap;
+    }
+
+    .shav-bundle__price-label {
+      color: $color-neutral-800;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-body-l;
+      letter-spacing: -0.04em;
+    }
+
+    .shav-bundle__price-value {
+      display: inline-flex;
+      align-items: center;
+      gap: $space-12;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+
+       @media (max-width: $breakpoint-tablet) {
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    .shav-bundle__savings-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px $space-8;
+      background-color: #2d773d;
+      color: #cff2d6;
+      border-radius: 24px;
+      font-family: $font-family-base;
+      font-weight: $font-weight-semibold;
+      font-size: 11px;
+      line-height: 1.6;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 12px;
+      }
+    }
+
+    .shav-bundle__price-sale {
+      color: #c01616;
+      font-family: 'Roboto', $font-family-base;
+      font-weight: 700;
+      font-size: 22px;
+      line-height: 1.18;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 24px;
+      }
+    }
+
+    .shav-bundle__price-regular {
+      color: $color-neutral-600;
+      font-family: 'Roboto', $font-family-base;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 1;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 24px;
+      }
+    }
+
+    .shav-bundle__cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $space-12;
+      width: 100%;
+      padding: $space-12 $space-24;
+      background-color: $color-neutral-900 !important;
+      color: $color-neutral-100 !important;
+      border-radius: 8px !important;
+      text-decoration: none !important;
+      font-family: $font-family-base !important;
+      font-weight: $font-weight-medium !important;
+      font-size: $font-size-body-l !important;
+      line-height: 24px;
+      letter-spacing: -0.04em;
+      text-align: center;
+      box-sizing: border-box;
+      margin: 0 !important;
+      transition: background-color 0.15s ease;
+      height: auto !important;          // override single_add_to_cart_button height
+
+      &:hover {
+        background-color: $color-neutral-800 !important;
+      }
+    }
+
+    .shav-bundle__cta-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      padding: 4px;
+      background-color: $color-neutral-100;
+      border-radius: 24px;
+      flex-shrink: 0;
+
+      svg { display: block; }
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // "Jesteśmy po stronie kobiet" (.shav-kobiety) — Figma 390:1601
+  // -----------------------------------------------------------------------------
+  .shav-kobiety {
+    display: flex;
+    flex-direction: column;
+    gap: $space-24;
+    margin: $space-24 0;
+  }
+
+  .shav-kobiety__title {
+    margin: 0 !important;
+    color: $color-neutral-800 !important;
+    font-family: $font-family-base !important;
+    font-weight: $font-weight-medium !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    letter-spacing: -0.04em !important;
+    text-transform: none !important;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 22px !important;
+    }
+  }
+
+  .shav-kobiety__boxes {
+    display: flex;
+    flex-direction: column;
+    gap: $space-16;
+  }
+
+  .shav-kobiety__box {
+    padding: $space-24;
+    background-color: $color-neutral-100;
+    border-radius: 8px;
+
+    p {
+      margin: 0;
+      color: $color-neutral-700;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-body-l;
+      line-height: 1.4;
+      letter-spacing: -0.04em;
+    }
+  }
+
+  .shav-kobiety__link {
+    color: #0464ab;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Warianty w boxie ceny (.shav-variations) — Figma 1292:300
+  // Produkt wielowariantowy = 1:1 box produktu prostego + rzad swatchy nad
+  // przyciskiem "Dodaj do koszyka". Natywna tabela .variations i wstrzykiwana
+  // cena wariantu sa ukryte — obsluguje je JS (inc/shav-variations.js).
+  // -----------------------------------------------------------------------------
+  .custom-price-add-to-cart form.cart.variations_form {
+    flex-direction: column;
+    align-items: stretch;
+
+    table.variations {
+      display: none !important;
+    }
+
+    // cene wariantu pokazujemy w glownej cenie boxa (JS), nie w formularzu
+    .woocommerce-variation.single_variation {
+      display: none !important;
+    }
+
+    .woocommerce-variation-add-to-cart {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      // wyrownanie z przyciskiem "Dodaj do koszyka" (w prostym produkcie
+      // quantity ma inne marginesy z legacy CSS — tu je nadpisujemy)
+      .quantity {
+        margin-top: $space-16 !important;
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+
+  .shav-variations {
+    display: flex;
+    flex-direction: column;
+    gap: $space-16;
+    padding-top: $space-24;
+  }
+
+  .shav-variations__row {
+    display: flex;
+    align-items: center;
+    gap: $space-16;
+    flex-wrap: wrap;
+  }
+
+  .shav-variations__label {
+    margin: 0;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 22px;              // Figma H4 (1292:301)
+    }
+  }
+
+  .shav-variations__swatches {
+    display: flex;
+    align-items: center;
+    gap: $space-16;
+    flex-wrap: wrap;
+  }
+
+  .shav-variations__swatch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 1px;
+    box-sizing: border-box;
+    background: transparent;
+    // !important — legacy `.summary button` zeruje border z !important
+    border: 2px solid transparent !important;
+    border-radius: 36px;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+
+    img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 !important;
+    }
+
+    &:hover {
+      border-color: $color-neutral-300 !important;
+    }
+
+    &.is-selected {
+      border-color: $color-neutral-900 !important;
+    }
+
+    // fallback bez obrazka wariacji — pill z nazwa opcji
+    &--text {
+      width: auto;
+      padding: 1px $space-12;
+
+      span {
+        font-family: $font-family-base;
+        font-weight: $font-weight-regular;
+        font-size: $font-size-body-l;
+        letter-spacing: -0.04em;
+        color: $color-neutral-800;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Zestawy (WPC Grouped Product, .woosg-wrap) — wybor wariantu w boxie ceny.
+  // Lista produktow zestawu renderuje sie nad przyciskiem "Dodaj do koszyka"
+  // (ustawienie pluginu Position: above). Pokazujemy TYLKO pozycje z wariantami
+  // (golarka) — stale skladniki (ostrza, etui) sa opisane wyzej w opisie zestawu.
+  // Swatche pluginu woo-variation-swatches przerobione na kolka jak
+  // .shav-variations__swatch (Figma 1292:300).
+  // -----------------------------------------------------------------------------
+  .custom-price-add-to-cart .woosg-wrap {
+    border-top: 1px solid $color-neutral-200;
+    margin-top: $space-24;
+    padding-top: $space-24;
+
+    .woosg-products {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+    }
+
+    // domyslnie chowamy wszystkie pozycje (takze przykrywa stary fix
+    // ".woosg-item-product{display:none}" z Dodatkowego CSS)...
+    .woosg-item-product {
+      display: none !important;
+    }
+
+    // ...i odkrywamy wylacznie te z wyborem wariantu
+    .woosg-item-product.product-type-variable {
+      display: block !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    // nazwa produktu, dostepnosc, ilosc i reset — zbedne w zestawie.
+    // UWAGA: .woosg-title musi zostac widoczny — plugin renderuje w nim
+    // caly form.variations_form; chowamy tylko .woosg-name (link z nazwa).
+    .woosg-name,
+    .woosg-availability,
+    .woosg-quantity,
+    .reset_variations,
+    .reset {
+      display: none !important;
+    }
+
+    .woosg-title {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .variations {
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+    }
+
+    // rzad: label "Kolor" + swatche — jak .shav-variations__row
+    // (plugin daje .variation ramke 1px #e5e5e5 + padding — zerujemy)
+    .variation {
+      display: flex !important;
+      align-items: center;
+      gap: $space-16;
+      flex-wrap: wrap;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+
+    // !important — frontend.css pluginu WPC ma bardziej specyficzna regule (12px)
+    .variation .label {
+      margin: 0 !important;
+      padding: 0 !important;
+      color: $color-neutral-800 !important;
+      font-family: $font-family-base !important;
+      font-weight: $font-weight-medium !important;
+      font-size: 18px !important;
+      line-height: 1.2 !important;
+      letter-spacing: -0.04em !important;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: 22px !important;   // Figma H4 (1292:301)
+      }
+    }
+
+    .variation .select {
+      display: flex;
+      align-items: center;
+      margin: 0 !important;
+    }
+
+    // swatche woo-variation-swatches — kolka zamiast kwadratow
+    .variable-items-wrapper {
+      display: flex !important;
+      align-items: center;
+      gap: $space-16;
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none;
+    }
+
+    .variable-item.image-variable-item {
+      width: 38px !important;
+      height: 38px !important;
+      padding: 1px !important;
+      margin: 0 !important;
+      box-sizing: border-box !important;
+      background: transparent !important;
+      border: 2px solid transparent !important;
+      border-radius: 50% !important;
+      box-shadow: none !important;
+      cursor: pointer;
+      transition: border-color 0.15s ease;
+
+      &:hover {
+        border-color: $color-neutral-300 !important;
+        box-shadow: none !important;
+      }
+
+      &.selected {
+        border-color: $color-neutral-900 !important;
+        box-shadow: none !important;
+      }
+
+      .variable-item-contents {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+
+      img.variable-item-image {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50%;
+        object-fit: cover;
+        display: block;
+        margin: 0 !important;
+      }
+    }
+  }
+
+  // divider daje .woosg-wrap — formularz zestawu pod spodem juz bez wlasnego
+  .custom-price-add-to-cart .woosg-wrap ~ form.cart {
+    border-top: 0 !important;
+  }
+}

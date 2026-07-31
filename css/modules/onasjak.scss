@@ -1,0 +1,135 @@
+// =============================================================================
+// O NAS — Sekcja "Jak tworzymy" (Figma 854:786)
+// Desktop: bg #f2f2f2, padding 96/150. Title left + opis right (gap items-center
+// justify-between), pod tym 3 zdjęcia w grid (602 + 1fr + 1fr, gap 24, h-390).
+// Mobile: stacked.
+// =============================================================================
+
+.onasjak {
+    background: $color-neutral-100 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 32px !important;
+    padding: 48px 20px !important;
+    box-sizing: border-box !important;
+
+    @media (min-width: 900px) {
+        gap: 64px !important;
+        padding: 96px 32px !important;
+    }
+
+    &__head {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 16px !important;
+        width: 100% !important;
+
+        @media (min-width: 900px) {
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 64px !important;
+            max-width: 1300px;
+        }
+    }
+
+    // Title — H2 Figma 32/38.4 Medium #3f3f3f
+    &__title {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--title-size-mobile, 26px) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-800 !important;
+        text-transform: none !important;
+
+        @media (min-width: 900px) {
+            font-size: 46px !important;
+            line-height: 50.4px !important;          // Figma 1:1
+            max-width: 468px !important;
+            flex-shrink: 0 !important;
+        }
+    }
+
+    // Description — Body L Figma 16/22.4 Regular #585858
+    &__description {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 400 !important;
+        font-size: var(--description-size-mobile, 16px) !important;
+        line-height: 22.4px !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-700 !important;
+
+        @media (min-width: 900px) {
+            font-size: 18px !important;
+            line-height: 28.4px !important;
+            max-width: 706px !important;
+        }
+    }
+
+    // Galeria
+    &__gallery {
+        width: 100% !important;
+
+        // Mobile: horizontal swipe slider z scroll-snap
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 12px !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 0 20px 0 0 !important;
+        margin: 0 -20px !important;             // ucieczka z paddingu sekcji (full bleed slider)
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+
+        &::-webkit-scrollbar { display: none !important; }
+
+        @media (min-width: 900px) {
+            // Desktop: grid 3-col (602 : 389 : 389 ≈ 1.55 : 1 : 1)
+            display: grid !important;
+            grid-template-columns: 1.55fr 1fr 1fr !important;
+            gap: 24px !important;
+            overflow: visible !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            scroll-snap-type: none !important;
+            max-width: 1300px;
+        }
+    }
+
+    &__slot {
+        border-radius: 16px !important;
+        overflow: hidden !important;
+
+        // Mobile: 85% szerokosci viewportu, snap-align start, aspect 4:5
+        flex: 0 0 85% !important;
+        max-width: 85% !important;
+        aspect-ratio: 4 / 5 !important;
+        scroll-snap-align: start !important;
+
+        @media (min-width: 900px) {
+            flex: 1 1 auto !important;
+            max-width: none !important;
+            border-radius: 24px !important;
+            aspect-ratio: auto !important;
+            height: 390px !important;
+            scroll-snap-align: none !important;
+        }
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+    }
+}

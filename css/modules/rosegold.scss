@@ -1,0 +1,1291 @@
+// =============================================================================
+// DROP / ROSE GOLD — sekcje podstrony kolekcji (Figma 1330:1860 desktop / 1281:3025 mobile)
+// =============================================================================
+// 6 reużywalnych bloków promocji:
+//   .rosegoldhero      — hero z headerem + licznikiem odliczającym
+//   .rosegoldfeatured  — produkt wyróżniony (obraz + add-to-cart + ceny)
+//   .rosegoldgrid      — siatka 4 kart produktów
+//   .rosegoldbanner    — pełnoszerokościowy baner z nakładką
+//   .rosegoldzestaw    — sekcja zestawu z boxem cenowym
+//   .rosegoldslider    — karuzela banerów "peek"
+//
+// Tylko tokeny z `_tokens.scss`. Wartości spoza skali (radiusy 82/64/34, brąz
+// banera, siatka 350px) opisane lokalnie z komentarzem "z Figmy".
+// =============================================================================
+
+
+// -----------------------------------------------------------------------------
+// Lokalne wartości (z Figmy, poza globalną skalą)
+// -----------------------------------------------------------------------------
+$rg-radius-card:   82px;   // duży radius karty featured (Figma 1341:2320)
+$rg-radius-grid:   64px;   // radius kart w gridzie (1352:2677)
+$rg-radius-image:  34px;   // radius obrazu w featured (1341:2324)
+$rg-radius-slide:  82px;   // radius slajdów slidera (2801:46388)
+$rg-tile-radius:   12px;   // radius kafla licznika (poza skalą $radius-*)
+
+$rg-banner-text:   #604239; // z Figmy 1349:2631 — brąz rose na banerze
+$rg-badge-text:    $color-red-50;   // #fff0f0
+
+// Gradient badge'a "EDYCJA LIMITOWANA" — dokładne próbki pikseli z Figmy (karta 1352:2677):
+// diagonalny: jasny róż -> ciemny w ~62% -> ponownie jaśniejszy przy prawej krawędzi.
+$rg-badge-gradient: linear-gradient(105deg, #e9c1b9 0%, #bc8d80 26%, #8d6154 62%, #a6776a 84%, #cf9f8f 100%);
+
+// Boczny padding sekcji: mobile 20px (Figma px-20), desktop skalowany do 150px (Figma na 1728)
+@mixin rg-side-pad {
+  padding-inline: 20px;
+  @media (min-width: $breakpoint-tablet) {
+    padding-inline: clamp(24px, 8.68vw, 150px);
+  }
+}
+
+// Badge z peachowym gradientem (wspólny dla wszystkich sekcji)
+@mixin rg-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  background: $rg-badge-gradient;
+  color: $rg-badge-text;
+  font-family: $font-family-base;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-subtitle-s;   // 14
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-tight;
+  white-space: nowrap;
+}
+
+// Zielony badge oszczędności
+@mixin rg-discount {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: $radius-m;           // 24
+  background: $color-success-dark;    // green-700
+  color: $color-on-success-medium;    // green-100
+  font-family: $font-family-base;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-subtitle-s;   // 14
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-tight;
+  white-space: nowrap;
+}
+
+
+// -----------------------------------------------------------------------------
+// Box-sizing: border-box dla wszystkich elementów bloków dropu.
+// Motyw NIE wymusza tego globalnie — bez tego width:100% + padding wychodzi poza
+// kontener (przy overflow:hidden treść jest obcinana). Naprawia to u źródła.
+// -----------------------------------------------------------------------------
+.rosegoldhero,
+.rosegoldfeatured,
+.rosegoldgrid,
+.rosegoldbanner,
+.rosegoldzestaw,
+.rosegoldslider {
+  &, *, *::before, *::after { box-sizing: border-box; }
+}
+
+// Bardzo małe telefony (<400px) — badge "OSZCZĘDZASZ 30%" mniejszy, żeby zmieścił się w rzędzie ceny
+@media (max-width: 399px) {
+  .rosegoldzestaw__discount,
+  .rosegoldfeatured__discount { font-size: 10px !important; padding: 3px 8px !important; }
+}
+
+// Podstrona dropu: usuń górny margines .wp-site-blocks (globalny odstęp pod headerem).
+// Hero ma własny header i ma być flush do góry — bez białego paska.
+.page-template-rosegold .wp-site-blocks { margin-top: 0; }
+
+
+// -----------------------------------------------------------------------------
+// Wspólny przycisk koszyka (białe kółko z ikoną add-to-cart)
+// -----------------------------------------------------------------------------
+.rosegold-cart-btn {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: $color-white;
+  color: $color-neutral-800;
+  border: 1px solid rgba($color-white, 0.6);
+  box-shadow: 1px 5px 12px rgba($color-black, 0.12);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  svg { width: 24px; height: 24px; display: block; }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 1px 8px 20px rgba($color-black, 0.18);
+  }
+
+  &.is-disabled {
+    cursor: default;
+    opacity: 0.55;
+    &:hover { transform: none; box-shadow: 1px 5px 12px rgba($color-black, 0.12); }
+  }
+}
+
+
+// =============================================================================
+// 1. HERO — .rosegoldhero
+// =============================================================================
+.rosegoldhero {
+  &__bg {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;                  // mobile (Figma ~358)
+    background-size: cover;
+    background-position: 64% center;    // mobile: kadr bardziej w lewo (kobieta z prawej)
+    overflow: hidden;
+    @include rg-side-pad;               // boczne wcięcie (tło zostaje full-bleed)
+
+    @media (min-width: $breakpoint-tablet) {
+      min-height: 532px;                // z Figmy (1344:2384)
+      background-position: center;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  // Header wtopiony w hero (reużywa klasy .header z modułu header).
+  // Szerokość równa sekcjom (max 1428), nie 1300 z globalnego headera.
+  &__header {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1428px;
+    margin: $space-16 auto 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      max-width: 1428px;
+      margin-top: $space-24;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;              // treść do lewej (mobile i desktop, jak Figma)
+    width: 100%;
+    max-width: 1428px;
+    margin-inline: auto;
+    padding-block: $space-24;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-block: $space-32;
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-8;                            // mobile ciaśniej
+    width: fit-content;                       // grupa hugs lewą krawędź
+    max-width: 100%;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-16;
+      max-width: 520px;
+    }
+  }
+
+  &__badge {
+    @include rg-badge;
+    padding: 6px 16px;                        // mobile (Figma px-16 py-6)
+    border-radius: 0 $radius-m 0 $radius-m;   // top-right + bottom-left
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 10px 24px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    color: $color-white;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 36px;                          // mobile 36 — "Drop Rose Gold" w 1 linii
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 0 4px 4px rgba($color-black, 0.25), 0 1px 0.5px rgba($color-black, 0.25);
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h1;               // 64
+    }
+  }
+
+  &__subtitle {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: $space-4 $space-8;
+    color: $color-white;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 15px;                          // mobile
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-8 $space-12;
+      font-size: $font-size-subtitle-l;       // 18
+    }
+  }
+
+  &__subtitle-2 {
+    flex-basis: 100%;                         // mobile: własna linia (Figma)
+    text-align: center;
+    font-weight: $font-weight-light;
+    font-size: 12px;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-basis: auto;
+      font-weight: inherit;
+      font-size: inherit;
+    }
+  }
+
+  &__divider {
+    width: 244px;                             // mobile (Figma)
+    max-width: 100%;
+    height: 1px;
+    background: rgba($color-white, 0.4);
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 488px;
+    }
+  }
+
+  &__countdown {
+    display: flex;
+    gap: $space-4;                            // mobile
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-12;
+    }
+  }
+
+  &__tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-4;
+    width: 60px;                              // mobile (Figma w-60)
+    padding: $space-8 4px;
+    background: $color-white;
+    border-radius: 6.6px;                     // mobile (Figma)
+    text-align: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 88px;
+      padding: $space-8;
+      border-radius: $rg-tile-radius;         // 12
+    }
+  }
+
+  &__tile-num {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 22px;                          // mobile (Figma ~22)
+    line-height: 1.1;
+    color: $color-accent-medium;              // red-600 (#ac0000)
+    font-variant-numeric: tabular-nums;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 40px;
+    }
+  }
+
+  &__tile-label {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 10px;                          // mobile (Figma 10)
+    line-height: 1.1;
+    color: $color-black;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-tight;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-body-s;           // 12
+    }
+  }
+}
+
+
+// =============================================================================
+// 2. FEATURED — .rosegoldfeatured
+// =============================================================================
+.rosegoldfeatured {
+  @include rg-side-pad;
+  padding-block: $space-32;
+
+  &__card {
+    position: relative;
+    overflow: hidden;                         // obcina plakietkę w zaokrąglonym rogu (jak Figma)
+    max-width: 1428px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: $space-12;                       // mobile: mały padding (Figma p-12)
+    background: $color-neutral-100;
+    border-radius: $radius-l;                 // 36 mobile
+
+    @media (min-width: $breakpoint-tablet) {
+      border-radius: $rg-radius-card;         // 82 desktop
+      padding: $space-64 0;
+    }
+  }
+
+  &__badge {
+    @include rg-badge;
+    display: none;                            // mobile: brak plakietki (Figma)
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 10px 64px 10px 24px;             // Figma pr-64 (tekst z lewej, prawy bok w róg)
+    border-radius: 0 12px 12px $radius-s;     // tr-12 br-12 bl-16
+
+    @media (min-width: $breakpoint-tablet) {
+      display: inline-flex;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: $space-12;                           // mobile
+    width: 100%;
+    padding: 0;                               // mobile (karta ma p-12)
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+      align-items: center;
+      gap: $space-64;
+      padding: 0 $space-64;
+    }
+  }
+
+  &__media {
+    position: static;                         // mobile: koszyk względem karty (rząd ceny)
+    width: 100%;
+    border-radius: $rg-radius-image;
+    overflow: visible;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: $radius-m;               // 24 mobile
+      aspect-ratio: 366 / 300;
+      object-fit: cover;
+      background: $color-peach-100;
+
+      @media (min-width: $breakpoint-tablet) {
+        border-radius: $rg-radius-image;      // 34
+        aspect-ratio: 678 / 550;
+      }
+    }
+
+    @media (min-width: $breakpoint-tablet) {
+      position: relative;                     // desktop: koszyk na obrazie
+      flex: 55 1 0;              // obraz kurczy się proporcjonalnie z treścią (nie sztywne 678)
+      min-width: 0;
+      width: auto;
+    }
+  }
+
+  &__media-link { display: block; }
+
+  &__media-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 678 / 550;
+    border-radius: $rg-radius-image;
+    background: $color-peach-100;
+    color: $color-neutral-600;
+    font-family: $font-family-base;
+    font-size: $font-size-body-m;
+  }
+
+  &__cart {
+    bottom: $space-16;                        // mobile: dół karty (rząd ceny)
+    right: $space-16;
+    top: auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      top: $space-16;                         // desktop: na obrazie
+      right: $space-16;
+      bottom: auto;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-12;                           // mobile
+    flex: 1;
+    min-width: 0;
+    padding: $space-4 $space-12 $space-12;     // mobile: większy odstęp wokół tekstu
+
+    @media (min-width: $breakpoint-tablet) {
+      flex: 45 1 0;             // proporcja treść:obraz = 45:55 (jak Figma)
+      gap: $space-64;
+      padding: 0;
+      padding-block: $space-32;
+    }
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;                            // mobile
+    color: $color-neutral-800;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-24;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 28px;                          // mobile
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h2;               // 42
+    }
+  }
+
+  &__desc {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: 14px;                          // mobile (Body M)
+    line-height: 1.5;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+    max-width: 473px;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: $space-24;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-32;
+    }
+  }
+
+  &__name {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+
+    &-brand { color: $color-neutral-500; }    // #8b8b8b
+  }
+
+  &__sub {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-light;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-600;
+  }
+
+  &__price {
+    display: flex;
+    flex-direction: column;
+    gap: $space-12;
+    align-items: flex-start;
+  }
+
+  &__discount { @include rg-discount; }
+
+  &__price-row {
+    display: flex;
+    gap: $space-8;
+    align-items: baseline;
+    font-size: 16px;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  &__price-old {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    color: $color-neutral-400;
+    text-decoration: line-through;
+  }
+
+  &__price-new {
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    color: $color-accent-medium;              // red-600
+  }
+}
+
+
+// =============================================================================
+// 3. GRID — .rosegoldgrid
+// =============================================================================
+.rosegoldgrid {
+  @include rg-side-pad;
+  padding-block: $space-40;
+  display: flex;
+  flex-direction: column;
+  gap: $space-40;
+
+  @media (min-width: $breakpoint-tablet) {
+    gap: $space-48;
+    padding-block: $space-64;
+  }
+
+  &__heading {
+    margin: 0 auto;
+    max-width: 746px;                         // Figma: łamie "Rose Gold" do 2. linii
+    text-align: center;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-h1-mob;             // 44
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h1;               // 64
+    }
+
+    &-accent { color: $color-neutral-400; }   // "Rose Gold" jaśniejszy
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $space-16;
+    max-width: 1282px;
+    width: 100%;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: 1fr 1fr;
+      gap: $space-8;
+    }
+  }
+
+  // --- Karta ---
+  &__card {
+    position: relative;
+    overflow: hidden;                         // obcina plakietkę w rogu (jak Figma)
+    display: flex;                            // mobile: obraz z lewej, treść z prawej
+    align-items: stretch;
+    background: $color-neutral-100;
+    border-radius: $radius-xs;                // 8 mobile (Figma rounded-8)
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: column;                 // desktop: pion
+      align-items: center;
+      gap: $space-16;
+      padding: $space-48;                     // pt zostawia miejsce na plakietkę
+      border-radius: $rg-radius-grid;         // 64
+    }
+  }
+
+  &__badge {
+    @include rg-badge;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 6px 16px;
+    border-radius: 0 0 0 $radius-m;           // mobile: tylko bl-24 (Figma)
+    font-size: $font-size-body-s;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 10px 48px 8px 24px;            // pr-48 z Figmy
+      border-radius: 0 4px 4px $radius-s;     // desktop: bl-16 br-4 tr-4
+      font-size: $font-size-subtitle-s;
+    }
+  }
+
+  &__media {
+    position: static;                         // mobile: koszyk pozycjonowany względem karty
+    flex: 0 0 clamp(120px, 46%, 170px);       // mobile: kolumna obrazu z lewej (skaluje na małych)
+    align-self: center;
+    aspect-ratio: 1;
+
+    @media (min-width: $breakpoint-tablet) {
+      position: relative;          // desktop: koszyk przy krawędzi pola
+      flex: none;
+      width: 100%;                 // pełna szerokość pola
+      aspect-ratio: auto;
+      display: flex;
+      justify-content: center;     // obraz wyśrodkowany w poziomie
+      margin-top: $space-8;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      @media (min-width: $breakpoint-tablet) {
+        width: 350px;
+        height: 350px;
+      }
+    }
+  }
+
+  &__media-link { display: block; width: 100%; height: 100%; align-items: center;
+    justify-content: center;
+    display: flex; }
+
+  &__media-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 170px;
+    background: $color-neutral-200;
+    border-radius: $radius-s;
+    color: $color-neutral-600;
+    font-size: $font-size-body-s;
+  }
+
+  &__cart {
+    bottom: $space-16;                        // mobile: przy prawej krawędzi karty (Figma)
+    right: $space-16;
+    top: auto;
+    width: 44px;
+    height: 44px;
+    svg { width: 20px; height: 20px; }
+
+    @media (min-width: $breakpoint-tablet) {
+      top: 8px;
+      bottom: auto;
+      right: 0;                    // prawa krawędź pola (48px od brzegu karty — jak Figma)
+      width: 56px;
+      height: 56px;
+      svg { width: 24px; height: 24px; }
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;                  // mobile: treść wyśrodkowana pionowo
+    gap: $space-8;
+    padding: $space-12;
+
+    @media (min-width: $breakpoint-tablet) {
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: $space-32;
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;                            // mobile
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-12;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+  }
+
+  &__brand { color: $color-neutral-500; }
+
+  &__sub {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-light;
+    font-size: 12px;                          // mobile (Figma subtitle-m 12)
+    line-height: 1.3;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-600;
+
+    @media (min-width: $breakpoint-tablet) { font-size: 16px; }
+  }
+
+  &__price {
+    display: flex;
+    gap: $space-4;                            // mobile
+    align-items: baseline;
+
+    @media (min-width: $breakpoint-tablet) { gap: $space-8; }
+  }
+
+  &__price-old {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 12px;                          // mobile
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-400;
+    text-decoration: line-through;
+    &:empty { display: none; }
+
+    @media (min-width: $breakpoint-tablet) { font-size: 16px; }
+  }
+
+  &__price-new {
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    font-size: 12px;                          // mobile
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+    &.is-discounted { color: $color-accent-medium; }   // z rabatem → czerwony
+
+    @media (min-width: $breakpoint-tablet) { font-size: 16px; }
+  }
+
+  &__bottom-badge {
+    @include rg-badge;
+    align-self: flex-start;
+    border-radius: $radius-xs;
+    padding: 6px 16px;
+    font-size: $font-size-body-s;
+  }
+}
+
+
+// =============================================================================
+// 4. BANNER — .rosegoldbanner
+// =============================================================================
+.rosegoldbanner {
+  position: relative;                         // anchor dla przycisku-strzałki
+
+  &__bg {
+    position: relative;
+    display: flex;
+    align-items: flex-start;                  // mobile: treść u góry (Figma)
+    min-height: 640px;                        // mobile (Figma ~684, portret)
+    padding-block: $space-32;
+    @include rg-side-pad;                     // 20 mobile / skalowany desktop
+    background-image: var(--rg-bg-m);         // mobile: obraz mobilny
+    background-size: cover;
+    background-position: center;              // wyśrodkowany kadr (nie ucina od dołu)
+    text-decoration: none;
+    overflow: hidden;
+
+    @media (min-width: $breakpoint-tablet) {
+      align-items: center;                    // desktop: wyśrodkowana pionowo
+      // wysokość skaluje się z szerokością (proporcja z Figmy) → pełny obraz, bez ucinania
+      // na bardzo szerokich ekranach; min-height jako podłoga na węższym desktopie
+      aspect-ratio: 1728 / 696;
+      min-height: 480px;
+      padding-block: $space-40;
+      background-image: var(--rg-bg-d);       // desktop: obraz desktopowy
+      background-position: center;
+    }
+  }
+
+  // Wrapper 1428 wyśrodkowany — treść kończy się dokładnie na krawędzi nav
+  &__inner {
+    width: 100%;
+    max-width: 1428px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: center;                  // mobile: wyśrodkowane
+  }
+
+  // pozycja treści względem krawędzi 1428 (tylko desktop)
+  @media (min-width: $breakpoint-tablet) {
+    &--left  &__inner { justify-content: flex-start; }
+    &--center &__inner { justify-content: center; }
+    &--right &__inner { justify-content: flex-end; }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-16;
+    max-width: 581px;                         // blok treści z Figmy (1349:2607)
+    text-align: center;
+  }
+
+  &__badge {
+    @include rg-badge;
+    border-radius: 0 $radius-m 0 $radius-m;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-h1-mob;             // 44
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-white;
+    text-shadow: 1px 1px 0.5px rgba($color-black, 0.25), 0 1px 0.5px rgba($color-black, 0.25);
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h1;               // 64
+    }
+  }
+
+  &__desc {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: 16px;                          // z Figmy — Body L 18 (mobile 16)
+    line-height: 1.5;
+    letter-spacing: $letter-spacing-tight;
+    color: $rg-banner-text;
+
+    @media (min-width: $breakpoint-tablet) { font-size: 18px; }
+  }
+
+  // Opcjonalny przycisk — frosted kółko ze strzałką w prawym-dolnym rogu
+  // (ten sam styl co strzałka banera w menu mobilnym)
+  &__button {
+    position: absolute;
+    z-index: 2;
+    right: clamp(20px, 8.68vw, 150px);        // wyrównany z prawą krawędzią treści
+    bottom: $space-32;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba($color-white, 0.2);
+    border: 1.5px solid rgba($color-white, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: $color-white;
+    text-decoration: none;
+    transition: background 0.15s ease;
+
+    svg { width: 24px; height: 24px; display: block; }
+    &:hover { background: rgba($color-white, 0.35); }
+    &.is-disabled { opacity: 0.5; }
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 64px;
+      height: 64px;
+      bottom: $space-40;
+    }
+  }
+}
+
+
+// =============================================================================
+// 5. ZESTAW — .rosegoldzestaw
+// =============================================================================
+.rosegoldzestaw {
+  background: $color-neutral-100;
+
+  &__inner {
+    max-width: 1428px;
+    margin: 0 auto;
+    @include rg-side-pad;
+    padding-block: $space-32;
+    display: grid;
+    // mobile: obraz + treść w górnym rzędzie, cena i przycisk pełna szerokość
+    grid-template-columns: clamp(120px, 42%, 180px) 1fr;
+    grid-template-areas:
+      "media content"
+      "pricebox pricebox"
+      "button button";
+    align-items: start;
+    gap: $space-16 $space-12;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding-block: $space-64;
+      grid-template-columns: 1.1fr 1fr;
+      grid-template-areas:
+        "media content"
+        "media pricebox"
+        "media button";
+      gap: $space-24 $space-64;
+    }
+  }
+
+  &--img-right &__inner {
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: 1fr 1.1fr;
+      grid-template-areas:
+        "content media"
+        "pricebox media"
+        "button media";
+    }
+  }
+
+  &__media {
+    grid-area: media;
+    width: 100%;
+    align-self: center;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 180 / 199;                // mobile (Figma)
+      object-fit: cover;
+      border-radius: $radius-m;               // 24 mobile
+
+      @media (min-width: $breakpoint-tablet) {
+        aspect-ratio: 628 / 507;
+        object-fit: contain;
+        border-radius: 0;
+      }
+    }
+  }
+
+  &__media-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 628 / 507;
+    background: $color-neutral-200;
+    border-radius: $radius-s;
+    color: $color-neutral-600;
+    font-size: $font-size-body-m;
+  }
+
+  &__content {
+    grid-area: content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-8;                            // mobile
+    min-width: 0;
+
+    @media (min-width: $breakpoint-tablet) { gap: $space-24; }
+  }
+
+  &__badge {
+    @include rg-badge;
+    align-self: flex-end;                     // mobile: badge po prawej (Figma items-end)
+    padding: 6px 16px;
+    border-radius: 0 $radius-m 0 $radius-m;
+
+    @media (min-width: $breakpoint-tablet) {
+      align-self: flex-start;
+      padding: 10px 24px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 16px;                          // mobile (Figma h4 16)
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h2;               // 42
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: 21px;                       // mobile (Figma ms-21)
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
+    @media (min-width: $breakpoint-tablet) { padding-left: $space-24; }
+
+    li {
+      font-family: $font-family-base;
+      font-weight: $font-weight-light;        // mobile (Figma light)
+      font-size: 14px;                        // mobile (Body M 14)
+      line-height: 1.4;
+      letter-spacing: $letter-spacing-tight;
+      color: $color-neutral-800;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-weight: $font-weight-regular;
+        font-size: 18px;                      // desktop (Body L)
+      }
+    }
+  }
+
+  // Box cenowy — szklana płytka
+  &__pricebox {
+    grid-area: pricebox;
+    width: 100%;
+    padding: $space-16 $space-12;             // mobile
+    border: 1px solid $color-white;
+    border-radius: $radius-s;                 // 16
+    background: linear-gradient(174deg, rgba(237, 237, 237, 0.5) 22%, rgba(255, 255, 255, 0.5) 47%);  // mobile (Figma 0.5)
+    box-shadow: 1px 5px 12px rgba($color-black, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: $space-24;
+      background: linear-gradient(174deg, rgba(158, 158, 158, 0.1) 22%, rgba(255, 255, 255, 0.1) 47%);
+      box-shadow: 1px 5px 64px rgba($color-black, 0.06);
+    }
+  }
+
+  &__price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-12;
+    flex-wrap: wrap;
+  }
+
+  &__price-label {
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: 12px;                          // Figma subtitle-m 12
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-800;
+
+    @media (min-width: $breakpoint-tablet) { font-size: 14px; }
+  }
+
+  &__price-right {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-12;
+  }
+
+  &__discount { @include rg-discount; }
+
+  &__price-in {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-accent-light;               // red-500 (#c01616)
+    white-space: nowrap;
+  }
+
+  &__price-out {
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+    color: $color-neutral-600;
+    white-space: nowrap;
+  }
+
+  &__button {
+    grid-area: button;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-12;
+    width: 100%;                             // pełna szerokość (mobile, Figma)
+    padding: 12px 24px;
+    background: $color-neutral-900;
+    color: $color-neutral-50;
+    border-radius: $radius-l;                // 36 — pill (Figma)
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: 12px;                         // Figma subtitle-m 12
+    line-height: 1.4;
+    letter-spacing: $letter-spacing-tight;
+    text-decoration: none;
+    transition: opacity 0.15s ease;
+
+    &:hover { opacity: 0.85; }
+    &.is-disabled { cursor: default; }        // wciąż czarny (brak linku nie wyblakla)
+
+    @media (min-width: $breakpoint-tablet) {
+      justify-self: start;
+      width: auto;                           // desktop: auto (CTA po lewej)
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+  }
+
+  // Strzałka w białym kółku (Figma)
+  &__button-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: $color-neutral-50;
+    color: $color-neutral-900;
+    font-size: 15px;
+    line-height: 1;
+
+    svg { width: 16px; height: 16px; }
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 28px;
+      height: 28px;
+      svg { width: 18px; height: 18px; }
+    }
+  }
+}
+
+
+// =============================================================================
+// 6. SLIDER — .rosegoldslider (peek carousel)
+// =============================================================================
+.rosegoldslider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-24;
+  padding-block: $space-24;
+  overflow: hidden;
+
+  @media (min-width: $breakpoint-tablet) {
+    gap: $space-32;
+    padding-block: $space-40;
+  }
+
+  &__viewport {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    gap: $space-16;                           // mobile (Figma gap-16)
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+    touch-action: pan-y;
+    cursor: grab;
+
+    @media (min-width: $breakpoint-tablet) { gap: $space-8; }
+  }
+
+  &.is-dragging &__track { cursor: grabbing; transition: none; }
+
+  &__slide {
+    position: relative;
+    flex: 0 0 auto;
+    width: min(82vw, 360px);                  // mobile: portret (Figma slide 360)
+    border-radius: 32px;                      // mobile (Figma rounded-32)
+    overflow: hidden;
+    opacity: 0.4;
+    transition: opacity 0.45s ease;
+    text-decoration: none;
+    -webkit-user-select: none;
+    user-select: none;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: 76vw;
+      max-width: 1308px;
+      border-radius: $rg-radius-slide;        // 82
+    }
+
+    &.is-active { opacity: 1; }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  &__img--mobile {
+    aspect-ratio: 360 / 450;                  // mobile: portret
+    @media (min-width: $breakpoint-tablet) { display: none; }
+  }
+
+  &__img--desktop {
+    display: none;                            // mobile: ukryty
+    aspect-ratio: 1308 / 654;
+    @media (min-width: $breakpoint-tablet) { display: block; }
+  }
+
+  &__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1308 / 654;
+    background: $color-peach-100;
+    color: $color-neutral-600;
+    font-size: $font-size-body-m;
+  }
+
+  // --- Kropki ---
+  &__dots {
+    display: flex;
+    gap: $space-4;
+    align-items: center;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 50px;
+    background: $color-neutral-200;            // ~grey-100 (#ebebeb)
+    cursor: pointer;
+    transition: width 0.25s ease, background 0.25s ease;
+
+    &.is-active {
+      width: 18px;
+      background: $color-neutral-700;          // ~grey-700 (#4a4a4a)
+    }
+  }
+}

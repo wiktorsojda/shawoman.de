@@ -2,8 +2,144 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/glownagrid",
-  "title": "Główna Grid",
+  "title": "Główna Grid Produktów",
+  "attributes": {
+    "buttonLabel": {
+      "type": "string",
+      "default": "Zobacz"
+    },
+    "item1Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item1Label": {
+      "type": "string",
+      "default": "Myjka do ciała"
+    },
+    "item1Accent": {
+      "type": "string",
+      "default": ""
+    },
+    "item1URL": {
+      "type": "string",
+      "default": "/produkt/myjka-do-ciala-shav-woman/"
+    },
+    "item2Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item2Label": {
+      "type": "string",
+      "default": "Zestaw Ostrzy Precyzyjnych"
+    },
+    "item2Accent": {
+      "type": "string",
+      "default": ""
+    },
+    "item2URL": {
+      "type": "string",
+      "default": "/produkt/ostrze-okragle-foliowe/"
+    },
+    "item3Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item3Label": {
+      "type": "string",
+      "default": "Zestaw Ostrzy Okrągłych"
+    },
+    "item3Accent": {
+      "type": "string",
+      "default": ""
+    },
+    "item3URL": {
+      "type": "string",
+      "default": "/produkt/ostrze-bazowe-foliowe/"
+    },
+    "item4Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item4Label": {
+      "type": "string",
+      "default": "Ostrze precyzyjne"
+    },
+    "item4Accent": {
+      "type": "string",
+      "default": ""
+    },
+    "item4URL": {
+      "type": "string",
+      "default": "/produkt/ostrze-okragle-foliowe/"
+    },
+    "item5Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item5Label": {
+      "type": "string",
+      "default": "Myjka do głowy"
+    },
+    "item5Accent": {
+      "type": "string",
+      "default": ""
+    },
+    "item5URL": {
+      "type": "string",
+      "default": "/produkt/myjka-do-glowy-shav-woman/"
+    },
+    "item6Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item6Label": {
+      "type": "string",
+      "default": "Golarka Damska Shav "
+    },
+    "item6Accent": {
+      "type": "string",
+      "default": "woman"
+    },
+    "item6URL": {
+      "type": "string",
+      "default": "/produkt/golarka-damska-shav-woman/"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

@@ -3,7 +3,55 @@
   "apiVersion": 3,
   "name": "ourblocktheme/etuiproduktowa",
   "title": "Etui Produktowa",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Dla Twojego komfortu"
+    },
+    "description": {
+      "type": "string",
+      "default": "Oryginalne etui podróżne do golarki Shav to idealne rozwiązanie dla bezpiecznego przechowywania w domu i w podróży. Etui oferuje wystarczająco dużo miejsca, aby zmieścić golarkę Shav wraz z niezbędnymi akcesoriami – wymiennym ostrzem, nakładkami i kablem do ładowania."
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

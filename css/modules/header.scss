@@ -1,0 +1,355 @@
+// =============================================================================
+// HEADER — naglowek strony (Figma: 93:61951 desktop, 93:60669 mobile)
+// =============================================================================
+// Nowy moduł zgodny z design systemem. Stary `.site-header` zostaje na razie
+// nietkniety — bedzie podmieniony przy nadpisywaniu szablonu.
+//
+// Struktura:
+//
+//   <div class="promo-bar">
+//     <p class="promo-bar__text">-25% z kodem: <strong>SHAV25</strong></p>
+//     <span class="promo-bar__sep" aria-hidden="true"></span>
+//     <button class="promo-bar__copy">Skopiuj kod: <svg>...</svg></button>
+//   </div>
+//
+//   <header class="header">
+//     <div class="header__inner">
+//       <a class="header__logo" href="/"><svg>...</svg></a>
+//       <nav class="header__nav">
+//         <a href="#">Produkty</a>
+//         <a href="#">O nas</a>
+//         ...
+//       </nav>
+//       <a class="header__cart" href="/koszyk"><svg>...</svg></a>
+//     </div>
+//   </header>
+// =============================================================================
+
+
+// -----------------------------------------------------------------------------
+// Promo bar
+// -----------------------------------------------------------------------------
+.promo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $promo-bar-gap;
+
+  height: $promo-bar-height-mobile;
+  padding: 0 $promo-bar-padding-x;
+
+  background-color: $promo-bar-bg;
+  color: $promo-bar-text-color;
+
+  font-family: $font-family-base;
+  font-weight: $font-weight-bold;
+  font-size: $promo-bar-font-size-mobile;
+  letter-spacing: $letter-spacing-tight;
+
+  @media (min-width: $breakpoint-tablet) {
+    height: $promo-bar-height-desktop;
+    font-size: $promo-bar-font-size-desktop;
+  }
+
+  &__sep {
+    width: 1px;
+    height: $promo-bar-separator-height;
+    background-color: currentColor;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+
+  &__copy {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-4;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    font: inherit;
+    font-weight: $font-weight-regular;
+    cursor: pointer;
+
+    svg, img {
+      width: $promo-bar-icon-size;
+      height: $promo-bar-icon-size;
+      flex-shrink: 0;
+    }
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// Header (logo + nav + cart)
+// -----------------------------------------------------------------------------
+// Blokuje scroll body gdy menu mobile otwarte (JS dodaje klase na body)
+body.has-mobile-menu-open {
+  overflow: hidden;
+}
+
+.header {
+  position: relative;             // anchor dla dropdown mobile (.header__nav--open)
+  z-index: 100;                   // nad mobile menu (z-index 90), zeby hamburger byl klikalny
+  background-color: $header-bg;
+  color: $header-text-color;
+
+  // Mobile (domyslnie): plaski pasek z border-bottom
+  height: $header-height-mobile;
+  padding: 0 8px;
+  border: $header-border-width solid $header-border-color;
+      border-radius: 8px;
+  
+    justify-content: center;
+    align-items: center;
+    margin: 0 18px;
+
+  // Desktop: pill z border + radius (z Figmy: 104:62694)
+  @media (min-width: $breakpoint-tablet) {
+    height: $header-height-desktop;
+    padding: 0 $header-padding-x-desktop;
+    border: $header-border-width solid $header-border-color;
+    border-radius: $header-radius-desktop;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: $header-max-width;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    display: inline-flex;
+    flex-shrink: 0;
+    width: $header-logo-w-mobile;
+    height: $header-logo-h-mobile;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: $header-logo-w-desktop;
+      height: $header-logo-h-desktop;
+    }
+
+    svg, img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &__nav-close {
+    display: none;                       // widoczny tylko gdy menu mobile otwarte (override w &--open)
+    position: absolute;
+    top: $space-16;
+    right: $space-16;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-neutral-100;
+    color: $color-neutral-900;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: $color-neutral-200;
+    }
+
+    svg {
+      display: block;
+    }
+  }
+
+  &__nav {
+    display: none;
+    align-items: center;
+    gap: $header-nav-gap;
+    margin-left: auto;          // przepycha nav + cart na prawo (logo zostaje z lewej)
+
+    @media (min-width: $breakpoint-tablet) {
+      display: inline-flex;
+    }
+
+    // Mobile: fullscreen overlay z X w prawym gornym rogu (klik = zamknij)
+    &--open {
+      @media (max-width: ($breakpoint-tablet - 1)) {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        position: fixed;
+        inset: 0;                        // top:0 right:0 bottom:0 left:0 — pelny ekran
+        margin: 0;
+        padding: 72px 0 $space-24;       // miejsce na X w gornym prawym rogu
+        background-color: $color-neutral-50;
+        z-index: 200;                    // ponad header (header ma 100)
+        overflow-y: auto;
+
+        .header__nav-close {
+          display: inline-flex;          // pokaz X tylko gdy menu otwarte
+        }
+
+        > a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: $space-24;
+          font-family: $font-family-base;
+          font-weight: $font-weight-bold;
+          font-size: 16px;
+          letter-spacing: $letter-spacing-tight;
+          color: $color-neutral-900;
+          text-decoration: none;
+          text-transform: uppercase;
+          border-bottom: 1px solid $color-neutral-200;
+          white-space: normal;
+
+          // Strzalka po prawej
+          &::after {
+            content: "";
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'><path d='M9 6l6 6-6 6' stroke='%23252525' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+
+          &:hover { opacity: 0.85; }
+        }
+
+        // Banery promocyjne — zaraz pod odnośnikami (nie na samym dole)
+        .menu-banners {
+          display: flex;
+          flex-direction: column;
+          gap: $space-16;
+          width: 100%;
+          box-sizing: border-box;        // bez tego width:100% + padding wyjeżdża poza ekran
+          padding: $space-24 $space-12;
+        }
+      }
+    }
+
+    a {
+      font-family: $font-family-base;
+      font-weight: $font-weight-medium;
+      font-size: $header-link-font-size;
+      letter-spacing: $letter-spacing-tight;
+      color: $header-text-color;
+      text-decoration: none;
+      white-space: nowrap;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  &__cart {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: $header-cart-icon;
+    height: $header-cart-icon;
+    color: $header-text-color;
+    text-decoration: none;
+    margin-left: auto;          // mobile: przepycha cart + hamburger na prawo
+
+    // Desktop: gap od nav (24px), nav juz ma margin-left:auto wiec auto tu zbedne
+    @media (min-width: $breakpoint-tablet) {
+      margin-left: $header-nav-gap;
+    }
+
+    svg, img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 9px;
+      background-color: $color-accent-medium;
+      color: $color-white;
+      font-size: 11px;
+      font-weight: $font-weight-bold;
+      line-height: 18px;
+      text-align: center;
+    }
+  }
+
+  // Hamburger — widoczny tylko na mobile
+  &__hamburger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    margin-left: $space-12;
+    background: transparent;
+    border: 0;
+    color: $header-text-color;
+    cursor: pointer;
+
+    @media (min-width: $breakpoint-tablet) {
+      display: none;
+    }
+  }
+}
+
+
+// -----------------------------------------------------------------------------
+// Banery promocyjne w menu mobilnym (globalny header + hero dropu, przez .header)
+// -----------------------------------------------------------------------------
+.menu-banners {
+  display: none;                    // domyślnie ukryte; widoczne tylko w rozwinietym menu mobilnym
+}
+
+.menu-banner {
+  position: relative;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  aspect-ratio: 390 / 260;          // z Figmy (baner 260px na 390)
+  border-radius: 32px;              // z Figmy
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  text-decoration: none;
+
+  // Frosted-glass kółko z białą obwódką i białą strzałką (jak Figma)
+  &__arrow {
+    position: absolute;
+    right: $space-16;
+    bottom: $space-16;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba($color-white, 0.2);
+    border: 1.5px solid rgba($color-white, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: $color-white;
+
+    svg { width: 24px; height: 24px; display: block; }
+  }
+}

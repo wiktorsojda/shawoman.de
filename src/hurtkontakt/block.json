@@ -3,7 +3,75 @@
   "apiVersion": 3,
   "name": "ourblocktheme/hurtkontakt",
   "title": "Hurt Kontakt",
+  "attributes": {
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": "Zdjęcie kontaktowe"
+    },
+    "heading": {
+      "type": "string",
+      "default": "Masz pytania? Skontaktuj się z nami!"
+    },
+    "phone": {
+      "type": "string",
+      "default": "578 221 241"
+    },
+    "phoneHref": {
+      "type": "string",
+      "default": "tel:+48578221241"
+    },
+    "email": {
+      "type": "string",
+      "default": "k.pigulak@shav.com"
+    },
+    "emailHref": {
+      "type": "string",
+      "default": "mailto:k.pigulak@shav.com"
+    },
+    "hours": {
+      "type": "string",
+      "default": "poniedziałek - piątek: 9:00 - 17:00"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

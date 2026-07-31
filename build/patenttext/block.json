@@ -3,6 +3,79 @@
   "apiVersion": 3,
   "name": "ourblocktheme/patenttext",
   "title": "Patent Text",
+  "attributes": {
+    "topTitle": {
+      "type": "string",
+      "default": "Zarejestrowano"
+    },
+    "topDescription": {
+      "type": "string",
+      "default": "Zarówno znak towarowy Shav, jak i wzór przemysłowy naszej maszynki zostały zarejestrowane w EUIPO i gwarantują unikatowość produktu, którego jesteśmy jedynym producentem."
+    },
+    "znakImage": {
+      "type": "string",
+      "default": ""
+    },
+    "znakLabel": {
+      "type": "string",
+      "default": "ZNAK TOWAROWY"
+    },
+    "wzorImage": {
+      "type": "string",
+      "default": ""
+    },
+    "wzorLabel": {
+      "type": "string",
+      "default": "WZÓR PRZEMYSŁOWY"
+    },
+    "pdfTitle": {
+      "type": "string",
+      "default": "podgląd dokumentów"
+    },
+    "pdfLinkText": {
+      "type": "string",
+      "default": "Znak towarowy SHAV"
+    },
+    "pdfLinkURL": {
+      "type": "string",
+      "default": "https://shav.pl/wp-content/uploads/2024-07-22-Swiadectwo-rejestracji_maszynka-SHAV_wzor-przemyslowy-EUIPO_63624.pdf"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

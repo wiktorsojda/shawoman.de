@@ -1,5 +1,12 @@
 {
   "version": 2,
+  "templateParts": [
+    { "name": "header", "title": "Header", "area": "header" },
+    { "name": "footer", "title": "Footer", "area": "footer" }
+  ],
+  "customTemplates": [
+    { "name": "rosegold", "title": "Rose Gold / Drop", "postTypes": ["page"] }
+  ],
   "styles": {
     "blocks": {
       "core/button": {
@@ -50,7 +57,7 @@
       ]
     },
     "layout": {
-      "contentSize": "1840px"
+      "contentSize": "1300px"
     },
     "settings": {
       "general": {
@@ -65,7 +72,8 @@
             "Contact": "templates/contact",
             "Payment methods": "templates/payment-methods",
             "Delivery methods": "templates/delivery-methods",
-            "Carrier": "templates/kariera"
+            "Carrier": "templates/kariera",
+            "Rose Gold / Drop": "templates/rosegold"
           }
         }
       }

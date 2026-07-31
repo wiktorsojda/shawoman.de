@@ -2,8 +2,148 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/faqglowna",
-  "title": "FAQ GŁÓWNA",
+  "title": "FAQ Główna",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": false
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h3"
+    },
+    "containerClass": {
+      "type": "string",
+      "default": "glownafaq"
+    },
+    "showTopTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "topTitle": {
+      "type": "string",
+      "default": "Najczęściej zadawane pytania"
+    },
+    "question1": {
+      "type": "string",
+      "default": "Shav Woman – Innowacyjna golarka dla kobiet, która odmieni pielęgnację miejsc intymnych."
+    },
+    "answer1": {
+      "type": "string",
+      "default": "Golenie okolic krocza bywa dla wielu kobiet dość problematyczną kwestią. To delikatna strefa, która wymaga specjalnego traktowania – by ułatwić ten proces powstała <strong>golarka do miejsc intymnych Shav Woman</strong>, która sprawia, że golenie bez podrażnień jest możliwe."
+    },
+    "question2": {
+      "type": "string",
+      "default": "Golenie miejsc intymnych bez podrażnień – z Shav Woman to możliwe!"
+    },
+    "answer2": {
+      "type": "string",
+      "default": "Każda kobieta, <strong>która goli miejsca intymne regularnie</strong>, doznała choć raz nieprzyjemnych podrażnień czy zacięć. Aby tego uniknąć, warto zaopatrzyć się z <strong>odpowiednią maszynkę do golenia miejsc intymnych</strong>, która zapewni Ci komfort."
+    },
+    "question3": {
+      "type": "string",
+      "default": "Golenie miejsc intymnych u kobiet. Ciesz się gładką skórą bez podrażnień."
+    },
+    "answer3": {
+      "type": "string",
+      "default": "Zalecamy <strong>regularną wymianę ostrza</strong>, aby urządzenie mogło gwarantować maksymalną wydajność i należyte warunki higieniczne. <strong>Optymalny czas użytkowania jednego ostrza</strong> to 2-3 miesiące."
+    },
+    "question4": {
+      "type": "string",
+      "default": ""
+    },
+    "answer4": {
+      "type": "string",
+      "default": ""
+    },
+    "question5": {
+      "type": "string",
+      "default": ""
+    },
+    "answer5": {
+      "type": "string",
+      "default": ""
+    },
+    "question6": {
+      "type": "string",
+      "default": ""
+    },
+    "answer6": {
+      "type": "string",
+      "default": ""
+    },
+    "question7": {
+      "type": "string",
+      "default": ""
+    },
+    "answer7": {
+      "type": "string",
+      "default": ""
+    },
+    "question8": {
+      "type": "string",
+      "default": ""
+    },
+    "answer8": {
+      "type": "string",
+      "default": ""
+    },
+    "question9": {
+      "type": "string",
+      "default": ""
+    },
+    "answer9": {
+      "type": "string",
+      "default": ""
+    },
+    "question10": {
+      "type": "string",
+      "default": ""
+    },
+    "answer10": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

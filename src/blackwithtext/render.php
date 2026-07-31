@@ -1,7 +1,10 @@
-    <section class="blacktext-container container">
+<?php
+$title       = isset($attributes['title'])       ? $attributes['title']       : '';
+$description = isset($attributes['description']) ? $attributes['description'] : '';
+?>
+<section class="blacktext-container container">
     <div id="text-container">
-    <div class="line line-head">#1 Maszynka do zadań specjalnych</div>
-    <div class="line line-rest">Stworzona specjalnie w jednym celu. Proste i bezpieczne rozwiązanie problemu niechcianego owłosienia miejsc intymnych.</div>
-    <!-- <div class="line line-rest">rozwiązanie problemu niechcianego owłosienia miejsc intymnych.</div> -->
+        <div class="line line-head"><?php echo wp_kses_post($title); ?></div>
+        <div class="line line-rest"><?php echo wp_kses_post($description); ?></div>
     </div>
-    </section>
+</section>

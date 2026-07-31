@@ -1,0 +1,127 @@
+// =============================================================================
+// O NAS — Sekcja "Rozwijamy" (Figma 854:784)
+// Desktop: split image left + text right + signature, gap 56, radius 36.
+// Mobile: stacked column, image nad tekstem.
+// =============================================================================
+
+.onasrozwijamy {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 24px !important;
+    padding: 32px 20px !important;
+    box-sizing: border-box !important;
+
+    @media (min-width: 900px) {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 56px !important;
+        padding: 64px 32px 64px 32px !important;     // pr-35 z Figma + nasze 150 lewo
+        max-width: 1300px !important;
+        margin: 32px auto !important;
+    }
+
+    &__media {
+        flex-shrink: 0 !important;
+        border-radius: 24px !important;
+        overflow: hidden !important;
+        width: 100% !important;
+
+        @media (min-width: 900px) {
+            width: 706px !important;
+            height: 484px !important;
+            border-radius: 36px !important;
+        }
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+    }
+
+    &__text {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        gap: 16px !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+
+        @media (min-width: 900px) {
+            gap: 24px !important;
+        }
+    }
+
+    // Body L — Figma 16/22.4 Regular #3f3f3f
+    &__paragraph {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 400 !important;
+        font-size: var(--text-size-mobile, 16px) !important;
+        line-height: 22.4px !important;                // Figma 1:1
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-800 !important;
+
+        @media (min-width: 900px) {
+            font-size: 18px !important;
+            line-height: 22.4px !important;
+        }
+
+        strong, b {
+            font-weight: 700 !important;
+            color: inherit !important;
+        }
+    }
+
+    &__signature {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 12px !important;
+        margin-top: 12px !important;
+        width: 100% !important;
+    }
+
+    // Sygnatura "Zespół" — Figma: Dolce Medium 36px
+    &__signature-text {
+        font-family: $font-family-accent !important;
+        font-weight: 500 !important;
+        font-size: var(--signature-size-mobile, 28px) !important;
+        line-height: 1 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-800 !important;
+
+        @media (min-width: 900px) {
+            font-size: var(--signature-size-desktop, 36px) !important;
+        }
+    }
+
+    &__signature-logo {
+        display: inline-flex !important;
+        align-items: center !important;
+        height: 40px !important;
+        width: auto !important;
+
+        @media (min-width: 900px) {
+            height: 60px !important;
+        }
+
+        // <img> wariant
+        &:not(.onasrozwijamy__signature-logo--svg) {
+            display: block !important;
+        }
+
+        // Inline SVG wariant — span zawierajacy <svg>
+        &--svg {
+            > svg {
+                display: block !important;
+                height: 100% !important;
+                width: auto !important;
+            }
+        }
+    }
+}

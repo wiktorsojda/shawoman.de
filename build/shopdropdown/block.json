@@ -3,11 +3,63 @@
   "apiVersion": 3,
   "name": "ourblocktheme/shopdropdown",
   "title": "Shop Dropdown",
+  "attributes": {
+    "buttonLabel": {
+      "type": "string",
+      "default": "Kup Teraz"
+    },
+    "buttonURL": {
+      "type": "string",
+      "default": "/shop"
+    },
+    "categoryImage": {
+      "type": "string",
+      "default": ""
+    },
+    "productsPerCategory": {
+      "type": "number",
+      "default": 4
+    },
+    "excludeCategoryName": {
+      "type": "string",
+      "default": "Bez kategorii"
+    }
+  },
   "editorScript": "file:./index.js",
   "render": "file:./render.php",
   "supports": {
+    "html": false,
+    "anchor": true,
     "align": [
+      "wide",
       "full"
-    ]
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
   }
 }

@@ -3,6 +3,67 @@
   "apiVersion": 3,
   "name": "ourblocktheme/glownakup",
   "title": "Główna Kup",
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": "Golarka <span class=\"shav-color\">Shav Woman</span> - #1 do zadań specjalnych"
+    },
+    "description": {
+      "type": "string",
+      "default": "Idealne rozwiązanie na golenie owłosienia miejsc intymnych i wrażliwych. Łatwo, prosto i przyjemnie. Bez żadnych zacięć. Taka właśnie jest Shav Woman!"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "Poznaj szczegóły"
+    },
+    "buttonURL": {
+      "type": "string",
+      "default": "/produkt/golarka-damska-shav-woman/"
+    },
+    "videoDesktop": {
+      "type": "string",
+      "default": ""
+    },
+    "videoMobile": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

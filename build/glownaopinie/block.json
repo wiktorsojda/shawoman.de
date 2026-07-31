@@ -2,7 +2,196 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/glownaopinie",
-  "title": "Główna Opinie",
+  "title": "Główna Opinie (Slider)",
+  "attributes": {
+    "sectionTitle": {
+      "type": "string",
+      "default": "Opinie naszych klientów"
+    },
+    "verifiedLabel": {
+      "type": "string",
+      "default": "Zaufana Opinia potwierdzona zakupem"
+    },
+    "verifiedIconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "visibleCount": {
+      "type": "number",
+      "default": 3
+    },
+    "autoScroll": {
+      "type": "boolean",
+      "default": true
+    },
+    "autoScrollMs": {
+      "type": "number",
+      "default": 6000
+    },
+    "review1Name": {
+      "type": "string",
+      "default": "Joanna"
+    },
+    "review1Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review1Text": {
+      "type": "string",
+      "default": "Często wyjeżdżam służbowo i potrzebowałam czegoś kompaktowego. Shav Woman jest lekka, a bateria trzyma tak długo, że nawet nie biorę ładowarki na tygodniowe wyjazdy. Rozwiązała mój problem z pakowaniem zbędnych kabli i szukaniem gniazdek w hotelowej łazience."
+    },
+    "review2Name": {
+      "type": "string",
+      "default": "Ewelina"
+    },
+    "review2Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review2Text": {
+      "type": "string",
+      "default": "Rano zawsze brakuje mi czasu, a golenie na sucho często kończyło się podrażnieniem. Tą maszynką mogę golić się pod prysznicem dzięki wodoodporności, co oszczędza mi mnóstwo czasu. Działa błyskawicznie i nie zapycha się, więc poranna toaleta stała się o wiele sprawniejsza."
+    },
+    "review3Name": {
+      "type": "string",
+      "default": "Agnieszka"
+    },
+    "review3Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review3Text": {
+      "type": "string",
+      "default": "Bałam się używać elektrycznych golarek w miejscach intymnych, bojąc się zacięć. Ta maszynka jest tak zaprojektowana, że sunie gładko i bezpiecznie nawet w trudniej dostępnych miejscach. Problem stresu przy depilacji bikini zniknął całkowicie, a efekt jest bardzo dokładny."
+    },
+    "review4Name": {
+      "type": "string",
+      "default": ""
+    },
+    "review4Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review4Text": {
+      "type": "string",
+      "default": ""
+    },
+    "review5Name": {
+      "type": "string",
+      "default": ""
+    },
+    "review5Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review5Text": {
+      "type": "string",
+      "default": ""
+    },
+    "review6Name": {
+      "type": "string",
+      "default": ""
+    },
+    "review6Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review6Text": {
+      "type": "string",
+      "default": ""
+    },
+    "review7Name": {
+      "type": "string",
+      "default": ""
+    },
+    "review7Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review7Text": {
+      "type": "string",
+      "default": ""
+    },
+    "review8Name": {
+      "type": "string",
+      "default": ""
+    },
+    "review8Rating": {
+      "type": "string",
+      "default": "5.0"
+    },
+    "review8Text": {
+      "type": "string",
+      "default": ""
+    },
+    "review1IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "review2IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "review3IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "review4IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "review5IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "review6IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "review7IconSvg": {
+      "type": "string",
+      "default": ""
+    },
+    "review8IconSvg": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

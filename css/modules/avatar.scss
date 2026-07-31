@@ -1,0 +1,32 @@
+// =============================================================================
+// AVATAR — stos avatarow (Figma: 104:62801)
+// =============================================================================
+// Uzycie:
+//
+//   <div class="avatars">
+//     <img class="avatars__item" src="..." alt="">
+//     <img class="avatars__item" src="..." alt="">
+//     ...
+//   </div>
+//
+// Kazdy nastepny avatar nakladajacy sie na poprzedni (margin-right: -18px).
+// Ostatni nie ma przesuniecia.
+// =============================================================================
+
+.avatars {
+  display: inline-flex;
+  align-items: center;
+
+  &__item {
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: $color-neutral-200;       // placeholder gdy brak src
+    margin-right: -$avatar-overlap;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

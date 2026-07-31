@@ -16,15 +16,196 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+const AVATAR_NUMS = [1, 2, 3, 4, 5];
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "glownabaner"
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Pasek opinii",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ToggleControl, {
+    label: "Poka\u017C pasek opinii",
+    checked: a.showRating,
+    onChange: v => setAttributes({
+      showRating: v
+    })
+  }), AVATAR_NUMS.map(n => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
+    key: n
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      [`avatar${n}`]: media.url
+    }),
+    allowedTypes: ["image"],
+    value: a[`avatar${n}`],
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open,
+      style: {
+        marginBottom: 8
+      }
+    }, "Avatar ", n, a[`avatar${n}`] ? " (zmień)" : "")
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Banner \u2014 zdj\u0119cie t\u0142a",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 0
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Desktop"), " (\u2265 768px)"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => {
+      console.log("[glownabaner] desktop onSelect:", media);
+      setAttributes({
+        bannerImage: media?.url || ""
+      });
+    },
+    allowedTypes: ["image"],
+    value: a.bannerImage,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open,
+      style: {
+        marginBottom: 16
+      }
+    }, a.bannerImage ? "Zmień zdjęcie desktop" : "Wybierz zdjęcie desktop")
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginBottom: 8
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Mobile"), " (< 768px) \u2014 opcjonalne, pusto = u\u017Cywa desktop"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => {
+      console.log("[glownabaner] mobile onSelect:", media);
+      setAttributes({
+        bannerImageMobile: media?.url || ""
+      });
+    },
+    allowedTypes: ["image"],
+    value: a.bannerImageMobile,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open,
+      style: {
+        marginRight: 8
+      }
+    }, a.bannerImageMobile ? "Zmień zdjęcie mobile" : "Wybierz zdjęcie mobile")
+  })), a.bannerImageMobile && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      bannerImageMobile: ""
+    })
+  }, "Usu\u0144 zdj\u0119cie mobile")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Banner \u2014 link CTA",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "URL przycisku",
+    value: a.bannerCtaURL,
+    onChange: v => setAttributes({
+      bannerCtaURL: v
+    })
+  }))), a.showRating && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownabaner__rating"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "glownabaner__rating-line"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownabaner__rating-pill"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "G\u0142\xF3wna Baner"));
+    className: "avatars"
+  }, AVATAR_NUMS.map(n => a[`avatar${n}`] && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    key: n,
+    className: "avatars__item",
+    src: a[`avatar${n}`],
+    alt: ""
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "glownabaner__rating-sep"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    className: "glownabaner__rating-count",
+    value: a.ratingCount,
+    onChange: v => setAttributes({
+      ratingCount: v
+    }),
+    placeholder: "+xxx Opinii"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "glownabaner__rating-sep"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    className: "glownabaner__rating-score",
+    value: a.ratingScore,
+    onChange: v => setAttributes({
+      ratingScore: v
+    }),
+    placeholder: "4.9"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "glownabaner__rating-stars",
+    "aria-hidden": "true"
+  }, "\u2605\u2605\u2605\u2605\u2605")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "glownabaner__rating-line"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownabaner__hero"
+  }, a.bannerImage ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    className: "glownabaner__hero-image",
+    src: a.bannerImage,
+    alt: ""
+  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownabaner__hero-image glownabaner__hero-image--placeholder"
+  }, "Wybierz zdj\u0119cie t\u0142a w panelu po prawej"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownabaner__hero-content"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", {
+    className: "glownabaner__hero-title"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.bannerTitle,
+    onChange: v => setAttributes({
+      bannerTitle: v
+    }),
+    placeholder: "Shav "
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    className: "glownabaner__hero-title-accent",
+    value: a.bannerTitleAccent,
+    onChange: v => setAttributes({
+      bannerTitleAccent: v
+    }),
+    placeholder: "Days"
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "p",
+    className: "glownabaner__hero-subtitle",
+    value: a.bannerSubtitle,
+    onChange: v => setAttributes({
+      bannerSubtitle: v
+    }),
+    placeholder: "Subtitle"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "glownabaner__hero-cta"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "span",
+    value: a.bannerCtaLabel,
+    onChange: v => setAttributes({
+      bannerCtaLabel: v
+    }),
+    placeholder: "Etykieta CTA"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+    className: "glownabaner__hero-cta-arrow",
+    "aria-hidden": "true"
+  }, "\u2192")))));
 }
 
 /***/ },
@@ -10025,13 +10206,23 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/glownabaner/block.json"
 /*!************************************!*\
   !*** ./src/glownabaner/block.json ***!
   \************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/glownabaner","title":"Główna Baner","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/glownabaner","title":"Główna Baner","attributes":{"showRating":{"type":"boolean","default":true},"avatar1":{"type":"string","default":""},"avatar2":{"type":"string","default":""},"avatar3":{"type":"string","default":""},"avatar4":{"type":"string","default":""},"avatar5":{"type":"string","default":""},"ratingCount":{"type":"string","default":"+300K Opinii"},"ratingScore":{"type":"string","default":"4.9"},"bannerImage":{"type":"string","default":""},"bannerImageMobile":{"type":"string","default":""},"bannerTitle":{"type":"string","default":"Shav "},"bannerTitleAccent":{"type":"string","default":"Days"},"bannerSubtitle":{"type":"string","default":"-25% z kodem: SHAV25"},"bannerCtaLabel":{"type":"string","default":"Dowiedz się więcej"},"bannerCtaURL":{"type":"string","default":"/sklep"}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

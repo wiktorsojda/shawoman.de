@@ -1,0 +1,213 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/rosegoldgrid",
+  "title": "Drop — Siatka produktów",
+  "category": "theme",
+  "icon": "grid-view",
+  "description": "Nagłówek + siatka 4 kart produktów. Każda karta: badge, obraz (link do produktu), przycisk koszyka (dodaje do koszyka) i ceny. Pola puste są pomijane.",
+  "attributes": {
+    "heading1": {
+      "type": "string",
+      "default": "Zobacz produkty dropu "
+    },
+    "heading2Accent": {
+      "type": "string",
+      "default": "Rose Gold"
+    },
+    "showCart": {
+      "type": "boolean",
+      "default": true
+    },
+    "prod1Image": {
+      "type": "string",
+      "default": ""
+    },
+    "prod1Badge": {
+      "type": "string",
+      "default": "EDYCJA LIMITOWANA"
+    },
+    "prod1Title": {
+      "type": "string",
+      "default": "Golarka damska "
+    },
+    "prod1Brand": {
+      "type": "string",
+      "default": "Shav Woman"
+    },
+    "prod1Sub": {
+      "type": "string",
+      "default": "Maszynka do golenia bikinii i całego ciała"
+    },
+    "prod1OldPrice": {
+      "type": "string",
+      "default": ""
+    },
+    "prod1NewPrice": {
+      "type": "string",
+      "default": "229,00 zł"
+    },
+    "prod1BottomBadge": {
+      "type": "string",
+      "default": ""
+    },
+    "prod1ProductId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod1VariationId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod1LinkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "prod2Image": {
+      "type": "string",
+      "default": ""
+    },
+    "prod2Badge": {
+      "type": "string",
+      "default": "EDYCJA LIMITOWANA"
+    },
+    "prod2Title": {
+      "type": "string",
+      "default": "Golarka damska "
+    },
+    "prod2Brand": {
+      "type": "string",
+      "default": "Shav Woman"
+    },
+    "prod2Sub": {
+      "type": "string",
+      "default": "Maszynka do golenia bikinii i całego ciała"
+    },
+    "prod2OldPrice": {
+      "type": "string",
+      "default": ""
+    },
+    "prod2NewPrice": {
+      "type": "string",
+      "default": "229,00 zł"
+    },
+    "prod2BottomBadge": {
+      "type": "string",
+      "default": ""
+    },
+    "prod2ProductId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod2VariationId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod2LinkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "prod3Image": {
+      "type": "string",
+      "default": ""
+    },
+    "prod3Badge": {
+      "type": "string",
+      "default": "EDYCJA LIMITOWANA"
+    },
+    "prod3Title": {
+      "type": "string",
+      "default": "Zestaw ostrzy foliowych bazowych"
+    },
+    "prod3Brand": {
+      "type": "string",
+      "default": ""
+    },
+    "prod3Sub": {
+      "type": "string",
+      "default": "Zestaw trzech ostrzy w obniżonej cenie"
+    },
+    "prod3OldPrice": {
+      "type": "string",
+      "default": ""
+    },
+    "prod3NewPrice": {
+      "type": "string",
+      "default": "99,00 zł"
+    },
+    "prod3BottomBadge": {
+      "type": "string",
+      "default": ""
+    },
+    "prod3ProductId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod3VariationId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod3LinkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "prod4Image": {
+      "type": "string",
+      "default": ""
+    },
+    "prod4Badge": {
+      "type": "string",
+      "default": "EDYCJA LIMITOWANA"
+    },
+    "prod4Title": {
+      "type": "string",
+      "default": "Zestaw ostrzy foliowych okrągłych"
+    },
+    "prod4Brand": {
+      "type": "string",
+      "default": ""
+    },
+    "prod4Sub": {
+      "type": "string",
+      "default": "Zestaw trzech ostrzy w obniżonej cenie"
+    },
+    "prod4OldPrice": {
+      "type": "string",
+      "default": ""
+    },
+    "prod4NewPrice": {
+      "type": "string",
+      "default": "99,00 zł"
+    },
+    "prod4BottomBadge": {
+      "type": "string",
+      "default": ""
+    },
+    "prod4ProductId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod4VariationId": {
+      "type": "number",
+      "default": 0
+    },
+    "prod4LinkUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

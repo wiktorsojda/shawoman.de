@@ -1,9 +1,141 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "ourblocktheme/faqostrzestalowe",
-  "title": "FAQ ostrze stalowe",
+  "name": "ourblocktheme/faqetui",
+  "title": "FAQ Etui",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Często zadawane pytania"
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "containerClass": {
+      "type": "string",
+      "default": "faq-container"
+    },
+    "question1": {
+      "type": "string",
+      "default": "Do czego jest mi potrzebne etui podróżne Shav?"
+    },
+    "answer1": {
+      "type": "string",
+      "default": "<strong>Etui podróżne Shav</strong> to wytrzymałe i ergonomiczne opakowanie na maszynkę oraz akcesoria, które możesz zabrać w każdą podróż, nawet na koniec świata. Etui wyposażone jest w solidny zamek, a oprócz tego posiada wewnętrzną kieszeń na akcesoria i pasek, który zabezpiecza maszynkę Shav 2."
+    },
+    "question2": {
+      "type": "string",
+      "default": "Czy etui Shav pomieści wszystkie akcesoria?"
+    },
+    "answer2": {
+      "type": "string",
+      "default": "Tak, <strong>w etui podróżnym Shav</strong> zmieści się maszynka, ostrze metalowe, ostrze foliowe, dodatkowe nasadki oraz przewód ładujący maszynkę."
+    },
+    "question3": {
+      "type": "string",
+      "default": "Czy maszynkę Shav 2 w etui podróżnym Shav mogę wnieść do samolotu jako bagaż podręczny, czy muszę ją umieścić w bagażu rejestrowanym?"
+    },
+    "answer3": {
+      "type": "string",
+      "default": "<strong>Maszynkę Shav 2 w etui podróżnym Shav</strong> można transportować zarówno w bagażu podręcznym, jak i w bagażu rejestrowanym. Maszynka w etui jest całkowicie bezpieczna i nie ma możliwości, aby włączyła się w trakcie podróży."
+    },
+    "question4": {
+      "type": "string",
+      "default": ""
+    },
+    "answer4": {
+      "type": "string",
+      "default": ""
+    },
+    "question5": {
+      "type": "string",
+      "default": ""
+    },
+    "answer5": {
+      "type": "string",
+      "default": ""
+    },
+    "question6": {
+      "type": "string",
+      "default": ""
+    },
+    "answer6": {
+      "type": "string",
+      "default": ""
+    },
+    "question7": {
+      "type": "string",
+      "default": ""
+    },
+    "answer7": {
+      "type": "string",
+      "default": ""
+    },
+    "question8": {
+      "type": "string",
+      "default": ""
+    },
+    "answer8": {
+      "type": "string",
+      "default": ""
+    },
+    "question9": {
+      "type": "string",
+      "default": ""
+    },
+    "answer9": {
+      "type": "string",
+      "default": ""
+    },
+    "question10": {
+      "type": "string",
+      "default": ""
+    },
+    "answer10": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-

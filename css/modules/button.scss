@@ -1,0 +1,111 @@
+// =============================================================================
+// BUTTON — nowy design system (Figma: nodeId 66:44892)
+// =============================================================================
+// Klasa .button (nie myl ze starym .btn). Uzywa zmiennych z base/_tokens.scss.
+//
+// Uzycie:
+//   <a class="button button--primary button--md">Label</a>
+//   <a class="button button--outline button--lg">Label</a>
+//
+// Modyfikatory:
+//   --primary | --outline      (wariant)
+//   --sm | --md | --lg         (rozmiar; domyslnie md)
+// Stany: :hover, :active (= "pressed" w Figmie)
+// =============================================================================
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $btn-md-gap;
+
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
+  letter-spacing: $btn-letter-spacing;
+
+  border: $btn-outline-border-width solid transparent; // bazowa ramka, kolor wg wariantu
+  border-radius: $btn-radius;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+  // Ikona wewnatrz przycisku
+  &__icon {
+    display: inline-block;
+    flex-shrink: 0;
+    width: $btn-md-icon;
+    height: $btn-md-icon;
+  }
+
+  // -----------------------------------------------------
+  // ROZMIARY
+  // -----------------------------------------------------
+  &--sm {
+    padding: $btn-sm-padding-y $btn-sm-padding-x;
+    font-size: $btn-sm-font-size;
+    gap: $btn-sm-gap;
+
+    .button__icon {
+      width: $btn-sm-icon;
+      height: $btn-sm-icon;
+    }
+  }
+
+  &--md {
+    padding: $btn-md-padding-y $btn-md-padding-x;
+    font-size: $btn-md-font-size;
+    gap: $btn-md-gap;
+
+    .button__icon {
+      width: $btn-md-icon;
+      height: $btn-md-icon;
+    }
+  }
+
+  &--lg {
+    padding: $btn-lg-padding-y $btn-lg-padding-x;
+    font-size: $btn-lg-font-size;
+    gap: $btn-lg-gap;
+
+    .button__icon {
+      width: $btn-lg-icon;
+      height: $btn-lg-icon;
+    }
+  }
+
+  // -----------------------------------------------------
+  // WARIANT: PRIMARY
+  // -----------------------------------------------------
+  &--primary {
+    color: $btn-primary-color;
+    background-color: $btn-primary-bg-default;
+    border-color: transparent;
+
+    &:hover {
+      background-color: $btn-primary-bg-hover;
+    }
+
+    &:active {
+      background-color: $btn-primary-bg-pressed;
+    }
+  }
+
+  // -----------------------------------------------------
+  // WARIANT: OUTLINE
+  // -----------------------------------------------------
+  &--outline {
+    color: $btn-outline-color;
+    background-color: $btn-outline-bg;
+    border-color: $btn-outline-border-default;
+
+    &:hover {
+      border-color: $btn-outline-border-hover;
+    }
+
+    &:active {
+      border-color: $btn-outline-border-pressed;
+    }
+  }
+}

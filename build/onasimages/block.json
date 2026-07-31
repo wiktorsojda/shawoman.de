@@ -2,7 +2,108 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/onasimages",
-  "title": "O Nas Images",
+  "title": "O Nas Images Slider",
+  "attributes": {
+    "item1Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item1Alt": {
+      "type": "string",
+      "default": "Logo Shav wyświetlane na Tauron Arenie w Krakowie"
+    },
+    "item1Title": {
+      "type": "string",
+      "default": "Tauron Arena"
+    },
+    "item1Text": {
+      "type": "string",
+      "default": "Latem 2023 roku Shav rozświetlił Kraków. Naszą reklamę można było zobaczyć na jednej z największych hal sportowych w Polsce."
+    },
+    "item2Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item2Alt": {
+      "type": "string",
+      "default": "Shav na autobusie"
+    },
+    "item2Title": {
+      "type": "string",
+      "default": "Autobusy Shav"
+    },
+    "item2Text": {
+      "type": "string",
+      "default": "Jesienią 2023 roku okleiliśmy autobusy miejskie, żeby dać się poznać jako marka numer 1 „do zadań specjalnych”."
+    },
+    "item3Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item3Alt": {
+      "type": "string",
+      "default": "Shav w magazynie WizzAir"
+    },
+    "item3Title": {
+      "type": "string",
+      "default": "Wizz Air"
+    },
+    "item3Text": {
+      "type": "string",
+      "default": "Początek 2024 roku uświetniliśmy reklamą na wysokości. Golarkę Shav mogliście zobaczyć w magazynach pokładowych linii lotniczych Wizz Air w całej Europie."
+    },
+    "item4Image": {
+      "type": "string",
+      "default": ""
+    },
+    "item4Alt": {
+      "type": "string",
+      "default": "Zespół marki Shav na runmageddonie"
+    },
+    "item4Title": {
+      "type": "string",
+      "default": "Runmageddon"
+    },
+    "item4Text": {
+      "type": "string",
+      "default": "Wiosną 2024 roku postanowiliśmy podjąć wyzwanie. Wystartowaliśmy w biegu z przeszkodami, który był próbą charakteru dla naszego teamu."
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

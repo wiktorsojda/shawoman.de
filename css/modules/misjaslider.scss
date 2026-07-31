@@ -1,0 +1,255 @@
+// =============================================================================
+// MISJA — Slider zdjęć (Figma 845:48)
+// !important wszedzie zeby przebic theme.json / global styles WP.
+// =============================================================================
+
+.misjaslider {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 32px !important;
+    background: $color-neutral-900 !important;
+    padding: 48px 20px !important;
+    box-sizing: border-box !important;
+
+    @media (min-width: 900px) {
+        align-items: flex-end !important;
+        gap: 42px !important;
+        padding: 96px 150px !important;
+    }
+
+    // ---- Head ----
+    &__head {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+        align-items: flex-start !important;        // mobile: lewa
+        width: 100% !important;
+        text-align: left !important;
+
+        @media (min-width: 900px) {
+            gap: 24px !important;
+            align-items: center !important;        // desktop: srodek
+            text-align: center !important;
+        }
+    }
+
+    &__title {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--title-size-mobile, 26px) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-50 !important;
+        text-align: left !important;               // mobile: lewa
+        text-transform: none !important;
+
+        @media (min-width: 900px) {
+            font-size: var(--title-size-desktop, 42px) !important;
+            line-height: 1.2 !important;
+            max-width: 1098px !important;
+            text-align: center !important;         // desktop: srodek
+        }
+    }
+
+    &__description {
+        margin: 0 !important;
+        padding: 0 !important;
+        font-family: $font-family-base !important;
+        font-weight: 400 !important;
+        font-size: var(--description-size-mobile, 16px) !important;
+        line-height: 1.4 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-100 !important;
+        text-align: left !important;               // mobile: lewa
+
+        @media (min-width: 900px) {
+            font-size: var(--description-size-desktop, 18px) !important;
+            line-height: 1.4 !important;
+            max-width: 808px !important;
+            text-align: center !important;         // desktop: srodek
+        }
+    }
+
+    // ---- Slider ----
+    &__slider {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 24px !important;
+        width: 100% !important;
+
+        @media (min-width: 900px) {
+            gap: 32px !important;
+        }
+    }
+
+    // Wrapper slidera — ucina wystajace boczne slide'y
+    &__slider {
+        overflow: hidden !important;
+    }
+
+    &__track {
+        position: relative !important;
+        width: 100% !important;
+        display: flex !important;
+        gap: 8px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 380px !important;
+        overflow: visible !important;
+
+        @media (min-width: 900px) {
+            gap: 16px !important;
+            height: 550px !important;
+        }
+    }
+
+    // Wszystkie slidy bazowo schowane, tylko .is-active/.is-prev/.is-next widoczne.
+    // To samo zachowanie na mobile i desktop (skalowane wymiarami).
+    &__slide {
+        flex: 0 0 auto !important;
+        height: 100% !important;
+        aspect-ratio: 250 / 450 !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
+        transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease !important;
+        display: none !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+
+        img {
+            display: block !important;
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+        }
+
+        &.is-active {
+            display: block !important;
+            opacity: 1 !important;
+            filter: blur(0) !important;
+            pointer-events: auto !important;
+            order: 2 !important;
+        }
+        &.is-prev {
+            display: block !important;
+            opacity: 1 !important;
+            filter: blur(2px) !important;
+            order: 1 !important;
+        }
+        &.is-next {
+            display: block !important;
+            opacity: 1 !important;
+            filter: blur(2px) !important;
+            order: 3 !important;
+        }
+    }
+
+    // ---- Nav ----
+    &__nav {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    &__nav-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 48px !important;
+        height: 48px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 50% !important;
+        background: $color-neutral-700 !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+        color: $color-white !important;
+        cursor: pointer !important;
+        transition: background 0.2s ease !important;
+
+        @media (min-width: 900px) {
+            width: 56px !important;
+            height: 56px !important;
+        }
+
+        &:hover { background: $color-neutral-600 !important; }
+
+        svg { display: block !important; }
+    }
+
+    &__dots {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        padding: 4px 16px !important;
+        border-radius: 48px !important;
+        background: $color-neutral-700 !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+        height: 48px !important;
+
+        @media (min-width: 900px) {
+            height: 56px !important;
+        }
+    }
+
+    &__dot {
+        width: 6px !important;
+        height: 6px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        cursor: pointer !important;
+        transition: background 0.2s ease, transform 0.2s ease !important;
+
+        &.is-active {
+            background: $color-white !important;
+            transform: scale(1.2) !important;
+        }
+    }
+
+    // ---- CTA ----
+    &__cta {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        padding: 12px 24px !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.7) !important;
+        color: $color-neutral-900 !important;
+        text-decoration: none !important;
+        transition: background 0.2s ease !important;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.85) !important;
+        }
+    }
+
+    &__cta-text {
+        font-family: $font-family-base !important;
+        font-weight: 500 !important;
+        font-size: var(--button-size, 12px) !important;
+        line-height: 1.4 !important;
+        letter-spacing: -0.04em !important;
+        color: $color-neutral-900 !important;
+    }
+
+    &__cta-icon {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 24px !important;
+        height: 24px !important;
+        border-radius: 50% !important;
+        background: $color-neutral-900 !important;
+        color: $color-white !important;
+        flex-shrink: 0 !important;
+
+        svg { display: block !important; }
+    }
+}

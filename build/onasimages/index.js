@@ -16,15 +16,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "container container-onas-images"
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, [1, 2, 3, 4].map(i => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    key: i,
+    title: `Slajd ${i}`,
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      [`item${i}Image`]: media.url,
+      [`item${i}Alt`]: media.alt || a[`item${i}Alt`]
+    }),
+    allowedTypes: ["image"],
+    value: a[`item${i}Image`],
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, a[`item${i}Image`] ? "Zmień zdjęcie" : "Wybierz zdjęcie")
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "Alt zdj\u0119cia",
+    value: a[`item${i}Alt`],
+    onChange: v => setAttributes({
+      [`item${i}Alt`]: v
+    })
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+    className: "banner-onas"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "O Nas Images"));
+    className: "banner-slider-onas"
+  }, [1, 2, 3, 4].map((i, idx) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    key: i,
+    className: `slider-item-onas ${idx === 0 ? "active-onas" : ""}`
+  }, a[`item${i}Image`] && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: a[`item${i}Image`],
+    alt: a[`item${i}Alt`],
+    className: "img-cover-onas bg-image-onas"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "banner-content-onas"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h2",
+    className: "heading-onas",
+    value: a[`item${i}Title`],
+    onChange: v => setAttributes({
+      [`item${i}Title`]: v
+    }),
+    placeholder: `Tytuł slajdu ${i}`
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "p",
+    className: "banner-text-onas",
+    value: a[`item${i}Text`],
+    onChange: v => setAttributes({
+      [`item${i}Text`]: v
+    }),
+    placeholder: `Tekst slajdu ${i}`
+  })))))));
 }
 
 /***/ },
@@ -10025,13 +10084,23 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/onasimages/block.json"
 /*!***********************************!*\
   !*** ./src/onasimages/block.json ***!
   \***********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/onasimages","title":"O Nas Images","editorScript":"file:./index.js","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/onasimages","title":"O Nas Images Slider","attributes":{"item1Image":{"type":"string","default":""},"item1Alt":{"type":"string","default":"Logo Shav wyświetlane na Tauron Arenie w Krakowie"},"item1Title":{"type":"string","default":"Tauron Arena"},"item1Text":{"type":"string","default":"Latem 2023 roku Shav rozświetlił Kraków. Naszą reklamę można było zobaczyć na jednej z największych hal sportowych w Polsce."},"item2Image":{"type":"string","default":""},"item2Alt":{"type":"string","default":"Shav na autobusie"},"item2Title":{"type":"string","default":"Autobusy Shav"},"item2Text":{"type":"string","default":"Jesienią 2023 roku okleiliśmy autobusy miejskie, żeby dać się poznać jako marka numer 1 „do zadań specjalnych”."},"item3Image":{"type":"string","default":""},"item3Alt":{"type":"string","default":"Shav w magazynie WizzAir"},"item3Title":{"type":"string","default":"Wizz Air"},"item3Text":{"type":"string","default":"Początek 2024 roku uświetniliśmy reklamą na wysokości. Golarkę Shav mogliście zobaczyć w magazynach pokładowych linii lotniczych Wizz Air w całej Europie."},"item4Image":{"type":"string","default":""},"item4Alt":{"type":"string","default":"Zespół marki Shav na runmageddonie"},"item4Title":{"type":"string","default":"Runmageddon"},"item4Text":{"type":"string","default":"Wiosną 2024 roku postanowiliśmy podjąć wyzwanie. Wystartowaliśmy w biegu z przeszkodami, który był próbą charakteru dla naszego teamu."}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
 
 /***/ }
 

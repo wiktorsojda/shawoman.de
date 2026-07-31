@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/onaswazne",
+  "title": "O nas — To dla nas ważne",
+  "category": "design",
+  "icon": "heart",
+  "attributes": {
+    "leftTitle":       { "type": "string", "default": "To dla nas ważne" },
+    "leftDescription": { "type": "string", "default": "Angażujemy się w inicjatywy charytatywne wspierające kobiety. Do tej pory wsparliśmy Fundację Rak'n'Roll, przekazując darowizny na działania, które realnie pomagają kobietom." },
+    "leftLogoImage":   { "type": "string", "default": "" },
+    "leftLogoImage2":  { "type": "string", "default": "" },
+    "rightTitle":       { "type": "string", "default": "Oswajamy tematy tabu" },
+    "rightDescription": { "type": "string", "default": "Chcemy też oswajać tematy związane z kobiecą pielęgnacją, ciałem i codziennym komfortem, które zbyt długo były traktowane jak tabu. Wychodzimy do ludzi, rozmawiamy otwarcie i pokazujemy, że o tych rzeczach można mówić naturalnie - bez skrępowania i bez niepotrzebnego dystansu." },
+    "rightButtonText":  { "type": "string", "default": "Dowiedz się więcej" },
+    "rightButtonUrl":   { "type": "string", "default": "/misja-spoleczna" },
+    "rightDecoration":     { "type": "string", "default": "" },
+    "rightDecorationSvg":  { "type": "string", "default": "" },
+    "leftLogoSvg":         { "type": "string", "default": "" },
+    "titleSizeDesktop":       { "type": "number", "default": 32 },
+    "titleSizeMobile":        { "type": "number", "default": 26 },
+    "descriptionSizeDesktop": { "type": "number", "default": 16 },
+    "descriptionSizeMobile":  { "type": "number", "default": 16 },
+    "buttonSize":             { "type": "number", "default": 12 }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "anchor": true, "align": ["wide", "full"] }
+}

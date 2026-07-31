@@ -1,0 +1,132 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/rosegoldhero",
+  "title": "Drop — Hero z licznikiem",
+  "category": "theme",
+  "icon": "clock",
+  "description": "Hero dropu: tło + header (logo/nav/koszyk), badge, tytuł, podtytuł i licznik odliczający. W pełni edytowalny — reużywalny pod dowolną promocję.",
+  "attributes": {
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 50
+    },
+    "bgPosX": {
+      "type": "number",
+      "default": 50
+    },
+    "bgPosY": {
+      "type": "number",
+      "default": 50
+    },
+    "logoImage": {
+      "type": "string",
+      "default": ""
+    },
+    "logoAlt": {
+      "type": "string",
+      "default": "Shav Woman"
+    },
+    "logoURL": {
+      "type": "string",
+      "default": "/"
+    },
+    "nav1Label": {
+      "type": "string",
+      "default": "Produkty"
+    },
+    "nav1URL": {
+      "type": "string",
+      "default": "/sklep"
+    },
+    "nav2Label": {
+      "type": "string",
+      "default": "O nas"
+    },
+    "nav2URL": {
+      "type": "string",
+      "default": "/o-nas"
+    },
+    "nav3Label": {
+      "type": "string",
+      "default": "Kontakt"
+    },
+    "nav3URL": {
+      "type": "string",
+      "default": "/kontakt"
+    },
+    "nav4Label": {
+      "type": "string",
+      "default": "Sprzedaż hurtowa"
+    },
+    "nav4URL": {
+      "type": "string",
+      "default": "/wspolpraca"
+    },
+    "cartURL": {
+      "type": "string",
+      "default": "/koszyk"
+    },
+    "showCart": {
+      "type": "boolean",
+      "default": true
+    },
+    "badge": {
+      "type": "string",
+      "default": "URODZINY SHAV WOMAN"
+    },
+    "title": {
+      "type": "string",
+      "default": "Drop Rose Gold"
+    },
+    "subtitle1": {
+      "type": "string",
+      "default": "Najniższe ceny w historii!"
+    },
+    "subtitleEmoji": {
+      "type": "string",
+      "default": "🎂"
+    },
+    "subtitle2": {
+      "type": "string",
+      "default": "Pozostało jeszcze:"
+    },
+    "showCountdown": {
+      "type": "boolean",
+      "default": true
+    },
+    "countdownDate": {
+      "type": "string",
+      "default": ""
+    },
+    "labelDays": {
+      "type": "string",
+      "default": "dni"
+    },
+    "labelHours": {
+      "type": "string",
+      "default": "godziny"
+    },
+    "labelMinutes": {
+      "type": "string",
+      "default": "minuty"
+    },
+    "labelSeconds": {
+      "type": "string",
+      "default": "sekundy"
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "full"
+    ]
+  }
+}

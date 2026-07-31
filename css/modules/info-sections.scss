@@ -1,8 +1,8 @@
 .zwroty-kontakt-margin-bottom {
-  margin-bottom: 40px !important;
+  margin-bottom: $space-40 !important;
 }
 .faq-accordion-kontakt.background-white.active {
-  padding-bottom: 10px !important;
+  padding-bottom: $space-8 !important;
 }
 
 // Patent
@@ -12,11 +12,11 @@
 }
 
 #hurt-kontakt-container-id {
-  gap: 16px !important;
+  gap: $space-16 !important;
 }
 
 .hurt-kontakt-image {
-  margin-left: 10px !important;
+  margin-left: $space-8 !important;
   // width: 122px !important;
   height: 128px !important;
 }
@@ -24,7 +24,7 @@
 #patnet-flex-test {
   width: auto !important;
   margin-top: 0;
-  margin-bottom: -17px;
+  margin-bottom: -$space-16;
 }
 
 .zwroty-kontakt {
@@ -33,13 +33,13 @@
 
 .znak-subcontainer {
   flex-direction: column-reverse !important;
-  gap: 24px !important;
+  gap: $space-24 !important;
 
   img {
     max-width: 100% !important;
     max-height: 100% !important;
     padding: 0 !important;
-    border-radius: 8px;
+    border-radius: $radius-xs;
         width: 90%;
         margin: 0 auto;
   }
@@ -47,36 +47,36 @@
 
 .wzor-subcontainer {
   flex-direction: column !important;
-  gap: 24px !important;
+  gap: $space-24 !important;
 
   img {
     max-width: 100% !important;
     max-height: 100% !important;
     padding: 0 !important;
-    border-radius: 8px;
+    border-radius: $radius-xs;
         width: 90%;
         margin: 0 auto;
   }
 }
 
 .zarejestrowano-container {
-  padding: 25px 15px !important;
+  padding: $space-24 $space-16 !important;
 }
 .zarejestrowano-rest {
-  font-size: 16px !important;
+  font-size: $font-size-body-l !important;
 
 }
 
 .patent-container {
-  gap: 70px !important;
+  gap: $space-64 !important;
 }
 }
 
 #patent-text {
-  color: #0983A0;
+  color: $color-primary-medium;
 
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -97,33 +97,33 @@ text-transform: uppercase;
   display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 24px;
+gap: $space-24;
 align-self: stretch;
-padding-top: 24px;
-border-top: 0.3px solid rgba(255, 255, 255, 0.30);
+padding-top: $space-24;
+border-top: 0.3px solid rgba($color-white, 0.30);
 
  a {
   display: flex;
   color: rgba(30, 156, 217, 1);
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: $space-8;
  }
 }
 
 .patent-father-container {
-background-color: #000;
-color: #fff;
+background-color: $color-neutral-900;
+color: $color-white;
 
 .hurt-kontakt-container {
   flex-direction: row !important;
-  gap: 43px !important;
-  padding-top: 100px !important;
+  gap: $space-40 !important;
+  padding-top: $space-80 !important;
 
   .hurt-kontakt-image {
     // width: 117px;
     height: 164px;
-border-radius: 8px;
+border-radius: $radius-xs;
   }
 }
 
@@ -132,32 +132,32 @@ border-radius: 8px;
 padding: 0px;
 flex-direction: column;
 align-items: center;
-gap: 115px;
+gap: $space-120;
 
 .zwroty-kontakt {
   display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 15px;
+gap: $space-16;
 
   .zwroty-kontakt-head {
-    color: #fff;
+    color: $color-white;
 
-font-family: 'Roboto', sans-serif;
-font-size: 24px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
 text-transform: uppercase;
-padding-bottom: 12px;
-border-bottom: 0.3px solid rgba(255, 255, 255, 0.30);
+padding-bottom: $space-12;
+border-bottom: 0.3px solid rgba($color-white, 0.30);
   }
 
   .zwroty-kontakt-rest {
-    color: #fff;
+    color: $color-white;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -172,7 +172,7 @@ text-transform: uppercase;
     display: flex;
     height: 25px;
     align-items: center;
-    gap: 12px;
+    gap: $space-12;
 .footer-icon-container {
     display: flex;
     width: 24px;
@@ -180,14 +180,14 @@ text-transform: uppercase;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: $space-8;
 }
 
 a {
-    color: #fff;
+    color: $color-white;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -198,23 +198,23 @@ text-decoration: none;
 
   .zarejestrowano-container {
     display: flex;
-    padding: 35px 50px;
+    padding: $space-32 $space-48;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: $space-24;
     align-self: stretch;
-    border-radius: 8px;
+    border-radius: $radius-xs;
     background: rgba(250, 250, 250, 0.10);
 
       .zarejestrowano-title-subcontainer {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: $space-16;
 
           div {
-            color: #FFF;
-            font-family: 'Roboto', sans-serif;
-            font-size: 24px;
+            color: $color-white;
+            font-family: $font-family-base;
+            font-size: $font-size-h4;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
@@ -223,16 +223,16 @@ text-decoration: none;
       }
 
       .zarejestrowano-rest {
-        color: #FFF;
+        color: $color-white;
 
         /* Body */
-        font-family: 'Roboto', sans-serif;
-        font-size: 20px;
+        font-family: $font-family-base;
+        font-size: $font-size-h4;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-        padding-top: 24px;
-        border-top: 0.3px solid rgba(255, 255, 255, 0.30);
+        padding-top: $space-24;
+        border-top: 0.3px solid rgba($color-white, 0.30);
       }
   }
 
@@ -241,14 +241,14 @@ text-decoration: none;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 58px;
+    gap: $space-56;
     align-self: stretch;
 
 
     .znak-subcontainer {
       display: flex;
       align-items: center;
-      gap: 57px;
+      gap: $space-56;
       align-self: stretch;
       justify-content: space-around;
 
@@ -258,23 +258,23 @@ text-decoration: none;
 
       flex-direction: column;
       align-items: flex-start;
-      gap: 24px;
-      border-radius: 8px;
+      gap: $space-24;
+      border-radius: $radius-xs;
         img {
           max-width: 871px;
           max-height: 299px;
           // padding: 35px 50px;
-          border-radius: 8px;
+          border-radius: $radius-xs;
         }
       }
 
       .znak-subcontainer-text {
         display: flex;
         align-items: center;
-        gap: 16px;
-        color: #FFF;
-        font-family: 'Roboto', sans-serif;
-        font-size: 24px;
+        gap: $space-16;
+        color: $color-white;
+        font-family: $font-family-base;
+        font-size: $font-size-h4;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
@@ -295,13 +295,13 @@ text-decoration: none;
    
         flex-direction: column;
         align-items: flex-start;
-        gap: 24px;
-        border-radius: 8px;
+        gap: $space-24;
+        border-radius: $radius-xs;
           img {
             max-width: 871px;
             max-height: 299px;
             // padding: 35px 50px;
-            border-radius: 8px;
+            border-radius: $radius-xs;
           }
       }
       
@@ -309,11 +309,11 @@ text-decoration: none;
       .wzor-subcontainer-text {
         display: flex;
         align-items: center;
-        gap: 16px;
-        color: #FFF;
+        gap: $space-16;
+        color: $color-white;
 
-      font-family: 'Roboto', sans-serif;
-      font-size: 24px;
+      font-family: $font-family-base;
+      font-size: $font-size-h4;
       font-style: normal;
       font-weight: 500;
       line-height: normal;
@@ -336,7 +336,7 @@ text-decoration: none;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(3, auto);
-    gap: 10px;
+    gap: $space-8;
     // height: 100vh; /* Adjust the height as necessary */
   }
 
@@ -355,7 +355,7 @@ text-decoration: none;
     display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 16px;
+gap: $space-16;
   }
   
   .item1-kontakt,
@@ -364,8 +364,8 @@ gap: 16px;
   }
   
   .item-kontakt-title {
-    font-family: 'roboto', sans-serif;
-    font-size: 20px;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-weight: 700;
     text-transform: uppercase;
     line-height: normal;
@@ -374,40 +374,40 @@ gap: 16px;
 
 
   .item1-kontakt {
-    padding: 35px 30px 35px 30px;
-    border-radius: 8px;
+    padding: $space-32 $space-32 $space-32 $space-32;
+    border-radius: $radius-xs;
     background-color: rgba(250, 250, 250, 1);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: $space-16;
     grid-column: 1 / 2;
     grid-row: 1 / 2;
 
 
     span {
-        font-family: 'roboto', sans-serif;
-        font-size: 16px;
+        font-family: $font-family-base;
+        font-size: $font-size-body-l;
         font-weight: 500;
     }
   }
   
   .item2-kontakt {
-    padding: 35px 30px 35px 30px;
-    border-radius: 8px;
+    padding: $space-32 $space-32 $space-32 $space-32;
+    border-radius: $radius-xs;
     background-color: rgba(250, 250, 250, 1);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: $space-16;
     justify-content: space-between;
     grid-column: 1 / 2;
     grid-row: 2 / 4;
 
 
     button {
-      color: #000;
+      color: $color-neutral-900;
 
-font-family: 'roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -415,23 +415,23 @@ line-height: normal;
 }
   
   .item3-kontakt {
-    padding: 35px 30px 35px 30px;
-    border-radius: 8px;
+    padding: $space-32 $space-32 $space-32 $space-32;
+    border-radius: $radius-xs;
     background-color: rgba(250, 250, 250, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
+    gap: $space-16;
     grid-column: 2 / 3;
     grid-row: 1 / 2;
-    border: 1px solid rgba(9, 131, 160, 1);
+    border: 1px solid $color-primary-medium;
 
     .item-kontakt-title {
-      margin-top: 10px !important;
+      margin-top: $space-8 !important;
     }
     a {
       text-decoration: none;
-      color:  rgba(9, 131, 160, 1);
+      color: $color-primary-medium;
 
      }
     button {
@@ -439,13 +439,13 @@ line-height: normal;
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 20px;
+      margin-top: $space-16;
       width: 225px;
       height: 45px;
-     border: 1px solid rgba(9, 131, 160, 1);
-     padding: 30px;
-     color:  rgba(9, 131, 160, 1);
-     border-radius: 8px;
+     border: 1px solid $color-primary-medium;
+     padding: $space-32;
+     color: $color-primary-medium;
+     border-radius: $radius-xs;
      text-transform: uppercase;
      margin-top: 0;
 
@@ -453,20 +453,20 @@ line-height: normal;
   }
   
   .item4-kontakt {
-    padding: 35px 30px 35px 30px;
-    border-radius: 8px;
+    padding: $space-32 $space-32 $space-32 $space-32;
+    border-radius: $radius-xs;
     background-color: rgba(250, 250, 250, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
+    gap: $space-16;
     grid-column: 2 / 3;
     grid-row: 2 / 3;
-    border: 1px solid rgba(9, 131, 160, 1);
+    border: 1px solid $color-primary-medium;
 
     a {
       text-decoration: none;
-      color:  rgba(9, 131, 160, 1);
+      color: $color-primary-medium;
     
      }
 
@@ -478,10 +478,10 @@ line-height: normal;
       // margin-top: 20px;
       width: 225px;
       height: 45px;
-     border: 1px solid rgba(9, 131, 160, 1);
-     padding: 30px;
-     color:  rgba(9, 131, 160, 1);
-     border-radius: 8px;
+     border: 1px solid $color-primary-medium;
+     padding: $space-32;
+     color: $color-primary-medium;
+     border-radius: $radius-xs;
      text-transform: uppercase;
 
 
@@ -489,20 +489,20 @@ line-height: normal;
 }
   
   .item5-kontakt {
-    padding: 35px 30px 35px 30px;
-    border-radius: 8px;
+    padding: $space-32 $space-32 $space-32 $space-32;
+    border-radius: $radius-xs;
     background-color: rgba(250, 250, 250, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
+    gap: $space-16;
     grid-column: 2 / 3;
     grid-row: 3 / 4;
-    border: 1px solid rgba(9, 131, 160, 1);
+    border: 1px solid $color-primary-medium;
 
     a {
       text-decoration: none;
-      color:  rgba(9, 131, 160, 1);
+      color: $color-primary-medium;
      }
 
     button {
@@ -513,10 +513,10 @@ line-height: normal;
       // margin-top: 20px;
       width: 225px;
       height: 45px;
-     border: 1px solid rgba(9, 131, 160, 1);
-     padding: 30px;
-     color:  rgba(9, 131, 160, 1);
-     border-radius: 8px;
+     border: 1px solid $color-primary-medium;
+     padding: $space-32;
+     color: $color-primary-medium;
+     border-radius: $radius-xs;
      text-transform: uppercase;
 
     }
@@ -526,7 +526,7 @@ line-height: normal;
     display: flex;
     height: 25px;
     align-items: center;
-    gap: 12px;
+    gap: $space-12;
 .footer-icon-container {
     display: flex;
     width: 24px;
@@ -534,14 +534,14 @@ line-height: normal;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: $space-8;
 }
 
 a {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -550,9 +550,9 @@ text-decoration: none;
 }
 
 .kontakt-wrapper h1 {
-    font-size: 20px !important;
-    font-family: 'roboto', sans-serif !important;
-    margin-bottom: 32px !important;
+    font-size: $font-size-h4 !important;
+    font-family: $font-family-base !important;
+    margin-bottom: $space-32 !important;
 }
 
 
@@ -560,33 +560,33 @@ text-decoration: none;
   display: flex;
   flex-direction: column;
   // justify-content: space-between;
-  gap: 20px;
+  gap: $space-16;
 
   .faq-wrapper-questions-kontakt {
-      border-top: 1px solid #e5e5e5;
+      border-top: 1px solid $color-neutral-200;
     }
   
   h1 {
-      font-family: 'bebas-neue-pro', sans-serif;
+      font-family: $font-family-base;
       text-transform: uppercase;
-      font-size: 64px;
+      font-size: $font-size-h1;
       line-height: 1.20;
       font-weight: 500;
-      margin-bottom: 48px;
+      margin-bottom: $space-48;
   }
 
   .faq-kontakt {
-      border-bottom: 1px solid #e5e5e5;
+      border-bottom: 1px solid $color-neutral-200;
       margin: 0;
-      margin-top: 20px;
-      padding-bottom: 20px;
+      margin-top: $space-16;
+      padding-bottom: $space-16;
   
       
 
 
       .faq-accordion-kontakt {
           // background-color: white;
-          color: rgba(0, 0, 0, 0.8);
+          color: rgba($color-black, 0.8);
           background-color: rgba(250, 250, 250, 1);
           cursor: pointer;
 
@@ -603,21 +603,21 @@ text-decoration: none;
 
           padding-right: 0px;
 
-          color: #000;
+          color: $color-neutral-900;
 
-          font-family: 'Roboto', sans-serif;
-          font-size: 16px;
+          font-family: $font-family-base;
+          font-size: $font-size-body-l;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
 
 
           i {
-              font-size: 1.6rem;
+              font-size: $font-size-h3-mob;
           }
       }
       .faq-accordion-kontakt:hover {
-          // background-color: #e5e5e5;
+          // background-color: $color-neutral-200;
       }
 
       .faq-pannel-kontakt {
@@ -625,7 +625,7 @@ text-decoration: none;
           // padding-bottom: 15px;
           background-color: white;
           overflow: hidden;
-          // background-color: #f1f7f5;
+          // background-color: $color-neutral-50;
           // display: none;
           max-height: 0;
           opacity: 0;
@@ -633,15 +633,15 @@ text-decoration: none;
           background-color: rgba(250, 250, 250, 1);
 
           p {
-              color: rgba(0, 0, 0, 0.7);
+              color: rgba($color-black, 0.7);
          
               background-color: rgba(250, 250, 250, 1);
-              font-family: 'Roboto', sans-serif;
-              font-size: 16px;
+              font-family: $font-family-base;
+              font-size: $font-size-body-l;
               font-style: normal;
               font-weight: 400;
               line-height: normal;
-              margin-bottom: 15px;
+              margin-bottom: $space-16;
           }
       }
   }
@@ -656,19 +656,19 @@ text-decoration: none;
 @media (max-width: 800px) {
   .faq-wrapper-kontakt {
     h1 {
-      font-size: 20px !important;
+      font-size: $font-size-h4 !important;
     }
   }
 
   .faq-accordion-kontakt {
     padding-right: 0 !important;
-    gap: 30px !important;
+    gap: $space-32 !important;
     text-align: left;
   }
 
   .faq-pannel-kontakt {
     p {
-      font-size: 14px !important;
+      font-size: $font-size-body-m !important;
     }
   }
 }
@@ -678,12 +678,12 @@ text-decoration: none;
   .grid-container-kontakt {
  display: flex;
  flex-direction: column;
-    gap: 24px;
+    gap: $space-24;
     // height: 100vh; /* Adjust the height as necessary */
   }
 
   .faq-container-kontakt {
-    padding: 24px !important;
+    padding: $space-24 !important;
   }
 
   .item1-kontakt,
@@ -691,7 +691,7 @@ text-decoration: none;
   .item3-kontakt,
   .item4-kontakt,
   .item5-kontakt {
-      padding: 15px !important;
+      padding: $space-16 !important;
   }
 }
 
@@ -699,13 +699,13 @@ text-decoration: none;
 .zwroty-heading {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: $space-16;
 
     div {
-      color: #000;
+      color: $color-neutral-900;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-style: normal;
     
     line-height: normal;
@@ -716,17 +716,17 @@ text-decoration: none;
 .zwroty-heading div {
   cursor: pointer;
   // padding: 10px 20px;
-  // border-bottom: 1px solid #959595;
+  // border-bottom: 1px solid $color-neutral-400;
   font-weight: 400;
 }
 
 .zwroty-heading div.active {
   font-weight: 700;
-  border-bottom: 2px solid #0983A0;;
+  border-bottom: 2px solid $color-primary-medium;
 }
 
 // .zwroty-container, .reklamacja-container {
-//   border: 1px solid #959595;
+//   border: 1px solid $color-neutral-400;
 //   padding: 20px;
 //   margin-top: -1px; /* to align with the heading border */
 // }
@@ -734,7 +734,7 @@ text-decoration: none;
 .zwroty-container {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: $space-56;
 
 
 
@@ -742,12 +742,12 @@ text-decoration: none;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: $space-16;
 
     .head {
-      color: #000;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+      color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-size: $font-size-body-l;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -756,9 +756,9 @@ text-decoration: none;
     }
 
     .rest {
-      color: #000;
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+      color: $color-neutral-900;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -771,13 +771,13 @@ padding: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    gap: $space-32;
     align-self: stretch;
 
     .zwroty-jakdokonac-text {
-      color: #000;
-      font-family: 'Roboto', sans-serif;
-      font-size: 24px;
+      color: $color-neutral-900;
+      font-family: $font-family-base;
+      font-size: $font-size-h4;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
@@ -785,10 +785,10 @@ padding: 0;
     }
 
     .zwroty-jakdokonac-subtitle {
-      color: #000;
+      color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 600;
 line-height: normal;
@@ -797,26 +797,26 @@ line-height: normal;
     .zwroty-jakdokonac-icons-container {
       display: flex;
       // height: 225px;
-      padding: 35px 50px;
+      padding: $space-32 $space-48;
       // flex-direction: column;
       justify-content: space-between;
       align-items: center;
       align-self: stretch;
-      border-radius: 8px;
-      background: #FAFAFA;
-      gap: 79px;
+      border-radius: $radius-xs;
+      background: $color-neutral-50;
+      gap: $space-80;
 
     .zwroty-jakdokonac-icon-container {
       display: flex;
 
 justify-content: center;
 align-items: center;
-gap: 20px;
+gap: $space-16;
 
       span {
-        color: #000;
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+        color: $color-neutral-900;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -831,10 +831,10 @@ line-height: normal;
   }
 
   .zwroty-single-text {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -845,13 +845,13 @@ text-transform: uppercase;
     display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 32px;
+gap: $space-32;
 
     div {
-      color: #000;
+      color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 24px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -859,10 +859,10 @@ text-transform: uppercase;
     }
 
     a {
-      color: #026697;
+      color: $color-primary-dark;
 
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -877,13 +877,13 @@ text-transform: uppercase;
 
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    gap: $space-32;
 
     .zwroty-adres-title {
-      color: #000;
+      color: $color-neutral-900;
 
-      font-family: 'Roboto', sans-serif;
-      font-size: 24px;
+      font-family: $font-family-base;
+      font-size: $font-size-h4;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
@@ -891,25 +891,25 @@ text-transform: uppercase;
     }
 
     div {
-      color: #000;
+      color: $color-neutral-900;
 
 /* Body */
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
       
       p {
-        margin: 5px;
+        margin: $space-4;
       }
     }
 
     .zwroty-adres-rest {
-      color: #000;
+      color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -920,12 +920,12 @@ line-height: normal;
     display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 32px;
+gap: $space-32;
     .zwroty-kontakt-head {
-      color: #000;
+      color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 24px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -933,10 +933,10 @@ text-transform: uppercase;
     }
 
     .zwroty-kontakt-rest {
-      color: #000;
+      color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -948,11 +948,11 @@ text-transform: uppercase;
 }
 
 .zwroty-kontakt-numbers {
-  margin-top: 18px !important;
+  margin-top: $space-16 !important;
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-start !important;
-  gap: 18px !important;
+  gap: $space-16 !important;
   align-self: stretch !important; 
 }
 
@@ -960,19 +960,19 @@ text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 60px;
+  gap: $space-56;
 
   .reklamacja-header {
     display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 32px;
+gap: $space-32;
 // margin-top: 60px;
 
   .reklamacja-header-text {
-    color: #000;
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -980,10 +980,10 @@ gap: 32px;
   }
 
   .item1-kontakt-title-reklamacja {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -995,13 +995,13 @@ text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: $space-32;
   align-self: stretch;
 
   .zwroty-jakdokonac-text {
-    color: #000;
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -1011,26 +1011,26 @@ text-transform: uppercase;
   .zwroty-jakdokonac-icons-container {
     display: flex;
     // height: 225px;
-    padding: 35px 50px;
+    padding: $space-32 $space-48;
     // flex-direction: column;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
-    border-radius: 8px;
-    background: #FAFAFA;
-    gap: 79px;
+    border-radius: $radius-xs;
+    background: $color-neutral-50;
+    gap: $space-80;
 
   .zwroty-jakdokonac-icon-container {
     display: flex;
 
 justify-content: center;
 align-items: center;
-gap: 20px;
+gap: $space-16;
 
     span {
-      color: #000;
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+      color: $color-neutral-900;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -1050,14 +1050,14 @@ line-height: normal;
   display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 16px;
+gap: $space-16;
 align-self: stretch;
   
   .reklamacja-info-title {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -1065,10 +1065,10 @@ text-transform: uppercase;
   }
 
   .reklamacja-info-rest {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -1079,13 +1079,13 @@ line-height: normal;
   display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 32px;
+gap: $space-32;
 
   div {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 24px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -1093,10 +1093,10 @@ text-transform: uppercase;
   }
 
   a {
-    color: #026697;
+    color: $color-primary-dark;
 
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -1111,13 +1111,13 @@ text-transform: uppercase;
 
   flex-direction: column;
   align-items: flex-start;
-  gap: 32px;
+  gap: $space-32;
 
   .zwroty-adres-title {
-    color: #000;
+    color: $color-neutral-900;
 
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -1125,25 +1125,25 @@ text-transform: uppercase;
   }
 
   div {
-    color: #000;
+    color: $color-neutral-900;
 
 /* Body */
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
     
     p {
-      margin: 5px;
+      margin: $space-4;
     }
   }
 
   .zwroty-adres-rest {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -1154,12 +1154,12 @@ line-height: normal;
   display: flex;
 flex-direction: column;
 align-items: flex-start;
-gap: 32px;
+gap: $space-32;
   .zwroty-kontakt-head {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 24px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -1167,10 +1167,10 @@ text-transform: uppercase;
   }
 
   .zwroty-kontakt-rest {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -1184,14 +1184,14 @@ text-transform: uppercase;
 
 
 .background-white {
-  background-color: #fff !important;
+  background-color: $color-neutral-50 !important;
 }
 
 
 
 @media only screen and (max-width: 1200px) { 
   .zwroty-jakdokonac-icons-container {
-    gap: 49px !important;
+    gap: $space-48 !important;
   }
 
 
@@ -1199,15 +1199,15 @@ text-transform: uppercase;
 
 @media only screen and (max-width: 786px) { 
   .regulamin-title-container {
-    gap: 8px;
+    gap: $space-8;
   }
 
   .zwroty-container, .regulamin-container {
-    gap: 50px !important;
+    gap: $space-48 !important;
   }
 
   .zwroty-jakdokonac-text {
-    font-size: 20px !important;
+    font-size: $font-size-h4 !important;
   }
 
   .zwroty-border-2 {
@@ -1224,31 +1224,31 @@ text-transform: uppercase;
   .zwroty-dokument
   {
      div {
-    font-size: 20px !important;
+    font-size: $font-size-h4 !important;
   }
 
   a {
-    font-size: 16px !important;
+    font-size: $font-size-body-l !important;
   }
 }
 .zwroty-adres {
 
   .zwroty-adres-title {
-  font-size: 20px !important;
+  font-size: $font-size-h4 !important;
 }
 
 p {
-  font-size: 16px !important;
+  font-size: $font-size-body-l !important;
 }
 
 .zwroty-adres-rest {
-  font-size: 16px !important;
+  font-size: $font-size-body-l !important;
 }
 
 
 }
 
 .zwroty-kontakt-head {
-  font-size: 16px !important;
+  font-size: $font-size-body-l !important;
 }
 }

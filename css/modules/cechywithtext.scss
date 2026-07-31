@@ -13,7 +13,7 @@
 .features-flex {
     display: flex;
     justify-content: space-between;
-    margin-top: 5px !important;
+    margin-top: $space-4 !important;
     margin: 0;
 
 }
@@ -22,7 +22,7 @@
 .feature-item1 {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: $space-8;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -36,18 +36,18 @@
 
 .feature-icon {
     display: flex;
-    margin-top: 10px;
+    margin-top: $space-8;
     width: 15px;
     height: 15px !important;
-    padding: 10px;
+    padding: $space-8;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: $space-8;
     // border-radius: 30px;
-    // background-color:  #ffffffcc;
+    // background-color:  rgba($color-white, 0.8);
     border-radius: 20%;
     box-shadow: 0 4px 12px rgba(58, 86, 240, 0.3);
-    background: linear-gradient(to right, #000, #0983A0 40.01%);
+    background: linear-gradient(to right, $color-neutral-900, $color-info-medium 40.01%);
 }
 
 .feature-title {
@@ -56,12 +56,12 @@
     font-style: normal;
     font-weight: 600;
 
-    color: #fff;
+    color: $color-white;
     margin: 0;
     line-height: normal;
 
     @media (max-width: 415px) {
-        font-size: 13px;
+        font-size: $font-size-body-s;
     }
 }
 
@@ -70,11 +70,11 @@
     // font-family: $font-family-secondary;
     font-style: normal;
     font-weight: 400;
-    color: #fff;
+    color: $color-white;
     margin: 0;
 
     @media (max-width: 415px) {
-        font-size: 12px;
+        font-size: $font-size-body-s;
     }
 }
 
@@ -127,7 +127,7 @@
 
 .text-column {
     flex: 1;
-    background: #000;
+    background: $color-neutral-900;
     display: flex;
     align-items: center;
     // padding: 2rem;
@@ -227,9 +227,9 @@
         left: 0;
         width: 100%;
         height: 260px;
-        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+        // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+        background: linear-gradient(0deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
 
         z-index: 1;
     }
@@ -248,9 +248,9 @@
         left: 0;
         width: 100%;
         height: 260px;
-        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+        // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+        background: linear-gradient(0deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
 
         z-index: 1;
     }
@@ -269,9 +269,9 @@
         left: 0;
         width: 100%;
         height: 260px;
-        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+        // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+        background: linear-gradient(0deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
 
         z-index: 1;
     }
@@ -290,9 +290,9 @@
         left: 0;
         width: 100%;
         height: 260px;
-        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+        // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+        background: linear-gradient(0deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
 
         z-index: 1;
     }
@@ -387,9 +387,9 @@
         left: 0;
         width: 100%;
         height: 260px;
-        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+        // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+        background: linear-gradient(0deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
 
         z-index: 1;
     }
@@ -427,9 +427,9 @@
         left: 0;
         width: 100%;
         height: 260px;
-        // background: rgba(0, 0, 0, 0.5); // Adjust the opacity as needed
-        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%);
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+        // background: rgba($color-black, 0.5); // Adjust the opacity as needed
+        // background: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%);
+        background: linear-gradient(0deg, rgba($color-black, 0.00) 0%, rgb(0, 0, 0) 100%);
 
         z-index: 1;
     }
@@ -616,8 +616,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding-bottom: 140px;
-    // background: linear-gradient(181deg, #000 0%, rgba(0, 0, 0, 0.38) 57.5%, rgba(0, 0, 0, 0.00) 100%);
+    padding-bottom: $space-120;
+    // background: linear-gradient(181deg, $color-neutral-900 0%, rgba($color-black, 0.38) 57.5%, rgba($color-black, 0.00) 100%);
 
     .text-cechy-container-mapa {
         max-width: 900px !important;
@@ -636,7 +636,7 @@
     height: 100% !important;
     flex-direction: column !important;
     justify-content: space-between !important;
-    background: linear-gradient(1deg, #000 0%, rgba(0, 0, 0, 0.38) 15%, rgba(0, 0, 0, 0) 48%);
+    background: linear-gradient(1deg, $color-neutral-900 0%, rgba($color-black, 0.38) 15%, rgba($color-black, 0) 48%);
 }
 
 .content-position-helper-mapa-text {
@@ -644,16 +644,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 39px;
+    gap: $space-40;
     width: 100%;
-    padding-bottom: 50px;
-    padding-top: 190px;
-    // background: linear-gradient(1deg, #000 0%, rgba(0, 0, 0, 0.38) 69%, rgba(0, 0, 0, 0.00) 100%);
+    padding-bottom: $space-48;
+    padding-top: $space-120;
+    // background: linear-gradient(1deg, $color-neutral-900 0%, rgba($color-black, 0.38) 69%, rgba($color-black, 0.00) 100%);
 
     span {
-        color: #FFF;
-        font-family: "bebas-neue-pro", sans-serif;
-        font-size: 32px;
+        color: $color-white;
+        font-family: $font-family-base;
+        font-size: $font-size-h3;
         font-style: normal;
         font-weight: 500;
         line-height: 117.75%;
@@ -710,7 +710,7 @@
         // background-position: -200px;
 
 
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/bokserki-1-4-5.png) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/bokserki-1-4-5.png) !important;
         background-size: cover;
         background-position: center;
 
@@ -723,7 +723,7 @@
     .cechy-image-bokserki-4 {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -148px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/bokserki-4-4-5.png) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/bokserki-4-4-5.png) !important;
         background-size: cover;
         background-position: center;
 
@@ -732,25 +732,25 @@
     }
 
     .mapa-cechy {
-        margin-bottom: -39px !important;
+        margin-bottom: -$space-40 !important;
     }
 
     #etui-cechy.mobile-cechy-container {
-        margin-top: -50px;
+        margin-top: -$space-48;
     }
 
 
     .content-position-helper-mapa-text {
         flex-direction: column !important;
-        gap: 16px !important;
-        padding-bottom: 66px !important;
-        padding-top: 54px !important;
+        gap: $space-16 !important;
+        padding-bottom: $space-64 !important;
+        padding-top: $space-56 !important;
 
         span {
-            color: #FFF;
+            color: $color-white;
 
-            font-family: "bebas-neue-pro", sans-serif;
-            font-size: 16px;
+            font-family: $font-family-base;
+            font-size: $font-size-body-l;
             font-style: normal;
             font-weight: 500;
             line-height: 117.75%;
@@ -770,7 +770,7 @@
         // background-position: -200px;
 
 
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-cutfree-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-cutfree-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -784,7 +784,7 @@
         // background-position: -200px;
 
 
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/najlepszy-4-5.png) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/najlepszy-4-5.png) !important;
         background-size: cover;
         background-position: center;
 
@@ -799,7 +799,7 @@
         // background-position: -200px;
 
 
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/trymer-cechy-cutfree-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/trymer-cechy-cutfree-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -813,7 +813,7 @@
         // background-position: -200px;
 
 
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/baner-1-800x1000-1.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/baner-1-800x1000-1.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -825,7 +825,7 @@
     .cechy-image-2 {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -845px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-wodoodporna-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-wodoodporna-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -834,7 +834,7 @@
     .cechy-image-pewnosc {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -845px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/szachownicanew-4-5.png) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/szachownicanew-4-5.png) !important;
         background-size: cover;
         background-position: center;
 
@@ -902,7 +902,7 @@
     .cechy-image-3 {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -213px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-zero-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-zero-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -1079,7 +1079,7 @@
     .cechy-image-4 {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -1000px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-led-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-led-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -1088,7 +1088,7 @@
     .cechy-image-5 {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -148px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-dwa-ostrza-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-dwa-ostrza-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -1099,7 +1099,7 @@
     .cechy-image-trymer-4 {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -148px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/trymer-cechy-stalowe-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/trymer-cechy-stalowe-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -1110,7 +1110,7 @@
     .cechy-image-handler-4 {
         // background-size: contain; /* Adjust as needed for smaller screens */
         // background-position: -148px;
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/baner-2-800x1000-1.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/baner-2-800x1000-1.jpg) !important;
         background-size: cover;
         background-position: center;
 
@@ -1119,49 +1119,49 @@
     }
 
     .cechy-image-ostrzestalowe {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-stalowe-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-stalowe-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
     }
 
     .cechy-image-ostrzeklasyczne {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav_1_mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav_1_mobile.jpg) !important;
         background-size: cover;
         background-position: center;
     }
 
     .cechy-image-maszynkatrymerzestaw {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/Shav_zestaw.png) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/Shav_zestaw.png) !important;
         background-size: cover;
         background-position: center;
     }
 
     .cechy-image-pelnyzestaw {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/zestaw_pelny_mobile.png) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/zestaw_pelny_mobile.png) !important;
         background-size: cover;
         background-position: center;
     }
 
     .cechy-image-ostrzefoliowe {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-foliowe-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-foliowe-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
     }
 
     .cechy-image-ostrzefoliowe2 {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-foliowe-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-foliowe-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
     }
 
     .cechy-image-ostrzetrymer {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/mobile_ostrze.png) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/mobile_ostrze.png) !important;
         background-size: cover;
         background-position: center;
     }
 
     .cechy-image-etui {
-        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-etui-mobile.jpg) !important;
+        background-image: linear-gradient(to bottom, rgb(0 0 0) 0%, rgb(0 0 0 / 69%) 50px, rgba($color-black, 0) 100px, rgba($color-black, 0) 100%), url(https://shav.pl/wp-content/uploads/shav-etui-mobile.jpg) !important;
         background-size: cover;
         background-position: center;
     }
@@ -1175,10 +1175,10 @@
 
     .mobile-cechy-container {
         // position: relative;
-        // color: #fff;
-        padding: 20px;
-        background-color: #000 !important;
-        background: linear-gradient(0deg, #000 -4.62%, rgba(0, 0, 0, 0) 40.75%);
+        // color: $color-white;
+        padding: $space-16;
+        background-color: $color-neutral-900 !important;
+        background: linear-gradient(0deg, $color-neutral-900 -4.62%, rgba($color-black, 0) 40.75%);
 
         height: 50vh;
         display: flex;
@@ -1193,13 +1193,13 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: $space-8;
             // gap: 2rem;
             max-width: 1300px;
             text-align: center;
-            color: #fff;
-            padding: 20px;
-            margin: 15px;
+            color: $color-white;
+            padding: $space-16;
+            margin: $space-16;
 
             // z-index: 1;
 
@@ -1219,8 +1219,8 @@
 
 .cechy-container {
     // position: relative;
-    // color: #fff;
-    padding: 20px;
+    // color: $color-white;
+    padding: $space-16;
 
     ////
     height: 80vh;
@@ -1233,11 +1233,11 @@
     .text-cechy-container {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: $space-8;
         // gap: 2rem;
         max-width: 600px;
         text-align: left;
-        color: #fff;
+        color: $color-white;
         padding: 0;
         margin: 0;
 
@@ -1251,21 +1251,21 @@
         }
 
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif !important;
-            font-size: 64px;
+            font-family: $font-family-base !important;
+            font-size: $font-size-h1;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
             text-transform: uppercase !important;
-            margin-bottom: 5px !important;
+            margin-bottom: $space-4 !important;
         }
 
         .line-rest {
-            font-size: 20px !important;
+            font-size: $font-size-h4 !important;
             max-width: 800px;
             text-align: left;
-            font-family: "Roboto", sans-serif;
-            font-size: 32px;
+            font-family: $font-family-base;
+            font-size: $font-size-h3;
             font-style: normal;
             font-weight: 500;
             line-height: normal;
@@ -1277,27 +1277,27 @@
 @media (max-width: 1050px) {
     .text-cechy-container {
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif !important;
-            font-size: 43px !important;
+            font-family: $font-family-base !important;
+            font-size: $font-size-h2 !important;
             text-transform: uppercase !important;
 
         }
 
         .line-rest {
-            font-size: 20px !important;
+            font-size: $font-size-h4 !important;
         }
     }
 
     .text-cechy-container-mobile {
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif !important;
-            font-size: 48px !important;
+            font-family: $font-family-base !important;
+            font-size: $font-size-h1-mob !important;
             text-transform: uppercase !important;
-            margin-bottom: 5px !important;
+            margin-bottom: $space-4 !important;
         }
 
         .line-rest {
-            font-size: 20px !important;
+            font-size: $font-size-h4 !important;
         }
     }
 }
@@ -1321,7 +1321,7 @@
         // left: 0;
         // width: 100%;
         // height: 140px;
-        // background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+        // background: linear-gradient(180deg, rgba($color-black, 0) 0%, rgb(0, 0, 0) 100%);
         // z-index: 1;
         display: none;
     }
@@ -1339,7 +1339,7 @@
         // left: 0;
         // width: 100%;
         // height: 140px;
-        // background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+        // background: linear-gradient(180deg, rgba($color-black, 0) 0%, rgb(0, 0, 0) 100%);
         // z-index: 1;
         display: none;
     }
@@ -1352,27 +1352,27 @@
         text-align: center !important;
 
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif !important;
-            font-size: 36px !important;
+            font-family: $font-family-base !important;
+            font-size: $font-size-h3 !important;
             text-transform: uppercase !important;
         }
 
         .line-rest {
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
             text-align: center !important;
         }
     }
 
     .text-cechy-container-mobile {
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif !important;
+            font-family: $font-family-base !important;
             text-align: center !important;
-            font-size: 36px !important;
+            font-size: $font-size-h3 !important;
             text-transform: uppercase !important;
         }
 
         .line-rest {
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
             text-align: center !important;
         }
     }
@@ -1381,30 +1381,30 @@
 @media (max-width: 600px) {
     .text-cechy-container-mobile {
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif !important;
+            font-family: $font-family-base !important;
             text-align: center !important;
-            font-size: 36px !important;
+            font-size: $font-size-h3 !important;
             text-transform: uppercase !important;
         }
 
         .line-rest {
 
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
             text-align: center !important;
         }
     }
 
     .text-cechy-container-mobile {
         .line-head {
-            font-family: "bebas-neue-pro", sans-serif !important;
-            font-size: 36px !important;
+            font-family: $font-family-base !important;
+            font-size: $font-size-h3 !important;
             text-align: center !important;
             text-transform: uppercase !important;
         }
 
         .line-rest {
 
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
             text-align: center !important;
         }
     }

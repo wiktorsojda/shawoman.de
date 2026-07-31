@@ -1,0 +1,590 @@
+// =============================================================================
+// DESIGN TOKENS — ShavWoman (z Figmy)
+// =============================================================================
+// Zmienne globalne projektu. Budowane stopniowo na bazie plików Figmy.
+// Sekcje: kolory, typografia, spacing, radius, komponenty (button, ...).
+// =============================================================================
+
+
+// -----------------------------------------------------------------------------
+// 1. COLORS — paleta z Figmy (Styl Guide → Colors)
+// -----------------------------------------------------------------------------
+// Tylko odcienie zdefiniowane w Figmie jako tokeny (Schematic). Brakujace
+// numery (np. peach-300) celowo pominiete — nie sa czescia design systemu.
+
+// --- Primitives: Peach (Primary) ---
+$color-peach-50:  #fcf6f3;
+$color-peach-100: #f7eae3;
+$color-peach-200: #f4e2d9;
+$color-peach-400: #e4c2b4;
+$color-peach-500: #d6ab9a;
+$color-peach-600: #c68e7a;
+$color-peach-700: #b26f57;
+$color-peach-800: #8b5644;
+$color-peach-900: #613e33;
+
+// --- Primitives: Red (Accent) ---
+$color-red-50:  #fff0f0;
+$color-red-100: #ffc7c7;
+$color-red-200: #ff8585;
+$color-red-500: #c01616;
+$color-red-600: #ac0000;
+$color-red-700: #661a1a;
+
+// --- Primitives: Orange (Warning) ---
+$color-orange-50:  #fff6f0;
+$color-orange-100: #ffd8b8;
+$color-orange-200: #fdbd86;
+$color-orange-400: #f87f11;
+$color-orange-500: #d96c08;
+$color-orange-600: #ad5305;
+
+// --- Primitives: Green (Success) ---
+$color-green-50:  #f3fcf5;
+$color-green-100: #cff2d6;
+$color-green-200: #a4e5b2;
+$color-green-500: #40bf5e;
+$color-green-600: #379a4e;
+$color-green-700: #2d773d;
+
+// --- Primitives: Yellow (Attention) ---
+$color-yellow-50:  #fffdf4;
+$color-yellow-100: #fef3c2;
+$color-yellow-200: #fde890;
+$color-yellow-400: #f7d030;
+$color-yellow-500: #e9bd0b;
+$color-yellow-600: #a98c1b;
+
+// --- Primitives: Blue (Info) ---
+$color-blue-50:  #f1faff;
+$color-blue-100: #c3e9ff;
+$color-blue-200: #95d7ff;
+$color-blue-500: #0b99ff;
+$color-blue-600: #027fda;
+$color-blue-700: #0464ab;
+
+// --- Primitives: Neutral ---
+$color-neutral-50:  #fafafa;
+$color-neutral-100: #f2f2f2;
+$color-neutral-200: #d9d9d9;
+$color-neutral-300: #bcbcbc;
+$color-neutral-400: #a5a5a5;
+$color-neutral-500: #8b8b8b;
+$color-neutral-600: #727272;
+$color-neutral-700: #585858;
+$color-neutral-800: #3f3f3f;
+$color-neutral-900: #252525;
+
+// --- Bazowe ---
+$color-white: #ffffff;
+$color-black: #000000;
+
+
+// -----------------------------------------------------------------------------
+// 1b. SEMANTIC COLORS — mapa "Schematic" z Figmy
+// -----------------------------------------------------------------------------
+// Aliasy semantyczne: uzywaj ICH w komponentach zamiast surowych primitives.
+// Dzieki temu zmiana motywu = zmiana w jednym miejscu.
+
+// Primary (peach)
+$color-primary-extra-light: $color-peach-400; // P - 400
+$color-primary-light:       $color-peach-500; // P - 500
+$color-primary-medium:      $color-peach-600; // P - 600
+$color-primary-dark:        $color-peach-700; // P - 700
+$color-primary-extra-dark:  $color-peach-800; // P - 800
+$color-on-primary-light:    $color-peach-50;  // tekst/ikona na primary-light
+$color-on-primary-medium:   $color-peach-100;
+$color-on-primary-dark:     $color-peach-200;
+
+// Accent (red)
+$color-accent-light:    $color-red-500;
+$color-accent-medium:   $color-red-600;
+$color-accent-dark:     $color-red-700;
+$color-on-accent-light: $color-red-50;
+$color-on-accent-medium:$color-red-100;
+$color-on-accent-dark:  $color-red-200;
+
+// Warning (orange)
+$color-warning-light:    $color-orange-400;
+$color-warning-medium:   $color-orange-500;
+$color-warning-dark:     $color-orange-600;
+$color-on-warning-light: $color-orange-50;
+$color-on-warning-medium:$color-orange-100;
+$color-on-warning-dark:  $color-orange-200;
+
+// Success (green)
+$color-success-light:    $color-green-500;
+$color-success-medium:   $color-green-600;
+$color-success-dark:     $color-green-700;
+$color-on-success-light: $color-green-50;
+$color-on-success-medium:$color-green-100;
+$color-on-success-dark:  $color-green-200;
+
+// Attention (yellow)
+$color-attention-light:    $color-yellow-400;
+$color-attention-medium:   $color-yellow-500;
+$color-attention-dark:     $color-yellow-600;
+$color-on-attention-light: $color-yellow-50;
+$color-on-attention-medium:$color-yellow-100;
+$color-on-attention-dark:  $color-yellow-200;
+
+// Info (blue)
+$color-info-light:    $color-blue-500;
+$color-info-medium:   $color-blue-600;
+$color-info-dark:     $color-blue-700;
+$color-on-info-light: $color-blue-50;
+$color-on-info-medium:$color-blue-100;
+$color-on-info-dark:  $color-blue-200;
+
+// Neutral
+$color-neutral-extra-light: $color-neutral-50;
+$color-neutral-light:       $color-neutral-100;
+$color-neutral-medium:      $color-neutral-200;
+$color-neutral-dark:        $color-neutral-300;
+$color-neutral-extra-dark:  $color-neutral-400;
+$color-on-neutral-light:    $color-neutral-700;
+$color-on-neutral-medium:   $color-neutral-800;
+$color-on-neutral-dark:     $color-neutral-900;
+
+
+// -----------------------------------------------------------------------------
+// 2. TYPOGRAPHY
+// -----------------------------------------------------------------------------
+// Z Figmy. Dwa fonty:
+//   - Main:   Be Vietnam Pro  (headlines + body)
+//   - Akcent: Dolce           (akcenty w naglowkach)
+
+// --- Font families ---
+$font-family-base:   'Be Vietnam Pro', sans-serif;
+$font-family-accent: 'dolce', 'Be Vietnam Pro', sans-serif;
+
+// --- Font weights ---
+// Be Vietnam Pro: Light, Regular, Medium, SemiBold, Bold, ExtraBold
+$font-weight-light:      300;
+$font-weight-regular:    400;
+$font-weight-medium:     500;
+$font-weight-semibold:   600;
+$font-weight-bold:       700;
+$font-weight-extrabold:  800;
+
+// Dolce: Thin, Regular, Medium, Bold, Black
+$font-weight-accent-thin:    200;
+$font-weight-accent-regular: 400;
+$font-weight-accent-medium:  500;
+$font-weight-accent-bold:    700;
+$font-weight-accent-black:   900;
+
+// --- Line heights ---
+$line-height-tight: 1.2;   // 120% — headlines, subtitles
+$line-height-base:  1.4;   // 140% — body
+
+// --- Letter spacing ---
+$letter-spacing-tight: -0.04em; // -4% — caly system
+
+// =============================================================================
+// 2a. TYPE SCALE — desktop + mobile
+// =============================================================================
+// Konwencja: $font-size-{role}     -> desktop
+//            $font-size-{role}-mob -> mobile (jesli sie rozni od desktop)
+
+// --- Headings ---
+$font-size-h1:       64px;
+$font-size-h1-mob:   44px;
+
+$font-size-h2:       42px;
+$font-size-h2-mob:   32px;
+
+$font-size-h3:       32px;
+$font-size-h3-mob:   26px;
+
+$font-size-h4:       20px;
+$font-size-h4-mob:   16px;
+
+// --- Subtitles ---
+$font-size-subtitle-l:     16px;
+$font-size-subtitle-l-mob: 14px;
+
+$font-size-subtitle-s:     14px;
+// Subtitle S — w Figmie nie ma wariantu mobile; uzywaj desktopowego.
+
+// --- Body ---
+$font-size-body-l:   16px;
+$font-size-body-m:   14px;
+$font-size-body-s:   12px;
+// Body — w Figmie tylko desktop; mobile = ten sam rozmiar.
+
+// --- Bazowy rozmiar ciala tekstu ---
+$font-size-base: $font-size-body-m; // 14px
+
+
+// =============================================================================
+// 2b. SEMANTIC TYPOGRAPHY — gotowe zestawy (font + size + lh + ls + weight)
+// =============================================================================
+// Mixin powiazujacy wszystkie wlasciwosci dla danej roli. Uzycie:
+//
+//   .my-heading { @include type-h1; }
+//
+// Mobile-first: domyslnie mobile, breakpoint @media min-width 768px = desktop.
+
+$breakpoint-tablet: 768px;
+
+@mixin _type-base($weight: $font-weight-regular) {
+  font-family: $font-family-base;
+  font-weight: $weight;
+  letter-spacing: $letter-spacing-tight;
+}
+
+@mixin type-h1 {
+  @include _type-base($font-weight-bold);
+  font-size: $font-size-h1-mob;
+  line-height: $line-height-tight;
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-h1;
+  }
+}
+
+@mixin type-h2 {
+  @include _type-base($font-weight-bold);
+  font-size: $font-size-h2-mob;
+  line-height: $line-height-tight;
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-h2;
+  }
+}
+
+@mixin type-h3 {
+  @include _type-base($font-weight-semibold);
+  font-size: $font-size-h3-mob;
+  line-height: $line-height-tight;
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-h3;
+  }
+}
+
+@mixin type-h4 {
+  @include _type-base($font-weight-semibold);
+  font-size: $font-size-h4-mob;
+  line-height: $line-height-tight;
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-h4;
+  }
+}
+
+@mixin type-subtitle-l {
+  @include _type-base($font-weight-medium);
+  font-size: $font-size-subtitle-l-mob;
+  line-height: $line-height-tight;
+  @media (min-width: $breakpoint-tablet) {
+    font-size: $font-size-subtitle-l;
+  }
+}
+
+@mixin type-subtitle-s {
+  @include _type-base($font-weight-medium);
+  font-size: $font-size-subtitle-s;
+  line-height: $line-height-tight;
+}
+
+@mixin type-body-l {
+  @include _type-base($font-weight-regular);
+  font-size: $font-size-body-l;
+  line-height: $line-height-base;
+}
+
+@mixin type-body-m {
+  @include _type-base($font-weight-regular);
+  font-size: $font-size-body-m;
+  line-height: $line-height-base;
+}
+
+@mixin type-body-s {
+  @include _type-base($font-weight-regular);
+  font-size: $font-size-body-s;
+  line-height: $line-height-base;
+}
+
+// Akcent (Dolce) — uzywany jako wstawka w naglowku
+@mixin type-accent {
+  font-family: $font-family-accent;
+  font-weight: $font-weight-accent-regular;
+  letter-spacing: $letter-spacing-tight;
+}
+
+
+// -----------------------------------------------------------------------------
+// 3. SPACING & PADDING
+// -----------------------------------------------------------------------------
+// Skala z Figmy (12 wartosci). Konwencja numeryczna: $space-{px}.
+// Uzywaj tej skali do margin / padding / gap.
+//
+// Uwaga: w Figmie etykiety t-shirt (XXS/XXXS/XXL itp.) maja duplikaty
+// i drobne niespojnosci (np. label "84" przy 80px). Zrodlem prawdy sa
+// wartosci wymiarow frame'ow — i to one trafiaja tutaj.
+
+$space-0:    0;
+$space-4:    4px;
+$space-8:    8px;
+$space-12:   12px;
+$space-16:   16px;
+$space-24:   24px;
+$space-32:   32px;
+$space-40:   40px;
+$space-48:   48px;
+$space-56:   56px;
+$space-64:   64px;
+$space-80:   80px;
+$space-120:  120px;
+
+// Mapa do iteracji / utility classes (jesli kiedys beda potrzebne)
+$spacing-scale: (
+  0:   $space-0,
+  4:   $space-4,
+  8:   $space-8,
+  12:  $space-12,
+  16:  $space-16,
+  24:  $space-24,
+  32:  $space-32,
+  40:  $space-40,
+  48:  $space-48,
+  56:  $space-56,
+  64:  $space-64,
+  80:  $space-80,
+  120: $space-120,
+);
+
+
+// -----------------------------------------------------------------------------
+// 4. RADIUS — Corner Radius (z Figmy)
+// -----------------------------------------------------------------------------
+// 5 poziomow: XS -> XL. Tylko te wartosci sa czescia design systemu.
+
+$radius-xs: 8px;
+$radius-s:  16px;
+$radius-m:  24px;
+$radius-l:  36px;
+$radius-xl: 42px;
+
+// Mapa do iteracji
+$radius-scale: (
+  xs: $radius-xs,
+  s:  $radius-s,
+  m:  $radius-m,
+  l:  $radius-l,
+  xl: $radius-xl,
+);
+
+
+// =============================================================================
+// 5. EFFECTS — shadows + glass (z Figmy)
+// =============================================================================
+// Uzywane w sekcjach typu "szachownica" (glass effect za tekstem na zdjeciu).
+
+// --- Box shadows ---
+$shadow-card: 1px 5px 12px 0 rgba(0, 0, 0, 0.06);    // delikatne uniesienie kontenera
+
+// --- Text shadows ---
+$shadow-text-glass: 0 0 17.9px rgba(0, 0, 0, 0.25);  // czytelnosc tekstu na glass
+
+// --- Glass effect tokens ---
+$glass-blur:          12px;
+$glass-radius:        12px;        // wlasna wartosc z Figmy, poza skala $radius-*
+$glass-border-width:  2px;
+$glass-border-color:  $color-white;
+$glass-text-color:    $color-neutral-50;
+
+// Tlo szkla — gradient wewnetrzny (z Figmy: 170deg, 22% / 47%)
+$glass-bg-gradient:
+  linear-gradient(
+    170.43deg,
+    rgba(237, 237, 237, 0.24) 22.84%,
+    rgba(255, 255, 255, 0.24) 46.79%
+  );
+
+// Wariant "light overlay" (np. plaska plamka 40% bialy z mocniejszym blurem)
+$glass-overlay-blur: 16px;
+$glass-overlay-bg:   rgba(255, 255, 255, 0.4);
+
+
+// --- Mixiny ---
+
+// Glowny glass card — szklany prostokat z gradientem, ramka, tekst jasny.
+// Nadaje sie na blok tekstowy nakladany na zdjecie/obraz tla.
+@mixin glass-effect {
+  background: $glass-bg-gradient;
+  border: $glass-border-width solid $glass-border-color;
+  border-radius: $glass-radius;
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur); // Safari
+  color: $glass-text-color;
+  text-shadow: $shadow-text-glass;
+}
+
+// Wariant lzejszy — biala plamka 40% z mocniejszym blurem (np. label na tle).
+@mixin glass-overlay {
+  background: $glass-overlay-bg;
+  backdrop-filter: blur($glass-overlay-blur);
+  -webkit-backdrop-filter: blur($glass-overlay-blur);
+  color: $glass-text-color;
+  text-shadow: $shadow-text-glass;
+}
+
+
+// =============================================================================
+// 6. COMPONENT TOKENS — AVATAR (stos)
+// =============================================================================
+// Z Figmy (nodeId 104:62801). Stos avatarow do banerow / sekcji "ratingu".
+
+$avatar-size:    68px;
+$avatar-overlap: 18px;  // przesuniecie kazdego nastepnego (margin-right: -18px)
+
+
+// =============================================================================
+// 7. COMPONENT TOKENS — RATING
+// =============================================================================
+// Z Figmy (nodeId 104:62872). Rzad 5 kafelkow z gwiazdkami + etykieta.
+
+$rating-tile-size:    52px;
+$rating-tile-radius:  $radius-xs;        // 8px
+$rating-tile-bg:      $color-peach-600;
+$rating-tile-gap:     4px;               // gap miedzy kafelkami
+$rating-icon-size:    32px;              // ikona gwiazdki w kafelku
+$rating-icon-color:   $color-white;
+
+$rating-row-gap:      $space-24;         // odstep gwiazdki -> etykieta
+$rating-label-color:  $color-neutral-900;
+// Etykieta uzywa @include type-h4 z 2. TYPOGRAPHY (24px desktop / 16px mobile,
+// medium, uppercase). Uppercase trzeba dolaczyc na klasie modulu.
+
+// Standalone star (poza kafelkiem) — ten sam rozmiar co ikona w kafelku
+$rating-star-size:    $rating-icon-size; // 32px
+
+
+// =============================================================================
+// 8. COMPONENT TOKENS — HEADER (Menu)
+// =============================================================================
+// Z Figmy (nodeId 93:61951 desktop, 93:60669 mobile).
+
+// --- Wspolne ---
+$header-bg:           $color-neutral-50;       // #fafafa
+$header-text-color:   $color-neutral-900;
+$header-border-color: $color-neutral-200;      // border (desktop+mobile, z Figmy)
+$header-border-width: 1px;
+
+$header-link-font-size: 16px;
+$header-cart-icon:    32px;
+
+// --- Desktop ---
+$header-height-desktop:    80px;
+$header-padding-x-desktop: $space-32;          // 32
+$header-radius-desktop:    12px;               // wartosc lokalna (poza skala $radius-*)
+$header-max-width:         1300px;             // szerokosc kontenera wewnetrznego
+$header-logo-w-desktop:    88px;
+$header-logo-h-desktop:    50px;
+$header-nav-gap:           $space-24;          // 24
+
+// --- Mobile ---
+$header-height-mobile:     60px;
+$header-padding-x-mobile:  20px;               // 20px nie wystepuje w skali $space-*
+$header-radius-mobile:     $radius-xs;         // 8
+$header-logo-w-mobile:     70px;
+$header-logo-h-mobile:     40px;
+
+
+// =============================================================================
+// 9. COMPONENT TOKENS — PROMO BAR (top)
+// =============================================================================
+// Z Figmy (nodeId 93:60624 desktop, 93:61926 mobile).
+
+$promo-bar-bg:               $color-peach-500;
+$promo-bar-text-color:       $color-peach-50;
+$promo-bar-padding-x:        $space-32;
+$promo-bar-gap:              $space-16;
+$promo-bar-separator-height: 12px;
+$promo-bar-icon-size:        16px;
+
+// Desktop
+$promo-bar-height-desktop:    40px;
+$promo-bar-font-size-desktop: 16px;
+
+// Mobile
+$promo-bar-height-mobile:     32px;
+$promo-bar-font-size-mobile:  12px;
+
+
+// =============================================================================
+// 10. COMPONENT TOKENS — CARD
+// =============================================================================
+// Z Figmy (nodeId 66:51787). 4 warianty: text, media-lg, media-sm, outline.
+
+// --- Wspolne ---
+$card-bg:           $color-neutral-100;     // #f2f2f2 — wariant filled
+$card-border-color: $color-neutral-900;     // #252525 — wariant outline
+$card-text-color:   $color-neutral-800;     // tytul + opis
+$card-radius:       $radius-s;              // 16px — kontener karty
+
+// --- Wariant: text-only (basic) ---
+$card-text-padding: 60px;                   // wartosc lokalna (poza skala $space-*)
+$card-text-gap:     $space-24;              // gap H1 / body / button
+
+// --- Wariant: media-lg (1428×550 z duzym obrazem) ---
+$card-media-lg-padding-y:    60px;          // wartosc lokalna
+$card-media-lg-padding-x:    150px;         // wartosc lokalna
+$card-media-lg-gap:          $space-64;     // 64 — odstep obraz <-> content
+$card-media-lg-content-gap:  $space-16;     // 16 — gap H1 <-> body w content
+$card-media-lg-image-radius: $radius-m;     // 24px
+
+// --- Wariant: media-sm (707×214 kompaktowy) ---
+$card-media-sm-padding:       $space-24;    // 24
+$card-media-sm-gap:           $space-64;    // 64
+$card-media-sm-image-radius:  $radius-xs;   // 8px
+
+
+// =============================================================================
+// 11. COMPONENT TOKENS — BUTTONS
+// =============================================================================
+// Z Figmy (nodeId 66:44892). Warianty: primary, outline. Rozmiary: sm/md/lg.
+// Stany: default, hover, pressed.
+// =============================================================================
+
+// --- Wspolne ---
+$btn-radius:        $radius-xs;          // 8px
+$btn-font-family:   $font-family-base;
+$btn-font-weight:   $font-weight-medium; // 500
+$btn-line-height:   24px;
+$btn-letter-spacing: -0.04em;            // -0.56px @ 14, -0.64 @ 16, -0.8 @ 20
+
+// --- Rozmiary (padding | font-size | gap | icon-size) ---
+// Small
+$btn-sm-padding-y:  6px;
+$btn-sm-padding-x:  12px;
+$btn-sm-font-size:  14px;
+$btn-sm-gap:        8px;
+$btn-sm-icon:       20px;
+
+// Medium
+$btn-md-padding-y:  12px;
+$btn-md-padding-x:  24px;
+$btn-md-font-size:  16px;
+$btn-md-gap:        12px;
+$btn-md-icon:       24px;
+
+// Large
+$btn-lg-padding-y:  16px;
+$btn-lg-padding-x:  32px;
+$btn-lg-font-size:  20px;
+$btn-lg-gap:        12px;
+$btn-lg-icon:       32px;
+
+// --- Wariant: PRIMARY (tlo biale, tekst neutral/900) ---
+$btn-primary-color:           $color-neutral-900;
+$btn-primary-bg-default:      $color-white;
+$btn-primary-bg-hover:        rgba(255, 255, 255, 0.5);
+$btn-primary-bg-pressed:      rgba(255, 255, 255, 0.7);
+
+// --- Wariant: OUTLINE (transparentny + border, tekst neutral/900) ---
+$btn-outline-color:           $color-neutral-900;
+$btn-outline-bg:              transparent;
+$btn-outline-border-width:    1px;
+$btn-outline-border-default:  $color-neutral-900;            // #252525
+$btn-outline-border-hover:    rgba(37, 37, 37, 0.6);
+$btn-outline-border-pressed:  rgba(37, 37, 37, 0.8);

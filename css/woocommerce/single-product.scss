@@ -22,10 +22,10 @@
 
 .custom-thumbnails-slider {
     order: 2;
-    margin-top: 15px;
+    margin-top: $space-16;
     display: flex;
     overflow-x: auto;
-    gap: 8px;
+    gap: $space-8;
 }
 
 .custom-thumbnails-slider .thumbnail {
@@ -34,7 +34,7 @@
 }
 
 .custom-thumbnails-slider .thumbnail.active {
-    border-color: #555;
+    border-color: $color-neutral-700;
 }
 
 .custom-thumbnails-slider .thumbnail img {
@@ -61,8 +61,8 @@
     flex-direction: column;
     justify-content: space-between;
     align-self: stretch;
-    padding-top: 24px;
-    border-top: 1px solid #C9C9C9;
+    padding-top: $space-24;
+    border-top: 1px solid $color-neutral-300;
     
     .zestaw-cena-sub {
         // padding-bottom: 16px;
@@ -70,17 +70,17 @@
             line-height: normal;
             display: flex;
             justify-content: space-between;
-            padding-bottom: 8px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 18px;
+            padding-bottom: $space-8;
+            font-family: $font-family-base;
+            font-size: $font-size-body-l;
             font-weight: 500
         }
 
         .zestaw-tekst-cena {
             line-height: normal;
-            color: #464646;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
+            color: $color-neutral-800;
+            font-family: $font-family-base;
+            font-size: $font-size-body-l;
             font-weight: 400;
         }
     }
@@ -89,17 +89,17 @@
         text-align: left;
     font-weight: 600;
     line-height: 117.75%;
-    font-size: 20px !important;
-    font-family: 'bebas-neue-pro', sans-serif;
+    font-size: $font-size-h4 !important;
+    font-family: $font-family-base;
     }
 
     .zestaw-cena-rest {
-        font-family: "Roboto", sans-serif;
-        font-size: 16px;
+        font-family: $font-family-base;
+        font-size: $font-size-body-l;
         font-weight: 500;
         line-height: normal;
-        color: #464646;
-     font-size: 18px;
+        color: $color-neutral-800;
+     font-size: $font-size-body-l;
     font-style: normal;
     font-weight: 500;
     line-height: 117.75%;
@@ -112,9 +112,9 @@
 .custom-percentage-strip-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    gap: $space-8;
+    padding-top: $space-16;
+    padding-bottom: $space-16;
     margin-bottom: 0 !important;
  
 
@@ -126,28 +126,28 @@
     }
 
     p {
-        font-family: "Poppins", sans-serif;
+        font-family: $font-family-base;
         font-weight: 400;
-        font-size: 16px;
-        color: #080808;
+        font-size: $font-size-body-l;
+        color: $color-neutral-900;
     }
 
 
     .custom-percentage-strip {
         width: 100%; 
-        background-color: #E3E3E3; 
-        border-radius: 5px; 
+        background-color: $color-neutral-200; 
+        border-radius: $radius-xs; 
         overflow: hidden; 
         position: relative;
         display: flex;
 
-        padding: 4px;
+        padding: $space-4;
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
-        gap: 10px;
+        gap: $space-8;
         align-self: stretch;
-        border-radius: 48px;
+        border-radius: $radius-xl;
     }
 }
 
@@ -155,16 +155,16 @@
 .product-tag {
     display: inline-flex;
 width: 211px;
-font-size: 12px;
+font-size: $font-size-body-s;
 // height: 32px;
-padding: 7px 15px 7px 10px;
+padding: $space-8 $space-16 $space-8 $space-8;
 align-items: center;
-gap: 10px;
+gap: $space-8;
 border-bottom: none !important;
-border-radius: 4px;
-background-color: #000;
-color: #fff !important;
-margin-bottom: 12px !important;
+border-radius: $radius-xs;
+background-color: $color-neutral-900;
+color: $color-white !important;
+margin-bottom: $space-12 !important;
 }
 
 //second promotion tag on product page 
@@ -176,17 +176,17 @@ margin-bottom: 12px !important;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 7px 14px;
+    padding: $space-8 $space-12;
 
-    border-radius: 4px;
+    border-radius: $radius-xs;
 background: rgba(224, 224, 224, 0.80);
 width: 94px;
 z-index: 1; 
 }
 
 .promo-percentage {
-    font-size: 24px;
-    font-family: "Roboto", sans-serif;
+    font-size: $font-size-h4;
+    font-family: $font-family-base;
     // font-weight: bold;
     font-weight: 600;
     background-clip: text;
@@ -196,19 +196,19 @@ z-index: 1;
 
 
 .promo-small-text {
-    font-size: 12px;
-    color: #000;
+    font-size: $font-size-body-s;
+    color: $color-neutral-900;
 }
 
 @media (max-width: 800px) {  
     .promotional-element-two-lines {
     right: 5%;
     top: 51px;
-    padding: 4px 14px;
+    padding: $space-4 $space-12;
     }
 
     .promo-percentage { 
-        font-size: 16px;
+        font-size: $font-size-body-l;
     }
     .promo-small-text {
         font-size: 10px
@@ -227,13 +227,13 @@ z-index: 1;
      background-position: center;
      display: flex;
      justify-content: right;
-     padding-right: 10px;
+     padding-right: $space-8;
      align-items: center;
-     border-radius: 8px;
+     border-radius: $radius-xs;
 
      p {
         color: white;
-         font-size: 12px; 
+         font-size: $font-size-body-s; 
          text-align: center; 
          text-transform: uppercase;
          margin-bottom: 0;
@@ -247,7 +247,7 @@ z-index: 1;
         height: 30px;
 
         p {
-            font-size: 10px !important;
+            font-size: $font-size-body-s !important;
         }
     }
 }
@@ -256,7 +256,7 @@ z-index: 1;
         width: 45% !important;
 
         p {
-            font-size: 10px;
+            font-size: $font-size-body-s;
         }
     }
 }
@@ -264,11 +264,11 @@ z-index: 1;
 // omnibus styles
 .lowest-price {
     font-weight: 400;
-    font-size: 9px !important;
-    font-style: "Roboto", sans-serif;
-    color: #7A7A7A;
+    font-size: $font-size-body-s !important;
+    font-style: $font-family-base;
+    color: $color-neutral-600;
     margin:0;
-    margin-bottom: 10px !important;
+    margin-bottom: $space-8 !important;
     margin-top: 0 !important;
 }
 
@@ -276,19 +276,27 @@ z-index: 1;
 .postid-68, .postid-129, .postid-342
 {
 del::before {
-    background-color: #7A7A7A !important;
+    background-color: $color-neutral-600 !important;
     @media (max-width: 768px) { 
         width: 19% !important;
     }
 }
 
     .custom-price-add-to-cart .price {
-        color: #AC0000 !important;
+        color: $color-accent-medium !important;
 
             display: flex;
             flex-direction: column;
-        
+
     }
+}
+
+// Cena promocyjna (z przekreśleniem) — spójny wygląd na WSZYSTKICH produktach,
+// także prostych: cena promo w kolorze akcentu, stara cena nad nową (jak przy wielowariantowym).
+.custom-price-add-to-cart .price:has(del) {
+    color: $color-accent-medium;
+    display: flex;
+    flex-direction: column;
 }
 
 //timer strona produktowa
@@ -310,7 +318,7 @@ del::before {
 p#countdown, p#countdown-mobile {
     display: flex;
     margin-bottom: 0;
-    gap: 20px;
+    gap: $space-16;
 
     .countdown-wrapper {
         display: flex;
@@ -318,57 +326,57 @@ p#countdown, p#countdown-mobile {
         gap: 0px;
         padding: 0;
         margin: 0;
-        font-size: 15px;
+        font-size: $font-size-body-m;
         text-transform: uppercase;
-        font-family: 'bebas-neue-pro', sans-serif;
+        font-family: $font-family-base;
     }
 }
 .countdown-number {
-    font-size: 2em;
+    font-size: 22px;
     font-weight: bold;
     display: block;
     line-height: 1;
 }
 
 .countdown-label {
-    font-size: 1em;
+    font-size: 12px;
     display: block;
     line-height: 1;
-    color: #fff;
+    color: $color-black;
 }
 
 // zestaw strona produktowa
 .zestaw-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 32px;
+    gap: $space-16;
+    margin-top: $space-32;
 
 
     .zestaw-title {
-        font-size: 24px;
+        font-size: $font-size-h4;
         font-style: normal;
         font-weight: 400;
         line-height: 117.75%;
-        font-family: 'bebas-neue-pro', sans-serif;
+        font-family: $font-family-base;
         text-transform: uppercase;
     }
 
     .custom-product-section {
-        margin-top: 20px;
-        border-radius: 8px;
+        margin-top: $space-16;
+        border-radius: $radius-xs;
         background: white;
-        border: 0.3px solid #ddd;
-        padding: 15px 20px;
+        border: 0.3px solid $color-neutral-200;
+        padding: $space-16 $space-16;
 
-        margin-top: 10px;
+        margin-top: $space-8;
 
         .zestaw-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 16px;
+            gap: $space-16;
             align-self: stretch;
 
             .zestaw-details {
@@ -380,20 +388,20 @@ p#countdown, p#countdown-mobile {
         
 
             .custom-product-title {
-                color: #000;
+                color: $color-neutral-900;
                 /* text-align: center; */
                
-                font-size: 32px;
+                font-size: $font-size-h3;
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
                 text-transform: uppercase;
-                padding-bottom: 2px;
+                padding-bottom: $space-0;
                 margin: 0;
                 font-style: normal;
                 font-weight: 400;
                 line-height: 117.75%;
-                font-family: "bebas-neue-pro", sans-serif;
+                font-family: $font-family-base;
                 text-transform: uppercase;
                
             }
@@ -413,8 +421,8 @@ p#countdown, p#countdown-mobile {
                     flex-direction: column;
                     justify-content: space-between;
                     align-self: stretch;
-                    padding-top: 24px;
-                    border-top: 1px solid #C9C9C9;
+                    padding-top: $space-24;
+                    border-top: 1px solid $color-neutral-300;
                     
                     .zestaw-cena-sub {
                         
@@ -422,18 +430,18 @@ p#countdown, p#countdown-mobile {
 
                     .zestaw-cena-title {
                         text-align: left;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 24px;
+                    font-family: $font-family-base;
+                    font-size: $font-size-h4;
                     font-style: normal;
                     font-weight: 700;
                     line-height: 117.75%;
                     }
 
                     .zestaw-cena-rest {
-                        color: #4D4D4D;
+                        color: $color-neutral-700;
                     text-align: left;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 14px;
+                    font-family: $font-family-base;
+                    font-size: $font-size-body-m;
                     font-style: normal;
                     font-weight: 600;
                     line-height: 117.75%;
@@ -450,13 +458,13 @@ p#countdown, p#countdown-mobile {
                     height: 54px;
                     justify-content: center;
                     align-items: center;
-                    gap: 10px;
+                    gap: $space-8;
                     margin-top: 0 !important;
-                    border-radius: 4px;
-                    background: #AC0000 !important;
-                    color: #FFF;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 16px;
+                    border-radius: $radius-xs;
+                    background: $color-accent-medium !important;
+                    color: $color-white;
+                    font-family: $font-family-base;
+                    font-size: $font-size-body-l;
                     font-style: normal;
                     font-weight: 500;
                     line-height: 117.75%;
@@ -470,11 +478,11 @@ p#countdown, p#countdown-mobile {
 
 @media (max-width: 786px) { 
     .custom-product-section {
-        padding: 15px 12px !important;
+        padding: $space-16 $space-12 !important;
     }
 
     .custom-product-title {
-        font-size: 18px !important;
+        font-size: $font-size-body-l !important;
     }
 
     .custom-product-image {
@@ -485,7 +493,7 @@ p#countdown, p#countdown-mobile {
     .custom-title-list-container {
         ul {
             li {
-            font-size: 14px !important;
+            font-size: $font-size-body-m !important;
             }
         }
     }
@@ -498,7 +506,7 @@ p#countdown, p#countdown-mobile {
 
 @media screen and (max-width: 400px) { 
    .zestaw-section .custom-product-title {
-    font-size: 24px !important;
+    font-size: $font-size-h4 !important;
    }
 
    .custom-product-image {
@@ -509,7 +517,7 @@ p#countdown, p#countdown-mobile {
 }
 
 .zestaw-cena .zestaw-cena-rest {
-    font-size: 12px !important;
+    font-size: $font-size-body-s !important;
 }
 
 .zestaw-section .single_add_to_cart_button {
@@ -522,13 +530,13 @@ p#countdown, p#countdown-mobile {
         width: 180px !important;
     }
     .zestaw-section .custom-product-title {
-        font-size: 24px !important;
+        font-size: $font-size-h4 !important;
        }
     }
 
 
 .single_add_to_cart_button {
-    margin-top: 17px !important; 
+    margin-top: $space-16 !important; 
 }
 
 
@@ -547,15 +555,15 @@ p#countdown, p#countdown-mobile {
     height: 20px;
     min-height: 20px;
     width: 94px;
-    padding: 7px 15px;
+    padding: $space-8 $space-16;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    border-radius: 4px;
-    // background: linear-gradient(85deg, #AC0000 -7.37%, #BC6400 107.37%);
-    color: #FFF;
-    font-family: "bebas-neue-pro", sans-serif;
-    font-size: 20px;
+    gap: $space-8;
+    border-radius: $radius-xs;
+    // background: linear-gradient(85deg, $color-accent-medium -7.37%, $color-warning-dark 107.37%);
+    color: $color-white;
+    font-family: $font-family-base;
+    font-size: $font-size-h4;
     font-style: normal;
     font-weight: 500;
     line-height: 117.75%;
@@ -576,7 +584,7 @@ p#countdown, p#countdown-mobile {
 
     img {
         height: auto;
-        border-radius: 8px;
+        border-radius: $radius-xs;
     }
 }
 
@@ -599,7 +607,7 @@ p#countdown, p#countdown-mobile {
 
     .custom-banner-section {
         width: 96% !important;
-        margin-top: -12px;
+        margin-top: -$space-12;
 
         img {
             border-radius: 0px;
@@ -634,13 +642,13 @@ p#countdown, p#countdown-mobile {
     }
 
     .review-summary {
-        gap: 10px !important;
+        gap: $space-8 !important;
 
         .rating-title {
-            font-size: 16px !important;
+            font-size: $font-size-body-l !important;
 
             .average-rating-subcontainer {
-                gap: 10px !important;
+                gap: $space-8 !important;
 
                 .rating-number {
                     width: 53px !important;
@@ -652,17 +660,17 @@ p#countdown, p#countdown-mobile {
 
     }
     .rating-bar {
-        gap: 5px !important;
+        gap: $space-4 !important;
     }
 }
 
 /// reviews custom calculator
 
 .bar-count-rating {
-    color: #000;
+    color: $color-neutral-900;
 
-font-family: "bebas-neue-pro", sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 700;
 line-height: 117.75%; /* 18.84px */
@@ -673,14 +681,14 @@ text-transform: uppercase;
 display: flex;
 flex-direction: column;
 align-items: start;
-gap: 4px;
+gap: $space-4;
 }
 
 .average-rating-subcontainer {
 display: flex;
 justify-content: space-between;
 align-items: center;
-gap: 16px;
+gap: $space-16;
 
 }
 
@@ -691,10 +699,10 @@ flex-direction: column;
 justify-content: center;
 flex-shrink: 0;
 align-self: stretch;
-color: #000;
+color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 24px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: 117.75%; /* 28.26px */
@@ -705,12 +713,12 @@ text-transform: uppercase;
 display: flex;
 justify-content: center;
 align-items: center;
-  margin-bottom: 30px;
-  gap: 32px;
+  margin-bottom: $space-32;
+  gap: $space-32;
 }
 .average-rating {
 display: flex;
-gap: 24px;
+gap: $space-24;
 flex-direction: column;
 justify-content: space-between;
 align-items: flex-start;
@@ -719,18 +727,18 @@ align-items: flex-start;
 display: flex;
 width: 93px;
 height: 44px;
-padding: 10px;
+padding: $space-8;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-gap: 10px;
-border-radius: 4px;
-background: #0983A0;
-color: #FFF;
+gap: $space-8;
+border-radius: $radius-xs;
+background: $color-neutral-900;   // bylo $color-info-medium (niebieski) — DS uzywa neutral-900
+color: $color-white;
 
 text-align: center;
-font-family: "bebas-neue-pro", sans-serif;
-font-size: 32px;
+font-family: $font-family-base;
+font-size: $font-size-h3;
 font-style: normal;
 font-weight: 700;
 line-height: 117.75%; /* 37.68px */
@@ -742,30 +750,30 @@ margin: 0;
   font-size: 1em;
 }
 .rating-breakdown {
-  margin-top: 10px;
+  margin-top: $space-8;
   flex-grow: 1;
 }
 .rating-bar {
 display: flex;
 align-items: center;
-margin-bottom: 5px;
+margin-bottom: $space-4;
 justify-content: space-between; /* Space out the elements */
-gap: 32px;
+gap: $space-32;
 }
 
 .rating-bar .bar {
 flex-grow: 1;
-margin: 0 10px;
-background-color: #e0e0e0;
+margin: 0 $space-8;
+background-color: $color-neutral-200;
 height: 8px;
-border-radius: 5px;
+border-radius: $radius-xs;
 overflow: hidden;
 }
 
 .rating-bar .bar span {
 display: block;
 height: 100%;
-background-color: #000;
+background-color: $color-neutral-900;
 }
 
 .rating-bar .star-rating {
@@ -787,7 +795,7 @@ padding: 0;
 position: absolute;
 height: 100%;
 line-height: 1;
-color: #000; /* Star color */
+color: $color-neutral-900; /* Star color */
 }
 
 
@@ -815,12 +823,12 @@ color: #000; /* Star color */
                 #respond {
                     display: flex;
                     flex-direction: column;
-                    gap: 30px;
+                    gap: $space-32;
 
                     span#reply-title {
-                        color: #000;
-                        font-family: 'Roboto', sans-serif;
-                        font-size: 24px;
+                        color: $color-neutral-900;
+                        font-family: $font-family-base;
+                        font-size: $font-size-h4;
                         font-style: normal;
                         font-weight: 700;
                         line-height: 117.75%; /* 28.26px */
@@ -830,12 +838,12 @@ color: #000; /* Star color */
                     form#commentform {
                         display: flex;
                         flex-direction: column;
-                        gap: 30px;
+                        gap: $space-32;
 
                         p.comment-form-author, p.comment-form-email {
                             display: flex;
                             flex-direction: column;
-                            gap: 8px;
+                            gap: $space-8;
                         }
 
                         p.comment-form-cookies-consent {
@@ -847,42 +855,44 @@ color: #000; /* Star color */
                             flex-direction: column;
                             justify-content: center;
                             align-items: flex-end;
-                            gap: 10px;
+                            gap: $space-8;
                             align-self: stretch;
                             input#submit {
-                                border-radius: 4px;
-background: #0983A0;
+                                border-radius: $radius-m;          // 24 — jak CTA "Dodaj do koszyka"
+                                background: $color-accent-medium;  // bylo $color-info-medium (niebieski)
+                                border: none;
+                                cursor: pointer;
                                     display: flex;
                                     width: 214px;
                                     height: 49px;
-                                    padding: 10px;
+                                    padding: $space-8;
                                     justify-content: center;
                                     align-items: center;
-                                    gap: 10px;
-                                    color: #FFF;
-                                    font-family: 'Roboto', sans-serif;
-                                    font-size: 16px;
+                                    gap: $space-8;
+                                    color: $color-white;
+                                    font-family: $font-family-base;
+                                    font-size: $font-size-body-l;
                                     font-style: normal;
                                     font-weight: 500;
-                                    line-height: 117.75%; 
+                                    line-height: 117.75%;
                             }
                         }
 
                         p, div {
 
                         label {
-                            color: #000;
+                            color: $color-neutral-900;
 
-                            font-family: 'Roboto', sans-serif;
-                            font-size: 20px;
+                            font-family: $font-family-base;
+                            font-size: $font-size-h4;
                             font-style: normal;
                             font-weight: 500;
                             line-height: 117.75%;
 
                             span.required {
-                                color: #1DA808;
-                                font-family: 'Roboto', sans-serif;
-                                font-size: 20px;
+                                color: $color-success-medium;
+                                font-family: $font-family-base;
+                                font-size: $font-size-h4;
                                 font-style: normal;
                                 font-weight: 500;
                                 line-height: 117.75%;
@@ -893,15 +903,15 @@ background: #0983A0;
                         }
 
                         input {
-                            border-radius: 4px;
-                            border: 0.5px solid #0983A0;
+                            border-radius: $radius-xs;
+                            border: 1px solid $color-neutral-300;   // bylo info-medium (niebieski)
                             height: 34px;
                         }
 
                         textarea {
-                            border-radius: 4px;
-                            border: 0.5px solid #0983A0;
-                            
+                            border-radius: $radius-xs;
+                            border: 1px solid $color-neutral-300;   // bylo info-medium (niebieski)
+
                             }
                     }
                     }
@@ -911,20 +921,23 @@ background: #0983A0;
 
         #comments {
             width: 60%;
+            // UWAGA: plugin woo-photo-reviews wklada w .commentlist wlasny
+            // masonry (.wcpr-grid) — grid 3-col na .commentlist dusil go do
+            // jednej kolumny (karty po ~146px). Dlatego block, nie grid.
             .commentlist {
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 26px;
+                display: block;
+                padding-left: 0 !important;
+                margin: 0 !important;
 
                 li {
                     display: flex;
                 // padding: 20px;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 16px;
+                gap: $space-16;
                 align-self: stretch;
-                border-radius: 8px;
-                background: #F7F7F7;
+                border-radius: $radius-xs;
+                background: $color-neutral-100;
                 // height: max-content;
 
                 .comment_container {
@@ -937,9 +950,9 @@ background: #0983A0;
                         
                         p {
                             strong {
-                                color: #0983A0;
-                                font-family: "bebas-neue-pro", sans-serif;
-                                font-size: 24px;
+                                color: $color-neutral-900;   // bylo info-medium (niebieski)
+                                font-family: $font-family-base;
+                                font-size: $font-size-h4;
                                 font-style: normal;
                                 font-weight: 700;
                                 line-height: 117.75%; /* 28.26px */
@@ -956,12 +969,12 @@ background: #0983A0;
                         }
 
                         div.description {
-                            border-top: 1px solid #d7d7d7;
-                            padding-top: 10px;
+                            border-top: 1px solid $color-neutral-200;
+                            padding-top: $space-8;
                             p {
                          
-                                font-family: 'Roboto', sans-serif;
-                                font-size: 16px;
+                                font-family: $font-family-base;
+                                font-size: $font-size-body-l;
                                 font-style: normal;
                                 font-weight: 400;
                                 line-height: 117.75%; /* 18.84px */
@@ -997,25 +1010,25 @@ div.woocommerce-tabs.wc-tabs-wrapper {
     /* width: 1428px; */
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    margin: 20px;
+    gap: $space-16;
+    margin: $space-16;
 
 
     ul.tabs.wc-tabs {
         display: flex;
     justify-content: center;
     align-items: center;
-    gap: 18px;
+    gap: $space-16;
     align-self: stretch;
     margin: 0;
-    padding: 20px;
+    padding: $space-16;
 
     #tab-title-description.active, #tab-title-reviews.active {
         a {
-        color: #000;
+        color: $color-neutral-900;
 
-font-family: 'Roboto', sans-serif;
-font-size: 16px;
+font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -1028,13 +1041,13 @@ text-transform: uppercase;
         border: none;
 
         a {
-            font-family: 'Roboto', sans-serif;
-font-size: 16px;
+            font-family: $font-family-base;
+font-size: $font-size-body-l;
 font-style: normal;
 font-weight: 300;
 line-height: normal;
 text-transform: uppercase;
-color: #000;
+color: $color-neutral-900;
 text-decoration: none !important;
         }
 
@@ -1044,13 +1057,13 @@ text-decoration: none !important;
         border: none;
         background-color: transparent;
         list-style: none;
-        padding-left: 15px;
-        border-left: 1px solid #d7d7d7;
+        padding-left: $space-16;
+        border-left: 1px solid $color-neutral-200;
         a {
-            color: #000;
+            color: $color-neutral-900;
             text-decoration: none !important;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
+            font-family: $font-family-base;
+            font-size: $font-size-body-l;
             font-style: normal;
             font-weight: 300;
             line-height: normal;
@@ -1070,53 +1083,53 @@ text-decoration: none !important;
 }
 
 .woocommerce-review-link {
-    color: #026697 !important;
+    color: $color-neutral-600 !important;   // bylo info-dark (niebieski)
 }
 
 .woocommerce div.product .product_title {
-    font-family: "bebas-neue-pro", sans-serif;
-    color: #000;
-    font-size: 48px;
+    font-family: $font-family-base;
+    color: $color-neutral-900;
+    font-size: $font-size-h1-mob;
     font-style: normal;
     font-weight: 400;
     line-height: 117.75%; /* 56.52px */
     text-transform: uppercase;
-    margin-bottom: 4px !important;
-    background: linear-gradient(to right, #000, #0983A0 40.01%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: $space-4 !important;
+    // background: linear-gradient(to right, $color-neutral-900, $color-info-medium 40.01%);
+    // background-clip: text;
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
     
 }
 
 
 
 .product-subtitle {
-    font-family: "bebas-neue-pro", sans-serif !important;
+    font-family: $font-family-base !important;
     text-transform: uppercase;
-    color: #000;
+    color: $color-neutral-900;
     margin-top: 0 !important;
-    font-size: 24px;
+    font-size: $font-size-h4;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 12px !important;
+    margin-bottom: $space-12 !important;
 }
 
 
 .summary .woocommerce-product-details__short-description {
-    margin-bottom: 32px;
+    margin-bottom: $space-32;
     ul {
-        margin-left: -23px;
+        margin-left: -$space-24;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: $space-8;
     }
     li {
-        font-family: "Roboto", sans-serif; 
-        color: #000;
-        font-size: 16px;
+        font-family: $font-family-base; 
+        color: $color-neutral-900;
+        font-size: $font-size-body-l;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -1126,10 +1139,10 @@ text-decoration: none !important;
 
 #custom-background-wrapper {
     // background-color: black;
-    background-color: #fff;;
-    // background-color: #f6f6f6;
-    // background-color: #2E2A27;
-    // background: linear-gradient(173deg, rgba(0,0,0,1) 25%, #0c7289 51%, rgba(0,0,0,1) 75%); /* Replace with your desired background color or image */
+    background-color: $color-neutral-50;
+    // background-color: $color-neutral-100;
+    // background-color: $color-neutral-800;
+    // background: linear-gradient(173deg, rgba($color-black,1) 25%, $color-info-dark 51%, rgba($color-black,1) 75%); /* Replace with your desired background color or image */
     padding-bottom: 0;
     // border-radius: 10px; /* Optional: Add some rounding to the corners */
     margin: 0 auto;
@@ -1147,7 +1160,7 @@ text-decoration: none !important;
 
   @media(max-width:786px){ 
     .summary .woocommerce-product-details__short-description {
-        margin-bottom: 23px !important; 
+        margin-bottom: $space-24 !important; 
     }
 
     ul.tabs.wc-tabs {
@@ -1159,7 +1172,7 @@ text-decoration: none !important;
 
 .product-icon-text-wrapper {
     display: flex;
-    margin: 14px 0 26px;
+    margin: $space-12 0 $space-24;
     text-align: center;
     width: 100%;
     justify-content: space-between;
@@ -1174,11 +1187,11 @@ text-decoration: none !important;
     }
 
     span {
-        font-size: 12px;
+        font-size: $font-size-body-s;
     font-weight: 600;
     letter-spacing: -.01em;
     line-height: 1.3333733333;
-    margin: 6px 0 0;
+    margin: $space-4 0 0;
     }
 }
 
@@ -1247,7 +1260,7 @@ text-decoration: none !important;
 
         .breadcrumbs{
             a{
-                color:#2E2A27;
+                color:$color-neutral-800;
                 text-decoration: none;
             }
         }
@@ -1256,11 +1269,11 @@ text-decoration: none !important;
             font-size: 2em;
         }
         .price{
-            color:#2E2A27;
+            color:$color-neutral-800;
             padding-bottom: 0 !important;
-            border-bottom: 1px solid #2E2A27;
-            margin-bottom: 16px !important;
-            font-size: 32px;
+            border-bottom: 1px solid $color-neutral-800;
+            margin-bottom: $space-16 !important;
+            font-size: $font-size-h3;
             font-style: normal;
             font-weight: 700;
             line-height: 117.75%;
@@ -1268,29 +1281,29 @@ text-decoration: none !important;
         .variations{
             display:flex;
             label{
-                margin-right:5px;
+                margin-right:$space-4;
             }
             select{
                 display: inline-block;
                 width: 100%;
                 max-width: 600px;
-                padding: 5px 10px;
-                font-size: 12px;
+                padding: $space-4 $space-8;
+                font-size: $font-size-body-s;
                 line-height: 1.5;
-                color: #495057;
-                background-color: #fff;
+                color: $color-neutral-800;
+                background-color: $color-white;
                 background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: 0.25rem;
+                border: 1px solid $color-neutral-200;
+                border-radius: $radius-xs;
                 transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
                 &:focus {
-                    border-color: #80bdff;
+                    border-color: $color-blue-200;
                     outline: 0;
                     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
                 }
                 option {
-                    color: #495057;
+                    color: $color-neutral-800;
                 }
             }
         }
@@ -1302,10 +1315,10 @@ text-decoration: none !important;
             margin-bottom:1em;
         }
         // button{
-        //     background-color: #0c7289 !important;
+        //     background-color: $color-info-dark !important;
         //     // background-color: red !important;
-        //     border:1px solid #2E2A27!important;
-        //     color:#fff!important;
+        //     border:1px solid $color-neutral-800!important;
+        //     color:$color-white!important;
         //     // border-radius: 15%;
         // }
   
@@ -1319,7 +1332,7 @@ text-decoration: none !important;
         }
         p{
             font-weight: 200;
-            font-size: 16px;
+            font-size: $font-size-body-l;
 
         }
         strong{
@@ -1333,14 +1346,14 @@ text-decoration: none !important;
     .tabs{
         .description_tab, .additional_information_tab{
             // background-color: white;
-            border: 1px solid #cfc8d8;
-            background-color: #e9e6ed;
-            color: #515151;
+            border: 1px solid $color-neutral-300;
+            background-color: $color-neutral-100;
+            color: $color-neutral-700;
             display: inline-block;
             position: relative;
             z-index: 0;
-            border-radius: 4px 4px 0 0;
-            margin: 0 -5px;
+            border-radius: $radius-xs $radius-xs 0 0;
+            margin: 0 -$space-4;
             padding: 0 1em;
         }
     }
@@ -1356,14 +1369,14 @@ text-decoration: none !important;
         .woocommerce-loop-product__title{
             text-decoration: none;
             text-align: center;
-            color:#2D2926;
+            color:$color-neutral-800;
 
         }
 
         .price{
 
                 text-align: center;
-                color:#2D2926;
+                color:$color-neutral-800;
 
 
         }
@@ -1371,16 +1384,16 @@ text-decoration: none !important;
 }
 
 .woocommerce .woocommerce-product-rating .star-rating {
-    margin: 0 12px 0 0 !important;
+    margin: 0 $space-12 0 0 !important;
 }
 .woocommerce .woocommerce-product-rating {
     line-height: 1;
 }
 .woocommerce-review-link {
     line-height: 1;
-    color: #0288CA;
-    font-family: Roboto;
-    font-size: 14px;
+    color: $color-info-medium;
+    font-family: $font-family-base;
+    font-size: $font-size-body-m;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -1388,7 +1401,7 @@ text-decoration: none !important;
 }
 
 .woocommerce div.product .woocommerce-product-rating {
-    margin-bottom: 32px !important;
+    margin-bottom: $space-32 !important;
     margin-top: 0.65em;
 }
 // }
@@ -1400,7 +1413,7 @@ text-decoration: none !important;
 /// IMAGE PRODUCT
 .woocommerce-product-gallery {
     display: flex;
-    column-gap: 14px;
+    column-gap: $space-12;
     flex-direction: row-reverse;
     align-items: flex-start;
     margin: 0 !important;
@@ -1439,7 +1452,7 @@ text-decoration: none !important;
 // }
 
 .woocommerce-product-gallery__wrapper {
-    margin-right: 20px;
+    margin-right: $space-16;
 }
 
 // .woocommerce-product-gallery__main {
@@ -1451,7 +1464,7 @@ text-decoration: none !important;
     flex-basis: 18%;
     z-index: 2;
     // height: 600px;
-    padding: 10px;
+    padding: $space-8;
     margin: auto 0;
     // display: flex;
     // flex-direction: column;
@@ -1461,22 +1474,22 @@ text-decoration: none !important;
     // justify-content: center;
     // align-items: center;
     // gap: 0.3rem;
-    // border: 2px solid  #0c7289 ;
+    // border: 2px solid  $color-info-dark ;
 }
 
 .woocommerce div.product div.images .flex-control-thumbs li {
     min-width: 100%;
     // width: 40%;
-    margin-bottom: 10px !important;
+    margin-bottom: $space-8 !important;
     transition: margin-top 0.4s linear;
     // border: 2px solid  #890c0c ;
 
     img {
-        border-radius: 6px;
+        border-radius: $radius-xs;
     }
 
     .flex-active {
-            border: 2px solid  #0fa2cb ;
+            border: 2px solid  $color-info-medium ;
     }
 }
 
@@ -1514,11 +1527,11 @@ ul.flex-direction-nav {
 }
 /* set position of previous arrow*/
 li.flex-nav-prev { 
-    margin-left: 20px;
+    margin-left: $space-16;
 }
 
 li.flex-nav-next { 
-    margin-right: 20px;
+    margin-right: $space-16;
 }
 /* set position of next arrow*/
  
@@ -1537,7 +1550,7 @@ width: 43px;
 background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2243%22%20height%3D%2244%22%20viewBox%3D%220%200%2043%2044%22%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%2221.5%22%20cy%3D%2222%22%20r%3D%2221.5%22%20transform%3D%22rotate(90%2021.5%2022)%22%20fill%3D%22white%22%20fill-opacity%3D%220.3%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M19.5336%2029.3572C19.0838%2028.9288%2019.0838%2028.2343%2019.5336%2027.8059L25.6299%2021.9999L19.5336%2016.1939C19.0838%2015.7655%2019.0838%2015.071%2019.5336%2014.6426C19.9834%2014.2142%2020.7127%2014.2142%2021.1625%2014.6426L28.0732%2021.2242C28.523%2021.6526%2028.523%2022.3472%2028.0732%2022.7755L21.1625%2029.3572C20.7127%2029.7856%2019.9834%2029.7856%2019.5336%2029.3572Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E');
 background-size: contain;
 background-repeat: no-repeat;
-border-radius: 43px;
+border-radius: $radius-xl;
 opacity: 90%;
 backdrop-filter: blur(1px);
 }
@@ -1552,13 +1565,13 @@ a.flex-prev::before {
     background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2243%22%20height%3D%2244%22%20viewBox%3D%220%200%2043%2044%22%20fill%3D%22none%22%3E%3Ccircle%20cx%3D%2221.5%22%20cy%3D%2222%22%20r%3D%2221.5%22%20transform%3D%22rotate(-90%2021.5%2022)%22%20fill%3D%22white%22%20fill-opacity%3D%220.3%22%2F%3E%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M23.4664%2014.6428C23.9162%2015.0712%2023.9162%2015.7657%2023.4664%2016.1941L17.3701%2022.0001L23.4664%2027.8061C23.9162%2028.2345%2023.9162%2028.929%2023.4664%2029.3574C23.0166%2029.7858%2022.2873%2029.7858%2021.8375%2029.3574L14.9268%2022.7758C14.477%2022.3474%2014.477%2021.6528%2014.9268%2021.2245L21.8375%2014.6428C22.2873%2014.2144%2023.0166%2014.2144%2023.4664%2014.6428Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E');
     background-size: contain;
     background-repeat: no-repeat;
-    border-radius: 43px;
+    border-radius: $radius-xl;
     opacity: 90%;
     backdrop-filter: blur(1px);
 }
  
 ul.flex-direction-nav li a {
-color: #ccc;
+color: $color-neutral-300;
 }
  
 ul.flex-direction-nav li a:hover {
@@ -1580,8 +1593,8 @@ top:0px;
 .product-icon-text {
     display: flex;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px !important;
+    margin-top: $space-8;
+    margin-bottom: $space-8 !important;
     justify-content: flex-end;
 }
 
@@ -1590,14 +1603,14 @@ top:0px;
     width: 20px;
     height: auto;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-right: $space-8;
 }
 
 .product-icon-text span {
-    font-size: 16px;
-    color: #000;
-    font-family: "bebas-neue-pro", sans-serif;
-    font-size: 16px;
+    font-size: $font-size-body-l;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-size: $font-size-body-l;
     font-style: normal;
     font-weight: 500;
     line-height: 117.75%; /* 18.84px */
@@ -1614,19 +1627,19 @@ top:0px;
     height: 29px;
     min-height: 29px;
     // width: 94px;
-    padding: 7px 15px;
+    padding: $space-8 $space-16;
     // padding: 0;
 
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    border-radius: 4px;
-    background: linear-gradient(85deg, #AC0000 -7.37%, #BC6400 107.37%);
+    gap: $space-8;
+    border-radius: $radius-xs;
+    background: linear-gradient(85deg, $color-accent-medium -7.37%, $color-warning-dark 107.37%);
 
-color: #FFF;
+color: $color-white;
 
-font-family: "bebas-neue-pro", sans-serif;
-font-size: 20px;
+font-family: $font-family-base;
+font-size: $font-size-h4;
 font-style: normal;
 font-weight: 700;
 line-height: 117.75%; /* 23.55px */
@@ -1638,7 +1651,7 @@ text-transform: uppercase;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin: $space-16 0;
     max-width: 150px;
 }
 
@@ -1646,10 +1659,10 @@ text-transform: uppercase;
     width: 60px;
     height: 25px;
     text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    margin-right: 10px !important;
+    border: 1px solid $color-neutral-300;
+    border-radius: 24px;
+    font-size: $font-size-body-l;
+    margin-right: $space-8 !important;
 }
 
 
@@ -1660,19 +1673,19 @@ text-transform: uppercase;
 }
 
 .custom-title-description-section {
-    margin-top: 20px;
+    margin-top: $space-16;
 }
 
 .custom-title {
     cursor: pointer;
-    color: #0073aa;
+    color: $color-info-dark;
     text-decoration: underline;
-    margin-bottom: 10px;
+    margin-bottom: $space-8;
 }
 
 .custom-description {
     display: none;
-    margin-bottom: 10px;
+    margin-bottom: $space-8;
 }
 
 ////
@@ -1696,7 +1709,7 @@ text-transform: uppercase;
 // }
 .woocommerce div.product div.images.woocommerce-product-gallery  {
    flex-direction: column;
-   margin-top: 20px !important;
+   margin-top: $space-16 !important;
 }
 
 @media(max-width:1300px){
@@ -1721,12 +1734,12 @@ text-transform: uppercase;
     }
 
     .product-icon-text span {
-        font-size: 14px !important;
+        font-size: $font-size-body-m !important;
     }
 
     .woocommerce div.product .product_title {
-        font-size: 36px !important;
-        margin-bottom: 4px !important;
+        font-size: $font-size-h3 !important;
+        margin-bottom: $space-4 !important;
 
     }
     
@@ -1734,7 +1747,7 @@ text-transform: uppercase;
         ul {
             margin-bottom: 0 !important;
             li {
-                font-size: 16px !important;
+                font-size: $font-size-body-l !important;
             }
         }
     }
@@ -1742,8 +1755,8 @@ text-transform: uppercase;
     
     
     .product-subtitle {
-        font-size: 20px !important;
-        margin-bottom: 12px !important;
+        font-size: $font-size-h4 !important;
+        margin-bottom: $space-12 !important;
     }
     
 
@@ -1768,17 +1781,17 @@ text-transform: uppercase;
 
     .product-icons-container {
         display: flex !important;
-    margin: 20px 0 26px;
+    margin: $space-16 0 $space-24;
     text-align: center;
     width: 100%;
     justify-content: space-between;
     }
 
     .custom-price-add-to-cart {
-        padding: 16px !important;
-        padding-top: 35px !important;
+        padding: $space-16 !important;
+        padding-top: $space-32 !important;
         .price {
-            margin-bottom: 16px !important;
+            margin-bottom: $space-16 !important;
         }
     }
 }
@@ -1791,18 +1804,18 @@ text-transform: uppercase;
 
 // price addd to cart
 .custom-price-add-to-cart {
-    border-radius: 8px;
-    background-color: #fafafc;
-    padding: 35px;
-    padding-bottom: 25px !important;
+    border-radius: $radius-xs;
+    background-color: $color-neutral-100;
+    padding: $space-32;
+    padding-bottom: $space-24 !important;
     position: relative;
 
         .price {
-            font-size: 32px;
+            font-size: $font-size-h3;
             font-weight: 600;
             letter-spacing: .004em;
             line-height: 1.125;
-            padding-bottom: 2px;
+            padding-bottom: $space-0;
             margin-bottom: 0px !important;
             border: none;
         }
@@ -1814,32 +1827,135 @@ text-transform: uppercase;
             align-items: center;
             // flex-direction: column;
             // gap: 10rem;
-            border-top: 1px solid #d2d2d7;
+            border-top: 1px solid $color-neutral-200;
             margin-bottom: 0 !important;
 
             .quantity {
-                margin-top: 32px !important;
-                margin-bottom: 14px !important;
+                margin-top: $space-32 !important;
+                margin-bottom: $space-12 !important;
             }
 
             .single_add_to_cart_button {
             box-sizing: border-box;
             height: 55px;
                     flex-basis: 70%;
-                    border-radius: 4px;
-                    background: #AC0000 !important;
-               
-
-            // width: 100%;
-            // display: inline-block;
-            border-radius: 8px;
-            margin-bottom: 2em;    
+                    border-radius: 24px !important;
+                    background: $color-accent-medium !important;
+            margin-bottom: 2em;
             }
         }
 }
 
 
-/// Product icons on mobile 
+/// Product icons on mobile
 .product-icons-container {
     display: none;
+}
+
+// =============================================================================
+// TAB OPINIE — restyle kart i filtrow pluginu woo-photo-reviews (wcpr-*)
+// do design systemu (tokens). Summary (OPINIE KLIENTOW + breakdown) renderuje
+// theme (functions.php ~3354), karty i filtry — plugin.
+// =============================================================================
+#tab-reviews {
+
+    // wlasna tabelka ratingu pluginu — mamy swoja (review-summary), chowamy
+    .wcpr-overall-rating-and-rating-count {
+        display: none !important;
+    }
+
+    // filtry (With images / Verified / All stars) — pille jak w DS
+    .wcpr-filter-cont {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: $space-8;
+        margin-bottom: $space-16;
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    a.wcpr-filter-button {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 6px;
+        padding: 6px $space-16 !important;
+        border-radius: 24px !important;
+        border: 1px solid $color-neutral-300 !important;
+        background: $color-white !important;
+        color: $color-neutral-700 !important;
+        font-family: $font-family-base !important;
+        font-size: 14px !important;
+        font-weight: 500 !important;
+        letter-spacing: -0.02em;
+        text-decoration: none !important;
+        text-transform: none !important;
+        transition: background-color 0.15s ease, color 0.15s ease;
+
+        &:hover {
+            background: $color-neutral-100 !important;
+        }
+
+        &.wcpr-active {
+            background: $color-neutral-900 !important;
+            border-color: $color-neutral-900 !important;
+            color: $color-neutral-50 !important;
+        }
+    }
+
+    // karty opinii (masonry pluginu)
+    .wcpr-grid-item {
+        background: transparent !important;
+        padding: 0 0 $space-16 !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .wcpr-content {
+        background: $color-neutral-100 !important;
+        border: none !important;
+        border-radius: $radius-xs !important;
+        padding: $space-16 !important;
+        box-shadow: none !important;
+    }
+
+    .wcpr-comment-author {
+        color: $color-neutral-900 !important;
+        font-family: $font-family-base !important;
+        font-size: $font-size-body-l !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.02em;
+
+        // ikona dymka przed imieniem — zbedna (::before z fontem pluginu)
+        &::before {
+            display: none !important;
+        }
+
+        i, svg {
+            display: none !important;
+        }
+    }
+
+    .wcpr-review-rating {
+        display: flex;
+        align-items: center;
+        gap: $space-8;
+        margin: $space-4 0 $space-8;
+    }
+
+    .wcpr-review-date {
+        color: $color-neutral-500 !important;
+        font-family: $font-family-base !important;
+        font-size: 12px !important;
+    }
+
+    .wcpr-review-content {
+        color: $color-neutral-700 !important;
+        font-family: $font-family-base !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        letter-spacing: -0.02em;
+        text-align: left !important;   // plugin daje justify — wyglada zle w waskich kolumnach
+    }
 }

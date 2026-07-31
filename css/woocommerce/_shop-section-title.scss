@@ -1,0 +1,44 @@
+// =============================================================================
+// Shop — tytul sekcji ("Urzadzenia. Shav woman")
+// Figma desktop 898:1593: H3 Headline 34/40.8 Medium, letter-spacing -1.36px
+// Figma mobile  898:1822: ~26-28px na 32px wysokosc kontenera
+// =============================================================================
+
+.shop-section__title {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: $font-family-base !important;
+    font-weight: 500 !important;                  // Be Vietnam Pro Medium (Figma)
+    letter-spacing: -0.04em !important;           // -1.36 / 34 = -0.04em
+    line-height: 1.2 !important;                  // 40.8 / 34 = 1.2
+    text-transform: none !important;
+    text-align: left !important;
+
+    // Mobile (Figma 898:1822 — h=32, font ~26-28)
+    font-size: 26px !important;
+
+    @media (min-width: 900px) {
+        // Desktop (Figma 898:1593 — H3 34px)
+        font-size: 34px !important;
+    }
+}
+
+.shop-section__title-main {
+    color: $color-neutral-900 !important;         // #252525
+}
+
+.shop-section__title-brand {
+    color: $color-neutral-500 !important;         // #8b8b8b
+    margin-left: 8px !important;
+    font-weight: 500 !important;
+}
+
+// Nagłowek sekcji (wrapper na tytul)
+.shop-section__header {
+    margin: 0 0 24px 0 !important;
+    padding: 0 !important;
+
+    @media (min-width: 900px) {
+        margin: 0 0 32px 0 !important;
+    }
+}

@@ -1,0 +1,181 @@
+// =============================================================================
+// SZACHGLASS — wspolny wzorzec dla bloków szachownicy z glass card
+// (Figma: 334:151)
+// =============================================================================
+// Uzywany przez: szachshavwomen1-4, masazerwoman1-4, myjkaszach1-4 (12 blokow).
+// Schemat: pelnoekranowe zdjecie tla + szklana karta z tytulem i opisem.
+// Pozycja karty (X: left/center/right, Y: top/middle/bottom) konfigurowalna
+// z poziomu Inspectora w Gutenbergu. Rozmiar tytulu i opisu tez (RangeControl).
+// =============================================================================
+
+.szachglass {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 480px;
+  padding: $space-32;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+
+  // Mobile: zdjecie z --bg-mobile (fallback do --bg-desktop ustawiony inline)
+  background-image: var(--bg-mobile);
+
+  @media (min-width: $breakpoint-tablet) {
+    min-height: 80vh;
+    // Padding poziomy = (viewport - 1300) / 2 czyli content trzyma sie 1300px
+    // wirtualnego kontenera (jak inne sekcje). Tlo (.szachglass) leci fullbleed.
+    // Min 20px zeby na <1340px karta nie dotykala scianek.
+    padding-top: $space-120;
+    padding-bottom: $space-120;
+    padding-left: max(20px, calc((100vw - 1300px) / 2));
+    padding-right: max(20px, calc((100vw - 1300px) / 2));
+    // Desktop: zdjecie z --bg-desktop (osobne, wieksze)
+    background-image: var(--bg-desktop);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Pozycja karty — modyfikatory (mobile-first: zawsze center, desktop: wg attr)
+  // ---------------------------------------------------------------------------
+  // X-axis
+  &--x-left   { justify-content: flex-start; }
+  &--x-center { justify-content: center; }
+  &--x-right  { justify-content: flex-end; }
+
+  // Y-axis
+  &--y-top    { align-items: flex-start; }
+  &--y-middle { align-items: center; }
+  &--y-bottom { align-items: flex-end; }
+
+  // Mobile: kafelek zawsze centrowany w pionie i poziomie (czytelnosc)
+  @media (max-width: ($breakpoint-tablet - 1)) {
+    justify-content: center;
+    align-items: center;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Karta szklana
+  // ---------------------------------------------------------------------------
+  &__card {
+    @include glass-effect;            // gradient bg + border 2px white + blur 12 + radius 12 + text-shadow
+    display: flex;
+    flex-direction: column;
+    gap: 3px;                         // mobile (z desktop overrideuje ponizej)
+    padding: $space-32;
+    max-width: 100%;
+    box-sizing: border-box;
+    color: $color-neutral-900;        // ciemny tekst (Figma 334:151) — lepszy kontrast na jasnym tle
+    text-shadow: none;                 // nadpisuje glass-effect (text-shadow ma sens tylko na ciemnym tle)
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: $space-64;              // 60-64 (Figma: 60)
+      gap: $space-24;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Tekst (rozmiary nadpisywane inline-style przez attributes)
+  // ---------------------------------------------------------------------------
+  &__title {
+    margin: 0;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tight;
+
+    // Mobile: wymus 28px (nadpisuje inline-style z attributes — desktop only)
+    @media (max-width: ($breakpoint-tablet - 1)) {
+      font-size: 28px !important;
+    }
+  }
+
+  &__description {
+    margin: 0;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    line-height: 1.6;
+    letter-spacing: $letter-spacing-tight;
+
+    @media (max-width: ($breakpoint-tablet - 1)) {
+      font-size: 12px !important;
+    }
+  }
+}
+
+// =============================================================================
+// MOBILE-ONLY REFACTOR (Figma 593:3767) — desktop wyzej pozostaje bez zmian.
+// Layout: outer #f2f2f2 z radius 12, obraz 1:1 u gory (przez ::before),
+// caption pod nim z paddingiem 20 i gap 16. BEZ glass-effect.
+// =============================================================================
+@media (max-width: ($breakpoint-tablet - 1)) {
+  .szachglass {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 20px 24px 20px !important;            // 20px po bokach (rownanie z headerem), 24px gap miedzy sekcjami
+    background-image: none !important;              // zdejmuje pelnoekranowe tlo desktop
+    background-color: $color-neutral-100 !important; // #f2f2f2 (Figma)
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+
+    // Obraz top — 1:1 (Figma 390x390), z --bg-mobile (fallback --bg-desktop)
+    &::before {
+      content: '' !important;
+      display: block !important;
+      width: 100% !important;
+      aspect-ratio: 1 / 1 !important;
+      background-image: var(--bg-mobile) !important;
+      background-position: center !important;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      border-radius: 12px 12px 0 0 !important;
+    }
+
+    // Caption — bez glass-effect, prosty layout
+    &__card {
+      background: transparent !important;
+      background-image: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      border-radius: 0 0 12px 12px !important;
+      padding: 20px !important;
+      gap: 16px !important;
+      width: auto !important;
+      max-width: 100% !important;
+      align-items: flex-start !important;
+      text-shadow: none !important;
+    }
+
+    // Tytul — H3 26/31.2 Medium #252525
+    &__title {
+      font-size: 26px !important;
+      line-height: 31.2px !important;
+      font-weight: $font-weight-medium !important;
+      letter-spacing: -0.04em !important;
+      color: $color-neutral-900 !important;          // #252525
+      text-shadow: none !important;
+      margin: 0 !important;
+    }
+
+    // Opis — Body M 14/19.6 Regular #585858
+    &__description {
+      font-size: 14px !important;
+      line-height: 19.6px !important;
+      font-weight: $font-weight-regular !important;
+      letter-spacing: -0.04em !important;
+      color: $color-neutral-700 !important;          // #585858
+      text-shadow: none !important;
+      margin: 0 !important;
+    }
+  }
+}

@@ -1,8 +1,8 @@
 .features-camera-spec__list {
     position: relative;
-    background: #000;
-    color: #fff;
-    padding: 20px;
+    background: $color-neutral-900;
+    color: $color-white;
+    padding: $space-16;
 
     ////
     height: 100vh;
@@ -18,8 +18,8 @@
 .features-camera-spec__list-image {
     position: relative;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 30px;
+    margin-bottom: $space-16;
+    margin-top: $space-32;
 }
 
 .product-image {
@@ -54,18 +54,17 @@
         
             li {
                 display: flex;
-                gap: 1rem;
-                margin-bottom: 16.4rem;
+                gap: $space-16;
+                margin-bottom: $space-120;
                 align-items: center;
 
                 .line-functions {
                     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    margin-top: 10px;
-    margin-left: 10px;
-                    border-bottom: 2px solid #dadada;
-                    // height: 10px;
+    margin-top: $space-8;
+    margin-left: $space-8;
+                    border-bottom: 2px solid $color-neutral-200;
                     width: 250px;
                     position: relative;
                 }
@@ -73,12 +72,12 @@
                     display: block;
                     position: absolute;
                     content: '';
-                    margin-top: 1px;
+                    margin-top: $space-0;
                     width: 2px;
                     right: -1px;
                     bottom: -2px;
                     height: 10px;
-                    background-color: #dadada;
+                    background-color: $color-neutral-200;
                  }
             }
         }
@@ -91,14 +90,13 @@
     display: flex;
     flex-direction: column;
     margin: 0;
-    font-size: 28px;
-    font-weight: 400;
-    font-family: "bebas-neue-pro", sans-serif;
-     
+    font-size: $font-size-h3-mob;
+    font-weight: $font-weight-regular;
+    font-family: $font-family-base;
+
     span  {
         line-height: normal;
     }
-
 }
 
  .testowydiv2 {
@@ -113,31 +111,28 @@
     
         li {
             display: flex;
-            gap: 1rem;
-            margin-bottom: 17.5rem;
+            gap: $space-16;
+            margin-bottom: $space-120;
             align-items: center;
 
             .line-functions {
                 -webkit-box-flex: 1;
--ms-flex-positive: 1;
-flex-grow: 1;
-margin-top: 10px;
-margin-left: 10px;
-                border-bottom: 2px solid #dadada;
-                // height: 0px;
+                -ms-flex-positive: 1;
+                flex-grow: 1;
+                margin-top: $space-8;
+                margin-left: $space-8;
+                border-bottom: 2px solid $color-neutral-200;
                 width: 250px;
-                // position: relative;
             }
             .line-functions-angle::after {
                 display: block;
-                // position: absolute;
                 content: '';
-                margin-top: 1px;
+                margin-top: $space-0;
                 width: 2px;
                 right: -1px;
                 bottom: -2px;
                 height: 10px;
-                background-color: #dadada;
+                background-color: $color-neutral-200;
              }
         }
     }
@@ -201,7 +196,7 @@ margin-left: 10px;
       left: 213px;
 
       li {
-        margin-bottom: 12.4rem !important;
+        margin-bottom: $space-120 !important;
     }
     } 
 
@@ -210,7 +205,7 @@ margin-left: 10px;
         right: 320px;
 
         li {
-            margin-bottom: 13.5rem !important;
+            margin-bottom: $space-120 !important;
         }
     }
 
@@ -250,7 +245,7 @@ margin-left: 10px;
       left: 109px;
 
       li {
-        margin-bottom: 9.4rem !important;
+        margin-bottom: $space-120 !important;
     }
 
       .line-functions {
@@ -263,7 +258,7 @@ margin-left: 10px;
         right: 221px;
 
         li {
-            margin-bottom: 9.5rem !important;
+            margin-bottom: $space-120 !important;
         }
 
         .line-functions {
@@ -315,7 +310,7 @@ margin-left: 10px;
       left: 68px;
 
       li {
-        margin-bottom: 9.4rem !important;
+        margin-bottom: $space-120 !important;
     }
       .line-functions {
         width: 100px !important;
@@ -329,7 +324,7 @@ margin-left: 10px;
         right: 120px;
 
         li {
-            margin-bottom: 12.5rem !important;
+            margin-bottom: $space-120 !important;
         }
         .line-functions {
             width: 100px !important;
@@ -337,7 +332,7 @@ margin-left: 10px;
     }
 
     .flex-functions {
-        font-size: 16px;
+        font-size: $font-size-body-l;
     }
 
 }
@@ -348,7 +343,7 @@ margin-left: 10px;
       left: 28px;
 
       li {
-        margin-bottom: 9.4rem !important;
+        margin-bottom: $space-120 !important;
     }
       .line-functions {
         width: 50px !important;
@@ -360,7 +355,7 @@ margin-left: 10px;
         right: 70px;
 
         li {
-            margin-bottom: 12.5rem !important;
+            margin-bottom: $space-120 !important;
         }
         .line-functions {
             width: 54px !important;
@@ -368,7 +363,7 @@ margin-left: 10px;
     }
 
     .flex-functions {
-        font-size: 16px;
+        font-size: $font-size-body-l;
     }
 
 }
@@ -379,7 +374,7 @@ margin-left: 10px;
       left: -40px;
 
       li {
-        margin-bottom: 11rem !important;
+        margin-bottom: $space-120 !important;
     }
       .line-functions {
         width: 50px !important;
@@ -391,7 +386,7 @@ margin-left: 10px;
         right: 40px;
 
         li {
-            margin-bottom: 12.5rem !important;
+            margin-bottom: $space-120 !important;
         }
         .line-functions {
             width: 50px !important;
@@ -399,7 +394,7 @@ margin-left: 10px;
     }
 
     .flex-functions {
-        font-size: 16px;
+        font-size: $font-size-body-l;
     }
 
 }
@@ -416,7 +411,7 @@ margin-left: 10px;
       right: 19px;
 
       li {
-        margin-bottom: 11.5rem !important;
+        margin-bottom: $space-120 !important;
       }
     }
 }
@@ -424,7 +419,7 @@ margin-left: 10px;
     @media(max-width:376px){
         .testowydiv2 {
             li {
-                margin-bottom: 11.5rem;
+                margin-bottom: $space-120;
             }
     
         }}

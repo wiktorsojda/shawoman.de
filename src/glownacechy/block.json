@@ -1,0 +1,97 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/glownacechy",
+  "title": "Główna Cechy",
+  "attributes": {
+    "titleLine1": {
+      "type": "string",
+      "default": "Maszynka"
+    },
+    "titleLine2Before": {
+      "type": "string",
+      "default": "Shav "
+    },
+    "titleLine2Accent": {
+      "type": "string",
+      "default": "woman."
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": "Shav Woman"
+    },
+    "feature1Title": {
+      "type": "string",
+      "default": "Golenie bikinii i całego ciała"
+    },
+    "feature1Sub": {
+      "type": "string",
+      "default": "Zaprojektowane z myślą o codzienności."
+    },
+    "feature2Title": {
+      "type": "string",
+      "default": "Delikatne golenie"
+    },
+    "feature2Sub": {
+      "type": "string",
+      "default": "Zaprojektowane z myślą o codzienności."
+    },
+    "feature3Title": {
+      "type": "string",
+      "default": "Bez zacięć i podrażnień"
+    },
+    "feature3Sub": {
+      "type": "string",
+      "default": "Zaprojektowane z myślą o codzienności."
+    },
+    "feature4Title": {
+      "type": "string",
+      "default": "Wymienne ostrza"
+    },
+    "feature4Sub": {
+      "type": "string",
+      "default": "Zaprojektowane z myślą o codzienności."
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
+}

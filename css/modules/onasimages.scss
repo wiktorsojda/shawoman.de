@@ -14,26 +14,25 @@
     background-size: 50px;
     background-position: center;
     background-color: transparent;
-    border-radius: 16px;
+    border-radius: $radius-s;
     overflow: hidden;
     border: none;
 
 }
 
 .card-badge-onas {
-background-color: #434242;
-color: #fff;
-font-size: 24px;
-font-weight: 700;
-padding-inline: 6px;
-border-radius: 8px; 
+    background-color: $color-neutral-800;
+    color: $color-white;
+    font-size: $font-size-h4;
+    font-weight: $font-weight-bold;
+    padding-inline: $space-4;
+    border-radius: $radius-xs;
 }
 
 .container-onas-images {
     position: relative;
-    background-color: #000;
-    color: #fff;
-    // padding: 24px 20px 48px;
+    background-color: $color-neutral-900;
+    color: $color-white;
     height: 90vh;
     overflow-y: overlay;
     z-index: 1;
@@ -58,40 +57,38 @@ border-radius: 8px;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px;
+    gap: $space-12;
 }
 
 .meta-item-onas {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: $space-4;
 }
 
 
 .btn-onas {
-    color: #fff;
-    font-size: 36px;
-    font-weight: 700;
+    color: $color-white;
+    font-size: $font-size-h3;
+    font-weight: $font-weight-bold;
     max-width: max-content;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding-block: 12px;
-    padding-inline: 20px 24px;
-    border-radius: 8px;
+    gap: $space-12;
+    padding-block: $space-12;
+    padding-inline: $space-16 $space-24;
+    border-radius: $radius-xs;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .heading-onas {
-  color: #FFF !important;
-  /* Heading_1 */
-  font-family: "bebas-neue-pro", sans-serif !important;
-  font-size: 64px !important;
-  font-style: normal !important;
-  font-weight: 500 !important;
-  line-height: 117.75% !important; /* 75.36px */
-  text-transform: uppercase !important;
-  width: max-content;
+    color: $color-white !important;
+    font-family: $font-family-base !important;
+    font-size: $font-size-h1 !important;
+    font-weight: $font-weight-medium !important;
+    line-height: 1.1775 !important;
+    text-transform: uppercase !important;
+    width: max-content;
 }
 
 .img-cover-onas {
@@ -100,13 +97,13 @@ border-radius: 8px;
     max-width: none;
     height: 100%;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: $radius-s;
 }
 
  .banner-onas {
     position: relative;
     height: 100%;
-    border-radius: 8px;
+    border-radius: $radius-xs;
     overflow: hidden;
     margin-top: -1px;
   }
@@ -128,7 +125,7 @@ border-radius: 8px;
     content: "";
     position: absolute;
     inset: 0;
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgb(0, 0, 0) 100%);
+    background-image: linear-gradient(180deg, rgba($color-black, 0) 0%, $color-black 100%);
   }
 
   .active-onas {
@@ -143,11 +140,11 @@ border-radius: 8px;
   .banner-content-onas {
     position: absolute;
     left: 5%;
-    margin-left: 2.5rem;
+    margin-left: $space-40;
     top: 45%;
     max-width: 40%;
     z-index: 1;
-    color: #fff;
+    color: $color-white;
   }
   
   .banner-onas :is(.heading-onas, .banner-text-onas) {
@@ -158,25 +155,21 @@ border-radius: 8px;
   
   .banner-onas .heading-onas {
     -webkit-line-clamp: 3;
-    margin-block-end: 16px;
+    margin-block-end: $space-16;
   }
   
-  .banner-onas .genre-onas { margin-block: 12px; }
+  .banner-onas .genre-onas { margin-block: $space-12; }
   
   .banner-text-onas {
-    // -webkit-line-clamp: 2;
-    color: #FFF !important;
-
-    /* Roboto */
-    font-family: 'roboto', sans-serif !important;
-    font-size: 16px !important; 
-    font-style: normal !important;
-    font-weight: 400 !important;
+    color: $color-white !important;
+    font-family: $font-family-base !important;
+    font-size: $font-size-body-l !important;
+    font-weight: $font-weight-regular !important;
     line-height: normal !important;
     max-width: 500px;
   }
-  
-  .banner-onas .btn-onas { background-color: #d20000; }
+
+  .banner-onas .btn-onas { background-color: $color-accent-light; }
   
   .banner-onas .btn-onas:is(:hover, :focus-visible) { box-shadow: 20%; }
   
@@ -185,9 +178,9 @@ border-radius: 8px;
     top: 30%;
     left: 55%;
     right: 0;
-    border-radius: 8px 0 0 16px;
+    border-radius: $radius-xs 0 0 $radius-s;
     user-select: none;
-    padding: 4px 0 4px 4px;
+    padding: $space-4 0 $space-4 $space-4;
     overflow-x: auto;
   }
   
@@ -195,7 +188,7 @@ border-radius: 8px;
   
   .control-inner-onas {
     display: flex;
-    gap: 65px;
+    gap: $space-64;
   }
   
   .control-inner-onas::after {
@@ -206,7 +199,7 @@ border-radius: 8px;
   .slider-control-onas .slider-item-onas {
     width: 632px;
     height: 402px;
-    border-radius: 8px;
+    border-radius: $radius-xs;
     flex-shrink: 0;
     filter: brightness(0.4);
   }
@@ -219,7 +212,7 @@ border-radius: 8px;
   
   .bg-image-onas {
     filter: blur(7px);
-    background-color: black;
+    background-color: $color-black;
     opacity: 0.5;
   }
   
@@ -228,16 +221,16 @@ border-radius: 8px;
     top: 30%;
     left: 55%;
     right: 0;
-    border-radius: 8px 0 0 16px;
+    border-radius: $radius-xs 0 0 $radius-s;
     user-select: none;
-    padding: 4px 0 4px 4px;
+    padding: $space-4 0 $space-4 $space-4;
     overflow-x: auto;
     z-index: 2; /* Ensure slider controls are above other elements */
   }
   
   .control-inner-onas {
     display: flex;
-    gap: 65px;
+    gap: $space-64;
     transition: transform 0.6s ease;
     z-index: 1; /* Controls below the arrows */
   }
@@ -252,7 +245,7 @@ border-radius: 8px;
 
     overflow:hidden;
     z-index: 3; /* Ensure arrows are on top of everything else */
-    padding: 0 10px;
+    padding: 0 $space-8;
     position: absolute;
     top: 92% ;
     background: transparent;
@@ -316,10 +309,10 @@ border-radius: 8px;
   .slider-control-onas {
     top: 55% !important;
     left: 5px;
-    margin-left: 2.5rem;
+    margin-left: $space-40;
 
     .control-inner-onas {
-      gap: 16px !important;
+      gap: $space-16 !important;
     }
 
     .slider-item-onas {
@@ -329,7 +322,7 @@ height: 119px;
   }
 
   h2.heading-onas {
-    font-size: 36px !important;
+    font-size: $font-size-h3 !important;
   }
 
   .left-arrow-onas {

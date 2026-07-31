@@ -8,6 +8,8 @@
 () {
 
 const lenis = new Lenis();
+window.lenis = lenis; // ekspozycja dla floating back-to-top i innych handlerow
+
 lenis.on("scroll", e => {
   // console.log(e);
 });
@@ -17,9 +19,24 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// top bar menu when scrolling down 
+// Marquee logos (.about-us-swiper) — duplikuje zawartosc dla plynnego infinity loop
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.about-us-swiper').forEach(track => {
+    if (track.dataset.marqueeReady) return;
+    const clone = track.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    // Wstaw klonowane dzieci do tego samego trackera (zamiast osobnego elementu)
+    Array.from(clone.children).forEach(child => {
+      track.appendChild(child);
+    });
+    track.dataset.marqueeReady = '1';
+  });
+});
+
+// top bar menu when scrolling down
 document.addEventListener('DOMContentLoaded', function () {
   const header = document.getElementById('top-menu');
+  if (!header) return;
   window.addEventListener('scroll', function () {
     if (window.scrollY > 150) {
       header.classList.add('scrolled');
@@ -34,12 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const video = document.querySelector('.video-background');
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/animacja-shav-2.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video-new-film");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -47,12 +61,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/o-nas") || pathname === "/" || pathname.includes("/golarka-shav-maszynka-do-miejsc-intymnych")) {
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/film-nowy.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -60,12 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/golarka-do-glowy-crowner")) {
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/lowG.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video-crowner");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -73,12 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/golarka-do-twarzy-handler")) {
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/handler.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video-handler");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -86,12 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/trymer-do-nosa")) {
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/trymer_hero.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -99,12 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/golarka-shav-basic-maszynka-do-miejsc-intymnych")) {
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/whoweareshav1.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video-shav1");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -112,12 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/balsam-shav")) {
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/C0016.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video-balsam");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -125,12 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/dezodorant-shav")) {
     const testvideo = `<video class="video-background" src="https://shav.pl/wp-content/uploads/C0012.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video-dezo");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -141,12 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
     Twoja przeglądarka nie obsługuje tagu wideo.
 </video>`;
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-1");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -157,12 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
     Twoja przeglądarka nie obsługuje tagu wideo.
 </video>`;
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-2");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -170,12 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pathname.includes("/golarka-damska-shav-woman")) {
     const testvideo = `<video class="video-background" src="https://shavwoman.pl/wp-content/uploads/shav-woman-hero.mp4" autoplay loop muted playsinline loading="lazy"></video>`;
     const dHomeBanner = document.querySelector(".placeholder-video-woman");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -186,12 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
     Twoja przeglądarka nie obsługuje tagu wideo.
 </video>`;
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-3");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -202,12 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
     Twoja przeglądarka nie obsługuje tagu wideo.
 </video>`;
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-4");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
@@ -218,12 +196,9 @@ document.addEventListener('DOMContentLoaded', () => {
     Twoja przeglądarka nie obsługuje tagu wideo.
 </video>`;
     const dHomeBanner = document.querySelector(".cechy-videoshav1-placeholder-5");
-    function DAppendVideo() {
+    if (dHomeBanner) {
       dHomeBanner.innerHTML = testvideo;
     }
-
-    // window.addEventListener("load", testvideo);
-    DAppendVideo();
   }
 });
 
@@ -249,28 +224,29 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 function instagramFeed() {
   const carousel = document.querySelector('#sbi_images'); // Container for the carousel
+  if (!carousel) return;
   const items = carousel.querySelectorAll('.sbi_item'); // Individual carousel items
   const itemsPerView = 4; // Number of items to display at once
   const itemCount = items.length;
   let currentIndex = 0;
-
-  // Update carousel position
   function updateCarousel() {
     const newTransform = -(currentIndex * 100 / itemsPerView) + '%';
     carousel.style.transform = 'translateX(' + newTransform + ')';
   }
-
-  // Button click events
-  document.querySelector('.next-instagram').addEventListener('click', function () {
-    currentIndex = Math.min(currentIndex + 1, itemCount - itemsPerView);
-    updateCarousel();
-  });
-  document.querySelector('.prev-instagram').addEventListener('click', function () {
-    currentIndex = Math.max(currentIndex - 1, 0);
-    updateCarousel();
-  });
-
-  // Initialize carousel
+  const nextBtn = document.querySelector('.next-instagram');
+  const prevBtn = document.querySelector('.prev-instagram');
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function () {
+      currentIndex = Math.min(currentIndex + 1, itemCount - itemsPerView);
+      updateCarousel();
+    });
+  }
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function () {
+      currentIndex = Math.max(currentIndex - 1, 0);
+      updateCarousel();
+    });
+  }
   updateCarousel();
 }
 
@@ -417,39 +393,9 @@ const addHeroSlide = function () {
 };
 // O NAS GALLERY
 
-// FOOTER BACK TO TOP BUTTON
-document.addEventListener("DOMContentLoaded", function () {
-  const lenis = new Lenis({
-    duration: 1.2,
-    // Customize the duration to your liking
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-  const backToTopButton = document.getElementById('backToTop');
-  const footer = document.querySelector('footer');
-  function isFooterInView() {
-    const footerRect = footer.getBoundingClientRect();
-    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-    return footerRect.top <= windowHeight && footerRect.bottom >= 0;
-  }
-  window.addEventListener('scroll', () => {
-    if (isFooterInView()) {
-      backToTopButton.classList.add('show');
-    } else {
-      backToTopButton.classList.remove('show');
-    }
-  });
-  backToTopButton.addEventListener('click', () => {
-    lenis.scrollTo(0, {
-      duration: 5.2,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-    });
-  });
-});
+// FOOTER BACK TO TOP BUTTON — usuniete (zastapione floating .back-to-top w functions.php).
+// Wczesniej tworzylo TRZECIA instancje Lenis co powodowalo konflikt scrollowania
+// (pierwszy klik sie "gubil"). Globalna instancja Lenis siedzi na window.lenis (gora pliku).
 
 // Toggle mobile menu
 // const menuToggle = document.querySelector('.menu-toggle');
@@ -1078,17 +1024,115 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _css_modules_logobackground_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/modules/logobackground.scss */ "./css/modules/logobackground.scss");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
-function Edit() {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    videoURL,
+    backgroundImage,
+    title,
+    subtitle,
+    description
+  } = attributes;
+  const wrapperStyle = backgroundImage ? {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center"
+  } : {};
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "video-background-container",
+    style: wrapperStyle
+  });
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "our-placeholder-block"
-  }, "Hero O Nas"));
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "T\u0142o wideo",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      videoURL: media.url
+    }),
+    allowedTypes: ["video"],
+    value: videoURL,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, videoURL ? "Zmień wideo" : "Wybierz wideo")
+  })), videoURL && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      videoURL: ""
+    }),
+    style: {
+      marginTop: 8
+    }
+  }, "Usu\u0144 wideo")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "T\u0142o \u2014 obraz (alternatywnie)",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      backgroundImage: media.url
+    }),
+    allowedTypes: ["image"],
+    value: backgroundImage,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, backgroundImage ? "Zmień obraz" : "Wybierz obraz")
+  })), backgroundImage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      backgroundImage: ""
+    }),
+    style: {
+      marginTop: 8
+    }
+  }, "Usu\u0144 obraz t\u0142a"))), videoURL && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("video", {
+    className: "video-background",
+    src: videoURL,
+    autoPlay: true,
+    loop: true,
+    muted: true,
+    playsInline: true
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "content-overlay"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h1",
+    className: "title",
+    value: title,
+    onChange: v => setAttributes({
+      title: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h2",
+    className: "subtitle",
+    value: subtitle,
+    onChange: v => setAttributes({
+      subtitle: v
+    }),
+    placeholder: "Podtytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "p",
+    className: "description",
+    value: description,
+    onChange: v => setAttributes({
+      description: v
+    }),
+    placeholder: "Opis"
+  })));
 }
 
 /***/ },
@@ -11065,19 +11109,6 @@ TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
 /***/ },
 
-/***/ "./css/modules/logobackground.scss"
-/*!*****************************************!*\
-  !*** ./css/modules/logobackground.scss ***!
-  \*****************************************/
-(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ },
-
 /***/ "react"
 /*!************************!*\
   !*** external "React" ***!
@@ -11111,6 +11142,17 @@ module.exports = window["wp"]["blocks"];
 
 /***/ },
 
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+"use strict";
+module.exports = window["wp"]["components"];
+
+/***/ },
+
 /***/ "./src/heroonas/block.json"
 /*!*********************************!*\
   !*** ./src/heroonas/block.json ***!
@@ -11118,7 +11160,7 @@ module.exports = window["wp"]["blocks"];
 (module) {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/heroonas","title":"Hero o nas","category":"common","icon":"format-video","description":"A block with a video background, title, subtitle, and description.","attributes":{"videoURL":{"type":"string","default":""},"title":{"type":"string","default":"Title"},"subtitle":{"type":"string","default":"Subtitle"},"description":{"type":"string","default":"Description"}},"supports":{"html":false},"editorScript":"file:./index.js","style":"file:./style.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/heroonas","title":"Hero o nas","category":"common","icon":"format-video","description":"A block with a video background, title, subtitle, and description.","attributes":{"videoURL":{"type":"string","default":""},"title":{"type":"string","default":"Title"},"subtitle":{"type":"string","default":"Subtitle"},"description":{"type":"string","default":"Description"},"backgroundImage":{"type":"string","default":""}},"supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}},"editorScript":"file:./index.js","style":"file:./style.css","render":"file:./render.php"}');
 
 /***/ }
 
@@ -11208,17 +11250,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _css_modules_logobackground_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/modules/logobackground.scss */ "./css/modules/logobackground.scss");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./block.json */ "./src/heroonas/block.json");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./edit */ "./src/heroonas/edit.js");
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var gsap_all__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gsap/all */ "./node_modules/gsap/ScrollToPlugin.js");
-/* harmony import */ var gsap_all__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! gsap/all */ "./node_modules/gsap/ScrollTrigger.js");
-/* harmony import */ var _inc_custom_gsap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../inc/custom-gsap */ "./inc/custom-gsap.js");
-/* harmony import */ var _inc_custom_gsap__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_inc_custom_gsap__WEBPACK_IMPORTED_MODULE_9__);
-
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/heroonas/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./edit */ "./src/heroonas/edit.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap_all__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! gsap/all */ "./node_modules/gsap/ScrollToPlugin.js");
+/* harmony import */ var gsap_all__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! gsap/all */ "./node_modules/gsap/ScrollTrigger.js");
+/* harmony import */ var _inc_custom_gsap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../inc/custom-gsap */ "./inc/custom-gsap.js");
+/* harmony import */ var _inc_custom_gsap__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_inc_custom_gsap__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -11229,11 +11269,11 @@ __webpack_require__.r(__webpack_exports__);
 
  // Adjusted path
 
-gsap__WEBPACK_IMPORTED_MODULE_6__["default"].registerPlugin(gsap_all__WEBPACK_IMPORTED_MODULE_8__.ScrollTrigger, gsap_all__WEBPACK_IMPORTED_MODULE_7__.ScrollToPlugin);
-(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_4__.name, {
-  edit: _edit__WEBPACK_IMPORTED_MODULE_5__["default"],
+gsap__WEBPACK_IMPORTED_MODULE_5__["default"].registerPlugin(gsap_all__WEBPACK_IMPORTED_MODULE_7__.ScrollTrigger, gsap_all__WEBPACK_IMPORTED_MODULE_6__.ScrollToPlugin);
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_4__["default"],
   save: () => {
-    const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps.save();
+    const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save();
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       ...blockProps
     });

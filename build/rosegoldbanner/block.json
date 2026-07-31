@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/rosegoldbanner",
+  "title": "Drop — Baner",
+  "category": "theme",
+  "icon": "cover-image",
+  "description": "Pełnoszerokościowy baner: zdjęcie w tle + nakładka (badge, tytuł, opis). Pozycja treści do wyboru. Opcjonalny link.",
+  "attributes": {
+    "image": {
+      "type": "string",
+      "default": ""
+    },
+    "imageMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": "Drop Rose Gold"
+    },
+    "badge": {
+      "type": "string",
+      "default": "EDYCJA LIMITOWANA"
+    },
+    "title": {
+      "type": "string",
+      "default": "Drop Rose Gold"
+    },
+    "description": {
+      "type": "string",
+      "default": "Najdelikatniejsza damska golarka z rewolucyjną technologią CutFree zapewniającą golenie bez zacięć i podrażnień. Nowy wymiar gładkości i komfortu."
+    },
+    "contentAlign": {
+      "type": "string",
+      "default": "right"
+    },
+    "linkUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "showButton": {
+      "type": "boolean",
+      "default": false
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "Sprawdź"
+    },
+    "buttonURL": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "full"
+    ],
+    "spacing": {
+      "margin": true
+    }
+  }
+}

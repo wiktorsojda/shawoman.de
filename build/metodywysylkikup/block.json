@@ -3,6 +3,83 @@
   "apiVersion": 3,
   "name": "ourblocktheme/metodywysylkikup",
   "title": "Metody Wysyłki Kup",
+  "attributes": {
+    "tagline": {
+      "type": "string",
+      "default": "Gwarantujemy"
+    },
+    "changeText1": {
+      "type": "string",
+      "default": "Wysoką jakość"
+    },
+    "changeText2": {
+      "type": "string",
+      "default": "Szybką wysyłkę"
+    },
+    "changeText3": {
+      "type": "string",
+      "default": "Gładkie 🥚🥚"
+    },
+    "changeText4": {
+      "type": "string",
+      "default": "Brak zacięć"
+    },
+    "heading": {
+      "type": "string",
+      "default": "Zamów swoją maszynkę <span class=\"shav-color\">Shav Woman</span><br/>już dziś!"
+    },
+    "description": {
+      "type": "string",
+      "default": "Złóż zamówienie na naszej stronie aby cieszyć się 2-letnią gwarancją, bezpieczną wysyłką oraz wydłużonym, 30-dniowym prawem do zwrotu. Przekonaj się o niesamowitych możliwościach Shav Woman!"
+    },
+    "buttonLabel": {
+      "type": "string",
+      "default": "Kup teraz"
+    },
+    "buttonURL": {
+      "type": "string",
+      "default": "/produkt/golarka-damska-shav-woman/"
+    },
+    "image": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

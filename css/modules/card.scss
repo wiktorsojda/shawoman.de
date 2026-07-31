@@ -1,0 +1,180 @@
+// =============================================================================
+// CARD — bloki kart (Figma: 66:51787)
+// =============================================================================
+// 4 warianty:
+//   .card.card--text             tekst-only, ramka, bez obrazu  (500x308)
+//   .card.card--media            obraz + content (1428x550, filled)
+//   .card.card--media.card--sm   obraz + content kompaktowy (707x214)
+//   .card.card--media.card--outline   wariant outline (border zamiast tla)
+//
+// Struktura HTML:
+//   <article class="card card--media">
+//     <div class="card__media">
+//       <img class="card__image" src="..." alt="">
+//     </div>
+//     <div class="card__body">
+//       <h2 class="card__title">H1 headline</h2>
+//       <p class="card__description">Body L</p>
+//       <div class="card__actions">
+//         <a class="button button--primary button--md">Button</a>
+//       </div>
+//     </div>
+//   </article>
+//
+// Dla --text: pomin .card__media.
+// =============================================================================
+
+.card {
+  border-radius: $card-radius;
+  color: $card-text-color;
+  background-color: transparent;
+
+  &__media {
+    display: block;
+    flex: 1 1 0%;
+    min-width: 0;
+    border-radius: $card-media-lg-image-radius;
+    overflow: hidden;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    @include type-h1;
+    color: $card-text-color;
+    margin: 0;
+  }
+
+  &__description {
+    @include type-body-l;
+    color: $card-text-color;
+    margin: 0;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $space-12;
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // Wariant: text-only
+  // ---------------------------------------------------------------------------
+  &--text {
+    border: 1px solid $card-border-color;
+    padding: $card-text-padding;
+
+    .card__body {
+      gap: $card-text-gap;
+      align-items: flex-end;  // button po prawej
+    }
+
+    .card__title,
+    .card__description {
+      align-self: stretch;     // tekst pelnej szerokosci
+    }
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // Wariant: media (obraz po lewej + content po prawej)
+  // ---------------------------------------------------------------------------
+  &--media {
+    display: flex;
+    align-items: center;
+    gap: $card-media-lg-gap;
+    background-color: $card-bg;
+    padding: $card-media-lg-padding-y $card-media-lg-padding-x;
+
+    .card__media {
+      align-self: stretch;
+      border-radius: $card-media-lg-image-radius;
+    }
+
+    .card__body {
+      align-self: stretch;
+      flex-shrink: 0;
+      justify-content: space-between;
+      align-items: flex-end;   // tytul / button po prawej
+      gap: $card-media-lg-content-gap;
+    }
+
+    // Tekst — w large karcie wartosci wysrodkowane w pionie (Figma)
+    .card__title,
+    .card__description {
+      width: 100%;
+      text-align: right;
+    }
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // Sub-wariant: --sm (kompaktowy)
+  // ---------------------------------------------------------------------------
+  &--media.card--sm {
+    padding: $card-media-sm-padding;
+    gap: $card-media-sm-gap;
+
+    .card__media {
+      border-radius: $card-media-sm-image-radius;
+    }
+
+    // W malej karcie tytul mniejszy — uzyj H3 zamiast H1
+    .card__title {
+      @include type-h3;
+    }
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // Sub-wariant: --outline (border zamiast tla)
+  // ---------------------------------------------------------------------------
+  &--outline {
+    background-color: transparent;
+    border: 1px solid $card-border-color;
+  }
+
+
+  // ---------------------------------------------------------------------------
+  // Responsywnosc — na mobile wszystkie warianty media stackuja sie pionowo
+  // i traca ekstremalne paddingi.
+  // ---------------------------------------------------------------------------
+  @media (max-width: ($breakpoint-tablet - 1)) {
+    &--media {
+      flex-direction: column;
+      padding: $space-24;
+      gap: $space-24;
+
+      .card__media {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+      }
+
+      .card__body {
+        width: 100%;
+        align-items: stretch;
+      }
+
+      .card__title,
+      .card__description {
+        text-align: left;
+      }
+    }
+
+    &--text {
+      padding: $space-32;
+    }
+  }
+}

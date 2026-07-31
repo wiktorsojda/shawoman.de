@@ -3,6 +3,67 @@
   "apiVersion": 3,
   "name": "ourblocktheme/cechyzero",
   "title": "Cechy Zero",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "DMAKSYMALNIE BEZPIECZNY"
+    },
+    "description": {
+      "type": "string",
+      "default": "Precyzja i bezpieczeństwo w trakcie zadań specjalnych. Golarka Shav 2 wykorzystuje Technologię CutFree - zaawansowanie rozwiązanie, które skutecznie minimalizuje ryzyko zacięć. Maszynka zapewnia komfort w każdych warunkach - zarówno na mokro, jak i na sucho."
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "feature1Title": {
+      "type": "string",
+      "default": "Technologia CutFree"
+    },
+    "feature2Title": {
+      "type": "string",
+      "default": "Bez zacięć i podrażnień"
+    },
+    "feature3Title": {
+      "type": "string",
+      "default": "Wodoodporność IPX7"
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }

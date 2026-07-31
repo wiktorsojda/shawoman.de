@@ -29,4 +29,4 @@ $heading = apply_filters('woocommerce_product_additional_information_heading', _
 <?php endif; ?>
 
 <?php do_action('woocommerce_product_additional_information', $product); ?>
-<?php the_field('wymiary');  ?>
+<?php if (function_exists('the_field')) the_field('wymiary');  ?>

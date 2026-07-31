@@ -1,0 +1,173 @@
+// =============================================================================
+// FAQGŁOWNA — strona glowna, sekcja FAQ ze stylem design system
+// =============================================================================
+// Jasny wariant FAQ (kontrast do starego ciemnego `.faq-container-glowna`).
+// Wszystko z tokenow: kolory, fonty, rozmiary, spacing, radius.
+// =============================================================================
+
+.glownafaq {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: $space-32 $space-120;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: $space-32;
+    max-width: 1300px;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      gap: $space-48;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Glowny tytul "Najczesciej zadawane pytania"
+  // ---------------------------------------------------------------------------
+  &__top-title {
+    margin: 0;
+    text-align: center;
+    color: $color-neutral-800;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-h2;             // 42 mobile
+    line-height: 1;
+    letter-spacing: $letter-spacing-tight;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h1;           // 64
+    }
+  }
+
+  // Dodatkowy (mniejszy) tytul opcjonalny
+  &__title {
+    margin: 0;
+    text-align: center;
+    color: $color-neutral-700;
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    font-size: $font-size-h4;             // 20
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Lista pytan
+  // ---------------------------------------------------------------------------
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: $space-12;
+
+       @media (max-width: $breakpoint-tablet) {
+      padding: 0 20px;        // 20
+    }
+  }
+
+  &__item {
+    background-color: $color-neutral-50;
+    border: 1px solid $color-neutral-200;
+    border-radius: $radius-s;             // 16
+    overflow: hidden;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+
+    &.is-active,
+    &.active {
+      background-color: $color-neutral-100;
+      border-color: $color-neutral-300;
+    }
+  }
+
+  // Trigger (button) z pytaniem + chevron
+  &__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-16;
+    width: 100%;
+    padding: $space-24;
+    background: transparent;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    color: inherit;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: rgba($color-neutral-900, 0.02);
+    }
+  }
+
+  &__question {
+    margin: 0;
+    color: $color-neutral-900;
+    font-family: $font-family-base;
+    font-weight: $font-weight-medium;
+    font-size: $font-size-body-l;         // 16
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h4;           // 20
+    }
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: $color-neutral-100;
+    color: $color-neutral-800;
+    transition: transform 0.25s ease, background-color 0.15s ease;
+
+    .glownafaq__item.is-active &,
+    .glownafaq__item.active & {
+      transform: rotate(180deg);
+      background-color: $color-peach-200;
+      color: $color-peach-600;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Panel z odpowiedzia (akordeon)
+  // ---------------------------------------------------------------------------
+  &__panel {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+    padding: 0 $space-24;
+
+    p {
+      margin: 0 0 $space-16 0;
+      color: $color-neutral-700;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      font-size: $font-size-body-l;       // 16
+      line-height: $line-height-base;     // 1.4
+      letter-spacing: $letter-spacing-tight;
+    }
+  }
+
+  &__item.is-active &__panel,
+  &__item.active &__panel {
+    max-height: 800px;
+    opacity: 1;
+    padding-top: 0;
+    padding-bottom: $space-8;
+  }
+}

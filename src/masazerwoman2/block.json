@@ -1,0 +1,81 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/masazerwoman2",
+  "title": "Myjka Szachownica 2",
+  "attributes": {
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "title": {
+      "type": "string",
+      "default": "Delikatne oczyszczanie"
+    },
+    "description": {
+      "type": "string",
+      "default": "Dokładnie oczyszcza skórę głowy, pozostając łagodnym nawet dla skóry wrażliwej.\n            Pomaga usunąć zanieczyszczenia bez ryzyka podrażnień."
+    },
+    "titleSize": {
+      "type": "number",
+      "default": 42
+    },
+    "descriptionSize": {
+      "type": "number",
+      "default": 18
+    },
+    "glassPositionX": {
+      "type": "string",
+      "default": "left"
+    },
+    "glassPositionY": {
+      "type": "string",
+      "default": "middle"
+    },
+    "glassWidth": {
+      "type": "number",
+      "default": 726
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
+}

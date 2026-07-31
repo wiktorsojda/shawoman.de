@@ -2,8 +2,56 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/ostrzefolioweproduktowa2",
-  "title": "Ostrze Foliowe Produktowa2",
+  "title": "Ostrze Foliowe Produktowa 2",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Nowy standard golenia"
+    },
+    "description": {
+      "type": "string",
+      "default": "Foliowe ostrze do golarki Shav, wyposażone w technologię CutFree, gwarantuje bezpieczne i precyzyjne golenie przy skórze. Wymieniaj ostrze co 2-3 miesiące, aby zachować pełną funkcjonalność i wygodę użytkowania."
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
-
