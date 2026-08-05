@@ -46,23 +46,123 @@
     },
     "bannerTitle": {
       "type": "string",
-      "default": "Shav "
+      "default": "15% zniżki z kodem:"
     },
     "bannerTitleAccent": {
       "type": "string",
-      "default": "Days"
+      "default": "WOMAN15"
     },
     "bannerSubtitle": {
       "type": "string",
-      "default": "-25% z kodem: SHAV25"
+      "default": ""
     },
     "bannerCtaLabel": {
+      "type": "string",
+      "default": "Dowiedz się więcej"
+    },
+    "bannerCtaLabelMobile": {
       "type": "string",
       "default": "Dowiedz się więcej"
     },
     "bannerCtaURL": {
       "type": "string",
       "default": "/sklep"
+    },
+    "titleColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "titleFontSize": {
+      "type": "string",
+      "default": "42px"
+    },
+    "titleFontSizeMobile": {
+      "type": "string",
+      "default": "24px"
+    },
+    "titleFontFamily": {
+      "type": "string",
+      "default": "Be Vietnam Pro"
+    },
+    "titleFontWeight": {
+      "type": "string",
+      "default": "500"
+    },
+    "titleLineHeight": {
+      "type": "string",
+      "default": "100%"
+    },
+    "titleLineHeightMobile": {
+      "type": "string",
+      "default": "110%"
+    },
+    "titleLetterSpacing": {
+      "type": "string",
+      "default": "-4%"
+    },
+    "titleTextTransform": {
+      "type": "string",
+      "default": "uppercase"
+    },
+    "titleTextShadow": {
+      "type": "string",
+      "default": "0px 1px 1px #00000080"
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "accentFontSize": {
+      "type": "string",
+      "default": "98px"
+    },
+    "accentFontSizeMobile": {
+      "type": "string",
+      "default": "48px"
+    },
+    "accentFontFamily": {
+      "type": "string",
+      "default": "Be Vietnam Pro"
+    },
+    "accentFontWeight": {
+      "type": "string",
+      "default": "700"
+    },
+    "accentLineHeight": {
+      "type": "string",
+      "default": "120%"
+    },
+    "accentLineHeightMobile": {
+      "type": "string",
+      "default": "110%"
+    },
+    "accentLetterSpacing": {
+      "type": "string",
+      "default": "-4%"
+    },
+    "accentTextShadow": {
+      "type": "string",
+      "default": "0px 1px 1px #00000080"
+    },
+    "ctaMarginTop": {
+      "type": "string",
+      "default": "0px"
+    },
+    "ctaMarginTopMobile": {
+      "type": "string",
+      "default": "0px"
+    },
+    "ctaFontFamily": {
+      "type": "string",
+      "default": "Be Vietnam Pro"
+    },
+    "ctaFontSize": {
+      "type": "string",
+      "default": "16px"
+    },
+    "ctaFontSizeMobile": {
+      "type": "string",
+      "default": "14px"
     }
   },
   "editorScript": "file:./index.js",
