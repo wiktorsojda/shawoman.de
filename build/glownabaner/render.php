@@ -60,6 +60,18 @@ $block_id = wp_unique_id('glownabaner-');
 ?>
 
 <style>
+    #<?php echo esc_attr($block_id); ?> .glownabaner__hero {
+        background-image: url('<?php echo esc_url($bannerImage); ?>');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    @media (max-width: 767px) {
+        #<?php echo esc_attr($block_id); ?> .glownabaner__hero {
+            background-image: url('<?php echo esc_url($bannerImageMobile); ?>');
+        }
+    }
+
     #<?php echo esc_attr($block_id); ?> .glownabaner__hero-title-main {
         color: <?php echo esc_attr($titleColor); ?>;
         font-size: <?php echo esc_attr($titleFontSize); ?>;
@@ -152,14 +164,6 @@ $block_id = wp_unique_id('glownabaner-');
     <?php endif; ?>
 
     <div class="glownabaner__hero">
-        <?php if ($bannerImageMobile !== $bannerImage) : ?>
-            <picture class="glownabaner__hero-picture" style="grid-area: stack; width: 100%; height: 100%; display: block;">
-                <source media="(max-width: 767px)" srcset="<?php echo esc_url($bannerImageMobile); ?>">
-                <img class="glownabaner__hero-image" src="<?php echo esc_url($bannerImage); ?>" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
-            </picture>
-        <?php else : ?>
-            <img class="glownabaner__hero-image" src="<?php echo esc_url($bannerImage); ?>" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; grid-area: stack;">
-        <?php endif; ?>
         <div class="glownabaner__hero-content">
             <h2 class="glownabaner__hero-title">
                 <span class="glownabaner__hero-title-main">
