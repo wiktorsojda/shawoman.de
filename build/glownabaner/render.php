@@ -61,6 +61,7 @@ $block_id = wp_unique_id('glownabaner-');
 
 <style>
     #<?php echo esc_attr($block_id); ?> .glownabaner__hero {
+        width: 100%;
         background-image: url('<?php echo esc_url($bannerImage); ?>');
         background-size: cover;
         background-position: center;
