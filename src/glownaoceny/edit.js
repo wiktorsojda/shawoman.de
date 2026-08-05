@@ -1,17 +1,71 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button } from "@wordpress/components";
+import { PanelBody, Button, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 const AVATAR_NUMS = [1, 2, 3, 4, 5];
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const blockProps = useBlockProps({ className: "glownaoceny" });
+  const [importJson, setImportJson] = useState("");
 
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                titleBefore: a.titleBefore || '',
+                titleAccent: a.titleAccent || '',
+                titleAfter: a.titleAfter || '',
+                card1TextStrong: a.card1TextStrong || '',
+                card1TextLight: a.card1TextLight || '',
+                card2Title: a.card2Title || '',
+                card2RatingCount: a.card2RatingCount || '',
+                card2RatingScore: a.card2RatingScore || '',
+                card3TextStrong: a.card3TextStrong || '',
+                card3TextLight: a.card3TextLight || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={10}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={10}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.titleBefore !== undefined) updates.titleBefore = parsed.titleBefore;
+              if (parsed.titleAccent !== undefined) updates.titleAccent = parsed.titleAccent;
+              if (parsed.titleAfter !== undefined) updates.titleAfter = parsed.titleAfter;
+              if (parsed.card1TextStrong !== undefined) updates.card1TextStrong = parsed.card1TextStrong;
+              if (parsed.card1TextLight !== undefined) updates.card1TextLight = parsed.card1TextLight;
+              if (parsed.card2Title !== undefined) updates.card2Title = parsed.card2Title;
+              if (parsed.card2RatingCount !== undefined) updates.card2RatingCount = parsed.card2RatingCount;
+              if (parsed.card2RatingScore !== undefined) updates.card2RatingScore = parsed.card2RatingScore;
+              if (parsed.card3TextStrong !== undefined) updates.card3TextStrong = parsed.card3TextStrong;
+              if (parsed.card3TextLight !== undefined) updates.card3TextLight = parsed.card3TextLight;
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Karta 1 — ikona" initialOpen={false}>
           <MediaUploadCheck>
             <MediaUpload onSelect={(media) => setAttributes({ card1Icon: media.url })} allowedTypes={["image"]} value={a.card1Icon}

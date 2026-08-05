@@ -1,17 +1,75 @@
 import {
   useBlockProps, RichText, InspectorControls,
 } from "@wordpress/block-editor";
-import { PanelBody, ToggleControl, RangeControl, TextControl, TextareaControl } from "@wordpress/components";
+import { PanelBody, ToggleControl, RangeControl, TextControl, TextareaControl, Button } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 const REVIEW_NUMS = [1, 2, 3, 4, 5, 6, 7, 8];
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const blockProps = useBlockProps({ className: "glownaopinie" });
+  const [importJson, setImportJson] = useState("");
 
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                sectionTitle: a.sectionTitle || '',
+                verifiedLabel: a.verifiedLabel || '',
+                review1Name: a.review1Name || '',
+                review1Text: a.review1Text || '',
+                review2Name: a.review2Name || '',
+                review2Text: a.review2Text || '',
+                review3Name: a.review3Name || '',
+                review3Text: a.review3Text || '',
+                review4Name: a.review4Name || '',
+                review4Text: a.review4Text || '',
+                review5Name: a.review5Name || '',
+                review5Text: a.review5Text || '',
+                review6Name: a.review6Name || '',
+                review6Text: a.review6Text || '',
+                review7Name: a.review7Name || '',
+                review7Text: a.review7Text || '',
+                review8Name: a.review8Name || '',
+                review8Text: a.review8Text || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={10}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={10}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.sectionTitle !== undefined) updates.sectionTitle = parsed.sectionTitle;
+              if (parsed.verifiedLabel !== undefined) updates.verifiedLabel = parsed.verifiedLabel;
+              for (let i = 1; i <= 8; i++) {
+                if (parsed[`review${i}Name`] !== undefined) updates[`review${i}Name`] = parsed[`review${i}Name`];
+                if (parsed[`review${i}Text`] !== undefined) updates[`review${i}Text`] = parsed[`review${i}Text`];
+              }
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Slider — ustawienia" initialOpen={true}>
           <RangeControl label="Widocznych kart na desktopie" min={1} max={4} value={a.visibleCount} onChange={(v) => setAttributes({ visibleCount: v })} />
           <ToggleControl label="Auto-przewijanie" checked={a.autoScroll} onChange={(v) => setAttributes({ autoScroll: v })} />

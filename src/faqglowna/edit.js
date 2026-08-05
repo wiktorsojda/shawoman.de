@@ -1,10 +1,12 @@
 import { useBlockProps, RichText, InspectorControls } from "@wordpress/block-editor";
-import { PanelBody, ToggleControl, SelectControl } from "@wordpress/components";
+import { PanelBody, ToggleControl, SelectControl, TextareaControl, Button } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const blockProps = useBlockProps({ className: a.containerClass || "glownafaq" });
   const Heading = a.headingTag || "h3";
+  const [importJson, setImportJson] = useState("");
 
   // W edytorze nadpisujemy max-height/opacity, zeby panel z odpowiedzia byl
   // zawsze widoczny i edytowalny (front zachowuje accordion).
@@ -17,6 +19,66 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                title: a.title || '',
+                topTitle: a.topTitle || '',
+                question1: a.question1 || '',
+                answer1: a.answer1 || '',
+                question2: a.question2 || '',
+                answer2: a.answer2 || '',
+                question3: a.question3 || '',
+                answer3: a.answer3 || '',
+                question4: a.question4 || '',
+                answer4: a.answer4 || '',
+                question5: a.question5 || '',
+                answer5: a.answer5 || '',
+                question6: a.question6 || '',
+                answer6: a.answer6 || '',
+                question7: a.question7 || '',
+                answer7: a.answer7 || '',
+                question8: a.question8 || '',
+                answer8: a.answer8 || '',
+                question9: a.question9 || '',
+                answer9: a.answer9 || '',
+                question10: a.question10 || '',
+                answer10: a.answer10 || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={10}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={10}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.title !== undefined) updates.title = parsed.title;
+              if (parsed.topTitle !== undefined) updates.topTitle = parsed.topTitle;
+              for (let i = 1; i <= 10; i++) {
+                if (parsed[`question${i}`] !== undefined) updates[`question${i}`] = parsed[`question${i}`];
+                if (parsed[`answer${i}`] !== undefined) updates[`answer${i}`] = parsed[`answer${i}`];
+              }
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Ustawienia FAQ" initialOpen={true}>
           <ToggleControl label="Pokaż główny tytuł sekcji" checked={a.showTopTitle} onChange={(v) => setAttributes({ showTopTitle: v })} />
           <ToggleControl label="Pokaż dodatkowy tytuł (mniejszy)" checked={a.showTitle} onChange={(v) => setAttributes({ showTitle: v })} />

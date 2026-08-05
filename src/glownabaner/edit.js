@@ -1,17 +1,63 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl, ToggleControl } from "@wordpress/components";
+import { PanelBody, Button, TextControl, ToggleControl, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 const AVATAR_NUMS = [1, 2, 3, 4, 5];
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const blockProps = useBlockProps({ className: "glownabaner" });
+  const [importJson, setImportJson] = useState("");
 
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                ratingCount: a.ratingCount || '',
+                ratingScore: a.ratingScore || '',
+                bannerTitle: a.bannerTitle || '',
+                bannerTitleAccent: a.bannerTitleAccent || '',
+                bannerSubtitle: a.bannerSubtitle || '',
+                bannerCtaLabel: a.bannerCtaLabel || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={10}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={10}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.ratingCount !== undefined) updates.ratingCount = parsed.ratingCount;
+              if (parsed.ratingScore !== undefined) updates.ratingScore = parsed.ratingScore;
+              if (parsed.bannerTitle !== undefined) updates.bannerTitle = parsed.bannerTitle;
+              if (parsed.bannerTitleAccent !== undefined) updates.bannerTitleAccent = parsed.bannerTitleAccent;
+              if (parsed.bannerSubtitle !== undefined) updates.bannerSubtitle = parsed.bannerSubtitle;
+              if (parsed.bannerCtaLabel !== undefined) updates.bannerCtaLabel = parsed.bannerCtaLabel;
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Pasek opinii" initialOpen={false}>
           <ToggleControl label="Pokaż pasek opinii" checked={a.showRating} onChange={(v) => setAttributes({ showRating: v })} />
           {AVATAR_NUMS.map((n) => (
