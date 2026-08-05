@@ -152,10 +152,14 @@ $block_id = wp_unique_id('glownabaner-');
     <?php endif; ?>
 
     <div class="glownabaner__hero">
-        <picture class="glownabaner__hero-picture">
-            <source media="(max-width: 767px)" srcset="<?php echo esc_url($bannerImageMobile); ?>">
-            <img class="glownabaner__hero-image" src="<?php echo esc_url($bannerImage); ?>" alt="">
-        </picture>
+        <?php if ($bannerImageMobile !== $bannerImage) : ?>
+            <picture class="glownabaner__hero-picture" style="grid-area: stack; width: 100%; height: 100%; display: block;">
+                <source media="(max-width: 767px)" srcset="<?php echo esc_url($bannerImageMobile); ?>">
+                <img class="glownabaner__hero-image" src="<?php echo esc_url($bannerImage); ?>" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+            </picture>
+        <?php else : ?>
+            <img class="glownabaner__hero-image" src="<?php echo esc_url($bannerImage); ?>" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; grid-area: stack;">
+        <?php endif; ?>
         <div class="glownabaner__hero-content">
             <h2 class="glownabaner__hero-title">
                 <span class="glownabaner__hero-title-main">
