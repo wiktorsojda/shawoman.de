@@ -5,13 +5,15 @@ $ctaSubtitle    = isset($attributes['ctaSubtitle'])    ? $attributes['ctaSubtitl
 $ctaButtonLabel = isset($attributes['ctaButtonLabel']) ? $attributes['ctaButtonLabel'] : 'Kup teraz';
 $ctaButtonURL   = isset($attributes['ctaButtonURL'])   ? $attributes['ctaButtonURL']   : '/sklep';
 
-$col1Title = isset($attributes['col1Title']) ? $attributes['col1Title'] : '';
-$col2Title = isset($attributes['col2Title']) ? $attributes['col2Title'] : '';
+$columnsCount = isset($attributes['columnsCount']) ? (int) $attributes['columnsCount'] : 2;
 
 $copyright    = isset($attributes['copyright'])    ? $attributes['copyright']    : '';
-$bottomLogo   = isset($attributes['bottomLogo']) && $attributes['bottomLogo']
+$custom_logo_id = get_theme_mod('custom_logo');
+$custom_logo_url = $custom_logo_id ? wp_get_attachment_image_url($custom_logo_id, 'full') : false;
+
+$bottomLogo = (isset($attributes['bottomLogo']) && $attributes['bottomLogo'])
     ? $attributes['bottomLogo']
-    : esc_url(home_url('/wp-content/uploads/shav-logo.png'));
+    : ($custom_logo_url ?: esc_url(home_url('/wp-content/uploads/shav-logo.png')));
 $policyLabel  = isset($attributes['policyLabel'])  ? $attributes['policyLabel']  : 'Polityka prywatności';
 $policyURL    = isset($attributes['policyURL'])    ? $attributes['policyURL']    : '/polityka-prywatnosci';
 $termsLabel   = isset($attributes['termsLabel'])   ? $attributes['termsLabel']   : 'Regulamin';
@@ -20,10 +22,10 @@ $showBackToTop= isset($attributes['showBackToTop']) ? $attributes['showBackToTop
 
 // Default fallback SVG icons (Facebook, TikTok, Instagram, YouTube)
 $default_social_svgs = [
-    1 => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.43-4.92 8.43-9.94"/></svg>',
-    2 => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.69a8.16 8.16 0 0 0 4.77 1.52V6.84a4.85 4.85 0 0 1-1.84-.15"/></svg>',
-    3 => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
-    4 => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81M10 15V9l5.2 3z"/></svg>',
+    1 => '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.43-4.92 8.43-9.94"/></svg>',
+    2 => '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.69a8.16 8.16 0 0 0 4.77 1.52V6.84a4.85 4.85 0 0 1-1.84-.15"/></svg>',
+    3 => '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>',
+    4 => '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81M10 15V9l5.2 3z"/></svg>',
 ];
 
 $socials = [];
@@ -61,31 +63,29 @@ for ($i = 1; $i <= 4; $i++) {
             <!-- Linki + social -->
             <div class="footer__links">
 
+                <?php 
+                for ($col = 1; $col <= $columnsCount; $col++):
+                    $colTitle = isset($attributes["col{$col}Title"]) ? $attributes["col{$col}Title"] : '';
+                    $menuId = isset($attributes["col{$col}MenuId"]) ? (int) $attributes["col{$col}MenuId"] : 0;
+                    
+                    // Fetch menu items if menu ID is provided
+                    $menu_items = $menuId ? wp_get_nav_menu_items($menuId) : false;
+                ?>
                 <div class="footer__col">
-                    <p class="footer__col-title"><?php echo wp_kses_post($col1Title); ?></p>
+                    <p class="footer__col-title"><?php echo wp_kses_post($colTitle); ?></p>
                     <ul class="footer__col-list">
-                        <?php for ($i = 1; $i <= 6; $i++):
-                            $lab = isset($attributes["col1Link{$i}Label"]) ? $attributes["col1Link{$i}Label"] : '';
-                            $url = isset($attributes["col1Link{$i}URL"])   ? $attributes["col1Link{$i}URL"]   : '';
-                            if (!$lab) continue;
-                        ?>
-                            <li><a href="<?php echo esc_url(home_url($url)); ?>"><?php echo wp_kses_post($lab); ?></a></li>
-                        <?php endfor; ?>
+                        <?php if ($menu_items && !is_wp_error($menu_items)): ?>
+                            <?php foreach ($menu_items as $item): ?>
+                                <li>
+                                    <a href="<?php echo esc_url($item->url); ?>" target="<?php echo esc_attr($item->target ?: '_self'); ?>">
+                                        <?php echo wp_kses_post($item->title); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                 </div>
-
-                <div class="footer__col">
-                    <p class="footer__col-title"><?php echo wp_kses_post($col2Title); ?></p>
-                    <ul class="footer__col-list">
-                        <?php for ($i = 1; $i <= 6; $i++):
-                            $lab = isset($attributes["col2Link{$i}Label"]) ? $attributes["col2Link{$i}Label"] : '';
-                            $url = isset($attributes["col2Link{$i}URL"])   ? $attributes["col2Link{$i}URL"]   : '';
-                            if (!$lab) continue;
-                        ?>
-                            <li><a href="<?php echo esc_url(home_url($url)); ?>"><?php echo wp_kses_post($lab); ?></a></li>
-                        <?php endfor; ?>
-                    </ul>
-                </div>
+                <?php endfor; ?>
 
                 <div class="footer__social">
                     <?php foreach ($socials as $s): ?>
@@ -115,7 +115,7 @@ for ($i = 1; $i <= 4; $i++) {
                 <?php if ($showBackToTop): ?>
                     <span class="footer__legal-sep" aria-hidden="true"></span>
                     <button class="footer__back-to-top" type="button" aria-label="Wróć do góry">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <path d="M12 19V5m-7 7 7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </button>

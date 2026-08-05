@@ -14,7 +14,7 @@
     },
     "ctaSubtitle": {
       "type": "string",
-      "default": "Nr. 1 maszynka do bikinii i ciała."
+      "default": "Nr. 1 maszynka do bikinii i cia\u0142a."
     },
     "ctaButtonLabel": {
       "type": "string",
@@ -28,105 +28,37 @@
       "type": "string",
       "default": "Shav Woman"
     },
-    "col1Link1Label": {
-      "type": "string",
-      "default": "Produkty"
-    },
-    "col1Link1URL": {
-      "type": "string",
-      "default": "/sklep"
-    },
-    "col1Link2Label": {
-      "type": "string",
-      "default": "O nas"
-    },
-    "col1Link2URL": {
-      "type": "string",
-      "default": "/o-nas"
-    },
-    "col1Link3Label": {
-      "type": "string",
-      "default": "Kariera"
-    },
-    "col1Link3URL": {
-      "type": "string",
-      "default": "/kariera"
-    },
-    "col1Link4Label": {
-      "type": "string",
-      "default": "Patent"
-    },
-    "col1Link4URL": {
-      "type": "string",
-      "default": "/patent"
-    },
-    "col1Link5Label": {
-      "type": "string",
-      "default": ""
-    },
-    "col1Link5URL": {
-      "type": "string",
-      "default": ""
-    },
-    "col1Link6Label": {
-      "type": "string",
-      "default": ""
-    },
-    "col1Link6URL": {
-      "type": "string",
-      "default": ""
-    },
     "col2Title": {
       "type": "string",
       "default": "Pomoc"
     },
-    "col2Link1Label": {
-      "type": "string",
-      "default": "Metody płatności"
+    "columnsCount": {
+      "type": "number",
+      "default": 2
     },
-    "col2Link1URL": {
-      "type": "string",
-      "default": "/metody-platnosci"
+    "col1MenuId": {
+      "type": "number",
+      "default": 0
     },
-    "col2Link2Label": {
-      "type": "string",
-      "default": "Metody wysyłki"
+    "col2MenuId": {
+      "type": "number",
+      "default": 0
     },
-    "col2Link2URL": {
+    "col3Title": {
       "type": "string",
-      "default": "/metody-wysylki"
+      "default": "Kolumna 3"
     },
-    "col2Link3Label": {
-      "type": "string",
-      "default": "Zwroty i reklamacje"
+    "col3MenuId": {
+      "type": "number",
+      "default": 0
     },
-    "col2Link3URL": {
+    "col4Title": {
       "type": "string",
-      "default": "/zwrot"
+      "default": "Kolumna 4"
     },
-    "col2Link4Label": {
-      "type": "string",
-      "default": "Sprzedaż hurtowa"
-    },
-    "col2Link4URL": {
-      "type": "string",
-      "default": "/sprzedaz-hurtowa"
-    },
-    "col2Link5Label": {
-      "type": "string",
-      "default": "Kontakt"
-    },
-    "col2Link5URL": {
-      "type": "string",
-      "default": "/kontakt"
-    },
-    "col2Link6Label": {
-      "type": "string",
-      "default": ""
-    },
-    "col2Link6URL": {
-      "type": "string",
-      "default": ""
+    "col4MenuId": {
+      "type": "number",
+      "default": 0
     },
     "social1Icon": {
       "type": "string",
@@ -178,7 +110,7 @@
     },
     "copyright": {
       "type": "string",
-      "default": "© Shav Woman 2026. Wszelkie prawa zastrzeżone."
+      "default": "\u00a9 Shav Woman 2026. Wszelkie prawa zastrze\u017cone."
     },
     "bottomLogo": {
       "type": "string",
@@ -186,7 +118,7 @@
     },
     "policyLabel": {
       "type": "string",
-      "default": "Polityka prywatności"
+      "default": "Polityka prywatno\u015bci"
     },
     "policyURL": {
       "type": "string",

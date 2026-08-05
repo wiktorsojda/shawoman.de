@@ -1,15 +1,41 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl, ToggleControl } from "@wordpress/components";
+import { PanelBody, Button, TextControl, ToggleControl, SelectControl, RangeControl } from "@wordpress/components";
+import { useSelect } from "@wordpress/data";
 
-const COL1_NUMS = [1, 2, 3, 4, 5, 6];
-const COL2_NUMS = [1, 2, 3, 4, 5, 6];
 const SOCIAL_NUMS = [1, 2, 3, 4];
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const blockProps = useBlockProps({ className: "footer" });
+
+  const menus = useSelect((select) => {
+    return select("core").getEntityRecords("taxonomy", "nav_menu", { per_page: -1 });
+  }, []);
+
+  const siteInfo = useSelect((select) => select("core").getEntityRecord("root", "site"), []);
+  const customLogoId = siteInfo ? siteInfo.site_logo : null;
+  const customLogoMedia = useSelect((select) => {
+    return customLogoId ? select("core").getMedia(customLogoId) : null;
+  }, [customLogoId]);
+  const customLogoUrl = customLogoMedia ? customLogoMedia.source_url : null;
+
+  const menuOptions = [{ label: "Wybierz menu...", value: 0 }];
+  if (menus) {
+    menus.forEach((menu) => {
+      menuOptions.push({ label: menu.name, value: menu.id });
+    });
+  }
+
+  // Helper to get menu name for display in editor
+  const getMenuName = (menuId) => {
+    if (!menus || !menuId) return "Brak wybranego menu";
+    const menu = menus.find((m) => m.id === parseInt(menuId));
+    return menu ? menu.name : "Wybierz menu w panelu bocznym";
+  };
+
+  const colsArray = Array.from({ length: a.columnsCount }, (_, i) => i + 1);
 
   return (
     <footer {...blockProps}>
@@ -17,16 +43,31 @@ export default function Edit({ attributes, setAttributes }) {
         <PanelBody title="Karta CTA — link przycisku" initialOpen={true}>
           <TextControl label="URL przycisku" value={a.ctaButtonURL} onChange={(v) => setAttributes({ ctaButtonURL: v })} />
         </PanelBody>
-        <PanelBody title="Kolumna 1 — linki" initialOpen={false}>
-          {COL1_NUMS.map((n) => (
-            <TextControl key={n} label={`Link ${n} URL`} value={a[`col1Link${n}URL`]} onChange={(v) => setAttributes({ [`col1Link${n}URL`]: v })} />
+
+        <PanelBody title="Kolumny nawigacji (Menu)" initialOpen={false}>
+          <RangeControl
+            label="Liczba kolumn"
+            value={a.columnsCount}
+            onChange={(v) => setAttributes({ columnsCount: v })}
+            min={1}
+            max={4}
+          />
+          {colsArray.map((n) => (
+            <div key={n} style={{ marginTop: 16, padding: 8, border: "1px solid #ddd" }}>
+              <p style={{ margin: "0 0 8px 0", fontWeight: "bold" }}>Ustawienia Kolumny {n}</p>
+              <SelectControl
+                label={`Wybierz Menu (Kolumna ${n})`}
+                value={a[`col${n}MenuId`]}
+                options={menuOptions}
+                onChange={(v) => setAttributes({ [`col${n}MenuId`]: parseInt(v) })}
+              />
+            </div>
           ))}
+          <p style={{ fontSize: 12, color: "#666", marginTop: 12 }}>
+            Uwaga: Same linki dla wybranego menu edytujesz w klasycznej zakładce <strong>Wygląd → Menu</strong>.
+          </p>
         </PanelBody>
-        <PanelBody title="Kolumna 2 — linki" initialOpen={false}>
-          {COL2_NUMS.map((n) => (
-            <TextControl key={n} label={`Link ${n} URL`} value={a[`col2Link${n}URL`]} onChange={(v) => setAttributes({ [`col2Link${n}URL`]: v })} />
-          ))}
-        </PanelBody>
+
         {SOCIAL_NUMS.map((n) => (
           <PanelBody key={n} title={`Social ${n}`} initialOpen={false}>
             <MediaUploadCheck>
@@ -64,38 +105,17 @@ export default function Edit({ attributes, setAttributes }) {
           </div>
 
           {/* Linki + social */}
-          <div className="footer__links">
-            <div className="footer__col">
-              <RichText tagName="p" className="footer__col-title" value={a.col1Title} onChange={(v) => setAttributes({ col1Title: v })} placeholder="Tytuł" />
-              <ul className="footer__col-list">
-                {COL1_NUMS.map((n) => (
-                  <li key={n} style={!a[`col1Link${n}Label`] ? { opacity: 0.5, fontStyle: "italic" } : undefined}>
-                    <RichText
-                      tagName="span"
-                      value={a[`col1Link${n}Label`]}
-                      onChange={(v) => setAttributes({ [`col1Link${n}Label`]: v })}
-                      placeholder={`Link ${n} — wpisz nazwę`}
-                    />
+          <div className="footer__links" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, flex: 1 }}>
+            {colsArray.map((n) => (
+              <div key={n} className="footer__col">
+                <RichText tagName="p" className="footer__col-title" value={a[`col${n}Title`]} onChange={(v) => setAttributes({ [`col${n}Title`]: v })} placeholder={`Tytuł Kolumny ${n}`} />
+                <ul className="footer__col-list">
+                  <li style={{ opacity: 0.5, fontStyle: "italic" }}>
+                    <span>[Zarządzaj w Wygląd → Menu: {getMenuName(a[`col${n}MenuId`])}]</span>
                   </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="footer__col">
-              <RichText tagName="p" className="footer__col-title" value={a.col2Title} onChange={(v) => setAttributes({ col2Title: v })} placeholder="Tytuł" />
-              <ul className="footer__col-list">
-                {COL2_NUMS.map((n) => (
-                  <li key={n} style={!a[`col2Link${n}Label`] ? { opacity: 0.5, fontStyle: "italic" } : undefined}>
-                    <RichText
-                      tagName="span"
-                      value={a[`col2Link${n}Label`]}
-                      onChange={(v) => setAttributes({ [`col2Link${n}Label`]: v })}
-                      placeholder={`Link ${n} — wpisz nazwę`}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
+                </ul>
+              </div>
+            ))}
 
             <div className="footer__social">
               {SOCIAL_NUMS.map((n) => (
@@ -114,8 +134,8 @@ export default function Edit({ attributes, setAttributes }) {
         <div className="footer__bottom">
           <RichText tagName="p" className="footer__copyright" value={a.copyright} onChange={(v) => setAttributes({ copyright: v })} placeholder="Copyright" />
           <div className="footer__logo">
-            {a.bottomLogo
-              ? <img src={a.bottomLogo} alt="" />
+            {a.bottomLogo || customLogoUrl
+              ? <img src={a.bottomLogo || customLogoUrl} alt="" />
               : <span style={{ fontSize: 11, color: "#999" }}>logo</span>}
           </div>
           <div className="footer__legal">

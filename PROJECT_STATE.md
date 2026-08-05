@@ -260,3 +260,15 @@ Zbudowano **6 generycznych bloków promocji/dropu** (reużywalne pod dowolną ko
 - Mixins typografii: `@include type-h1`, `type-h2`, ..., `type-body-l`, `type-accent`
 - Mixin glass: `@include glass-effect`, `@include glass-overlay`
 - Breakpoint: `$breakpoint-tablet: 768px`
+
+## 9. Adaptacja na rynek niemiecki (DE) - NOWY ETAP
+
+**Główne założenia (od sierpnia 2026):**
+1. **Osobna instalacja i domena**: Wersja niemiecka znajduje się na osobnej domenie. Nie używamy wtyczek typu Polylang/WPML. 
+2. **Polskie domyślne teksty zostają**: Fallbacki tekstowe w plikach PHP (`render.php`) zostawiamy po polsku, ponieważ pełnią rolę instrukcji / placeholdera dla polskiego zespołu (wiedzą, jaki tekst tam wpisać w edytorze). Niemieckie treści będą wprowadzane bezpośrednio przez edytor Gutenberga i nadpiszą fallbacki z atrybutów.
+3. **Czystość i optymalizacja**: Unikamy spaghetti code, redukujemy ciężar. W razie potrzeby czyścimy `functions.php` ze specyficznych dla Polski zaszłości.
+4. **Dostępność (a11y) i SEO**: Małymi krokami audytujemy i optymalizujemy szablony oraz bloki (nagłówki semantyczne, tagi alt, role ARIA, poprawne znaczniki HTML5).
+5. **Metodologia pracy**: Działamy systematycznie, małymi krokami na komendy użytkownika.
+6. **Kompilacja (Build)**: Po wprowadzaniu zmian w plikach SCSS lub blokach w `src/`, ZAWSZE musimy pamiętać o uruchomieniu komendy `npm run build` (lub `npm start` podczas developmentu), aby zmiany trafiły do folderu `build/` i były widoczne na froncie.
+7. **Zachowanie frontu wizualnego**: Pod żadnym pozorem nie zmieniamy obecnego wyglądu front-endu (layoutu, stylów, wielkości) bez wyraźnego polecenia. Nawet jeśli wprowadzamy nowe funkcjonalności (np. dodatkowe kolumny menu), muszą one idealnie wpasowywać się w istniejący design system i układy, zachowując responsywność 1:1 względem oryginału.
+8. **Czystość `functions.php`**: Plik `functions.php` utrzymujemy w czystości i zgodnie z dobrymi praktykami. Większe logiki i skrypty ładujemy poprzez `require_once` z folderu `inc/` (i ewentualnych podfolderów). Unikamy dodawania setek linii bezpośrednio do głównego pliku.
