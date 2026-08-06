@@ -140,8 +140,8 @@
       flex-direction: row;
       flex-wrap: wrap;                  // zawijaj kolumny gdy brak miejsca
       align-items: flex-start;
-      justify-content: space-between;
-      gap: clamp(#{$space-24}, 3vw, #{$space-40});
+      justify-content: flex-start;      // Zmiana z space-between na flex-start (lepsze układanie przy 3/4 kolumnach)
+      gap: clamp(#{$space-32}, 4vw, #{$space-64}); // Trochę większy gap dla oddechu
       text-align: left;
     }
   }
@@ -204,9 +204,7 @@
 
     @media (min-width: $breakpoint-tablet) {
       flex-direction: row;              // zmienione z column na row zeby ikony ustawialy sie poziomo
-      flex: 1 1 100%;
-      justify-content: flex-start; // Zrównaj do lewej pod kolumnami
-      margin-top: $space-16;
+      justify-content: flex-start;      // Zrównaj do lewej
     }
   }
 
