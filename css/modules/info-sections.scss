@@ -542,26 +542,42 @@ line-height: normal;
     height: 25px;
     align-items: center;
     gap: $space-12;
-.footer-icon-container {
-    display: flex;
-    width: 24px;
-    height: 26px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: $space-8;
-}
+    cursor: pointer;
 
-a {
-    color: $color-neutral-900;
+    &:hover {
+      a {
+        color: $color-primary-medium;
+      }
+      svg {
+        color: $color-primary-medium;
+      }
+    }
 
-font-family: $font-family-base;
-font-size: $font-size-body-l;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-decoration: none;
-}
+    .footer-icon-container {
+        display: flex;
+        width: 24px;
+        height: 26px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: $space-8;
+        
+        svg {
+          transition: color 0.3s ease;
+        }
+    }
+
+    a {
+        color: $color-neutral-900;
+
+        font-family: $font-family-base;
+        font-size: $font-size-body-l;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 }
 
 .kontakt-wrapper h1 {
