@@ -2484,7 +2484,7 @@ function display_shop_banner_image_with_text()
     }
 }
 
-add_action('woocommerce_before_main_content', 'display_shop_banner_image_with_text', 5);
+// add_action('woocommerce_before_main_content', 'display_shop_banner_image_with_text', 5);
 
 ////////
 function add_product_shop_image()

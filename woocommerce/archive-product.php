@@ -19,10 +19,16 @@ defined('ABSPATH') || exit;
 
 get_header('shop');
 
-/**
- * Hook: woocommerce_before_main_content.
- * @hooked display_shop_banner_image_with_text - 5  (banner z meta master-product)
- */
+$shop_page_id = wc_get_page_id('shop');
+if ($shop_page_id) {
+    $shop_page = get_post($shop_page_id);
+    if ($shop_page && !empty($shop_page->post_content)) {
+        echo '<div class="shop-archive-blocks">';
+        echo apply_filters('the_content', $shop_page->post_content);
+        echo '</div>';
+    }
+}
+
 do_action('woocommerce_before_main_content');
 
 $shop_sections = shav_get_shop_sections();

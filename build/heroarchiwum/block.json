@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/heroarchiwum",
+  "title": "Hero Archiwum",
+  "attributes": {
+    "imageDesktop": {
+      "type": "string",
+      "default": ""
+    },
+    "imageMobile": {
+      "type": "string",
+      "default": ""
+    },
+    "text1": {
+      "type": "string",
+      "default": ""
+    },
+    "text2": {
+      "type": "string",
+      "default": ""
+    },
+    "linkURL": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  }
+}
