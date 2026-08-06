@@ -62,7 +62,8 @@ for ($i = 1; $i <= 4; $i++) {
             </div>
 
             <!-- Linki + social -->
-            <div class="footer__links">
+            <?php $linksClass = "footer__links footer__links--{$columnsCount}-cols"; ?>
+            <div class="<?php echo esc_attr($linksClass); ?>">
 
                 <?php 
                 for ($col = 1; $col <= $columnsCount; $col++):

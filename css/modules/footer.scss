@@ -144,6 +144,27 @@
       gap: clamp(#{$space-24}, 3vw, #{$space-40});
       text-align: left;
     }
+
+    &--3-cols {
+      @media (min-width: $breakpoint-tablet) {
+        flex-wrap: nowrap; // Nie zawijaj, żeby weszło w jednym rzędzie
+      }
+      .footer__social {
+        @media (min-width: $breakpoint-tablet) {
+          flex-direction: column; // Pionowa wieża ikon
+        }
+      }
+    }
+
+    &--4-cols {
+      .footer__social {
+        @media (min-width: $breakpoint-tablet) {
+          flex: 1 1 100%;
+          justify-content: flex-start; // Zrównaj do lewej pod kolumnami
+          margin-top: $space-16;
+        }
+      }
+    }
   }
 
   &__col {
