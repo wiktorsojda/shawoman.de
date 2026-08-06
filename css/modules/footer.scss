@@ -55,7 +55,7 @@
     border-radius: $radius-xs;
 
     @media (min-width: $breakpoint-tablet) {
-      flex: 0 1 569px;                 // base 569px, zezwol na shrink
+      flex: 0 1 545px;                 // Zmniejszone o ok. 2% z 569px
       min-width: 0;                    // dopuszcza skurczenie ponizej content
     }
   }
@@ -203,8 +203,8 @@
     justify-content: center;
 
     @media (min-width: $breakpoint-tablet) {
-      flex-direction: row;              // zmienione z column na row zeby ikony ustawialy sie poziomo
-      justify-content: flex-end;
+      flex-direction: column;           // Wieża pionowa
+      justify-content: flex-start;
       margin-left: auto;                // Pchnij do prawej krawędzi
     }
   }
