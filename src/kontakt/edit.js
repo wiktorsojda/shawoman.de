@@ -52,6 +52,30 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Zarządzaj FAQ" initialOpen={true}>
+          {faqItems.map((item, i) => (
+            <div key={i} style={{ border: '1px solid #ddd', padding: '12px', marginBottom: '12px', borderRadius: '4px', backgroundColor: '#f9f9f9' }}>
+              <TextControl
+                label={`Pytanie ${i + 1}`}
+                value={item.question}
+                onChange={(v) => updateFaqItem(i, "question", v)}
+              />
+              <TextareaControl
+                label={`Odpowiedź ${i + 1}`}
+                value={item.answer}
+                onChange={(v) => updateFaqItem(i, "answer", v)}
+                rows={3}
+              />
+              <Button isDestructive variant="link" onClick={() => removeFaqItem(i)} style={{ padding: 0 }}>
+                Usuń to pytanie
+              </Button>
+            </div>
+          ))}
+          <Button variant="secondary" onClick={addFaqItem} style={{ width: "100%", justifyContent: "center" }}>
+            + Dodaj nowe pytanie FAQ
+          </Button>
+        </PanelBody>
+
         <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
           <TextareaControl
             label="Skopiuj ten JSON dla AI"
@@ -143,25 +167,15 @@ export default function Edit({ attributes, setAttributes }) {
               <RichText tagName="div" className="item-kontakt-title" value={a.faqTitle} onChange={(v) => setAttributes({ faqTitle: v })} placeholder="Tytuł FAQ" />
               <div className="faq-wrapper-questions-kontakt">
                 {faqItems.map((item, i) => (
-                    <div key={i} className="faq-kontakt" style={{ position: "relative" }}>
-                      <button className="faq-accordion-kontakt" type="button" style={{ paddingRight: 40 }}>
+                    <div key={i} className="faq-kontakt">
+                      <button className="faq-accordion-kontakt" type="button">
                         <RichText tagName="span" value={item.question} onChange={(v) => updateFaqItem(i, "question", v)} placeholder={`Pytanie ${i + 1}`} />
                       </button>
-                      <Button
-                        icon="trash"
-                        variant="secondary"
-                        isDestructive
-                        onClick={() => removeFaqItem(i)}
-                        style={{ position: "absolute", top: 10, right: 10 }}
-                      />
                       <div className="faq-pannel-kontakt" style={{ maxHeight: "none", opacity: 1, paddingBottom: 12 }}>
                         <RichText tagName="p" value={item.answer} onChange={(v) => updateFaqItem(i, "answer", v)} placeholder={`Odpowiedź ${i + 1}`} />
                       </div>
                     </div>
                 ))}
-                <Button variant="secondary" onClick={addFaqItem} style={{ marginTop: 10, width: "100%", justifyContent: "center" }}>
-                  Dodaj pozycję FAQ
-                </Button>
               </div>
             </div>
           </div>
