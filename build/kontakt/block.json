@@ -8,6 +8,10 @@
       "type": "array",
       "default": []
     },
+    "infoTiles": {
+      "type": "array",
+      "default": []
+    },
     "title": {
       "type": "string",
       "default": "Kontakt"
