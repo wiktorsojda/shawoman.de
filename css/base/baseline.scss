@@ -31,10 +31,11 @@ img {
 
 a {
   color: $mainBlue;
+  text-decoration: none !important;
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 p,
