@@ -1,7 +1,7 @@
 import {
-  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
+  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck, URLInput
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl, TextareaControl } from "@wordpress/components";
+import { PanelBody, Button, TextControl, TextareaControl, Popover } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 
 const ITEM_NUMS = [1, 2, 3, 4, 5, 6];
@@ -10,10 +10,16 @@ export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const blockProps = useBlockProps({ className: "glownagrid" });
   const [importJson, setImportJson] = useState("");
+  const [activeTile, setActiveTile] = useState(null);
 
   function renderTile(n) {
+    const isSelected = activeTile === n;
     return (
-      <div key={n} className={`glownagrid__tile glownagrid__tile--${n}`}>
+      <div 
+        key={n} 
+        className={`glownagrid__tile glownagrid__tile--${n} ${isSelected ? 'is-selected' : ''}`}
+        onClick={(e) => setActiveTile(n)}
+      >
         {a[`item${n}Image`]
           ? <img className="glownagrid__bg" src={a[`item${n}Image`]} alt="" />
           : <div className="glownagrid__bg glownagrid__bg--placeholder">Wybierz zdjęcie kafelka {n} w panelu po prawej</div>}
@@ -27,6 +33,19 @@ export default function Edit({ attributes, setAttributes }) {
           <RichText tagName="span" value={a.buttonLabel} onChange={(v) => setAttributes({ buttonLabel: v })} placeholder="Zobacz" />
           <span className="glownagrid__cta-arrow" aria-hidden="true">→</span>
         </div>
+
+        {isSelected && (
+          <Popover position="bottom center" onClose={() => setActiveTile(null)}>
+            <div style={{ padding: '16px', minWidth: '300px' }}>
+              <p style={{ marginTop: 0, marginBottom: '8px', fontWeight: 'bold' }}>Wyszukaj produkt lub wklej link (Kafelek {n})</p>
+              <URLInput
+                value={a[`item${n}URL`]}
+                onChange={(url) => setAttributes({ [`item${n}URL`]: url })}
+                __nextHasNoMarginBottom
+              />
+            </div>
+          </Popover>
+        )}
       </div>
     );
   }
@@ -88,7 +107,10 @@ export default function Edit({ attributes, setAttributes }) {
               <MediaUpload onSelect={(media) => setAttributes({ [`item${n}Image`]: media?.url || "" })} allowedTypes={["image"]} value={a[`item${n}Image`]}
                 render={({ open }) => (<Button variant="secondary" onClick={open}>{a[`item${n}Image`] ? "Zmień zdjęcie" : "Wybierz zdjęcie"}</Button>)} />
             </MediaUploadCheck>
-            <TextControl label="URL produktu" value={a[`item${n}URL`]} onChange={(v) => setAttributes({ [`item${n}URL`]: v })} style={{ marginTop: 12 }} />
+            <div style={{ marginTop: 12 }}>
+              <p style={{ marginBottom: 8, fontSize: 12 }}>Wyszukaj produkt (URL)</p>
+              <URLInput value={a[`item${n}URL`]} onChange={(v) => setAttributes({ [`item${n}URL`]: v })} />
+            </div>
           </PanelBody>
         ))}
       </InspectorControls>

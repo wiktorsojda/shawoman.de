@@ -160,6 +160,7 @@
 
     .glownagrid__tile:hover & {
       background-color: $color-white;
+      text-decoration: none !important;
     }
   }
 
