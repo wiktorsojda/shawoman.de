@@ -16,6 +16,9 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  padding-left: clamp(20px, 2vw, 32px);
+  padding-right: clamp(20px, 2vw, 32px);
+  box-sizing: border-box;
 
   // Promo bar zostaje stylem z modulu header.scss
 
@@ -28,11 +31,6 @@
     justify-content: center;
     gap: $space-4;
     width: 100%;
-    padding: 0 20px;                   // mobile: 20px (jak reszta sekcji)
-
-    @media (min-width: $breakpoint-tablet) {
-      padding: 0 $space-32;
-    }
   }
 
   &__rating-line {
@@ -118,12 +116,10 @@
     position: relative;
     overflow: hidden;
     border-radius: $radius-s;            // 16px
-    margin: 0 $space-32;
     display: grid;                       // 1 komorka — picture + content nakladane
     grid-template-areas: "stack";
 
     @media (min-width: $breakpoint-tablet) {
-      margin: 0 auto;
       padding-bottom: 120px;
     }
 
