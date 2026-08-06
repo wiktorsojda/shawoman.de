@@ -1,8 +1,52 @@
 import {
-  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck, URLInput
+  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl, TextareaControl, Popover } from "@wordpress/components";
-import { useState } from "@wordpress/element";
+import { PanelBody, Button, TextControl, TextareaControl, Popover, ComboboxControl, Spinner } from "@wordpress/components";
+import { useState, useEffect } from "@wordpress/element";
+import apiFetch from "@wordpress/api-fetch";
+
+function ProductSearchControl({ value, onChange, label }) {
+  const [options, setOptions] = useState([]);
+  const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    let path = '/wp/v2/search?type=post&subtype=product,page,post&per_page=20';
+    if (search) {
+      path += `&search=${search}`;
+    }
+    
+    apiFetch({ path })
+      .then((results) => {
+        const newOptions = results.map(r => ({
+          label: r.title,
+          value: r.url
+        }));
+        
+        if (value && !newOptions.find(o => o.value === value)) {
+           newOptions.unshift({ label: `Aktualny link: ${value}`, value });
+        }
+        setOptions(newOptions);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [search]);
+
+  return (
+    <div style={{ position: 'relative' }}>
+      <ComboboxControl
+        label={label || "Wyszukaj produkt"}
+        value={value}
+        onChange={(v) => onChange(v || '')}
+        options={options}
+        onFilterValueChange={setSearch}
+        allowReset={true}
+      />
+      {loading && <div style={{ position: 'absolute', right: 5, top: 25 }}><Spinner style={{width: '20px', height: '20px'}} /></div>}
+    </div>
+  );
+}
 
 const ITEM_NUMS = [1, 2, 3, 4, 5, 6];
 
@@ -37,11 +81,10 @@ export default function Edit({ attributes, setAttributes }) {
         {isSelected && (
           <Popover position="bottom center" onClose={() => setActiveTile(null)}>
             <div style={{ padding: '16px', minWidth: '300px' }}>
-              <p style={{ marginTop: 0, marginBottom: '8px', fontWeight: 'bold' }}>Wyszukaj produkt lub wklej link (Kafelek {n})</p>
-              <URLInput
+              <ProductSearchControl
+                label={`Wyszukaj produkt (Kafelek ${n})`}
                 value={a[`item${n}URL`]}
                 onChange={(url) => setAttributes({ [`item${n}URL`]: url })}
-                __nextHasNoMarginBottom
               />
             </div>
           </Popover>
@@ -107,13 +150,11 @@ export default function Edit({ attributes, setAttributes }) {
               <MediaUpload onSelect={(media) => setAttributes({ [`item${n}Image`]: media?.url || "" })} allowedTypes={["image"]} value={a[`item${n}Image`]}
                 render={({ open }) => (<Button variant="secondary" onClick={open}>{a[`item${n}Image`] ? "Zmień zdjęcie" : "Wybierz zdjęcie"}</Button>)} />
             </MediaUploadCheck>
-            <div style={{ marginTop: 12 }}>
-              <p style={{ marginBottom: 8, fontSize: 12 }}>Wyszukaj produkt (URL)</p>
-              <URLInput 
+              <ProductSearchControl 
+                label="Wyszukaj produkt"
                 value={a[`item${n}URL`]} 
                 onChange={(v) => setAttributes({ [`item${n}URL`]: v })} 
               />
-            </div>
           </PanelBody>
         ))}
       </InspectorControls>
