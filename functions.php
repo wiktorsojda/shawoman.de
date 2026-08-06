@@ -1328,6 +1328,7 @@ function our_new_blocks()
     register_block_type_from_metadata(__DIR__ . '/build/page');
     register_block_type_from_metadata(__DIR__ . '/build/blogindex');
     register_block_type_from_metadata(__DIR__ . '/build/archive');
+    register_block_type_from_metadata(__DIR__ . '/build/heroarchiwum');
     register_block_type_from_metadata(__DIR__ . '/build/glownabaner');
     register_block_type_from_metadata(__DIR__ . '/build/glownacechy');
     register_block_type_from_metadata(__DIR__ . '/build/glownagrid');
