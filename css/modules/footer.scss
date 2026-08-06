@@ -203,7 +203,7 @@
     justify-content: center;
 
     @media (min-width: $breakpoint-tablet) {
-      flex-direction: column;
+      flex-direction: row;              // zmienione z column na row zeby ikony ustawialy sie poziomo
     }
   }
 
