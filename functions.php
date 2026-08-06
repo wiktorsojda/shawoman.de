@@ -2437,7 +2437,6 @@ add_action('woocommerce_process_product_meta', 'save_shop_page_banner_image_fiel
 
 function display_shop_banner_image_with_text()
 {
-    global $product_id_with_banner;
     // Zmienna flagowa, aby uniknąć zdublowanych wywołań
     static $executed = false;
     if ($executed)
@@ -2445,47 +2444,48 @@ function display_shop_banner_image_with_text()
     $executed = true;
 
     if (is_shop()) {
-        // Shop banner — master-only group, zawsze z mastera
-        $master_id = (int) get_option('shav_master_product_id', $product_id_with_banner);
-        $product = wc_get_product($master_id);
-        if ($product) {
-            $desktop_banner_url = $product->get_meta('shop_page_banner_image_desktop');
-            $mobile_banner_url = $product->get_meta('shop_page_banner_image_mobile');
-            $text_1 = $product->get_meta('shop_page_banner_text_1');
-            $text_2 = $product->get_meta('shop_page_banner_text_2');
+        $desktop_banner_url = get_option('shav_shop_banner_desk');
+        $mobile_banner_url = get_option('shav_shop_banner_mob');
+        $text_1 = get_option('shav_shop_banner_text1');
+        $text_2 = get_option('shav_shop_banner_text2');
+        $link_url = get_option('shav_shop_banner_link');
 
-            if ($desktop_banner_url || $mobile_banner_url) {
-                echo '<div class="shop-banner-image" style="position: relative;">';
+        if ($desktop_banner_url || $mobile_banner_url) {
+            if (!empty($link_url)) {
+                echo '<a href="' . esc_url($link_url) . '" style="display: block;">';
+            }
+            
+            echo '<div class="shop-banner-image" style="position: relative;">';
 
-                // Baner desktopowy – nadaj klasę, którą w CSS ukryjesz na mobile
-                if ($desktop_banner_url) {
-                    echo '<img class="shop-banner-image-desktop" src="' . esc_url($desktop_banner_url) . '" alt="' . esc_attr__('Shop Banner Image Desktop', 'woocommerce') . '" style="width: 100%; height: auto;">';
-                }
+            // Baner desktopowy – nadaj klasę, którą w CSS ukryjesz na mobile
+            if ($desktop_banner_url) {
+                echo '<img class="shop-banner-image-desktop" src="' . esc_url($desktop_banner_url) . '" alt="' . esc_attr__('Shop Banner Image Desktop', 'woocommerce') . '" style="width: 100%; height: auto;">';
+            }
 
-                // Baner mobilny – nadaj klasę, którą w CSS ukryjesz na desktopie
-                if ($mobile_banner_url) {
-                    echo '<img class="shop-banner-image-mobile" src="' . esc_url($mobile_banner_url) . '" alt="' . esc_attr__('Shop Banner Image Mobile', 'woocommerce') . '" style="width: 100%; height: auto;">';
-                }
+            // Baner mobilny – nadaj klasę, którą w CSS ukryjesz na desktopie
+            if ($mobile_banner_url) {
+                echo '<img class="shop-banner-image-mobile" src="' . esc_url($mobile_banner_url) . '" alt="' . esc_attr__('Shop Banner Image Mobile', 'woocommerce') . '" style="width: 100%; height: auto;">';
+            }
 
-                echo '<div class="shop-banner-textcontainer">';
-                if (!empty($text_1)) {
-                    echo '<div class="banner-text banner-text-1">' . wp_kses_post($text_1) . '</div>';
+            echo '<div class="shop-banner-textcontainer">';
+            if (!empty($text_1)) {
+                echo '<div class="banner-text banner-text-1">' . wp_kses_post($text_1) . '</div>';
+            }
+            if (!empty($text_2)) {
+                echo '<div class="banner-text banner-text-2">' . esc_html($text_2) . '</div>';
+            }
+            echo '</div>'; // .shop-banner-textcontainer
+            
+            echo '</div>'; // .shop-banner-image
 
-
-                }
-                if (!empty($text_2)) {
-                    echo '<div class="banner-text banner-text-2">' . esc_html($text_2) . '</div>';
-
-
-                }
-                echo '</div>'; // .shop-banner-textcontainer
-                echo '</div>'; // .shop-banner-image
+            if (!empty($link_url)) {
+                echo '</a>';
             }
         }
     }
 }
 
-// add_action('woocommerce_before_main_content', 'display_shop_banner_image_with_text', 5);
+add_action('woocommerce_before_main_content', 'display_shop_banner_image_with_text', 5);
 
 ////////
 function add_product_shop_image()
