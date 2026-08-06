@@ -1,5 +1,5 @@
 import {
-  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck, __experimentalLinkControl as LinkControl
+  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck, URLInput
 } from "@wordpress/block-editor";
 import { PanelBody, Button, TextControl, TextareaControl, Popover } from "@wordpress/components";
 import { useState } from "@wordpress/element";
@@ -38,11 +38,10 @@ export default function Edit({ attributes, setAttributes }) {
           <Popover position="bottom center" onClose={() => setActiveTile(null)}>
             <div style={{ padding: '16px', minWidth: '300px' }}>
               <p style={{ marginTop: 0, marginBottom: '8px', fontWeight: 'bold' }}>Wyszukaj produkt lub wklej link (Kafelek {n})</p>
-              <LinkControl
-                searchInputPlaceholder="Wyszukaj produkt..."
-                value={{ url: a[`item${n}URL`] }}
-                settings={[]}
-                onChange={(nextValue) => setAttributes({ [`item${n}URL`]: nextValue?.url || '' })}
+              <URLInput
+                value={a[`item${n}URL`]}
+                onChange={(url) => setAttributes({ [`item${n}URL`]: url })}
+                __nextHasNoMarginBottom
               />
             </div>
           </Popover>
@@ -110,11 +109,9 @@ export default function Edit({ attributes, setAttributes }) {
             </MediaUploadCheck>
             <div style={{ marginTop: 12 }}>
               <p style={{ marginBottom: 8, fontSize: 12 }}>Wyszukaj produkt (URL)</p>
-              <LinkControl
-                searchInputPlaceholder="Wyszukaj produkt..."
-                value={{ url: a[`item${n}URL`] }}
-                settings={[]}
-                onChange={(nextValue) => setAttributes({ [`item${n}URL`]: nextValue?.url || '' })}
+              <URLInput 
+                value={a[`item${n}URL`]} 
+                onChange={(v) => setAttributes({ [`item${n}URL`]: v })} 
               />
             </div>
           </PanelBody>
