@@ -19,6 +19,7 @@ $policyURL    = isset($attributes['policyURL'])    ? $attributes['policyURL']   
 $termsLabel   = isset($attributes['termsLabel'])   ? $attributes['termsLabel']   : 'Regulamin';
 $termsURL     = isset($attributes['termsURL'])     ? $attributes['termsURL']     : '/regulamin';
 $showBackToTop= isset($attributes['showBackToTop']) ? $attributes['showBackToTop'] : false;
+$bottomMenuId = isset($attributes['bottomMenuId']) ? (int) $attributes['bottomMenuId'] : 0;
 
 // Default fallback SVG icons (Facebook, TikTok, Instagram, YouTube)
 $default_social_svgs = [
@@ -109,11 +110,30 @@ for ($i = 1; $i <= 4; $i++) {
                 <img src="<?php echo esc_url($bottomLogo); ?>" alt="">
             </div>
             <div class="footer__legal">
-                <a href="<?php echo esc_url(home_url($policyURL)); ?>"><?php echo wp_kses_post($policyLabel); ?></a>
-                <span class="footer__legal-sep" aria-hidden="true"></span>
-                <a href="<?php echo esc_url(home_url($termsURL)); ?>"><?php echo wp_kses_post($termsLabel); ?></a>
-                <?php if ($showBackToTop): ?>
+                <?php 
+                if ($bottomMenuId) {
+                    $menu_items = wp_get_nav_menu_items($bottomMenuId);
+                    if ($menu_items && !is_wp_error($menu_items)) {
+                        $items = array_slice($menu_items, 0, 3);
+                        $count = count($items);
+                        for ($i = 0; $i < $count; $i++) {
+                            echo '<a href="' . esc_url($items[$i]->url) . '" target="' . esc_attr($items[$i]->target ?: '_self') . '">' . wp_kses_post($items[$i]->title) . '</a>';
+                            if ($i < $count - 1 || $showBackToTop) {
+                                echo '<span class="footer__legal-sep" aria-hidden="true"></span>';
+                            }
+                        }
+                    }
+                } else {
+                ?>
+                    <a href="<?php echo esc_url(home_url($policyURL)); ?>"><?php echo wp_kses_post($policyLabel); ?></a>
                     <span class="footer__legal-sep" aria-hidden="true"></span>
+                    <a href="<?php echo esc_url(home_url($termsURL)); ?>"><?php echo wp_kses_post($termsLabel); ?></a>
+                    <?php if ($showBackToTop): ?>
+                        <span class="footer__legal-sep" aria-hidden="true"></span>
+                    <?php endif; ?>
+                <?php } ?>
+
+                <?php if ($showBackToTop): ?>
                     <button class="footer__back-to-top" type="button" aria-label="Wróć do góry">
                         <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
                             <path d="M12 19V5m-7 7 7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

@@ -135,6 +135,10 @@
     "showBackToTop": {
       "type": "boolean",
       "default": false
+    },
+    "bottomMenuId": {
+      "type": "number",
+      "default": 0
     }
   },
   "editorScript": "file:./index.js",

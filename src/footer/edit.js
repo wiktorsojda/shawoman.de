@@ -80,8 +80,19 @@ export default function Edit({ attributes, setAttributes }) {
         ))}
         <PanelBody title="Stopka — dolny pasek" initialOpen={false}>
           <ToggleControl label={'Pokaż przycisk „back to top"'} checked={a.showBackToTop} onChange={(v) => setAttributes({ showBackToTop: v })} />
-          <TextControl label="Polityka URL" value={a.policyURL} onChange={(v) => setAttributes({ policyURL: v })} />
-          <TextControl label="Regulamin URL" value={a.termsURL} onChange={(v) => setAttributes({ termsURL: v })} />
+          <SelectControl
+            label="Wybierz Menu (Zamiast sztywnych linków)"
+            value={a.bottomMenuId}
+            options={menuOptions}
+            onChange={(v) => setAttributes({ bottomMenuId: parseInt(v) })}
+            help="Jeśli wybierzesz menu, pokaże się ono zamiast sztywnych linków (max 3 elementy)."
+          />
+          {!a.bottomMenuId && (
+            <>
+              <TextControl label="Polityka URL" value={a.policyURL} onChange={(v) => setAttributes({ policyURL: v })} />
+              <TextControl label="Regulamin URL" value={a.termsURL} onChange={(v) => setAttributes({ termsURL: v })} />
+            </>
+          )}
           <MediaUploadCheck>
             <MediaUpload onSelect={(media) => setAttributes({ bottomLogo: media.url })} allowedTypes={["image"]} value={a.bottomLogo}
               render={({ open }) => (<Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>{a.bottomLogo ? "Zmień logo" : "Wybierz logo dolne"}</Button>)} />
@@ -139,9 +150,17 @@ export default function Edit({ attributes, setAttributes }) {
               : <span style={{ fontSize: 11, color: "#999" }}>logo</span>}
           </div>
           <div className="footer__legal">
-            <RichText tagName="span" value={a.policyLabel} onChange={(v) => setAttributes({ policyLabel: v })} placeholder="Polityka prywatności" />
-            <span className="footer__legal-sep" aria-hidden="true"></span>
-            <RichText tagName="span" value={a.termsLabel} onChange={(v) => setAttributes({ termsLabel: v })} placeholder="Regulamin" />
+            {a.bottomMenuId ? (
+              <span style={{ fontStyle: "italic", opacity: 0.5 }}>
+                [Menu: {getMenuName(a.bottomMenuId)}]
+              </span>
+            ) : (
+              <>
+                <RichText tagName="span" value={a.policyLabel} onChange={(v) => setAttributes({ policyLabel: v })} placeholder="Polityka prywatności" />
+                <span className="footer__legal-sep" aria-hidden="true"></span>
+                <RichText tagName="span" value={a.termsLabel} onChange={(v) => setAttributes({ termsLabel: v })} placeholder="Regulamin" />
+              </>
+            )}
             {a.showBackToTop && (
               <>
                 <span className="footer__legal-sep" aria-hidden="true"></span>
