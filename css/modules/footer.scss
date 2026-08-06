@@ -138,10 +138,10 @@
       flex: 1 1 0%;
       min-width: 0;
       flex-direction: row;
-      flex-wrap: wrap;                  // zawijaj kolumny gdy brak miejsca
+      flex-wrap: nowrap;                // Zmiana na nowrap żeby wszystko siedziało w 1 rzędzie na pulpicie
       align-items: flex-start;
       justify-content: flex-start;      // Zmiana z space-between na flex-start (lepsze układanie przy 3/4 kolumnach)
-      gap: clamp(#{$space-32}, 4vw, #{$space-64}); // Trochę większy gap dla oddechu
+      gap: clamp(#{$space-24}, 3vw, #{$space-64}); // Trochę większy gap dla oddechu, ale z mniejszym min żeby się zmieściło
       text-align: left;
     }
   }
