@@ -107,6 +107,10 @@
     "answer10": {
       "type": "string",
       "default": ""
+    },
+    "faqItems": {
+      "type": "array",
+      "default": []
     }
   },
   "editorScript": "file:./index.js",

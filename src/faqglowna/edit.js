@@ -1,15 +1,50 @@
 import { useBlockProps, RichText, InspectorControls } from "@wordpress/block-editor";
 import { PanelBody, ToggleControl, SelectControl, TextareaControl, Button } from "@wordpress/components";
-import { useState } from "@wordpress/element";
+import { useState, useEffect } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-  const a = attributes;
+  const { faqItems, ...a } = attributes;
   const blockProps = useBlockProps({ className: a.containerClass || "glownafaq" });
   const Heading = a.headingTag || "h3";
   const [importJson, setImportJson] = useState("");
 
-  // W edytorze nadpisujemy max-height/opacity, zeby panel z odpowiedzia byl
-  // zawsze widoczny i edytowalny (front zachowuje accordion).
+  useEffect(() => {
+    if (!faqItems || faqItems.length === 0) {
+      let migrated = [];
+      for (let i = 1; i <= 10; i++) {
+        if (a[`question${i}`] || a[`answer${i}`]) {
+          migrated.push({
+            question: a[`question${i}`] || '',
+            answer: a[`answer${i}`] || ''
+          });
+        }
+      }
+      if (migrated.length > 0) {
+        setAttributes({ faqItems: migrated });
+      } else {
+        setAttributes({ faqItems: [{ question: "", answer: "" }] });
+      }
+    }
+  }, []);
+
+  const items = faqItems || [];
+
+  const addItem = () => {
+    setAttributes({ faqItems: [...items, { question: "", answer: "" }] });
+  };
+
+  const removeItem = (index) => {
+    const newItems = [...items];
+    newItems.splice(index, 1);
+    setAttributes({ faqItems: newItems });
+  };
+
+  const updateItem = (index, key, val) => {
+    const newItems = [...items];
+    newItems[index] = { ...newItems[index], [key]: val };
+    setAttributes({ faqItems: newItems });
+  };
+
   const panelEditorStyle = {
     maxHeight: "none",
     opacity: 1,
@@ -26,26 +61,7 @@ export default function Edit({ attributes, setAttributes }) {
               const data = {
                 title: a.title || '',
                 topTitle: a.topTitle || '',
-                question1: a.question1 || '',
-                answer1: a.answer1 || '',
-                question2: a.question2 || '',
-                answer2: a.answer2 || '',
-                question3: a.question3 || '',
-                answer3: a.answer3 || '',
-                question4: a.question4 || '',
-                answer4: a.answer4 || '',
-                question5: a.question5 || '',
-                answer5: a.answer5 || '',
-                question6: a.question6 || '',
-                answer6: a.answer6 || '',
-                question7: a.question7 || '',
-                answer7: a.answer7 || '',
-                question8: a.question8 || '',
-                answer8: a.answer8 || '',
-                question9: a.question9 || '',
-                answer9: a.answer9 || '',
-                question10: a.question10 || '',
-                answer10: a.answer10 || ''
+                faqItems: items.map(item => ({ question: item.question, answer: item.answer }))
               };
               return JSON.stringify(data, null, 2);
             })()}
@@ -65,9 +81,24 @@ export default function Edit({ attributes, setAttributes }) {
               const updates = {};
               if (parsed.title !== undefined) updates.title = parsed.title;
               if (parsed.topTitle !== undefined) updates.topTitle = parsed.topTitle;
-              for (let i = 1; i <= 10; i++) {
-                if (parsed[`question${i}`] !== undefined) updates[`question${i}`] = parsed[`question${i}`];
-                if (parsed[`answer${i}`] !== undefined) updates[`answer${i}`] = parsed[`answer${i}`];
+              if (parsed.faqItems) {
+                updates.faqItems = parsed.faqItems;
+              } else {
+                let migratedItems = [...items];
+                for (let i = 1; i <= 10; i++) {
+                  if (parsed[`question${i}`] !== undefined || parsed[`answer${i}`] !== undefined) {
+                     if (migratedItems[i-1]) {
+                        if (parsed[`question${i}`] !== undefined) migratedItems[i-1].question = parsed[`question${i}`];
+                        if (parsed[`answer${i}`] !== undefined) migratedItems[i-1].answer = parsed[`answer${i}`];
+                     } else {
+                        migratedItems.push({
+                           question: parsed[`question${i}`] || '',
+                           answer: parsed[`answer${i}`] || ''
+                        });
+                     }
+                  }
+                }
+                updates.faqItems = migratedItems;
               }
               setAttributes(updates);
               alert('Zaktualizowano pomyślnie!');
@@ -103,23 +134,23 @@ export default function Edit({ attributes, setAttributes }) {
           <RichText tagName="div" className="glownafaq__title" value={a.title} onChange={(v) => setAttributes({ title: v })} placeholder="Dodatkowy tytuł" />
         )}
         <div className="glownafaq__list">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => {
-            const q = a[`question${i}`];
-            const ans = a[`answer${i}`];
-            if (!q && !ans) return null;
+          {items.map((item, index) => {
             return (
-              <div key={i} className="glownafaq__item">
+              <div key={index} className="glownafaq__item" style={{ position: "relative", marginBottom: "16px", border: "1px dashed #ccc", padding: "16px" }}>
+                <div style={{ position: "absolute", right: 0, top: 0, zIndex: 10 }}>
+                  <Button isDestructive variant="link" onClick={() => removeItem(index)}>Usuń</Button>
+                </div>
                 <div className="glownafaq__trigger faq-accordion" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
-                  <RichText tagName={Heading} className="glownafaq__question faq-header" value={q} onChange={(v) => setAttributes({ [`question${i}`]: v })} placeholder={`Pytanie ${i}`} />
+                  <RichText tagName={Heading} className="glownafaq__question faq-header" value={item.question} onChange={(v) => updateItem(index, 'question', v)} placeholder="Wpisz pytanie..." />
                   <span className="glownafaq__chevron" aria-hidden="true">▾</span>
                 </div>
                 <div className="glownafaq__panel faq-pannel" style={panelEditorStyle}>
-                  <RichText tagName="p" value={ans} onChange={(v) => setAttributes({ [`answer${i}`]: v })} placeholder={`Odpowiedź ${i}`} />
+                  <RichText tagName="p" value={item.answer} onChange={(v) => updateItem(index, 'answer', v)} placeholder="Wpisz odpowiedź..." />
                 </div>
               </div>
             );
           })}
-          <p style={{ fontSize: 12, color: "#999", marginTop: 16 }}>Aby dodać kolejne pytania, wpisz je w slotach 1-10 (puste są pomijane na froncie).</p>
+          <Button variant="secondary" onClick={addItem} style={{ marginTop: 16 }}>Dodaj pozycję FAQ</Button>
         </div>
       </div>
     </div>

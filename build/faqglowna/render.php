@@ -5,6 +5,17 @@ $showTopTitle   = isset($attributes['showTopTitle'])   ? $attributes['showTopTit
 $topTitle       = isset($attributes['topTitle'])       ? $attributes['topTitle']       : 'Najczęściej zadawane pytania';
 $headingTag     = isset($attributes['headingTag'])     ? $attributes['headingTag']     : 'h3';
 $containerClass = isset($attributes['containerClass']) ? $attributes['containerClass'] : 'glownafaq';
+$faqItems       = isset($attributes['faqItems'])       ? $attributes['faqItems']       : [];
+
+if (empty($faqItems)) {
+    for ($i = 1; $i <= 10; $i++) {
+        $q   = isset($attributes["question{$i}"]) ? $attributes["question{$i}"] : '';
+        $ans = isset($attributes["answer{$i}"])   ? $attributes["answer{$i}"]   : '';
+        if ($q || $ans) {
+            $faqItems[] = ['question' => $q, 'answer' => $ans];
+        }
+    }
+}
 
 $allowed_tags = ['h2', 'h3', 'h4', 'div'];
 if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h3';
@@ -20,9 +31,9 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h3';
         <?php endif; ?>
 
         <div class="glownafaq__list">
-            <?php for ($i = 1; $i <= 10; $i++):
-                $q   = isset($attributes["question{$i}"]) ? $attributes["question{$i}"] : '';
-                $ans = isset($attributes["answer{$i}"])   ? $attributes["answer{$i}"]   : '';
+            <?php foreach ($faqItems as $item):
+                $q   = isset($item['question']) ? $item['question'] : '';
+                $ans = isset($item['answer'])   ? $item['answer']   : '';
                 if (!$q && !$ans) continue;
             ?>
                 <div class="glownafaq__item">
@@ -38,7 +49,7 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h3';
                         <p><?php echo wp_kses_post($ans); ?></p>
                     </div>
                 </div>
-            <?php endfor; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
