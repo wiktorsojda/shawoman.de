@@ -2451,6 +2451,7 @@ function display_shop_banner_image_with_text()
         $link_url = get_option('shav_shop_banner_link');
 
         if ($desktop_banner_url || $mobile_banner_url) {
+            echo '<div class="shop-banner-container" style="max-width: 1300px; margin: 0 auto; width: 100%;">';
             if (!empty($link_url)) {
                 echo '<a href="' . esc_url($link_url) . '" style="display: block;">';
             }
@@ -2481,6 +2482,7 @@ function display_shop_banner_image_with_text()
             if (!empty($link_url)) {
                 echo '</a>';
             }
+            echo '</div>'; // .shop-banner-container
         }
     }
 }
