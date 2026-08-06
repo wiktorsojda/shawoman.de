@@ -137,11 +137,9 @@
     @media (min-width: $breakpoint-tablet) {
       flex: 1 1 0%;
       min-width: 0;
-      flex-direction: row;
-      flex-wrap: nowrap;                // Zmiana na nowrap żeby wszystko siedziało w 1 rzędzie na pulpicie
-      align-items: flex-start;
-      justify-content: flex-start;      // Zmiana z space-between na flex-start (lepsze układanie przy 3/4 kolumnach)
-      gap: clamp(#{$space-24}, 3vw, #{$space-64}); // Trochę większy gap dla oddechu, ale z mniejszym min żeby się zmieściło
+      display: grid;
+      grid-template-columns: 1fr 1fr auto; // 2 kolumny na menu, 3. na ikony
+      gap: clamp(#{$space-24}, 3vw, #{$space-64});
       text-align: left;
     }
   }
@@ -205,6 +203,8 @@
     @media (min-width: $breakpoint-tablet) {
       flex-direction: column;           // Wieża pionowa
       justify-content: flex-start;
+      grid-column: 3;                   // Zawsze w 3 kolumnie grida
+      grid-row: 1 / span 2;             // Rozciągnij na 2 rzędy (żeby trzecie menu mogło wpaść pod spód)
       margin-left: auto;                // Pchnij do prawej krawędzi
     }
   }
