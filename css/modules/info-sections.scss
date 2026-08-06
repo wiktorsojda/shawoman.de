@@ -611,8 +611,17 @@ text-decoration: none;
           // padding: 2rem 2.5rem;
           border: none;
           outline: none;
-          transition: 0.4s;
+          transition: background-color 0.3s ease, color 0.3s ease;
           display: flex !important;
+
+          &:hover {
+            background-color: $color-primary-medium !important;
+            color: $color-white !important;
+            
+            i {
+              color: $color-white !important;
+            }
+          }
           justify-content: space-between;
           align-items: center;
 
