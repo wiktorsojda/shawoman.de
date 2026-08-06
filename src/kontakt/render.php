@@ -55,9 +55,23 @@ $email_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="14" vie
                 <div class="faq-wrapper-kontakt kontakt-wrapper">
                     <div class="item-kontakt-title"><?php echo wp_kses_post($faqTitle); ?></div>
                     <div class="faq-wrapper-questions-kontakt">
-                        <?php for ($i = 1; $i <= 10; $i++):
-                            $q   = isset($attributes["kontaktQuestion{$i}"]) ? $attributes["kontaktQuestion{$i}"] : '';
-                            $ans = isset($attributes["kontaktAnswer{$i}"])   ? $attributes["kontaktAnswer{$i}"]   : '';
+                        <?php
+                        $faqItems = isset($attributes['faqItems']) && is_array($attributes['faqItems']) ? $attributes['faqItems'] : [];
+                        
+                        // Fallback do starych atrybutów jeśli faqItems puste
+                        if (empty($faqItems)) {
+                            for ($i = 1; $i <= 10; $i++) {
+                                $q = isset($attributes["kontaktQuestion{$i}"]) ? $attributes["kontaktQuestion{$i}"] : '';
+                                $ans = isset($attributes["kontaktAnswer{$i}"]) ? $attributes["kontaktAnswer{$i}"] : '';
+                                if ($q || $ans) {
+                                    $faqItems[] = array('question' => $q, 'answer' => $ans);
+                                }
+                            }
+                        }
+
+                        foreach ($faqItems as $item):
+                            $q = isset($item['question']) ? $item['question'] : '';
+                            $ans = isset($item['answer']) ? $item['answer'] : '';
                             if (!$q && !$ans) continue;
                         ?>
                             <div class="faq-kontakt">
@@ -69,7 +83,7 @@ $email_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="14" vie
                                     <p><?php echo wp_kses_post($ans); ?></p>
                                 </div>
                             </div>
-                        <?php endfor; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

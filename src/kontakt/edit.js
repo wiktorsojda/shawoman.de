@@ -1,12 +1,114 @@
 import { useBlockProps, RichText, InspectorControls } from "@wordpress/block-editor";
-import { PanelBody, TextControl } from "@wordpress/components";
+import { PanelBody, TextControl, TextareaControl, Button } from "@wordpress/components";
+import { useState, useEffect } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
+  const [importJson, setImportJson] = useState("");
   const blockProps = useBlockProps({ className: "faq-container faq-container-kontakt" });
+
+  useEffect(() => {
+    if (!a.faqItems || a.faqItems.length === 0) {
+      let migrated = [];
+      for (let i = 1; i <= 10; i++) {
+        if (a[`kontaktQuestion${i}`] || a[`kontaktAnswer${i}`]) {
+          migrated.push({
+            question: a[`kontaktQuestion${i}`] || "",
+            answer: a[`kontaktAnswer${i}`] || ""
+          });
+        }
+      }
+      if (migrated.length > 0) {
+        setAttributes({ faqItems: migrated });
+      } else {
+        setAttributes({ faqItems: [
+          {
+            question: "Ile trwa realizacja zamówienia?",
+            answer: "Realizacja i dostawa wszystkich zamówień ze strony Shav odbywa się w ciągu 1-2 dni roboczych."
+          }
+        ]});
+      }
+    }
+  }, []);
+
+  const faqItems = a.faqItems || [];
+
+  const updateFaqItem = (index, field, value) => {
+    const newItems = [...faqItems];
+    newItems[index] = { ...newItems[index], [field]: value };
+    setAttributes({ faqItems: newItems });
+  };
+
+  const addFaqItem = () => {
+    setAttributes({ faqItems: [...faqItems, { question: "", answer: "" }] });
+  };
+
+  const removeFaqItem = (index) => {
+    const newItems = [...faqItems];
+    newItems.splice(index, 1);
+    setAttributes({ faqItems: newItems });
+  };
+
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                title: a.title || "",
+                subtitle: a.subtitle || "",
+                obsługaTitle: a.obsługaTitle || "",
+                obsługaIntro: a.obsługaIntro || "",
+                phone: a.phone || "",
+                email: a.email || "",
+                hours: a.hours || "",
+                faqTitle: a.faqTitle || "",
+                hurtTitle: a.hurtTitle || "",
+                hurtIntro: a.hurtIntro || "",
+                hurtButtonLabel: a.hurtButtonLabel || "",
+                zwrotyTitle: a.zwrotyTitle || "",
+                zwrotyIntro: a.zwrotyIntro || "",
+                zwrotyButtonLabel: a.zwrotyButtonLabel || "",
+                reklamacjeTitle: a.reklamacjeTitle || "",
+                reklamacjeIntro: a.reklamacjeIntro || "",
+                reklamacjeButtonLabel: a.reklamacjeButtonLabel || "",
+                faqItems: faqItems
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={10}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={10}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              const keys = ["title", "subtitle", "obsługaTitle", "obsługaIntro", "phone", "email", "hours", "faqTitle", "hurtTitle", "hurtIntro", "hurtButtonLabel", "zwrotyTitle", "zwrotyIntro", "zwrotyButtonLabel", "reklamacjeTitle", "reklamacjeIntro", "reklamacjeButtonLabel"];
+              keys.forEach(k => {
+                if (parsed[k] !== undefined) updates[k] = parsed[k];
+              });
+              if (parsed.faqItems && Array.isArray(parsed.faqItems)) {
+                updates.faqItems = parsed.faqItems;
+              }
+              setAttributes(updates);
+              alert("Zaktualizowano pomyślnie!");
+              setImportJson("");
+            } catch (e) {
+              alert("Błąd! Niepoprawny format JSON.");
+            }
+          }} style={{ width: "100%", justifyContent: "center" }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Linki kontaktowe" initialOpen={false}>
           <TextControl label="Telefon (link tel:)" value={a.phoneHref} onChange={(v) => setAttributes({ phoneHref: v })} />
           <TextControl label="Email (link mailto:)" value={a.emailHref} onChange={(v) => setAttributes({ emailHref: v })} />
@@ -40,21 +142,26 @@ export default function Edit({ attributes, setAttributes }) {
             <div className="faq-wrapper-kontakt kontakt-wrapper">
               <RichText tagName="div" className="item-kontakt-title" value={a.faqTitle} onChange={(v) => setAttributes({ faqTitle: v })} placeholder="Tytuł FAQ" />
               <div className="faq-wrapper-questions-kontakt">
-                {[1,2,3,4,5,6,7,8,9,10].map((i) => {
-                  const q = a[`kontaktQuestion${i}`];
-                  const ans = a[`kontaktAnswer${i}`];
-                  if (!q && !ans) return null;
-                  return (
-                    <div key={i} className="faq-kontakt">
-                      <button className="faq-accordion-kontakt" type="button">
-                        <RichText tagName="span" value={q} onChange={(v) => setAttributes({ [`kontaktQuestion${i}`]: v })} placeholder={`Pytanie ${i}`} />
+                {faqItems.map((item, i) => (
+                    <div key={i} className="faq-kontakt" style={{ position: "relative" }}>
+                      <button className="faq-accordion-kontakt" type="button" style={{ paddingRight: 40 }}>
+                        <RichText tagName="span" value={item.question} onChange={(v) => updateFaqItem(i, "question", v)} placeholder={`Pytanie ${i + 1}`} />
                       </button>
+                      <Button
+                        icon="trash"
+                        variant="secondary"
+                        isDestructive
+                        onClick={() => removeFaqItem(i)}
+                        style={{ position: "absolute", top: 10, right: 10 }}
+                      />
                       <div className="faq-pannel-kontakt" style={{ maxHeight: "none", opacity: 1, paddingBottom: 12 }}>
-                        <RichText tagName="p" value={ans} onChange={(v) => setAttributes({ [`kontaktAnswer${i}`]: v })} placeholder={`Odpowiedź ${i}`} />
+                        <RichText tagName="p" value={item.answer} onChange={(v) => updateFaqItem(i, "answer", v)} placeholder={`Odpowiedź ${i + 1}`} />
                       </div>
                     </div>
-                  );
-                })}
+                ))}
+                <Button variant="secondary" onClick={addFaqItem} style={{ marginTop: 10, width: "100%", justifyContent: "center" }}>
+                  Dodaj pozycję FAQ
+                </Button>
               </div>
             </div>
           </div>

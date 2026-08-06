@@ -4,6 +4,10 @@
   "name": "ourblocktheme/kontakt",
   "title": "Kontakt",
   "attributes": {
+    "faqItems": {
+      "type": "array",
+      "default": []
+    },
     "title": {
       "type": "string",
       "default": "Kontakt"

@@ -9,6 +9,12 @@ require_once get_template_directory() . '/inc/shop/_loader.php';
 // Zezwolenie na upload SVG (np. logo/sygnatury w blokach onasrozwijamy/onaswazne)
 require_once get_template_directory() . '/inc/svg-support.php';
 
+// Skrypty migracyjne ze snippetów
+require_once get_template_directory() . '/inc/wc-cpt.php';
+require_once get_template_directory() . '/inc/cart-cross-sell.php';
+require_once get_template_directory() . '/inc/wc-automatyzacja.php';
+require_once get_template_directory() . '/inc/theme-wyglad.php';
+
 // adobe font babe neue pro
 function add_resource_hints_and_fonts()
 {
