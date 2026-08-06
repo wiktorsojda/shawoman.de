@@ -615,11 +615,10 @@ text-decoration: none;
           display: flex !important;
 
           &:hover {
-            background-color: $color-primary-medium !important;
-            color: $color-white !important;
+            color: $color-primary-medium !important;
             
             i {
-              color: $color-white !important;
+              color: $color-primary-medium !important;
             }
           }
           justify-content: space-between;
