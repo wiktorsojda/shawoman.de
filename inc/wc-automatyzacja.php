@@ -871,36 +871,45 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
             $tho = wc_get_price_thousand_separator();
         }
 
-        // FORMATOWANIE CEN (DYNAMICZNE SEPARATORY I WALUTA)
-        $format_price_val = function($p) {
-            if ( empty( trim($p) ) ) return 0;
-            $clean_val = preg_replace('/[^-0-9.,]/', '', $p);
-            $clean_val = str_replace(',', '.', $clean_val);
-            $pos = strrpos($clean_val, '.');
-            if ($pos !== false && (strlen($clean_val) - $pos <= 3)) {
-                $clean_val = str_replace('.', '', substr($clean_val, 0, $pos)) . '.' . substr($clean_val, $pos + 1);
-            } else {
-                $clean_val = str_replace('.', '', $clean_val);
-            }
-            return (float) $clean_val;
-        };
+        // FORMATOWANIE CEN (BEZ CLOSURES)
+        $val_reg = 0;
+        $val_pro = 0;
         
-        $format_price = function($val) use ($cur, $dec, $tho) {
-            if ( $val <= 0 ) return '';
-            $decimals = (trim($cur) === 'Ft') ? 0 : 2;
-            return number_format( $val, $decimals, $dec, $tho ) . $cur;
-        };
+        $p_reg = trim((string)$price_reg);
+        if ( ! empty($p_reg) ) {
+            $c_reg = preg_replace('/[^-0-9.,]/', '', $p_reg);
+            $c_reg = str_replace(',', '.', $c_reg);
+            $pos = strrpos($c_reg, '.');
+            if ($pos !== false && (strlen($c_reg) - $pos <= 3)) {
+                $c_reg = str_replace('.', '', substr($c_reg, 0, $pos)) . '.' . substr($c_reg, $pos + 1);
+            } else {
+                $c_reg = str_replace('.', '', $c_reg);
+            }
+            $val_reg = (float) $c_reg;
+        }
 
-        $val_reg = $format_price_val($price_reg);
-        $val_pro = $format_price_val($price_pro);
+        $p_pro = trim((string)$price_pro);
+        if ( ! empty($p_pro) ) {
+            $c_pro = preg_replace('/[^-0-9.,]/', '', $p_pro);
+            $c_pro = str_replace(',', '.', $c_pro);
+            $pos = strrpos($c_pro, '.');
+            if ($pos !== false && (strlen($c_pro) - $pos <= 3)) {
+                $c_pro = str_replace('.', '', substr($c_pro, 0, $pos)) . '.' . substr($c_pro, $pos + 1);
+            } else {
+                $c_pro = str_replace('.', '', $c_pro);
+            }
+            $val_pro = (float) $c_pro;
+        }
 
-        $price_reg = $format_price($val_reg);
-        $price_pro = $format_price($val_pro);
+        $decimals = (trim((string)$cur) === 'Ft') ? 0 : 2;
+
+        $price_reg = ($val_reg > 0) ? number_format( $val_reg, $decimals, $dec, $tho ) . $cur : '';
+        $price_pro = ($val_pro > 0) ? number_format( $val_pro, $decimals, $dec, $tho ) . $cur : '';
         
         $savings_text = '';
         if ( $val_reg > 0 && $val_pro > 0 && $val_reg > $val_pro ) {
             $diff = $val_reg - $val_pro;
-            $savings_text = 'OSZCZĘDZASZ ' . $format_price($diff);
+            $savings_text = 'OSZCZĘDZASZ ' . number_format($diff, $decimals, $dec, $tho) . $cur;
         }
 
         echo '<div class="zestaw-container shav-bundle">';
