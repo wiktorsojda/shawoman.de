@@ -16,7 +16,7 @@ if (!empty($linkURL)) {
     $wrapperEnd = '</a>';
 }
 ?>
-<div <?php echo get_block_wrapper_attributes(['class' => 'shop-archive']); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'container--narrow2-important shop-archive']); ?>>
     <?php echo $wrapperStart; ?>
     <div class="shop-banner-image" style="position: relative;">
         <?php if ($imageDesktop) : ?>
