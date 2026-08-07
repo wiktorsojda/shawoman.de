@@ -10,9 +10,9 @@ require_once get_template_directory() . '/inc/shop/_loader.php';
 require_once get_template_directory() . '/inc/svg-support.php';
 
 // Skrypty migracyjne ze snippetów
-// require_once get_template_directory() . '/inc/wc-cpt.php';
-// require_once get_template_directory() . '/inc/cart-cross-sell.php';
-// require_once get_template_directory() . '/inc/wc-automatyzacja.php';
+require_once get_template_directory() . '/inc/wc-cpt.php';
+require_once get_template_directory() . '/inc/cart-cross-sell.php';
+require_once get_template_directory() . '/inc/wc-automatyzacja.php';
 require_once get_template_directory() . '/inc/theme-wyglad.php';
 
 // adobe font babe neue pro
