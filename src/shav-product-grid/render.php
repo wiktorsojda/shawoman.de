@@ -15,7 +15,7 @@ $args = array(
 
 // Source Selection
 if ($selectionType === 'manual' && !empty($productIds)) {
-    $args['post__in'] = $productIds;
+    $args['post__in'] = array_map('intval', $productIds);
     // If order is menu_order with specific post__in, preserve the array order
     if ($orderBy === 'menu_order') {
         $args['orderby'] = 'post__in';
