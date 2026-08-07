@@ -27,6 +27,10 @@
       "type": "array",
       "default": []
     },
+    "customCategoryOrder": {
+      "type": "array",
+      "default": []
+    },
     "orderBy": {
       "type": "string",
       "default": "menu_order"

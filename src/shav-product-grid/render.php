@@ -4,6 +4,7 @@ $subTitle = isset($attributes['subTitle']) ? $attributes['subTitle'] : '';
 $selectionType = isset($attributes['selectionType']) ? $attributes['selectionType'] : 'category';
 $categoryId = isset($attributes['categoryId']) ? $attributes['categoryId'] : '';
 $productIds = isset($attributes['productIds']) ? $attributes['productIds'] : array();
+$customCategoryOrder = isset($attributes['customCategoryOrder']) ? $attributes['customCategoryOrder'] : array();
 $orderBy = isset($attributes['orderBy']) ? $attributes['orderBy'] : 'menu_order';
 $limit = isset($attributes['limit']) ? (int) $attributes['limit'] : 12;
 
@@ -13,6 +14,9 @@ $args = array(
     'posts_per_page' => $limit,
 );
 
+// Check if we are freezing the category manually
+$isFrozenCategory = ($selectionType === 'category' && $orderBy === 'menu_order' && !empty($customCategoryOrder));
+
 // Source Selection
 if ($selectionType === 'manual' && !empty($productIds)) {
     $args['post__in'] = array_map('intval', $productIds);
@@ -20,6 +24,10 @@ if ($selectionType === 'manual' && !empty($productIds)) {
     if ($orderBy === 'menu_order') {
         $args['orderby'] = 'post__in';
     }
+} elseif ($isFrozenCategory) {
+    // If category is manually sorted in the editor, we use the saved customCategoryOrder
+    $args['post__in'] = array_map('intval', $customCategoryOrder);
+    $args['orderby'] = 'post__in';
 } elseif ($selectionType === 'category' && !empty($categoryId)) {
     $args['tax_query'] = array(
         array(
@@ -30,8 +38,8 @@ if ($selectionType === 'manual' && !empty($productIds)) {
     );
 }
 
-// Sorting logic
-if ($orderBy !== 'menu_order' || $selectionType !== 'manual') {
+// Sorting logic (only if not using post__in order)
+if (!(($selectionType === 'manual' || $isFrozenCategory) && $orderBy === 'menu_order')) {
     if ($orderBy === 'date') {
         $args['orderby'] = 'date';
         $args['order'] = 'DESC';

@@ -4,7 +4,7 @@ import { useSelect } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-    const { mainTitle, subTitle, selectionType, categoryId, productIds, orderBy, limit } = attributes;
+    const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit } = attributes;
     const blockProps = useBlockProps();
     const [draggedIndex, setDraggedIndex] = useState(null);
 
@@ -47,9 +47,34 @@ export default function Edit({ attributes, setAttributes }) {
             return (products || []).find(p => p.id === id);
         }).filter(Boolean);
     } else {
-        // For category view, just show first 'limit' from all products as a dummy preview
-        // (proper filtering by category slug would require a separate query)
-        previewProducts = (products || []).slice(0, limit);
+        // For category view
+        if (orderBy === 'menu_order' && customCategoryOrder && customCategoryOrder.length > 0) {
+            previewProducts = customCategoryOrder.map(id => {
+                return (products || []).find(p => p.id === id);
+            }).filter(Boolean);
+        } else {
+            const selectedCategory = (categories || []).find(cat => cat.slug === categoryId);
+            const selectedCategoryId = selectedCategory ? selectedCategory.id : null;
+            previewProducts = (products || []).filter(p => {
+                if (!selectedCategoryId) return true;
+                return p.categories && p.categories.includes(selectedCategoryId);
+            }).slice(0, limit);
+            
+            // Fallback for WooCommerce products REST response if 'categories' isn't natively populated but 'product_cat' might be.
+            if (previewProducts.length === 0 && selectedCategoryId) {
+                previewProducts = (products || []).filter(p => {
+                    // Czasami REST dla produktów WC przetrzymuje kategorie w innej strukturze.
+                    // Spróbujmy znaleźć cokolwiek:
+                    if (p.product_cat && p.product_cat.includes(selectedCategoryId)) return true;
+                    return false; // W najgorszym razie podgląd nie pofiltruje dokładnie
+                }).slice(0, limit);
+            }
+            
+            // Jeżeli wciąż pusty (brak filtru), weź po prostu produkty.
+            if (previewProducts.length === 0 && (products || []).length > 0) {
+                 previewProducts = (products || []).slice(0, limit);
+            }
+        }
     }
 
     const handleDragStart = (e, index) => {
@@ -76,13 +101,54 @@ export default function Edit({ attributes, setAttributes }) {
         e.stopPropagation();
         if (draggedIndex === null || draggedIndex === index) return;
         
-        const newProductIds = [...productIds];
-        const draggedId = newProductIds[draggedIndex];
+        let newIds = [];
+        if (selectionType === 'manual') {
+            newIds = [...productIds];
+        } else {
+            newIds = customCategoryOrder && customCategoryOrder.length > 0 
+                ? [...customCategoryOrder] 
+                : previewProducts.map(p => p.id);
+        }
         
-        newProductIds.splice(draggedIndex, 1);
-        newProductIds.splice(index, 0, draggedId);
+        const draggedId = newIds[draggedIndex];
+        newIds.splice(draggedIndex, 1);
+        newIds.splice(index, 0, draggedId);
         
-        setAttributes({ productIds: newProductIds });
+        if (selectionType === 'manual') {
+            setAttributes({ productIds: newIds });
+        } else {
+            setAttributes({ customCategoryOrder: newIds });
+        }
+    };
+
+    const handleMoveButton = (e, index, direction) => {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        let newIds = [];
+        if (selectionType === 'manual') {
+            newIds = [...productIds];
+        } else {
+            newIds = customCategoryOrder && customCategoryOrder.length > 0 
+                ? [...customCategoryOrder] 
+                : previewProducts.map(p => p.id);
+        }
+        
+        if (direction === 'left' && index > 0) {
+            const temp = newIds[index - 1];
+            newIds[index - 1] = newIds[index];
+            newIds[index] = temp;
+        } else if (direction === 'right' && index < newIds.length - 1) {
+            const temp = newIds[index + 1];
+            newIds[index + 1] = newIds[index];
+            newIds[index] = temp;
+        }
+        
+        if (selectionType === 'manual') {
+            setAttributes({ productIds: newIds });
+        } else {
+            setAttributes({ customCategoryOrder: newIds });
+        }
     };
 
     return (
@@ -115,7 +181,7 @@ export default function Edit({ attributes, setAttributes }) {
                             label="Kategoria Produktów"
                             value={categoryId}
                             options={categoryOptions}
-                            onChange={(val) => setAttributes({ categoryId: val })}
+                            onChange={(val) => setAttributes({ categoryId: val, customCategoryOrder: [] })}
                         />
                     )}
 
@@ -169,7 +235,7 @@ export default function Edit({ attributes, setAttributes }) {
                         </p>
                     ) : (
                         previewProducts.map((product, index) => {
-                            const isManual = selectionType === 'manual' && orderBy === 'menu_order';
+                            const isManual = orderBy === 'menu_order';
                             const imageUrl = product._embedded?.['wp:featuredmedia']?.[0]?.source_url || "";
                             
                             return (
@@ -267,7 +333,7 @@ export default function Edit({ attributes, setAttributes }) {
                     )}
                 </div>
                 
-                {selectionType === 'manual' && orderBy === 'menu_order' && (
+                {orderBy === 'menu_order' && (
                     <div style={{ textAlign: "center", marginTop: "25px", padding: "10px", backgroundColor: "#f0f8ff", borderRadius: "8px", color: "#007cba", fontSize: "14px", fontWeight: "bold" }}>
                         <span style={{marginRight: "8px"}}>👆</span>
                         Chwyć kartę myszką i przeciągnij, aby zmienić kolejność (Drag & Drop)
