@@ -53,23 +53,27 @@ export default function Edit({ attributes, setAttributes }) {
     }
 
     const handleDragStart = (e, index) => {
+        e.stopPropagation();
         setDraggedIndex(index);
         e.dataTransfer.effectAllowed = "move";
         setTimeout(() => { e.target.style.opacity = '0.5'; }, 0);
     };
 
     const handleDragEnd = (e) => {
+        e.stopPropagation();
         e.target.style.opacity = '1';
         setDraggedIndex(null);
     };
 
     const handleDragOver = (e, index) => {
         e.preventDefault();
+        e.stopPropagation();
         e.dataTransfer.dropEffect = "move";
     };
 
     const handleDrop = (e, index) => {
         e.preventDefault();
+        e.stopPropagation();
         if (draggedIndex === null || draggedIndex === index) return;
         
         const newProductIds = [...productIds];
@@ -209,6 +213,47 @@ export default function Edit({ attributes, setAttributes }) {
                                         {!imageUrl && <span style={{color: "#aaa"}}>Brak zdjęcia</span>}
                                     </div>
                                     <div style={{ padding: "15px", fontSize: "14px", fontWeight: "600", textAlign: "center", color: "#333", lineHeight: "1.3" }} dangerouslySetInnerHTML={{ __html: product.title.rendered }} />
+                                    
+                                    {isManual && (
+                                        <div style={{ display: "flex", justifyContent: "space-between", padding: "10px", backgroundColor: "#f9f9f9", borderTop: "1px solid #eee" }}>
+                                            <button 
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    e.preventDefault();
+                                                    if (index > 0) {
+                                                        const newIds = [...productIds];
+                                                        const temp = newIds[index - 1];
+                                                        newIds[index - 1] = newIds[index];
+                                                        newIds[index] = temp;
+                                                        setAttributes({ productIds: newIds });
+                                                    }
+                                                }}
+                                                disabled={index === 0}
+                                                style={{ cursor: index === 0 ? "not-allowed" : "pointer", padding: "5px 10px", border: "1px solid #ccc", borderRadius: "4px", background: "#fff", opacity: index === 0 ? 0.3 : 1 }}
+                                                title="Przesuń w lewo"
+                                            >
+                                                ◀
+                                            </button>
+                                            <button 
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    e.preventDefault();
+                                                    if (index < previewProducts.length - 1) {
+                                                        const newIds = [...productIds];
+                                                        const temp = newIds[index + 1];
+                                                        newIds[index + 1] = newIds[index];
+                                                        newIds[index] = temp;
+                                                        setAttributes({ productIds: newIds });
+                                                    }
+                                                }}
+                                                disabled={index === previewProducts.length - 1}
+                                                style={{ cursor: index === previewProducts.length - 1 ? "not-allowed" : "pointer", padding: "5px 10px", border: "1px solid #ccc", borderRadius: "4px", background: "#fff", opacity: index === previewProducts.length - 1 ? 0.3 : 1 }}
+                                                title="Przesuń w prawo"
+                                            >
+                                                ▶
+                                            </button>
+                                        </div>
+                                    )}
                                 </div>
                             );
                         })
