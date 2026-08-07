@@ -617,14 +617,19 @@ if ( ! function_exists( 'blendygo_render_cpt_product_set' ) ) {
         if ( ! $cpt_found || empty( $target_id ) ) return;
         $product_url = get_permalink( $target_id );
 
-        // POBRANIE SEPARATORÓW I WALUTY
-        $cur = blendygo_get_label('currency', $promo_id);
-        $dec = blendygo_get_label('dec', $promo_id);
-        $tho = blendygo_get_label('tho', $promo_id);
+        if ( $promo_id !== false ) {
+            $cur = blendygo_get_label('currency', $promo_id);
+            $dec = blendygo_get_label('dec', $promo_id);
+            $tho = blendygo_get_label('tho', $promo_id);
+        } else {
+            $cur = ' ' . get_woocommerce_currency_symbol();
+            $dec = wc_get_price_decimal_separator();
+            $tho = wc_get_price_thousand_separator();
+        }
 
         // FORMATOWANIE CEN (DYNAMICZNE SEPARATORY I WALUTA)
-        $format_price = function($p) use ($cur, $dec, $tho) {
-            if ( empty( trim($p) ) ) return '';
+        $format_price_val = function($p) {
+            if ( empty( trim($p) ) ) return 0;
             $clean_val = preg_replace('/[^-0-9.,]/', '', $p);
             $clean_val = str_replace(',', '.', $clean_val);
             $pos = strrpos($clean_val, '.');
@@ -633,78 +638,82 @@ if ( ! function_exists( 'blendygo_render_cpt_product_set' ) ) {
             } else {
                 $clean_val = str_replace('.', '', $clean_val);
             }
-            if ( is_numeric( $clean_val ) ) {
-                $decimals = (trim($cur) === 'Ft') ? 0 : 2;
-                return number_format( (float) $clean_val, $decimals, $dec, $tho ) . $cur;
-            }
-            return $p . $cur;
+            return (float) $clean_val;
+        };
+        
+        $format_price = function($val) use ($cur, $dec, $tho) {
+            if ( $val <= 0 ) return '';
+            $decimals = (trim($cur) === 'Ft') ? 0 : 2;
+            return number_format( $val, $decimals, $dec, $tho ) . $cur;
         };
 
-        $price_reg = $format_price($price_reg);
-        $price_pro = $format_price($price_pro);
+        $val_reg = $format_price_val($price_reg);
+        $val_pro = $format_price_val($price_pro);
 
-        echo '<div class="zestaw-container">';
-        echo '<div class="zestaw-title">' . esc_html( $lbl_header ) . '</div>'; 
-        echo '<div class="custom-product-section" style="margin-top: 0px;">';
+        $price_reg = $format_price($val_reg);
+        $price_pro = $format_price($val_pro);
         
-        echo '<div class="zestaw-section">';
-        echo '<div class="zestaw-details">';
+        $savings_text = '';
+        if ( $val_reg > 0 && $val_pro > 0 && $val_reg > $val_pro ) {
+            $diff = $val_reg - $val_pro;
+            $savings_text = 'OSZCZĘDZASZ ' . $format_price($diff);
+        }
+
+        echo '<div class="zestaw-container shav-bundle">';
+        echo '<div class="zestaw-title" style="display:none">' . esc_html( $lbl_header ) . '</div>'; 
+        echo '<div class="shav-bundle__card">';
+        echo '<div class="shav-bundle__top">';
 
         // OBRAZEK
         if ( ! empty( $img ) ) {
-            echo '<div class="custom-product-image-father" style="margin-bottom: 10px;">';
-            echo '<div class="custom-product-image">';
-            echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( $title ) . '" style="width: 210px; height: auto; border-radius: 8px;" />';
-            echo '</div>';
+            echo '<div class="shav-bundle__thumb" style="flex: 0 0 50%; max-width: 50%;">';
+            echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( $title ) . '">';
             echo '</div>';
         }
 
         // TYTUŁ I SKŁAD
-        echo '<div class="custom-title-list-container" style="margin-top: 10px;">';
+        echo '<div class="shav-bundle__content">';
+        echo '<span class="shav-bundle__badge">Najczęściej wybierane</span>';
         if ( ! empty( $title ) ) {
-            echo '<h3 class="custom-product-title">' . esc_html( $title ) . '</h3>';
+            echo '<h3 class="shav-bundle__title">' . esc_html( $title ) . '</h3>';
         }
 
         if ( ! empty( $items ) ) {
-            echo '<ul style="list-style: disc; font-weight: 400; padding: 0; padding-left: 13px; line-height: normal; margin-bottom: 0; color: #000; font-size: 14px; font-style: normal;">';
+            echo '<ul class="shav-bundle__list">';
             $items_array = explode( "\n", $items );
             foreach ( $items_array as $item ) {
                 if ( trim( $item ) !== '' ) {
-                    echo '<li style="margin-bottom: 0px;">' . esc_html( trim( $item ) ) . '</li>';
+                    echo '<li>' . esc_html( trim( $item ) ) . '</li>';
                 }
             }
             echo '</ul>';
         }
-        echo '</div>'; 
-        echo '</div>'; 
+        echo '</div>'; // End shav-bundle__content
+        echo '</div>'; // End shav-bundle__top
 
-        // CENY I PRZYCISK
-        echo '<div class="zestaw-cena">';
-        echo '<div class="zestaw-cena-sub">';
-
+        // CENY
+        echo '<div class="shav-bundle__price-box">';
         if ( ! empty( $price_pro ) ) {
-            echo '<div style="margin-bottom: 10px;">';
-            echo '<span style="display: block; margin-bottom: 5px; font-weight: 500;">' . esc_html( blendygo_get_label('set_price', $promo_id) ) . '</span>';
-            echo '<span class="zestaw-cena-title" style="display: block; font-size: 32px; color: #AC0000;">' . esc_html( $price_pro ) . '</span>';
+            echo '<div class="shav-bundle__price-row">';
+            echo '<span class="shav-bundle__price-label">' . esc_html( blendygo_get_label('set_price', $promo_id) ) . '</span>';
+            echo '<span class="shav-bundle__price-value">';
+            if ( ! empty( $savings_text ) ) {
+                echo '<span class="shav-bundle__savings-pill">' . esc_html( $savings_text ) . '</span>';
+            }
+            echo '<span class="shav-bundle__price-sale">' . esc_html( $price_pro ) . '</span>';
+            echo '</span>';
             echo '</div>';
         }
 
-        if ( ! empty( $price_reg ) && strip_tags($price_reg) !== strip_tags($price_pro) ) {
-            echo '<div style="margin-bottom: 15px;">';
-            echo '<span class="zestaw-tekst-cena" style="display: block; margin-bottom: 5px; font-weight: 500;">' . esc_html( blendygo_get_label('set_price_rest', $promo_id) ) . '</span>';
-            echo '<span class="zestaw-cena-rest" style="display: block;">' . esc_html( $price_reg ) . '</span>';
+        if ( ! empty( $price_reg ) && $val_reg > $val_pro ) {
+            echo '<div class="shav-bundle__price-row">';
+            echo '<span class="shav-bundle__price-label">' . esc_html( blendygo_get_label('set_price_rest', $promo_id) ) . '</span>';
+            echo '<span class="shav-bundle__price-regular">' . esc_html( $price_reg ) . '</span>';
             echo '</div>';
         }
-
-        echo '</div>'; 
+        echo '</div>'; // End price-box
 
         if ( $product_url ) {
-            echo '<a href="' . esc_url( $product_url ) . '" class="button alt single_add_to_cart_button" style="margin-top: 10px; text-decoration: none; margin-bottom: 1em; width: 100% !important; text-align: center; padding: 0px; font-size: 16px !important;">' . esc_html( $lbl_btn ) . '</a>';
-        }
-
-        echo '</div>'; 
-        echo '</div>'; 
-        echo '</div>'; 
         echo '</div>'; 
     }
 }
