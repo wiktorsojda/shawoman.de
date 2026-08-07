@@ -81,12 +81,14 @@ export default function Edit({ attributes, setAttributes }) {
         e.stopPropagation();
         draggedIndex.current = index;
         e.dataTransfer.effectAllowed = "move";
-        setTimeout(() => { e.target.style.opacity = '0.5'; }, 0);
+        setTimeout(() => { 
+            if(e.currentTarget) e.currentTarget.style.opacity = '0.5'; 
+        }, 0);
     };
 
     const handleDragEnd = (e) => {
         e.stopPropagation();
-        e.target.style.opacity = '1';
+        if(e.currentTarget) e.currentTarget.style.opacity = '1';
         draggedIndex.current = null;
     };
 
@@ -99,6 +101,7 @@ export default function Edit({ attributes, setAttributes }) {
     const handleDrop = (e, index) => {
         e.preventDefault();
         e.stopPropagation();
+        if(e.currentTarget) e.currentTarget.style.transform = 'scale(1)';
         if (draggedIndex.current === null || draggedIndex.current === index) return;
         
         let newIds = [];
