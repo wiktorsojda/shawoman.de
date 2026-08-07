@@ -199,6 +199,13 @@ export default function Edit({ attributes, setAttributes }) {
                                             e.currentTarget.style.transform = "scale(1)";
                                         }
                                     }}
+                                    onMouseDown={(e) => {
+                                        // To zapobiega temu, że Gutenberg kradnie zdarzenie myszy
+                                        // i próbuje przesuwać CAŁY BLOK zamiast naszego kafelka.
+                                        if (isManual) {
+                                            e.stopPropagation();
+                                        }
+                                    }}
                                 >
                                     <div style={{ 
                                         height: "200px", 
