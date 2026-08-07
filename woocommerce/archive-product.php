@@ -14,7 +14,7 @@ $shop_page_id = wc_get_page_id('shop');
 if ($shop_page_id) {
     $shop_page = get_post($shop_page_id);
     if ($shop_page && !empty($shop_page->post_content)) {
-        echo '<div class="shop-archive-blocks">';
+        echo '<div class="shop-archive">';
         echo apply_filters('the_content', $shop_page->post_content);
         echo '</div>';
     } else {
