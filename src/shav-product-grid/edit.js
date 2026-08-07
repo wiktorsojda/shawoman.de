@@ -1,18 +1,20 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { PanelBody, TextControl, SelectControl, RangeControl, RadioControl, FormTokenField } from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
     const { mainTitle, subTitle, selectionType, categoryId, productIds, orderBy, limit } = attributes;
     const blockProps = useBlockProps();
+    const [draggedIndex, setDraggedIndex] = useState(null);
 
     const categories = useSelect((select) => {
         return select("core").getEntityRecords("taxonomy", "product_cat", { per_page: -1 });
     }, []);
 
     const products = useSelect((select) => {
-        // Fetch all published products for the FormTokenField suggestions
-        return select("core").getEntityRecords("postType", "product", { per_page: -1, status: "publish" });
+        // Fetch all published products with _embed to get images
+        return select("core").getEntityRecords("postType", "product", { per_page: 100, status: "publish", _embed: true });
     }, []);
 
     const categoryOptions = [
@@ -23,10 +25,8 @@ export default function Edit({ attributes, setAttributes }) {
         })),
     ];
 
-    // Build suggestions for FormTokenField
     const productSuggestions = (products || []).map(p => p.title.rendered);
     
-    // Map selected titles back to IDs
     const handleProductChange = (selectedTitles) => {
         const newIds = selectedTitles.map(title => {
             const product = products.find(p => p.title.rendered === title);
@@ -35,11 +35,51 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ productIds: newIds });
     };
 
-    // Get current selected titles from IDs
     const selectedProductTitles = (productIds || []).map(id => {
         const product = (products || []).find(p => p.id === id);
         return product ? product.title.rendered : "";
     }).filter(title => title !== "");
+
+    // Prepare preview products
+    let previewProducts = [];
+    if (selectionType === 'manual') {
+        previewProducts = (productIds || []).map(id => {
+            return (products || []).find(p => p.id === id);
+        }).filter(Boolean);
+    } else {
+        // For category view, just show first 'limit' from all products as a dummy preview
+        // (proper filtering by category slug would require a separate query)
+        previewProducts = (products || []).slice(0, limit);
+    }
+
+    const handleDragStart = (e, index) => {
+        setDraggedIndex(index);
+        e.dataTransfer.effectAllowed = "move";
+        setTimeout(() => { e.target.style.opacity = '0.5'; }, 0);
+    };
+
+    const handleDragEnd = (e) => {
+        e.target.style.opacity = '1';
+        setDraggedIndex(null);
+    };
+
+    const handleDragOver = (e, index) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+    };
+
+    const handleDrop = (e, index) => {
+        e.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
+        
+        const newProductIds = [...productIds];
+        const draggedId = newProductIds[draggedIndex];
+        
+        newProductIds.splice(draggedIndex, 1);
+        newProductIds.splice(index, 0, draggedId);
+        
+        setAttributes({ productIds: newProductIds });
+    };
 
     return (
         <div {...blockProps}>
@@ -85,7 +125,7 @@ export default function Edit({ attributes, setAttributes }) {
                                 __experimentalExpandOnFocus={true}
                             />
                             <p style={{ fontSize: "12px", color: "#666" }}>
-                                Dodaj produkty w kolejności, w jakiej mają się wyświetlać (wymaga wybrania sortowania "Ręcznie").
+                                Możesz zmieniać kolejność łapiąc i przeciągając produkty w podglądzie bloku!
                             </p>
                         </div>
                     )}
@@ -112,21 +152,75 @@ export default function Edit({ attributes, setAttributes }) {
                 </PanelBody>
             </InspectorControls>
 
-            <div style={{ padding: "20px", border: "2px dashed #ccc", backgroundColor: "#fafafa" }}>
-                <h3 style={{ margin: "0 0 10px 0" }}>
-                    <span style={{ color: "#000", fontWeight: "bold" }}>{mainTitle} </span>
-                    <span style={{ color: "#666", fontWeight: "normal" }}>{subTitle}</span>
+            <div style={{ padding: "30px", border: "1px solid #e0e0e0", borderRadius: "10px", backgroundColor: "#fff", boxShadow: "inset 0 0 20px rgba(0,0,0,0.02)" }}>
+                <h3 style={{ margin: "0 0 20px 0", fontSize: "24px" }}>
+                    <span style={{ color: "#111", fontWeight: "800" }}>{mainTitle} </span>
+                    <span style={{ color: "#888", fontWeight: "400" }}>{subTitle}</span>
                 </h3>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "10px", marginTop: "15px" }}>
-                    {[...Array(Math.min(limit, 3))].map((_, i) => (
-                        <div key={i} style={{ height: "150px", backgroundColor: "#eaeaea", borderRadius: "8px", display: "flex", alignItems: "center", justifyContent: "center", color: "#999", textAlign: "center", padding: "10px" }}>
-                            {selectionType === 'manual' && selectedProductTitles[i] ? selectedProductTitles[i] : "Podgląd karty produktu..."}
-                        </div>
-                    ))}
+                
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: "20px" }}>
+                    {previewProducts.length === 0 ? (
+                        <p style={{ gridColumn: "1 / -1", color: "#999", textAlign: "center", padding: "40px" }}>
+                            {products === null ? "Ładowanie produktów..." : "Brak produktów do wyświetlenia. Dodaj produkty w panelu bocznym."}
+                        </p>
+                    ) : (
+                        previewProducts.map((product, index) => {
+                            const isManual = selectionType === 'manual' && orderBy === 'menu_order';
+                            const imageUrl = product._embedded?.['wp:featuredmedia']?.[0]?.source_url || "";
+                            
+                            return (
+                                <div 
+                                    key={product.id + '-' + index}
+                                    draggable={isManual}
+                                    onDragStart={isManual ? (e) => handleDragStart(e, index) : undefined}
+                                    onDragEnd={isManual ? handleDragEnd : undefined}
+                                    onDragOver={isManual ? (e) => handleDragOver(e, index) : undefined}
+                                    onDrop={isManual ? (e) => handleDrop(e, index) : undefined}
+                                    style={{ 
+                                        backgroundColor: "#fff", 
+                                        borderRadius: "12px", 
+                                        overflow: "hidden",
+                                        boxShadow: isManual && draggedIndex === index ? "0 10px 20px rgba(0,124,186,0.2)" : "0 4px 10px rgba(0,0,0,0.05)",
+                                        cursor: isManual ? "grab" : "default",
+                                        border: isManual && draggedIndex === index ? "2px solid #007cba" : "2px solid transparent",
+                                        transition: "all 0.2s ease"
+                                    }}
+                                    onDragEnter={(e) => {
+                                        if (isManual && draggedIndex !== null && draggedIndex !== index) {
+                                            e.currentTarget.style.transform = "scale(0.95)";
+                                        }
+                                    }}
+                                    onDragLeave={(e) => {
+                                        if (isManual) {
+                                            e.currentTarget.style.transform = "scale(1)";
+                                        }
+                                    }}
+                                >
+                                    <div style={{ 
+                                        height: "200px", 
+                                        backgroundColor: "#f5f5f5", 
+                                        backgroundImage: imageUrl ? `url(${imageUrl})` : 'none', 
+                                        backgroundSize: "cover", 
+                                        backgroundPosition: "center",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center"
+                                    }}>
+                                        {!imageUrl && <span style={{color: "#aaa"}}>Brak zdjęcia</span>}
+                                    </div>
+                                    <div style={{ padding: "15px", fontSize: "14px", fontWeight: "600", textAlign: "center", color: "#333", lineHeight: "1.3" }} dangerouslySetInnerHTML={{ __html: product.title.rendered }} />
+                                </div>
+                            );
+                        })
+                    )}
                 </div>
-                <p style={{ textAlign: "center", marginTop: "15px", color: "#666", fontSize: "12px" }}>
-                    <em>Uwaga: Ten blok ładuje dynamicznie oryginalne karty produktów z motywu na stronie (frontend).</em>
-                </p>
+                
+                {selectionType === 'manual' && orderBy === 'menu_order' && (
+                    <div style={{ textAlign: "center", marginTop: "25px", padding: "10px", backgroundColor: "#f0f8ff", borderRadius: "8px", color: "#007cba", fontSize: "14px", fontWeight: "bold" }}>
+                        <span style={{marginRight: "8px"}}>👆</span>
+                        Chwyć kartę myszką i przeciągnij, aby zmienić kolejność (Drag & Drop)
+                    </div>
+                )}
             </div>
         </div>
     );

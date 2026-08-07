@@ -15,7 +15,7 @@ $args = array(
 
 // Source Selection
 if ($selectionType === 'manual' && !empty($productIds)) {
-    $args['post__in'] = $productIds;
+    $args['post__in'] = array_map('intval', $productIds);
     // If order is menu_order with specific post__in, preserve the array order
     if ($orderBy === 'menu_order') {
         $args['orderby'] = 'post__in';
@@ -60,7 +60,7 @@ if ($selectionType === 'manual') {
 }
 ?>
 
-<div <?php echo get_block_wrapper_attributes(); ?>>
+<div <?php echo get_block_wrapper_attributes(['class' => 'container--narrow2-important shop-archive']); ?>>
     <section class="shop-section <?php echo esc_attr($title_class); ?>">
         <?php if (!empty($mainTitle) || !empty($subTitle)) : ?>
             <header class="shop-section__header">
