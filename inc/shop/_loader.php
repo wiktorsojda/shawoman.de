@@ -11,5 +11,5 @@ require_once __DIR__ . '/sections-config.php';
 require_once __DIR__ . '/frame-variant.php';
 
 if (is_admin()) {
-    require_once __DIR__ . '/admin-page.php';
+    // require_once __DIR__ . '/admin-page.php';
 }

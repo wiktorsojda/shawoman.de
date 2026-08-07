@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "ourblocktheme/shav-product-grid",
+    "title": "Siatka Produktów Shav",
+    "category": "theme",
+    "icon": "grid-view",
+    "description": "Niestandardowa siatka produktów z zachowaniem stylów motywu.",
+    "attributes": {
+        "mainTitle": {
+            "type": "string",
+            "default": "Urządzenia."
+        },
+        "subTitle": {
+            "type": "string",
+            "default": "Shav woman"
+        },
+        "categoryId": {
+            "type": "string",
+            "default": ""
+        },
+        "limit": {
+            "type": "number",
+            "default": 12
+        }
+    },
+    "textdomain": "shav",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}
