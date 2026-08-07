@@ -2267,7 +2267,7 @@ function wc_cross_sell_settings_render() {
         
         $(document).on('click', '.wc_cs_upload_image_btn', function(e) {
             e.preventDefault();
-            var $btn = $(this), $card = $btn.closest('.wc-cs-rule-card');
+            var $btn = $(this), $card = $btn.closest('.wc-cs-rule-card, .wc-cs-promo-set-card');
             var frame = wp.media({ title: 'Wybierz zdjęcie', multiple: false }).on('select', function() {
                 var url = frame.state().get('selection').first().toJSON().url;
                 $card.find('.wc_cs_custom_image').val(url);

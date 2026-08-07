@@ -920,7 +920,7 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
 
         // OBRAZEK
         if ( ! empty( $img ) ) {
-            echo '<div class="shav-bundle__thumb" style="flex: 0 0 50%; max-width: 50%;">';
+            echo '<div class="shav-bundle__thumb" style="flex: 0 0 40%; max-width: 40%;">';
             echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( $title ) . '">';
             echo '</div>';
         }
