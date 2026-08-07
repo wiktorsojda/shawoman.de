@@ -1,12 +1,11 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { PanelBody, TextControl, SelectControl, RangeControl, RadioControl, FormTokenField } from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
-import { useState, useRef } from "@wordpress/element";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
     const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit } = attributes;
     const blockProps = useBlockProps();
-    const draggedIndex = useRef(null);
 
     const categories = useSelect((select) => {
         return select("core").getEntityRecords("taxonomy", "product_cat", { per_page: -1 });
@@ -77,53 +76,7 @@ export default function Edit({ attributes, setAttributes }) {
         }
     }
 
-    const handleDragStart = (e, index) => {
-        e.stopPropagation();
-        draggedIndex.current = index;
-        e.dataTransfer.effectAllowed = "move";
-        e.dataTransfer.setData("text/plain", index);
-        setTimeout(() => { 
-            if(e.currentTarget) e.currentTarget.style.opacity = '0.5'; 
-        }, 0);
-    };
 
-    const handleDragEnd = (e) => {
-        e.stopPropagation();
-        if(e.currentTarget) e.currentTarget.style.opacity = '1';
-        draggedIndex.current = null;
-    };
-
-    const handleDragOver = (e, index) => {
-        e.preventDefault();
-        e.stopPropagation();
-        e.dataTransfer.dropEffect = "move";
-    };
-
-    const handleDrop = (e, index) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if(e.currentTarget) e.currentTarget.style.transform = 'scale(1)';
-        if (draggedIndex.current === null || draggedIndex.current === index) return;
-        
-        let newIds = [];
-        if (selectionType === 'manual') {
-            newIds = [...productIds];
-        } else {
-            newIds = customCategoryOrder && customCategoryOrder.length > 0 
-                ? [...customCategoryOrder] 
-                : previewProducts.map(p => p.id);
-        }
-        
-        const draggedId = newIds[draggedIndex.current];
-        newIds.splice(draggedIndex.current, 1);
-        newIds.splice(index, 0, draggedId);
-        
-        if (selectionType === 'manual') {
-            setAttributes({ productIds: newIds });
-        } else {
-            setAttributes({ customCategoryOrder: newIds });
-        }
-    };
 
     const handleMoveButton = (e, index, direction) => {
         e.stopPropagation();
@@ -245,41 +198,16 @@ export default function Edit({ attributes, setAttributes }) {
                             return (
                                 <div 
                                     key={product.id + '-' + index}
-                                    draggable={isManual}
-                                    onDragStart={isManual ? (e) => handleDragStart(e, index) : undefined}
-                                    onDragEnd={isManual ? handleDragEnd : undefined}
-                                    onDragOver={isManual ? (e) => handleDragOver(e, index) : undefined}
-                                    onDrop={isManual ? (e) => handleDrop(e, index) : undefined}
                                     style={{ 
                                         backgroundColor: "#fff", 
                                         borderRadius: "12px", 
                                         overflow: "hidden", 
-                                        boxShadow: isManual && draggedIndex.current === index ? "0 10px 20px rgba(0,124,186,0.2)" : "0 4px 10px rgba(0,0,0,0.05)",
-                                        cursor: isManual ? "grab" : "default",
-                                        border: isManual && draggedIndex.current === index ? "2px solid #007cba" : "2px solid transparent",
+                                        boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+                                        border: "2px solid transparent",
                                         transition: "all 0.2s ease",
                                         display: "flex",
                                         flexDirection: "column",
                                         height: "100%"
-                                    }}
-                                    onDragEnter={(e) => {
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        if (isManual && draggedIndex.current !== null && draggedIndex.current !== index) {
-                                            e.currentTarget.style.transform = "scale(0.95)";
-                                        }
-                                    }}
-                                    onDragLeave={(e) => {
-                                        e.preventDefault();
-                                        e.stopPropagation();
-                                        if (isManual) {
-                                            e.currentTarget.style.transform = "scale(1)";
-                                        }
-                                    }}
-                                    onMouseDown={(e) => {
-                                        if (isManual) {
-                                            e.stopPropagation();
-                                        }
                                     }}
                                 >
                                     <div style={{ 
@@ -326,7 +254,7 @@ export default function Edit({ attributes, setAttributes }) {
                 {orderBy === 'menu_order' && (
                     <div style={{ textAlign: "center", marginTop: "25px", padding: "10px", backgroundColor: "#f0f8ff", borderRadius: "8px", color: "#007cba", fontSize: "14px", fontWeight: "bold" }}>
                         <span style={{marginRight: "8px"}}>👆</span>
-                        Chwyć kartę myszką i przeciągnij, aby zmienić kolejność (Drag & Drop)
+                        Użyj strzałek na kafelkach, aby zmienić ich kolejność
                     </div>
                 )}
             </div>
