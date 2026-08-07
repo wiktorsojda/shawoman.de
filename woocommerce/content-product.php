@@ -124,14 +124,14 @@ if ($show_savings && $is_on_sale && $regular_price > 0 && $current_price < $regu
     <?php endif; ?>
 
     <a class="product-card__media" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
-        <img
-            class="product-card__image"
-            src="<?php echo esc_url($image_url); ?>"
-            alt="<?php echo esc_attr($title); ?>"
-            loading="lazy"
-            width="350"
-            height="350"
-        />
+        <?php 
+        echo $product->get_image('woocommerce_thumbnail', [
+            'class' => 'product-card__image',
+            'loading' => 'lazy',
+            'width' => 350,
+            'height' => 350
+        ]); 
+        ?>
     </a>
 
     <div class="product-card__body">

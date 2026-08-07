@@ -138,7 +138,8 @@ function shav_replace_product_image_on_archive($image, $product, $size, $attr, $
     if (!empty($old_shop_image_url)) {
         $alt = esc_attr($product->get_name());
         $url = esc_url($old_shop_image_url);
-        return '<img src="' . $url . '" alt="' . $alt . '" class="custom-shop-image attachment-' . $size . ' size-' . $size . '" decoding="async" loading="lazy" />';
+        $classes = isset($attr['class']) ? esc_attr($attr['class']) : 'custom-shop-image attachment-' . $size . ' size-' . $size;
+        return '<img src="' . $url . '" alt="' . $alt . '" class="' . $classes . '" decoding="async" loading="lazy" />';
     }
 
     return $image;
