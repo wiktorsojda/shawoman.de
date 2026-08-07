@@ -15,9 +15,21 @@
             "type": "string",
             "default": "Shav woman"
         },
+        "selectionType": {
+            "type": "string",
+            "default": "category"
+        },
         "categoryId": {
             "type": "string",
             "default": ""
+        },
+        "productIds": {
+            "type": "array",
+            "default": []
+        },
+        "orderBy": {
+            "type": "string",
+            "default": "menu_order"
         },
         "limit": {
             "type": "number",
