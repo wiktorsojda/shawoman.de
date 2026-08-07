@@ -560,62 +560,30 @@ if ( ! function_exists( 'blendygo_render_cpt_additional_badges' ) ) {
 if ( ! function_exists( 'blendygo_render_cpt_product_set' ) ) {
     // RENDERER ZESTAWU PROMOCYJNEGO 1:1
     function blendygo_render_cpt_product_set() {
-        $cpt_found = false;
-        $title = ''; $img = ''; $target_id = ''; $price_reg = ''; $price_pro = ''; $items = ''; $lbl_btn = ''; $lbl_header = '';
-        
         $promo_id = blendygo_get_active_cpt_promo();
-        if ( $promo_id ) {
-            $set_idx = blendygo_get_active_cpt_set_index( $promo_id );
-            if ( $set_idx ) {
-                $cpt_found = true;
-                $title = get_post_meta( $promo_id, 'promo_set_title_' . $set_idx, true );
-                $img = get_post_meta( $promo_id, 'promo_set_image_' . $set_idx, true );
-                $target_id = get_post_meta( $promo_id, 'promo_set_target_' . $set_idx, true );
-                $price_reg = get_post_meta( $promo_id, 'promo_set_price_regular_' . $set_idx, true );
-                $price_pro = get_post_meta( $promo_id, 'promo_set_price_promo_' . $set_idx, true );
-                $items = get_post_meta( $promo_id, 'promo_set_items_' . $set_idx, true );
+        if ( ! $promo_id ) return;
 
-                $custom_btn_label = get_post_meta( $promo_id, 'promo_set_btn_label_' . $set_idx, true );
-                $custom_header_label = get_post_meta( $promo_id, 'promo_set_header_label_' . $set_idx, true );
-                $lbl_btn = ! empty( $custom_btn_label ) ? $custom_btn_label : blendygo_get_label('set_btn', $promo_id);
-                $lbl_header = ! empty( $custom_header_label ) ? $custom_header_label : blendygo_get_label('set_header', $promo_id);
-            }
-        }
+        $set_idx = blendygo_get_active_cpt_set_index( $promo_id );
+        if ( ! $set_idx ) return;
 
-        if ( ! $cpt_found ) {
-            global $product;
-            $current_product_id = $product ? $product->get_id() : 0;
-            $saved_promo_sets = get_option('wc_cs_promo_sets', array());
-            $matched_set = false;
-            
-            foreach ($saved_promo_sets as $p_set) {
-                if (isset($p_set['active']) && $p_set['active'] === 'no') continue;
-                
-                $is_global = isset($p_set['is_global']) ? $p_set['is_global'] : 'no';
-                $target_ids = isset($p_set['target_ids']) ? (array)$p_set['target_ids'] : array();
-                
-                if ($is_global === 'yes' || in_array($current_product_id, $target_ids)) {
-                    $matched_set = $p_set;
-                    break;
-                }
-            }
-            
-            if ($matched_set) {
-                $cpt_found = true;
-                $title = isset($matched_set['title']) ? $matched_set['title'] : '';
-                $img = isset($matched_set['image']) ? $matched_set['image'] : '';
-                $target_id = isset($matched_set['target_id']) ? $matched_set['target_id'] : '';
-                $price_reg = isset($matched_set['price_reg']) ? $matched_set['price_reg'] : '';
-                $price_pro = isset($matched_set['price_promo']) ? $matched_set['price_promo'] : '';
-                $items = isset($matched_set['items']) ? $matched_set['items'] : '';
-                $lbl_btn = !empty($matched_set['btn_label']) ? $matched_set['btn_label'] : 'Dodaj do koszyka';
-                $lbl_header = !empty($matched_set['header_label']) ? $matched_set['header_label'] : 'Zestaw';
-                $promo_id = false;
-            }
-        }
+        $title = get_post_meta( $promo_id, 'promo_set_title_' . $set_idx, true );
+        $img = get_post_meta( $promo_id, 'promo_set_image_' . $set_idx, true );
+        $target_id = get_post_meta( $promo_id, 'promo_set_target_' . $set_idx, true );
+        $price_reg = get_post_meta( $promo_id, 'promo_set_price_regular_' . $set_idx, true );
+        $price_pro = get_post_meta( $promo_id, 'promo_set_price_promo_' . $set_idx, true );
+        $items = get_post_meta( $promo_id, 'promo_set_items_' . $set_idx, true );
 
-        if ( ! $cpt_found || empty( $target_id ) ) return;
+        // POBRANIE OPCJONALNYCH NAZW Z KOKPITU
+        $custom_btn_label = get_post_meta( $promo_id, 'promo_set_btn_label_' . $set_idx, true );
+        $custom_header_label = get_post_meta( $promo_id, 'promo_set_header_label_' . $set_idx, true );
+
+        if ( empty( $target_id ) ) return;
         $product_url = get_permalink( $target_id );
+
+        // POBIERANIE SŁOWNIKA DLA PRZYCISKU ORAZ NAGŁÓWKA ZESTAWU
+        // JEŚLI JEST WYPEŁNIONE POLE W KOKPICIE, NADPISZ, JEŚLI NIE, POBIERZ ZE SŁOWNIKA
+        $lbl_btn = ! empty( $custom_btn_label ) ? $custom_btn_label : blendygo_get_label('set_btn', $promo_id);
+        $lbl_header = ! empty( $custom_header_label ) ? $custom_header_label : blendygo_get_label('set_header', $promo_id);
 
         // POBRANIE SEPARATORÓW I WALUTY
         $cur = blendygo_get_label('currency', $promo_id);
@@ -857,14 +825,17 @@ if ( ! function_exists( 'blendygo_apply_cpt_overrides' ) ) {
         }
 
         if ( is_product() ) {
-            remove_action( 'woocommerce_share', 'display_custom_product_section', 20 );
-            add_action( 'woocommerce_share', 'blendygo_render_cpt_product_set', 20 );
-
             $promo_id = blendygo_get_active_cpt_promo();
             if ( $promo_id ) {
                 remove_action( 'woocommerce_before_single_product_summary', 'display_promotional_element_two_lines', 10 );
                 add_action( 'woocommerce_before_single_product_summary', 'blendygo_render_cpt_badge', 9 );
                 add_action( 'woocommerce_single_product_summary', 'blendygo_render_cpt_additional_badges', 18 );
+
+                $set_idx = blendygo_get_active_cpt_set_index( $promo_id );
+                if ( $set_idx > 0 ) {
+                    remove_action( 'woocommerce_share', 'display_custom_product_section', 20 );
+                    add_action( 'woocommerce_share', 'blendygo_render_cpt_product_set', 20 );
+                }
 
                 $atc_desk = get_post_meta( $promo_id, 'promo_banner_atc_desk', true );
                 $atc_mob  = get_post_meta( $promo_id, 'promo_banner_atc_mob', true );

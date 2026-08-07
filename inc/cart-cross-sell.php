@@ -951,28 +951,6 @@ function wc_cross_sell_settings_render() {
         }
         update_option('wc_cs_gratis_rules', $gratis_rules);
 
-        // ZAPIS ZESTAWÓW PROMOCYJNYCH
-        $promo_sets = array();
-        if (!empty($_POST['wc_cs_promo_sets']) && is_array($_POST['wc_cs_promo_sets'])) {
-            foreach ($_POST['wc_cs_promo_sets'] as $p_set) {
-                if (empty($p_set['target_id'])) continue;
-                $promo_sets[] = array(
-                    'active'       => (isset($p_set['active']) && $p_set['active'] === 'yes') ? 'yes' : 'no',
-                    'target_id'    => intval($p_set['target_id']), // Produkt docelowy dodawany do koszyka
-                    'target_ids'   => isset($p_set['target_ids']) ? array_map('intval', $p_set['target_ids']) : array(), // Na jakich produktach wyświetlać
-                    'is_global'    => (isset($p_set['is_global']) && $p_set['is_global'] === 'yes') ? 'yes' : 'no',
-                    'header_label' => sanitize_text_field($p_set['header_label']),
-                    'title'        => sanitize_text_field($p_set['title']),
-                    'image'        => esc_url_raw($p_set['image']),
-                    'items'        => sanitize_textarea_field($p_set['items']),
-                    'price_reg'    => sanitize_text_field($p_set['price_reg']),
-                    'price_promo'  => sanitize_text_field($p_set['price_promo']),
-                    'btn_label'    => sanitize_text_field($p_set['btn_label']),
-                );
-            }
-        }
-        update_option('wc_cs_promo_sets', $promo_sets);
-
         echo '<div class="updated"><p>Zapisano ustawienia na wszystkich zakładkach!</p></div>';
     }
 
@@ -991,7 +969,6 @@ function wc_cross_sell_settings_render() {
     if (empty($saved_rules)) $saved_rules[] = array( 'uid' => uniqid('cs_'), 'is_active' => 'yes', 'priority' => 0 ); 
     
     $saved_gratis = get_option('wc_cs_gratis_rules', array());
-    $saved_promo_sets = get_option('wc_cs_promo_sets', array());
     $daily_stats = get_option('wc_cs_daily_stats', array());
     
     $rule_names = array();
@@ -1160,7 +1137,6 @@ function wc_cross_sell_settings_render() {
             <a href="#tab-rules" class="nav-tab nav-tab-active">Reguły Cross-sell</a>
             <a href="#tab-analysis" class="nav-tab">Analiza</a>
             <a href="#tab-gratis" class="nav-tab">Gratis</a>
-            <a href="#tab-promo-sets" class="nav-tab">Zestawy promocyjne</a>
             <a href="#tab-settings" class="nav-tab">Ustawienia</a>
         </h2>
 
@@ -1228,129 +1204,6 @@ function wc_cross_sell_settings_render() {
                 </div>
                 <br>
                 <input type="submit" name="wc_cs_save" class="button button-primary button-large" value="Zapisz wszystkie ustawienia">
-            </div>
-
-            <div id="tab-promo-sets" class="cs-tab-content" style="display: none;">
-                <div style="margin-bottom: 20px; margin-top: 15px;">
-                    <button type="button" class="button" id="wc-cs-add-promo-set">+ Dodaj nowy zestaw promocyjny</button>
-                    <p class="description">Zestawy będą wyświetlane na stronach produktowych jako opcja domyślna, o ile CPT promocje nie wymusi innego zestawu.</p>
-                </div>
-                <div id="promo-sets-wrapper">
-                    <?php foreach ($saved_promo_sets as $index => $p_set) : 
-                        $target_id = isset($p_set['target_id']) ? $p_set['target_id'] : '';
-                        $is_active = isset($p_set['active']) ? $p_set['active'] : 'yes';
-                        $title_display = 'Nowy zestaw';
-                        if (!empty($p_set['title'])) {
-                            $title_display = $p_set['title'];
-                        } elseif ($target_id) {
-                            $prod_obj = wc_get_product($target_id);
-                            if ($prod_obj) $title_display = $prod_obj->get_name(); 
-                        }
-                        $inactive_class = $is_active === 'no' ? 'is-inactive' : '';
-                    ?>
-                    <div class="wc-cs-promo-set-card postbox closed <?php echo $inactive_class; ?>" data-index="<?php echo $index; ?>" style="max-width: 900px;">
-                        <div class="postbox-header">
-                            <h2>
-                                <span class="rule-title-text">
-                                    <strong><?php echo esc_html($title_display); ?></strong>
-                                </span>
-                                <?php if ($is_active === 'no'): ?>
-                                    <span style="color: #d63638; font-weight: normal; font-size: 12px; margin-left: 5px;">(Wyłączony)</span>
-                                <?php endif; ?>
-                            </h2>
-                            <div class="handle-actions">
-                                <button type="button" class="button-link wc-cs-remove-promo-set">Usuń</button>
-                                <span class="toggle-indicator" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <div class="inside">
-                            <table class="form-table">
-                                <tr>
-                                    <th style="width: 25%;">Status:</th>
-                                    <td>
-                                        <label class="cs-switch-container">
-                                            <input type="hidden" name="wc_cs_promo_sets[<?php echo $index; ?>][active]" value="no">
-                                            <input type="checkbox" name="wc_cs_promo_sets[<?php echo $index; ?>][active]" class="wc-cs-active-toggle" value="yes" <?php checked($is_active, 'yes'); ?>> 
-                                            <span class="cs-switch-slider"></span>
-                                            <span class="cs-switch-text">Zestaw włączony</span>
-                                        </label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Gdzie wyświetlać zestaw:</th>
-                                    <td>
-                                        <label class="cs-switch-container" style="margin-bottom: 15px;">
-                                            <input type="hidden" name="wc_cs_promo_sets[<?php echo $index; ?>][is_global]" value="no">
-                                            <input type="checkbox" name="wc_cs_promo_sets[<?php echo $index; ?>][is_global]" value="yes" <?php checked(isset($p_set['is_global']) ? $p_set['is_global'] : 'no', 'yes'); ?>> 
-                                            <span class="cs-switch-slider"></span>
-                                            <span class="cs-switch-text">Globalny (pokaż na każdej stronie produktu)</span>
-                                        </label>
-                                        <select class="wc-product-search" name="wc_cs_promo_sets[<?php echo $index; ?>][target_ids][]" multiple="multiple" style="width: 100%;" data-placeholder="Produkty, na których wyświetli się zestaw..." data-action="woocommerce_json_search_products_and_variations">
-                                            <?php if (!empty($p_set['target_ids'])) {
-                                                foreach ($p_set['target_ids'] as $tid) {
-                                                    $t_prod = wc_get_product($tid);
-                                                    $t_name = $t_prod ? $t_prod->get_name() : $tid;
-                                                    echo '<option value="'.esc_attr($tid).'" selected>'.esc_html($t_name).'</option>';
-                                                }
-                                            } ?>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Produkt do dodania (zestaw):</th>
-                                    <td>
-                                        <select class="wc-product-search wc-cs-promo-set-target-select" name="wc_cs_promo_sets[<?php echo $index; ?>][target_id]" style="width: 100%;" data-action="woocommerce_json_search_products_and_variations">
-                                            <?php if ($target_id) : ?>
-                                                <option value="<?php echo esc_attr($target_id); ?>" selected><?php echo esc_html($title_display); ?></option>
-                                            <?php endif; ?>
-                                        </select>
-                                        <p class="description">Ten produkt zostanie dodany do koszyka po kliknięciu w przycisk.</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Treści i Ceny:</th>
-                                    <td>
-                                        <div class="cs-inputs-grid">
-                                            <div class="cs-input-group full-width">
-                                                <label>Nagłówek zestawu (np. Zestaw Premium)</label>
-                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][header_label]" value="<?php echo esc_attr(isset($p_set['header_label']) ? $p_set['header_label'] : ''); ?>" placeholder="Wpisz nagłówek...">
-                                            </div>
-                                            <div class="cs-input-group full-width">
-                                                <label>Tytuł zestawu (np. Zestaw Shav)</label>
-                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][title]" value="<?php echo esc_attr(isset($p_set['title']) ? $p_set['title'] : ''); ?>" placeholder="Tytuł produktu...">
-                                            </div>
-                                            <div class="cs-input-group full-width">
-                                                <label>Tekst na przycisku (np. Dodaj Zestaw)</label>
-                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][btn_label]" value="<?php echo esc_attr(isset($p_set['btn_label']) ? $p_set['btn_label'] : ''); ?>" placeholder="Dodaj Zestaw">
-                                            </div>
-                                            <div class="cs-input-group">
-                                                <label>Stara Cena (Przekreślona)</label>
-                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][price_reg]" value="<?php echo esc_attr(isset($p_set['price_reg']) ? $p_set['price_reg'] : ''); ?>" placeholder="np. 99.00">
-                                            </div>
-                                            <div class="cs-input-group">
-                                                <label>Nowa Cena (Promocyjna)</label>
-                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][price_promo]" value="<?php echo esc_attr(isset($p_set['price_promo']) ? $p_set['price_promo'] : ''); ?>" placeholder="np. 49.00">
-                                            </div>
-                                            <div class="cs-input-group full-width">
-                                                <label>Składniki (jeden punkt na linię)</label>
-                                                <textarea name="wc_cs_promo_sets[<?php echo $index; ?>][items]" rows="4" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px; font-size: 13px;"><?php echo esc_textarea(isset($p_set['items']) ? $p_set['items'] : ''); ?></textarea>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Zdjęcie zestawu:</th>
-                                    <td>
-                                        <div class="wc_cs_image_preview"><?php if (!empty($p_set['image'])) : ?><img src="<?php echo esc_url($p_set['image']); ?>" style="max-width:150px; display:block;"><br><?php endif; ?></div>
-                                        <input type="hidden" name="wc_cs_promo_sets[<?php echo $index; ?>][image]" class="wc_cs_custom_image" value="<?php echo esc_attr(isset($p_set['image']) ? $p_set['image'] : ''); ?>">
-                                        <button type="button" class="button wc_cs_upload_image_btn">Wybierz zdjęcie</button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
             </div>
 
             <div id="tab-rules" class="cs-tab-content">
@@ -1843,95 +1696,6 @@ function wc_cross_sell_settings_render() {
         </div>
     </script>
 
-    <script type="text/template" id="wc-cs-promo-set-template">
-        <div class="wc-cs-promo-set-card postbox closed" data-index="{{INDEX}}" style="max-width: 900px;">
-            <div class="postbox-header">
-                <h2>
-                    <span class="rule-title-text">
-                        <strong>Nowy zestaw</strong>
-                    </span>
-                </h2>
-                <div class="handle-actions">
-                    <button type="button" class="button-link wc-cs-remove-promo-set">Usuń</button>
-                    <span class="toggle-indicator" aria-hidden="true"></span>
-                </div>
-            </div>
-            <div class="inside">
-                <table class="form-table">
-                    <tr>
-                        <th style="width: 25%;">Status:</th>
-                        <td>
-                            <label class="cs-switch-container">
-                                <input type="hidden" name="wc_cs_promo_sets[{{INDEX}}][active]" value="no">
-                                <input type="checkbox" name="wc_cs_promo_sets[{{INDEX}}][active]" class="wc-cs-active-toggle" value="yes" checked> 
-                                <span class="cs-switch-slider"></span>
-                                <span class="cs-switch-text">Zestaw włączony</span>
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gdzie wyświetlać zestaw:</th>
-                        <td>
-                            <label class="cs-switch-container" style="margin-bottom: 15px;">
-                                <input type="hidden" name="wc_cs_promo_sets[{{INDEX}}][is_global]" value="no">
-                                <input type="checkbox" name="wc_cs_promo_sets[{{INDEX}}][is_global]" value="yes"> 
-                                <span class="cs-switch-slider"></span>
-                                <span class="cs-switch-text">Globalny (pokaż na każdej stronie produktu)</span>
-                            </label>
-                            <select class="wc-product-search" name="wc_cs_promo_sets[{{INDEX}}][target_ids][]" multiple="multiple" style="width: 100%;" data-placeholder="Produkty, na których wyświetli się zestaw..." data-action="woocommerce_json_search_products_and_variations"></select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Produkt do dodania (zestaw):</th>
-                        <td>
-                            <select class="wc-product-search wc-cs-promo-set-target-select" name="wc_cs_promo_sets[{{INDEX}}][target_id]" style="width: 100%;" data-action="woocommerce_json_search_products_and_variations"></select>
-                            <p class="description">Ten produkt zostanie dodany do koszyka po kliknięciu w przycisk.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Treści i Ceny:</th>
-                        <td>
-                            <div class="cs-inputs-grid">
-                                <div class="cs-input-group full-width">
-                                    <label>Nagłówek zestawu (np. Zestaw Premium)</label>
-                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][header_label]" placeholder="Wpisz nagłówek...">
-                                </div>
-                                <div class="cs-input-group full-width">
-                                    <label>Tytuł zestawu (np. Zestaw Shav)</label>
-                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][title]" class="wc-cs-promo-set-title-input" placeholder="Tytuł produktu...">
-                                </div>
-                                <div class="cs-input-group full-width">
-                                    <label>Tekst na przycisku (np. Dodaj Zestaw)</label>
-                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][btn_label]" placeholder="Dodaj Zestaw">
-                                </div>
-                                <div class="cs-input-group">
-                                    <label>Stara Cena (Przekreślona)</label>
-                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][price_reg]" class="wc-cs-promo-set-price-reg" placeholder="np. 99.00">
-                                </div>
-                                <div class="cs-input-group">
-                                    <label>Nowa Cena (Promocyjna)</label>
-                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][price_promo]" placeholder="np. 49.00">
-                                </div>
-                                <div class="cs-input-group full-width">
-                                    <label>Składniki (jeden punkt na linię)</label>
-                                    <textarea name="wc_cs_promo_sets[{{INDEX}}][items]" rows="4" style="width: 100%; border: 1px solid #cbd5e1; border-radius: 6px; padding: 6px; font-size: 13px;"></textarea>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Zdjęcie zestawu:</th>
-                        <td>
-                            <div class="wc_cs_image_preview"></div>
-                            <input type="hidden" name="wc_cs_promo_sets[{{INDEX}}][image]" class="wc_cs_custom_image" value="">
-                            <button type="button" class="button wc_cs_upload_image_btn">Wybierz zdjęcie</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </script>
-
     <script>
     jQuery(document).ready(function($) {
         var rawStats = <?php echo json_encode($daily_stats); ?>;
@@ -2304,48 +2068,6 @@ function wc_cross_sell_settings_render() {
             } else {
                 $card.find('.gratis-amount-row').hide();
                 $card.find('.gratis-product-row').show();
-            }
-        });
-        
-        // ZESTAWY PROMOCYJNE
-        var promoSetIndex = <?php echo count($saved_promo_sets); ?>;
-        
-        $('#wc-cs-add-promo-set').on('click', function() {
-            var template = $('#wc-cs-promo-set-template').html().replace(/{{INDEX}}/g, promoSetIndex);
-            $('#promo-sets-wrapper').append(template);
-            $(document.body).trigger('wc-enhanced-select-init');
-            promoSetIndex++;
-        });
-
-        $(document).on('click', '.wc-cs-remove-promo-set', function(e) {
-            e.stopPropagation();
-            if(confirm('Usunąć ten zestaw promocyjny?')) $(this).closest('.wc-cs-promo-set-card').remove();
-        });
-
-        $(document).on('change', '.wc-cs-promo-set-target-select', function() {
-            var $select = $(this), product_id = $select.val(), $card = $select.closest('.postbox');
-            if (product_id) {
-                $card.find('.rule-title-text strong').text($select.find('option:selected').text());
-                $.ajax({
-                    url: ajaxurl,
-                    data: { action: 'get_wc_cs_product_data', product_id: product_id },
-                    success: function(response) {
-                        if (response.success) {
-                            var $titleInput = $card.find('.wc-cs-promo-set-title-input');
-                            if (!$titleInput.val() && response.data.name) { $titleInput.val(response.data.name); }
-                            
-                            if (!$card.find('.wc_cs_custom_image').val() && response.data.url) {
-                                $card.find('.wc_cs_custom_image').val(response.data.url);
-                                $card.find('.wc_cs_image_preview').html('<img src="'+response.data.url+'" style="max-width:150px; display:block; margin-bottom:5px;">');
-                            }
-                            
-                            var $priceRegInput = $card.find('.wc-cs-promo-set-price-reg');
-                            var $pricePromoInput = $card.find('input[name$="[price_promo]"]');
-                            if (!$priceRegInput.val() && response.data.regular_price) { $priceRegInput.val(response.data.regular_price); }
-                            if (!$pricePromoInput.val() && response.data.sale_price) { $pricePromoInput.val(response.data.sale_price); }
-                        }
-                    }
-                });
             }
         });
         
