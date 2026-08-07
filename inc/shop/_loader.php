@@ -6,7 +6,7 @@
 
 defined('ABSPATH') || exit;
 
-require_once __DIR__ . '/fse-bypass.php';
+// require_once __DIR__ . '/fse-bypass.php';
 require_once __DIR__ . '/sections-config.php';
 require_once __DIR__ . '/frame-variant.php';
 
