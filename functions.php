@@ -12,7 +12,7 @@ require_once get_template_directory() . '/inc/svg-support.php';
 // Skrypty migracyjne ze snippetów
 require_once get_template_directory() . '/inc/wc-cpt.php';
 require_once get_template_directory() . '/inc/cart-cross-sell.php';
-require_once get_template_directory() . '/inc/wc-automatyzacja.php';
+// require_once get_template_directory() . '/inc/wc-automatyzacja.php';
 require_once get_template_directory() . '/inc/theme-wyglad.php';
 
 // adobe font babe neue pro
@@ -1122,9 +1122,9 @@ add_action('admin_menu', function () {
 
 add_action('admin_init', function () {
     register_setting('shav_menu_banners_group', 'shav_menu_banners', array(
-        'type'              => 'array',
+        'type' => 'array',
         'sanitize_callback' => 'shav_menu_banners_sanitize',
-        'default'           => array('enabled' => 0, 'items' => array()),
+        'default' => array('enabled' => 0, 'items' => array()),
     ));
 });
 
@@ -1133,8 +1133,8 @@ function shav_menu_banners_sanitize($input)
     $out = array('enabled' => empty($input['enabled']) ? 0 : 1, 'items' => array());
     if (!empty($input['items']) && is_array($input['items'])) {
         foreach ($input['items'] as $it) {
-            $img  = isset($it['image']) ? esc_url_raw(trim($it['image'])) : '';
-            $link = isset($it['link'])  ? esc_url_raw(trim($it['link']))  : '';
+            $img = isset($it['image']) ? esc_url_raw(trim($it['image'])) : '';
+            $link = isset($it['link']) ? esc_url_raw(trim($it['link'])) : '';
             if ($img) {
                 $out['items'][] = array('image' => $img, 'link' => $link);
             }
@@ -1152,7 +1152,7 @@ add_action('admin_enqueue_scripts', function ($hook) {
 
 function shav_menu_banners_page()
 {
-    $data  = shav_menu_banners_get();
+    $data = shav_menu_banners_get();
     $items = $data['items'];
     // dopełnij do 3 slotów edycyjnych
     for ($i = count($items); $i < 3; $i++) {
@@ -1162,8 +1162,8 @@ function shav_menu_banners_page()
     <div class="wrap">
         <h1>Banery menu mobilnego</h1>
         <p>Banery pokazują się na dole rozwiniętego menu mobilnego — globalnie i na podstronach dropu.
-           Każdy baner to obrazek + link (przekierowanie po kliknięciu). Puste sloty są pomijane.
-           Wyłączenie „Pokaż banery" chowa je wszędzie.</p>
+            Każdy baner to obrazek + link (przekierowanie po kliknięciu). Puste sloty są pomijane.
+            Wyłączenie „Pokaż banery" chowa je wszędzie.</p>
         <form method="post" action="options.php">
             <?php settings_fields('shav_menu_banners_group'); ?>
             <table class="form-table">
@@ -1174,14 +1174,20 @@ function shav_menu_banners_page()
             </table>
             <h2>Banery</h2>
             <?php foreach ($items as $idx => $it): ?>
-                <div class="shav-mb-row" style="margin:0 0 20px;padding:16px;border:1px solid #dcdcde;background:#fff;max-width:520px;border-radius:6px;">
+                <div class="shav-mb-row"
+                    style="margin:0 0 20px;padding:16px;border:1px solid #dcdcde;background:#fff;max-width:520px;border-radius:6px;">
                     <p><strong>Baner <?php echo (int) ($idx + 1); ?></strong></p>
                     <p>
-                        <input type="text" class="shav-mb-image regular-text" name="shav_menu_banners[items][<?php echo (int) $idx; ?>][image]" value="<?php echo esc_attr($it['image']); ?>" placeholder="URL obrazka">
+                        <input type="text" class="shav-mb-image regular-text"
+                            name="shav_menu_banners[items][<?php echo (int) $idx; ?>][image]"
+                            value="<?php echo esc_attr($it['image']); ?>" placeholder="URL obrazka">
                         <button type="button" class="button shav-mb-upload">Wybierz obrazek</button>
                     </p>
-                    <p class="shav-mb-preview"><?php if ($it['image']): ?><img src="<?php echo esc_url($it['image']); ?>" style="max-width:280px;height:auto;border-radius:16px;"><?php endif; ?></p>
-                    <p><label>Link (przekierowanie):<br><input type="url" class="regular-text" name="shav_menu_banners[items][<?php echo (int) $idx; ?>][link]" value="<?php echo esc_attr($it['link']); ?>" placeholder="https://..."></label></p>
+                    <p class="shav-mb-preview"><?php if ($it['image']): ?><img src="<?php echo esc_url($it['image']); ?>"
+                                style="max-width:280px;height:auto;border-radius:16px;"><?php endif; ?></p>
+                    <p><label>Link (przekierowanie):<br><input type="url" class="regular-text"
+                                name="shav_menu_banners[items][<?php echo (int) $idx; ?>][link]"
+                                value="<?php echo esc_attr($it['link']); ?>" placeholder="https://..."></label></p>
                 </div>
             <?php endforeach; ?>
             <?php submit_button(); ?>
@@ -1221,7 +1227,7 @@ function shav_render_menu_banners()
             continue;
         }
         $link = !empty($it['link']) ? $it['link'] : '';
-        $tag  = $link ? 'a' : 'div';
+        $tag = $link ? 'a' : 'div';
         $href = $link ? ' href="' . esc_url($link) . '"' : '';
         $html .= '<' . $tag . ' class="menu-banner"' . $href . ' style="background-image:url(\'' . esc_url($it['image']) . '\');" aria-label="Baner promocyjny">'
             . '<span class="menu-banner__arrow">' . $arrow . '</span>'
@@ -1443,7 +1449,8 @@ function enqueue_mobile_menu_script()
 }
 add_action('wp_enqueue_scripts', 'enqueue_mobile_menu_script');
 
-function shav_enqueue_header_script() {
+function shav_enqueue_header_script()
+{
     wp_enqueue_script('shav-header', get_template_directory_uri() . '/inc/header.js', array(), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'shav_enqueue_header_script');
@@ -1573,7 +1580,7 @@ function shav_woosg_variant_image_keys($product_id)
     $keys = array();
     foreach (shav_woosg_get_variable_children($product_id) as $child) {
         foreach ($child->get_variation_attributes() as $attribute_name => $options) {
-            $attr_slug  = sanitize_title($attribute_name);
+            $attr_slug = sanitize_title($attribute_name);
             $attr_field = 'attribute_' . $attr_slug;
             foreach ($options as $option) {
                 $label = $option;
@@ -1586,8 +1593,8 @@ function shav_woosg_variant_image_keys($product_id)
                 $meta_key = '_shav_woosg_variant_image_' . $attr_slug . '_' . sanitize_title($option);
                 $keys[$meta_key] = array(
                     'attr_field' => $attr_field,
-                    'option'     => $option,
-                    'label'      => wc_attribute_label($attribute_name, $child) . ': ' . $label,
+                    'option' => $option,
+                    'label' => wc_attribute_label($attribute_name, $child) . ': ' . $label,
                 );
             }
         }
@@ -1610,11 +1617,11 @@ add_action('woocommerce_product_options_advanced', function () {
     echo '<span class="description">URL zdjęcia całego zestawu pokazywanego w galerii po wyborze wariantu (puste = zdjęcie się nie zmienia).</span></p>';
     foreach ($keys as $meta_key => $info) {
         woocommerce_wp_text_input(array(
-            'id'          => $meta_key,
-            'label'       => $info['label'],
+            'id' => $meta_key,
+            'label' => $info['label'],
             'placeholder' => 'https://... (URL z biblioteki mediów)',
-            'desc_tip'    => false,
-            'value'       => get_post_meta($post->ID, $meta_key, true),
+            'desc_tip' => false,
+            'value' => get_post_meta($post->ID, $meta_key, true),
         ));
     }
     echo '</div>';
@@ -2456,7 +2463,7 @@ function display_shop_banner_image_with_text()
             if (!empty($link_url)) {
                 echo '<a href="' . esc_url($link_url) . '" style="display: block;">';
             }
-            
+
             echo '<div class="shop-banner-image" style="position: relative;">';
 
             // Baner desktopowy – nadaj klasę, którą w CSS ukryjesz na mobile
@@ -2477,7 +2484,7 @@ function display_shop_banner_image_with_text()
                 echo '<div class="banner-text banner-text-2">' . esc_html($text_2) . '</div>';
             }
             echo '</div>'; // .shop-banner-textcontainer
-            
+
             echo '</div>'; // .shop-banner-image
 
             if (!empty($link_url)) {
