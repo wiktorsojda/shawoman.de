@@ -866,9 +866,10 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
             $dec = blendygo_get_label('dec', $promo_id);
             $tho = blendygo_get_label('tho', $promo_id);
         } else {
-            $cur = ' ' . get_woocommerce_currency_symbol();
-            $dec = wc_get_price_decimal_separator();
-            $tho = wc_get_price_thousand_separator();
+            // Unikanie funkcji WooCommerce (zapobiega fatal errorom jeśli WC ładuje się później)
+            $cur = ' €';
+            $dec = ',';
+            $tho = ' ';
         }
 
         // FORMATOWANIE CEN (BEZ CLOSURES)
