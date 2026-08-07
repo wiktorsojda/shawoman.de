@@ -1,12 +1,12 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
 import { PanelBody, TextControl, SelectControl, RangeControl, RadioControl, FormTokenField } from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
-import { useState } from "@wordpress/element";
+import { useState, useRef } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
     const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit } = attributes;
     const blockProps = useBlockProps();
-    const [draggedIndex, setDraggedIndex] = useState(null);
+    const draggedIndex = useRef(null);
 
     const categories = useSelect((select) => {
         return select("core").getEntityRecords("taxonomy", "product_cat", { per_page: -1 });
@@ -79,7 +79,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     const handleDragStart = (e, index) => {
         e.stopPropagation();
-        setDraggedIndex(index);
+        draggedIndex.current = index;
         e.dataTransfer.effectAllowed = "move";
         setTimeout(() => { e.target.style.opacity = '0.5'; }, 0);
     };
@@ -87,7 +87,7 @@ export default function Edit({ attributes, setAttributes }) {
     const handleDragEnd = (e) => {
         e.stopPropagation();
         e.target.style.opacity = '1';
-        setDraggedIndex(null);
+        draggedIndex.current = null;
     };
 
     const handleDragOver = (e, index) => {
@@ -99,7 +99,7 @@ export default function Edit({ attributes, setAttributes }) {
     const handleDrop = (e, index) => {
         e.preventDefault();
         e.stopPropagation();
-        if (draggedIndex === null || draggedIndex === index) return;
+        if (draggedIndex.current === null || draggedIndex.current === index) return;
         
         let newIds = [];
         if (selectionType === 'manual') {
@@ -110,8 +110,8 @@ export default function Edit({ attributes, setAttributes }) {
                 : previewProducts.map(p => p.id);
         }
         
-        const draggedId = newIds[draggedIndex];
-        newIds.splice(draggedIndex, 1);
+        const draggedId = newIds[draggedIndex.current];
+        newIds.splice(draggedIndex.current, 1);
         newIds.splice(index, 0, draggedId);
         
         if (selectionType === 'manual') {
@@ -250,16 +250,17 @@ export default function Edit({ attributes, setAttributes }) {
                                         backgroundColor: "#fff", 
                                         borderRadius: "12px", 
                                         overflow: "hidden", 
-                                        boxShadow: isManual && draggedIndex === index ? "0 10px 20px rgba(0,124,186,0.2)" : "0 4px 10px rgba(0,0,0,0.05)",
+                                        boxShadow: isManual && draggedIndex.current === index ? "0 10px 20px rgba(0,124,186,0.2)" : "0 4px 10px rgba(0,0,0,0.05)",
                                         cursor: isManual ? "grab" : "default",
-                                        border: isManual && draggedIndex === index ? "2px solid #007cba" : "2px solid transparent",
+                                        border: isManual && draggedIndex.current === index ? "2px solid #007cba" : "2px solid transparent",
                                         transition: "all 0.2s ease",
                                         display: "flex",
                                         flexDirection: "column",
                                         height: "100%"
                                     }}
                                     onDragEnter={(e) => {
-                                        if (isManual && draggedIndex !== null && draggedIndex !== index) {
+                                        e.preventDefault();
+                                        if (isManual && draggedIndex.current !== null && draggedIndex.current !== index) {
                                             e.currentTarget.style.transform = "scale(0.95)";
                                         }
                                     }}
