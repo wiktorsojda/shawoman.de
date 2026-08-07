@@ -249,11 +249,14 @@ export default function Edit({ attributes, setAttributes }) {
                                     style={{ 
                                         backgroundColor: "#fff", 
                                         borderRadius: "12px", 
-                                        overflow: "hidden",
+                                        overflow: "hidden", 
                                         boxShadow: isManual && draggedIndex === index ? "0 10px 20px rgba(0,124,186,0.2)" : "0 4px 10px rgba(0,0,0,0.05)",
                                         cursor: isManual ? "grab" : "default",
                                         border: isManual && draggedIndex === index ? "2px solid #007cba" : "2px solid transparent",
-                                        transition: "all 0.2s ease"
+                                        transition: "all 0.2s ease",
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        height: "100%"
                                     }}
                                     onDragEnter={(e) => {
                                         if (isManual && draggedIndex !== null && draggedIndex !== index) {
@@ -276,31 +279,22 @@ export default function Edit({ attributes, setAttributes }) {
                                     <div style={{ 
                                         height: "200px", 
                                         backgroundColor: "#f5f5f5", 
-                                        backgroundImage: imageUrl ? `url(${imageUrl})` : 'none', 
+                                        backgroundImage: imageUrl ? `url(${imageUrl})` : "none", 
                                         backgroundSize: "cover", 
                                         backgroundPosition: "center",
                                         display: "flex",
                                         alignItems: "center",
-                                        justifyContent: "center"
+                                        justifyContent: "center",
+                                        flexShrink: 0
                                     }}>
                                         {!imageUrl && <span style={{color: "#aaa"}}>Brak zdjęcia</span>}
                                     </div>
-                                    <div style={{ padding: "15px", fontSize: "14px", fontWeight: "600", textAlign: "center", color: "#333", lineHeight: "1.3" }} dangerouslySetInnerHTML={{ __html: product.title.rendered }} />
+                                    <div style={{ padding: "15px", fontSize: "14px", fontWeight: "600", textAlign: "center", color: "#333", lineHeight: "1.3", flexGrow: 1 }} dangerouslySetInnerHTML={{ __html: product.title.rendered }} />
                                     
                                     {isManual && (
-                                        <div style={{ display: "flex", justifyContent: "space-between", padding: "10px", backgroundColor: "#f9f9f9", borderTop: "1px solid #eee" }}>
+                                        <div style={{ display: "flex", justifyContent: "space-between", padding: "10px", backgroundColor: "#f9f9f9", borderTop: "1px solid #eee", marginTop: "auto" }}>
                                             <button 
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    e.preventDefault();
-                                                    if (index > 0) {
-                                                        const newIds = [...productIds];
-                                                        const temp = newIds[index - 1];
-                                                        newIds[index - 1] = newIds[index];
-                                                        newIds[index] = temp;
-                                                        setAttributes({ productIds: newIds });
-                                                    }
-                                                }}
+                                                onClick={(e) => handleMoveButton(e, index, 'left')}
                                                 disabled={index === 0}
                                                 style={{ cursor: index === 0 ? "not-allowed" : "pointer", padding: "5px 10px", border: "1px solid #ccc", borderRadius: "4px", background: "#fff", opacity: index === 0 ? 0.3 : 1 }}
                                                 title="Przesuń w lewo"
@@ -308,17 +302,7 @@ export default function Edit({ attributes, setAttributes }) {
                                                 ◀
                                             </button>
                                             <button 
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    e.preventDefault();
-                                                    if (index < previewProducts.length - 1) {
-                                                        const newIds = [...productIds];
-                                                        const temp = newIds[index + 1];
-                                                        newIds[index + 1] = newIds[index];
-                                                        newIds[index] = temp;
-                                                        setAttributes({ productIds: newIds });
-                                                    }
-                                                }}
+                                                onClick={(e) => handleMoveButton(e, index, 'right')}
                                                 disabled={index === previewProducts.length - 1}
                                                 style={{ cursor: index === previewProducts.length - 1 ? "not-allowed" : "pointer", padding: "5px 10px", border: "1px solid #ccc", borderRadius: "4px", background: "#fff", opacity: index === previewProducts.length - 1 ? 0.3 : 1 }}
                                                 title="Przesuń w prawo"
