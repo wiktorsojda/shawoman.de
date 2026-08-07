@@ -861,16 +861,16 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
         $product_url = get_permalink($target_id);
 
         // POBRANIE SEPARATORÓW I WALUTY
-        if ( $promo_id !== false ) {
-            $cur = blendygo_get_label('currency', $promo_id);
-            $dec = blendygo_get_label('dec', $promo_id);
-            $tho = blendygo_get_label('tho', $promo_id);
+        if ( function_exists('get_woocommerce_currency_symbol') ) {
+            $cur = ' ' . get_woocommerce_currency_symbol();
+            $dec = wc_get_price_decimal_separator();
+            $tho = wc_get_price_thousand_separator();
         } else {
-            // Unikanie funkcji WooCommerce (zapobiega fatal errorom jeśli WC ładuje się później)
             $cur = ' €';
             $dec = ',';
             $tho = ' ';
         }
+
 
         // FORMATOWANIE CEN (BEZ CLOSURES)
         $val_reg = 0;

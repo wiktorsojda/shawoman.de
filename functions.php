@@ -10,15 +10,15 @@ require_once get_template_directory() . '/inc/shop/_loader.php';
 require_once get_template_directory() . '/inc/svg-support.php';
 
 // Skrypty migracyjne ze snippetów
-require_once get_template_directory() . '/inc/wc-cpt.php';
-require_once get_template_directory() . '/inc/cart-cross-sell.php';
+// require_once get_template_directory() . '/inc/wc-cpt.php';
+// require_once get_template_directory() . '/inc/cart-cross-sell.php';
 // require_once get_template_directory() . '/inc/wc-automatyzacja.php';
 require_once get_template_directory() . '/inc/theme-wyglad.php';
 
 // adobe font babe neue pro
 function add_resource_hints_and_fonts()
 {
-    // DNS Prefetch for non-preconnected resources
+    // DNS Prefetch for non-preconnected resources~
     echo '<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">';
 
     // Preconnect for prioritized resources
