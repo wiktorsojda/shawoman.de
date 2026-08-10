@@ -2239,9 +2239,10 @@ function display_percentage_strip()
         return;
 
     // 2. Pobierz globalne defaults
+    $mode = get_option('shav_stock_strip_mode', 'auto');
     $percentage = get_option('shav_stock_strip_percent', 80);
     $max_stock = get_option('shav_stock_strip_max_stock', 50);
-    $text_template = get_option('shav_stock_strip_text', 'Nur solange der Vorrat reicht! – Nur noch: {percent}%');
+    $text_template = get_option('shav_stock_strip_text', 'Nur noch {stock} Stück auf Lager! – Schon {percent}% verkauft!');
 
     // 3. Ewaluacja reguł
     $rules_json = get_option('shav_stock_strips_json', '[]');
@@ -2273,6 +2274,7 @@ function display_percentage_strip()
             }
             
             if ($match) {
+                if (!empty($rule['mode'])) $mode = $rule['mode'];
                 if (isset($rule['percent']) && $rule['percent'] !== '') $percentage = $rule['percent'];
                 if (isset($rule['max_stock']) && $rule['max_stock'] !== '') $max_stock = $rule['max_stock'];
                 if (!empty($rule['text'])) $text_template = $rule['text'];
@@ -2281,23 +2283,26 @@ function display_percentage_strip()
         }
     }
 
-    // 4. Wyliczenia rzeczywistego stanu magazynowego (jeśli aktywne na produkcie)
+    // 4. Wyliczenia rzeczywistego stanu magazynowego
     $stock_qty = 0;
     if ($product->managing_stock()) {
         $current_stock = $product->get_stock_quantity();
-        
+        if ($current_stock !== null) {
+            $stock_qty = $current_stock;
+        }
+    }
+
+    if ($mode === 'auto' && $product->managing_stock() && $current_stock !== null) {
         // Jeśli produkt ma zdefiniowany własny limit w zakładce Magazyn, nadpisz regułę:
         $product_max_stock = get_post_meta($pid, '_initial_stock_for_strip', true);
         if (!empty($product_max_stock) && is_numeric($product_max_stock) && $product_max_stock > 0) {
             $max_stock = $product_max_stock;
         }
 
-        if ($current_stock !== null) {
-            $stock_qty = $current_stock;
-            if ($max_stock > 0) {
-                // Wyliczamy prawdziwy procent względem ustawionego limitu bazowego
-                $percentage = floor(($current_stock / $max_stock) * 100);
-            }
+        if ($max_stock > 0) {
+            // Wyliczamy prawdziwy procent względem ustawionego limitu bazowego (pozostały stan)
+            $percentage = floor(($current_stock / $max_stock) * 100);
+            if ($percentage > 100) $percentage = 100;
         }
     }
 
