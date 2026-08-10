@@ -2240,6 +2240,7 @@ function display_percentage_strip()
     // 2. Pobierz globalne defaults
     $mode = get_option('shav_stock_strip_mode', 'auto');
     $percentage = get_option('shav_stock_strip_percent', 80);
+    $max_stock = get_option('shav_stock_strip_max_stock', 50);
     $text_template = get_option('shav_stock_strip_text', 'Nur noch {stock} Stück auf Lager! – Schon {percent}% verkauft!');
 
     // 3. Ewaluacja reguł
@@ -2275,6 +2276,7 @@ function display_percentage_strip()
                 $is_enabled = true; // Reguła wymusza włączenie paska, nawet jeśli globalnie jest wyłączony
                 if (!empty($rule['mode'])) $mode = $rule['mode'];
                 if (isset($rule['percent']) && $rule['percent'] !== '') $percentage = $rule['percent'];
+                if (isset($rule['max_stock']) && $rule['max_stock'] !== '') $max_stock = $rule['max_stock'];
                 if (!empty($rule['text'])) $text_template = $rule['text'];
                 break; // Stop at first matched rule
             }
@@ -2296,13 +2298,6 @@ function display_percentage_strip()
     }
 
     if ($mode === 'auto' && $product->managing_stock() && $current_stock !== null) {
-        // Produkt musi mieć zdefiniowany własny limit w zakładce Magazyn
-        $max_stock = 0;
-        $product_max_stock = get_post_meta($pid, '_initial_stock_for_strip', true);
-        if (!empty($product_max_stock) && is_numeric($product_max_stock) && $product_max_stock > 0) {
-            $max_stock = $product_max_stock;
-        }
-
         if ($max_stock > 0) {
             // Wyliczamy prawdziwy procent względem ustawionego limitu bazowego (pozostały stan)
             $percentage = floor(($current_stock / $max_stock) * 100);
@@ -2330,15 +2325,14 @@ function display_percentage_strip()
         echo '</div>';
         echo '</div>';
         
-        // --- DEBUG INFO DLA ADMINA ---
+        // --- DEBUG INFO DLA ADMINA (Tymczasowe) ---
         if (current_user_can('manage_options')) {
             echo '<div style="background:#ffeb3b; color:#000; padding:10px; margin-top:10px; font-size:12px;">';
             echo '<strong>[DEBUG INFO (tylko dla admina)]</strong><br>';
             echo 'Tryb (mode): ' . esc_html($mode) . '<br>';
             echo 'Czy zarządza stanem: ' . ($product->managing_stock() ? 'TAK' : 'NIE') . '<br>';
             echo 'Current Stock: ' . esc_html(isset($current_stock) ? $current_stock : 'NULL') . '<br>';
-            echo 'Limit początkowy w produkcie (max_stock z bazy): ' . esc_html(get_post_meta($pid, '_initial_stock_for_strip', true)) . '<br>';
-            echo 'Zastosowany limit (max_stock w kodzie): ' . esc_html(isset($max_stock) ? $max_stock : 'NIE DOTYCZY') . '<br>';
+            echo 'Zastosowany limit (max_stock w kodzie z reguły): ' . esc_html(isset($max_stock) ? $max_stock : 'NIE DOTYCZY') . '<br>';
             echo 'Zastosowany %: ' . esc_html($percentage) . '%';
             echo '</div>';
         }
@@ -2346,36 +2340,7 @@ function display_percentage_strip()
 }
 add_action('woocommerce_share', 'display_percentage_strip', 20);
 
-// Dodaj pole "Początkowy stan (do paska)" do zakładki Magazyn
-function add_initial_stock_limit_field() {
-    echo '<div class="options_group show_if_manage_stock">';
-    woocommerce_wp_text_input([
-        'id'          => '_initial_stock_for_strip',
-        'label'       => __('Początkowy limit do paska %', 'woocommerce'),
-        'desc_tip'    => true,
-        'description' => __('Wpisz od jakiej liczby sztuk liczony jest pasek postępu. (Np. jeśli wpiszesz 100, a obecny stan to 20, pasek wyświetli 20%). Ta wartość nadpisuje limity z globalnych reguł.', 'woocommerce'),
-        'type'        => 'number',
-        'custom_attributes' => [
-            'step' => '1',
-            'min'  => '1'
-        ]
-    ]);
-    echo '</div>';
-}
-add_action('woocommerce_product_options_stock_fields', 'add_initial_stock_limit_field');
 
-function save_initial_stock_limit_field($post_id) {
-    // Sprawdź czy to autozapis
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return;
-    }
-    
-    // Zapisz wartość jeśli istnieje w POST
-    if (isset($_POST['_initial_stock_for_strip'])) {
-        update_post_meta($post_id, '_initial_stock_for_strip', sanitize_text_field($_POST['_initial_stock_for_strip']));
-    }
-}
-add_action('save_post_product', 'save_initial_stock_limit_field', 99);
 
 // Add custom banner field to product edit page
 function add_konkurs_banner_field()
