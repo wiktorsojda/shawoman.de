@@ -80,28 +80,36 @@ function shav_faq_product_data_panel() {
                 function renderRows() {
                     container.innerHTML = '';
                     faqData.forEach((row, index) => {
+                        const isExpanded = (!row.question || !row.answer) ? 'block' : 'none';
+                        const titlePreview = row.question ? row.question.substring(0, 50) + (row.question.length > 50 ? '...' : '') : `Pytanie #${index+1}`;
+                        
                         const rowHtml = `
                             <div class="shav-faq-row" style="background: #f8f8f8; border: 1px solid #ccc; padding: 15px; border-radius: 4px; position: relative; margin-bottom: 15px; clear: both; overflow: hidden;">
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; clear: both; float: none;">
-                                    <strong style="float: none; width: auto; margin: 0; padding: 0;">Pytanie #${index+1}</strong>
-                                    <a href="#" class="shav-faq-remove" data-index="${index}" style="color: red; text-decoration: none; font-weight: bold; float: none; margin: 0; padding: 0;">Usuń &times;</a>
+                                <div class="shav-faq-toggle" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; clear: both; float: none;">
+                                    <strong style="float: none; width: auto; margin: 0; padding: 0;">${titlePreview}</strong>
+                                    <div>
+                                        <a href="#" class="shav-faq-remove" data-index="${index}" style="color: red; text-decoration: none; font-weight: bold; float: none; margin: 0 15px 0 0; padding: 0;">Usuń &times;</a>
+                                        <span class="shav-toggle-icon" style="font-weight: bold;">${isExpanded === 'block' ? '&#9650;' : '&#9660;'}</span>
+                                    </div>
                                 </div>
                                 
-                                <div style="margin-bottom: 15px; clear: both; float: none;">
-                                    <label style="display:block; margin-bottom: 5px; font-weight: 600; float: none; width: auto; text-align: left; padding: 0;">Pytanie:</label>
-                                    <input type="text" class="faq-question" data-index="${index}" value="${row.question ? row.question.replace(/"/g, '&quot;') : ''}" style="width: 100%; float: none; display: block; margin: 0; padding: 8px;">
-                                </div>
-                                
-                                <div style="margin-bottom: 15px; clear: both; float: none;">
-                                    <label style="display:block; margin-bottom: 5px; font-weight: 600; float: none; width: auto; text-align: left; padding: 0;">Odpowiedź:</label>
-                                    <textarea class="faq-answer" data-index="${index}" style="width: 100%; height: 80px; float: none; display: block; margin: 0; padding: 8px;">${row.answer || ''}</textarea>
-                                </div>
-                                
-                                <div style="margin-bottom: 0; clear: both; float: none;">
-                                    <label style="display:block; margin-bottom: 5px; font-weight: 600; float: none; width: auto; text-align: left; padding: 0;">Zdjęcie (opcjonalne):</label>
-                                    <div style="display:flex; gap: 10px; align-items: center; float: none; clear: both;">
-                                        <input type="text" class="faq-image" data-index="${index}" value="${row.image ? row.image.replace(/"/g, '&quot;') : ''}" style="width: 80%; float: none; display: block; margin: 0; padding: 8px;" placeholder="URL obrazka (np. https://...)">
-                                        <button type="button" class="button shav-upload-img" data-index="${index}" style="float: none; margin: 0;">Wybierz</button>
+                                <div class="faq-row-content" style="display: ${isExpanded}; margin-top: 15px; border-top: 1px solid #ddd; padding-top: 15px;">
+                                    <div style="margin-bottom: 15px; clear: both; float: none;">
+                                        <label style="display:block; margin-bottom: 5px; font-weight: 600; float: none; width: auto; text-align: left; padding: 0;">Pytanie:</label>
+                                        <input type="text" class="faq-question" data-index="${index}" value="${row.question ? row.question.replace(/"/g, '&quot;') : ''}" style="width: 100%; float: none; display: block; margin: 0; padding: 8px;">
+                                    </div>
+                                    
+                                    <div style="margin-bottom: 15px; clear: both; float: none;">
+                                        <label style="display:block; margin-bottom: 5px; font-weight: 600; float: none; width: auto; text-align: left; padding: 0;">Odpowiedź:</label>
+                                        <textarea class="faq-answer" data-index="${index}" style="width: 100%; height: 80px; float: none; display: block; margin: 0; padding: 8px;">${row.answer || ''}</textarea>
+                                    </div>
+                                    
+                                    <div style="margin-bottom: 0; clear: both; float: none;">
+                                        <label style="display:block; margin-bottom: 5px; font-weight: 600; float: none; width: auto; text-align: left; padding: 0;">Zdjęcie (opcjonalne):</label>
+                                        <div style="display:flex; gap: 10px; align-items: center; float: none; clear: both;">
+                                            <input type="text" class="faq-image" data-index="${index}" value="${row.image ? row.image.replace(/"/g, '&quot;') : ''}" style="width: 80%; float: none; display: block; margin: 0; padding: 8px;" placeholder="URL obrazka (np. https://...)">
+                                            <button type="button" class="button shav-upload-img" data-index="${index}" style="float: none; margin: 0;">Wybierz</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +117,23 @@ function shav_faq_product_data_panel() {
                         container.insertAdjacentHTML('beforeend', rowHtml);
                     });
                     
-                    // Podpięcie zdarzeń usuwania
+                    // Podpięcie zdarzeń usuwania i rozwijania
+                    container.querySelectorAll('.shav-faq-toggle').forEach(header => {
+                        header.addEventListener('click', function(e) {
+                            if (e.target.classList.contains('shav-faq-remove')) return;
+                            const content = this.nextElementSibling;
+                            const icon = this.querySelector('.shav-toggle-icon');
+                            if (content.style.display === 'none') {
+                                content.style.display = 'block';
+                                icon.innerHTML = '&#9650;';
+                            } else {
+                                content.style.display = 'none';
+                                icon.innerHTML = '&#9660;';
+                                syncData(); // zapisujemy dane przed zwinięciem na wszelki wypadek
+                            }
+                        });
+                    });
+                    
                     container.querySelectorAll('.shav-faq-remove').forEach(btn => {
                         btn.addEventListener('click', function(e) {
                             e.preventDefault();
