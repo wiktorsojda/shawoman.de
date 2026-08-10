@@ -378,6 +378,10 @@ function shav_render_store_settings_page() {
             }
         };
 
+        window.addEventListener('error', function(e) {
+            jQuery('.shav-settings-wrap').prepend('<div class="notice notice-error"><p><strong>JS Error:</strong> ' + e.message + ' in ' + e.filename + ' on line ' + e.lineno + '</p></div>');
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             // Zakładki
             const tabs = document.querySelectorAll('.shav-tab');
@@ -503,7 +507,7 @@ function shav_render_store_settings_page() {
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
                     jQuery('.wc-product-search').each(function() {
                         if(jQuery(this).hasClass('select2-hidden-accessible')) {
-                            jQuery(this).selectWoo('destroy');
+                            try { jQuery(this).selectWoo('destroy'); } catch(e) {}
                         }
                     });
                 }
@@ -672,11 +676,13 @@ function shav_render_store_settings_page() {
                         Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
                     } else if (type === 'products') {
                         const prodSelect = row.querySelector('.badge-products-select');
-                        if (typeof jQuery !== 'undefined') {
+                        if (typeof jQuery !== 'undefined' && jQuery(prodSelect).hasClass('select2-hidden-accessible')) {
                             const selectedData = jQuery(prodSelect).selectWoo('data');
-                            selectedData.forEach(item => {
-                                products.push({ id: item.id, text: item.text });
-                            });
+                            if (Array.isArray(selectedData)) {
+                                selectedData.forEach(item => {
+                                    products.push({ id: item.id, text: item.text });
+                                });
+                            }
                         }
                     }
 
@@ -709,7 +715,7 @@ function shav_render_store_settings_page() {
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
                     jQuery(containerStock).find('.wc-product-search').each(function() {
                         if(jQuery(this).hasClass('select2-hidden-accessible')) {
-                            jQuery(this).selectWoo('destroy');
+                            try { jQuery(this).selectWoo('destroy'); } catch(e) {}
                         }
                     });
                 }
@@ -878,9 +884,11 @@ function shav_render_store_settings_page() {
                         const prodSelect = row.querySelector('.stock-products-select');
                         if (typeof jQuery !== 'undefined' && jQuery(prodSelect).hasClass('select2-hidden-accessible')) {
                             const selectedData = jQuery(prodSelect).selectWoo('data');
-                            selectedData.forEach(item => {
-                                products.push({ id: item.id, text: item.text });
-                            });
+                            if (Array.isArray(selectedData)) {
+                                selectedData.forEach(item => {
+                                    products.push({ id: item.id, text: item.text });
+                                });
+                            }
                         }
                     }
 
@@ -951,7 +959,7 @@ function shav_render_store_settings_page() {
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
                     jQuery(containerSvgBadges).find('.wc-product-search').each(function() {
                         if(jQuery(this).hasClass('select2-hidden-accessible')) {
-                            jQuery(this).selectWoo('destroy');
+                            try { jQuery(this).selectWoo('destroy'); } catch(e) {}
                         }
                     });
                 }
@@ -1297,7 +1305,7 @@ function shav_render_store_settings_page() {
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
                     jQuery(containerTextBadges).find('.wc-product-search').each(function() {
                         if(jQuery(this).hasClass('select2-hidden-accessible')) {
-                            jQuery(this).selectWoo('destroy');
+                            try { jQuery(this).selectWoo('destroy'); } catch(e) {}
                         }
                     });
                 }
