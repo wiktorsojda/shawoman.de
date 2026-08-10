@@ -2244,8 +2244,16 @@ function display_percentage_strip()
     $text_template = get_option('shav_stock_strip_text', 'Nur noch {stock} Stück auf Lager! – Schon {percent}% verkauft!');
 
     // 3. Ewaluacja reguł
-    $rules_json = get_option('shav_stock_strips_json', '[]');
-    $rules = json_decode($rules_json, true);
+    $rules_json = trim(get_option('shav_stock_strips_json', '[]'));
+    if (!empty($rules_json) && $rules_json !== '[]') {
+        if (strpos($rules_json, '[') === 0) {
+            $rules = json_decode($rules_json, true);
+        } else {
+            $rules = json_decode(base64_decode($rules_json), true);
+        }
+    } else {
+        $rules = [];
+    }
     
     if (is_array($rules) && !empty($rules)) {
         $product_cats = wp_get_post_terms($pid, 'product_cat', ['fields' => 'ids']);
