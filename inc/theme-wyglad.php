@@ -743,7 +743,7 @@ function shav_render_store_settings_page() {
 
                         <div class="shav-field-group target-container-products" style="border:none; padding:0; margin-bottom:15px; ${rule.type === 'products' ? '' : 'display:none;'}">
                             <label class="shav-label">Wyszukaj i wybierz produkty:</label>
-                            <select class="wc-product-search stock-product-select stock-products-select" multiple="multiple" style="width: 100%; max-width:600px;" data-placeholder="Szukaj produktów..." data-action="woocommerce_json_search_products_and_variations" data-index="${index}">
+                            <select class="stock-product-select stock-products-select" multiple="multiple" style="width: 100%; max-width:600px;" data-placeholder="Szukaj produktów..." data-action="woocommerce_json_search_products_and_variations" data-index="${index}">
                             </select>
                         </div>
                         
@@ -811,7 +811,7 @@ function shav_render_store_settings_page() {
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
                     jQuery(containerStock).find('.stock-product-select').each(function() {
                         var sel = $(this);
-                        var row = sel.closest('.stock-row');
+                        var row = sel.closest('.shav-repeater-row');
                         sel.selectWoo({
                             ajax: {
                                 url: ajaxurl,
@@ -821,7 +821,7 @@ function shav_render_store_settings_page() {
                                     return {
                                         term: params.term,
                                         action: 'woocommerce_json_search_products_and_variations',
-                                        security: wc_enhanced_select_params.search_products_nonce
+                                        security: typeof wc_enhanced_select_params !== 'undefined' ? wc_enhanced_select_params.search_products_nonce : ''
                                     };
                                 },
                                 processResults: function(data) {
