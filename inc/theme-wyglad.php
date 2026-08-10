@@ -585,8 +585,11 @@ function shav_render_store_settings_page() {
                         e.preventDefault();
                         if(confirm('Na pewno usunąć tę regułę?')) {
                             syncDataFromDOM();
-                            badgeData.splice(parseInt(this.dataset.index), 1);
-                            renderRows();
+                            let idx = parseInt(btn.getAttribute('data-index'));
+                            if (!isNaN(idx)) {
+                                badgeData.splice(idx, 1);
+                                renderRows();
+                            }
                         }
                     });
                 });
@@ -595,8 +598,11 @@ function shav_render_store_settings_page() {
                 document.querySelectorAll('.badge-type-select').forEach(select => {
                     select.addEventListener('change', function(e) {
                         syncDataFromDOM();
-                        badgeData[parseInt(this.dataset.index)].type = this.value;
-                        renderRows();
+                        let idx = parseInt(select.getAttribute('data-index'));
+                        if (!isNaN(idx) && badgeData[idx]) {
+                            badgeData[idx].type = this.value;
+                            renderRows();
+                        }
                     });
                 });
 
@@ -660,7 +666,7 @@ function shav_render_store_settings_page() {
 
             // Funkcja ściągająca wpisane dane do pamięci przed np. dodaniem nowego wiersza
             function syncDataFromDOM() {
-                const rows = document.querySelectorAll('.shav-repeater-row:not(.stock-row):not(.text-badge-row)');
+                const rows = document.querySelectorAll('.shav-repeater-row:not(.stock-row):not(.text-badge-row):not(.svg-badge-row)');
                 badgeData = [];
                 rows.forEach((row, idx) => {
                     const type = row.querySelector('.badge-type-select').value;
@@ -792,8 +798,11 @@ function shav_render_store_settings_page() {
                         e.preventDefault();
                         if(confirm('Na pewno usunąć tę regułę?')) {
                             syncStockDataFromDOM();
-                            stockData.splice(parseInt(this.dataset.index), 1);
-                            renderStockRows();
+                            let idx = parseInt(btn.getAttribute('data-index'));
+                            if (!isNaN(idx)) {
+                                stockData.splice(idx, 1);
+                                renderStockRows();
+                            }
                         }
                     });
                 });
@@ -801,16 +810,22 @@ function shav_render_store_settings_page() {
                 document.querySelectorAll('.stock-type-select').forEach(select => {
                     select.addEventListener('change', function(e) {
                         syncStockDataFromDOM();
-                        stockData[parseInt(this.dataset.index)].type = this.value;
-                        renderStockRows();
+                        let idx = parseInt(select.getAttribute('data-index'));
+                        if (!isNaN(idx) && stockData[idx]) {
+                            stockData[idx].type = this.value;
+                            renderStockRows();
+                        }
                     });
                 });
 
                 document.querySelectorAll('.stock-mode-select').forEach(select => {
                     select.addEventListener('change', function(e) {
                         syncStockDataFromDOM();
-                        stockData[parseInt(this.dataset.index)].mode = this.value;
-                        renderStockRows();
+                        let idx = parseInt(select.getAttribute('data-index'));
+                        if (!isNaN(idx) && stockData[idx]) {
+                            stockData[idx].mode = this.value;
+                            renderStockRows();
+                        }
                     });
                 });
 
@@ -867,11 +882,17 @@ function shav_render_store_settings_page() {
                 const rows = document.querySelectorAll('.stock-row');
                 stockData = [];
                 rows.forEach((row, idx) => {
-                    const type = row.querySelector('.stock-type-select').value;
-                    const mode = row.querySelector('.stock-mode-select').value;
-                    const text = row.querySelector('.stock-text-input').value;
-                    const percent = row.querySelector('.stock-percent-input').value;
-                    const max_stock = row.querySelector('.stock-max-input').value;
+                    const typeSelect = row.querySelector('.stock-type-select');
+                    const modeSelect = row.querySelector('.stock-mode-select');
+                    const textInput = row.querySelector('.stock-text-input');
+                    const percentInput = row.querySelector('.stock-percent-input');
+                    const maxStockInput = row.querySelector('.stock-max-input');
+                    
+                    const type = typeSelect ? typeSelect.value : 'global';
+                    const mode = modeSelect ? modeSelect.value : 'auto';
+                    const text = textInput ? textInput.value : '';
+                    const percent = percentInput ? percentInput.value : '';
+                    const max_stock = maxStockInput ? maxStockInput.value : '';
                     const isFolded = row.classList.contains('is-folded');
                     
                     let categories = [];
@@ -1389,8 +1410,11 @@ function shav_render_store_settings_page() {
                         e.preventDefault();
                         if(confirm('Na pewno usunąć tę regułę?')) {
                             syncTextBadgeDataFromDOM();
-                            textBadgeData.splice(parseInt(this.dataset.index), 1);
-                            renderTextBadgeRows();
+                            let idx = parseInt(btn.getAttribute('data-index'));
+                            if (!isNaN(idx)) {
+                                textBadgeData.splice(idx, 1);
+                                renderTextBadgeRows();
+                            }
                         }
                     });
                 });
@@ -1398,8 +1422,11 @@ function shav_render_store_settings_page() {
                 document.querySelectorAll('.tb-type-select').forEach(select => {
                     select.addEventListener('change', function(e) {
                         syncTextBadgeDataFromDOM();
-                        textBadgeData[parseInt(this.dataset.index)].type = this.value;
-                        renderTextBadgeRows();
+                        let idx = parseInt(select.getAttribute('data-index'));
+                        if (!isNaN(idx) && textBadgeData[idx]) {
+                            textBadgeData[idx].type = this.value;
+                            renderTextBadgeRows();
+                        }
                     });
                 });
 
