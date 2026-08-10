@@ -201,7 +201,7 @@ function display_product_faq() {
     echo '</div>';
 }
 // Podpięcie pod sekcją koszyka/akordeonów z boku
-add_action('woocommerce_share', 'display_product_faq', 25);
+add_action('woocommerce_share', 'display_product_faq', 19);
 
 // Skrypt obsługujący rozwijanie
 add_action('wp_footer', 'shav_faq_scripts');

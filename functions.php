@@ -4051,7 +4051,7 @@ function display_product_accordion()
             $color_style = $is_green ? 'color: #3b8227;' : 'color: #3F3F3F;';
 
             echo '<div class="shav-svg-feature-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1;">';
-            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 54px; height: 54px; background: #F8F8F8; border-radius: 8px; border: 1px solid #EAEAEA; color: #3F3F3F;">' . $svg . '</span>';
+            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #F8F8F8; border-radius: 8px; border: 1px solid #EAEAEA; color: #3F3F3F;">' . $svg . '</span>';
             echo '<span class="shav-svg-feature-title" style="font-size: 12px; line-height: 1.3; font-weight: 500; ' . $color_style . '">' . $title . '</span>';
             echo '</div>';
         }
@@ -4059,7 +4059,7 @@ function display_product_accordion()
 
     echo '</div>';
 }
-add_action('woocommerce_share', 'display_product_accordion', 21);
+add_action('woocommerce_share', 'display_product_accordion', 18);
 
 
 
