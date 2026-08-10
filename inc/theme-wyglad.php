@@ -1607,7 +1607,7 @@ function shav_render_store_settings_page() {
                 if (hiddenJsonInputSvgBadges) hiddenJsonInputSvgBadges.value = btoa(unescape(encodeURIComponent(JSON.stringify(svgBadgeData))));
             });
         } catch (e) {
-            alert("KRYTYCZNY BLAD: " + e.message);
+            alert("KRYTYCZNY BLAD: " + e.message + "\n\nSTACK:\n" + e.stack);
             console.error(e);
         }
         })();
