@@ -2325,17 +2325,6 @@ function display_percentage_strip()
         echo '</div>';
         echo '</div>';
         
-        // --- DEBUG INFO DLA ADMINA (Tymczasowe) ---
-        if (current_user_can('manage_options')) {
-            echo '<div style="background:#ffeb3b; color:#000; padding:10px; margin-top:10px; font-size:12px;">';
-            echo '<strong>[DEBUG INFO (tylko dla admina)]</strong><br>';
-            echo 'Tryb (mode): ' . esc_html($mode) . '<br>';
-            echo 'Czy zarządza stanem: ' . ($product->managing_stock() ? 'TAK' : 'NIE') . '<br>';
-            echo 'Current Stock: ' . esc_html(isset($current_stock) ? $current_stock : 'NULL') . '<br>';
-            echo 'Zastosowany limit (max_stock w kodzie z reguły): ' . esc_html(isset($max_stock) ? $max_stock : 'NIE DOTYCZY') . '<br>';
-            echo 'Zastosowany %: ' . esc_html($percentage) . '%';
-            echo '</div>';
-        }
     }
 }
 add_action('woocommerce_share', 'display_percentage_strip', 20);
