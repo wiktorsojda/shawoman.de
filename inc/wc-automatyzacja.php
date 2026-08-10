@@ -5,7 +5,7 @@ if (!function_exists('blendygo_get_label')) {
     {
         // ZABEZPIECZENIE RĘCZNE ZOSTAŁO USUNIĘTE. FUNKCJA DZIAŁA TERAZ TYLKO JAKO CZYSTY SŁOWNIK.
         $locale = get_locale();
-        $lang_code = substr($locale, 0, 2);
+        $lang_code = 'de'; // WYMUSZENIE JĘZYKA NIEMIECKIEGO W TYM MOTYWIE
 
         $dictionary = [
             'pl' => [
