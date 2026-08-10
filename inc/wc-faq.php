@@ -222,7 +222,19 @@ function display_product_faq() {
         if (empty($item['question'])) continue;
         
         $question = wp_kses_post($item['question']);
-        $answer = wpautop(wp_kses_post($item['answer']));
+        $answer = $item['answer'];
+        
+        // Zabezpieczamy HTML, ale pozwalamy na złożone tagi
+        $answer = wp_kses_post($answer);
+        
+        // Jeśli tekst nie zawiera ewidentnego tagu blokowego (np. table, div), to dodajemy auto-akapity (wpautop).
+        // W przeciwnym razie wypluwamy czysty HTML, żeby wpautop nie rozwalił nam tabel.
+        if (stripos($answer, '<table') === false && stripos($answer, '<div') === false) {
+            $answer = wpautop($answer);
+        }
+        
+        // Dodatkowo uruchamiamy shortcode'y (gdyby użyto wtyczki do tabel lub czegoś innego)
+        $answer = do_shortcode($answer);
         
         echo '<div class="shav-faq-item" style="background: #F2F2F2; border-radius: 8px; margin-bottom: 10px; overflow: hidden;">';
             echo '<div class="shav-faq-header" onclick="shavToggleFaq(this)" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 15px 20px;">';
