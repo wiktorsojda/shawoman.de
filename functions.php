@@ -2993,7 +2993,7 @@ function display_custom_product_section()
     echo '</div>'; // End shav-bundle__card
     echo '</div>'; // End shav-bundle (zestaw-container)
 }
-add_action('woocommerce_share', 'display_custom_product_section', 22);
+// add_action('woocommerce_share', 'display_custom_product_section', 22); // Legacy bundle section disabled
 
 
 

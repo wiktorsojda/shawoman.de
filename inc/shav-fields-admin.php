@@ -100,18 +100,7 @@ function shav_fields_registry()
                 ['key' => 'accordion_content_3','label' => 'Akordeon 3 — treść', 'type' => 'textarea'],
             ],
         ],
-        'bundle' => [
-            'label'  => 'Zestaw promocyjny',
-            'fields' => [
-                ['key' => 'enable_zestaw',                 'label' => 'Pokaż zestaw', 'type' => 'checkbox'],
-                ['key' => 'custom_product_id',             'label' => 'ID produktu zestawu', 'type' => 'number'],
-                ['key' => 'custom_product_title',          'label' => 'Tytuł', 'type' => 'text'],
-                ['key' => 'custom_product_image_url',      'label' => 'URL obrazka', 'type' => 'text'],
-                ['key' => 'custom_product_price',          'label' => 'Cena za zestaw', 'type' => 'text'],
-                ['key' => 'custom_product_unit_price',     'label' => 'Cena poza zestawem', 'type' => 'text'],
-                ['key' => 'custom_product_list',           'label' => 'Lista (po linii)', 'type' => 'textarea'],
-            ],
-        ],
+
         'lowest_price' => [
             'label'  => 'Najniższa cena z 30 dni',
             'fields' => [
