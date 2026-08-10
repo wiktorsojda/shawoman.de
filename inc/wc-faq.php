@@ -219,7 +219,7 @@ function display_product_faq() {
     if (empty($faq_data) || !is_array($faq_data)) return;
     
     echo '<div class="shav-product-faq" style="margin: 20px 0; border: 1px solid #EAEAEA; border-radius: 8px; padding: 15px;">';
-    echo '<h3 class="shav-faq-heading" style="font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #3F3F3F;">Najczęściej zadawane pytania</h3>';
+    echo '<h3 class="shav-faq-heading" style="font-size: 16px; font-weight: 600; margin-bottom: 15px; color: #3F3F3F;">Alles, was du wissen musst</h3>';
     
     foreach ($faq_data as $item) {
         if (empty($item['question'])) continue;
