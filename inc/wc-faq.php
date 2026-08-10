@@ -200,9 +200,8 @@ function display_product_faq() {
     }
     echo '</div>';
 }
-// Podpięcie przed stopką produktu (pod sekcją koszyka i podziału na akordeony itp.)
-// Najlepiej w hooku woocommerce_after_single_product_summary (lub np. po tabsach)
-add_action('woocommerce_after_single_product_summary', 'display_product_faq', 5);
+// Podpięcie pod sekcją koszyka/akordeonów z boku
+add_action('woocommerce_share', 'display_product_faq', 25);
 
 // Skrypt obsługujący rozwijanie
 add_action('wp_footer', 'shav_faq_scripts');
