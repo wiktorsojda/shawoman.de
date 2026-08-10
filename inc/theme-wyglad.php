@@ -258,7 +258,7 @@ function shav_render_store_settings_page() {
                     <h2>Dynamiczne Reguły Paska Magazynowego</h2>
                     <p class="shav-desc">Pozwala nadpisać tekst i procent dla konkretnych kategorii lub produktów.</p>
                     
-                    <button type="button" class="button button-secondary shav-add-row" id="add-stock-rule">+ Dodaj nową regułę paska</button>
+                    <button type="button" class="button button-secondary shav-add-row" id="add-stock-rule" style="background-color: red !important; color: white !important;">+ Dodaj nową regułę paska</button>
                     
                     <div id="shav-stock-container" class="shav-repeater-grid">
                         <!-- Tu JS wrzuca rzędy pasków -->
@@ -312,7 +312,7 @@ function shav_render_store_settings_page() {
                     <h2>Odznaki (Badges) - Dynamiczne Reguły</h2>
                     <p class="shav-desc">Twórz nieskończoną ilość reguł dla odznak. Możesz je przypisywać do całych kategorii lub wyszukiwać konkretne produkty.</p>
                     
-                    <button type="button" class="button button-secondary shav-add-row" id="add-badge-rule">+ Dodaj nową regułę odznaki</button>
+                    <button type="button" class="button button-secondary shav-add-row" id="add-badge-rule" style="background-color: red !important; color: white !important;">+ Dodaj nową regułę odznaki</button>
                     
                     <div id="shav-badges-container" class="shav-repeater-grid">
                         <!-- Tu JS wrzuca rzędy -->
@@ -326,7 +326,7 @@ function shav_render_store_settings_page() {
                     <h2>Etykiety Tekstowe (Bestseller, Nowość)</h2>
                     <p class="shav-desc">Etykiety wyświetlane nad odznaką procentową. Możesz dodawać własne teksty (np. "Bestseller") i ustawiać im kolory tła.</p>
                     
-                    <button type="button" class="button button-secondary shav-add-row" id="add-text-badge-rule">+ Dodaj nową etykietę tekstową</button>
+                    <button type="button" class="button button-secondary shav-add-row" id="add-text-badge-rule" style="background-color: red !important; color: white !important;">+ Dodaj nową regułę etykiety tekstowej</button>
                     
                     <div id="shav-text-badges-container" class="shav-repeater-grid">
                         <!-- Tu JS wrzuca rzędy -->
@@ -339,7 +339,7 @@ function shav_render_store_settings_page() {
                     <h2>Odznaki SVG (Pod krótkim opisem)</h2>
                     <p class="shav-desc">Etykiety z ikonami (SVG / Zdjęcie), tekstem, customizacją stylów, które wyświetlą się na stronach produktów pod opisem.</p>
                     
-                    <button type="button" class="button button-secondary shav-add-row" id="add-svg-badge-rule">+ Dodaj nową odznakę SVG</button>
+                    <button type="button" class="button button-secondary shav-add-row" id="add-svg-badge-rule" style="background-color: red !important; color: white !important;">+ Dodaj nową regułę odznaki SVG</button>
                     
                     <div id="shav-svg-badges-container" class="shav-repeater-grid">
                         <!-- Tu JS wrzuca rzędy -->
@@ -704,9 +704,19 @@ function shav_render_store_settings_page() {
             // Dodawanie wiersza (Odznaki)
             addBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                syncDataFromDOM();
+                alert("JS DZIAŁA: Dodano regułę odznaki (Promo)");
+                console.log("Dodano regułę Promo");
+                try {
+                    syncDataFromDOM();
+                } catch(err) {
+                    alert("Błąd w syncDataFromDOM: " + err.message);
+                }
                 badgeData.push({ type: 'categories', categories: [], products: [], text: '', color: '' });
-                renderRows();
+                try {
+                    renderRows();
+                } catch(err) {
+                    alert("Błąd w renderRows: " + err.message);
+                }
             });
 
             // --- REPEATER PASKÓW MAGAZYNOWYCH ---
@@ -940,7 +950,13 @@ function shav_render_store_settings_page() {
             if(addBtnStock) {
                 addBtnStock.addEventListener('click', function(e) {
                     e.preventDefault();
-                    syncStockDataFromDOM();
+                    alert("JS DZIAŁA: Dodano regułę paska magazynowego");
+                    console.log("Dodano regułę Stock");
+                    try {
+                        syncStockDataFromDOM();
+                    } catch(err) {
+                        alert("Błąd w syncStockDataFromDOM: " + err.message);
+                    }
                     stockData.push({
                         type: 'global',
                         mode: 'auto',
@@ -951,7 +967,11 @@ function shav_render_store_settings_page() {
                         max_stock: '',
                         isFolded: false
                     });
-                    renderStockRows();
+                    try {
+                        renderStockRows();
+                    } catch(err) {
+                        alert("Błąd w renderStockRows: " + err.message);
+                    }
                 });
             }
 
