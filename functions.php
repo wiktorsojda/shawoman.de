@@ -2235,8 +2235,7 @@ function display_percentage_strip()
     $pid = $product->get_id();
 
     // 1. Sprawdź globalny toggle (domyślnie wyłączony)
-    if (get_option('shav_stock_strip_enabled', 'no') !== 'yes')
-        return;
+    $is_enabled = (get_option('shav_stock_strip_enabled', 'no') === 'yes');
 
     // 2. Pobierz globalne defaults
     $mode = get_option('shav_stock_strip_mode', 'auto');
@@ -2273,12 +2272,18 @@ function display_percentage_strip()
             }
             
             if ($match) {
+                $is_enabled = true; // Reguła wymusza włączenie paska, nawet jeśli globalnie jest wyłączony
                 if (!empty($rule['mode'])) $mode = $rule['mode'];
                 if (isset($rule['percent']) && $rule['percent'] !== '') $percentage = $rule['percent'];
                 if (!empty($rule['text'])) $text_template = $rule['text'];
                 break; // Stop at first matched rule
             }
         }
+    }
+
+    // Jeśli globalnie wyłączony i żadna reguła go nie włącza, przerywamy
+    if (!$is_enabled) {
+        return;
     }
 
     // 4. Wyliczenia rzeczywistego stanu magazynowego
