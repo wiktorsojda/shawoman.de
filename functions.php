@@ -2329,7 +2329,24 @@ function display_percentage_strip()
 }
 add_action('woocommerce_share', 'display_percentage_strip', 20);
 
-
+// AJAX: Pobieranie obecnego stanu magazynowego produktu dla auto-uzupełniania w kokpicie
+function shav_get_product_stock_ajax() {
+    if (!current_user_can('manage_options') || !isset($_POST['product_id'])) {
+        wp_send_json_error();
+    }
+    
+    $product_id = intval($_POST['product_id']);
+    $product = wc_get_product($product_id);
+    
+    if ($product && $product->managing_stock()) {
+        $stock = $product->get_stock_quantity();
+        if ($stock !== null) {
+            wp_send_json_success(['stock' => $stock]);
+        }
+    }
+    wp_send_json_error(['message' => 'Brak stanu magazynowego']);
+}
+add_action('wp_ajax_shav_get_product_stock', 'shav_get_product_stock_ajax');
 
 // Add custom banner field to product edit page
 function add_konkurs_banner_field()

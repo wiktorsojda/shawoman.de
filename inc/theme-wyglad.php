@@ -357,6 +357,28 @@ function shav_render_store_settings_page() {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Reusable function to fetch and fill stock
+            function fetchStockForAutoFill(selectElement, maxInput) {
+                const productId = selectElement.val();
+                if (productId && productId.length > 0) {
+                    const firstProductId = productId[0]; // Bierzemy pierwszy wybrany produkt
+                    
+                    if (typeof jQuery !== 'undefined') {
+                        jQuery.post(ajaxurl, {
+                            action: 'shav_get_product_stock',
+                            product_id: firstProductId
+                        }, function(response) {
+                            if (response.success && response.data.stock) {
+                                maxInput.val(response.data.stock);
+                                // Highlight na zielono na chwile
+                                maxInput.css('background-color', '#e6ffed');
+                                setTimeout(function() { maxInput.css('background-color', ''); }, 1500);
+                            }
+                        });
+                    }
+                }
+            }
+
             // Zakładki
             const tabs = document.querySelectorAll('.shav-tab');
             const contents = document.querySelectorAll('.shav-tab-content');
@@ -721,7 +743,7 @@ function shav_render_store_settings_page() {
 
                         <div class="shav-field-group target-container-products" style="border:none; padding:0; margin-bottom:15px; ${rule.type === 'products' ? '' : 'display:none;'}">
                             <label class="shav-label">Wyszukaj i wybierz produkty:</label>
-                            <select class="wc-product-search stock-products-select" multiple="multiple" style="width: 100%; max-width:600px;" data-placeholder="Szukaj produktów..." data-action="woocommerce_json_search_products_and_variations" data-index="${index}">
+                            <select class="wc-product-search stock-product-select stock-products-select" multiple="multiple" style="width: 100%; max-width:600px;" data-placeholder="Szukaj produktów..." data-action="woocommerce_json_search_products_and_variations" data-index="${index}">
                             </select>
                         </div>
                         
@@ -787,11 +809,10 @@ function shav_render_store_settings_page() {
                 });
 
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
-                    jQuery(containerStock).find('.wc-product-search').each(function() {
-                        var $select = jQuery(this);
-                        $select.selectWoo({
-                            minimumInputLength: 3,
-                            allowClear: true,
+                    jQuery(containerStock).find('.stock-product-select').each(function() {
+                        var sel = $(this);
+                        var row = sel.closest('.stock-row');
+                        sel.selectWoo({
                             ajax: {
                                 url: ajaxurl,
                                 dataType: 'json',
@@ -799,16 +820,40 @@ function shav_render_store_settings_page() {
                                 data: function(params) {
                                     return {
                                         term: params.term,
-                                        action: $select.data('action') || 'woocommerce_json_search_products_and_variations',
-                                        security: typeof wc_enhanced_select_params !== 'undefined' ? wc_enhanced_select_params.search_products_nonce : ''
+                                        action: 'woocommerce_json_search_products_and_variations',
+                                        security: wc_enhanced_select_params.search_products_nonce
                                     };
                                 },
                                 processResults: function(data) {
                                     var terms = [];
-                                    if (data) { jQuery.each(data, function(id, text) { terms.push({ id: id, text: text }); }); }
+                                    if (data) {
+                                        $.each(data, function(id, text) {
+                                            terms.push({ id: id, text: text });
+                                        });
+                                    }
                                     return { results: terms };
                                 },
                                 cache: true
+                            },
+                            minimumInputLength: 3
+                        });
+
+                        // Auto-fill trigger when product changes
+                        sel.on('change', function() {
+                            const modeSelect = $(row).find('.stock-mode-select').val();
+                            if (modeSelect === 'auto') {
+                                const maxInput = $(row).find('.stock-max-input');
+                                fetchStockForAutoFill($(this), maxInput);
+                            }
+                        });
+                        
+                        // Auto-fill trigger when mode changes to auto (if empty)
+                        $(row).find('.stock-mode-select').on('change', function() {
+                            if ($(this).val() === 'auto') {
+                                const maxInput = $(row).find('.stock-max-input');
+                                if (!maxInput.val()) {
+                                    fetchStockForAutoFill(sel, maxInput);
+                                }
                             }
                         });
                     });
