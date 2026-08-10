@@ -2285,6 +2285,13 @@ function display_percentage_strip()
     $stock_qty = 0;
     if ($product->managing_stock()) {
         $current_stock = $product->get_stock_quantity();
+        
+        // Jeśli produkt ma zdefiniowany własny limit w zakładce Magazyn, nadpisz regułę:
+        $product_max_stock = get_post_meta($pid, '_initial_stock_for_strip', true);
+        if (!empty($product_max_stock) && is_numeric($product_max_stock) && $product_max_stock > 0) {
+            $max_stock = $product_max_stock;
+        }
+
         if ($current_stock !== null) {
             $stock_qty = $current_stock;
             if ($max_stock > 0) {
@@ -2313,6 +2320,31 @@ function display_percentage_strip()
     }
 }
 add_action('woocommerce_share', 'display_percentage_strip', 20);
+
+// Dodaj pole "Początkowy stan (do paska)" do zakładki Magazyn
+function add_initial_stock_limit_field() {
+    echo '<div class="options_group show_if_manage_stock">';
+    woocommerce_wp_text_input([
+        'id'          => '_initial_stock_for_strip',
+        'label'       => __('Początkowy limit do paska %', 'woocommerce'),
+        'desc_tip'    => true,
+        'description' => __('Wpisz od jakiej liczby sztuk liczony jest pasek postępu. (Np. jeśli wpiszesz 100, a obecny stan to 20, pasek wyświetli 20%). Ta wartość nadpisuje limity z globalnych reguł.', 'woocommerce'),
+        'type'        => 'number',
+        'custom_attributes' => [
+            'step' => '1',
+            'min'  => '1'
+        ]
+    ]);
+    echo '</div>';
+}
+add_action('woocommerce_product_options_stock_fields', 'add_initial_stock_limit_field');
+
+function save_initial_stock_limit_field($post_id) {
+    if (isset($_POST['_initial_stock_for_strip'])) {
+        update_post_meta($post_id, '_initial_stock_for_strip', sanitize_text_field($_POST['_initial_stock_for_strip']));
+    }
+}
+add_action('woocommerce_process_product_meta', 'save_initial_stock_limit_field');
 
 // Add custom banner field to product edit page
 function add_konkurs_banner_field()
