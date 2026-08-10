@@ -2240,6 +2240,7 @@ function display_percentage_strip()
 
     // 2. Pobierz globalne defaults
     $percentage = get_option('shav_stock_strip_percent', 80);
+    $max_stock = get_option('shav_stock_strip_max_stock', 50);
     $text_template = get_option('shav_stock_strip_text', 'Nur solange der Vorrat reicht! – Nur noch: {percent}%');
 
     // 3. Ewaluacja reguł
@@ -2272,9 +2273,23 @@ function display_percentage_strip()
             }
             
             if ($match) {
-                if (!empty($rule['percent'])) $percentage = $rule['percent'];
+                if (isset($rule['percent']) && $rule['percent'] !== '') $percentage = $rule['percent'];
+                if (isset($rule['max_stock']) && $rule['max_stock'] !== '') $max_stock = $rule['max_stock'];
                 if (!empty($rule['text'])) $text_template = $rule['text'];
                 break; // Stop at first matched rule
+            }
+        }
+    }
+
+    // 4. Wyliczenia rzeczywistego stanu magazynowego (jeśli aktywne na produkcie)
+    $stock_qty = 0;
+    if ($product->managing_stock()) {
+        $current_stock = $product->get_stock_quantity();
+        if ($current_stock !== null) {
+            $stock_qty = $current_stock;
+            if ($max_stock > 0) {
+                // Wyliczamy prawdziwy procent względem ustawionego limitu bazowego
+                $percentage = floor(($current_stock / $max_stock) * 100);
             }
         }
     }
@@ -2282,7 +2297,7 @@ function display_percentage_strip()
     // Walidacja i renderowanie
     if (is_numeric($percentage)) {
         $percentage = min(max(intval($percentage), 0), 100);
-        $final_text = str_replace('{percent}', $percentage, $text_template);
+        $final_text = str_replace(['{percent}', '{stock}'], [$percentage, $stock_qty], $text_template);
 
         echo '<div class="shav-stock">';
         echo '<div class="shav-stock__icon">';

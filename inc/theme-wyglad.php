@@ -234,7 +234,13 @@ function shav_render_store_settings_page() {
                     <div class="shav-field-group">
                         <label class="shav-label">Domyślny procent wypełnienia (%)</label>
                         <input type="number" name="shav_stock_strip_percent" class="shav-input-text" min="0" max="100" style="max-width: 150px;" value="<?php echo esc_attr(get_option('shav_stock_strip_percent', 80)); ?>">
-                        <span class="shav-desc">Np. 80. Użyty globalnie, jeśli nie ma reguły ani nadpisania.</span>
+                        <span class="shav-desc">Np. 80. Użyty globalnie, jeśli nie ma reguły ani nadpisania (dotyczy statycznego paska).</span>
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Początkowy limit magazynowy (do wyliczeń rzeczywistych)</label>
+                        <input type="number" name="shav_stock_strip_max_stock" class="shav-input-text" min="1" style="max-width: 150px;" value="<?php echo esc_attr(get_option('shav_stock_strip_max_stock', 50)); ?>">
+                        <span class="shav-desc">Np. 50. Jeśli produkt ma włączone zarządzanie stanem magazynowym, na podstawie tego limitu i obecnego stanu magazynowego wyliczymy prawdziwy % paska (np. 10/50 sztuk to 20%). Możesz użyć tagu <code>{stock}</code> by pokazać sztuki.</span>
                     </div>
 
                     <hr style="margin:30px 0; border:1px solid #ddd;">
@@ -710,13 +716,18 @@ function shav_render_store_settings_page() {
                         </div>
                         
                         <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
-                            <label class="shav-label">Nadpisany Tekst Paska</label>
+                            <label class="shav-label">Nadpisany Tekst Paska (tagi: {percent}, {stock})</label>
                             <input type="text" class="shav-input-text stock-text-input" data-index="${index}" value="${rule.text || ''}" placeholder="Tylko {percent}% pozostało!">
                         </div>
 
-                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:0;">
-                            <label class="shav-label">Procent Wypełnienia (%)</label>
+                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
+                            <label class="shav-label">Statyczny Procent Wypełnienia (%)</label>
                             <input type="number" class="shav-input-text stock-percent-input" data-index="${index}" min="0" max="100" style="max-width: 150px;" value="${rule.percent || ''}" placeholder="80">
+                        </div>
+
+                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:0;">
+                            <label class="shav-label">Limit magazynowy (do wyliczeń z WooCommerce)</label>
+                            <input type="number" class="shav-input-text stock-max-input" data-index="${index}" min="1" style="max-width: 150px;" value="${rule.max_stock || ''}" placeholder="50">
                         </div>
                     `;
                     containerStock.appendChild(row);
@@ -785,6 +796,7 @@ function shav_render_store_settings_page() {
                     const type = row.querySelector('.stock-type-select').value;
                     const text = row.querySelector('.stock-text-input').value;
                     const percent = row.querySelector('.stock-percent-input').value;
+                    const max_stock = row.querySelector('.stock-max-input').value;
                     const isFolded = row.classList.contains('is-folded');
                     
                     let categories = [];
@@ -809,6 +821,7 @@ function shav_render_store_settings_page() {
                         products: products,
                         text: text,
                         percent: percent,
+                        max_stock: max_stock,
                         isFolded: isFolded
                     });
                 });
@@ -824,6 +837,7 @@ function shav_render_store_settings_page() {
                         products: [],
                         text: '',
                         percent: '',
+                        max_stock: '',
                         isFolded: false
                     });
                     renderStockRows();
