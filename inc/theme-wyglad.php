@@ -1533,7 +1533,15 @@ function shav_render_store_settings_page() {
                         
                         <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
                             <label class="shav-label">Tekst Etykiety (np. Bestseller, Nowość)</label>
-                            <input type="text" class="shav-input-text tb-text-input" data-index="${index}" value="${rule.text || ''}" placeholder="Bestseller">
+                            
+                            <div style="display: flex; gap: 10px;">
+                                <select class="shav-input-text tb-preset-select" data-index="${index}" style="max-width:200px;">
+                                    <option value="custom" ${!['Bestseller', 'BESTSELLER', 'Nowość', 'NOWOŚĆ'].includes(rule.text) ? 'selected' : ''}>Własny tekst</option>
+                                    <option value="bestseller" ${['Bestseller', 'BESTSELLER'].includes(rule.text) ? 'selected' : ''}>Bestseller</option>
+                                    <option value="new" ${['Nowość', 'NOWOŚĆ'].includes(rule.text) ? 'selected' : ''}>Nowość</option>
+                                </select>
+                                <input type="text" class="shav-input-text tb-text-input" data-index="${index}" value="${rule.text || ''}" placeholder="Własny tekst" style="flex: 1;">
+                            </div>
                         </div>
 
                         <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
@@ -1590,6 +1598,32 @@ function shav_render_store_settings_page() {
                             textBadgeData[idx].type = this.value;
                             renderTextBadgeRows();
                         }
+                    });
+                });
+
+                document.querySelectorAll('.tb-preset-select').forEach(select => {
+                    select.addEventListener('change', function(e) {
+                        const row = this.closest('.text-badge-row');
+                        const textInput = row.querySelector('.tb-text-input');
+                        const colorInput = row.querySelector('.tb-color-input');
+                        const swatches = row.querySelectorAll('.promo-swatch');
+                        const customInputBox = row.querySelector('.custom-css-input');
+                        
+                        if (this.value === 'bestseller') {
+                            textInput.value = 'Bestseller';
+                            colorInput.value = 'linear-gradient(90deg, #630303 1.11%, #C90606 96.67%)';
+                            swatches.forEach(s => s.classList.remove('is-selected'));
+                            swatches[0].classList.add('is-selected'); // 1st swatch is red
+                            customInputBox.classList.remove('is-active');
+                        } else if (this.value === 'new') {
+                            textInput.value = 'Nowość';
+                            colorInput.value = 'linear-gradient(265deg, #E0AC84 0%, #A4664A 100%)';
+                            swatches.forEach(s => s.classList.remove('is-selected'));
+                            swatches[2].classList.add('is-selected'); // 3rd swatch is rosegold
+                            customInputBox.classList.remove('is-active');
+                        }
+                        
+                        syncTextBadgeDataFromDOM();
                     });
                 });
 

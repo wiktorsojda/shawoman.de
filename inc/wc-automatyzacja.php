@@ -675,6 +675,27 @@ if (!function_exists('blendygo_render_cpt_badge')) {
     // 4. RENDERER BADGE (STRONA PRODUKTU)
     function blendygo_render_cpt_badge()
     {
+        global $product;
+        if (!is_product() || !$product)
+            return;
+
+        // Najpierw sprawdzamy nowy system z kokpitu (JSON)
+        $badge = shav_get_active_promo_badge($product);
+        if ($badge && !empty($badge['text'])) {
+            $pct = $badge['text']; // W kokpicie 'text' przechowuje procent
+            $txt = blendygo_get_label('promo_badge_default', 0); // Domyślne "PROMOCJA"
+            $bg = $badge['color'] ?: 'linear-gradient(90deg, #630303 1.11%, #C90606 96.67%)';
+            
+            $bg_attr = ' style="background: ' . esc_attr($bg) . ';"';
+
+            echo '<div class="promotional-element-two-lines"' . $bg_attr . '>';
+            echo '<span class="promo-percentage">-' . esc_html($pct) . '%</span>';
+            echo '<span class="promo-small-text">' . esc_html($txt) . '</span>';
+            echo '</div>';
+            return;
+        }
+
+        // Fallback na stary CPT Promocje
         $promo_id = blendygo_get_active_cpt_promo();
         if (!$promo_id)
             return;
@@ -697,13 +718,84 @@ if (!function_exists('blendygo_render_cpt_badge')) {
 if (!function_exists('blendygo_render_cpt_additional_badges')) {
     function blendygo_render_cpt_additional_badges()
     {
-        if (!is_product())
+        global $product;
+        if (!is_product() || !$product)
             return;
+            
+        // 1. Nowy system z kokpitu (JSON)
+        $svg_badges = shav_get_active_svg_badges($product);
+        if (!empty($svg_badges)) {
+            foreach ($svg_badges as $rule) {
+                $text = isset($rule['text']) ? $rule['text'] : '';
+                $icon_type = isset($rule['iconType']) ? $rule['iconType'] : 'svg';
+                $svg = isset($rule['svgCode']) ? $rule['svgCode'] : '';
+                $img = isset($rule['image']) ? $rule['image'] : '';
+                $bg_color = isset($rule['bgColor']) ? $rule['bgColor'] : '';
+                $text_color = isset($rule['textColor']) ? $rule['textColor'] : '';
+                $bg_img = isset($rule['bgImage']) ? $rule['bgImage'] : '';
+                
+                $b_width_ind = isset($rule['width']) ? $rule['width'] : '100';
+                $b_wauto = isset($rule['widthAuto']) ? $rule['widthAuto'] : false;
+                $b_align = isset($rule['align']) ? $rule['align'] : 'flex-start';
+                $b_mt = isset($rule['mt']) ? $rule['mt'] : '12';
+                $b_mb = isset($rule['mb']) ? $rule['mb'] : '0';
+                $b_py = isset($rule['py']) ? $rule['py'] : '5';
+                $b_px = isset($rule['px']) ? $rule['px'] : '10';
+                
+                $icon_size_val = isset($rule['iconHeightVal']) ? $rule['iconHeightVal'] : '1.2';
+                $icon_size_unit = isset($rule['iconHeightUnit']) ? $rule['iconHeightUnit'] : 'em';
+                $icon_size = $icon_size_val . $icon_size_unit;
+                
+                $width_css = $b_wauto ? 'fit-content' : esc_attr($b_width_ind) . '%';
+                
+                if (!empty($text) || ($icon_type === 'svg' && !empty($svg)) || ($icon_type === 'image' && !empty($img))) {
+                    $style = 'display: flex; align-items: center; margin-bottom: ' . esc_attr($b_mb) . 'px !important; margin-top: ' . esc_attr($b_mt) . 'px !important; width: ' . $width_css . ' !important; padding: ' . esc_attr($b_py) . 'px ' . esc_attr($b_px) . 'px ' . esc_attr($b_py) . 'px ' . esc_attr($b_px) . 'px !important; box-sizing: border-box; justify-content: ' . esc_attr($b_align) . ';';
+                    
+                    if (!empty($bg_img)) {
+                        $style .= ' background-image: url(' . esc_url($bg_img) . ') !important; background-size: cover !important; background-position: center !important;';
+                    } elseif (!empty($bg_color)) {
+                        $style .= ' background: ' . esc_attr($bg_color) . ' !important;';
+                    }
+                    if (!empty($text_color)) {
+                        $style .= ' color: ' . esc_attr($text_color) . ' !important;';
+                    }
+
+                    echo '<div class="short-description-custom-text product-tag" style="' . $style . '">';
+
+                    if ($icon_type === 'svg' && !empty($svg)) {
+                        $svg_scaled = preg_replace('/<svg /i', '<svg style="height: 100%; width: auto; max-width: 100%;" ', $svg, 1);
+                        echo '<span style="display:flex; flex-shrink:0; height: ' . esc_attr($icon_size) . '; align-items: center; justify-content: center;">' . $svg_scaled . '</span>';
+                    } elseif ($icon_type === 'image' && !empty($img)) {
+                        if (strtolower(substr($img, -4)) === '.svg') {
+                            $upload_dir = wp_upload_dir();
+                            $img_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $img);
+                            if (file_exists($img_path)) {
+                                $svg_content = file_get_contents($img_path);
+                                $svg_scaled = preg_replace('/<svg /i', '<svg style="height: 100%; width: auto; max-width: 100%;" ', $svg_content, 1);
+                                echo '<span style="display:flex; flex-shrink:0; height: ' . esc_attr($icon_size) . '; align-items: center; justify-content: center;">' . $svg_scaled . '</span>';
+                            } else {
+                                echo '<img src="' . esc_url($img) . '" style="height: ' . esc_attr($icon_size) . '; width: auto; object-fit: contain; flex-shrink:0; margin:0;" alt="ikonka">';
+                            }
+                        } else {
+                            echo '<img src="' . esc_url($img) . '" style="height: ' . esc_attr($icon_size) . '; width: auto; object-fit: contain; flex-shrink:0; margin:0;" alt="ikonka">';
+                        }
+                    }
+
+                    if (!empty($text)) {
+                        echo '<span style="margin-left: 10px;">' . wp_kses_post($text) . '</span>';
+                    }
+
+                    echo '</div>';
+                }
+            }
+            return;
+        }
+
+        // 2. Fallback na stary CPT Promocje
         $promo_id = blendygo_get_active_cpt_promo();
         if (!$promo_id)
             return;
 
-        // UWAGA: globalne $b_width zostało usunięte
         for ($i = 1; $i <= 3; $i++) {
             $text = get_post_meta($promo_id, 'promo_badge_text_' . $i, true);
             $icon_type = get_post_meta($promo_id, 'promo_badge_icon_type_' . $i, true);
@@ -768,18 +860,14 @@ if (!function_exists('blendygo_render_cpt_additional_badges')) {
                     if (strtolower(substr($img, -4)) === '.svg') {
                         // Pobierz absolutną ścieżkę do obrazka SVG by wstrzyknąć inline
                         $upload_dir = wp_upload_dir();
-                        $base_url = $upload_dir['baseurl'];
-                        if (strpos($img, $base_url) !== false) {
-                            $local_path = str_replace($base_url, $upload_dir['basedir'], $img);
-                            if (file_exists($local_path)) {
-                                $inline_svg = file_get_contents($local_path);
-                                $inline_svg = preg_replace('/<svg /i', '<svg style="height: 100%; width: auto; max-width: 100%;" ', $inline_svg, 1);
-                                echo '<span style="display:flex; flex-shrink:0; height: ' . esc_attr($icon_size) . '; align-items: center; justify-content: center;">' . $inline_svg . '</span>';
-                            } else {
-                                echo '<span style="display:flex; flex-shrink:0; height: ' . esc_attr($icon_size) . ';"><img src="' . esc_url($img) . '" alt="Ikona" style="height: 100%; width: auto; max-width: 100%; object-fit: contain;"></span>';
-                            }
+                        $img_path = str_replace($upload_dir['baseurl'], $upload_dir['basedir'], $img);
+                        if (file_exists($img_path)) {
+                            $svg_content = file_get_contents($img_path);
+                            $svg_scaled = preg_replace('/<svg /i', '<svg style="height: 100%; width: auto; max-width: 100%;" ', $svg_content, 1);
+                            echo '<span style="display:flex; flex-shrink:0; height: ' . esc_attr($icon_size) . '; align-items: center; justify-content: center;">' . $svg_scaled . '</span>';
                         } else {
-                            echo '<span style="display:flex; flex-shrink:0; height: ' . esc_attr($icon_size) . ';"><img src="' . esc_url($img) . '" alt="Ikona" style="height: 100%; width: auto; max-width: 100%; object-fit: contain;"></span>';
+                            // Awaryjnie jako img jeśli brak ścieżki pliku
+                            echo '<img src="' . esc_url($img) . '" style="height: ' . esc_attr($icon_size) . '; width: auto; object-fit: contain; flex-shrink:0; margin:0;" alt="ikonka">';
                         }
                     } else {
                         echo '<span style="display:flex; flex-shrink:0; height: ' . esc_attr($icon_size) . ';"><img src="' . esc_url($img) . '" alt="Ikona" style="height: 100%; width: auto; max-width: 100%; object-fit: contain;"></span>';

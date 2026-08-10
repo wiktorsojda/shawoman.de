@@ -66,29 +66,62 @@ $show_savings = false;
 if ($is_set) {
     $show_savings = $product->is_on_sale();
 } else {
-    if ($product->get_meta('_shav_badge_nowosc') === 'yes') {
-        $badge_label = __('NOWOŚĆ', 'shav');
-        $badge_kind  = 'new';
-    } elseif ($product->get_meta('_shav_badge_bestseller') === 'yes') {
-        $badge_label = __('BESTSELLER', 'shav');
-        $badge_kind  = 'bestseller';
-    } else {
-        $custom_text  = (string) $product->get_meta('_shav_badge_custom_text');
-        if ($custom_text !== '') {
-            $badge_label  = $custom_text;
-            $badge_kind   = 'custom';
-            $custom_bg    = (string) $product->get_meta('_shav_badge_custom_bg');
-            $custom_color = (string) $product->get_meta('_shav_badge_custom_color');
-            $styles = [];
-            if ($custom_bg) {
-                $styles[] = 'background:' . esc_attr($custom_bg);
+    // 1. Sprawdzamy nowy silnik z kokpitu (JSON)
+    $active_text_badge = shav_get_active_text_badge($product);
+    if ($active_text_badge && !empty($active_text_badge['text'])) {
+        $badge_label = $active_text_badge['text'];
+        $badge_kind  = 'custom';
+        $custom_bg   = $active_text_badge['color'];
+        $custom_color = $active_text_badge['textColor'];
+        
+        $upper_label = mb_strtoupper($badge_label, 'UTF-8');
+        if ($upper_label === 'BESTSELLER' || $upper_label === 'NAJCZĘŚCIEJ WYBIERANE') {
+            $badge_kind = 'bestseller';
+        } elseif ($upper_label === 'NOWOŚĆ' || $upper_label === 'NEW') {
+            $badge_kind = 'new';
+        }
+
+        $styles = [];
+        if ($custom_bg) {
+            $styles[] = 'background:' . esc_attr($custom_bg);
+            if (strpos($custom_bg, 'gradient') === false) {
                 $styles[] = 'background-image:none';
             }
-            if ($custom_color) {
-                $styles[] = 'color:' . esc_attr($custom_color);
-            }
-            if ($styles) {
-                $badge_style = ' style="' . implode(';', $styles) . '"';
+        }
+        if ($custom_color) {
+            $styles[] = 'color:' . esc_attr($custom_color);
+        }
+        if ($styles) {
+            $badge_style = ' style="' . implode(';', $styles) . '"';
+        }
+    } else {
+        // 2. Fallback na stare pola meta dla kompatybilności wstecznej
+        if ($product->get_meta('_shav_badge_nowosc') === 'yes') {
+            $badge_label = __('NOWOŚĆ', 'shav');
+            $badge_kind  = 'new';
+        } elseif ($product->get_meta('_shav_badge_bestseller') === 'yes') {
+            $badge_label = __('BESTSELLER', 'shav');
+            $badge_kind  = 'bestseller';
+        } else {
+            $custom_text  = (string) $product->get_meta('_shav_badge_custom_text');
+            if ($custom_text !== '') {
+                $badge_label  = $custom_text;
+                $badge_kind   = 'custom';
+                $custom_bg    = (string) $product->get_meta('_shav_badge_custom_bg');
+                $custom_color = (string) $product->get_meta('_shav_badge_custom_color');
+                $styles = [];
+                if ($custom_bg) {
+                    $styles[] = 'background:' . esc_attr($custom_bg);
+                    if (strpos($custom_bg, 'gradient') === false) {
+                        $styles[] = 'background-image:none';
+                    }
+                }
+                if ($custom_color) {
+                    $styles[] = 'color:' . esc_attr($custom_color);
+                }
+                if ($styles) {
+                    $badge_style = ' style="' . implode(';', $styles) . '"';
+                }
             }
         }
     }

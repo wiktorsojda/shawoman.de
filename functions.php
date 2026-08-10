@@ -15,6 +15,7 @@ require_once get_template_directory() . '/inc/cart-cross-sell.php';
 require_once get_template_directory() . '/inc/wc-automatyzacja.php';
 require_once get_template_directory() . '/inc/wc-faq.php';
 require_once get_template_directory() . '/inc/theme-wyglad.php';
+require_once get_template_directory() . '/inc/wc-badges-helper.php';
 
 // adobe font babe neue pro
 function add_resource_hints_and_fonts()
