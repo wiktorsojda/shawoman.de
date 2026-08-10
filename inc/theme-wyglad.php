@@ -632,7 +632,7 @@ function shav_render_store_settings_page() {
 
                 // Zainicjuj Select2 z WooCommerce na nowo wygenerowanych rzędach
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
-                    jQuery('.wc-product-search').each(function() {
+                    jQuery(containerStock).find('.wc-product-search').each(function() {
                         var $select = jQuery(this);
                         $select.selectWoo({
                             minimumInputLength: 3,
@@ -679,7 +679,9 @@ function shav_render_store_settings_page() {
                     
                     if (type === 'categories') {
                         const catSelect = row.querySelector('.badge-cats-select');
-                        Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
+                        if (catSelect) {
+                            Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
+                        }
                     } else if (type === 'products') {
                         const prodSelect = row.querySelector('.badge-products-select');
                         if (typeof jQuery !== 'undefined' && jQuery(prodSelect).hasClass('select2-hidden-accessible')) {
@@ -714,7 +716,14 @@ function shav_render_store_settings_page() {
             
             let stockData = [];
             try {
-                stockData = JSON.parse(hiddenJsonInputStock.value) || [];
+                let rawVal = hiddenJsonInputStock.value.trim();
+                if (rawVal && rawVal !== '[]') {
+                    if (rawVal.startsWith('[')) {
+                        stockData = JSON.parse(rawVal) || [];
+                    } else {
+                        stockData = JSON.parse(decodeURIComponent(escape(atob(rawVal)))) || [];
+                    }
+                }
             } catch(e) { stockData = []; }
 
             function renderStockRows() {
@@ -900,7 +909,9 @@ function shav_render_store_settings_page() {
                     
                     if (type === 'categories') {
                         const catSelect = row.querySelector('.stock-cats-select');
-                        Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
+                        if (catSelect) {
+                            Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
+                        }
                     } else if (type === 'products') {
                         const prodSelect = row.querySelector('.stock-products-select');
                         if (typeof jQuery !== 'undefined' && jQuery(prodSelect).hasClass('select2-hidden-accessible')) {
@@ -1497,14 +1508,18 @@ function shav_render_store_settings_page() {
                     
                     if (type === 'categories') {
                         const catSelect = row.querySelector('.tb-cats-select');
-                        Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
+                        if (catSelect) {
+                            Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
+                        }
                     } else if (type === 'products') {
                         const prodSelect = row.querySelector('.tb-products-select');
-                        if (typeof jQuery !== 'undefined') {
+                        if (typeof jQuery !== 'undefined' && jQuery(prodSelect).hasClass('select2-hidden-accessible')) {
                             const selectedData = jQuery(prodSelect).selectWoo('data');
-                            selectedData.forEach(item => {
-                                products.push({ id: item.id, text: item.text });
-                            });
+                            if (Array.isArray(selectedData)) {
+                                selectedData.forEach(item => {
+                                    products.push({ id: item.id, text: item.text });
+                                });
+                            }
                         }
                     }
 
@@ -1567,7 +1582,7 @@ function shav_render_store_settings_page() {
                 try { syncSvgBadgeDataFromDOM(); } catch (e) { console.error("Error in syncSvgBadgeDataFromDOM", e); }
                 
                 if (hiddenJsonInput) hiddenJsonInput.value = JSON.stringify(badgeData);
-                if (hiddenJsonInputStock) hiddenJsonInputStock.value = JSON.stringify(stockData);
+                if (hiddenJsonInputStock) hiddenJsonInputStock.value = btoa(unescape(encodeURIComponent(JSON.stringify(stockData))));
                 if (hiddenJsonInputTextBadges) hiddenJsonInputTextBadges.value = JSON.stringify(textBadgeData);
                 if (hiddenJsonInputSvgBadges) hiddenJsonInputSvgBadges.value = btoa(unescape(encodeURIComponent(JSON.stringify(svgBadgeData))));
             });
