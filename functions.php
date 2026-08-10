@@ -2315,8 +2315,8 @@ function display_percentage_strip()
 
     // Walidacja i renderowanie
     if (is_numeric($percentage)) {
-        $percentage = min(max(intval($percentage), 0), 100);
-        $final_text = str_replace(['{percent}', '{stock}'], [$percentage, $stock_qty], $text_template);
+        $percentage_clamped = min(max(intval($percentage), 0), 100);
+        $final_text = str_replace(['{percent}', '{stock}'], [$percentage_clamped, $stock_qty], $text_template);
 
         echo '<div class="shav-stock">';
         echo '<div class="shav-stock__icon">';
@@ -2326,9 +2326,22 @@ function display_percentage_strip()
         echo '</div>';
         echo '<div class="shav-stock__content">';
         echo '<p class="shav-stock__label">' . esc_html($final_text) . '</p>';
-        echo '<div class="shav-stock__bar"><div class="shav-stock__bar-fill" style="width: ' . esc_attr($percentage) . '%"></div></div>';
+        echo '<div class="shav-stock__bar"><div class="shav-stock__bar-fill" style="width: ' . esc_attr($percentage_clamped) . '%"></div></div>';
         echo '</div>';
         echo '</div>';
+        
+        // --- DEBUG INFO DLA ADMINA ---
+        if (current_user_can('manage_options')) {
+            echo '<div style="background:#ffeb3b; color:#000; padding:10px; margin-top:10px; font-size:12px;">';
+            echo '<strong>[DEBUG INFO (tylko dla admina)]</strong><br>';
+            echo 'Tryb (mode): ' . esc_html($mode) . '<br>';
+            echo 'Czy zarządza stanem: ' . ($product->managing_stock() ? 'TAK' : 'NIE') . '<br>';
+            echo 'Current Stock: ' . esc_html(isset($current_stock) ? $current_stock : 'NULL') . '<br>';
+            echo 'Limit początkowy w produkcie (max_stock z bazy): ' . esc_html(get_post_meta($pid, '_initial_stock_for_strip', true)) . '<br>';
+            echo 'Zastosowany limit (max_stock w kodzie): ' . esc_html(isset($max_stock) ? $max_stock : 'NIE DOTYCZY') . '<br>';
+            echo 'Zastosowany %: ' . esc_html($percentage) . '%';
+            echo '</div>';
+        }
     }
 }
 add_action('woocommerce_share', 'display_percentage_strip', 20);
