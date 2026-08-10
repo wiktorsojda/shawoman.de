@@ -850,7 +850,7 @@ function shav_render_store_settings_page() {
 
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
                     jQuery(containerStock).find('.wc-product-search').each(function() {
-                        var sel = $(this);
+                        var sel = jQuery(this);
                         var row = sel.closest('.shav-repeater-row');
                         sel.selectWoo({
                             ajax: {
@@ -880,16 +880,16 @@ function shav_render_store_settings_page() {
 
                         // Auto-fill trigger when product changes
                         sel.on('change', function() {
-                            const modeSelect = $(row).find('.stock-mode-select').val();
+                            const modeSelect = jQuery(row).find('.stock-mode-select').val();
                             if (modeSelect === 'auto') {
-                                const maxInput = $(row).find('.stock-max-input');
-                                window.fetchStockForAutoFill($(this), maxInput);
+                                const maxInput = jQuery(row).find('.stock-max-input');
+                                window.fetchStockForAutoFill(jQuery(this), maxInput);
                             }
                         });
                         
                         // Auto-fill check during render: if mode is auto and max_stock is empty, fetch it
-                        const currentMode = $(row).find('.stock-mode-select').val();
-                        const maxInput = $(row).find('.stock-max-input');
+                        const currentMode = jQuery(row).find('.stock-mode-select').val();
+                        const maxInput = jQuery(row).find('.stock-max-input');
                         if (currentMode === 'auto' && !maxInput.val()) {
                             window.fetchStockForAutoFill(sel, maxInput);
                         }
