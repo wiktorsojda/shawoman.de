@@ -356,29 +356,29 @@ function shav_render_store_settings_page() {
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Reusable function to fetch and fill stock
-            function fetchStockForAutoFill(selectElement, maxInput) {
-                const productId = selectElement.val();
-                if (productId && productId.length > 0) {
-                    const firstProductId = productId[0]; // Bierzemy pierwszy wybrany produkt
-                    
-                    if (typeof jQuery !== 'undefined') {
-                        jQuery.post(ajaxurl, {
-                            action: 'shav_get_product_stock',
-                            product_id: firstProductId
-                        }, function(response) {
-                            if (response.success && response.data.stock) {
-                                maxInput.val(response.data.stock);
-                                // Highlight na zielono na chwile
-                                maxInput.css('background-color', '#e6ffed');
-                                setTimeout(function() { maxInput.css('background-color', ''); }, 1500);
-                            }
-                        });
-                    }
+        // Reusable function to fetch and fill stock - globally available
+        window.fetchStockForAutoFill = function(selectElement, maxInput) {
+            const productId = selectElement.val();
+            if (productId && productId.length > 0) {
+                const firstProductId = productId[0]; // Bierzemy pierwszy wybrany produkt
+                
+                if (typeof jQuery !== 'undefined') {
+                    jQuery.post(ajaxurl, {
+                        action: 'shav_get_product_stock',
+                        product_id: firstProductId
+                    }, function(response) {
+                        if (response.success && response.data.stock) {
+                            maxInput.val(response.data.stock);
+                            // Highlight na zielono na chwile
+                            maxInput.css('background-color', '#e6ffed');
+                            setTimeout(function() { maxInput.css('background-color', ''); }, 1500);
+                        }
+                    });
                 }
             }
+        };
 
+        document.addEventListener('DOMContentLoaded', function() {
             // Zakładki
             const tabs = document.querySelectorAll('.shav-tab');
             const contents = document.querySelectorAll('.shav-tab-content');
@@ -847,15 +847,12 @@ function shav_render_store_settings_page() {
                             }
                         });
                         
-                        // Auto-fill trigger when mode changes to auto (if empty)
-                        $(row).find('.stock-mode-select').on('change', function() {
-                            if ($(this).val() === 'auto') {
-                                const maxInput = $(row).find('.stock-max-input');
-                                if (!maxInput.val()) {
-                                    fetchStockForAutoFill(sel, maxInput);
-                                }
-                            }
-                        });
+                        // Auto-fill check during render: if mode is auto and max_stock is empty, fetch it
+                        const currentMode = $(row).find('.stock-mode-select').val();
+                        const maxInput = $(row).find('.stock-max-input');
+                        if (currentMode === 'auto' && !maxInput.val()) {
+                            fetchStockForAutoFill(sel, maxInput);
+                        }
                     });
                 }
             }
