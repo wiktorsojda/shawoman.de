@@ -566,7 +566,7 @@ function shav_render_store_settings_page() {
                     container.appendChild(row);
 
                     // Jeśli są wybrane produkty, dodajemy optiony na sztywno żeby select2 je załadował prawidłowo
-                    if (rule.type === 'products' && rule.products && rule.products.length > 0) {
+                    if (rule.type === 'products' && Array.isArray(rule.products) && rule.products.length > 0) {
                         const selectElement = row.querySelector('.badge-products-select');
                         rule.products.forEach(prod => {
                             const option = new Option(prod.text, prod.id, true, true);
@@ -772,7 +772,7 @@ function shav_render_store_settings_page() {
                     `;
                     containerStock.appendChild(row);
 
-                    if (rule.type === 'products' && rule.products && rule.products.length > 0) {
+                    if (rule.type === 'products' && Array.isArray(rule.products) && rule.products.length > 0) {
                         const selectElement = row.querySelector('.stock-products-select');
                         rule.products.forEach(prod => {
                             const option = new Option(prod.text, prod.id, true, true);
@@ -809,7 +809,7 @@ function shav_render_store_settings_page() {
                 });
 
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
-                    jQuery(containerStock).find('.stock-product-select').each(function() {
+                    jQuery(containerStock).find('.wc-product-search').each(function() {
                         var sel = $(this);
                         var row = sel.closest('.shav-repeater-row');
                         sel.selectWoo({
@@ -876,9 +876,10 @@ function shav_render_store_settings_page() {
                         Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
                     } else if (type === 'products') {
                         const prodSelect = row.querySelector('.stock-products-select');
-                        if (prodSelect) {
-                            Array.from(prodSelect.selectedOptions).forEach(opt => {
-                                products.push({ id: opt.value, text: opt.text });
+                        if (typeof jQuery !== 'undefined' && jQuery(prodSelect).hasClass('select2-hidden-accessible')) {
+                            const selectedData = jQuery(prodSelect).selectWoo('data');
+                            selectedData.forEach(item => {
+                                products.push({ id: item.id, text: item.text });
                             });
                         }
                     }
@@ -1126,7 +1127,7 @@ function shav_render_store_settings_page() {
                     `;
                     containerSvgBadges.appendChild(row);
 
-                    if (rule.type === 'products' && rule.products && rule.products.length > 0) {
+                    if (rule.type === 'products' && Array.isArray(rule.products) && rule.products.length > 0) {
                         const selectElement = row.querySelector('.sb-products-select');
                         rule.products.forEach(prod => {
                             const option = new Option(prod.text, prod.id, true, true);
@@ -1366,7 +1367,7 @@ function shav_render_store_settings_page() {
                     `;
                     containerTextBadges.appendChild(row);
 
-                    if (rule.type === 'products' && rule.products && rule.products.length > 0) {
+                    if (rule.type === 'products' && Array.isArray(rule.products) && rule.products.length > 0) {
                         const selectElement = row.querySelector('.tb-products-select');
                         rule.products.forEach(prod => {
                             const option = new Option(prod.text, prod.id, true, true);
