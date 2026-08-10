@@ -843,7 +843,7 @@ function shav_render_store_settings_page() {
                             const modeSelect = $(row).find('.stock-mode-select').val();
                             if (modeSelect === 'auto') {
                                 const maxInput = $(row).find('.stock-max-input');
-                                fetchStockForAutoFill($(this), maxInput);
+                                window.fetchStockForAutoFill($(this), maxInput);
                             }
                         });
                         
@@ -851,7 +851,7 @@ function shav_render_store_settings_page() {
                         const currentMode = $(row).find('.stock-mode-select').val();
                         const maxInput = $(row).find('.stock-max-input');
                         if (currentMode === 'auto' && !maxInput.val()) {
-                            fetchStockForAutoFill(sel, maxInput);
+                            window.fetchStockForAutoFill(sel, maxInput);
                         }
                     });
                 }
@@ -876,10 +876,9 @@ function shav_render_store_settings_page() {
                         Array.from(catSelect.selectedOptions).forEach(opt => categories.push(opt.value));
                     } else if (type === 'products') {
                         const prodSelect = row.querySelector('.stock-products-select');
-                        if (typeof jQuery !== 'undefined') {
-                            const selectedData = jQuery(prodSelect).selectWoo('data');
-                            selectedData.forEach(item => {
-                                products.push({ id: item.id, text: item.text });
+                        if (prodSelect) {
+                            Array.from(prodSelect.selectedOptions).forEach(opt => {
+                                products.push({ id: opt.value, text: opt.text });
                             });
                         }
                     }
