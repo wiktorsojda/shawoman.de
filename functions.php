@@ -2364,12 +2364,12 @@ function add_initial_stock_limit_field() {
 }
 add_action('woocommerce_product_options_stock_fields', 'add_initial_stock_limit_field');
 
-function save_initial_stock_limit_field($post_id) {
+function save_initial_stock_limit_field($product) {
     if (isset($_POST['_initial_stock_for_strip'])) {
-        update_post_meta($post_id, '_initial_stock_for_strip', sanitize_text_field($_POST['_initial_stock_for_strip']));
+        $product->update_meta_data('_initial_stock_for_strip', sanitize_text_field(wp_unslash($_POST['_initial_stock_for_strip'])));
     }
 }
-add_action('woocommerce_process_product_meta', 'save_initial_stock_limit_field');
+add_action('woocommerce_admin_process_product_object', 'save_initial_stock_limit_field');
 
 // Add custom banner field to product edit page
 function add_konkurs_banner_field()
