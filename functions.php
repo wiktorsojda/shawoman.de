@@ -4031,7 +4031,9 @@ function display_product_accordion()
 
     foreach ($features as $feature) {
         $title = $feature['title'];
+        $icon_type = isset($feature['icon_type']) ? $feature['icon_type'] : 'svg';
         $svg = $feature['svg'];
+        $image = isset($feature['image']) ? $feature['image'] : '';
         $link = isset($feature['link']) ? $feature['link'] : '';
 
         if (!empty($title)) {
@@ -4043,7 +4045,14 @@ function display_product_accordion()
                 echo '<a href="' . esc_url($link) . '" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">';
             }
             
-            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #F2F2F2; border-radius: 8px; color: #3F3F3F;">' . $svg . '</span>';
+            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #F2F2F2; border-radius: 8px; color: #3F3F3F; overflow: hidden;">';
+            if ($icon_type === 'image' && !empty($image)) {
+                echo '<img src="' . esc_url($image) . '" alt="' . esc_attr($title) . '" style="width: 100%; height: 100%; object-fit: cover;">';
+            } else {
+                echo $svg;
+            }
+            echo '</span>';
+            
             echo '<span class="shav-svg-feature-title" style="font-size: 12px; line-height: 1.3; font-weight: 600; ' . $color_style . '">' . $title . '</span>';
             
             if (!empty($link)) {

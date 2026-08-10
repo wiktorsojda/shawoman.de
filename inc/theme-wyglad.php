@@ -312,9 +312,25 @@ function shav_render_store_settings_page() {
                                                 <input type="text" class="feature-link shav-input-text" data-index="${index}" value="${row.link ? row.link.replace(/"/g, '&quot;') : ''}" style="width: 100%;" placeholder="https://...">
                                             </div>
                                             
-                                            <div class="shav-field-group" style="border:none; padding:0; margin-bottom:0;">
+                                            <div class="shav-field-group" style="border:none; padding:0; margin-bottom:10px;">
+                                                <label class="shav-label">Typ Ikony</label>
+                                                <select class="feature-icon-type shav-input-text" data-index="${index}" style="width: 100%; margin-bottom: 5px;">
+                                                    <option value="svg" ${row.icon_type === 'svg' || !row.icon_type ? 'selected' : ''}>Kod SVG</option>
+                                                    <option value="image" ${row.icon_type === 'image' ? 'selected' : ''}>Plik z Biblioteki Mediów</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="shav-field-group feature-svg-wrapper" style="border:none; padding:0; margin-bottom:0; ${row.icon_type === 'image' ? 'display:none;' : ''}">
                                                 <label class="shav-label">Kod SVG</label>
                                                 <textarea class="feature-svg shav-input-textarea" data-index="${index}" style="width: 100%; height: 60px;">${row.svg || ''}</textarea>
+                                            </div>
+                                            
+                                            <div class="shav-field-group feature-image-wrapper" style="border:none; padding:0; margin-bottom:0; ${row.icon_type === 'image' ? '' : 'display:none;'}">
+                                                <label class="shav-label">Wybierz Plik (Obrazek)</label>
+                                                <div style="display:flex; gap: 10px;">
+                                                    <input type="text" class="feature-image shav-input-text" data-index="${index}" value="${row.image ? row.image.replace(/"/g, '&quot;') : ''}" style="width: 80%;" placeholder="URL obrazka (np. https://...)">
+                                                    <button type="button" class="button shav-upload-feature-img" data-index="${index}">Wybierz z biblioteki</button>
+                                                </div>
                                             </div>
                                         </div>
                                     `;
@@ -357,6 +373,48 @@ function shav_render_store_settings_page() {
                                         }
                                     });
                                 });
+                                
+                                container.querySelectorAll('.feature-icon-type').forEach(select => {
+                                    select.addEventListener('change', function(e) {
+                                        const wrapper = this.closest('.shav-svg-feature-row');
+                                        if (this.value === 'image') {
+                                            wrapper.querySelector('.feature-svg-wrapper').style.display = 'none';
+                                            wrapper.querySelector('.feature-image-wrapper').style.display = 'block';
+                                        } else {
+                                            wrapper.querySelector('.feature-svg-wrapper').style.display = 'block';
+                                            wrapper.querySelector('.feature-image-wrapper').style.display = 'none';
+                                        }
+                                        syncData();
+                                    });
+                                });
+                                
+                                let mediaUploader;
+                                container.querySelectorAll('.shav-upload-feature-img').forEach(btn => {
+                                    btn.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        const inputField = this.previousElementSibling;
+                                        if (mediaUploader) {
+                                            mediaUploader.open();
+                                            mediaUploader.on('select', function() {
+                                                const attachment = mediaUploader.state().get('selection').first().toJSON();
+                                                inputField.value = attachment.url;
+                                                syncData();
+                                            });
+                                            return;
+                                        }
+                                        mediaUploader = wp.media.frames.file_frame = wp.media({
+                                            title: 'Wybierz obrazek ikony',
+                                            button: { text: 'Wybierz' },
+                                            multiple: false
+                                        });
+                                        mediaUploader.on('select', function() {
+                                            const attachment = mediaUploader.state().get('selection').first().toJSON();
+                                            inputField.value = attachment.url;
+                                            syncData();
+                                        });
+                                        mediaUploader.open();
+                                    });
+                                });
                             }
                             
                             function syncData() {
@@ -365,8 +423,10 @@ function shav_render_store_settings_page() {
                                 rows.forEach(row => {
                                     const t = row.querySelector('.feature-title').value;
                                     const l = row.querySelector('.feature-link').value;
+                                    const type = row.querySelector('.feature-icon-type').value;
                                     const s = row.querySelector('.feature-svg').value;
-                                    newData.push({ title: t, link: l, svg: s });
+                                    const img = row.querySelector('.feature-image').value;
+                                    newData.push({ title: t, link: l, icon_type: type, svg: s, image: img });
                                 });
                                 featuresData = newData;
                                 hiddenInput.value = JSON.stringify(featuresData);
@@ -375,11 +435,10 @@ function shav_render_store_settings_page() {
                             addBtn.addEventListener('click', function(e) {
                                 e.preventDefault();
                                 syncData();
-                                featuresData.push({ title: '', link: '', svg: '' });
+                                featuresData.push({ title: '', link: '', icon_type: 'svg', svg: '', image: '' });
                                 renderRows();
                             });
                             
-                            // sync on form submit is handled globally or we can do it here just in case
                             $('form').on('submit', function() {
                                 syncData();
                             });
