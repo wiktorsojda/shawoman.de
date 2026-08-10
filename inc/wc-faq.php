@@ -1,0 +1,232 @@
+<?php
+/**
+ * Shav Woman - Product FAQ Repeater
+ * Dodaje dynamiczną zakładkę z FAQ w edycji produktu WooCommerce
+ * oraz renderuje klasyczny akordeon na stronie produktu.
+ */
+
+defined('ABSPATH') || exit;
+
+// =============================================================================
+// 1. ZAKŁADKA W EDYCJI PRODUKTU WOOCOMMERCE
+// =============================================================================
+
+// Dodanie tabu w menu "Dane produktu"
+add_filter('woocommerce_product_data_tabs', 'shav_faq_product_data_tab');
+function shav_faq_product_data_tab($tabs) {
+    $tabs['shav_faq'] = [
+        'label'  => 'Shav FAQ',
+        'target' => 'shav_faq_product_data',
+        'class'  => ['show_if_simple', 'show_if_variable'],
+    ];
+    return $tabs;
+}
+
+// Renderowanie zawartości panelu
+add_action('woocommerce_product_data_panels', 'shav_faq_product_data_panel');
+function shav_faq_product_data_panel() {
+    global $post;
+    
+    // Pobranie zapisanych reguł (zdekodowanie, jeśli to możliwe)
+    $faq_json = get_post_meta($post->ID, '_shav_faq_json', true);
+    if (empty($faq_json)) {
+        $faq_json = '[]';
+    }
+    
+    // Bezpieczne wstrzyknięcie JSON-a do JS
+    ?>
+    <div id="shav_faq_product_data" class="panel woocommerce_options_panel hidden">
+        <div class="options_group">
+            <p class="form-field">
+                <strong>Dynamiczne FAQ dla produktu</strong><br>
+                Dodawaj pytania i odpowiedzi. Wyświetlą się na karcie produktu w formie zwijanego akordeonu.
+            </p>
+            
+            <div id="shav-faq-repeater-container" style="padding: 0 12px 10px;">
+                <div id="shav-faq-rows" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px;">
+                    <!-- Rows will be injected here -->
+                </div>
+                <button type="button" class="button button-primary" id="add-shav-faq-row">+ Dodaj nowe pytanie</button>
+            </div>
+            
+            <!-- Ukryte pole przetrzymujące dane w Base64 dla bezpieczeństwa zapisu -->
+            <input type="hidden" name="shav_faq_json" id="shav_faq_json" value="<?php echo esc_attr($faq_json); ?>">
+        </div>
+
+        <script>
+            jQuery(document).ready(function($) {
+                const container = document.getElementById('shav-faq-rows');
+                const addBtn = document.getElementById('add-shav-faq-row');
+                const hiddenInput = document.getElementById('shav_faq_json');
+                
+                let faqData = [];
+                
+                // Próba odczytu zapisanych danych
+                try {
+                    const rawVal = hiddenInput.value.trim();
+                    if (rawVal) {
+                        if (rawVal.startsWith('[')) {
+                            faqData = JSON.parse(rawVal);
+                        } else {
+                            // base64 decode
+                            faqData = JSON.parse(decodeURIComponent(escape(atob(rawVal)))) || [];
+                        }
+                    }
+                } catch(e) {
+                    console.error("Błąd parsowania FAQ JSON: ", e);
+                    faqData = [];
+                }
+                
+                function renderRows() {
+                    container.innerHTML = '';
+                    faqData.forEach((row, index) => {
+                        const rowHtml = `
+                            <div class="shav-faq-row" style="background: #f8f8f8; border: 1px solid #ccc; padding: 15px; border-radius: 4px; position: relative;">
+                                <a href="#" class="shav-faq-remove" data-index="${index}" style="color: red; position: absolute; top: 15px; right: 15px; text-decoration: none; font-weight: bold;">Usuń &times;</a>
+                                
+                                <label style="display:block; margin-bottom: 5px; font-weight: 600;">Pytanie:</label>
+                                <input type="text" class="faq-question" data-index="${index}" value="${row.question ? row.question.replace(/"/g, '&quot;') : ''}" style="width: 100%; margin-bottom: 10px;">
+                                
+                                <label style="display:block; margin-bottom: 5px; font-weight: 600;">Odpowiedź:</label>
+                                <textarea class="faq-answer" data-index="${index}" style="width: 100%; height: 80px;">${row.answer || ''}</textarea>
+                            </div>
+                        `;
+                        container.insertAdjacentHTML('beforeend', rowHtml);
+                    });
+                    
+                    // Podpięcie zdarzeń usuwania
+                    container.querySelectorAll('.shav-faq-remove').forEach(btn => {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const idx = parseInt(this.getAttribute('data-index'), 10);
+                            syncData();
+                            faqData.splice(idx, 1);
+                            renderRows();
+                        });
+                    });
+                }
+                
+                function syncData() {
+                    const rows = container.querySelectorAll('.shav-faq-row');
+                    const newData = [];
+                    rows.forEach(row => {
+                        const q = row.querySelector('.faq-question').value;
+                        const a = row.querySelector('.faq-answer').value;
+                        if (q.trim() !== '' || a.trim() !== '') {
+                            newData.push({ question: q, answer: a });
+                        }
+                    });
+                    faqData = newData;
+                    // Zapis jako base64, żeby ominąć problemy z backslashami w WP
+                    hiddenInput.value = btoa(unescape(encodeURIComponent(JSON.stringify(faqData))));
+                }
+                
+                // Dodawanie nowego pytania
+                addBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    syncData();
+                    faqData.push({ question: '', answer: '' });
+                    renderRows();
+                });
+                
+                // Zapisz dane przy wysyłaniu formularza
+                $('#post').on('submit', function() {
+                    syncData();
+                });
+                
+                // Initial render
+                renderRows();
+            });
+        </script>
+    </div>
+    <?php
+}
+
+// Zapisywanie meta danych (JSON base64)
+add_action('woocommerce_process_product_meta', 'shav_save_faq_product_data');
+function shav_save_faq_product_data($post_id) {
+    if (isset($_POST['shav_faq_json'])) {
+        update_post_meta($post_id, '_shav_faq_json', sanitize_text_field($_POST['shav_faq_json']));
+    }
+}
+
+
+// =============================================================================
+// 2. WYŚWIETLANIE NA FRONCIE (Karta Produktu)
+// =============================================================================
+
+function display_product_faq() {
+    global $post;
+    if (!$post) return;
+    
+    $product = wc_get_product($post->ID);
+    if (!$product) return;
+    
+    $faq_json = get_post_meta($post->ID, '_shav_faq_json', true);
+    if (empty($faq_json) || $faq_json === '[]') return;
+    
+    $faq_data = [];
+    if (strpos($faq_json, '[') === 0) {
+        $faq_data = json_decode($faq_json, true);
+    } else {
+        $decoded = base64_decode($faq_json);
+        if ($decoded) {
+            $faq_data = json_decode($decoded, true);
+        }
+    }
+    
+    if (empty($faq_data) || !is_array($faq_data)) return;
+    
+    echo '<div class="shav-product-faq" style="margin: 30px 0;">';
+    echo '<h3 class="shav-faq-heading" style="font-size: 18px; font-weight: 600; margin-bottom: 15px; color: #3F3F3F;">Najczęściej zadawane pytania</h3>';
+    
+    foreach ($faq_data as $item) {
+        if (empty($item['question'])) continue;
+        
+        $question = wp_kses_post($item['question']);
+        $answer = wpautop(wp_kses_post($item['answer']));
+        
+        echo '<div class="shav-faq-item" style="border-bottom: 1px solid #EAEAEA; padding: 15px 0;">';
+            echo '<div class="shav-faq-header" onclick="shavToggleFaq(this)" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">';
+                echo '<span class="shav-faq-question" style="font-size: 15px; font-weight: 500; color: #3F3F3F;">' . $question . '</span>';
+                // Ikona SVG plusa
+                echo '<svg class="shav-faq-icon shav-faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="transition: transform 0.3s ease; flex-shrink: 0; margin-left: 10px;">';
+                    echo '<path class="h-line" d="M4 10h12" stroke="#3F3F3F" stroke-width="2" stroke-linecap="round"/>';
+                    echo '<path class="v-line" d="M10 4v12" stroke="#3F3F3F" stroke-width="2" stroke-linecap="round"/>';
+                echo '</svg>';
+            echo '</div>';
+            echo '<div class="shav-faq-content" style="display: none; padding-top: 10px; font-size: 14px; color: #555; line-height: 1.5;">' . $answer . '</div>';
+        echo '</div>';
+    }
+    echo '</div>';
+}
+// Podpięcie przed stopką produktu (pod sekcją koszyka i podziału na akordeony itp.)
+// Najlepiej w hooku woocommerce_after_single_product_summary (lub np. po tabsach)
+add_action('woocommerce_after_single_product_summary', 'display_product_faq', 5);
+
+// Skrypt obsługujący rozwijanie
+add_action('wp_footer', 'shav_faq_scripts');
+function shav_faq_scripts() {
+    if (!is_product()) return;
+    ?>
+    <script>
+        function shavToggleFaq(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.shav-faq-icon');
+            const vLine = icon.querySelector('.v-line');
+            
+            const isOpen = content.style.display !== 'none' && content.style.display !== '';
+            
+            if (isOpen) {
+                content.style.display = 'none';
+                vLine.style.opacity = '1';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.display = 'block';
+                vLine.style.opacity = '0';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+    <?php
+}

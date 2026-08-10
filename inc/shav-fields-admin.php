@@ -80,18 +80,15 @@ function shav_fields_registry()
         ],
 
         'accordion' => [
-            'label'  => 'Akordeony (3 sekcje)',
+            'label'  => 'Atuty (3 Ikony SVG)',
             'fields' => [
-                ['key' => 'show_accordion',    'label' => 'Pokaż akordeony', 'type' => 'checkbox'],
-                ['key' => 'accordion_title_1', 'label' => 'Akordeon 1 — tytuł', 'type' => 'text'],
-                ['key' => 'accordion_svg_1',   'label' => 'Akordeon 1 — SVG', 'type' => 'textarea'],
-                ['key' => 'accordion_content_1','label' => 'Akordeon 1 — treść', 'type' => 'textarea'],
-                ['key' => 'accordion_title_2', 'label' => 'Akordeon 2 — tytuł', 'type' => 'text'],
-                ['key' => 'accordion_svg_2',   'label' => 'Akordeon 2 — SVG', 'type' => 'textarea'],
-                ['key' => 'accordion_content_2','label' => 'Akordeon 2 — treść', 'type' => 'textarea'],
-                ['key' => 'accordion_title_3', 'label' => 'Akordeon 3 — tytuł', 'type' => 'text'],
-                ['key' => 'accordion_svg_3',   'label' => 'Akordeon 3 — SVG', 'type' => 'textarea'],
-                ['key' => 'accordion_content_3','label' => 'Akordeon 3 — treść', 'type' => 'textarea'],
+                ['key' => 'show_accordion',    'label' => 'Pokaż atuty', 'type' => 'checkbox'],
+                ['key' => 'accordion_title_1', 'label' => 'Atut 1 — tytuł', 'type' => 'text'],
+                ['key' => 'accordion_svg_1',   'label' => 'Atut 1 — SVG', 'type' => 'textarea'],
+                ['key' => 'accordion_title_2', 'label' => 'Atut 2 — tytuł', 'type' => 'text'],
+                ['key' => 'accordion_svg_2',   'label' => 'Atut 2 — SVG', 'type' => 'textarea'],
+                ['key' => 'accordion_title_3', 'label' => 'Atut 3 — tytuł', 'type' => 'text'],
+                ['key' => 'accordion_svg_3',   'label' => 'Atut 3 — SVG', 'type' => 'textarea'],
             ],
         ],
 
