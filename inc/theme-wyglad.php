@@ -37,11 +37,10 @@ function shav_register_store_settings() {
     register_setting($settings_group, 'shav_stock_strip_text');
     register_setting($settings_group, 'shav_stock_strips_json');
 
-    // Zakładka 3: Akordeony (Rezerwujemy 5 slotów)
-    for ($i = 1; $i <= 5; $i++) {
+    // Zakładka 3: Atuty (3 Ikony SVG)
+    for ($i = 1; $i <= 3; $i++) {
         register_setting($settings_group, 'shav_acc_title_' . $i);
         register_setting($settings_group, 'shav_acc_svg_' . $i);
-        register_setting($settings_group, 'shav_acc_content_' . $i);
     }
 
     // Zakładka 4: Odznaki Promocyjne (JSON Repeater)
@@ -163,7 +162,7 @@ function shav_render_store_settings_page() {
         <div class="shav-tabs">
             <div class="shav-tab active" data-target="tab-banner">Banery Sklepu</div>
             <div class="shav-tab" data-target="tab-stock">Paski Magazynowe</div>
-            <div class="shav-tab" data-target="tab-accordions">Akordeony</div>
+            <div class="shav-tab" data-target="tab-accordions">Atuty (3 Ikony)</div>
             <div class="shav-tab" data-target="tab-badges">Odznaki Procentowe</div>
             <div class="shav-tab" data-target="tab-text-badges">Etykiety Tekstowe</div>
             <div class="shav-tab" data-target="tab-svg-badges">Odznaki SVG</div>
@@ -268,12 +267,12 @@ function shav_render_store_settings_page() {
                     <textarea name="shav_stock_strips_json" id="shav_stock_strips_json" style="display:none;"><?php echo esc_textarea(get_option('shav_stock_strips_json', '[]')); ?></textarea>
                 </div>
 
-                <!-- ZAKŁADKA 3: AKORDEONY -->
+                <!-- ZAKŁADKA 3: ATUTY -->
                 <div id="tab-accordions" class="shav-tab-content">
-                    <h2>Globalne Akordeony pod przyciskiem Koszyka</h2>
-                    <p class="shav-desc">Wypełnij poniższe sloty. Puste sekcje zostaną zignorowane.</p>
+                    <h2>Globalne Atuty (3 Ikony SVG) pod przyciskiem Koszyka</h2>
+                    <p class="shav-desc">Te 3 ikony wyświetlą się w jednym rzędzie na każdej karcie produktu.</p>
                     
-                    <?php for ($i = 1; $i <= 5; $i++) : ?>
+                    <?php for ($i = 1; $i <= 3; $i++) : ?>
                     <div class="shav-accordion-item">
                         <h3>Slot #<?php echo $i; ?></h3>
                         
@@ -287,22 +286,6 @@ function shav_render_store_settings_page() {
                             <textarea name="shav_acc_svg_<?php echo $i; ?>" class="shav-input-textarea"><?php echo esc_textarea(get_option('shav_acc_svg_' . $i)); ?></textarea>
                         </div>
                         
-                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:0;">
-                            <label class="shav-label">Treść (Rozwinięcie)</label>
-                            <?php 
-                                wp_editor(
-                                    get_option('shav_acc_content_' . $i), 
-                                    'shav_acc_content_' . $i, 
-                                    array(
-                                        'textarea_name' => 'shav_acc_content_' . $i,
-                                        'media_buttons' => false,
-                                        'textarea_rows' => 5,
-                                        'teeny'         => true,
-                                        'quicktags'     => false
-                                    )
-                                ); 
-                            ?>
-                        </div>
                     </div>
                     <?php endfor; ?>
                 </div>

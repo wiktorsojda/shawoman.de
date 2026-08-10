@@ -79,18 +79,7 @@ function shav_fields_registry()
             ],
         ],
 
-        'accordion' => [
-            'label'  => 'Atuty (3 Ikony SVG)',
-            'fields' => [
-                ['key' => 'show_accordion',    'label' => 'Pokaż atuty', 'type' => 'checkbox'],
-                ['key' => 'accordion_title_1', 'label' => 'Atut 1 — tytuł', 'type' => 'text'],
-                ['key' => 'accordion_svg_1',   'label' => 'Atut 1 — SVG', 'type' => 'textarea'],
-                ['key' => 'accordion_title_2', 'label' => 'Atut 2 — tytuł', 'type' => 'text'],
-                ['key' => 'accordion_svg_2',   'label' => 'Atut 2 — SVG', 'type' => 'textarea'],
-                ['key' => 'accordion_title_3', 'label' => 'Atut 3 — tytuł', 'type' => 'text'],
-                ['key' => 'accordion_svg_3',   'label' => 'Atut 3 — SVG', 'type' => 'textarea'],
-            ],
-        ],
+
 
         'lowest_price' => [
             'label'  => 'Najniższa cena z 30 dni',
