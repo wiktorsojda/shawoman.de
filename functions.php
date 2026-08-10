@@ -2861,7 +2861,9 @@ function display_custom_product_section()
         'custom_product_id',
         'custom_product_price',
         'custom_product_unit_price',
-        'custom_product_list'
+        'custom_product_list',
+        'bundle_badge_type',
+        'bundle_badge_custom'
     ];
 
     $values = [];
@@ -2873,6 +2875,9 @@ function display_custom_product_section()
     if (empty($values['custom_product_id']))
         return;
 
+    // Pobierz walutę
+    $cur = function_exists('get_woocommerce_currency_symbol') ? ' ' . get_woocommerce_currency_symbol() : (function_exists('blendygo_get_label') ? blendygo_get_label('currency') : ' zł');
+
     // Oblicz savings — (cena_unit - cena_zestaw)
     $savings_text = '';
     if (!empty($values['custom_product_price']) && !empty($values['custom_product_unit_price'])) {
@@ -2880,12 +2885,14 @@ function display_custom_product_section()
         $price_unit = (float) str_replace(',', '.', preg_replace('/[^0-9,\.]/', '', $values['custom_product_unit_price']));
         if ($price_unit > 0 && $price_set > 0 && $price_set < $price_unit) {
             $diff = $price_unit - $price_set;
-            $savings_text = 'OSZCZĘDZASZ ' . number_format($diff, 2, ',', ' ') . ' ZŁ';
+            $savings_prefix = function_exists('blendygo_get_label') ? blendygo_get_label('savings_prefix') : 'OSZCZĘDZASZ ';
+            $savings_text = $savings_prefix . number_format($diff, 2, ',', ' ') . $cur;
         }
     }
 
+    $lbl_header = function_exists('blendygo_get_label') ? blendygo_get_label('set_header') : 'Zestaw promocyjny:';
     echo '<div class="zestaw-container shav-bundle">';
-    echo '<div class="zestaw-title" style="display:none">Zestaw promocyjny:</div>';
+    echo '<div class="zestaw-title" style="display:none">' . esc_html($lbl_header) . '</div>';
     echo '<div class="shav-bundle__card">';
     echo '<div class="shav-bundle__top">';
 
@@ -2898,7 +2905,23 @@ function display_custom_product_section()
 
     // Tytuł i lista
     echo '<div class="shav-bundle__content">';
-    echo '<span class="shav-bundle__badge">Najczęściej wybierane</span>';
+    $badge_type = isset($values['bundle_badge_type']) ? $values['bundle_badge_type'] : '';
+    $badge_custom = isset($values['bundle_badge_custom']) ? $values['bundle_badge_custom'] : '';
+    
+    $badge_text = '';
+    if ($badge_type === 'none') {
+        $badge_text = '';
+    } elseif ($badge_type === 'custom' && !empty($badge_custom)) {
+        $badge_text = $badge_custom;
+    } elseif ($badge_type === 'new') {
+        $badge_text = function_exists('blendygo_get_label') ? blendygo_get_label('new_badge') : 'Nowość';
+    } else {
+        $badge_text = function_exists('blendygo_get_label') ? blendygo_get_label('bestseller_badge') : 'Najczęściej wybierane';
+    }
+    
+    if (!empty($badge_text)) {
+        echo '<span class="shav-bundle__badge">' . esc_html($badge_text) . '</span>';
+    }
 
 
 
@@ -2925,20 +2948,22 @@ function display_custom_product_section()
 
     if (!empty($values['custom_product_price'])) {
         echo '<div class="shav-bundle__price-row">';
-        echo '<span class="shav-bundle__price-label">Cena za zestaw:</span>';
+        $lbl_price = function_exists('blendygo_get_label') ? blendygo_get_label('set_price') : 'Cena za zestaw:';
+        echo '<span class="shav-bundle__price-label">' . esc_html($lbl_price) . '</span>';
         echo '<span class="shav-bundle__price-value">';
         if (!empty($savings_text)) {
             echo '<span class="shav-bundle__savings-pill">' . esc_html($savings_text) . '</span>';
         }
-        echo '<span class="shav-bundle__price-sale">' . esc_html($values['custom_product_price']) . ' zł</span>';
+        echo '<span class="shav-bundle__price-sale">' . esc_html($values['custom_product_price']) . esc_html($cur) . '</span>';
         echo '</span>';
         echo '</div>';
     }
 
     if (!empty($values['custom_product_unit_price'])) {
         echo '<div class="shav-bundle__price-row">';
-        echo '<span class="shav-bundle__price-label">Cena poza zestawem:</span>';
-        echo '<span class="shav-bundle__price-regular">' . esc_html($values['custom_product_unit_price']) . ' zł</span>';
+        $lbl_price_rest = function_exists('blendygo_get_label') ? blendygo_get_label('set_price_rest') : 'Cena poza zestawem:';
+        echo '<span class="shav-bundle__price-label">' . esc_html($lbl_price_rest) . '</span>';
+        echo '<span class="shav-bundle__price-regular">' . esc_html($values['custom_product_unit_price']) . esc_html($cur) . '</span>';
         echo '</div>';
     }
 
@@ -2957,7 +2982,8 @@ function display_custom_product_section()
     $product_url = get_permalink($values['custom_product_id']);
     if ($product_url) {
         echo '<a href="' . esc_url($product_url) . '" class="shav-bundle__cta">';
-        echo '<span>' . __('Zobacz zestaw', 'woocommerce') . '</span>';
+        $lbl_btn = function_exists('blendygo_get_label') ? blendygo_get_label('set_btn') : __('Zobacz zestaw', 'woocommerce');
+        echo '<span>' . esc_html($lbl_btn) . '</span>';
         echo '<span class="shav-bundle__cta-arrow" aria-hidden="true">';
         echo '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-7 7 7-7 7" stroke="#252525" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
         echo '</span>';
