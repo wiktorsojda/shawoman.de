@@ -78,13 +78,7 @@ function shav_fields_registry()
                 ['key' => '_kobiety_box2_link_url',   'label' => 'Box 2 — link URL', 'type' => 'text'],
             ],
         ],
-        'stock_strip' => [
-            'label'  => 'Pasek magazynowy',
-            'fields' => [
-                ['key' => 'enable_stock_strip', 'label' => 'Pokaż pasek', 'type' => 'checkbox'],
-                ['key' => 'custom_percentage',  'label' => 'Procent (0-100)', 'type' => 'number'],
-            ],
-        ],
+
         'accordion' => [
             'label'  => 'Akordeony (3 sekcje)',
             'fields' => [

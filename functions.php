@@ -2223,85 +2223,66 @@ add_action('shav_product_gallery_badges', 'display_promotional_element_two_lines
 
 // pasek magazynowyAdd commentMore actions
 // Add custom fields to product edit page
-// 1. Dodaj pola w panelu admina
-function add_custom_strip_fields()
-{
-    global $post;
-
-    echo '<div class="options_group">';
-
-    // Checkbox aktywacji
-    woocommerce_wp_checkbox(array(
-        'id' => 'enable_stock_strip',
-        'label' => __('Pokaż pasek magazynowy', 'woocommerce'),
-        'description' => __('Zaznacz aby aktywować pasek magazynowy', 'woocommerce'),
-        'value' => 'yes',
-        'custom_attributes' => array('checked' => 'checked') // Domyślnie aktywny
-    ));
-
-    // Pole na procenty
-    woocommerce_wp_text_input(array(
-        'id' => 'custom_percentage',
-        'label' => __('Procent wypełnienia', 'woocommerce'),
-        'desc_tip' => true,
-        'description' => __('Wpisz procent wypełnienia paska (0-100)', 'woocommerce'),
-        'wrapper_class' => 'show_if_enabled'
-    ));
-
-    echo '</div>';
-}
-add_action('woocommerce_product_options_general_product_data', 'add_custom_strip_fields');
-
-// 2. Zapisz wartości pól
-function save_custom_strip_fields($post_id)
-{
-    $product = wc_get_product($post_id);
-
-
-
-
-
-    // Domyślna aktywacja dla nowych produktów
-    if (!$product->meta_exists('enable_stock_strip')) {
-        $product->update_meta_data('enable_stock_strip', 'yes');
-    }
-
-    // Aktualizacja checkboxa
-    $enable_strip = isset($_POST['enable_stock_strip']) ? 'yes' : 'no';
-    $product->update_meta_data('enable_stock_strip', $enable_strip);
-
-    // Zapisz procent
-    $percentage = isset($_POST['custom_percentage']) ? intval($_POST['custom_percentage']) : '';
-    $product->update_meta_data('custom_percentage', $percentage);
-
-    $product->save();
-}
-add_action('woocommerce_process_product_meta', 'save_custom_strip_fields');
-
-// 3. Wyświetlanie paska z fallbackiem
+// Wyświetlanie paska magazynowego z globalnych ustawień (Kokpit)
 function display_percentage_strip()
 {
     global $post;
-
+    if (!$post) return;
 
     $product = wc_get_product($post->ID);
     if (!$product)
         return;
     $pid = $product->get_id();
-    if (function_exists('shav_is_hidden') && shav_is_hidden($pid, 'stock_strip'))
+
+    // 1. Sprawdź globalny toggle (domyślnie wyłączony)
+    if (get_option('shav_stock_strip_enabled', 'no') !== 'yes')
         return;
 
-    $is_enabled = shav_get_field($pid, 'enable_stock_strip', 'stock_strip');
-    if (empty($is_enabled))
-        $is_enabled = 'yes'; // backward compat — domyślnie aktywne
-    if ($is_enabled !== 'yes')
-        return;
+    // 2. Pobierz globalne defaults
+    $percentage = get_option('shav_stock_strip_percent', 80);
+    $text_template = get_option('shav_stock_strip_text', 'Nur solange der Vorrat reicht! – Nur noch: {percent}%');
 
-    $percentage = shav_get_field($pid, 'custom_percentage', 'stock_strip');
+    // 3. Ewaluacja reguł
+    $rules_json = get_option('shav_stock_strips_json', '[]');
+    $rules = json_decode($rules_json, true);
+    
+    if (is_array($rules) && !empty($rules)) {
+        $product_cats = wp_get_post_terms($pid, 'product_cat', ['fields' => 'ids']);
+        if (!is_array($product_cats)) $product_cats = [];
+        
+        foreach ($rules as $rule) {
+            $match = false;
+            if (isset($rule['type'])) {
+                if ($rule['type'] === 'global') {
+                    $match = true;
+                } elseif ($rule['type'] === 'categories') {
+                    $cats = isset($rule['categories']) ? (array)$rule['categories'] : [];
+                    if (!empty(array_intersect($product_cats, $cats))) {
+                        $match = true;
+                    }
+                } elseif ($rule['type'] === 'products') {
+                    $prods = isset($rule['products']) ? (array)$rule['products'] : [];
+                    foreach ($prods as $p) {
+                        if (isset($p['id']) && (int)$p['id'] === $pid) {
+                            $match = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if ($match) {
+                if (!empty($rule['percent'])) $percentage = $rule['percent'];
+                if (!empty($rule['text'])) $text_template = $rule['text'];
+                break; // Stop at first matched rule
+            }
+        }
+    }
 
-    // Walidacja wartości
-    if (!empty($percentage) && is_numeric($percentage)) {
+    // Walidacja i renderowanie
+    if (is_numeric($percentage)) {
         $percentage = min(max(intval($percentage), 0), 100);
+        $final_text = str_replace('{percent}', $percentage, $text_template);
 
         echo '<div class="shav-stock">';
         echo '<div class="shav-stock__icon">';
@@ -2310,13 +2291,11 @@ function display_percentage_strip()
         echo '</svg>';
         echo '</div>';
         echo '<div class="shav-stock__content">';
-        echo '<p class="shav-stock__label">Dostępność na magazynie: ' . esc_html($percentage) . '%</p>';
+        echo '<p class="shav-stock__label">' . esc_html($final_text) . '</p>';
         echo '<div class="shav-stock__bar"><div class="shav-stock__bar-fill" style="width: ' . esc_attr($percentage) . '%"></div></div>';
         echo '</div>';
         echo '</div>';
     }
-
-
 }
 add_action('woocommerce_share', 'display_percentage_strip', 20);
 

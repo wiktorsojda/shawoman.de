@@ -219,8 +219,8 @@ function shav_render_store_settings_page() {
                     <div class="shav-field-group">
                         <label class="shav-label">Status paska na sklepie</label>
                         <select name="shav_stock_strip_enabled" class="shav-input-text" style="max-width: 200px;">
-                            <option value="yes" <?php selected(get_option('shav_stock_strip_enabled', 'yes'), 'yes'); ?>>Włączony</option>
-                            <option value="no" <?php selected(get_option('shav_stock_strip_enabled'), 'no'); ?>>Wyłączony</option>
+                            <option value="yes" <?php selected(get_option('shav_stock_strip_enabled', 'no'), 'yes'); ?>>Włączony</option>
+                            <option value="no" <?php selected(get_option('shav_stock_strip_enabled', 'no'), 'no'); ?>>Wyłączony</option>
                         </select>
                         <span class="shav-desc" style="margin-top:5px;">Jeśli wyłączysz tutaj, pasek zniknie ze wszystkich produktów (chyba że w produkcie nadpiszesz to ustawienie).</span>
                     </div>
