@@ -827,7 +827,7 @@ function shav_render_store_settings_page() {
                                 processResults: function(data) {
                                     var terms = [];
                                     if (data) {
-                                        $.each(data, function(id, text) {
+                                        jQuery.each(data, function(id, text) {
                                             terms.push({ id: id, text: text });
                                         });
                                     }
