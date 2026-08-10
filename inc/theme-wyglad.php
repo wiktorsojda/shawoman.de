@@ -327,9 +327,13 @@ function shav_render_store_settings_page() {
                                             
                                             <div class="shav-field-group feature-image-wrapper" style="border:none; padding:0; margin-bottom:0; ${row.icon_type === 'image' ? '' : 'display:none;'}">
                                                 <label class="shav-label">Wybierz Plik (Obrazek)</label>
-                                                <div style="display:flex; gap: 10px;">
-                                                    <input type="text" class="feature-image shav-input-text" data-index="${index}" value="${row.image ? row.image.replace(/"/g, '&quot;') : ''}" style="width: 80%;" placeholder="URL obrazka (np. https://...)">
+                                                <div style="display:flex; align-items: center; gap: 15px;">
+                                                    <div class="feature-image-preview" style="width: 60px; height: 60px; background: #f2f2f2; border: 1px dashed #ccc; border-radius: 4px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                                        ${row.image ? `<img src="${row.image}" style="max-width:100%; max-height:100%; object-fit:contain;">` : '<span style="font-size:10px; color:#999;">Brak</span>'}
+                                                    </div>
+                                                    <input type="hidden" class="feature-image" data-index="${index}" value="${row.image ? row.image.replace(/"/g, '&quot;') : ''}">
                                                     <button type="button" class="button shav-upload-feature-img" data-index="${index}">Wybierz z biblioteki</button>
+                                                    <button type="button" class="button shav-remove-feature-img" data-index="${index}" style="${row.image ? '' : 'display:none;'} color: red; border-color: red;">Usuń obrazek</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -393,11 +397,15 @@ function shav_render_store_settings_page() {
                                     btn.addEventListener('click', function(e) {
                                         e.preventDefault();
                                         const inputField = this.previousElementSibling;
+                                        const wrapper = this.closest('.feature-image-wrapper');
+                                        
                                         if (mediaUploader) {
                                             mediaUploader.open();
                                             mediaUploader.on('select', function() {
                                                 const attachment = mediaUploader.state().get('selection').first().toJSON();
                                                 inputField.value = attachment.url;
+                                                wrapper.querySelector('.feature-image-preview').innerHTML = `<img src="${attachment.url}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
+                                                wrapper.querySelector('.shav-remove-feature-img').style.display = 'inline-block';
                                                 syncData();
                                             });
                                             return;
@@ -410,9 +418,22 @@ function shav_render_store_settings_page() {
                                         mediaUploader.on('select', function() {
                                             const attachment = mediaUploader.state().get('selection').first().toJSON();
                                             inputField.value = attachment.url;
+                                            wrapper.querySelector('.feature-image-preview').innerHTML = `<img src="${attachment.url}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
+                                            wrapper.querySelector('.shav-remove-feature-img').style.display = 'inline-block';
                                             syncData();
                                         });
                                         mediaUploader.open();
+                                    });
+                                });
+                                
+                                container.querySelectorAll('.shav-remove-feature-img').forEach(btn => {
+                                    btn.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        const wrapper = this.closest('.feature-image-wrapper');
+                                        wrapper.querySelector('.feature-image').value = '';
+                                        wrapper.querySelector('.feature-image-preview').innerHTML = '<span style="font-size:10px; color:#999;">Brak</span>';
+                                        this.style.display = 'none';
+                                        syncData();
                                     });
                                 });
                             }
