@@ -2241,7 +2241,6 @@ function display_percentage_strip()
     // 2. Pobierz globalne defaults
     $mode = get_option('shav_stock_strip_mode', 'auto');
     $percentage = get_option('shav_stock_strip_percent', 80);
-    $max_stock = get_option('shav_stock_strip_max_stock', 50);
     $text_template = get_option('shav_stock_strip_text', 'Nur noch {stock} Stück auf Lager! – Schon {percent}% verkauft!');
 
     // 3. Ewaluacja reguł
@@ -2276,7 +2275,6 @@ function display_percentage_strip()
             if ($match) {
                 if (!empty($rule['mode'])) $mode = $rule['mode'];
                 if (isset($rule['percent']) && $rule['percent'] !== '') $percentage = $rule['percent'];
-                if (isset($rule['max_stock']) && $rule['max_stock'] !== '') $max_stock = $rule['max_stock'];
                 if (!empty($rule['text'])) $text_template = $rule['text'];
                 break; // Stop at first matched rule
             }
@@ -2293,7 +2291,8 @@ function display_percentage_strip()
     }
 
     if ($mode === 'auto' && $product->managing_stock() && $current_stock !== null) {
-        // Jeśli produkt ma zdefiniowany własny limit w zakładce Magazyn, nadpisz regułę:
+        // Produkt musi mieć zdefiniowany własny limit w zakładce Magazyn
+        $max_stock = 0;
         $product_max_stock = get_post_meta($pid, '_initial_stock_for_strip', true);
         if (!empty($product_max_stock) && is_numeric($product_max_stock) && $product_max_stock > 0) {
             $max_stock = $product_max_stock;
@@ -2303,6 +2302,9 @@ function display_percentage_strip()
             // Wyliczamy prawdziwy procent względem ustawionego limitu bazowego (pozostały stan)
             $percentage = floor(($current_stock / $max_stock) * 100);
             if ($percentage > 100) $percentage = 100;
+        } else {
+            // Jeśli nie ustawiono limitu na produkcie, a jesteśmy w trybie auto, przerywamy by nie pokazać błędu
+            return;
         }
     }
 

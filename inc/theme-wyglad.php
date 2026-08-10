@@ -33,7 +33,6 @@ function shav_register_store_settings() {
     register_setting($settings_group, 'shav_stock_strip_enabled');
     register_setting($settings_group, 'shav_stock_strip_mode');
     register_setting($settings_group, 'shav_stock_strip_percent');
-    register_setting($settings_group, 'shav_stock_strip_max_stock');
     register_setting($settings_group, 'shav_stock_strip_text');
     register_setting($settings_group, 'shav_stock_strips_json');
 
@@ -229,7 +228,7 @@ function shav_render_store_settings_page() {
 
                     <div class="shav-field-group">
                         <label class="shav-label">Tryb obliczania paska</label>
-                        <select name="shav_stock_strip_mode" class="shav-input-text" style="max-width: 300px;" onchange="document.getElementById('global_strip_percent_wrap').style.display = this.value === 'manual' ? 'block' : 'none'; document.getElementById('global_strip_max_wrap').style.display = this.value === 'auto' ? 'block' : 'none';">
+                        <select name="shav_stock_strip_mode" class="shav-input-text" style="max-width: 300px;" onchange="document.getElementById('global_strip_percent_wrap').style.display = this.value === 'manual' ? 'block' : 'none';">
                             <option value="auto" <?php selected(get_option('shav_stock_strip_mode', 'auto'), 'auto'); ?>>Automatyczny (rzeczywisty stan z WooCommerce)</option>
                             <option value="manual" <?php selected(get_option('shav_stock_strip_mode'), 'manual'); ?>>Ręczny (statyczny stały procent)</option>
                         </select>
@@ -245,12 +244,6 @@ function shav_render_store_settings_page() {
                         <label class="shav-label">Domyślny procent wypełnienia (%)</label>
                         <input type="number" name="shav_stock_strip_percent" class="shav-input-text" min="0" max="100" style="max-width: 150px;" value="<?php echo esc_attr(get_option('shav_stock_strip_percent', 80)); ?>">
                         <span class="shav-desc">Użyty globalnie, gdy wybrany jest tryb Ręczny.</span>
-                    </div>
-
-                    <div class="shav-field-group" id="global_strip_max_wrap" style="<?php echo get_option('shav_stock_strip_mode', 'auto') === 'auto' ? 'display:block;' : 'display:none;'; ?>">
-                        <label class="shav-label">Początkowy limit magazynowy (do wyliczeń rzeczywistych)</label>
-                        <input type="number" name="shav_stock_strip_max_stock" class="shav-input-text" min="1" style="max-width: 150px;" value="<?php echo esc_attr(get_option('shav_stock_strip_max_stock', 50)); ?>">
-                        <span class="shav-desc">Limit dla trybu Automatycznego. (Możesz nadpisać go na poziomie edycji konkretnego produktu w zakładce Magazyn).</span>
                     </div>
 
                     <hr style="margin:30px 0; border:1px solid #ddd;">
@@ -742,11 +735,6 @@ function shav_render_store_settings_page() {
                             <label class="shav-label">Statyczny Procent Wypełnienia (%)</label>
                             <input type="number" class="shav-input-text stock-percent-input" data-index="${index}" min="0" max="100" style="max-width: 150px;" value="${rule.percent || ''}" placeholder="80">
                         </div>
-
-                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:0; ${rule.mode === 'manual' ? 'display:none;' : ''}">
-                            <label class="shav-label">Limit magazynowy (do wyliczeń z WooCommerce)</label>
-                            <input type="number" class="shav-input-text stock-max-input" data-index="${index}" min="1" style="max-width: 150px;" value="${rule.max_stock || ''}" placeholder="50">
-                        </div>
                     `;
                     containerStock.appendChild(row);
 
@@ -823,7 +811,6 @@ function shav_render_store_settings_page() {
                     const mode = row.querySelector('.stock-mode-select').value;
                     const text = row.querySelector('.stock-text-input').value;
                     const percent = row.querySelector('.stock-percent-input').value;
-                    const max_stock = row.querySelector('.stock-max-input').value;
                     const isFolded = row.classList.contains('is-folded');
                     
                     let categories = [];
@@ -849,7 +836,6 @@ function shav_render_store_settings_page() {
                         products: products,
                         text: text,
                         percent: percent,
-                        max_stock: max_stock,
                         isFolded: isFolded
                     });
                 });
@@ -866,7 +852,6 @@ function shav_render_store_settings_page() {
                         products: [],
                         text: '',
                         percent: '',
-                        max_stock: '',
                         isFolded: false
                     });
                     renderStockRows();
