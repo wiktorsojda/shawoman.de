@@ -669,10 +669,10 @@ function shav_render_store_settings_page() {
                 const rows = document.querySelectorAll('.shav-repeater-row:not(.stock-row):not(.text-badge-row):not(.svg-badge-row)');
                 badgeData = [];
                 rows.forEach((row, idx) => {
-                    const type = row.querySelector('.badge-type-select').value;
-                    const text = row.querySelector('.badge-text-input').value;
-                    const color = row.querySelector('.badge-color-input').value;
-                    const isFolded = row.classList.contains('is-folded');
+                    const type = row.querySelector('.badge-type-select')?.value || 'global';
+                    const text = row.querySelector('.badge-text-input')?.value || '';
+                    const color = row.querySelector('.badge-color-input')?.value || '';
+                    const isFolded = row.classList?.contains('is-folded') || false;
                     
                     let categories = [];
                     let products = [];
@@ -1497,11 +1497,11 @@ function shav_render_store_settings_page() {
                 const rows = document.querySelectorAll('.text-badge-row');
                 textBadgeData = [];
                 rows.forEach((row, idx) => {
-                    const type = row.querySelector('.tb-type-select').value;
-                    const text = row.querySelector('.tb-text-input').value;
-                    const color = row.querySelector('.tb-color-input').value;
-                    const textColor = row.querySelector('.tb-text-color-select').value;
-                    const isFolded = row.classList.contains('is-folded');
+                    const type = row.querySelector('.tb-type-select')?.value || 'global';
+                    const text = row.querySelector('.tb-text-input')?.value || '';
+                    const color = row.querySelector('.tb-color-input')?.value || '';
+                    const textColor = row.querySelector('.tb-text-color-select')?.value || '';
+                    const isFolded = row.classList?.contains('is-folded') || false;
                     
                     let categories = [];
                     let products = [];
