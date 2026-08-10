@@ -632,7 +632,7 @@ function shav_render_store_settings_page() {
 
                 // Zainicjuj Select2 z WooCommerce na nowo wygenerowanych rzędach
                 if (typeof jQuery !== 'undefined' && jQuery.fn.selectWoo) {
-                    jQuery(containerStock).find('.wc-product-search').each(function() {
+                    jQuery(container).find('.wc-product-search').each(function() {
                         var $select = jQuery(this);
                         $select.selectWoo({
                             minimumInputLength: 3,
