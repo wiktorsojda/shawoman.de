@@ -22,6 +22,9 @@ if (!function_exists('blendygo_get_label')) {
                 'dec' => ',',
                 'tho' => ' ',
                 'promo_badge_default' => 'PROMOCJA',
+                'bestseller_badge' => 'Najczęściej wybierane',
+                'new_badge' => 'Nowość',
+                'savings_prefix' => 'OSZCZĘDZASZ ',
                 'ending_soon' => 'Promocja wkrótce się zakończy'
             ],
             'de' => [
@@ -30,7 +33,7 @@ if (!function_exists('blendygo_get_label')) {
                 'mins' => 'Minuten',
                 'secs' => 'Sekunden',
                 'set_price' => 'Set-Preis:',
-                'set_price_rest' => 'Normalpreis:',
+                'set_price_rest' => 'Einzelpreis:',
                 'set_btn' => 'Set ansehen',
                 'set_header' => 'Aktionsset:',
                 'atc_reg' => 'Wettbewerbsregeln',
@@ -38,6 +41,9 @@ if (!function_exists('blendygo_get_label')) {
                 'dec' => ',',
                 'tho' => '.',
                 'promo_badge_default' => 'AKTION',
+                'bestseller_badge' => 'BELIEBTESTE WAHL',
+                'new_badge' => 'NEU',
+                'savings_prefix' => 'SIE SPAREN ',
                 'ending_soon' => 'Aktion endet in Kürze'
             ],
             'hu' => [
@@ -803,6 +809,8 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
         $items = '';
         $lbl_btn = '';
         $lbl_header = '';
+        $badge_type = '';
+        $badge_custom = '';
 
         $promo_id = blendygo_get_active_cpt_promo();
         if ($promo_id) {
@@ -820,6 +828,8 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
                 $custom_header_label = get_post_meta($promo_id, 'promo_set_header_label_' . $set_idx, true);
                 $lbl_btn = !empty($custom_btn_label) ? $custom_btn_label : blendygo_get_label('set_btn', $promo_id);
                 $lbl_header = !empty($custom_header_label) ? $custom_header_label : blendygo_get_label('set_header', $promo_id);
+                $badge_type = get_post_meta($promo_id, 'promo_set_badge_type_' . $set_idx, true);
+                $badge_custom = get_post_meta($promo_id, 'promo_set_badge_custom_' . $set_idx, true);
             }
         }
 
@@ -850,8 +860,10 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
                 $price_reg = isset($matched_set['price_reg']) ? $matched_set['price_reg'] : '';
                 $price_pro = isset($matched_set['price_promo']) ? $matched_set['price_promo'] : '';
                 $items = isset($matched_set['items']) ? $matched_set['items'] : '';
-                $lbl_btn = !empty($matched_set['btn_label']) ? $matched_set['btn_label'] : 'Dodaj do koszyka';
-                $lbl_header = !empty($matched_set['header_label']) ? $matched_set['header_label'] : 'Zestaw';
+                $lbl_btn = !empty($matched_set['btn_label']) ? $matched_set['btn_label'] : blendygo_get_label('set_btn', 0);
+                $lbl_header = !empty($matched_set['header_label']) ? $matched_set['header_label'] : blendygo_get_label('set_header', 0);
+                $badge_type = isset($matched_set['badge_type']) ? $matched_set['badge_type'] : '';
+                $badge_custom = isset($matched_set['badge_custom']) ? $matched_set['badge_custom'] : '';
                 $promo_id = false;
             }
         }
@@ -910,7 +922,19 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
         $savings_text = '';
         if ( $val_reg > 0 && $val_pro > 0 && $val_reg > $val_pro ) {
             $diff = $val_reg - $val_pro;
-            $savings_text = 'OSZCZĘDZASZ ' . number_format($diff, $decimals, $dec, $tho) . $cur;
+            $savings_prefix = blendygo_get_label('savings_prefix', $promo_id);
+            $savings_text = $savings_prefix . number_format($diff, $decimals, $dec, $tho) . $cur;
+        }
+
+        $badge_text = '';
+        if ($badge_type === 'none') {
+            $badge_text = '';
+        } elseif ($badge_type === 'custom' && !empty($badge_custom)) {
+            $badge_text = $badge_custom;
+        } elseif ($badge_type === 'new') {
+            $badge_text = blendygo_get_label('new_badge', $promo_id);
+        } else {
+            $badge_text = blendygo_get_label('bestseller_badge', $promo_id);
         }
 
         echo '<div class="zestaw-container shav-bundle">';
@@ -927,7 +951,9 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
 
         // TYTUŁ I SKŁAD
         echo '<div class="shav-bundle__content">';
-        echo '<span class="shav-bundle__badge">Najczęściej wybierane</span>';
+        if (!empty($badge_text)) {
+            echo '<span class="shav-bundle__badge">' . esc_html($badge_text) . '</span>';
+        }
         if ( ! empty( $title ) ) {
             echo '<h3 class="shav-bundle__title">' . esc_html( $title ) . '</h3>';
         }

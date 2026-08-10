@@ -962,6 +962,8 @@ function wc_cross_sell_settings_render() {
                     'target_ids'   => isset($p_set['target_ids']) ? array_map('intval', $p_set['target_ids']) : array(), // Na jakich produktach wyświetlać
                     'is_global'    => (isset($p_set['is_global']) && $p_set['is_global'] === 'yes') ? 'yes' : 'no',
                     'header_label' => sanitize_text_field($p_set['header_label']),
+                    'badge_type'   => isset($p_set['badge_type']) ? sanitize_text_field($p_set['badge_type']) : '',
+                    'badge_custom' => isset($p_set['badge_custom']) ? sanitize_text_field($p_set['badge_custom']) : '',
                     'title'        => sanitize_text_field($p_set['title']),
                     'image'        => esc_url_raw($p_set['image']),
                     'items'        => sanitize_textarea_field($p_set['items']),
@@ -1314,6 +1316,19 @@ function wc_cross_sell_settings_render() {
                                             <div class="cs-input-group full-width">
                                                 <label>Nagłówek zestawu (np. Zestaw Premium)</label>
                                                 <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][header_label]" value="<?php echo esc_attr(isset($p_set['header_label']) ? $p_set['header_label'] : ''); ?>" placeholder="Wpisz nagłówek...">
+                                            </div>
+                                            <div class="cs-input-group full-width">
+                                                <label>Typ odznaki (Pill na zestawie)</label>
+                                                <select name="wc_cs_promo_sets[<?php echo $index; ?>][badge_type]" style="width: 100%;">
+                                                    <option value="bestseller" <?php selected(isset($p_set['badge_type']) ? $p_set['badge_type'] : '', 'bestseller'); ?>>Najczęściej wybierane (ze słownika)</option>
+                                                    <option value="new" <?php selected(isset($p_set['badge_type']) ? $p_set['badge_type'] : '', 'new'); ?>>Nowość (ze słownika)</option>
+                                                    <option value="none" <?php selected(isset($p_set['badge_type']) ? $p_set['badge_type'] : '', 'none'); ?>>Brak odznaki</option>
+                                                    <option value="custom" <?php selected(isset($p_set['badge_type']) ? $p_set['badge_type'] : '', 'custom'); ?>>Własny tekst</option>
+                                                </select>
+                                            </div>
+                                            <div class="cs-input-group full-width">
+                                                <label>Własny tekst odznaki</label>
+                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][badge_custom]" value="<?php echo esc_attr(isset($p_set['badge_custom']) ? $p_set['badge_custom'] : ''); ?>" placeholder="Wpisz własny tekst...">
                                             </div>
                                             <div class="cs-input-group full-width">
                                                 <label>Tytuł zestawu (np. Zestaw Shav)</label>
@@ -1895,6 +1910,19 @@ function wc_cross_sell_settings_render() {
                                 <div class="cs-input-group full-width">
                                     <label>Nagłówek zestawu (np. Zestaw Premium)</label>
                                     <input type="text" name="wc_cs_promo_sets[{{INDEX}}][header_label]" placeholder="Wpisz nagłówek...">
+                                </div>
+                                <div class="cs-input-group full-width">
+                                    <label>Typ odznaki (Pill na zestawie)</label>
+                                    <select name="wc_cs_promo_sets[{{INDEX}}][badge_type]" style="width: 100%;">
+                                        <option value="bestseller" selected>Najczęściej wybierane (ze słownika)</option>
+                                        <option value="new">Nowość (ze słownika)</option>
+                                        <option value="none">Brak odznaki</option>
+                                        <option value="custom">Własny tekst</option>
+                                    </select>
+                                </div>
+                                <div class="cs-input-group full-width">
+                                    <label>Własny tekst odznaki</label>
+                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][badge_custom]" placeholder="Wpisz własny tekst...">
                                 </div>
                                 <div class="cs-input-group full-width">
                                     <label>Tytuł zestawu (np. Zestaw Shav)</label>

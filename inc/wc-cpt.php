@@ -868,6 +868,8 @@ function render_promocje_meta_box($post) {
         $set_title = isset($meta['promo_set_title_'.$i]) ? esc_attr($meta['promo_set_title_'.$i][0]) : '';
         $set_btn_label = isset($meta['promo_set_btn_label_'.$i]) ? esc_attr($meta['promo_set_btn_label_'.$i][0]) : '';
         $set_header_label = isset($meta['promo_set_header_label_'.$i]) ? esc_attr($meta['promo_set_header_label_'.$i][0]) : ''; 
+        $set_badge_type = isset($meta['promo_set_badge_type_'.$i]) ? esc_attr($meta['promo_set_badge_type_'.$i][0]) : '';
+        $set_badge_custom = isset($meta['promo_set_badge_custom_'.$i]) ? esc_attr($meta['promo_set_badge_custom_'.$i][0]) : '';
         $set_target = isset($meta['promo_set_target_'.$i]) ? esc_attr($meta['promo_set_target_'.$i][0]) : '';
         $set_price_reg = isset($meta['promo_set_price_regular_'.$i]) ? esc_attr($meta['promo_set_price_regular_'.$i][0]) : '';
         $set_price_pro = isset($meta['promo_set_price_promo_'.$i]) ? esc_attr($meta['promo_set_price_promo_'.$i][0]) : '';
@@ -905,6 +907,20 @@ function render_promocje_meta_box($post) {
             
             echo '<div class="promo-field-group"><label class="main-label">Nagłówek zestawu (Opcjonalnie, domyślnie: Zestaw Promocyjny:)</label>';
             echo '<input type="text" name="promo_set_header_label_'.$i.'" class="promo-input-text" value="'.$set_header_label.'" placeholder="np. Zestaw Urodzinowy:"></div>';
+        echo '</div>';
+
+        // WIERSZ 2.5: Odznaka zestawu
+        echo '<div class="promo-flex-row">';
+            echo '<div class="promo-field-group"><label class="main-label">Typ odznaki (Pill na zestawie)</label>';
+            echo '<select name="promo_set_badge_type_'.$i.'" class="promo-input-text">';
+            echo '<option value="bestseller" '.selected($set_badge_type, 'bestseller', false).'>Najczęściej wybierane (ze słownika)</option>';
+            echo '<option value="new" '.selected($set_badge_type, 'new', false).'>Nowość (ze słownika)</option>';
+            echo '<option value="none" '.selected($set_badge_type, 'none', false).'>Brak odznaki</option>';
+            echo '<option value="custom" '.selected($set_badge_type, 'custom', false).'>Własny tekst</option>';
+            echo '</select></div>';
+            
+            echo '<div class="promo-field-group"><label class="main-label">Własny tekst odznaki</label>';
+            echo '<input type="text" name="promo_set_badge_custom_'.$i.'" class="promo-input-text" value="'.$set_badge_custom.'" placeholder="Wpisz własny tekst"></div>';
         echo '</div>';
 
         // WIERSZ 3: Ceny
@@ -3061,7 +3077,7 @@ function save_promocje_meta_data($post_id) {
     }
 
     for ($i = 1; $i <= 3; $i++) {
-        $set_fields = ['promo_set_title_'.$i, 'promo_set_btn_label_'.$i, 'promo_set_header_label_'.$i, 'promo_set_price_regular_'.$i, 'promo_set_price_promo_'.$i, 'promo_set_items_'.$i];
+        $set_fields = ['promo_set_title_'.$i, 'promo_set_btn_label_'.$i, 'promo_set_header_label_'.$i, 'promo_set_badge_type_'.$i, 'promo_set_badge_custom_'.$i, 'promo_set_price_regular_'.$i, 'promo_set_price_promo_'.$i, 'promo_set_items_'.$i];
         foreach($set_fields as $sf) {
             if (isset($_POST[$sf])) {
                 update_post_meta($post_id, $sf, sanitize_textarea_field($_POST[$sf]));
