@@ -53,7 +53,7 @@ function shav_register_store_settings() {
 // 3. Załadowanie skryptów (Media Uploader + WooCommerce Select2)
 add_action('admin_enqueue_scripts', 'shav_store_settings_scripts');
 function shav_store_settings_scripts($hook) {
-    if ($hook !== 'toplevel_page_shav-store-settings') {
+    if (strpos($hook, 'shav-store-settings') === false) {
         return;
     }
     wp_enqueue_media();
