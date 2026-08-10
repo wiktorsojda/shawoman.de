@@ -2303,8 +2303,8 @@ function display_percentage_strip()
             $percentage = floor(($current_stock / $max_stock) * 100);
             if ($percentage > 100) $percentage = 100;
         } else {
-            // Jeśli nie ustawiono limitu na produkcie, a jesteśmy w trybie auto, przerywamy by nie pokazać błędu
-            return;
+            // Brak ustawionego limitu, przełączamy na bezpieczny fallback żeby pasek się wyświetlił
+            $percentage = 100; 
         }
     }
 
