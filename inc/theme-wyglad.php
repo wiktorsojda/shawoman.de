@@ -382,7 +382,7 @@ function shav_render_store_settings_page() {
             jQuery('.shav-settings-wrap').prepend('<div class="notice notice-error"><p><strong>JS Error:</strong> ' + e.message + ' in ' + e.filename + ' on line ' + e.lineno + '</p></div>');
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        (function() { try {
             // Zakładki
             const tabs = document.querySelectorAll('.shav-tab');
             const contents = document.querySelectorAll('.shav-tab-content');
@@ -1606,7 +1606,11 @@ function shav_render_store_settings_page() {
                 if (hiddenJsonInputTextBadges) hiddenJsonInputTextBadges.value = JSON.stringify(textBadgeData);
                 if (hiddenJsonInputSvgBadges) hiddenJsonInputSvgBadges.value = btoa(unescape(encodeURIComponent(JSON.stringify(svgBadgeData))));
             });
-        });
+        } catch (e) {
+            alert("KRYTYCZNY BLAD: " + e.message);
+            console.error(e);
+        }
+        })();
     </script>
     <?php
 }
