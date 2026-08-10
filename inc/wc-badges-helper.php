@@ -15,6 +15,8 @@ function shav_get_active_text_badge($product) {
     if (!is_array($rules)) return null;
     
     foreach ($rules as $rule) {
+        if (empty(trim($rule['text']))) continue;
+
         if ($rule['type'] === 'global') {
             return $rule;
         } elseif ($rule['type'] === 'categories' && !empty($rule['categories'])) {
@@ -54,6 +56,8 @@ function shav_get_active_promo_badge($product) {
     if (!is_array($rules)) return null;
     
     foreach ($rules as $rule) {
+        if (empty(trim($rule['text']))) continue;
+
         if ($rule['type'] === 'global') {
             return $rule;
         } elseif ($rule['type'] === 'categories' && !empty($rule['categories'])) {
@@ -106,6 +110,9 @@ function shav_get_active_svg_badges($product) {
     $matched = [];
     
     foreach ($rules as $rule) {
+        $hasContent = !empty(trim($rule['text'])) || !empty(trim($rule['svgCode'])) || !empty(trim($rule['image']));
+        if (!$hasContent) continue;
+
         if ($rule['type'] === 'global') {
             $matched[] = $rule;
         } elseif ($rule['type'] === 'categories' && !empty($rule['categories'])) {

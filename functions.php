@@ -179,6 +179,19 @@ function display_new_promotional_element()
     if (function_exists('shav_is_hidden') && shav_is_hidden($product->get_id(), 'badges'))
         return;
 
+    // 1. Sprawdzamy nowy silnik z kokpitu (JSON)
+    $active_text_badge = shav_get_active_text_badge($product);
+    if ($active_text_badge && !empty($active_text_badge['text'])) {
+        $badge_label = $active_text_badge['text'];
+        
+        $upper_label = mb_strtoupper($badge_label, 'UTF-8');
+        if ($upper_label === 'NOWOŚĆ' || $upper_label === 'NEW') {
+            echo '<span class="product-gallery__badge product-gallery__badge--new">' . esc_html($badge_label) . '</span>';
+            return; // Only display if it's "NOWOŚĆ" type? The gallery has hardcoded "Nowość" badge logic here.
+        }
+    }
+
+    // 2. Fallback na stare meta
     $new_promo_text = shav_get_field($product->get_id(), 'new_promo_text', 'badges');
     if (empty($new_promo_text))
         return;
@@ -2213,11 +2226,38 @@ function display_promotional_element_two_lines()
     if (function_exists('shav_is_hidden') && shav_is_hidden($product->get_id(), 'badges'))
         return;
 
+    // 1. Sprawdzamy nowy silnik (JSON)
+    $badge = shav_get_active_promo_badge($product);
+    if ($badge && !empty($badge['text'])) {
+        $pct = $badge['text'];
+        $bg = $badge['color'] ?: '';
+        $color = $badge['textColor'] ?: '';
+        
+        $style = '';
+        if ($bg || $color) {
+            $style = ' style="';
+            if ($bg) $style .= 'background: ' . esc_attr($bg) . '; ';
+            if ($color) $style .= 'color: ' . esc_attr($color) . '; ';
+            $style .= '"';
+        }
+        
+        echo '<span class="product-gallery__badge product-gallery__badge--sale"' . $style . '>-' . esc_html($pct) . '%</span>';
+        return;
+    }
+
+    // 2. Fallback na stare meta
     $promo_percentage_text = shav_get_field($product->get_id(), 'promo_percentage_text', 'badges');
     if (empty($promo_percentage_text))
         return;
 
-    echo '<span class="product-gallery__badge product-gallery__badge--sale">' . esc_html($promo_percentage_text) . '</span>';
+    // Próba pobrania gradientu, by działał stary system
+    $promo_gradient = shav_get_field($product->get_id(), 'promo_percentage_gradient', 'badges');
+    $style = '';
+    if (!empty($promo_gradient)) {
+        $style = ' style="background: ' . esc_attr($promo_gradient) . ';"';
+    }
+
+    echo '<span class="product-gallery__badge product-gallery__badge--sale"' . $style . '>' . esc_html($promo_percentage_text) . '</span>';
 }
 add_action('shav_product_gallery_badges', 'display_promotional_element_two_lines', 20);
 
