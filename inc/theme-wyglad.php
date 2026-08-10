@@ -392,37 +392,27 @@ function shav_render_store_settings_page() {
                                     });
                                 });
                                 
-                                let mediaUploader;
                                 container.querySelectorAll('.shav-upload-feature-img').forEach(btn => {
                                     btn.addEventListener('click', function(e) {
                                         e.preventDefault();
                                         const inputField = this.previousElementSibling;
                                         const wrapper = this.closest('.feature-image-wrapper');
                                         
-                                        if (mediaUploader) {
-                                            mediaUploader.open();
-                                            mediaUploader.on('select', function() {
-                                                const attachment = mediaUploader.state().get('selection').first().toJSON();
-                                                inputField.value = attachment.url;
-                                                wrapper.querySelector('.feature-image-preview').innerHTML = `<img src="${attachment.url}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
-                                                wrapper.querySelector('.shav-remove-feature-img').style.display = 'inline-block';
-                                                syncData();
-                                            });
-                                            return;
-                                        }
-                                        mediaUploader = wp.media.frames.file_frame = wp.media({
+                                        const frame = wp.media({
                                             title: 'Wybierz obrazek ikony',
                                             button: { text: 'Wybierz' },
                                             multiple: false
                                         });
-                                        mediaUploader.on('select', function() {
-                                            const attachment = mediaUploader.state().get('selection').first().toJSON();
+                                        
+                                        frame.on('select', function() {
+                                            const attachment = frame.state().get('selection').first().toJSON();
                                             inputField.value = attachment.url;
                                             wrapper.querySelector('.feature-image-preview').innerHTML = `<img src="${attachment.url}" style="max-width:100%; max-height:100%; object-fit:contain;">`;
                                             wrapper.querySelector('.shav-remove-feature-img').style.display = 'inline-block';
                                             syncData();
                                         });
-                                        mediaUploader.open();
+                                        
+                                        frame.open();
                                     });
                                 });
                                 

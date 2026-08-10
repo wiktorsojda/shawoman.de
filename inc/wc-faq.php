@@ -121,36 +121,24 @@ function shav_faq_product_data_panel() {
                     });
                     
                     // Podpięcie biblioteki mediów
-                    let mediaUploader;
                     container.querySelectorAll('.shav-upload-img').forEach(btn => {
                         btn.addEventListener('click', function(e) {
                             e.preventDefault();
                             const inputField = this.previousElementSibling;
                             
-                            if (mediaUploader) {
-                                mediaUploader.open();
-                                // Zmieniamy inputField, bo otwieramy dla konkretnego wiersza
-                                mediaUploader.on('select', function() {
-                                    const attachment = mediaUploader.state().get('selection').first().toJSON();
-                                    inputField.value = attachment.url;
-                                    syncData();
-                                });
-                                return;
-                            }
-                            
-                            mediaUploader = wp.media.frames.file_frame = wp.media({
+                            const frame = wp.media({
                                 title: 'Wybierz zdjęcie do FAQ',
                                 button: { text: 'Wybierz' },
                                 multiple: false
                             });
                             
-                            mediaUploader.on('select', function() {
-                                const attachment = mediaUploader.state().get('selection').first().toJSON();
+                            frame.on('select', function() {
+                                const attachment = frame.state().get('selection').first().toJSON();
                                 inputField.value = attachment.url;
                                 syncData();
                             });
                             
-                            mediaUploader.open();
+                            frame.open();
                         });
                     });
                 }
