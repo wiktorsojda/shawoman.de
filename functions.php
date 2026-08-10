@@ -3346,7 +3346,9 @@ function shav_render_savings_pill()
         return '';
     $diff = $regular - $sale;
     $formatted = number_format($diff, 2, ',', ' ');
-    return '<span class="product-summary__savings-pill">OSZCZĘDZASZ ' . esc_html($formatted) . ' ZŁ</span>';
+    $savings_prefix = function_exists('blendygo_get_label') ? blendygo_get_label('savings_prefix') : 'OSZCZĘDZASZ ';
+    $cur = function_exists('get_woocommerce_currency_symbol') ? ' ' . get_woocommerce_currency_symbol() : ' ZŁ';
+    return '<span class="product-summary__savings-pill">' . esc_html($savings_prefix) . esc_html($formatted) . esc_html($cur) . '</span>';
 }
 
 function custom_price_add_to_cart()
