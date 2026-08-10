@@ -4019,40 +4019,36 @@ function display_product_accordion()
         return;
     $pid = $product->get_id();
 
-    // Sprawdzamy, czy w ogóle wyświetlać (na wszelki wypadek sprawdzamy czy w ogóle jest tytuł pierwszego)
-    $title1 = get_option('shav_acc_title_1');
-    if (empty($title1) && empty(get_option('shav_acc_title_2'))) {
-        return; // Brak jakichkolwiek atutów
-    }
+    // Pobieramy atuty jako tablicę JSON
+    $features_json = get_option('shav_svg_features_json', '[]');
+    $features = json_decode($features_json, true);
 
-    // Fallback ikon dla akordeonu (gdy `accordion_svg_X` jest pusty/zniszczony przez sanityzacje)
-    $default_svgs = [
-        // 1: paczka/dostawa
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M16 16V8a2 2 0 0 0-1-1.73l-6-3.46a2 2 0 0 0-2 0L1 6.27A2 2 0 0 0 0 8v8a2 2 0 0 0 1 1.73l6 3.46a2 2 0 0 0 2 0l6-3.46A2 2 0 0 0 16 16z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 2)"/><path d="M4.27 6.96 12 11.51l7.73-4.55M12 22V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-        // 2: undo/zwrot
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 7v6h6M3.51 15A9 9 0 1 0 6 5.3L3 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-        // 3: shield-check/gwarancja
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-    ];
+    if (empty($features) || !is_array($features)) {
+        return;
+    }
 
     echo '<div class="shav-svg-features" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin: 20px 0; border: 1px solid #EAEAEA; border-radius: 8px; padding: 15px;">';
 
-    for ($i = 1; $i <= 3; $i++) {
-        $title = get_option("shav_acc_title_$i");
-        $svg = get_option("shav_acc_svg_$i");
-
-        // Fallback do domyslnego SVG jesli meta puste
-        if (empty($svg) && isset($default_svgs[$i - 1])) {
-            $svg = $default_svgs[$i - 1];
-        }
+    foreach ($features as $feature) {
+        $title = $feature['title'];
+        $svg = $feature['svg'];
+        $link = isset($feature['link']) ? $feature['link'] : '';
 
         if (!empty($title)) {
             $is_green = stripos($title, 'darmowa') !== false;
             $color_style = $is_green ? 'color: #3b8227;' : 'color: #3F3F3F;';
 
             echo '<div class="shav-svg-feature-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1;">';
+            if (!empty($link)) {
+                echo '<a href="' . esc_url($link) . '" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">';
+            }
+            
             echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #F2F2F2; border-radius: 8px; color: #3F3F3F;">' . $svg . '</span>';
-            echo '<span class="shav-svg-feature-title" style="font-size: 12px; line-height: 1.3; font-weight: 500; ' . $color_style . '">' . $title . '</span>';
+            echo '<span class="shav-svg-feature-title" style="font-size: 12px; line-height: 1.3; font-weight: 600; ' . $color_style . '">' . $title . '</span>';
+            
+            if (!empty($link)) {
+                echo '</a>';
+            }
             echo '</div>';
         }
     }

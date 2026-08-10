@@ -88,7 +88,13 @@ function shav_faq_product_data_panel() {
                                 <input type="text" class="faq-question" data-index="${index}" value="${row.question ? row.question.replace(/"/g, '&quot;') : ''}" style="width: 100%; margin-bottom: 10px;">
                                 
                                 <label style="display:block; margin-bottom: 5px; font-weight: 600;">Odpowiedź:</label>
-                                <textarea class="faq-answer" data-index="${index}" style="width: 100%; height: 80px;">${row.answer || ''}</textarea>
+                                <textarea class="faq-answer" data-index="${index}" style="width: 100%; height: 80px; margin-bottom: 10px;">${row.answer || ''}</textarea>
+                                
+                                <label style="display:block; margin-bottom: 5px; font-weight: 600;">Zdjęcie (opcjonalne):</label>
+                                <div style="display:flex; gap: 10px;">
+                                    <input type="text" class="faq-image" data-index="${index}" value="${row.image ? row.image.replace(/"/g, '&quot;') : ''}" style="width: 80%;" placeholder="URL obrazka (np. https://...)">
+                                    <button type="button" class="button shav-upload-img" data-index="${index}">Wybierz z biblioteki</button>
+                                </div>
                             </div>
                         `;
                         container.insertAdjacentHTML('beforeend', rowHtml);
@@ -104,6 +110,40 @@ function shav_faq_product_data_panel() {
                             renderRows();
                         });
                     });
+                    
+                    // Podpięcie biblioteki mediów
+                    let mediaUploader;
+                    container.querySelectorAll('.shav-upload-img').forEach(btn => {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const inputField = this.previousElementSibling;
+                            
+                            if (mediaUploader) {
+                                mediaUploader.open();
+                                // Zmieniamy inputField, bo otwieramy dla konkretnego wiersza
+                                mediaUploader.on('select', function() {
+                                    const attachment = mediaUploader.state().get('selection').first().toJSON();
+                                    inputField.value = attachment.url;
+                                    syncData();
+                                });
+                                return;
+                            }
+                            
+                            mediaUploader = wp.media.frames.file_frame = wp.media({
+                                title: 'Wybierz zdjęcie do FAQ',
+                                button: { text: 'Wybierz' },
+                                multiple: false
+                            });
+                            
+                            mediaUploader.on('select', function() {
+                                const attachment = mediaUploader.state().get('selection').first().toJSON();
+                                inputField.value = attachment.url;
+                                syncData();
+                            });
+                            
+                            mediaUploader.open();
+                        });
+                    });
                 }
                 
                 function syncData() {
@@ -112,8 +152,9 @@ function shav_faq_product_data_panel() {
                     rows.forEach(row => {
                         const q = row.querySelector('.faq-question').value;
                         const a = row.querySelector('.faq-answer').value;
-                        if (q.trim() !== '' || a.trim() !== '') {
-                            newData.push({ question: q, answer: a });
+                        const img = row.querySelector('.faq-image').value;
+                        if (q.trim() !== '' || a.trim() !== '' || img.trim() !== '') {
+                            newData.push({ question: q, answer: a, image: img });
                         }
                     });
                     faqData = newData;
@@ -186,8 +227,8 @@ function display_product_faq() {
         $question = wp_kses_post($item['question']);
         $answer = wpautop(wp_kses_post($item['answer']));
         
-        echo '<div class="shav-faq-item" style="border-bottom: 1px solid #EAEAEA; padding: 15px 0;">';
-            echo '<div class="shav-faq-header" onclick="shavToggleFaq(this)" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">';
+        echo '<div class="shav-faq-item" style="background: #F2F2F2; border-radius: 8px; margin-bottom: 10px; overflow: hidden;">';
+            echo '<div class="shav-faq-header" onclick="shavToggleFaq(this)" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 15px 20px;">';
                 echo '<span class="shav-faq-question" style="font-size: 15px; font-weight: 500; color: #3F3F3F;">' . $question . '</span>';
                 // Ikona SVG plusa
                 echo '<svg class="shav-faq-icon shav-faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="transition: transform 0.3s ease; flex-shrink: 0; margin-left: 10px;">';
@@ -195,7 +236,12 @@ function display_product_faq() {
                     echo '<path class="v-line" d="M10 4v12" stroke="#3F3F3F" stroke-width="2" stroke-linecap="round"/>';
                 echo '</svg>';
             echo '</div>';
-            echo '<div class="shav-faq-content" style="display: none; padding-top: 10px; font-size: 14px; color: #555; line-height: 1.5;">' . $answer . '</div>';
+            echo '<div class="shav-faq-content" style="display: none; padding: 0 20px 20px 20px; font-size: 14px; color: #555; line-height: 1.5;">';
+                echo $answer;
+                if (!empty($item['image'])) {
+                    echo '<img src="' . esc_url($item['image']) . '" alt="FAQ Image" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 15px; display: block;">';
+                }
+            echo '</div>';
         echo '</div>';
     }
     echo '</div>';

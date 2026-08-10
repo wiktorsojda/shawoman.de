@@ -37,11 +37,8 @@ function shav_register_store_settings() {
     register_setting($settings_group, 'shav_stock_strip_text');
     register_setting($settings_group, 'shav_stock_strips_json');
 
-    // Zakładka 3: Atuty (3 Ikony SVG)
-    for ($i = 1; $i <= 3; $i++) {
-        register_setting($settings_group, 'shav_acc_title_' . $i);
-        register_setting($settings_group, 'shav_acc_svg_' . $i);
-    }
+    // Zakładka 3: Atuty (Ikony SVG)
+    register_setting($settings_group, 'shav_svg_features_json');
 
     // Zakładka 4: Odznaki Promocyjne (JSON Repeater)
     register_setting($settings_group, 'shav_promo_badges_json');
@@ -269,25 +266,127 @@ function shav_render_store_settings_page() {
 
                 <!-- ZAKŁADKA 3: ATUTY -->
                 <div id="tab-accordions" class="shav-tab-content">
-                    <h2>Globalne Atuty (3 Ikony SVG) pod przyciskiem Koszyka</h2>
-                    <p class="shav-desc">Te 3 ikony wyświetlą się w jednym rzędzie na każdej karcie produktu.</p>
+                    <h2>Globalne Atuty (Ikony SVG) pod przyciskiem Koszyka</h2>
+                    <p class="shav-desc">Dodawaj ikony, ustawiaj linki i układaj je w dowolnej kolejności.</p>
                     
-                    <?php for ($i = 1; $i <= 3; $i++) : ?>
-                    <div class="shav-accordion-item">
-                        <h3>Slot #<?php echo $i; ?></h3>
-                        
-                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
-                            <label class="shav-label">Tytuł</label>
-                            <input type="text" name="shav_acc_title_<?php echo $i; ?>" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_acc_title_' . $i)); ?>">
-                        </div>
-                        
-                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
-                            <label class="shav-label">Kod SVG Ikony</label>
-                            <textarea name="shav_acc_svg_<?php echo $i; ?>" class="shav-input-textarea"><?php echo esc_textarea(get_option('shav_acc_svg_' . $i)); ?></textarea>
-                        </div>
-                        
+                    <div id="shav-svg-features-repeater">
+                        <div id="shav-svg-features-rows" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px;"></div>
+                        <button type="button" class="button button-primary" id="add-shav-svg-feature">+ Dodaj ikonę</button>
                     </div>
-                    <?php endfor; ?>
+
+                    <textarea name="shav_svg_features_json" id="shav_svg_features_json" style="display:none;"><?php echo esc_textarea(get_option('shav_svg_features_json', '[]')); ?></textarea>
+                    
+                    <script>
+                        jQuery(document).ready(function($) {
+                            const container = document.getElementById('shav-svg-features-rows');
+                            const addBtn = document.getElementById('add-shav-svg-feature');
+                            const hiddenInput = document.getElementById('shav_svg_features_json');
+                            
+                            let featuresData = [];
+                            try {
+                                const rawVal = hiddenInput.value.trim();
+                                if (rawVal) featuresData = JSON.parse(rawVal);
+                            } catch(e) { featuresData = []; }
+                            
+                            function renderRows() {
+                                container.innerHTML = '';
+                                featuresData.forEach((row, index) => {
+                                    const rowHtml = `
+                                        <div class="shav-svg-feature-row" style="background: #fff; border: 1px solid #ccc; padding: 15px; position: relative;">
+                                            <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                                <strong>Ikona #${index+1}</strong>
+                                                <div>
+                                                    <a href="#" class="shav-feature-move-up" data-index="${index}" style="margin-right:10px;">&#9650; W górę</a>
+                                                    <a href="#" class="shav-feature-move-down" data-index="${index}" style="margin-right:15px;">&#9660; W dół</a>
+                                                    <a href="#" class="shav-feature-remove" data-index="${index}" style="color: red; text-decoration: none; font-weight: bold;">Usuń &times;</a>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="shav-field-group" style="border:none; padding:0; margin-bottom:10px;">
+                                                <label class="shav-label">Tytuł</label>
+                                                <input type="text" class="feature-title shav-input-text" data-index="${index}" value="${row.title ? row.title.replace(/"/g, '&quot;') : ''}" style="width: 100%;">
+                                            </div>
+                                            
+                                            <div class="shav-field-group" style="border:none; padding:0; margin-bottom:10px;">
+                                                <label class="shav-label">Link (opcjonalnie)</label>
+                                                <input type="text" class="feature-link shav-input-text" data-index="${index}" value="${row.link ? row.link.replace(/"/g, '&quot;') : ''}" style="width: 100%;" placeholder="https://...">
+                                            </div>
+                                            
+                                            <div class="shav-field-group" style="border:none; padding:0; margin-bottom:0;">
+                                                <label class="shav-label">Kod SVG</label>
+                                                <textarea class="feature-svg shav-input-textarea" data-index="${index}" style="width: 100%; height: 60px;">${row.svg || ''}</textarea>
+                                            </div>
+                                        </div>
+                                    `;
+                                    container.insertAdjacentHTML('beforeend', rowHtml);
+                                });
+                                
+                                container.querySelectorAll('.shav-feature-remove').forEach(btn => {
+                                    btn.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        syncData();
+                                        featuresData.splice(parseInt(this.getAttribute('data-index'), 10), 1);
+                                        renderRows();
+                                    });
+                                });
+                                
+                                container.querySelectorAll('.shav-feature-move-up').forEach(btn => {
+                                    btn.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        syncData();
+                                        const idx = parseInt(this.getAttribute('data-index'), 10);
+                                        if (idx > 0) {
+                                            const temp = featuresData[idx];
+                                            featuresData[idx] = featuresData[idx - 1];
+                                            featuresData[idx - 1] = temp;
+                                            renderRows();
+                                        }
+                                    });
+                                });
+                                
+                                container.querySelectorAll('.shav-feature-move-down').forEach(btn => {
+                                    btn.addEventListener('click', function(e) {
+                                        e.preventDefault();
+                                        syncData();
+                                        const idx = parseInt(this.getAttribute('data-index'), 10);
+                                        if (idx < featuresData.length - 1) {
+                                            const temp = featuresData[idx];
+                                            featuresData[idx] = featuresData[idx + 1];
+                                            featuresData[idx + 1] = temp;
+                                            renderRows();
+                                        }
+                                    });
+                                });
+                            }
+                            
+                            function syncData() {
+                                const rows = container.querySelectorAll('.shav-svg-feature-row');
+                                const newData = [];
+                                rows.forEach(row => {
+                                    const t = row.querySelector('.feature-title').value;
+                                    const l = row.querySelector('.feature-link').value;
+                                    const s = row.querySelector('.feature-svg').value;
+                                    newData.push({ title: t, link: l, svg: s });
+                                });
+                                featuresData = newData;
+                                hiddenInput.value = JSON.stringify(featuresData);
+                            }
+                            
+                            addBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                syncData();
+                                featuresData.push({ title: '', link: '', svg: '' });
+                                renderRows();
+                            });
+                            
+                            // sync on form submit is handled globally or we can do it here just in case
+                            $('form').on('submit', function() {
+                                syncData();
+                            });
+                            
+                            renderRows();
+                        });
+                    </script>
                 </div>
 
                 <!-- ZAKŁADKA 4: ODZNAKI PROMOCYJNE -->
