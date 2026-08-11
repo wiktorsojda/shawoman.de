@@ -83,13 +83,13 @@ if ($is_set) {
 
         $styles = [];
         if ($custom_bg) {
-            $styles[] = 'background:' . esc_attr($custom_bg);
+            $styles[] = 'background:' . esc_attr($custom_bg) . ' !important';
             if (strpos($custom_bg, 'gradient') === false) {
-                $styles[] = 'background-image:none';
+                $styles[] = 'background-image:none !important';
             }
         }
         if ($custom_color) {
-            $styles[] = 'color:' . esc_attr($custom_color);
+            $styles[] = 'color:' . esc_attr($custom_color) . ' !important';
         }
         if ($styles) {
             $badge_style = ' style="' . implode(';', $styles) . '"';
@@ -111,13 +111,13 @@ if ($is_set) {
                 $custom_color = (string) $product->get_meta('_shav_badge_custom_color');
                 $styles = [];
                 if ($custom_bg) {
-                    $styles[] = 'background:' . esc_attr($custom_bg);
+                    $styles[] = 'background:' . esc_attr($custom_bg) . ' !important';
                     if (strpos($custom_bg, 'gradient') === false) {
-                        $styles[] = 'background-image:none';
+                        $styles[] = 'background-image:none !important';
                     }
                 }
                 if ($custom_color) {
-                    $styles[] = 'color:' . esc_attr($custom_color);
+                    $styles[] = 'color:' . esc_attr($custom_color) . ' !important';
                 }
                 if ($styles) {
                     $badge_style = ' style="' . implode(';', $styles) . '"';

@@ -203,12 +203,25 @@ function display_new_promotional_element()
     $active_text_badge = shav_get_active_text_badge($product);
     if ($active_text_badge && !empty($active_text_badge['text'])) {
         $badge_label = $active_text_badge['text'];
-        
-        $upper_label = mb_strtoupper($badge_label, 'UTF-8');
-        if ($upper_label === 'NOWOŚĆ' || $upper_label === 'NEW') {
-            echo '<span class="product-gallery__badge product-gallery__badge--new">' . esc_html($badge_label) . '</span>';
-            return; // Only display if it's "NOWOŚĆ" type? The gallery has hardcoded "Nowość" badge logic here.
+        $custom_bg   = $active_text_badge['color'];
+        $custom_color = $active_text_badge['textColor'];
+
+        $styles = [];
+        if ($custom_bg) {
+            $styles[] = 'background:' . esc_attr($custom_bg) . ' !important';
+            if (strpos($custom_bg, 'gradient') === false) {
+                $styles[] = 'background-image:none !important';
+            }
         }
+        if ($custom_color) {
+            $styles[] = 'color:' . esc_attr($custom_color) . ' !important';
+        }
+        $badge_style = $styles ? ' style="' . implode(';', $styles) . '"' : '';
+        
+        // Wyświetlamy dla każdego tekstu, nie tylko 'NOWOŚĆ' lub 'NEW',
+        // z zachowaniem klasy bazowej (żeby struktura html była OK).
+        echo '<span class="product-gallery__badge product-gallery__badge--custom"'. $badge_style .'>' . esc_html($badge_label) . '</span>';
+        return; 
     }
 
     // 2. Fallback na stare meta
