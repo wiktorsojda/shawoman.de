@@ -91,6 +91,7 @@ if ($is_set) {
         if ($custom_color) {
             $styles[] = 'color:' . esc_attr($custom_color) . ' !important';
         }
+        $styles[] = 'text-transform: uppercase !important';
         if ($styles) {
             $badge_style = ' style="' . implode(';', $styles) . '"';
         }
@@ -119,6 +120,7 @@ if ($is_set) {
                 if ($custom_color) {
                     $styles[] = 'color:' . esc_attr($custom_color) . ' !important';
                 }
+                $styles[] = 'text-transform: uppercase !important';
                 if ($styles) {
                     $badge_style = ' style="' . implode(';', $styles) . '"';
                 }

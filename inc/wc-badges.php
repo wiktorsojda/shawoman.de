@@ -216,6 +216,7 @@ function display_new_promotional_element()
         if ($custom_color) {
             $styles[] = 'color:' . esc_attr($custom_color) . ' !important';
         }
+        $styles[] = 'text-transform: uppercase !important';
         $badge_style = $styles ? ' style="' . implode(';', $styles) . '"' : '';
         
         // Wyświetlamy dla każdego tekstu, nie tylko 'NOWOŚĆ' lub 'NEW',
