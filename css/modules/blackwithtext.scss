@@ -724,6 +724,15 @@ line-height: normal;
             margin-bottom: 0;
         }
 
+        &.metody-wysylki-textcontainer--left {
+            align-items: flex-start;
+
+            .metody-wysylki-header,
+            .metody-wysylki-p {
+                text-align: left;
+            }
+        }
+
         .metody-wysylki-h2 {
             color: $color-neutral-900;
 

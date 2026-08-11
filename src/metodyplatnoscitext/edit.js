@@ -1,7 +1,7 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextareaControl } from "@wordpress/components";
+import { PanelBody, Button, TextareaControl, TextControl, SelectControl } from "@wordpress/components";
 import { useEffect, useState } from "@wordpress/element";
 
 // Migracja legacy method1..4 -> methods[]
@@ -20,8 +20,9 @@ function migrateLegacy(a) {
 }
 
 export default function Edit({ attributes, setAttributes }) {
+  const { header, description, methods: attrsMethods, alignment, ...legacyAttrs } = attributes;
   const a = attributes;
-  const methods = Array.isArray(a.methods) && a.methods.length > 0 ? a.methods : migrateLegacy(a);
+  const methods = Array.isArray(attrsMethods) && attrsMethods.length > 0 ? attrsMethods : migrateLegacy(a);
   const [importJson, setImportJson] = useState("");
 
   // Jednorazowa migracja przy pierwszym otwarciu
@@ -51,6 +52,7 @@ export default function Edit({ attributes, setAttributes }) {
   };
 
   const blockProps = useBlockProps({ className: "blacktext-container-wysylka container" });
+  const alignClass = alignment === "left" ? " metody-wysylki-textcontainer--left" : "";
 
   return (
     <div {...blockProps}>
@@ -104,6 +106,17 @@ export default function Edit({ attributes, setAttributes }) {
           {methods.map((m, idx) => (
             <div key={idx} style={{ border: "1px solid #ddd", padding: 12, borderRadius: 4, marginBottom: 12 }}>
               <strong style={{ display: "block", marginBottom: 8 }}>Metoda {idx + 1}</strong>
+              <TextControl
+                label="Nagłówek metody"
+                value={m.title}
+                onChange={(v) => updateMethod(idx, { title: v })}
+              />
+              <TextareaControl
+                label="Opis metody"
+                value={m.desc}
+                onChange={(v) => updateMethod(idx, { desc: v })}
+                rows={3}
+              />
               <p style={{ fontSize: 12, opacity: 0.7, margin: "0 0 8px" }}>
                 Wybierz obraz z biblioteki <strong>lub</strong> wklej kod SVG (inline).
                 Inline ma priorytet.
@@ -141,9 +154,20 @@ export default function Edit({ attributes, setAttributes }) {
           ))}
           <Button variant="primary" onClick={addMethod}>+ Dodaj metodę</Button>
         </PanelBody>
+        <PanelBody title="Ustawienia wyglądu" initialOpen={true}>
+          <SelectControl
+            label="Wyrównanie treści"
+            value={alignment || "center"}
+            options={[
+              { label: "Do środka (Domyślnie)", value: "center" },
+              { label: "Do lewej", value: "left" }
+            ]}
+            onChange={(v) => setAttributes({ alignment: v })}
+          />
+        </PanelBody>
       </InspectorControls>
 
-      <div className="metody-wysylki-textcontainer container--narrow2-important">
+      <div className={`metody-wysylki-textcontainer container--narrow2-important${alignClass}`}>
         <RichText tagName="h2" className="metody-wysylki-header" value={a.header} onChange={(v) => setAttributes({ header: v })} placeholder="Nagłówek" />
         <RichText tagName="p" className="metody-wysylki-p" value={a.description} onChange={(v) => setAttributes({ description: v })} placeholder="Opis" />
         <ul className="metody-platnosci-ul">

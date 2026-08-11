@@ -19,6 +19,10 @@
         "type": "object"
       }
     },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
     "method1Title": {
       "type": "string",
       "default": "Blik"

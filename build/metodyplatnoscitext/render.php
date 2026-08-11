@@ -2,6 +2,8 @@
 $header      = isset($attributes['header'])      ? $attributes['header']      : '';
 $description = isset($attributes['description']) ? $attributes['description'] : '';
 $methods     = isset($attributes['methods']) && is_array($attributes['methods']) ? $attributes['methods'] : [];
+$alignment   = isset($attributes['alignment'])   ? $attributes['alignment']   : 'center';
+$alignClass  = $alignment === 'left' ? ' metody-wysylki-textcontainer--left' : '';
 
 // Fallback do legacy method1..4 jesli `methods` puste
 if (empty($methods)) {
@@ -32,7 +34,7 @@ $svg_allowed = [
 ];
 ?>
 <section class="blacktext-container-wysylka container">
-    <div class="metody-wysylki-textcontainer container--narrow2-important">
+    <div class="metody-wysylki-textcontainer container--narrow2-important<?php echo $alignClass; ?>">
         <h2 class="metody-wysylki-header"><?php echo wp_kses_post($header); ?></h2>
         <p class="metody-wysylki-p"><?php echo wp_kses_post($description); ?></p>
         <ul class="metody-platnosci-ul">
