@@ -648,7 +648,7 @@ function shav_render_store_settings_page() {
             } catch(e) { badgeData = []; }
 
             const predefinedColors = [
-                'linear-gradient(90deg, #630303 1.11%, #C90606 96.67%)',
+                '#ac0000',
                 'linear-gradient(85deg, #630303 -7.37%, #F00 107.37%)',
                 'linear-gradient(265deg, #E0AC84 0%, #A4664A 100%)',
                 '#000000'
@@ -1625,7 +1625,7 @@ function shav_render_store_settings_page() {
                         
                         if (this.value === 'bestseller') {
                             textInput.value = 'Bestseller';
-                            colorInput.value = 'linear-gradient(90deg, #630303 1.11%, #C90606 96.67%)';
+                            colorInput.value = '#ac0000';
                             swatches.forEach(s => s.classList.remove('is-selected'));
                             swatches[0].classList.add('is-selected'); // 1st swatch is red
                             customInputBox.classList.remove('is-active');
