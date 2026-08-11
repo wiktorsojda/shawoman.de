@@ -762,7 +762,7 @@ if (!function_exists('blendygo_render_cpt_additional_badges')) {
                 $width_css = $b_wauto ? 'fit-content' : esc_attr($b_width_ind) . '%';
                 
                 if (!empty($text) || ($icon_type === 'svg' && !empty($svg)) || ($icon_type === 'image' && !empty($img))) {
-                    $style = 'display: flex; align-items: center; margin-bottom: ' . esc_attr($b_mb) . 'px !important; margin-top: ' . esc_attr($b_mt) . 'px !important; width: ' . $width_css . ' !important; padding: ' . esc_attr($b_py) . 'px ' . esc_attr($b_px) . 'px ' . esc_attr($b_py) . 'px ' . esc_attr($b_px) . 'px !important; box-sizing: border-box; justify-content: ' . esc_attr($b_align) . ';';
+                    $style = 'display: flex; align-items: center; margin: 0 !important; width: ' . $width_css . ' !important; padding: ' . esc_attr($b_py) . 'px ' . esc_attr($b_px) . 'px ' . esc_attr($b_py) . 'px ' . esc_attr($b_px) . 'px !important; box-sizing: border-box; justify-content: ' . esc_attr($b_align) . ';';
                     
                     if (!empty($bg_img)) {
                         $style .= ' background-image: url(' . esc_url($bg_img) . ') !important; background-size: cover !important; background-position: center !important;';
@@ -773,7 +773,7 @@ if (!function_exists('blendygo_render_cpt_additional_badges')) {
                         $style .= ' color: ' . esc_attr($text_color) . ' !important;';
                     }
 
-                    echo '<div class="short-description-custom-text product-tag" style="' . $style . '">';
+                    echo '<div class="product-summary__info-pill product-summary__info-pill--custom-svg" style="' . $style . '">';
 
                     if ($icon_type === 'svg' && !empty($svg)) {
                         $svg_scaled = preg_replace('/<svg /i', '<svg style="height: 100%; width: auto; max-width: 100%;" ', $svg, 1);
