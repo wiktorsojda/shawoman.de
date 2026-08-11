@@ -11,6 +11,7 @@ $option2Desc  = isset($attributes['option2Desc'])  ? $attributes['option2Desc'] 
 $option2Icon    = isset($attributes['option2Icon'])    ? $attributes['option2Icon']    : '';
 $option2IconSvg = isset($attributes['option2IconSvg']) ? $attributes['option2IconSvg'] : '';
 $alignment      = isset($attributes['alignment'])      ? $attributes['alignment']      : 'center';
+$optionsAttr  = isset($attributes['options'])      ? $attributes['options']      : [];
 
 // Whitelist SVG dla wp_kses (inline SVG z atrybutu)
 $svg_allowed = [
@@ -27,10 +28,19 @@ $svg_allowed = [
     'use'      => ['href' => 1, 'xlink:href' => 1],
 ];
 
-$options = [
-    ['title' => $option1Title, 'desc' => $option1Desc, 'icon' => $option1Icon, 'svg' => $option1IconSvg],
-    ['title' => $option2Title, 'desc' => $option2Desc, 'icon' => $option2Icon, 'svg' => $option2IconSvg],
-];
+$options = $optionsAttr;
+if (empty($options)) {
+    // Migracja legacy
+    for ($i = 1; $i <= 2; $i++) {
+        $t = isset($attributes["option{$i}Title"]) ? $attributes["option{$i}Title"] : '';
+        $d = isset($attributes["option{$i}Desc"]) ? $attributes["option{$i}Desc"] : '';
+        $icon = isset($attributes["option{$i}Icon"]) ? $attributes["option{$i}Icon"] : '';
+        $svg = isset($attributes["option{$i}IconSvg"]) ? $attributes["option{$i}IconSvg"] : '';
+        if ($t || $d || $icon || $svg) {
+            $options[] = ['title' => $t, 'desc' => $d, 'icon' => $icon, 'svg' => $svg];
+        }
+    }
+}
 
 $align_class = $alignment === 'left' ? ' metody-wysylki-textcontainer--left' : '';
 ?>

@@ -48,6 +48,13 @@
       "type": "string",
       "default": ""
     },
+    "options": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object"
+      }
+    },
     "alignment": {
       "type": "string",
       "default": "center"
