@@ -1996,7 +1996,8 @@ function display_product_title_and_subtitle_shop()
 function display_percentage_strip()
 {
     global $post;
-    if (!$post) return;
+    if (!$post)
+        return;
 
     $product = wc_get_product($post->ID);
     if (!$product)
@@ -2023,38 +2024,43 @@ function display_percentage_strip()
     } else {
         $rules = [];
     }
-    
+
     if (is_array($rules) && !empty($rules)) {
         $product_cats = wp_get_post_terms($pid, 'product_cat', ['fields' => 'ids']);
-        if (!is_array($product_cats)) $product_cats = [];
-        
+        if (!is_array($product_cats))
+            $product_cats = [];
+
         foreach ($rules as $rule) {
             $match = false;
             if (isset($rule['type'])) {
                 if ($rule['type'] === 'global') {
                     $match = true;
                 } elseif ($rule['type'] === 'categories') {
-                    $cats = isset($rule['categories']) ? (array)$rule['categories'] : [];
+                    $cats = isset($rule['categories']) ? (array) $rule['categories'] : [];
                     if (!empty(array_intersect($product_cats, $cats))) {
                         $match = true;
                     }
                 } elseif ($rule['type'] === 'products') {
-                    $prods = isset($rule['products']) ? (array)$rule['products'] : [];
+                    $prods = isset($rule['products']) ? (array) $rule['products'] : [];
                     foreach ($prods as $p) {
-                        if (isset($p['id']) && (int)$p['id'] === $pid) {
+                        if (isset($p['id']) && (int) $p['id'] === $pid) {
                             $match = true;
                             break;
                         }
                     }
                 }
             }
-            
+
             if ($match) {
                 $is_enabled = true; // Reguła wymusza włączenie paska, nawet jeśli globalnie jest wyłączony
-                if (!empty($rule['mode'])) $mode = $rule['mode'];
-                if (isset($rule['percent']) && $rule['percent'] !== '') $percentage = $rule['percent'];
-                if (isset($rule['max_stock']) && $rule['max_stock'] !== '') $max_stock = $rule['max_stock'];
-                if (!empty($rule['text'])) $text_template = $rule['text'];
+                if (!empty($rule['mode']))
+                    $mode = $rule['mode'];
+                if (isset($rule['percent']) && $rule['percent'] !== '')
+                    $percentage = $rule['percent'];
+                if (isset($rule['max_stock']) && $rule['max_stock'] !== '')
+                    $max_stock = $rule['max_stock'];
+                if (!empty($rule['text']))
+                    $text_template = $rule['text'];
                 break; // Stop at first matched rule
             }
         }
@@ -2078,10 +2084,11 @@ function display_percentage_strip()
         if ($max_stock > 0) {
             // Wyliczamy prawdziwy procent względem ustawionego limitu bazowego (pozostały stan)
             $percentage = floor(($current_stock / $max_stock) * 100);
-            if ($percentage > 100) $percentage = 100;
+            if ($percentage > 100)
+                $percentage = 100;
         } else {
             // Brak ustawionego limitu, przełączamy na bezpieczny fallback żeby pasek się wyświetlił
-            $percentage = 100; 
+            $percentage = 100;
         }
     }
 
@@ -2101,20 +2108,21 @@ function display_percentage_strip()
         echo '<div class="shav-stock__bar"><div class="shav-stock__bar-fill" style="width: ' . esc_attr($percentage_clamped) . '%"></div></div>';
         echo '</div>';
         echo '</div>';
-        
+
     }
 }
 add_action('woocommerce_share', 'display_percentage_strip', 20);
 
 // AJAX: Pobieranie obecnego stanu magazynowego produktu dla auto-uzupełniania w kokpicie
-function shav_get_product_stock_ajax() {
+function shav_get_product_stock_ajax()
+{
     if (!current_user_can('manage_options') || !isset($_POST['product_id'])) {
         wp_send_json_error();
     }
-    
+
     $product_id = intval($_POST['product_id']);
     $product = wc_get_product($product_id);
-    
+
     if ($product && $product->managing_stock()) {
         $stock = $product->get_stock_quantity();
         if ($stock !== null) {
@@ -3310,6 +3318,59 @@ add_action('wp_enqueue_scripts', 'custom_enqueue_swiper');
 
 
 
+
+
+// 3. Wyświetlanie jako poziomy rząd atutów (Features SVG)
+function display_product_accordion()
+{
+    global $post;
+
+    $product = wc_get_product($post->ID);
+    if (!$product)
+        return;
+    $pid = $product->get_id();
+
+    // Pobieramy atuty jako tablicę JSON
+    $features_json = get_option('shav_svg_features_json', '[]');
+    $features = json_decode($features_json, true);
+
+    if (empty($features) || !is_array($features)) {
+        return;
+    }
+
+    echo '<div class="shav-svg-features" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin: 20px 0; border: 1px solid #EAEAEA; border-radius: 8px; padding: 15px;">';
+
+    foreach ($features as $feature) {
+        $title = $feature['title'];
+        $icon_type = isset($feature['icon_type']) ? $feature['icon_type'] : 'svg';
+        $svg = $feature['svg'];
+        $image = isset($feature['image']) ? $feature['image'] : '';
+        $link = isset($feature['link']) ? $feature['link'] : '';
+
+        if (!empty($title)) {
+            $is_green = stripos($title, 'darmowa') !== false;
+            $color_style = $is_green ? 'color: #3b8227;' : 'color: #3F3F3F;';
+
+            echo '<div class="shav-svg-feature-item" style="display: flex; flex-direction: column; align-items: center; text-align: center; flex: 1;">';
+            if (!empty($link)) {
+                echo '<a href="' . esc_url($link) . '" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">';
+            }
+
+            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #F2F2F2; border-radius: 8px; color: #3F3F3F; overflow: hidden;">';
+            if ($icon_type === 'image' && !empty($image)) {
+                echo '<img src="' . esc_url($image) . '" alt="' . esc_attr($title) . '" style="max-width: 40px; max-height: 40px; object-fit: contain;">';
+            } else {
+                echo $svg;
+            }
+            echo '</span>';
+
+            echo '<span class="shav-svg-feature-title" style="font-size: 12px; line-height: 1.3; font-weight: 600; ' . $color_style . '">' . $title . '</span>';
+
+            if (!empty($link)) {
+                echo '</a>';
+            }
+            echo '</div>';
+        }
     }
 
     echo '</div>';
