@@ -1018,46 +1018,45 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 // words changing in metody wysylki
 document.addEventListener("DOMContentLoaded", () => {
-  if ((window.location.pathname.includes('/metody-wysylki')) || (window.location.pathname.includes('/metody-platnosci'))  || (window.location.pathname.includes('/etui-podrozne')) || (window.location.pathname.includes('/ostrze-foliowe')) || (window.location.pathname.includes('/wymienne-ostrze-shav')) || (window.location.pathname.includes('/ostrze-klasyczne'))) {
-    wordsChanging();
-
-  }
+  wordsChanging();
 });
 
-
-
 function wordsChanging() {
- 
-  
-  var changebox = document.querySelector('.changebox');
-    var spans = changebox.querySelectorAll('span');
-    var index = 0;
+  const changeboxes = document.querySelectorAll('.changebox');
+  changeboxes.forEach(changebox => {
+      const spans = changebox.querySelectorAll('span');
+      if (!spans.length) return;
+      let index = 0;
 
-    function changeText() {
-        var currentIndex = index;
-        var nextIndex = (index + 1) % spans.length;
+      function changeText() {
+          const currentIndex = index;
+          const nextIndex = (index + 1) % spans.length;
 
-        spans[currentIndex].classList.remove('active');
-        spans[currentIndex].style.transform = 'translateY(-100%)';
-        spans[currentIndex].style.opacity = '0';
-        spans[nextIndex].classList.add('active');
-        spans[nextIndex].style.transform = 'translateY(0)';
-        spans[nextIndex].style.opacity = '1';
+          spans[currentIndex].classList.remove('active');
+          spans[currentIndex].style.transform = 'translateY(-100%)';
+          spans[currentIndex].style.opacity = '0';
+          
+          spans[nextIndex].classList.add('active');
+          spans[nextIndex].style.transform = 'translateY(0)';
+          spans[nextIndex].style.opacity = '1';
 
-        index = nextIndex;
-    }
+          index = nextIndex;
+      }
 
-    // Initialize
-    spans.forEach((span, i) => {
-        if (i !== 0) {
-            span.style.transform = 'translateY(-100%)';
-            span.style.opacity = '0';
-        } else {
-            span.classList.add('active');
-        }
-    });
+      // Initialize
+      spans.forEach((span, i) => {
+          if (i !== 0) {
+              span.style.transform = 'translateY(-100%)';
+              span.style.opacity = '0';
+          } else {
+              span.classList.add('active');
+              span.style.transform = 'translateY(0)';
+              span.style.opacity = '1';
+          }
+      });
 
-    setInterval(changeText, 2000);
+      setInterval(changeText, 2000);
+  });
 }
 
 

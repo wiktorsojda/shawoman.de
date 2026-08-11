@@ -80,11 +80,11 @@ export default function Edit({ attributes, setAttributes }) {
           <div className="test-flex">
             <p className="kup-text">
               <RichText tagName="span" value={a.tagline} onChange={(v) => setAttributes({ tagline: v })} placeholder="Tagline" />
-              <span className="changebox">
-                <span>{a.changeText1}</span><br/>
-                <span>{a.changeText2}</span><br/>
-                <span>{a.changeText3}</span><br/>
-                <span>{a.changeText4}</span><br/>
+              <span className="changebox" style={{ overflow: "hidden", display: "inline-flex", flexDirection: "column" }}>
+                <span style={{ position: "relative", transform: "none", opacity: 1, paddingBottom: 4 }}>{a.changeText1}</span>
+                <span style={{ position: "relative", transform: "none", opacity: 1, paddingBottom: 4 }}>{a.changeText2}</span>
+                <span style={{ position: "relative", transform: "none", opacity: 1, paddingBottom: 4 }}>{a.changeText3}</span>
+                <span style={{ position: "relative", transform: "none", opacity: 1, paddingBottom: 4 }}>{a.changeText4}</span>
               </span>
             </p>
           </div>
