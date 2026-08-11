@@ -2702,7 +2702,7 @@ function add_custom_product_fields()
 
     echo '</div>';
 }
-add_action('woocommerce_product_options_general_product_data', 'add_custom_product_fields');
+// add_action('woocommerce_product_options_general_product_data', 'add_custom_product_fields');
 
 // 2. Zapisz wartości pól
 function save_custom_product_fields($post_id)
@@ -2737,7 +2737,7 @@ function save_custom_product_fields($post_id)
 
     $product->save();
 }
-add_action('woocommerce_process_product_meta', 'save_custom_product_fields');
+// add_action('woocommerce_process_product_meta', 'save_custom_product_fields');
 
 // 3. Wyświetlanie z fallbackiem
 function display_custom_product_section()
