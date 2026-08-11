@@ -1513,7 +1513,6 @@ function shav_render_store_settings_page() {
                 });
             }
 
-            const btnAddSvgBadgeRule = document.getElementById('add-svg-badge-rule');
             const btnAddPillRule = document.getElementById('add-pill-rule');
 
             if (btnAddSvgBadgeRule) {
