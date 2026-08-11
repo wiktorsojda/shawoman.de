@@ -121,23 +121,25 @@ export default function Edit({ attributes, setAttributes }) {
                 Wybierz obraz z biblioteki <strong>lub</strong> wklej kod SVG (inline).
                 Inline ma priorytet.
               </p>
-              <MediaUploadCheck>
-                <MediaUpload
-                  onSelect={(media) => updateMethod(idx, { icon: media.url })}
-                  allowedTypes={["image"]}
-                  value={m.icon}
-                  render={({ open }) => (
-                    <Button variant="secondary" onClick={open}>
-                      {m.icon ? "Zmień ikonę (URL)" : "Wybierz ikonę z biblioteki"}
-                    </Button>
-                  )}
-                />
-              </MediaUploadCheck>
-              {m.icon && (
-                <Button variant="link" isDestructive onClick={() => updateMethod(idx, { icon: "" })} style={{ marginTop: 8, marginBottom: 8 }}>
-                  Usuń URL
-                </Button>
-              )}
+              <div style={{ display: "flex", gap: "8px", alignItems: "center", marginBottom: "12px", marginTop: "8px", flexWrap: "wrap" }}>
+                <MediaUploadCheck>
+                  <MediaUpload
+                    onSelect={(media) => updateMethod(idx, { icon: media.url })}
+                    allowedTypes={["image"]}
+                    value={m.icon}
+                    render={({ open }) => (
+                      <Button variant="secondary" onClick={open}>
+                        {m.icon ? "Zmień ikonę" : "Wybierz ikonę z biblioteki"}
+                      </Button>
+                    )}
+                  />
+                </MediaUploadCheck>
+                {m.icon && (
+                  <Button variant="link" isDestructive onClick={() => updateMethod(idx, { icon: "" })}>
+                    Usuń ikonę
+                  </Button>
+                )}
+              </div>
               <TextareaControl
                 label="Inline SVG (kod)"
                 help="Wklej cały tag <svg>...</svg>"
@@ -178,9 +180,39 @@ export default function Edit({ attributes, setAttributes }) {
                 <RichText tagName="span" value={m.desc} onChange={(v) => updateMethod(idx, { desc: v })} placeholder={`Opis ${idx + 1}`} />
               </div>
               <div className="metody-platnosci-list-right">
-                {m.iconSvg
-                  ? <span className="metody-platnosci-icon-svg" dangerouslySetInnerHTML={{ __html: m.iconSvg }} />
-                  : m.icon ? <img src={m.icon} alt="" style={{ maxHeight: 64, maxWidth: 64, objectFit: "contain" }} /> : null}
+                {m.iconSvg ? (
+                  <span className="metody-platnosci-icon-svg" dangerouslySetInnerHTML={{ __html: m.iconSvg }} />
+                ) : (
+                  <MediaUploadCheck>
+                    <MediaUpload
+                      onSelect={(media) => updateMethod(idx, { icon: media.url })}
+                      allowedTypes={["image"]}
+                      value={m.icon}
+                      render={({ open }) => (
+                        <div
+                          onClick={open}
+                          style={{
+                            cursor: "pointer",
+                            minWidth: "64px",
+                            minHeight: "64px",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            border: m.icon ? "none" : "1px dashed #ccc",
+                            backgroundColor: m.icon ? "transparent" : "#f9f9f9",
+                          }}
+                          title="Kliknij, aby wybrać obraz PNG/SVG z biblioteki"
+                        >
+                          {m.icon ? (
+                            <img src={m.icon} alt="" style={{ maxHeight: 64, maxWidth: 64, objectFit: "contain" }} />
+                          ) : (
+                            <span style={{ fontSize: "10px", color: "#999", textAlign: "center", lineHeight: "1.2" }}>Dodaj<br/>zdjęcie</span>
+                          )}
+                        </div>
+                      )}
+                    />
+                  </MediaUploadCheck>
+                )}
               </div>
             </div>
           ))}
