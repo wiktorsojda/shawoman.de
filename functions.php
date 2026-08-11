@@ -3516,7 +3516,7 @@ function display_product_accordion()
         return;
     }
 
-    echo '<div class="shav-svg-features" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin: 20px 0; background: #F2F2F2; border: 1px solid #F2F2F2; border-radius: 8px; padding: 15px;">';
+    echo '<div class="shav-svg-features" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin: 20px 0; border: 1px solid #EAEAEA; border-radius: 8px; padding: 15px;">';
 
     foreach ($features as $feature) {
         $title = $feature['title'];
@@ -3534,7 +3534,7 @@ function display_product_accordion()
                 echo '<a href="' . esc_url($link) . '" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">';
             }
 
-            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #FFFFFF; border-radius: 8px; color: #3F3F3F; overflow: hidden;">';
+            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #F2F2F2; border-radius: 8px; color: #3F3F3F; overflow: hidden;">';
             if ($icon_type === 'image' && !empty($image)) {
                 echo '<img src="' . esc_url($image) . '" alt="' . esc_attr($title) . '" style="max-width: 40px; max-height: 40px; object-fit: contain;">';
             } else {
@@ -3569,34 +3569,34 @@ function shav_render_back_to_top_button()
         </svg>
     </button>
     <script>
-        (function () {
-            const btn = document.querySelector('.back-to-top');
-            if (!btn) return;
-            btn.hidden = false;
+            (function () {
+                const btn = document.querySelector('.back-to-top');
+                if (!btn) return;
+                btn.hidden = false;
 
-            const threshold = Math.max(400, window.innerHeight * 0.4);
+                const threshold = Math.max(400, window.innerHeight * 0.4);
 
-            function onScroll() {
-                if (window.scrollY > threshold) {
-                    btn.classList.add('back-to-top--visible');
-                } else {
-                    btn.classList.remove('back-to-top--visible');
+                function onScroll() {
+                    if (window.scrollY > threshold) {
+                        btn.classList.add('back-to-top--visible');
+                    } else {
+                        btn.classList.remove('back-to-top--visible');
+                    }
                 }
-            }
 
-            window.addEventListener('scroll', onScroll, { passive: true });
-            onScroll();
+                window.addEventListener('scroll', onScroll, { passive: true });
+                onScroll();
 
-            btn.addEventListener('click', () => {
-                if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-                    window.lenis.scrollTo(0, { duration: 1.5 });
-                } else {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                }
-            });
-        })();
-    </script>
-    <?php
+                btn.addEventListener('click', () => {
+                    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+                        window.lenis.scrollTo(0, { duration: 1.5 });
+                    } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            })();
+        </script>
+        <?php
 }
 add_action('wp_footer', 'shav_render_back_to_top_button');
 
