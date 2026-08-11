@@ -726,10 +726,21 @@ line-height: normal;
 
         &.metody-wysylki-textcontainer--left {
             align-items: flex-start;
+            width: 100%;
 
             .metody-wysylki-header,
             .metody-wysylki-p {
                 text-align: left;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .metody-platnosci-ul {
+                width: 100%;
+
+                .metody-platnosci-list-left {
+                    max-width: 800px;
+                }
             }
         }
 
