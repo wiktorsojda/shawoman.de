@@ -4,8 +4,9 @@ import { useSelect } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-    const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit } = attributes;
+    const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit, productGradients } = attributes;
     const blockProps = useBlockProps();
+    const [selectedProductId, setSelectedProductId] = useState(null);
 
     const categories = useSelect((select) => {
         return select("core").getEntityRecords("taxonomy", "product_cat", { per_page: -1 });
@@ -177,6 +178,56 @@ export default function Edit({ attributes, setAttributes }) {
                         max={24}
                     />
                 </PanelBody>
+
+                {selectedProductId && (
+                    <PanelBody title="Opcje zaznaczonego produktu" initialOpen={true}>
+                        <p style={{fontSize: '13px', color: '#666', marginBottom: '15px'}}>
+                            Wybrany produkt ID: <strong>{selectedProductId}</strong>
+                        </p>
+                        <SelectControl
+                            label="Gradient paska u góry karty"
+                            value={(productGradients || {})[selectedProductId]?.type || ''}
+                            options={[
+                                { label: 'Domyślny (z ustawień sklepu)', value: '' },
+                                { label: 'Brak gradientu (czysty)', value: 'none' },
+                                { label: 'Złoty', value: 'zloty' },
+                                { label: 'Srebrny', value: 'srebrny' },
+                                { label: 'Platynowy', value: 'platynowy' },
+                                { label: 'Rose Gold', value: 'rosegold' },
+                                { label: 'Duo', value: 'duo' },
+                                { label: 'Wojownik', value: 'wojownik' },
+                                { label: 'Handler', value: 'handler' },
+                                { label: 'Własny gradient (custom CSS)', value: 'custom' },
+                            ]}
+                            onChange={(val) => {
+                                const newGradients = { ...(productGradients || {}) };
+                                if (val === '') {
+                                    delete newGradients[selectedProductId];
+                                } else {
+                                    newGradients[selectedProductId] = { 
+                                        type: val, 
+                                        customValue: newGradients[selectedProductId]?.customValue || '' 
+                                    };
+                                }
+                                setAttributes({ productGradients: newGradients });
+                            }}
+                        />
+                        {(productGradients || {})[selectedProductId]?.type === 'custom' && (
+                            <TextControl
+                                label="Własny kod CSS gradientu"
+                                help="Np. linear-gradient(90deg, red, blue)"
+                                value={(productGradients || {})[selectedProductId]?.customValue || ''}
+                                onChange={(val) => {
+                                    const newGradients = { ...(productGradients || {}) };
+                                    if (newGradients[selectedProductId]) {
+                                        newGradients[selectedProductId].customValue = val;
+                                        setAttributes({ productGradients: newGradients });
+                                    }
+                                }}
+                            />
+                        )}
+                    </PanelBody>
+                )}
             </InspectorControls>
 
             <div style={{ padding: "30px", border: "1px solid #e0e0e0", borderRadius: "10px", backgroundColor: "#fff", boxShadow: "inset 0 0 20px rgba(0,0,0,0.02)" }}>
@@ -198,16 +249,18 @@ export default function Edit({ attributes, setAttributes }) {
                             return (
                                 <div 
                                     key={product.id + '-' + index}
+                                    onClick={() => setSelectedProductId(product.id)}
                                     style={{ 
                                         backgroundColor: "#fff", 
                                         borderRadius: "12px", 
                                         overflow: "hidden", 
                                         boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
-                                        border: "2px solid transparent",
+                                        border: selectedProductId === product.id ? "2px solid #007cba" : "2px solid transparent",
                                         transition: "all 0.2s ease",
                                         display: "flex",
                                         flexDirection: "column",
-                                        height: "100%"
+                                        height: "100%",
+                                        cursor: "pointer"
                                     }}
                                 >
                                     <div style={{ 

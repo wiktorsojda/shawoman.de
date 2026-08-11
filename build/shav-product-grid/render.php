@@ -8,6 +8,9 @@ $customCategoryOrder = isset($attributes['customCategoryOrder']) ? $attributes['
 $orderBy = isset($attributes['orderBy']) ? $attributes['orderBy'] : 'menu_order';
 $limit = isset($attributes['limit']) ? (int) $attributes['limit'] : 12;
 
+global $shav_grid_product_gradients;
+$shav_grid_product_gradients = isset($attributes['productGradients']) ? $attributes['productGradients'] : array();
+
 $args = array(
     'post_type' => 'product',
     'post_status' => 'publish',

@@ -44,6 +44,24 @@ $frame_variant = function_exists('shav_get_product_frame_variant')
     ? shav_get_product_frame_variant($product_id)
     : '';
 
+$custom_frame_gradient = '';
+
+// Nadpisanie wariantu z bloku shav-product-grid
+global $shav_grid_product_gradients;
+if (!empty($shav_grid_product_gradients) && isset($shav_grid_product_gradients[$product_id])) {
+    $grid_variant = $shav_grid_product_gradients[$product_id];
+    if (!empty($grid_variant['type'])) {
+        if ($grid_variant['type'] === 'none') {
+            $frame_variant = '';
+        } elseif ($grid_variant['type'] === 'custom') {
+            $frame_variant = 'custom';
+            $custom_frame_gradient = $grid_variant['customValue'];
+        } else {
+            $frame_variant = $grid_variant['type'];
+        }
+    }
+}
+
 // Klasy karty
 $classes = ['product-card'];
 if ($frame_variant) {
@@ -147,7 +165,7 @@ if ($show_savings && $is_on_sale && $regular_price > 0 && $current_price < $regu
 ?>
 <li <?php wc_product_class(implode(' ', $classes), $product); ?>>
     <?php if ($frame_variant) : ?>
-        <span class="product-card__frame-stripe" aria-hidden="true"></span>
+        <span class="product-card__frame-stripe" aria-hidden="true" <?php echo ($frame_variant === 'custom' && $custom_frame_gradient) ? 'style="background: ' . esc_attr($custom_frame_gradient) . ' !important;"' : ''; ?>></span>
     <?php endif; ?>
 
     <?php if ($badge_label) : ?>

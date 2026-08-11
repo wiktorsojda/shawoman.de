@@ -12,6 +12,7 @@ $shop-frame-gradients: (
     duo:       linear-gradient(177.46deg, $color-peach-200 0%, $color-peach-400 40%, #000 70%, #000 100%),
     wojownik:  linear-gradient(177.46deg, $color-accent-medium 0%, #1c0b02 35%, $color-neutral-900 70%, $color-accent-medium 100%),
     handler:   linear-gradient(177.46deg, #9e8976 23.78%, #7a5e50 35%, #b8977e 50%, #f6d0ab 75%, #9d774e 95%, #8b6b50 110%),
+    rosegold:  linear-gradient(105deg, #e9c1b9 0%, #bc8d80 26%, #8d6154 62%, #a6776a 84%, #cf9f8f 100%),
 );
 
 // Wysokosc paska: 16px desktop, 8px mobile (Figma 898:1855 → Frame 7235 h=8)
@@ -44,5 +45,15 @@ $shop-frame-gradients: (
             top: 8px;
             @media (min-width: 900px) { top: 16px; }
         }
+    }
+}
+
+.product-card--frame-custom {
+    padding-top: 8px;
+    @media (min-width: 900px) { padding-top: 16px; }
+
+    .product-card__badges {
+        top: 8px;
+        @media (min-width: 900px) { top: 16px; }
     }
 }
