@@ -162,7 +162,7 @@ function shav_render_store_settings_page() {
             <div class="shav-tab" data-target="tab-accordions">Atuty (3 Ikony)</div>
             <div class="shav-tab" data-target="tab-badges">Odznaki Procentowe</div>
             <div class="shav-tab" data-target="tab-text-badges">Etykiety Tekstowe</div>
-            <div class="shav-tab" data-target="tab-svg-badges">Odznaki SVG</div>
+            <div class="shav-tab" data-target="tab-svg-badges">Pill/SVG (Pod ratingiem)</div>
         </div>
 
         <div class="shav-content">
@@ -488,10 +488,13 @@ function shav_render_store_settings_page() {
                     <textarea name="shav_text_badges_json" id="shav_text_badges_json" style="display:none;"><?php echo esc_textarea(get_option('shav_text_badges_json', '[]')); ?></textarea>
                 </div>
                 <div id="tab-svg-badges" class="shav-tab-content">
-                    <h2>Odznaki SVG (Pod krótkim opisem)</h2>
-                    <p class="shav-desc">Etykiety z ikonami (SVG / Zdjęcie), tekstem, customizacją stylów, które wyświetlą się na stronach produktów pod opisem.</p>
+                    <h2>Pill/SVG (Pod ratingiem)</h2>
+                    <p class="shav-desc">Elementy wyświetlane na stronie produktu tuż pod gwiazdkami (ratingiem). Możesz dodać proste pille tekstowe (ciemne/czerwone) lub zaawansowane odznaki z ikonami (SVG / Zdjęcie).</p>
                     
-                    <button type="button" class="button button-secondary shav-add-row" id="add-svg-badge-rule">+ Dodaj nową regułę odznaki SVG</button>
+                    <div style="display:flex; gap: 10px; margin-bottom: 20px;">
+                        <button type="button" class="button button-primary" id="add-pill-rule">+ Dodaj Pill tekstowy</button>
+                        <button type="button" class="button button-secondary" id="add-svg-badge-rule">+ Dodaj Odznakę SVG</button>
+                    </div>
                     
                     <div id="shav-svg-badges-container" class="shav-repeater-grid">
                         <!-- Tu JS wrzuca rzędy -->
@@ -1160,8 +1163,21 @@ function shav_render_store_settings_page() {
                     const row = document.createElement('div');
                     row.className = 'shav-repeater-row svg-badge-row' + (rule.isFolded ? ' is-folded' : '');
                     
-                    let headerTitle = rule.text ? 'Odznaka: ' + rule.text : 'Odznaka #' + (index + 1);
-                    let previewHTML = `<span style="margin-left: 10px; padding: 2px 8px; background: #eee; border-radius: 4px; font-size: 10px;">Ikona SVG / PNG</span>`;
+                    let elementType = rule.elementType || 'svg';
+                    let headerTitle = '';
+                    let previewHTML = '';
+                    
+                    if (elementType === 'pill') {
+                        let pillStyle = rule.pillStyle || 'dark';
+                        let pillText = rule.text || 'Tekst pilla';
+                        let pillColor = pillStyle === 'dark' ? '#000' : '#d10000';
+                        headerTitle = 'Pill tekstowy: ' + pillText;
+                        previewHTML = `<span style="margin-left: 10px; padding: 4px 10px; background: ${pillColor}; color: white; border-radius: 4px; font-size: 11px;">${pillText}</span>`;
+                    } else {
+                        headerTitle = rule.text ? 'Odznaka: ' + rule.text : 'Odznaka #' + (index + 1);
+                        previewHTML = `<span style="margin-left: 10px; padding: 2px 8px; background: #eee; border-radius: 4px; font-size: 10px;">Ikona SVG / PNG</span>`;
+                    }
+                    
                     headerTitle += previewHTML;
 
                     let iconType = rule.iconType || 'svg';
@@ -1173,7 +1189,8 @@ function shav_render_store_settings_page() {
 
                     row.innerHTML = `
                         <h3 class="rule-header">${headerTitle}</h3>
-                        <a href="#" class="shav-remove-btn shav-remove-row-svg-badge" data-index="${index}">🗑 Usuń Odznakę</a>
+                        <a href="#" class="shav-remove-btn shav-remove-row-svg-badge" data-index="${index}">🗑 Usuń element</a>
+                        <input type="hidden" class="sb-element-type" value="${elementType}">
                         
                         <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
                             <label class="shav-label">Zastosuj do:</label>
@@ -1197,14 +1214,31 @@ function shav_render_store_settings_page() {
                             </select>
                         </div>
 
-                        <div style="display:flex; gap:15px; margin-bottom:15px;">
-                            <div class="shav-field-group" style="flex:2; border:none; padding:0; margin:0;">
-                                <label class="shav-label">Tekst Badge'a</label>
-                                <input type="text" class="shav-input-text sb-text-input" data-index="${index}" value="${rule.text || ''}">
+                        <!-- PILL FIELDS -->
+                        <div class="shav-pill-fields" style="${elementType === 'pill' ? '' : 'display:none;'} background:#f9f9f9; padding:15px; border-radius:4px; margin-bottom:15px; border: 1px solid #ddd;">
+                            <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
+                                <label class="shav-label">Tekst Pilla</label>
+                                <input type="text" class="shav-input-text sb-pill-text-input" data-index="${index}" value="${elementType === 'pill' ? (rule.text || '') : ''}">
                             </div>
-                            <div class="shav-field-group" style="flex:1; border:none; padding:0; margin:0;">
-                                <label class="shav-label">Typ Ikony</label>
-                                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;">
+                            <div class="shav-field-group" style="border:none; padding:0; margin-bottom:0;">
+                                <label class="shav-label">Styl Pilla</label>
+                                <select class="shav-input-text sb-pill-style-select" data-index="${index}" style="max-width:300px;">
+                                    <option value="dark" ${rule.pillStyle === 'dark' ? 'selected' : ''}>Ciemny (np. "Darmowa dostawa w 48h")</option>
+                                    <option value="red" ${rule.pillStyle === 'red' ? 'selected' : ''}>Czerwony (np. "Rekordowy rabat")</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- SVG BADGE FIELDS -->
+                        <div class="shav-svg-fields" style="${elementType === 'svg' ? '' : 'display:none;'}">
+                            <div style="display:flex; gap:15px; margin-bottom:15px;">
+                                <div class="shav-field-group" style="flex:2; border:none; padding:0; margin:0;">
+                                    <label class="shav-label">Tekst Badge'a</label>
+                                    <input type="text" class="shav-input-text sb-text-input" data-index="${index}" value="${elementType === 'svg' ? (rule.text || '') : ''}">
+                                </div>
+                                <div class="shav-field-group" style="flex:1; border:none; padding:0; margin:0;">
+                                    <label class="shav-label">Typ Ikony</label>
+                                    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:5px;">
                                     <label style="margin:0; display:flex; align-items:center; gap:5px;"><input type="radio" name="sb_icon_type_${index}" value="svg" class="sb-icon-type" data-index="${index}" ${iconType === 'svg' ? 'checked' : ''}> Kod SVG</label>
                                     <label style="margin:0; display:flex; align-items:center; gap:5px;"><input type="radio" name="sb_icon_type_${index}" value="image" class="sb-icon-type" data-index="${index}" ${iconType === 'image' ? 'checked' : ''}> Obrazek</label>
                                 </div>
@@ -1324,6 +1358,7 @@ function shav_render_store_settings_page() {
                                 <input type="number" class="shav-input-text sb-px-input" data-index="${index}" value="${rule.px !== undefined ? rule.px : '10'}">
                             </div>
                         </div>
+                        </div> <!-- Zakończenie shav-svg-fields -->
                     `;
                     containerSvgBadges.appendChild(row);
 
@@ -1456,7 +1491,9 @@ function shav_render_store_settings_page() {
                         type: ruleType,
                         categories: cats,
                         products: prods,
-                        text: (row.querySelector('.sb-text-input') ? row.querySelector('.sb-text-input').value : ''),
+                        elementType: (row.querySelector('.sb-element-type') ? row.querySelector('.sb-element-type').value : 'svg'),
+                        pillStyle: (row.querySelector('.sb-pill-style-select') ? row.querySelector('.sb-pill-style-select').value : 'dark'),
+                        text: (row.querySelector('.sb-element-type').value === 'pill' ? (row.querySelector('.sb-pill-text-input') ? row.querySelector('.sb-pill-text-input').value : '') : (row.querySelector('.sb-text-input') ? row.querySelector('.sb-text-input').value : '')),
                         iconType: (row.querySelector('.sb-icon-type:checked') ? row.querySelector('.sb-icon-type:checked').value : 'svg'),
                         svgCode: (row.querySelector('.sb-svg-input') ? row.querySelector('.sb-svg-input').value : ''),
                         image: (row.querySelector('.sb-img-input') ? row.querySelector('.sb-img-input').value : ''),
@@ -1476,17 +1513,28 @@ function shav_render_store_settings_page() {
                 });
             }
 
+            const btnAddSvgBadgeRule = document.getElementById('add-svg-badge-rule');
+            const btnAddPillRule = document.getElementById('add-pill-rule');
+
             if (btnAddSvgBadgeRule) {
                 btnAddSvgBadgeRule.addEventListener('click', function(e) {
                     e.preventDefault();
                     syncSvgBadgeDataFromDOM();
                     svgBadgeData.push({
-                        isFolded: false, type: 'global', categories: [], products: [],
+                        elementType: 'svg', isFolded: false, type: 'global', categories: [], products: [],
                         text: '', iconType: 'svg', svgCode: '', image: '',
                         bgColor: '#f0f0f1', textColor: '#000000', iconHeightVal: '1.2', iconHeightUnit: 'em',
                         bgImage: '', width: '100', widthAuto: false, align: 'flex-start',
                         mt: '12', mb: '0', py: '5', px: '10'
                     });
+                });
+            }
+
+            if (btnAddPillRule) {
+                btnAddPillRule.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    syncSvgBadgeDataFromDOM();
+                    svgBadgeData.push({ elementType: 'pill', pillStyle: 'dark', type: 'global', categories: [], products: [], text: 'Nowy pill', isFolded: false });
                     renderSvgBadgeRows();
                 });
             }

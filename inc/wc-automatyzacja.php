@@ -725,7 +725,20 @@ if (!function_exists('blendygo_render_cpt_additional_badges')) {
         // 1. Nowy system z kokpitu (JSON)
         $svg_badges = shav_get_active_svg_badges($product);
         if (!empty($svg_badges)) {
+            echo '<div class="product-summary__info-pills">';
+            
             foreach ($svg_badges as $rule) {
+                $element_type = isset($rule['elementType']) ? $rule['elementType'] : 'svg';
+                
+                if ($element_type === 'pill') {
+                    $pill_text = isset($rule['text']) ? $rule['text'] : '';
+                    $pill_style = isset($rule['pillStyle']) ? $rule['pillStyle'] : 'dark';
+                    if (!empty($pill_text)) {
+                        echo '<span class="product-summary__info-pill product-summary__info-pill--' . esc_attr($pill_style) . '">' . esc_html($pill_text) . '</span>';
+                    }
+                    continue; // przejdź do następnej reguły
+                }
+                
                 $text = isset($rule['text']) ? $rule['text'] : '';
                 $icon_type = isset($rule['iconType']) ? $rule['iconType'] : 'svg';
                 $svg = isset($rule['svgCode']) ? $rule['svgCode'] : '';
@@ -788,6 +801,7 @@ if (!function_exists('blendygo_render_cpt_additional_badges')) {
                     echo '</div>';
                 }
             }
+            echo '</div>'; // Zamyka product-summary__info-pills-container
             return;
         }
 
@@ -1291,12 +1305,12 @@ if (!function_exists('blendygo_apply_cpt_overrides')) {
         if (is_product()) {
             remove_action('woocommerce_share', 'display_custom_product_section', 20);
             add_action('woocommerce_share', 'blendygo_render_cpt_product_set', 20);
+            add_action('woocommerce_single_product_summary', 'blendygo_render_cpt_additional_badges', 8);
 
             $promo_id = blendygo_get_active_cpt_promo();
             if ($promo_id) {
                 remove_action('woocommerce_before_single_product_summary', 'display_promotional_element_two_lines', 10);
                 add_action('woocommerce_before_single_product_summary', 'blendygo_render_cpt_badge', 9);
-                add_action('woocommerce_single_product_summary', 'blendygo_render_cpt_additional_badges', 18);
 
                 $atc_desk = get_post_meta($promo_id, 'promo_banner_atc_desk', true);
                 $atc_mob = get_post_meta($promo_id, 'promo_banner_atc_mob', true);

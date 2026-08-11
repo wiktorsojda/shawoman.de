@@ -1781,66 +1781,6 @@ function shav_render_rating_pill()
 add_action('woocommerce_single_product_summary', 'shav_render_rating_pill', 7);
 
 // -----------------------------------------------------------------------------
-// Info pills pod ratingiem (czarny + czerwony) — Figma 390:1507
-// -----------------------------------------------------------------------------
-function shav_add_info_pills_fields()
-{
-    echo '<div class="options_group"><p class="form-field"><strong>Info pille pod ratingiem:</strong></p>';
-
-    woocommerce_wp_text_input(array(
-        'id' => '_info_pill_dark',
-        'label' => 'Pill ciemny (np. "Darmowa dostawa w 48h")',
-        'placeholder' => 'Darmowa dostawa w 48h',
-        'desc_tip' => true,
-        'description' => 'Pierwszy pill — czarne tło. Zostaw puste, by ukryć.',
-    ));
-    woocommerce_wp_text_input(array(
-        'id' => '_info_pill_red',
-        'label' => 'Pill czerwony (np. "Rekordowy rabat")',
-        'placeholder' => 'Rekordowy rabat',
-        'desc_tip' => true,
-        'description' => 'Drugi pill — czerwone tło. Zostaw puste, by ukryć.',
-    ));
-    echo '</div>';
-}
-add_action('woocommerce_product_options_general_product_data', 'shav_add_info_pills_fields');
-
-function shav_save_info_pills_fields($post_id)
-{
-    $product = wc_get_product($post_id);
-    $product->update_meta_data('_info_pill_dark', isset($_POST['_info_pill_dark']) ? sanitize_text_field($_POST['_info_pill_dark']) : '');
-    $product->update_meta_data('_info_pill_red', isset($_POST['_info_pill_red']) ? sanitize_text_field($_POST['_info_pill_red']) : '');
-    $product->save();
-}
-add_action('woocommerce_process_product_meta', 'shav_save_info_pills_fields');
-
-function shav_render_info_pills()
-{
-    global $product;
-    if (!$product)
-        return;
-
-    $pid = $product->get_id();
-    if (function_exists('shav_is_hidden') && shav_is_hidden($pid, 'info_pills'))
-        return;
-    $dark = shav_get_field($pid, '_info_pill_dark', 'info_pills');
-    $red = shav_get_field($pid, '_info_pill_red', 'info_pills');
-    if (empty($dark) && empty($red))
-        return;
-
-    echo '<div class="product-summary__info-pills">';
-    if (!empty($dark)) {
-        echo '<span class="product-summary__info-pill product-summary__info-pill--dark">' . esc_html($dark) . '</span>';
-    }
-    if (!empty($red)) {
-        echo '<span class="product-summary__info-pill product-summary__info-pill--red">' . esc_html($red) . '</span>';
-    }
-    echo '</div>';
-}
-add_action('woocommerce_single_product_summary', 'shav_render_info_pills', 8);
-
-
-// -----------------------------------------------------------------------------
 // Sekcja "Jesteśmy po stronie kobiet" (.shav-kobiety) — Figma 390:1601
 // -----------------------------------------------------------------------------
 function shav_add_kobiety_fields()
