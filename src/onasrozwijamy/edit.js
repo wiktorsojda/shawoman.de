@@ -90,7 +90,37 @@ export default function Edit({ attributes, setAttributes }) {
         </PanelBody>
       </InspectorControls>
 
-      <div className="onasrozwijamy__media">{a.leftImage && <img src={a.leftImage} alt="" />}</div>
+      <div className="onasrozwijamy__media">
+        <MediaUploadCheck>
+          <MediaUpload
+            onSelect={(m) => setAttributes({ leftImage: m.url })}
+            allowedTypes={["image"]}
+            value={a.leftImage}
+            render={({ open }) => (
+              <div
+                onClick={open}
+                style={{
+                  cursor: "pointer",
+                  minHeight: a.leftImage ? "auto" : "400px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: a.leftImage ? "transparent" : "#f0f0f0",
+                  border: a.leftImage ? "none" : "2px dashed #ccc",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                {a.leftImage ? (
+                  <img src={a.leftImage} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                ) : (
+                  <span style={{ color: "#777", fontWeight: "bold" }}>Wybierz zdjęcie lewe</span>
+                )}
+              </div>
+            )}
+          />
+        </MediaUploadCheck>
+      </div>
       <div className="onasrozwijamy__text">
         <RichText tagName="p" className="onasrozwijamy__paragraph" value={a.paragraph1} onChange={(v) => setAttributes({ paragraph1: v })} placeholder="Akapit 1" />
         <RichText tagName="p" className="onasrozwijamy__paragraph" value={a.paragraph2} onChange={(v) => setAttributes({ paragraph2: v })} placeholder="Akapit 2" />

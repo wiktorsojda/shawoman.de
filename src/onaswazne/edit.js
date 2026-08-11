@@ -151,13 +151,36 @@ export default function Edit({ attributes, setAttributes }) {
             </span>
           )}
         </div>
-        {(a.rightDecorationSvg || a.rightDecoration) && (
-          <div className={`onaswazne__decoration${a.rightDecorationSvg ? " onaswazne__decoration--svg" : ""}`}>
-            {a.rightDecorationSvg
-              ? <span dangerouslySetInnerHTML={{ __html: a.rightDecorationSvg }} />
-              : <img src={a.rightDecoration} alt="" />}
-          </div>
-        )}
+        <MediaUploadCheck>
+          <MediaUpload
+            onSelect={(m) => setAttributes({ rightDecoration: m.url })}
+            allowedTypes={["image"]}
+            value={a.rightDecoration}
+            render={({ open }) => (
+              <div
+                className={`onaswazne__decoration${a.rightDecorationSvg ? " onaswazne__decoration--svg" : ""}`}
+                onClick={open}
+                style={{
+                  cursor: "pointer",
+                  minHeight: (a.rightDecorationSvg || a.rightDecoration) ? "auto" : "200px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  border: (a.rightDecorationSvg || a.rightDecoration) ? "none" : "2px dashed rgba(255,255,255,0.5)",
+                  width: "100%",
+                }}
+              >
+                {a.rightDecorationSvg ? (
+                  <span dangerouslySetInnerHTML={{ __html: a.rightDecorationSvg }} />
+                ) : a.rightDecoration ? (
+                  <img src={a.rightDecoration} alt="" />
+                ) : (
+                  <span style={{ color: "rgba(255,255,255,0.7)", fontWeight: "bold" }}>Wybierz dekorację</span>
+                )}
+              </div>
+            )}
+          />
+        </MediaUploadCheck>
       </article>
     </section>
   );

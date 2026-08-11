@@ -81,10 +81,35 @@ export default function Edit({ attributes, setAttributes }) {
         <RichText tagName="p" className="onasjak__description" value={a.description} onChange={(v) => setAttributes({ description: v })} placeholder="Opis" />
       </header>
       <div className="onasjak__gallery">
-        {IMG_NUMS.map((n) => a[`image${n}`] && (
-          <div key={n} className={`onasjak__slot${n === 1 ? " onasjak__slot--wide" : ""}`}>
-            <img src={a[`image${n}`]} alt="" />
-          </div>
+        {IMG_NUMS.map((n) => (
+          <MediaUploadCheck key={n}>
+            <MediaUpload
+              onSelect={(m) => setAttributes({ [`image${n}`]: m.url })}
+              allowedTypes={["image"]}
+              value={a[`image${n}`]}
+              render={({ open }) => (
+                <div
+                  className={`onasjak__slot${n === 1 ? " onasjak__slot--wide" : ""}`}
+                  onClick={open}
+                  style={{
+                    cursor: "pointer",
+                    minHeight: a[`image${n}`] ? "auto" : (n === 1 ? "400px" : "200px"),
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: a[`image${n}`] ? "transparent" : "#f0f0f0",
+                    border: a[`image${n}`] ? "none" : "2px dashed #ccc",
+                  }}
+                >
+                  {a[`image${n}`] ? (
+                    <img src={a[`image${n}`]} alt="" />
+                  ) : (
+                    <span style={{ color: "#777", fontWeight: "bold" }}>Wybierz zdjęcie {n}</span>
+                  )}
+                </div>
+              )}
+            />
+          </MediaUploadCheck>
         ))}
       </div>
     </section>
