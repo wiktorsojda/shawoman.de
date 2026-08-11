@@ -47,6 +47,10 @@
     "option2IconSvg": {
       "type": "string",
       "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
     }
   },
   "editorScript": "file:./index.js",

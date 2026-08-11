@@ -739,6 +739,24 @@ line-height: normal;
                 max-width: 800px;
             }
 
+            .metody-wysylki-h2 {
+                text-align: left;
+                width: 100%;
+                max-width: 800px;
+            }
+
+            .metody-wysylki-ul {
+                width: 100%;
+
+                .metody-wysylki-list {
+                    align-items: flex-start;
+
+                    li, span {
+                        text-align: left;
+                    }
+                }
+            }
+
             .metody-platnosci-ul {
                 width: 100%;
 

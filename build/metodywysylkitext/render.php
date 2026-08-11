@@ -10,6 +10,7 @@ $option2Title = isset($attributes['option2Title']) ? $attributes['option2Title']
 $option2Desc  = isset($attributes['option2Desc'])  ? $attributes['option2Desc']  : '';
 $option2Icon    = isset($attributes['option2Icon'])    ? $attributes['option2Icon']    : '';
 $option2IconSvg = isset($attributes['option2IconSvg']) ? $attributes['option2IconSvg'] : '';
+$alignment      = isset($attributes['alignment'])      ? $attributes['alignment']      : 'center';
 
 // Whitelist SVG dla wp_kses (inline SVG z atrybutu)
 $svg_allowed = [
@@ -30,9 +31,11 @@ $options = [
     ['title' => $option1Title, 'desc' => $option1Desc, 'icon' => $option1Icon, 'svg' => $option1IconSvg],
     ['title' => $option2Title, 'desc' => $option2Desc, 'icon' => $option2Icon, 'svg' => $option2IconSvg],
 ];
+
+$align_class = $alignment === 'left' ? ' metody-wysylki-textcontainer--left' : '';
 ?>
 <section class="blacktext-container-wysylka container">
-    <div class="metody-wysylki-textcontainer container--narrow2-important">
+    <div class="metody-wysylki-textcontainer container--narrow2-important<?php echo esc_attr($align_class); ?>">
         <h2 class="metody-wysylki-header"><?php echo wp_kses_post($header); ?></h2>
         <p class="metody-wysylki-p"><?php echo wp_kses_post($description); ?></p>
         <h2 class="metody-wysylki-h2"><?php echo wp_kses_post($subheader); ?></h2>
