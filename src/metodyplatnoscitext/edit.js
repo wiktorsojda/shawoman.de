@@ -2,7 +2,7 @@ import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
 import { PanelBody, Button, TextareaControl } from "@wordpress/components";
-import { useEffect } from "@wordpress/element";
+import { useEffect, useState } from "@wordpress/element";
 
 // Migracja legacy method1..4 -> methods[]
 function migrateLegacy(a) {
@@ -22,6 +22,7 @@ function migrateLegacy(a) {
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const methods = Array.isArray(a.methods) && a.methods.length > 0 ? a.methods : migrateLegacy(a);
+  const [importJson, setImportJson] = useState("");
 
   // Jednorazowa migracja przy pierwszym otwarciu
   useEffect(() => {
@@ -54,6 +55,51 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                header: a.header || "",
+                description: a.description || "",
+                methods: methods.map(m => ({ title: m.title || "", desc: m.desc || "" }))
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={10}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={10}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.header !== undefined) updates.header = parsed.header;
+              if (parsed.description !== undefined) updates.description = parsed.description;
+              if (parsed.methods && Array.isArray(parsed.methods)) {
+                updates.methods = methods.map((m, i) => {
+                  if (parsed.methods[i]) {
+                    return { ...m, title: parsed.methods[i].title ?? m.title, desc: parsed.methods[i].desc ?? m.desc };
+                  }
+                  return m;
+                });
+              }
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Metody płatności" initialOpen={true}>
           {methods.map((m, idx) => (
             <div key={idx} style={{ border: "1px solid #ddd", padding: 12, borderRadius: 4, marginBottom: 12 }}>
