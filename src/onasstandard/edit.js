@@ -3,11 +3,13 @@ import {
   MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
 import { PanelBody, Button, RangeControl, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 const LOGO_NUMS = [1, 2, 3, 4];
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
+  const [importJson, setImportJson] = useState("");
   const blockProps = useBlockProps({
     className: "onasstandard",
     style: {
@@ -26,6 +28,40 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <section {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                title: a.title || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={4}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={4}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.title !== undefined) updates.title = parsed.title;
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Wideo — desktop" initialOpen={true}>
           <MediaUploadCheck>
             <MediaUpload onSelect={(m) => setAttributes({ backgroundVideo: m.url })} allowedTypes={["video"]} value={a.backgroundVideo}

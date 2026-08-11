@@ -5,7 +5,8 @@ import {
   MediaUpload,
   MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, RangeControl } from "@wordpress/components";
+import { PanelBody, Button, RangeControl, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const {
@@ -14,6 +15,8 @@ export default function Edit({ attributes, setAttributes }) {
     titleSizeDesktop, titleSizeMobile,
     subtitleSizeDesktop, subtitleSizeMobile,
   } = attributes;
+
+  const [importJson, setImportJson] = useState("");
 
   const blockProps = useBlockProps({
     className: "misjaheader",
@@ -31,6 +34,42 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <section {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                title: attributes.title || '',
+                subtitle: attributes.subtitle || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={6}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={6}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.title !== undefined) updates.title = parsed.title;
+              if (parsed.subtitle !== undefined) updates.subtitle = parsed.subtitle;
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Tło — desktop" initialOpen={true}>
           <MediaUploadCheck>
             <MediaUpload

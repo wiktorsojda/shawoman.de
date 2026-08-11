@@ -3,9 +3,11 @@ import {
   MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
 import { PanelBody, Button, RangeControl, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
+  const [importJson, setImportJson] = useState("");
   const blockProps = useBlockProps({
     className: "onasrozwijamy",
     style: {
@@ -19,6 +21,46 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <section {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                paragraph1: a.paragraph1 || '',
+                paragraph2: a.paragraph2 || '',
+                paragraph3: a.paragraph3 || '',
+                signatureText: a.signatureText || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={8}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={8}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.paragraph1 !== undefined) updates.paragraph1 = parsed.paragraph1;
+              if (parsed.paragraph2 !== undefined) updates.paragraph2 = parsed.paragraph2;
+              if (parsed.paragraph3 !== undefined) updates.paragraph3 = parsed.paragraph3;
+              if (parsed.signatureText !== undefined) updates.signatureText = parsed.signatureText;
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Zdjęcie (lewo)" initialOpen={true}>
           <MediaUploadCheck>
             <MediaUpload onSelect={(m) => setAttributes({ leftImage: m.url })} allowedTypes={["image"]} value={a.leftImage}

@@ -3,9 +3,11 @@ import {
   MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
 import { PanelBody, Button, TextControl, RangeControl, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
+  const [importJson, setImportJson] = useState("");
   const blockProps = useBlockProps({
     className: "onaswazne",
     style: {
@@ -20,6 +22,48 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <section {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                leftTitle: a.leftTitle || '',
+                leftDescription: a.leftDescription || '',
+                rightTitle: a.rightTitle || '',
+                rightDescription: a.rightDescription || '',
+                rightButtonText: a.rightButtonText || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={10}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={10}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.leftTitle !== undefined) updates.leftTitle = parsed.leftTitle;
+              if (parsed.leftDescription !== undefined) updates.leftDescription = parsed.leftDescription;
+              if (parsed.rightTitle !== undefined) updates.rightTitle = parsed.rightTitle;
+              if (parsed.rightDescription !== undefined) updates.rightDescription = parsed.rightDescription;
+              if (parsed.rightButtonText !== undefined) updates.rightButtonText = parsed.rightButtonText;
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Lewa karta — logo (np. Rak'n Roll)" initialOpen={true}>
           <p style={{ fontSize: 12, color: "#666", marginTop: 0 }}>Wgraj obraz (PNG/JPG/SVG) ALBO wklej kod SVG poniżej (SVG nadpisuje obraz).</p>
           <MediaUploadCheck>
