@@ -672,7 +672,11 @@ function shav_render_store_settings_page() {
                     
                     let isCustomColor = rule.color && !predefinedColors.includes(rule.color);
                     let selectValue = isCustomColor ? 'custom' : (rule.color || predefinedColors[0]);
-                    let headerTitle = rule.text ? 'Reguła: ' + rule.text : 'Reguła #' + (index + 1);
+                    let headerTitle = rule.text ? 'Rabat: -' + rule.text + '%' : 'Reguła #' + (index + 1);
+                    let previewColor = rule.color || predefinedColors[0];
+                    let previewText = rule.text || 'X';
+                    let previewHTML = `<span style="margin-left: 10px; background: ${previewColor}; color: ${rule.textColor || '#ffffff'}; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">-${previewText}%</span>`;
+                    headerTitle += previewHTML;
 
                     row.innerHTML = `
                         <h3 class="rule-header">${headerTitle}</h3>
@@ -779,6 +783,8 @@ function shav_render_store_settings_page() {
                             customInputBox.classList.remove('is-active');
                             inputField.value = swatch.dataset.color;
                         }
+                        syncDataFromDOM();
+                        renderRows();
                     });
                 });
 
@@ -1155,6 +1161,8 @@ function shav_render_store_settings_page() {
                     row.className = 'shav-repeater-row svg-badge-row' + (rule.isFolded ? ' is-folded' : '');
                     
                     let headerTitle = rule.text ? 'Odznaka: ' + rule.text : 'Odznaka #' + (index + 1);
+                    let previewHTML = `<span style="margin-left: 10px; padding: 2px 8px; background: #eee; border-radius: 4px; font-size: 10px;">Ikona SVG / PNG</span>`;
+                    headerTitle += previewHTML;
 
                     let iconType = rule.iconType || 'svg';
                     let align = rule.align || 'flex-start';
@@ -1375,6 +1383,8 @@ function shav_render_store_settings_page() {
                             customInputBox.classList.remove('is-active');
                             inputField.value = swatch.dataset.color;
                         }
+                        syncTextBadgeDataFromDOM();
+                        renderTextBadgeRows();
                     });
                 });
 
@@ -1503,6 +1513,10 @@ function shav_render_store_settings_page() {
                     let isCustomColor = rule.color && !predefinedColors.includes(rule.color);
                     let selectValue = isCustomColor ? 'custom' : (rule.color || predefinedColors[0]);
                     let headerTitle = rule.text ? 'Etykieta: ' + rule.text : 'Reguła #' + (index + 1);
+                    let previewColor = rule.color || predefinedColors[0];
+                    let previewText = rule.text || 'Własny tekst';
+                    let previewHTML = `<span style="margin-left: 10px; background: ${previewColor}; color: ${rule.textColor || '#ffffff'}; padding: 4px 10px; border-radius: 4px; font-size: 11px; text-transform: uppercase;">${previewText}</span>`;
+                    headerTitle += previewHTML;
 
                     row.innerHTML = `
                         <h3 class="rule-header">${headerTitle}</h3>
@@ -1624,6 +1638,7 @@ function shav_render_store_settings_page() {
                         }
                         
                         syncTextBadgeDataFromDOM();
+                        renderTextBadgeRows();
                     });
                 });
 
@@ -1647,6 +1662,8 @@ function shav_render_store_settings_page() {
                             customInputBox.classList.remove('is-active');
                             inputField.value = swatch.dataset.color;
                         }
+                        syncTextBadgeDataFromDOM();
+                        renderTextBadgeRows();
                     });
                 });
 

@@ -14,28 +14,27 @@ function shav_get_active_text_badge($product) {
     
     if (!is_array($rules)) return null;
     
+    // Pass 1: Products
     foreach ($rules as $rule) {
         if (empty(trim($rule['text']))) continue;
-
-        if ($rule['type'] === 'global') {
-            return $rule;
-        } elseif ($rule['type'] === 'categories' && !empty($rule['categories'])) {
-            $intersect = array_intersect($cat_ids, array_map('intval', $rule['categories']));
-            if (!empty($intersect)) {
-                return $rule;
-            }
-        } elseif ($rule['type'] === 'products' && !empty($rule['products'])) {
-            $product_in_rule = false;
+        if ($rule['type'] === 'products' && !empty($rule['products'])) {
             foreach ($rule['products'] as $p) {
-                if (intval($p['id']) === $product_id) {
-                    $product_in_rule = true;
-                    break;
-                }
-            }
-            if ($product_in_rule) {
-                return $rule;
+                if (intval($p['id']) === $product_id) return $rule;
             }
         }
+    }
+    // Pass 2: Categories
+    foreach ($rules as $rule) {
+        if (empty(trim($rule['text']))) continue;
+        if ($rule['type'] === 'categories' && !empty($rule['categories'])) {
+            $intersect = array_intersect($cat_ids, array_map('intval', $rule['categories']));
+            if (!empty($intersect)) return $rule;
+        }
+    }
+    // Pass 3: Global
+    foreach ($rules as $rule) {
+        if (empty(trim($rule['text']))) continue;
+        if ($rule['type'] === 'global') return $rule;
     }
     
     return null;
@@ -55,28 +54,27 @@ function shav_get_active_promo_badge($product) {
     
     if (!is_array($rules)) return null;
     
+    // Pass 1: Products
     foreach ($rules as $rule) {
         if (empty(trim($rule['text']))) continue;
-
-        if ($rule['type'] === 'global') {
-            return $rule;
-        } elseif ($rule['type'] === 'categories' && !empty($rule['categories'])) {
-            $intersect = array_intersect($cat_ids, array_map('intval', $rule['categories']));
-            if (!empty($intersect)) {
-                return $rule;
-            }
-        } elseif ($rule['type'] === 'products' && !empty($rule['products'])) {
-            $product_in_rule = false;
+        if ($rule['type'] === 'products' && !empty($rule['products'])) {
             foreach ($rule['products'] as $p) {
-                if (intval($p['id']) === $product_id) {
-                    $product_in_rule = true;
-                    break;
-                }
-            }
-            if ($product_in_rule) {
-                return $rule;
+                if (intval($p['id']) === $product_id) return $rule;
             }
         }
+    }
+    // Pass 2: Categories
+    foreach ($rules as $rule) {
+        if (empty(trim($rule['text']))) continue;
+        if ($rule['type'] === 'categories' && !empty($rule['categories'])) {
+            $intersect = array_intersect($cat_ids, array_map('intval', $rule['categories']));
+            if (!empty($intersect)) return $rule;
+        }
+    }
+    // Pass 3: Global
+    foreach ($rules as $rule) {
+        if (empty(trim($rule['text']))) continue;
+        if ($rule['type'] === 'global') return $rule;
     }
     
     return null;
@@ -109,28 +107,38 @@ function shav_get_active_svg_badges($product) {
     
     $matched = [];
     
+    // W SVG zwracamy tablicę reguł. Jeśli mają nie przeszkadzać sobie, tutaj po prostu je odfiltrujemy, 
+    // ale możemy je posortować po priorytecie: Products, Categories, Global.
+    // Pass 1: Products
     foreach ($rules as $rule) {
         $hasContent = !empty(trim($rule['text'])) || !empty(trim($rule['svgCode'])) || !empty(trim($rule['image']));
         if (!$hasContent) continue;
-
-        if ($rule['type'] === 'global') {
-            $matched[] = $rule;
-        } elseif ($rule['type'] === 'categories' && !empty($rule['categories'])) {
+        if ($rule['type'] === 'products' && !empty($rule['products'])) {
+            foreach ($rule['products'] as $p) {
+                if (intval($p['id']) === $product_id) {
+                    $matched[] = $rule;
+                    break;
+                }
+            }
+        }
+    }
+    // Pass 2: Categories
+    foreach ($rules as $rule) {
+        $hasContent = !empty(trim($rule['text'])) || !empty(trim($rule['svgCode'])) || !empty(trim($rule['image']));
+        if (!$hasContent) continue;
+        if ($rule['type'] === 'categories' && !empty($rule['categories'])) {
             $intersect = array_intersect($cat_ids, array_map('intval', $rule['categories']));
             if (!empty($intersect)) {
                 $matched[] = $rule;
             }
-        } elseif ($rule['type'] === 'products' && !empty($rule['products'])) {
-            $product_in_rule = false;
-            foreach ($rule['products'] as $p) {
-                if (intval($p['id']) === $product_id) {
-                    $product_in_rule = true;
-                    break;
-                }
-            }
-            if ($product_in_rule) {
-                $matched[] = $rule;
-            }
+        }
+    }
+    // Pass 3: Global
+    foreach ($rules as $rule) {
+        $hasContent = !empty(trim($rule['text'])) || !empty(trim($rule['svgCode'])) || !empty(trim($rule['image']));
+        if (!$hasContent) continue;
+        if ($rule['type'] === 'global') {
+            $matched[] = $rule;
         }
     }
     
