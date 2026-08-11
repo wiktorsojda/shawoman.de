@@ -180,7 +180,7 @@ export default function Edit({ attributes, setAttributes }) {
               <div className="metody-platnosci-list-right">
                 {m.iconSvg
                   ? <span className="metody-platnosci-icon-svg" dangerouslySetInnerHTML={{ __html: m.iconSvg }} />
-                  : m.icon ? <img src={m.icon} alt="" style={{ maxHeight: 50 }} /> : null}
+                  : m.icon ? <img src={m.icon} alt="" style={{ maxHeight: 64, maxWidth: 64, objectFit: "contain" }} /> : null}
               </div>
             </div>
           ))}

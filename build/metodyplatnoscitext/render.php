@@ -54,7 +54,7 @@ $svg_allowed = [
                         <?php if (!empty($iconSvg)): ?>
                             <span class="metody-platnosci-icon-svg"><?php echo wp_kses($iconSvg, $svg_allowed); ?></span>
                         <?php elseif (!empty($iconUrl)): ?>
-                            <img src="<?php echo esc_url($iconUrl); ?>" alt="" style="max-height: 50px;">
+                            <img src="<?php echo esc_url($iconUrl); ?>" alt="" style="max-height: 64px; max-width: 64px; object-fit: contain;">
                         <?php endif; ?>
                     </div>
                 </div>
