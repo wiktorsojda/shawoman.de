@@ -8,6 +8,22 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps();
     const [selectedProductId, setSelectedProductId] = useState(null);
 
+    const predefinedGradients = {
+        zloty: 'linear-gradient(177.46deg, #d28f33 23.78%, #c17627 9.03%, #f3ceaa 51.08%, #c17627 87.59%, #c99b70 132.32%, #b06b23 158.8%)',
+        srebrny: 'linear-gradient(177.46deg, #999999 23.78%, #b2b2b2 35%, #f5f5f5 50%, #cccccc 75%, #999999 95%, #f5f5f5 110%)',
+        platynowy: 'linear-gradient(177.46deg, #3a3a3a 23.78%, #606060 35%, #8f8f8f 50%, #cecece 75%, #888888 95%, #464646 110%)',
+        rosegold: 'linear-gradient(105deg, #e9c1b9 0%, #bc8d80 26%, #8d6154 62%, #a6776a 84%, #cf9f8f 100%)'
+    };
+
+    const gradientOptions = [
+        { label: 'Domyślny / Brak', value: 'none', background: '#e0e0e0' },
+        { label: 'Złoty', value: 'zloty', background: predefinedGradients.zloty },
+        { label: 'Srebrny', value: 'srebrny', background: predefinedGradients.srebrny },
+        { label: 'Platynowy', value: 'platynowy', background: predefinedGradients.platynowy },
+        { label: 'Rose Gold', value: 'rosegold', background: predefinedGradients.rosegold },
+        { label: 'Własny CSS', value: 'custom', background: 'repeating-linear-gradient(45deg, #eee, #eee 10px, #ddd 10px, #ddd 20px)' },
+    ];
+
     const categories = useSelect((select) => {
         return select("core").getEntityRecords("taxonomy", "product_cat", { per_page: -1 });
     }, []);
@@ -184,34 +200,55 @@ export default function Edit({ attributes, setAttributes }) {
                         <p style={{fontSize: '13px', color: '#666', marginBottom: '15px'}}>
                             Wybrany produkt ID: <strong>{selectedProductId}</strong>
                         </p>
-                        <SelectControl
-                            label="Gradient paska u góry karty"
-                            value={(productGradients || {})[selectedProductId]?.type || ''}
-                            options={[
-                                { label: 'Domyślny (z ustawień sklepu)', value: '' },
-                                { label: 'Brak gradientu (czysty)', value: 'none' },
-                                { label: 'Złoty', value: 'zloty' },
-                                { label: 'Srebrny', value: 'srebrny' },
-                                { label: 'Platynowy', value: 'platynowy' },
-                                { label: 'Rose Gold', value: 'rosegold' },
-                                { label: 'Duo', value: 'duo' },
-                                { label: 'Wojownik', value: 'wojownik' },
-                                { label: 'Handler', value: 'handler' },
-                                { label: 'Własny gradient (custom CSS)', value: 'custom' },
-                            ]}
-                            onChange={(val) => {
-                                const newGradients = { ...(productGradients || {}) };
-                                if (val === '') {
-                                    delete newGradients[selectedProductId];
-                                } else {
-                                    newGradients[selectedProductId] = { 
-                                        type: val, 
-                                        customValue: newGradients[selectedProductId]?.customValue || '' 
-                                    };
-                                }
-                                setAttributes({ productGradients: newGradients });
-                            }}
-                        />
+                        
+                        <div style={{ marginBottom: '20px' }}>
+                            <label style={{ display: 'block', fontSize: '13px', fontWeight: 500, marginBottom: '10px' }}>
+                                Wizualny wybór gradientu u góry karty
+                            </label>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
+                                {gradientOptions.map(opt => {
+                                    const currentVal = (productGradients || {})[selectedProductId]?.type || 'none';
+                                    const isSelected = currentVal === opt.value || (currentVal === '' && opt.value === 'none');
+                                    
+                                    return (
+                                        <div 
+                                            key={opt.value}
+                                            onClick={() => {
+                                                const newGradients = { ...(productGradients || {}) };
+                                                if (opt.value === 'none') {
+                                                    delete newGradients[selectedProductId];
+                                                } else {
+                                                    newGradients[selectedProductId] = { 
+                                                        type: opt.value, 
+                                                        customValue: newGradients[selectedProductId]?.customValue || '' 
+                                                    };
+                                                }
+                                                setAttributes({ productGradients: newGradients });
+                                            }}
+                                            style={{
+                                                cursor: 'pointer',
+                                                border: isSelected ? '2px solid #007cba' : '2px solid transparent',
+                                                borderRadius: '8px',
+                                                padding: '4px',
+                                                textAlign: 'center',
+                                                transition: 'all 0.2s',
+                                                backgroundColor: isSelected ? '#f0f8ff' : '#fff'
+                                            }}
+                                        >
+                                            <div style={{
+                                                height: '24px',
+                                                borderRadius: '4px',
+                                                background: opt.background,
+                                                marginBottom: '6px',
+                                                boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)'
+                                            }}></div>
+                                            <span style={{ fontSize: '11px', display: 'block', lineHeight: 1.2 }}>{opt.label}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
                         {(productGradients || {})[selectedProductId]?.type === 'custom' && (
                             <TextControl
                                 label="Własny kod CSS gradientu"
@@ -246,6 +283,16 @@ export default function Edit({ attributes, setAttributes }) {
                             const isManual = orderBy === 'menu_order';
                             const imageUrl = product._embedded?.['wp:featuredmedia']?.[0]?.source_url || "";
                             
+                            const prodGrad = (productGradients || {})[product.id];
+                            let activeGradientCSS = null;
+                            if (prodGrad && prodGrad.type !== 'none') {
+                                if (prodGrad.type === 'custom' && prodGrad.customValue) {
+                                    activeGradientCSS = prodGrad.customValue;
+                                } else if (predefinedGradients[prodGrad.type]) {
+                                    activeGradientCSS = predefinedGradients[prodGrad.type];
+                                }
+                            }
+                            
                             return (
                                 <div 
                                     key={product.id + '-' + index}
@@ -260,9 +307,21 @@ export default function Edit({ attributes, setAttributes }) {
                                         display: "flex",
                                         flexDirection: "column",
                                         height: "100%",
-                                        cursor: "pointer"
+                                        cursor: "pointer",
+                                        position: "relative"
                                     }}
                                 >
+                                    {activeGradientCSS && (
+                                        <div style={{
+                                            position: "absolute",
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            height: "16px",
+                                            background: activeGradientCSS,
+                                            zIndex: 2
+                                        }}></div>
+                                    )}
                                     <div style={{ 
                                         height: "200px", 
                                         backgroundColor: "#f5f5f5", 
