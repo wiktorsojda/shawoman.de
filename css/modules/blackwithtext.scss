@@ -738,7 +738,13 @@ line-height: normal;
             .metody-platnosci-ul {
                 width: 100%;
 
+                .metody-platnosci-list {
+                    justify-content: flex-start;
+                    gap: $space-32;
+                }
+
                 .metody-platnosci-list-left {
+                    flex: 0 1 auto;
                     max-width: 800px;
                 }
             }
@@ -804,6 +810,7 @@ text-transform: uppercase;
             // list-style-position: inside;
             margin-bottom: 0;
             margin-top: $space-24;
+            padding-inline-start: 0;
 
             .metody-platnosci-list {
                     display: flex;
