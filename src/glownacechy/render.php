@@ -8,7 +8,7 @@ $image = isset($attributes['image']) && $attributes['image']
     : esc_url(home_url('/wp-content/uploads/2026/05/Frame-7173.png'));
 $imageAlt = isset($attributes['imageAlt']) ? $attributes['imageAlt'] : '';
 ?>
-<section class="glownacechy">
+<section class="glownacechy" style="padding-bottom: 120px;">
     <div class="glownacechy__inner">
         <div class="glownacechy__col">
             <h1 class="glownacechy__title">

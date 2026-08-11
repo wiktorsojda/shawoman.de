@@ -135,7 +135,7 @@ $block_id = wp_unique_id('glownabaner-');
     }
 </style>
 
-<section id="<?php echo esc_attr($block_id); ?>" class="glownabaner">
+<section id="<?php echo esc_attr($block_id); ?>" class="glownabaner" style="padding-bottom: 120px;">
     <?php if ($showRating) : ?>
         <div class="glownabaner__rating">
             <span class="glownabaner__rating-line" aria-hidden="true"></span>
