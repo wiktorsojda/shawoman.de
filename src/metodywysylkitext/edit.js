@@ -1,7 +1,7 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextareaControl, SelectControl, TextControl } from "@wordpress/components";
+import { PanelBody, Button, TextareaControl, SelectControl, TextControl, ToggleControl } from "@wordpress/components";
 import { useEffect, useState } from "@wordpress/element";
 
 // Migracja legacy
@@ -21,11 +21,12 @@ function migrateLegacy(a) {
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
-  const { alignment, options: attrsOptions } = a;
+  const { alignment, options: attrsOptions, grayscaleIcons } = a;
   
   const options = Array.isArray(attrsOptions) && attrsOptions.length > 0 ? attrsOptions : migrateLegacy(a);
   const [importJson, setImportJson] = useState("");
   const alignClass = alignment === "left" ? " metody-wysylki-textcontainer--left" : "";
+  const grayscaleClass = grayscaleIcons ? " metody-wysylki-icon--grayscale" : "";
   const blockProps = useBlockProps({ className: "blacktext-container-wysylka container" });
 
   useEffect(() => {
@@ -158,6 +159,11 @@ export default function Edit({ attributes, setAttributes }) {
           <Button variant="primary" onClick={addOption}>+ Dodaj metodę wysyłki</Button>
         </PanelBody>
         <PanelBody title="Ustawienia wyglądu" initialOpen={true}>
+          <ToggleControl
+            label="Szare ikony (bez koloru)"
+            checked={!!grayscaleIcons}
+            onChange={(v) => setAttributes({ grayscaleIcons: v })}
+          />
           <SelectControl
             label="Wyrównanie treści"
             value={alignment || "center"}
@@ -178,7 +184,7 @@ export default function Edit({ attributes, setAttributes }) {
           {options.map((opt, idx) => (
             <div key={idx} className="metody-wysylki-list">
               {opt.iconSvg ? (
-                <span className="metody-wysylki-list-icon" dangerouslySetInnerHTML={{ __html: opt.iconSvg }} />
+                <span className={`metody-wysylki-list-icon${grayscaleClass}`} dangerouslySetInnerHTML={{ __html: opt.iconSvg }} />
               ) : (
                 <MediaUploadCheck>
                   <MediaUpload
@@ -202,7 +208,7 @@ export default function Edit({ attributes, setAttributes }) {
                         title="Kliknij, aby wybrać obraz PNG/SVG z biblioteki"
                       >
                         {opt.icon ? (
-                          <img className="metody-wysylki-list-icon" src={opt.icon} alt="" style={{ maxHeight: 64, maxWidth: 64, objectFit: "contain", margin: 0 }} />
+                          <img className={`metody-wysylki-list-icon${grayscaleClass}`} src={opt.icon} alt="" style={{ maxHeight: 35, width: "auto", objectFit: "contain", margin: 0 }} />
                         ) : (
                           <span style={{ fontSize: "10px", color: "#999", textAlign: "center", lineHeight: "1.2" }}>Dodaj<br/>zdjęcie</span>
                         )}

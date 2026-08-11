@@ -11,7 +11,8 @@ $option2Desc  = isset($attributes['option2Desc'])  ? $attributes['option2Desc'] 
 $option2Icon    = isset($attributes['option2Icon'])    ? $attributes['option2Icon']    : '';
 $option2IconSvg = isset($attributes['option2IconSvg']) ? $attributes['option2IconSvg'] : '';
 $alignment      = isset($attributes['alignment'])      ? $attributes['alignment']      : 'center';
-$optionsAttr  = isset($attributes['options'])      ? $attributes['options']      : [];
+$grayscaleIcons = isset($attributes['grayscaleIcons']) ? $attributes['grayscaleIcons'] : false;
+$optionsAttr    = isset($attributes['options'])        ? $attributes['options']        : [];
 
 // Whitelist SVG dla wp_kses (inline SVG z atrybutu)
 $svg_allowed = [
@@ -43,6 +44,7 @@ if (empty($options)) {
 }
 
 $align_class = $alignment === 'left' ? ' metody-wysylki-textcontainer--left' : '';
+$grayscale_class = $grayscaleIcons ? ' metody-wysylki-icon--grayscale' : '';
 ?>
 <section class="blacktext-container-wysylka container">
     <div class="metody-wysylki-textcontainer container--narrow2-important<?php echo esc_attr($align_class); ?>">
@@ -53,9 +55,9 @@ $align_class = $alignment === 'left' ? ' metody-wysylki-textcontainer--left' : '
             <?php foreach ($options as $opt): ?>
                 <div class="metody-wysylki-list">
                     <?php if (!empty($opt['svg'])): ?>
-                        <span class="metody-wysylki-list-icon"><?php echo wp_kses($opt['svg'], $svg_allowed); ?></span>
+                        <span class="metody-wysylki-list-icon<?php echo esc_attr($grayscale_class); ?>"><?php echo wp_kses($opt['svg'], $svg_allowed); ?></span>
                     <?php elseif (!empty($opt['icon'])): ?>
-                        <img class="metody-wysylki-list-icon" src="<?php echo esc_url($opt['icon']); ?>" alt="" style="max-height: 50px;">
+                        <img class="metody-wysylki-list-icon<?php echo esc_attr($grayscale_class); ?>" src="<?php echo esc_url($opt['icon']); ?>" alt="" style="max-height: 35px; width: auto; object-fit: contain;">
                     <?php endif; ?>
                     <li><?php echo wp_kses_post($opt['title']); ?></li>
                     <span><?php echo wp_kses_post($opt['desc']); ?></span>

@@ -58,6 +58,10 @@
     "alignment": {
       "type": "string",
       "default": "center"
+    },
+    "grayscaleIcons": {
+      "type": "boolean",
+      "default": false
     }
   },
   "editorScript": "file:./index.js",

@@ -799,6 +799,17 @@ text-transform: uppercase;
             flex-direction: column;
             gap: $space-8;
 
+            .metody-wysylki-list-icon {
+                max-height: 35px;
+                width: auto;
+                object-fit: contain;
+
+                &.metody-wysylki-icon--grayscale {
+                    filter: grayscale(100%);
+                    opacity: 0.8;
+                }
+            }
+
             li {
 
                 color: $color-neutral-900;
