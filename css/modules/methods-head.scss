@@ -113,13 +113,14 @@
 
     svg {
         display: block !important;
-        // Mobile: troszke mniejszy (~56px zamiast 71)
-        width: 56px !important;
-        height: 56px !important;
+        margin-top: 15px !important;
+        // Mobile: troszke mniejszy (~44px zamiast 55)
+        width: 44px !important;
+        height: 44px !important;
 
         @media (min-width: 900px) {
-            width: 71px !important;
-            height: 71px !important;
+            width: 55px !important;
+            height: 55px !important;
         }
     }
 }
