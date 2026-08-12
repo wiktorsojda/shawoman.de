@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/opinieproduktowe",
+  "title": "Opinie Produktowe",
+  "category": "design",
+  "icon": "star-filled",
+  "description": "Wyświetla natywne opinie WooCommerce o produkcie oraz podsumowanie ocen.",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Opinie naszych klientek"
+    }
+  },
+  "textdomain": "shavwoman",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

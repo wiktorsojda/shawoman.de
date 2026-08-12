@@ -1186,6 +1186,7 @@ function our_new_blocks()
     wp_localize_script('wp-editor', 'ourThemeData', array('themePath' => get_stylesheet_directory_uri()));
 
     // --- Bloki dropu / Rose Gold (reużywalne pod promocje) ---
+    register_block_type_from_metadata(__DIR__ . '/build/opinieproduktowe');
     register_block_type_from_metadata(__DIR__ . '/build/rosegoldhero');
     register_block_type_from_metadata(__DIR__ . '/build/rosegoldfeatured');
     register_block_type_from_metadata(__DIR__ . '/build/rosegoldgrid');
@@ -3133,17 +3134,9 @@ add_filter('woocommerce_product_tabs', 'woo_custom_reviews_tab', 98);
 function woo_custom_reviews_tab($tabs)
 {
 
-    // Save the original callback function
-    $original_callback = $tabs['reviews']['callback'];
-
-    // Modify the callback to include your custom content along with the original reviews
-    $tabs['reviews']['callback'] = function () use ($original_callback) {
-        // Add the custom review summary at the top
-        custom_review_summary();
-
-        // Display the default reviews content
-        call_user_func($original_callback);
-    };
+    if (isset($tabs['reviews'])) {
+        unset($tabs['reviews']);
+    }
 
     return $tabs;
 }
