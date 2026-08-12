@@ -1000,77 +1000,14 @@ color: $color-neutral-900; /* Star color */
 }
 
 
-// opinie
-#tab-description {
-    display: none !important;
-}
-
-div.woocommerce-tabs.wc-tabs-wrapper {
+// sekcje produktu (opis + opinie)
+.shav-product-sections {
     display: flex;
-    /* width: 1428px; */
     flex-direction: column;
     align-items: center;
-    gap: $space-16;
-    margin: $space-16;
-
-
-    ul.tabs.wc-tabs {
-        display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: $space-16;
-    align-self: stretch;
-    margin: 0;
-    padding: $space-16;
-
-    #tab-title-description.active, #tab-title-reviews.active {
-        a {
-        color: $color-neutral-900;
-
-font-family: $font-family-base;
-font-size: $font-size-body-l;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-transform: uppercase;
-        }
-    }
-
-    #tab-title-description {
-        background-color: transparent;
-        border: none;
-
-        a {
-            font-family: $font-family-base;
-font-size: $font-size-body-l;
-font-style: normal;
-font-weight: 300;
-line-height: normal;
-text-transform: uppercase;
-color: $color-neutral-900;
-text-decoration: none !important;
-        }
-
-    }
-
-    #tab-title-reviews {
-        border: none;
-        background-color: transparent;
-        list-style: none;
-        padding-left: $space-16;
-        border-left: 1px solid $color-neutral-200;
-        a {
-            color: $color-neutral-900;
-            text-decoration: none !important;
-            font-family: $font-family-base;
-            font-size: $font-size-body-l;
-            font-style: normal;
-            font-weight: 300;
-            line-height: normal;
-            text-transform: uppercase;
-        }
-    }
-    }
+    gap: $space-64;
+    margin: $space-32 0;
+    width: 100%;
 }
 
 
