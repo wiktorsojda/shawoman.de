@@ -415,22 +415,22 @@ if ($is_cat_archive && $current_cat_id > 0) {
                 </div>
 
                 <?php if ($show_ig || $show_tiktok || $show_fb): ?>
-                <div class="blog-widget blog-widget--sidebar-socials" style="text-align: center; padding: 2rem; background: #FFFAF6; border-radius: 20px; box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.06);">
+                <div class="blog-widget blog-widget--sidebar-socials" style="text-align: center;">
                     <h3 class="blog-widget__title" style="margin-bottom: 1rem; font-size: 1.1rem; color: #111;"><?php echo esc_html($find_us_title); ?></h3>
                     <div class="blog-widget-socials" style="justify-content: center; gap: 0.8rem;">
                         <?php if ($show_ig && !empty($ig_link)): ?>
                             <a href="<?php echo esc_url($ig_link); ?>" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                             </a>
                         <?php endif; ?>
                         <?php if ($show_tiktok && !empty($tiktok_link)): ?>
                             <a href="<?php echo esc_url($tiktok_link); ?>" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.69a8.16 8.16 0 0 0 4.77 1.52V6.84a4.85 4.85 0 0 1-1.84-.15"/></svg>
                             </a>
                         <?php endif; ?>
                         <?php if ($show_fb && !empty($fb_link)): ?>
                             <a href="<?php echo esc_url($fb_link); ?>" class="social-icon" target="_blank" rel="noopener noreferrer">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.43-4.92 8.43-9.94"/></svg>
                             </a>
                         <?php endif; ?>
                     </div>

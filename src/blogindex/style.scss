@@ -132,7 +132,7 @@
     z-index: 1;
     border-radius: var(--blog-radius);
     overflow: hidden;
-    background: $color-peach-50; /* Bento light accent */
+    background: #F2F2F2;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 450px; /* Stała wysokość na desktopie, by kontener miał pełne proporcje */
@@ -283,7 +283,7 @@
 .blog-card {
     position: relative;
     z-index: 1;
-    background: $color-peach-50;
+    background: #F2F2F2;
     border-radius: var(--blog-radius);
     overflow: hidden;
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.06);
@@ -613,7 +613,7 @@
 }
 
 .blog-widget {
-    background: $color-neutral-200; /* Bento light accent */
+    background: #F2F2F2;
     border-radius: var(--blog-radius);
     padding: 2.5rem;
     box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.08);
