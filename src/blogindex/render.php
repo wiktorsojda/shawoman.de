@@ -120,6 +120,9 @@ if ($is_cat_archive && $current_cat_id > 0) {
             <div class="blog-category-banner__text-wrap">
                 <span class="blog-category-banner__prefix"><?php echo esc_html($category_prefix_text); ?></span>
                 <h1 class="blog-category-banner__title"><?php echo esc_html($current_cat_name); ?></h1>
+        <button aria-label="Scroll to posts" onclick="document.getElementById('blog-grid').scrollIntoView({behavior: 'smooth'})" style="position: absolute; bottom: 30px; z-index: 10; background: transparent; border: none; color: #FFF; cursor: pointer; opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </button>
             </div>
         </div>
     </header>
@@ -137,7 +140,7 @@ if ($is_cat_archive && $current_cat_id > 0) {
         /* Usuwamy domyślny górny margines dodawany przez .wp-site-blocks na stronie Bloga */
         .wp-site-blocks { margin-top: 0 !important; }
     </style>
-    <header class="blog-hero-simple" style="position: relative; width: 100%; height: 450px; display: flex; align-items: center; justify-content: center; overflow: hidden; background-color: #333;">
+    <header class="blog-hero-simple" >
         <!-- DEBUG HERO_BG_IMAGE: <?php echo htmlspecialchars($hero_bg_image); ?> -->
         <!-- DEBUG ALL ATTRS: <?php echo htmlspecialchars(json_encode($attributes)); ?> -->
         <?php if ($hero_bg_image): ?>
@@ -336,23 +339,17 @@ if ($is_cat_archive && $current_cat_id > 0) {
                         <div class="blog-widget-socials">
                             <?php if ($show_ig): ?>
                                 <a href="<?php echo esc_url($ig_link); ?>" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--ig" aria-label="Instagram">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm3.98-10.395a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/>
-                                    </svg>
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                                 </a>
                             <?php endif; ?>
                             <?php if ($show_tiktok): ?>
                                 <a href="<?php echo esc_url($tiktok_link); ?>" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--tiktok" aria-label="TikTok">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 2.78-1.5 5.46-3.92 7-2.3 1.42-5.26 1.63-7.79.52-2.3-1-4.1-3.23-4.32-5.74-.24-2.5.83-5.06 2.82-6.62 1.73-1.35 3.99-1.8 6.09-1.38v4.19c-1.3-.2-2.62.13-3.6.93-1.02.8-1.57 2.1-1.39 3.39.18 1.25 1 2.37 2.13 2.93 1.15.55 2.55.51 3.65-.13 1.11-.64 1.83-1.85 1.86-3.12.04-5.2.01-10.4.02-15.6-.01-.01-.02-.02-.02-.03z"/>
-                                    </svg>
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.69a8.16 8.16 0 0 0 4.77 1.52V6.84a4.85 4.85 0 0 1-1.84-.15"/></svg>
                                 </a>
                             <?php endif; ?>
                             <?php if ($show_fb): ?>
                                 <a href="<?php echo esc_url($fb_link); ?>" target="_blank" rel="noopener noreferrer" class="social-icon social-icon--fb" aria-label="Facebook">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                                    </svg>
+                                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.78-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.76 8.43-4.92 8.43-9.94"/></svg>
                                 </a>
                             <?php endif; ?>
                         </div>

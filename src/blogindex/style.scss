@@ -1,7 +1,7 @@
 @import "../../css/base/tokens";
 
 .blog-index-wrapper {
-    --blog-radius: 15px; /* Bento radius from user */
+    --blog-radius: $radius-s; /* Bento radius from user */
     --blog-spacing: 2.5rem;
     font-family: $font-family-base;
     color: $color-neutral-900;
@@ -24,20 +24,22 @@
 /* Hero Simple Banner */
 .blog-hero-simple {
     position: relative;
-    width: 100%;
+    width: auto;
     height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     background-color: #333;
-    margin-bottom: 4rem;
+    margin: 2rem 4rem 4rem;
+    border-radius: $radius-m;
 }
 
 @media (max-width: 900px) {
     .blog-hero-simple {
         height: 250px; /* Mniejsza wysokość na mobile zgodnie z prośbą */
-        margin-bottom: 2rem;
+        margin: 1rem 1rem 2rem;
+        border-radius: $radius-s;
     }
 }
 
@@ -130,7 +132,7 @@
     z-index: 1;
     border-radius: var(--blog-radius);
     overflow: hidden;
-    background: $color-neutral-200; /* Bento light accent */
+    background: $color-peach-50; /* Bento light accent */
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 450px; /* Stała wysokość na desktopie, by kontener miał pełne proporcje */
@@ -281,7 +283,7 @@
 .blog-card {
     position: relative;
     z-index: 1;
-    background: $color-neutral-200;
+    background: $color-peach-50;
     border-radius: var(--blog-radius);
     overflow: hidden;
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.06);
