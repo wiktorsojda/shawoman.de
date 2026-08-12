@@ -120,8 +120,34 @@ if ($is_cat_archive && $current_cat_id > 0) {
             <div class="blog-category-banner__text-wrap">
                 <span class="blog-category-banner__prefix"><?php echo esc_html($category_prefix_text); ?></span>
                 <h1 class="blog-category-banner__title"><?php echo esc_html($current_cat_name); ?></h1>
-        <button aria-label="Scroll to posts" onclick="document.getElementById('blog-grid').scrollIntoView({behavior: 'smooth'})" style="position: absolute; bottom: 30px; z-index: 10; background: transparent; border: none; color: #FFF; cursor: pointer; opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        <button aria-label="Scroll to posts" onclick="document.getElementById('blog-grid').scrollIntoView({behavior: 'smooth'})" style="background: transparent; border: 0; cursor: pointer; transition: transform 0.2s ease; position: absolute; bottom: 30px; z-index: 10; display: inline-flex; align-items: center; justify-content: center; padding: 0;" onmouseover="this.style.transform='translateY(2px)'" onmouseout="this.style.transform='none'">
+            <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <g filter="url(#filter0_d_wysylka)">
+                    <path d="M6.2 30.2C6.2 14.736 18.736 2.2 34.2 2.2C49.6639 2.2 62.2 14.736 62.2 30.2C62.2 45.664 49.6639 58.2 34.2 58.2C18.736 58.2 6.2 45.664 6.2 30.2Z" fill="url(#paint0_wysylka)" fill-opacity="0.1" shape-rendering="crispEdges"/>
+                    <path d="M34.2 2.7C49.3878 2.7 61.7 15.0122 61.7 30.2C61.7 45.3878 49.3878 57.7 34.2 57.7C19.0121 57.7 6.7 45.3878 6.7 30.2C6.7 15.0122 19.0121 2.7 34.2 2.7Z" stroke="url(#paint1_wysylka)" shape-rendering="crispEdges"/>
+                    <path d="M34.2065 39.7C34.9084 39.6934 35.5796 39.4057 36.0745 38.8993L41.8119 33.0772C42.0605 32.8229 42.2 32.4789 42.2 32.1204C42.2 31.7618 42.0605 31.4179 41.8119 31.1636C41.6879 31.0364 41.5403 30.9354 41.3777 30.8665C41.2151 30.7976 41.0407 30.7621 40.8646 30.7621C40.6885 30.7621 40.5141 30.7976 40.3515 30.8665C40.1889 30.9354 40.0413 31.0364 39.9173 31.1636L35.5408 35.6286V22.0572C35.5408 21.6972 35.4002 21.352 35.15 21.0975C34.8997 20.843 34.5603 20.7 34.2065 20.7C33.8526 20.7 33.5132 20.843 33.263 21.0975C33.0128 21.352 32.8722 21.6972 32.8722 22.0572V35.6286L28.4823 31.1636C28.2329 30.908 27.8938 30.7637 27.5397 30.7625C27.1856 30.7612 26.8456 30.903 26.5943 31.1568C26.3431 31.4106 26.2012 31.7554 26.2 32.1156C26.1987 32.4757 26.3382 32.8216 26.5876 33.0772L32.3251 38.8993C32.8233 39.409 33.4999 39.697 34.2065 39.7Z" fill="white"/>
+                </g>
+                <defs>
+                    <filter id="filter0_d_wysylka" x="0" y="0" width="70.4" height="70.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                        <feOffset dx="1" dy="5"/>
+                        <feGaussianBlur stdDeviation="3.6"/>
+                        <feComposite in2="hardAlpha" operator="out"/>
+                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
+                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+                    </filter>
+                    <linearGradient id="paint0_wysylka" x1="17.91" y1="7.71" x2="44.21" y2="58.19" gradientUnits="userSpaceOnUse">
+                        <stop offset="0.122" stop-color="#9E9E9E"/>
+                        <stop offset="0.44" stop-color="white"/>
+                    </linearGradient>
+                    <linearGradient id="paint1_wysylka" x1="15.36" y1="8.56" x2="43.79" y2="59.89" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="white"/>
+                        <stop offset="1" stop-color="white" stop-opacity="0"/>
+                    </linearGradient>
+                </defs>
+            </svg>
         </button>
             </div>
         </div>
@@ -147,7 +173,7 @@ if ($is_cat_archive && $current_cat_id > 0) {
             <img src="<?php echo esc_url($hero_bg_image); ?>" alt="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;" loading="eager" fetchpriority="high" data-no-lazy="1" />
         <?php endif; ?>
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 2;"></div>
-        <h1 class="section-main-title" style="color: #FFF; position: relative; z-index: 3; text-align: center; margin: 0; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: bold; text-transform: uppercase;">
+        <h1 class="section-main-title">
             <?php echo wp_kses_post($title); ?>
         </h1>
     </header>

@@ -1,9 +1,9 @@
 @import "../../css/base/tokens";
 
 .blog-index-wrapper {
-    border-radius: $radius-s;
+    border-radius: 24px;
     overflow: hidden;
-    --blog-radius: $radius-s; /* Bento radius from user */
+    --blog-radius: 24px; /* Bento radius from user */
     --blog-spacing: 2.5rem;
     font-family: $font-family-base;
     color: $color-neutral-900;
@@ -41,7 +41,7 @@
     .blog-hero-simple {
         height: 250px; /* Mniejsza wysokość na mobile zgodnie z prośbą */
         margin: 1rem 1rem 2rem;
-        border-radius: $radius-s;
+        border-radius: 24px;
     }
 }
 
@@ -62,17 +62,19 @@
 }
 
 .blog-hero-simple .section-main-title {
-    color: #FFF;
-    position: relative;
-    z-index: 3;
+    font-weight: 500;
+    line-height: 0.99;
+    letter-spacing: -0.04em;
     text-align: center;
-    margin: 0;
-    font-size: clamp(2.5rem, 5vw, 4rem) !important;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    padding: 0 1rem;
+    color: #FFF;
+    filter: drop-shadow(0 1px 0.5px rgba(0, 0, 0, 0.25));
+    text-shadow: none;
+    text-transform: none;
+    font-size: 44px;
+    
+    @media (min-width: 900px) {
+        font-size: 64px;
+    }
 }
 
 /* Layout */
@@ -130,9 +132,10 @@
 }
 
 .blog-featured-card {
+    border-radius: 24px;
     position: relative;
     z-index: 1;
-    border-radius: var(--blog-radius);
+    border-radius: 24px;
     overflow: hidden;
     background: #F2F2F2;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
@@ -169,6 +172,7 @@
 
 @media (max-width: 900px) {
     .blog-featured-card {
+    border-radius: 24px;
         height: auto;
     }
     .blog-featured-card__inner {
@@ -283,10 +287,11 @@
 }
 
 .blog-card {
+    border-radius: 24px;
     position: relative;
     z-index: 1;
     background: #F2F2F2;
-    border-radius: var(--blog-radius);
+    border-radius: 24px;
     overflow: hidden;
     box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -407,7 +412,7 @@
     .blog-featured-card .blog-card__overlay-btn {
         left: 50%;
         width: 50%;
-        border-bottom-right-radius: var(--blog-radius); /* Zachowaj zaokrąglenie w rogu */
+        border-bottom-right-radius: 24px; /* Zachowaj zaokrąglenie w rogu */
     }
 }
 
@@ -615,8 +620,9 @@
 }
 
 .blog-widget {
+    border-radius: 24px;
     background: #F2F2F2;
-    border-radius: var(--blog-radius);
+    border-radius: 24px;
     padding: 2.5rem;
     box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.08);
     border: none;
@@ -729,7 +735,7 @@
 .blog-widget--about {
     .blog-widget-about-image {
         width: 100%;
-        border-radius: var(--blog-radius);
+        border-radius: 24px;
         margin-bottom: 1.5rem;
         aspect-ratio: 1/1;
         object-fit: cover;
@@ -965,13 +971,20 @@
 }
 
 .blog-category-banner__title {
+    font-weight: 500;
+    line-height: 0.99;
+    letter-spacing: -0.04em;
+    text-align: center;
     color: #FFF;
-    font-size: clamp(3rem, 5vw, 5rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    filter: drop-shadow(0 1px 0.5px rgba(0, 0, 0, 0.25));
+    text-shadow: none;
+    text-transform: none;
+    font-size: 44px;
     margin: 0;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    
+    @media (min-width: 900px) {
+        font-size: 64px;
+    }
 }
 
 /* Breadcrumbs / Powrót */
