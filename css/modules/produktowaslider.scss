@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Moduł: produktowaslider
+   ========================================================================== */
+
+.blendygo-gallery-container {
+    padding: 60px 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.blendygo-gallery-slider-desktop {
+    width: 100%;
+    height: auto;
+}
+
+.blendygo-gallery-slider-desktop .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: scale(0.85);
+    opacity: 0.7;
+    width: 65%;
+}
+
+.blendygo-gallery-slider-desktop .swiper-slide-active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.blendygo-gallery-slider-desktop .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 24px;
+    object-fit: cover;
+}
+
+.blendygo-gallery-container .swiper-pagination {
+    position: static;
+    margin-top: 30px;
+}
+
+.blendygo-gallery-container .swiper-pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #d1d1d1;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.blendygo-gallery-container .swiper-pagination .swiper-pagination-bullet-active {
+    width: 25px;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+/* Domyślnie ukrywamy slider mobilny na dużych ekranach */
+.blendygo-gallery-slider-mobile {
+    display: none;
+}
+
+/* Ustawienia dla urządzeń mobilnych (poniżej 1000px) */
+@media (max-width: 999px) {
+    .blendygo-gallery-slider-desktop {
+        display: none;
+    }
+
+    .blendygo-gallery-slider-mobile {
+        display: block;
+    }
+
+    .blendygo-gallery-slider-mobile .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 87%;
+        transform: scale(1);
+        opacity: 1;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .blendygo-gallery-slider-mobile .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 24px;
+        object-fit: cover;
+    }
+
+    /* Ukrywamy paginację dla nadmiarowych klonów (specyfika starego kodu) */
+    .blendygo-gallery-slider-mobile .swiper-pagination-bullet:nth-child(n+4) {
+        display: none;
+    }
+}
+
+/* Małe ekrany */
+@media (max-width: 768px) {
+    .blendygo-gallery-container {
+        padding: 40px 0;
+    }
+
+    .blendygo-gallery-slider-desktop .swiper-slide {
+        width: 90%;
+        transform: scale(1);
+        opacity: 1;
+    }
+}

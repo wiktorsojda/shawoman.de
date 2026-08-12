@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/produktowaslider",
+  "title": "Slider Produktowy",
+  "category": "design",
+  "icon": "images-alt2",
+  "description": "Dynamiczny slider produktowy (styl peek) dla desktopu i mobile. Dodawaj i usuwaj slajdy wygodnie w edytorze.",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ]
+  },
+  "attributes": {
+    "slides": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "textdomain": "shavwoman",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

@@ -1187,6 +1187,7 @@ function our_new_blocks()
 
     // --- Bloki dropu / Rose Gold (reużywalne pod promocje) ---
     register_block_type_from_metadata(__DIR__ . '/build/opinieproduktowe');
+    register_block_type_from_metadata(__DIR__ . '/build/produktowaslider');
     register_block_type_from_metadata(__DIR__ . '/build/rosegoldhero');
     register_block_type_from_metadata(__DIR__ . '/build/rosegoldfeatured');
     register_block_type_from_metadata(__DIR__ . '/build/rosegoldgrid');
