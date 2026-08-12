@@ -174,16 +174,6 @@ if ($is_cat_archive && $current_cat_id > 0) {
             <img src="<?php echo esc_url($hero_bg_image); ?>" alt="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;" loading="eager" fetchpriority="high" data-no-lazy="1" />
         <?php endif; ?>
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); z-index: 2;"></div>
-        <h1 class="section-main-title">
-            <?php echo wp_kses_post($title); ?>
-        </h1>
-        <button class="about-us-second-scroll blog-hero-scroll-btn" type="button" aria-label="Przewiń w dół" onclick="document.getElementById('blog-grid').scrollIntoView({behavior:'smooth'})" style="background: transparent; border: 0; cursor: pointer; transition: transform 0.2s ease; position: relative; margin-top: 1rem; z-index: 10; display: inline-flex; align-self: flex-start; margin-left: 4rem;" onmouseover="this.style.transform='translateY(2px)'" onmouseout="this.style.transform='none'">
-            <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <g filter="url(#filter0_d_wysylka2)">
-                    <path d="M6.2 30.2C6.2 14.736 18.736 2.2 34.2 2.2C49.6639 2.2 62.2 14.736 62.2 30.2C62.2 45.664 49.6639 58.2 34.2 58.2C18.736 58.2 6.2 45.664 6.2 30.2Z" fill="url(#paint0_wysylka2)" fill-opacity="0.1" shape-rendering="crispEdges"/>
-                    <path d="M34.2 2.7C49.3878 2.7 61.7 15.0122 61.7 30.2C61.7 45.3878 49.3878 57.7 34.2 57.7C19.0121 57.7 6.7 45.3878 6.7 30.2C6.7 15.0122 19.0121 2.7 34.2 2.7Z" stroke="url(#paint1_wysylka2)" shape-rendering="crispEdges"/>
-                    <path d="M34.2065 39.7C34.9084 39.6934 35.5796 39.4057 36.0745 38.8993L41.8119 33.0772C42.0605 32.8229 42.2 32.4789 42.2 32.1204C42.2 31.7618 42.0605 31.4179 41.8119 31.1636C41.6879 31.0364 41.5403 30.9354 41.3777 30.8665C41.2151 30.7976 41.0407 30.7621 40.8646 30.7621C40.6885 30.7621 40.5141 30.7976 40.3515 30.8665C40.1889 30.9354 40.0413 31.0364 39.9173 31.1636L35.5408 35.6286V22.0572C35.5408 21.6972 35.4002 21.352 35.15 21.0975C34.8997 20.843 34.5603 20.7 34.2065 20.7C33.8526 20.7 33.5132 20.843 33.263 21.0975C33.0128 21.352 32.8722 21.6972 32.8722 22.0572V35.6286L28.4823 31.1636C28.2329 30.908 27.8938 30.7637 27.5397 30.7625C27.1856 30.7612 26.8456 30.903 26.5943 31.1568C26.3431 31.4106 26.2012 31.7554 26.2 32.1156C26.1987 32.4757 26.3382 32.8216 26.5876 33.0772L32.3251 38.8993C32.8233 39.409 33.4999 39.697 34.2065 39.7Z" fill="white"/>
-                </g>
                 <defs>
                     <filter id="filter0_d_wysylka2" x="0" y="0" width="70.4" height="70.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                         <feFlood flood-opacity="0" result="BackgroundImageFix"/>

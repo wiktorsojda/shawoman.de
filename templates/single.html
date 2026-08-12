@@ -246,7 +246,7 @@
 /* --- Single Post Hero Overlay --- */
 .blog-single-hero {
   position: relative;
-  margin-top: 40px;
+  margin-top: 140px !important; /* Clear fixed header */
   margin-bottom: 3rem;
   border-radius: 20px;
   overflow: hidden;
@@ -413,8 +413,8 @@
             
             <!-- wp:group {"className":"post-navigation-group","layout":{"type":"flex","justifyContent":"space-between"},"style":{"spacing":{"margin":{"top":"4rem"}}}} -->
             <div class="wp-block-group post-navigation-group" style="margin-top:4rem">
-                <!-- wp:post-navigation-link {"type":"previous","showTitle":true} /-->
-                <!-- wp:post-navigation-link {"type":"next","showTitle":true} /-->
+                <!-- wp:post-navigation-link {"type":"previous","showTitle":true,"label":"Vorheriger Beitrag:"} /-->
+                <!-- wp:post-navigation-link {"type":"next","showTitle":true,"label":"Nächster Beitrag:"} /-->
             </div>
             <!-- /wp:group -->
         </div>
