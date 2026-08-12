@@ -1397,6 +1397,28 @@ function shav_enqueue_header_script()
 }
 add_action('wp_enqueue_scripts', 'shav_enqueue_header_script');
 
+if ( ! function_exists( 'shavwoman_support' ) ) :
+	function shavwoman_support() {
+		add_theme_support( 'wp-block-styles' );
+		add_editor_style( 'style.css' );
+	}
+endif;
+add_action( 'after_setup_theme', 'shavwoman_support' );
+
+// Force translations and link overrides for Single Post
+add_filter('previous_post_link', function($output) {
+    return str_replace(['Poprzedni wpis:', 'Poprzedni:', 'Previous:', 'Poprzedni wpis', 'Poprzedni', 'Previous'], 'Vorheriger Beitrag:', $output);
+});
+add_filter('next_post_link', function($output) {
+    return str_replace(['Następny wpis:', 'Następny:', 'Next:', 'Następny wpis', 'Następny', 'Next'], 'Nächster Beitrag:', $output);
+});
+add_filter('render_block', function($block_content, $block) {
+    // Override back button link
+    if (strpos($block_content, 'blog-hero-back-btn') !== false) {
+        $block_content = str_replace('href="/unser-blog/"', 'href="/blog"', $block_content);
+    }
+    return $block_content;
+}, 10, 2);
 
 //////
 function mytheme_register_nav_menu()

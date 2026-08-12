@@ -173,29 +173,19 @@ if ($is_cat_archive && $current_cat_id > 0) {
         <?php if ($hero_bg_image): ?>
             <img src="<?php echo esc_url($hero_bg_image); ?>" alt="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;" loading="eager" fetchpriority="high" data-no-lazy="1" />
         <?php endif; ?>
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); z-index: 2;"></div>
-                <defs>
-                    <filter id="filter0_d_wysylka2" x="0" y="0" width="70.4" height="70.4" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                        <feOffset dx="1" dy="5"/>
-                        <feGaussianBlur stdDeviation="3.6"/>
-                        <feComposite in2="hardAlpha" operator="out"/>
-                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
-                    </filter>
-                    <linearGradient id="paint0_wysylka2" x1="17.91" y1="7.71" x2="44.21" y2="58.19" gradientUnits="userSpaceOnUse">
-                        <stop offset="0.122" stop-color="#9E9E9E"/>
-                        <stop offset="0.44" stop-color="white"/>
-                    </linearGradient>
-                    <linearGradient id="paint1_wysylka2" x1="15.36" y1="8.56" x2="43.79" y2="59.89" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="white"/>
-                        <stop offset="1" stop-color="white" stop-opacity="0"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-        </button>
+        <div class="blog-category-banner__overlay">
+            <div class="blog-category-banner__text-wrap">
+                <h1 class="section-main-title" style="margin-bottom: 0;">
+                    <?php echo wp_kses_post($title); ?>
+                </h1>
+                <button class="about-us-second-scroll blog-hero-scroll-btn" type="button" aria-label="Nach unten scrollen" onclick="document.getElementById('blog-grid').scrollIntoView({behavior:'smooth'})" style="background: transparent; border: 0; cursor: pointer; transition: transform 0.2s ease; position: relative; margin-top: 1rem; z-index: 10; display: inline-flex; align-items: center; justify-content: center; padding: 0; pointer-events: auto; align-self: flex-start;" onmouseover="this.style.transform='translateY(2px)'" onmouseout="this.style.transform='none'">
+                    <svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="33.5" cy="33.5" r="32.5" stroke="white" stroke-width="2"/>
+                        <path d="M34 46L34 21M34 46L24.5 37.1364M34 46L43.5 37.1364" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </header></div>
     <?php endif; ?>
     <div class="blog-container" id="blog-grid">
