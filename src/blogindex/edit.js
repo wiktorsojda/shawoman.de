@@ -29,6 +29,7 @@ export default function Edit(props) {
   const showTiktok = attributes?.showTiktok ?? true
   const showFb = attributes?.showFb ?? true
   const showViewsCounter = attributes?.showViewsCounter ?? false
+  const showDates = attributes?.showDates ?? true
 
   const [importJson, setImportJson] = useState("")
 
@@ -219,6 +220,11 @@ export default function Edit(props) {
               onChange={(val) => props.setAttributes({ fbLink: val })}
             />
           )}
+          <ToggleControl
+            label="Pokaż daty wpisów"
+            checked={showDates}
+            onChange={(val) => props.setAttributes({ showDates: val })}
+          />
         </PanelBody>
       </InspectorControls>
 

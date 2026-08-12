@@ -47,6 +47,10 @@ $fb_link = $attributes['fbLink'] ?? 'https://facebook.com/blendygo';
 $show_ig = $attributes['showIg'] ?? true;
 $show_tiktok = $attributes['showTiktok'] ?? true;
 $show_fb = $attributes['showFb'] ?? true;
+$show_views_counter = $attributes['showViewsCounter'] ?? false;
+$show_dates = $attributes['showDates'] ?? true;
+
+$blog_url = get_permalink(get_option('page_for_posts'));
 
 $is_cat_archive = is_category();
 $current_cat_id = 0;
@@ -256,7 +260,9 @@ if ($is_cat_archive && $current_cat_id > 0) {
                                                         echo '<div class="blog-card__views-badge"><span class="dashicons dashicons-visibility"></span> ' . esc_html($views) . '</div>';
                                                     }
                                                     ?>
-                                                    <time class="blog-card__date-badge" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('F j, Y'); ?></time>
+                                                    <?php if ($show_dates): ?>
+                                                        <time class="blog-card__date-badge" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('F j, Y'); ?></time>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -307,7 +313,9 @@ if ($is_cat_archive && $current_cat_id > 0) {
                                                     echo '<div class="blog-card__views-badge"><span class="dashicons dashicons-visibility"></span> ' . esc_html($views) . '</div>';
                                                 }
                                                 ?>
-                                                <time class="blog-card__date-badge" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('F j, Y'); ?></time>
+                                                <?php if ($show_dates): ?>
+                                                    <time class="blog-card__date-badge" datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date('F j, Y'); ?></time>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
