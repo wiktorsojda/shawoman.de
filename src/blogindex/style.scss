@@ -7,7 +7,7 @@
     --blog-spacing: 2.5rem;
     font-family: $font-family-base;
     color: $color-neutral-900;
-    background-color: $color-neutral-100;
+    background-color: transparent;
     padding-bottom: 60px;
 }
 
@@ -25,6 +25,9 @@
 
 /* Hero Simple Banner */
 .blog-hero-simple {
+    max-width: 1300px;
+    margin: 0 auto !important;
+
     position: relative;
     width: auto;
     height: 450px;
@@ -111,6 +114,7 @@
 
 /* Section Header */
 .blog-section-header {
+    margin-top: 4rem;
     margin-bottom: 2rem;
 }
 
@@ -864,6 +868,9 @@
 
 /* Category Banner */
 .blog-category-banner {
+    max-width: 1300px;
+    margin: 0 auto !important;
+
     width: 100%;
     height: 60vh; /* Zwiększona wysokość, by zminimalizować efekt zoomu (lepsze proporcje) */
     min-height: 450px;
