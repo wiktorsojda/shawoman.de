@@ -29,9 +29,14 @@ if ($mobile_url) {
 }
 $wrapper_style = $style_parts ? implode(';', $style_parts) . ';' : '';
 
+$wrapper_attributes = get_block_wrapper_attributes( [
+    'class' => "szachglass szachglass--x-" . esc_attr($glassPositionX) . " szachglass--y-" . esc_attr($glassPositionY),
+    'style' => $wrapper_style,
+] );
+
 $card_style = 'width:' . $glassWidth . 'px;max-width:100%;text-align:' . esc_attr($textAlign) . ';';
 ?>
-<section class="szachglass szachglass--x-<?php echo esc_attr($glassPositionX); ?> szachglass--y-<?php echo esc_attr($glassPositionY); ?>" style="<?php echo esc_attr($wrapper_style); ?>">
+<section <?php echo $wrapper_attributes; ?>>
     <div class="szachglass__card" style="<?php echo esc_attr($card_style); ?>">
         <?php if ($title): ?>
             <h2 class="szachglass__title" style="font-size:<?php echo $titleSize; ?>px;"><?php echo wp_kses_post($title); ?></h2>
