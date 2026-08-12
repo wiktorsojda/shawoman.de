@@ -120,7 +120,7 @@ if ($is_cat_archive && $current_cat_id > 0) {
             <div class="blog-category-banner__text-wrap">
                 <span class="blog-category-banner__prefix"><?php echo esc_html($category_prefix_text); ?></span>
                 <h1 class="blog-category-banner__title"><?php echo esc_html($current_cat_name); ?></h1>
-        <button aria-label="Scroll to posts" onclick="document.getElementById('blog-grid').scrollIntoView({behavior: 'smooth'})" style="background: transparent; border: 0; cursor: pointer; transition: transform 0.2s ease; position: absolute; bottom: 30px; z-index: 10; display: inline-flex; align-items: center; justify-content: center; padding: 0;" onmouseover="this.style.transform='translateY(2px)'" onmouseout="this.style.transform='none'">
+        <button aria-label="Scroll to posts" onclick="document.getElementById('blog-grid').scrollIntoView({behavior: 'smooth'})" style="background: transparent; border: 0; cursor: pointer; transition: transform 0.2s ease; position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10; display: inline-flex; align-items: center; justify-content: center; padding: 0;" onmouseover="this.style.transform='translateX(-50%) translateY(2px)'" onmouseout="this.style.transform='translateX(-50%)'">
             <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <g filter="url(#filter0_d_wysylka)">
                     <path d="M6.2 30.2C6.2 14.736 18.736 2.2 34.2 2.2C49.6639 2.2 62.2 14.736 62.2 30.2C62.2 45.664 49.6639 58.2 34.2 58.2C18.736 58.2 6.2 45.664 6.2 30.2Z" fill="url(#paint0_wysylka)" fill-opacity="0.1" shape-rendering="crispEdges"/>
