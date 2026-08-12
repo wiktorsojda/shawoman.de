@@ -1,10 +1,33 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, RangeControl, SelectControl } from "@wordpress/components";
+import { PanelBody, Button, RangeControl, SelectControl, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
+  const [jsonText, setJsonText] = useState("");
+
+  const handleGenerateJson = () => {
+    const data = {
+      title: a.title,
+      description: a.description
+    };
+    setJsonText(JSON.stringify(data, null, 2));
+  };
+
+  const handleApplyJson = () => {
+    try {
+      const parsed = JSON.parse(jsonText);
+      const updates = {};
+      if (parsed.title !== undefined) updates.title = parsed.title;
+      if (parsed.description !== undefined) updates.description = parsed.description;
+      setAttributes(updates);
+      alert("Atrybuty zostały zaktualizowane!");
+    } catch (e) {
+      alert("Błąd: Nieprawidłowy format JSON.");
+    }
+  };
   const wrapperStyle = {};
   if (a.backgroundImage) wrapperStyle["--bg-desktop"] = `url(${a.backgroundImage})`;
   if (a.backgroundImageMobile) wrapperStyle["--bg-mobile"] = `url(${a.backgroundImageMobile})`;
@@ -16,10 +39,28 @@ export default function Edit({ attributes, setAttributes }) {
   });
   const cardStyle = {
     width: a.glassWidth ? `${a.glassWidth}px` : undefined,
+    textAlign: a.textAlign || "left",
   };
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <p style={{ fontSize: "13px", marginBottom: "12px" }}>
+            Wygeneruj JSON, przetłumacz teksty, a następnie wklej i zastosuj.
+          </p>
+          <Button variant="secondary" onClick={handleGenerateJson} style={{ marginBottom: "12px", width: "100%", justifyContent: "center" }}>
+            Wygeneruj JSON
+          </Button>
+          <TextareaControl
+            value={jsonText}
+            onChange={(value) => setJsonText(value)}
+            rows={8}
+            help="Wklej tutaj przetłumaczony JSON"
+          />
+          <Button variant="primary" onClick={handleApplyJson} style={{ width: "100%", justifyContent: "center" }}>
+            Zastosuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Tło — obraz" initialOpen={true}>
           <p style={{ marginTop: 0 }}><strong>Desktop</strong> (≥ 768px)</p>
           <MediaUploadCheck>
@@ -62,6 +103,16 @@ export default function Edit({ attributes, setAttributes }) {
               { label: "Dół", value: "bottom" },
             ]}
             onChange={(v) => setAttributes({ glassPositionY: v })}
+          />
+          <SelectControl
+            label="Wyrównanie tekstu"
+            value={a.textAlign}
+            options={[
+              { label: "Do lewej", value: "left" },
+              { label: "Do środka", value: "center" },
+              { label: "Do prawej", value: "right" },
+            ]}
+            onChange={(v) => setAttributes({ textAlign: v })}
           />
           <RangeControl label="Szerokość karty (px)" min={320} max={1000} step={10} value={a.glassWidth} onChange={(v) => setAttributes({ glassWidth: v })} />
         </PanelBody>

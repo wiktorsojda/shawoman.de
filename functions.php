@@ -1220,9 +1220,6 @@ function our_new_blocks()
     register_block_type_from_metadata(__DIR__ . '/build/onashead');
     register_block_type_from_metadata(__DIR__ . '/build/heroonas');
     register_block_type_from_metadata(__DIR__ . '/build/szachshavwomen1');
-    register_block_type_from_metadata(__DIR__ . '/build/szachshavwomen2');
-    register_block_type_from_metadata(__DIR__ . '/build/szachshavwomen3');
-    register_block_type_from_metadata(__DIR__ . '/build/szachshavwomen4');
     register_block_type_from_metadata(__DIR__ . '/build/masazerwoman1');
     register_block_type_from_metadata(__DIR__ . '/build/masazerwoman2');
     register_block_type_from_metadata(__DIR__ . '/build/masazerwoman3');

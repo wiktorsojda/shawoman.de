@@ -9,10 +9,14 @@ $glassPositionX        = isset($attributes['glassPositionX'])        ? $attribut
 $glassPositionY        = isset($attributes['glassPositionY'])        ? $attributes['glassPositionY']        : 'middle';
 $glassWidth            = isset($attributes['glassWidth'])            ? (int) $attributes['glassWidth']      : 726;
 
+$textAlign             = isset($attributes['textAlign'])             ? $attributes['textAlign']             : 'left';
+
 $allowed_x = ['left', 'center', 'right'];
 $allowed_y = ['top', 'middle', 'bottom'];
+$allowed_align = ['left', 'center', 'right'];
 if (!in_array($glassPositionX, $allowed_x, true)) $glassPositionX = 'left';
 if (!in_array($glassPositionY, $allowed_y, true)) $glassPositionY = 'middle';
+if (!in_array($textAlign, $allowed_align, true)) $textAlign = 'left';
 
 $style_parts = [];
 if ($backgroundImage) {
@@ -25,7 +29,7 @@ if ($mobile_url) {
 }
 $wrapper_style = $style_parts ? implode(';', $style_parts) . ';' : '';
 
-$card_style = 'width:' . $glassWidth . 'px;max-width:100%;';
+$card_style = 'width:' . $glassWidth . 'px;max-width:100%;text-align:' . esc_attr($textAlign) . ';';
 ?>
 <section class="szachglass szachglass--x-<?php echo esc_attr($glassPositionX); ?> szachglass--y-<?php echo esc_attr($glassPositionY); ?>" style="<?php echo esc_attr($wrapper_style); ?>">
     <div class="szachglass__card" style="<?php echo esc_attr($card_style); ?>">
