@@ -1264,8 +1264,9 @@ if (!function_exists('blendygo_cpt_debugger')) {
             $phase = $promo_id ? blendygo_get_promo_phase($promo_id) : 0;
         }
 
-        echo '<div id="blendygo-promo-debugger" style="position: fixed; bottom: 20px; right: 20px; background: #000; color: #0f0; padding: 15px; font-family: monospace; font-size: 14px; z-index: 999999; border: 1px solid #0f0; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,0,0.3); opacity: 0.9;">';
-        echo '<strong style="color:#fff;">BLENDYGO CPT DEBUGGER</strong><br><br>';
+        echo '<div id="blendygo-promo-debugger" style="position: fixed; bottom: 20px; right: 20px; background: #000; color: #0f0; padding: 10px 15px; font-family: monospace; font-size: 14px; z-index: 999999; border: 1px solid #0f0; border-radius: 4px; box-shadow: 0 0 15px rgba(0,255,0,0.3); opacity: 0.9; cursor: pointer;" onclick="var content = document.getElementById(\'blendygo-promo-content\'); content.style.display = content.style.display === \'none\' ? \'block\' : \'none\';">';
+        echo '<strong style="color:#fff; user-select: none;">STATUS PROMOCJI</strong>';
+        echo '<div id="blendygo-promo-content" style="display: none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #0f0;">';
         echo 'Czas WP: <span style="color:#fff;">' . esc_html($now_str) . '</span><br>';
 
         if (is_shop() || is_product_category() || is_product() || is_cart()) {
@@ -1276,6 +1277,7 @@ if (!function_exists('blendygo_cpt_debugger')) {
                 echo 'Aktywne Promo: <span style="color:#f00;">BRAK</span><br>';
             }
         }
+        echo '</div>';
         echo '</div>';
     }
     add_action('wp_footer', 'blendygo_cpt_debugger', 999);
