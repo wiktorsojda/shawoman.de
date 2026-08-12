@@ -1,10 +1,28 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl, ColorPicker } from "@wordpress/components";
+import { PanelBody, Button, TextControl, ColorPicker, TextareaControl } from "@wordpress/components";
+import { useState, useEffect } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const { title, videoURL, backgroundImage, overlayColor } = attributes;
+  const [jsonText, setJsonText] = useState(JSON.stringify({ title }, null, 2));
+
+  useEffect(() => {
+    setJsonText(JSON.stringify({ title }, null, 2));
+  }, [title]);
+
+  const handleApplyJson = () => {
+    try {
+      const parsed = JSON.parse(jsonText);
+      const updates = {};
+      if (parsed.title !== undefined) updates.title = parsed.title;
+      setAttributes(updates);
+      alert("Pomyślnie zaktualizowano z JSON!");
+    } catch (e) {
+      alert("Błąd: Nieprawidłowy format JSON.");
+    }
+  };
   const wrapperStyle = backgroundImage
     ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }
     : {};
@@ -16,6 +34,21 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <p style={{ fontSize: "13px", marginBottom: "12px" }}>
+            Skopiuj JSON, przetłumacz teksty, a następnie wklej go tutaj i zastosuj.
+          </p>
+          <TextareaControl
+            value={jsonText}
+            onChange={(value) => setJsonText(value)}
+            rows={6}
+            help="Wklej tutaj przetłumaczony JSON"
+          />
+          <Button variant="primary" onClick={handleApplyJson} style={{ width: "100%", justifyContent: "center" }}>
+            Zastosuj tłumaczenie
+          </Button>
+        </PanelBody>
+
         <PanelBody title="Tło wideo" initialOpen={true}>
           <MediaUploadCheck>
             <MediaUpload onSelect={(media) => setAttributes({ videoURL: media?.url || "" })} allowedTypes={["video"]} value={videoURL}
