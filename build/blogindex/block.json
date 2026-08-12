@@ -2,64 +2,104 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/blogindex",
-  "title": "Blog Index",
-  "attributes": {
-    "bannerTitle": {
-      "type": "string",
-      "default": "Welcome to our blog!"
-    },
-    "bannerSubtitle": {
-      "type": "string",
-      "default": "Keep up with our latest news."
-    },
-    "continueLabel": {
-      "type": "string",
-      "default": "Continue reading »"
-    },
-    "postedByPrefix": {
-      "type": "string",
-      "default": "Posted by"
-    },
-    "inText": {
-      "type": "string",
-      "default": "in"
-    }
-  },
+  "textdomain": "mojmotyw",
+  "title": "Fictional University Blog Index",
   "editorScript": "file:./index.js",
   "render": "file:./render.php",
-  "supports": {
-    "html": false,
-    "anchor": true,
-    "align": [
-      "wide",
-      "full"
-    ],
-    "color": {
-      "background": true,
-      "text": true,
-      "link": true,
-      "gradients": true
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "BlendyBlog"
     },
-    "typography": {
-      "fontSize": true,
-      "lineHeight": true,
-      "__experimentalFontFamily": true,
-      "__experimentalFontWeight": true,
-      "__experimentalFontStyle": true,
-      "__experimentalTextTransform": true,
-      "__experimentalLetterSpacing": true,
-      "__experimentalTextDecoration": true
+    "subtitle": {
+      "type": "string",
+      "default": "Ihr täglicher Mix aus Rezepten und Lifestyle-Inspirationen."
     },
-    "spacing": {
-      "padding": true,
-      "margin": true,
-      "blockGap": true
+    "heroBgImage": {
+      "type": "string",
+      "default": ""
     },
-    "__experimentalBorder": {
-      "color": true,
-      "radius": true,
-      "style": true,
-      "width": true
+    "backToBlogUrl": {
+      "type": "string",
+      "default": "/blog/"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Zum Beitrag"
+    },
+    "heroButtonText": {
+      "type": "string",
+      "default": "Beiträge lesen"
+    },
+    "gridTitle": {
+      "type": "string",
+      "default": "Alle Beiträge"
+    },
+    "noPostsText": {
+      "type": "string",
+      "default": "Keine Beiträge zum Anzeigen."
+    },
+    "sidebarCategoriesTitle": {
+      "type": "string",
+      "default": "KATEGORIEN"
+    },
+    "featuredLabel": {
+      "type": "string",
+      "default": "Neuester Beitrag"
+    },
+    "videoUrl": {
+      "type": "string",
+      "default": "https://blendygo.pl/wp-content/uploads/2023/08/lifestylowy-2.mp4"
+    },
+    "categoryPrefixText": {
+      "type": "string",
+      "default": "Sie sehen Beiträge aus der Kategorie: "
+    },
+    "aboutImage": {
+      "type": "string",
+      "default": "https://blendygo.pl/wp-content/uploads/zespol-section-zdjecie.jpeg"
+    },
+    "aboutTitle": {
+      "type": "string",
+      "default": "ÜBER UNS"
+    },
+    "aboutText": {
+      "type": "string",
+      "default": "Hallo, hier ist das BlendyGo-Team! 🥤\n\nWir glauben, dass gesunde Gewohnheiten einfach und unterhaltsam sein können. Auf diesem Blog mixen wir für Sie täglich leckere Rezepte, Tipps und pure Motivation. Finden Sie mit uns Ihren Rhythmus!\n\nBesuchen Sie auch unsere Social Media für Ihre tägliche Portion Inspiration! 👇"
+    },
+    "findUsTitle": {
+      "type": "string",
+      "default": "Finden Sie uns auf:"
+    },
+    "igLink": {
+      "type": "string",
+      "default": "https://instagram.com/blendygo"
+    },
+    "tiktokLink": {
+      "type": "string",
+      "default": "https://tiktok.com/@blendygo"
+    },
+    "fbLink": {
+      "type": "string",
+      "default": "https://facebook.com/blendygo"
+    },
+    "showIg": {
+      "type": "boolean",
+      "default": true
+    },
+    "showTiktok": {
+      "type": "boolean",
+      "default": true
+    },
+    "showFb": {
+      "type": "boolean",
+      "default": true
+    },
+    "showViewsCounter": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

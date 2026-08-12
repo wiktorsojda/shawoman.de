@@ -3653,4 +3653,5 @@ add_action('wp_enqueue_scripts', 'disable_wc_cart_fragments', 11);
 function disable_wc_cart_fragments()
 {
     wp_dequeue_script('wc-cart-fragments');
-}
+}require get_template_directory() . '/inc/licznik-bloga.php';
+require get_template_directory() . '/inc/category-image.php';
