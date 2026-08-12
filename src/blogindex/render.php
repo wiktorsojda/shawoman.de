@@ -179,7 +179,7 @@ if ($is_cat_archive && $current_cat_id > 0) {
                     <?php echo wp_kses_post($title); ?>
                 </h1>
                 <button class="about-us-second-scroll blog-hero-scroll-btn" type="button" aria-label="Nach unten scrollen" onclick="document.getElementById('blog-grid').scrollIntoView({behavior:'smooth'})" style="background: transparent; border: 0; cursor: pointer; transition: transform 0.2s ease; position: relative; margin-top: 1rem; z-index: 10; display: inline-flex; align-items: center; justify-content: center; padding: 0; pointer-events: auto; align-self: flex-start;" onmouseover="this.style.transform='translateY(2px)'" onmouseout="this.style.transform='none'">
-                    <svg width="67" height="67" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="54" height="54" viewBox="0 0 67 67" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="33.5" cy="33.5" r="32.5" stroke="white" stroke-width="2"/>
                         <path d="M34 46L34 21M34 46L24.5 37.1364M34 46L43.5 37.1364" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
