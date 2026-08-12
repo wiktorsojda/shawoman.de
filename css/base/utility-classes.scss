@@ -171,6 +171,14 @@ ins {
   overflow: hidden;
 }
 
+// Force full-width for alignfull blocks inside WooCommerce product patterns
+.shav-product-pattern .alignfull {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+}
+
 //
 .pin-spacer {
   margin-bottom: -1px;
