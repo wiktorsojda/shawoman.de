@@ -1008,6 +1008,22 @@ color: $color-neutral-900; /* Star color */
     gap: $space-64;
     margin: $space-32 0;
     width: 100%;
+    max-width: 100% !important;
+
+    .shav-product-section {
+        width: 100%;
+        max-width: 100% !important;
+        
+        // Nadpisanie stylów Gutenberga (theme.json contentSize 1300px), 
+        // by bloki w opisie zawsze miały 100% szerokości, chyba że same mają wbudowany kontener.
+        & > * {
+            max-width: 100% !important;
+        }
+
+        .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+            max-width: 100% !important;
+        }
+    }
 }
 
 
