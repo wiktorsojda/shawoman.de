@@ -130,10 +130,27 @@ export default function Edit(props) {
 
       <div style={{ padding: "20px", border: "2px dashed #ccc", textAlign: "center", backgroundColor: "#f9f9f9" }}>
         <h3 style={{ margin: "0 0 10px 0", color: "#666" }}>[Blok: Slider Produktowy]</h3>
-        <p style={{ color: "#999", fontSize: "13px", margin: 0 }}>
-          Liczba slajdów: {slides.length}.<br/>
-          Konfiguruj slajdy w panelu po prawej stronie. Na żywo slider pojawi się po zapisaniu na stronie docelowej.
-        </p>
+        
+        {slides.length === 0 ? (
+          <p style={{ color: "#999", fontSize: "13px", margin: 0 }}>
+            Brak slajdów. Dodaj je w panelu bocznym.
+          </p>
+        ) : (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center", marginTop: "15px" }}>
+            {slides.map((slide, index) => (
+              <div key={index} style={{ width: "120px", border: "1px solid #ddd", borderRadius: "8px", overflow: "hidden", backgroundColor: "#fff" }}>
+                {slide.desktopImage ? (
+                  <img src={slide.desktopImage} alt="Podgląd" style={{ width: "100%", height: "80px", objectFit: "cover", display: "block" }} />
+                ) : (
+                  <div style={{ width: "100%", height: "80px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#eee", color: "#999", fontSize: "11px" }}>Brak zdj.</div>
+                )}
+                <div style={{ padding: "5px", fontSize: "11px", color: "#666", background: "#f1f1f1", borderTop: "1px solid #ddd" }}>
+                  Slajd {index + 1}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   )

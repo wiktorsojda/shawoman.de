@@ -8,6 +8,9 @@ if (!isset($attributes)) {
     $attributes = [];
 }
 $slides = $attributes['slides'] ?? [];
+if (empty($slides)) {
+    return;
+}
 ?>
 
 <div <?php echo get_block_wrapper_attributes(['class' => 'produktowaslider-block']); ?>>
@@ -17,7 +20,6 @@ $slides = $attributes['slides'] ?? [];
 
     <div class="blendygo-gallery-container">
         
-        <?php if (!empty($slides)): ?>
             <!-- Desktop Slider -->
             <div class="swiper blendygo-gallery-slider-desktop">
                 <div class="swiper-wrapper">
@@ -45,9 +47,7 @@ $slides = $attributes['slides'] ?? [];
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-        <?php else: ?>
-            <p style="text-align:center; padding: 40px;">Brak dodanych slajdów. Skonfiguruj blok w edytorze.</p>
-        <?php endif; ?>
+            
     </div>
 
     <!-- Skrypt inicjalizujący Swiper -->
