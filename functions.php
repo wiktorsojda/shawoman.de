@@ -85,13 +85,38 @@ function display_lowest_price_30_days()
         return;
 
     $lowest_price = shav_get_field($product->get_id(), 'lowest_price_30_days', 'lowest_price');
+    $is_manual = !empty($lowest_price);
 
-    // Display it only if the lowest price is set
-    if (!empty($lowest_price)) {
-        echo '<p class="lowest-price" style="font-size: 14px; color: #7A7A7A; margin-top: 10px;">';
-        echo 'Najniższa cena z 30 dni przed obniżką: ' . esc_html($lowest_price) . ' zł';
-        echo '</p>';
+    // Tryb automatyczny: jeśli puste, pobierz cenę regularną (tylko na promocji)
+    if (!$is_manual) {
+        if ($product->is_on_sale()) {
+            if ($product->is_type('variable')) {
+                $lowest_price = $product->get_variation_regular_price('min', true);
+            } else {
+                $lowest_price = $product->get_regular_price();
+            }
+        }
+
+        // Jeśli produkt nie jest na promocji i brak ręcznej ceny, nie pokazuj dyrektywy
+        if (empty($lowest_price)) {
+            return;
+        }
     }
+
+    echo '<p class="lowest-price" style="font-size: 14px; color: #7A7A7A; margin-top: 10px;">';
+    
+    // Fraza objęta systemem tłumaczeń (np. do pliku .po na język DE)
+    echo esc_html__('Najniższa cena z 30 dni przed obniżką:', 'woocommerce') . ' ';
+    
+    // Wyświetlamy cenę natywnym formatowaniem (automatycznie dobra waluta np. €)
+    if (!$is_manual || is_numeric(str_replace(array(',', '.'), '', $lowest_price))) {
+        echo wc_price((float) str_replace(',', '.', $lowest_price));
+    } else {
+        // Jeśli admin celowo dopisał w polu ręcznym np. "30 euro"
+        echo esc_html($lowest_price);
+    }
+
+    echo '</p>';
 }
 // 
 
