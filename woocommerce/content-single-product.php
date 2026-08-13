@@ -7,7 +7,9 @@
 defined('ABSPATH') || exit;
 
 global $product;
-
+?>
+<div class="container">
+<?php
 /**
  * Hook: woocommerce_before_single_product.
  *
@@ -20,7 +22,7 @@ if (post_password_required()) {
 	return;
 }
 ?>
-
+</div>
 
 <div id="custom-background-wrapper">
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>

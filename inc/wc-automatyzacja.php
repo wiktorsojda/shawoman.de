@@ -191,13 +191,21 @@ if (!function_exists('blendygo_get_promo_phase')) {
     // FUNKCJA POMOCNICZA DO OKREŚLANIA FAZY OPARTA O TIMESTAMP WP Z UWZGLĘDNIENIEM FAZY 4 (GRACE PERIOD)
     function blendygo_get_promo_phase($promo_id)
     {
+        static $phase_cache = [];
+        if (array_key_exists($promo_id, $phase_cache)) {
+            return $phase_cache[$promo_id];
+        }
+
         $is_active = get_post_meta($promo_id, 'promo_is_active', true);
-        if ($is_active === 'no')
+        if ($is_active === 'no') {
+            $phase_cache[$promo_id] = 0;
             return 0;
+        }
 
         // TRYB TESTOWY ADMINA
         $admin_only = get_post_meta($promo_id, 'promo_admin_only', true);
         if ($admin_only === 'yes' && !current_user_can('manage_options')) {
+            $phase_cache[$promo_id] = 0;
             return 0;
         }
 
@@ -213,26 +221,37 @@ if (!function_exists('blendygo_get_promo_phase')) {
         $absolute_death = $remove_ui ?: $actual_final;
 
         // JEŚLI JESTEŚMY PO ABSOLUTNYM ZAKOŃCZENIU
-        if ($absolute_death && $now > $absolute_death)
+        if ($absolute_death && $now > $absolute_death) {
+            $phase_cache[$promo_id] = 0;
             return 0;
+        }
 
         // FAZA 4 (GRACE PERIOD) - MIĘDZY ZABLOKOWANIEM LICZNIKA A CAŁKOWITYM ZNIKNIĘCIEM UI
-        if ($actual_final && $absolute_death && $now > $actual_final && $now <= $absolute_death)
+        if ($actual_final && $absolute_death && $now > $actual_final && $now <= $absolute_death) {
+            $phase_cache[$promo_id] = 4;
             return 4;
+        }
 
         // FAZA 3 (PRZEDŁUŻENIE)
-        if ($final_fixed && $final && $now >= $final && $now <= $final_fixed)
+        if ($final_fixed && $final && $now >= $final && $now <= $final_fixed) {
+            $phase_cache[$promo_id] = 3;
             return 3;
+        }
 
         // FAZA 2 (LICZNIK STANDARDOWY)
-        if ($ext_start && $actual_final && $now >= $ext_start && $now <= ($final ?: $final_fixed))
+        if ($ext_start && $actual_final && $now >= $ext_start && $now <= ($final ?: $final_fixed)) {
+            $phase_cache[$promo_id] = 2;
             return 2;
+        }
 
         // FAZA 1 (BEZ LICZNIKA)
         $phase1_end = $ext_start ?: ($final ?: $final_fixed);
-        if ($start && $phase1_end && $now >= $start && $now < $phase1_end)
+        if ($start && $phase1_end && $now >= $start && $now < $phase1_end) {
+            $phase_cache[$promo_id] = 1;
             return 1;
+        }
 
+        $phase_cache[$promo_id] = 0;
         return 0;
     }
 }
@@ -246,38 +265,53 @@ if (!function_exists('blendygo_get_active_cpt_promo')) {
         if (!$product_id)
             return null;
 
+        static $promo_cache = [];
+        if (array_key_exists($product_id, $promo_cache)) {
+            return $promo_cache[$product_id];
+        }
+
+        static $all_promos = null;
+        if ($all_promos === null) {
+            $args = [
+                'post_type' => 'promocje',
+                'post_status' => 'publish',
+                'posts_per_page' => -1,
+                'meta_key' => 'promo_priority',
+                'orderby' => 'meta_value_num',
+                'order' => 'DESC',
+            ];
+            $all_promos = get_posts($args);
+        }
+
         $product_cats = wp_get_post_terms($product_id, 'product_cat', ['fields' => 'ids']);
 
-        $args = [
-            'post_type' => 'promocje',
-            'post_status' => 'publish',
-            'posts_per_page' => -1,
-            'meta_key' => 'promo_priority',
-            'orderby' => 'meta_value_num',
-            'order' => 'DESC',
-        ];
-
-        $promos = get_posts($args);
-
-        foreach ($promos as $promo) {
+        foreach ($all_promos as $promo) {
             $p_id = $promo->ID;
             if (blendygo_get_promo_phase($p_id) === 0)
                 continue;
 
             // 1. ZASIĘG GLOBALNY
-            if (get_post_meta($p_id, 'promo_global', true) === 'yes')
+            if (get_post_meta($p_id, 'promo_global', true) === 'yes') {
+                $promo_cache[$product_id] = $p_id;
                 return $p_id;
+            }
 
             // 2. PRODUKTY
             $allowed_prods = explode(',', get_post_meta($p_id, 'promo_product_ids', true) ?: '');
-            if (in_array($product_id, $allowed_prods))
+            if (in_array($product_id, $allowed_prods)) {
+                $promo_cache[$product_id] = $p_id;
                 return $p_id;
+            }
 
             // 3. KATEGORIE
             $allowed_cats = explode(',', get_post_meta($p_id, 'promo_categories', true) ?: '');
-            if (!empty(array_intersect($product_cats, $allowed_cats)))
+            if (!empty(array_intersect($product_cats, $allowed_cats))) {
+                $promo_cache[$product_id] = $p_id;
                 return $p_id;
+            }
         }
+
+        $promo_cache[$product_id] = null;
         return null;
     }
 }
@@ -285,6 +319,11 @@ if (!function_exists('blendygo_get_active_cpt_promo')) {
 if (!function_exists('blendygo_get_global_active_cpt_promo')) {
     function blendygo_get_global_active_cpt_promo()
     {
+        static $global_active_promo = -1;
+        if ($global_active_promo !== -1) {
+            return $global_active_promo;
+        }
+
         $args = [
             'post_type' => 'promocje',
             'post_status' => 'publish',
@@ -295,9 +334,12 @@ if (!function_exists('blendygo_get_global_active_cpt_promo')) {
         ];
         $promos = get_posts($args);
         foreach ($promos as $promo) {
-            if (blendygo_get_promo_phase($promo->ID) !== 0)
-                return $promo->ID;
+            if (blendygo_get_promo_phase($promo->ID) !== 0) {
+                $global_active_promo = $promo->ID;
+                return $global_active_promo;
+            }
         }
+        $global_active_promo = null;
         return null;
     }
 }
