@@ -956,6 +956,34 @@ add_action('woocommerce_after_single_product_summary', function () {
 }, 6);
 
 // =============================================================================
+// SHAV: Przycisk w Admin Barze do szybkiej edycji opisu (wzorca wp_block)
+// =============================================================================
+add_action('admin_bar_menu', function ($wp_admin_bar) {
+    if (!is_admin() && is_product()) {
+        $ids = (array) get_post_meta(get_the_ID(), '_shav_product_block_ids', true);
+        $ids = array_filter($ids);
+        
+        if (!empty($ids)) {
+            $first_id = reset($ids);
+            $edit_url = get_edit_post_link($first_id);
+            $title = '✏️ Edytuj opis blokowy';
+        } else {
+            $edit_url = admin_url('edit.php?post_type=wp_block');
+            $title = '✏️ Dodaj opis blokowy';
+        }
+        
+        $wp_admin_bar->add_node([
+            'id'    => 'shav_edit_product_description',
+            'title' => $title,
+            'href'  => $edit_url,
+            'meta'  => [
+                'class' => 'shav-edit-desc-btn'
+            ]
+        ]);
+    }
+}, 100);
+
+// =============================================================================
 // Helpery bloków dropu / Rose Gold (add-to-cart + link do produktu)
 // =============================================================================
 
