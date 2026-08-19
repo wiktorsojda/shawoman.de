@@ -246,11 +246,21 @@ body {
 	padding: 12px;
 }
 
-#body_content table .email-order-details {
+#body_content table.rounded-table {
+	border: 1px solid <?php echo esc_attr( $border_color ); ?>;
 	border-radius: 15px;
 	overflow: hidden;
 	border-collapse: separate;
 	border-spacing: 0;
+}
+#body_content table.rounded-table th,
+#body_content table.rounded-table td {
+	border: none !important;
+	border-bottom: 1px solid <?php echo esc_attr( $border_color ); ?> !important;
+}
+#body_content table.rounded-table tr:last-child th,
+#body_content table.rounded-table tr:last-child td {
+	border-bottom: none !important;
 }
 
 #body_content table .email-order-details td,
