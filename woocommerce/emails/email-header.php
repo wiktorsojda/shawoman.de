@@ -51,58 +51,7 @@ $header_image_url = apply_filters( 'woocommerce_email_header_image_url', home_ur
 						<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="inner_wrapper" role="presentation">
 							<tr>
 								<td align="center" valign="top">
-									<?php
-									$img = 'http://shav.de/wp-content/uploads/SW_logo_v1.png.webp';
-									/**
-									 * This filter is documented in templates/emails/email-styles.php
-									 *
-									 * @since 9.6.0
-									 */
-									if ( apply_filters( 'woocommerce_is_email_preview', false ) ) {
-										$img_transient = get_transient( 'woocommerce_email_header_image' );
-										$img           = false !== $img_transient ? $img_transient : $img;
-									}
 
-									if ( $email_improvements_enabled ) :
-										?>
-										<table border="0" cellpadding="0" cellspacing="0" width="100%" role="presentation">
-											<tr>
-												<td id="template_header_image">
-													<?php
-													if ( $img ) {
-														$image_html = '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( $store_name ) . '" />';
-														if ( $header_image_url ) {
-															// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $image_html is built from esc_url() and esc_attr().
-															echo '<p style="margin-top:0;"><a href="' . esc_url( $header_image_url ) . '" style="display: inline-block; text-decoration: none;" target="_blank">' . $image_html . '</a></p>';
-														} else {
-															// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-															echo '<p style="margin-top:0;">' . $image_html . '</p>';
-														}
-													} elseif ( $header_image_url ) {
-														echo '<p class="email-logo-text"><a href="' . esc_url( $header_image_url ) . '" style="color: inherit; text-decoration: none;" target="_blank">' . esc_html( $store_name ) . '</a></p>';
-													} else {
-														echo '<p class="email-logo-text">' . esc_html( $store_name ) . '</p>';
-													}
-													?>
-												</td>
-											</tr>
-										</table>
-									<?php else : ?>
-										<div id="template_header_image">
-											<?php
-											if ( $img ) {
-												$image_html = '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( $store_name ) . '" />';
-												if ( $header_image_url ) {
-													// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $image_html is built from esc_url() and esc_attr().
-													echo '<p style="margin-top:0;"><a href="' . esc_url( $header_image_url ) . '" style="display: inline-block; text-decoration: none;" target="_blank">' . $image_html . '</a></p>';
-												} else {
-													// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-													echo '<p style="margin-top:0;">' . $image_html . '</p>';
-												}
-											}
-											?>
-										</div>
-									<?php endif; ?>
 									<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_container" role="presentation">
 										<tr>
 											<td align="center" valign="top">
@@ -110,6 +59,9 @@ $header_image_url = apply_filters( 'woocommerce_email_header_image_url', home_ur
 												<table border="0" cellpadding="0" cellspacing="0" width="100%" id="template_header" role="presentation">
 													<tr>
 														<td id="header_wrapper">
+															<div style="text-align: center; margin-bottom: 24px;">
+																<img src="http://shav.de/wp-content/uploads/SW_logo_v1.png.webp" alt="<?php echo esc_attr( $store_name ); ?>" width="160" style="border: none; display: inline-block; max-width: 100%; height: auto;" />
+															</div>
 															<h1><?php echo esc_html( $email_heading ); ?></h1>
 														</td>
 													</tr>

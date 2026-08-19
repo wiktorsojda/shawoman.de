@@ -246,6 +246,13 @@ body {
 	padding: 12px;
 }
 
+#body_content table .email-order-details {
+	border-radius: 15px;
+	overflow: hidden;
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
 #body_content table .email-order-details td,
 #body_content table .email-order-details th {
 	padding: 8px 12px;

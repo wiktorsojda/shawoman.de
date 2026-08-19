@@ -40,7 +40,7 @@ $display_section_divider = (bool) apply_filters( 'woocommerce_email_body_display
 <?php endif; ?>
 <table id="addresses" cellspacing="0" cellpadding="0" style="width: 100%; vertical-align: top; margin-bottom: <?php echo $email_improvements_enabled ? '0' : '40px'; ?>; padding:0;" border="0" role="presentation">
 	<tr>
-		<td class="font-family text-align-left" style="border:0; padding:0;" valign="top" width="50%">
+		<td class="font-family text-align-left" style="border:0; padding:0;" valign="top" width="100%">
 			<?php if ( $email_improvements_enabled ) { ?>
 				<b class="address-title"><?php esc_html_e( 'Billing address', 'woocommerce' ); ?></b>
 			<?php } else { ?>
@@ -70,10 +70,12 @@ $display_section_divider = (bool) apply_filters( 'woocommerce_email_body_display
 				?>
 			</address>
 		</td>
+	</tr>
+	<tr>
 		<?php if ( $shipping ) : ?>
-			<td class="font-family text-align-left" style="padding:0;" valign="top" width="50%">
+			<td class="font-family text-align-left" style="padding:0;" valign="top" width="100%">
 				<?php if ( $email_improvements_enabled ) { ?>
-					<b class="address-title"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></b>
+					<br><b class="address-title"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></b>
 				<?php } else { ?>
 					<h2><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></h2>
 				<?php } ?>
@@ -84,16 +86,6 @@ $display_section_divider = (bool) apply_filters( 'woocommerce_email_body_display
 						<br /><?php echo wc_make_phone_clickable( $order->get_shipping_phone() ); ?>
 					<?php endif; ?>
 					<?php
-					/**
-					 * Fires after the core address fields in emails.
-					 *
-					 * @since 8.6.0
-					 *
-					 * @param string $type Address type. Either 'billing' or 'shipping'.
-					 * @param WC_Order $order Order instance.
-					 * @param bool $sent_to_admin If this email is being sent to the admin or not.
-					 * @param bool $plain_text If this email is plain text or not.
-					 */
 					do_action( 'woocommerce_email_customer_address_section', 'shipping', $order, $sent_to_admin, false );
 					?>
 				</address>
