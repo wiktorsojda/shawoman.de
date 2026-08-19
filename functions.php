@@ -3721,3 +3721,6 @@ function disable_wc_cart_fragments()
     wp_dequeue_script('wc-cart-fragments');
 }require get_template_directory() . '/inc/licznik-bloga.php';
 require get_template_directory() . '/inc/category-image.php';
+
+// Wymuszenie wyświetlania adresu dostawy w mailach WooCommerce (dla paczkomatów na rynku DE)
+add_filter( 'woocommerce_order_needs_shipping_address', '__return_true', 999 );
