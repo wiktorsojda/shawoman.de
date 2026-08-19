@@ -125,12 +125,12 @@ endif;
 		<?php endif; ?>
 		<tbody>
 			<?php
-			$image_size = $email_improvements_enabled ? 48 : 32;
+			$image_size = 64;
 			echo wc_get_email_order_items( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				$order,
 				array(
 					'show_sku'      => $sent_to_admin,
-					'show_image'    => $email_improvements_enabled,
+					'show_image'    => true,
 					'image_size'    => array( $image_size, $image_size ),
 					'plain_text'    => $plain_text,
 					'sent_to_admin' => $sent_to_admin,
