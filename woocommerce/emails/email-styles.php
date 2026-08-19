@@ -235,7 +235,7 @@ body {
 }
 
 #body_content table td {
-	padding: <?php echo $email_improvements_enabled ? '20px 32px 32px' : '48px 48px 32px'; ?>;
+	padding: <?php echo $email_improvements_enabled ? '20px 32px 32px' : '24px 48px 32px'; ?>;
 }
 
 #body_content table td td {
@@ -419,7 +419,7 @@ body {
 }
 
 #header_wrapper {
-	padding: <?php echo $email_improvements_enabled ? '20px 32px 0' : '36px 48px'; ?>;
+	padding: <?php echo $email_improvements_enabled ? '20px 32px 0' : '36px 48px 18px'; ?>;
 	display: block;
 }
 
