@@ -45,7 +45,7 @@ foreach ( $items as $item_id => $item ) :
 	if ( is_object( $product ) ) {
 		$sku           = $product->get_sku();
 		$purchase_note = $product->get_purchase_note();
-		$image         = $product->get_image( $image_size, array( 'style' => 'border-radius: 12px; float: left; margin-right: 15px;' ) );
+		$image         = $product->get_image( $image_size, array( 'style' => 'border-radius: 8px;' ) );
 	}
 
 	/**
@@ -153,26 +153,12 @@ foreach ( $items as $item_id => $item ) :
 				</table>
 				<?php
 			} else {
-
-				// Show title/image etc.
 				if ( $show_image ) {
-					/**
-					 * Email Order Item Thumbnail hook.
-					 *
-					 * @param string                $image The image HTML.
-					 * @param WC_Order_Item_Product $item  The item being displayed.
-					 * @since 2.1.0
-					 */
+					echo '<table role="presentation" border="0" cellpadding="0" cellspacing="0" style="width: 100%;"><tr><td style="vertical-align: middle; padding-right: 15px; width: 60px;">';
 					echo wp_kses_post( apply_filters( 'woocommerce_order_item_thumbnail', $image, $item ) );
+					echo '</td><td style="vertical-align: middle;">';
 				}
 
-				/**
-				 * Order Item Name hook.
-				 *
-				 * @param string                $item_name The item name HTML.
-				 * @param WC_Order_Item_Product $item      The item being displayed.
-				 * @since 2.1.0
-				 */
 				$item_name = $item->get_name();
 				$product_url = is_object( $product ) ? $product->get_permalink() : '';
 				if ( $product_url ) {
@@ -187,15 +173,6 @@ foreach ( $items as $item_id => $item ) :
 					echo wp_kses_post( ' (#' . $sku . ')' );
 				}
 
-				/**
-				 * Allow other plugins to add additional product information.
-				 *
-				 * @param int                   $item_id    The item ID.
-				 * @param WC_Order_Item_Product $item       The item object.
-				 * @param WC_Order              $order      The order object.
-				 * @param bool                  $plain_text Whether the email is plain text or not.
-				 * @since 2.3.0
-				 */
 				do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, $plain_text );
 
 				wc_display_item_meta(
@@ -205,16 +182,11 @@ foreach ( $items as $item_id => $item ) :
 					)
 				);
 
-				/**
-				 * Allow other plugins to add additional product information.
-				 *
-				 * @param int                   $item_id    The item ID.
-				 * @param WC_Order_Item_Product $item       The item object.
-				 * @param WC_Order              $order      The order object.
-				 * @param bool                  $plain_text Whether the email is plain text or not.
-				 * @since 2.3.0
-				 */
 				do_action( 'woocommerce_order_item_meta_end', $item_id, $item, $order, $plain_text );
+
+				if ( $show_image ) {
+					echo '</td></tr></table>';
+				}
 			}
 			?>
 		</td>

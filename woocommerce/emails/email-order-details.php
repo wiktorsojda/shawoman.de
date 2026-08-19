@@ -125,7 +125,7 @@ endif;
 		<?php endif; ?>
 		<tbody>
 			<?php
-			$image_size = 64;
+			$image_size = 48;
 			echo wc_get_email_order_items( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				$order,
 				array(
