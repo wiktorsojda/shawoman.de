@@ -1025,17 +1025,26 @@ p#countdown-mobile {
         width: 100%;
 
         .commentlist {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 16px; // Zmiana na 16px wg instrukcji
+            column-count: 3;
+            column-gap: 16px;
             padding: 0 !important;
             margin: 0 !important;
 
+            @media (max-width: 1024px) {
+                column-count: 2;
+            }
+
+            @media (max-width: 768px) {
+                column-count: 1;
+            }
+
             li {
-                display: block; // Usuwamy flex, by nic się nie sypało przy floatach
+                display: block;
+                break-inside: avoid;
+                page-break-inside: avoid;
                 background: transparent !important;
                 padding: 0 !important;
-                margin: 0 !important;
+                margin: 0 0 16px 0 !important; // odstęp pionowy 16px
                 border: none !important;
                 box-shadow: none !important;
                 width: 100%;
