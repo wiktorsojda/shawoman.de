@@ -1032,33 +1032,31 @@ p#countdown-mobile {
             margin: 0 !important;
 
             li {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                background: #F1F2F3;
-                border-radius: $radius-m; // 24px
-                padding: $space-32; // 32px
-                border: none;
-                box-shadow: none;
+                display: block; // Usuwamy flex, by nic się nie sypało przy floatach
+                background: transparent !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
                 width: 100%;
-                box-sizing: border-box;
 
                 .comment_container {
                     width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 16px;
+                    display: block;
                 }
                 
                 img.avatar {
-                    display: none;
+                    display: none !important;
                 }
 
                 .comment-text {
-                    margin: 0;
-                    padding: 0;
-                    border: none;
-                    display: grid;
+                    float: none !important; // Usuwamy natywny float WooCommerce, by kafle nie nachodziły
+                    background: #F1F2F3 !important;
+                    border-radius: $radius-m !important; // 24px
+                    padding: $space-32 !important; // 32px
+                    border: none !important;
+                    margin: 0 !important;
+                    display: grid !important; // !important żeby wymusić grid
                     grid-template-areas: 
                         "author rating"
                         "divider divider"
