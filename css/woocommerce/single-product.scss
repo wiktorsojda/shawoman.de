@@ -710,92 +710,180 @@ text-transform: uppercase;
 }
 
 .review-summary {
-display: flex;
-justify-content: center;
-align-items: center;
-  margin-bottom: $space-32;
-  gap: $space-32;
-}
-.average-rating {
-display: flex;
-gap: $space-24;
-flex-direction: column;
-justify-content: space-between;
-align-items: flex-start;
-}
-.rating-number {
-display: flex;
-width: 93px;
-height: 44px;
-padding: $space-8;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-gap: $space-8;
-border-radius: $radius-xs;
-background: $color-neutral-900;   // bylo $color-info-medium (niebieski) — DS uzywa neutral-900
-color: $color-white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F1F2F3;
+    border-radius: $radius-m; // 24px
+    padding: $space-64; // 64px
+    max-width: 1308px;
+    width: 100%;
+    margin: 0 auto $space-32 auto;
+    gap: 82px;
 
-text-align: center;
-font-family: $font-family-base;
-font-size: $font-size-h3;
-font-style: normal;
-font-weight: 700;
-line-height: 117.75%; /* 37.68px */
-text-transform: uppercase;
-padding: 0;
-margin: 0;
-}
-.rating-count {
-  font-size: 1em;
-}
-.rating-breakdown {
-  margin-top: $space-8;
-  flex-grow: 1;
-}
-.rating-bar {
-display: flex;
-align-items: center;
-margin-bottom: $space-4;
-justify-content: space-between; /* Space out the elements */
-gap: $space-32;
-}
+    @media (max-width: $breakpoint-tablet) {
+        flex-direction: column;
+        padding: $space-32;
+        gap: $space-32;
+        align-items: center;
+    }
 
-.rating-bar .bar {
-flex-grow: 1;
-margin: 0 $space-8;
-background-color: $color-neutral-200;
-height: 8px;
-border-radius: $radius-xs;
-overflow: hidden;
-}
+    .average-rating {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $space-8;
+        
+        .rating-number-container {
+            display: flex;
+            align-items: baseline;
+            color: $color-neutral-900;
+            
+            .rating-number {
+                font-family: $font-family-base;
+                font-size: 64px;
+                font-weight: 500;
+                line-height: 1;
+            }
+            .rating-total {
+                font-family: $font-family-base;
+                font-size: 24px;
+                font-weight: 400;
+                color: $color-neutral-600;
+                margin-left: 4px;
+            }
+        }
+        
+        .rating-count {
+            color: $color-neutral-600;
+            font-size: $font-size-body-m;
+            font-weight: 400;
+        }
 
-.rating-bar .bar span {
-display: block;
-height: 100%;
-background-color: $color-neutral-900;
-}
+        .rating-verified {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: $color-neutral-200;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: $color-neutral-700;
+            margin-top: 8px;
 
-.rating-bar .star-rating {
-float: right;
-overflow: hidden;
-position: relative;
-height: 1em;
-line-height: 1;
-font-size: 1em;
-width: 5.4em;
-font-family: WooCommerce;
-}
+            svg {
+                width: 16px;
+                height: 16px;
+                stroke: $color-neutral-900;
+            }
+        }
+    }
 
-.rating-bar .star-rating span {
-float: left;
-top: 0;
-left: 0;
-padding: 0;
-position: absolute;
-height: 100%;
-line-height: 1;
-color: $color-neutral-900; /* Star color */
+    .rating-breakdown {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 400px;
+        
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            
+            .bar-star-num {
+                font-size: 16px;
+                font-weight: 400;
+                color: $color-neutral-800;
+                width: 12px;
+            }
+            
+            .star-rating {
+                overflow: hidden;
+                position: relative;
+                height: 1em;
+                line-height: 1;
+                font-size: 16px;
+                width: 5.4em;
+                font-family: WooCommerce;
+                color: #FDBF07; // Star color z Figmy
+
+                &::before {
+                    content: "\53\53\53\53\53";
+                    color: $color-neutral-300;
+                    float: left;
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                }
+
+                span {
+                    overflow: hidden;
+                    float: left;
+                    top: 0;
+                    left: 0;
+                    position: absolute;
+                    padding-top: 1.5em;
+                }
+
+                span::before {
+                    content: "\53\53\53\53\53";
+                    top: 0;
+                    position: absolute;
+                    left: 0;
+                    color: #FDBF07;
+                }
+            }
+
+            .bar {
+                flex-grow: 1;
+                background-color: $color-white;
+                height: 4px;
+                border-radius: 2px;
+                overflow: hidden;
+                
+                span {
+                    display: block;
+                    height: 100%;
+                    background-color: $color-neutral-900;
+                    border-radius: 2px;
+                }
+            }
+
+            .bar-count-rating {
+                font-size: 16px;
+                color: $color-neutral-700;
+                min-width: 24px;
+                text-align: right;
+            }
+        }
+    }
+    
+    .review-action {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .btn-add-review {
+            display: flex;
+            padding: 16px 32px;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            border-radius: 60px;
+            background: $color-neutral-900;
+            color: $color-white;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            
+            &:hover {
+                background: $color-neutral-800;
+            }
+        }
+    }
 }
 
 

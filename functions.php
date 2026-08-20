@@ -3254,22 +3254,18 @@ function custom_review_summary()
     ?>
     <div class="review-summary">
         <div class="average-rating">
-            <div class="rating-title">Opinie klientów</div>
-            <div class="average-rating-subcontainer">
-                <div class="rating-number"><?php echo esc_html(number_format($average, 2)); ?></div>
-                <div class="average-rating-subsubcontainer">
-                    <div class="rating-stars">
-                        <div class="star-rating" role="img"
-                            aria-label="<?php printf(__('Rated %s out of 5', 'woocommerce'), $average); ?>">
-                            <span style="width:<?php echo esc_attr($average * 20); ?>%"></span>
-                        </div>
-                    </div>
-                    <div class="rating-count">
-                        <?php printf(__('%d opinii', 'woocommerce'), esc_html($review_count)); ?>
-                    </div>
-                </div>
+            <div class="rating-number-container">
+                <span class="rating-number"><?php echo esc_html(number_format($average, 1, ',', '')); ?></span><span class="rating-total">/5,0</span>
+            </div>
+            <div class="rating-count">
+                <?php printf(__('%d opinii klientów', 'woocommerce'), esc_html($review_count)); ?>
+            </div>
+            <div class="rating-verified">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Opinie potwierdzone zakupem
             </div>
         </div>
+        
         <div class="rating-breakdown">
             <?php
             // Reverse the order of the $ratings array
@@ -3278,19 +3274,20 @@ function custom_review_summary()
 
             <?php foreach ($ratings as $stars => $count): ?>
                 <div class="rating-bar">
-                    <div class="star-rating" role="img"
-                        aria-label="<?php printf(__('Rated %d out of 5', 'woocommerce'), $stars); ?>">
-                        <span style="width:<?php echo esc_attr($stars * 20); ?>%"></span>
+                    <span class="bar-star-num"><?php echo esc_html($stars); ?></span>
+                    <div class="star-rating" role="img" aria-label="<?php printf(__('Rated %d out of 5', 'woocommerce'), $stars); ?>">
+                        <span style="width:<?php echo esc_attr(($stars / 5) * 100); ?>%"></span>
                     </div>
                     <div class="bar">
-
                         <span style="width: <?php echo esc_attr(($count / $rating_count) * 100); ?>%"></span>
                     </div>
                     <span class="bar-count-rating"><?php echo esc_html($count); ?></span>
-
                 </div>
             <?php endforeach; ?>
+        </div>
 
+        <div class="review-action">
+            <a href="#review_form_wrapper" class="woocommerce-review-link btn-add-review">Dodaj opinię +</a>
         </div>
     </div>
     <?php
