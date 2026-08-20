@@ -16,17 +16,20 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
 
 <div <?php echo get_block_wrapper_attributes(['class' => 'opinieproduktowe']); ?>>
     <div class="opinieproduktowe__inner">
-        <?php if (!empty($title)) : ?>
-            <h2 class="opinieproduktowe__title"><?php echo esc_html($title); ?></h2>
-        <?php endif; ?>
-        
         <div class="opinieproduktowe__reviews">
             <?php
             // Sprawdzamy czy funkcja z functions.php istnieje i wywołujemy podsumowanie
             if (function_exists('custom_review_summary')) {
+                echo '<div style="max-width: 1300px; margin: 0 auto; width: 100%;">';
                 custom_review_summary();
+                echo '</div>';
             }
             
+            // Nagłówek ląduje bezposrednio nad siatką opinii
+            if (!empty($title)) : ?>
+                <h2 class="opinieproduktowe__title" style="max-width: 1300px; margin: 0 auto 32px auto;"><?php echo esc_html($title); ?></h2>
+            <?php endif;
+
             // Standardowy mechanizm WC do renderowania opinii (jeśli włączone)
             if (comments_open() || get_comments_number()) {
                 comments_template();
