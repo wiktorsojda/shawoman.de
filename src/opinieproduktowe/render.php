@@ -39,6 +39,49 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    const reviewFormWrapper = document.getElementById("review_form_wrapper");
+    const addReviewBtns = document.querySelectorAll(".btn-add-review");
+
+    if (reviewFormWrapper) {
+        // Zabezpieczenie przed podwójnym dodaniem przycisku
+        if (!document.getElementById("close-review-modal")) {
+            const closeBtn = document.createElement("button");
+            closeBtn.id = "close-review-modal";
+            closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            closeBtn.style.cssText = "position:absolute; top:24px; right:24px; background:none; border:none; cursor:pointer; color:#111; display:flex; align-items:center; justify-content:center; padding:0; z-index: 10;";
+            
+            const formContainer = document.getElementById("review_form");
+            if (formContainer) {
+                formContainer.appendChild(closeBtn);
+            }
+
+            closeBtn.addEventListener("click", function(e) {
+                e.preventDefault();
+                reviewFormWrapper.classList.remove("active");
+                document.body.style.overflow = ""; // Przywracamy scrollowanie
+            });
+        }
+
+        addReviewBtns.forEach(btn => {
+            btn.addEventListener("click", function(e) {
+                e.preventDefault();
+                reviewFormWrapper.classList.add("active");
+                document.body.style.overflow = "hidden"; // Blokujemy scrollowanie tła
+            });
+        });
+
+        reviewFormWrapper.addEventListener("click", function(e) {
+            if (e.target === reviewFormWrapper) {
+                reviewFormWrapper.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+        });
+    }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
     const descriptions = document.querySelectorAll(".commentlist .comment-text div.description p");
     descriptions.forEach(p => {
         // Obliczamy przybliżoną wysokość 5 linii (line-height w CSS to ok 22px, więc 5 * 22 = 110px)
