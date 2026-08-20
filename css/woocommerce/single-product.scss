@@ -1065,6 +1065,7 @@ p#countdown-mobile {
                     padding: $space-32 !important; // 32px
                     border: none !important;
                     margin: 0 !important;
+                    box-sizing: border-box !important; // To naprawia problem poziomego nachodzenia kafelków!
                     display: grid !important; // !important żeby wymusić grid
                     grid-template-areas: 
                         "author rating"
