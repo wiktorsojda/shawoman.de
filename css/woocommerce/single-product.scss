@@ -1025,29 +1025,54 @@ p#countdown-mobile {
         width: 100%;
 
         .commentlist {
-            column-count: 3;
-            column-gap: 16px;
-            padding: 0 !important;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 0 0 48px 0 !important; // 48px na dole rekompensuje przesunięcie schodków
             margin: 0 !important;
+            align-items: start; // zapobiega rozciąganiu w pionie, by karty trzymały naturalną wysokość
 
             @media (max-width: 1024px) {
-                column-count: 2;
+                grid-template-columns: repeat(2, 1fr);
             }
 
             @media (max-width: 768px) {
-                column-count: 1;
+                grid-template-columns: 1fr;
+                padding-bottom: 0 !important; // Na telefonie wyłączamy schodki
             }
 
             li {
                 display: block;
-                break-inside: avoid;
-                page-break-inside: avoid;
                 background: transparent !important;
                 padding: 0 !important;
-                margin: 0 0 16px 0 !important; // odstęp pionowy 16px
+                margin: 0 !important;
                 border: none !important;
                 box-shadow: none !important;
                 width: 100%;
+                transition: transform 0.3s ease;
+
+                // Efekt schodków dla 3 kolumn (środkowa kolumna zjeżdża w dół)
+                &:nth-child(3n + 2) {
+                    transform: translateY(48px);
+                }
+
+                @media (max-width: 1024px) {
+                    // Resetujemy schodki z 3 kolumn
+                    &:nth-child(3n + 2) {
+                        transform: none;
+                    }
+                    // Efekt schodków dla 2 kolumn (druga kolumna zjeżdża w dół)
+                    &:nth-child(even) {
+                        transform: translateY(48px);
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    // Reset na telefonach
+                    &:nth-child(even) {
+                        transform: none;
+                    }
+                }
 
                 .comment_container {
                     width: 100%;
