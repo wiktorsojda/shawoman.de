@@ -1194,6 +1194,27 @@ p#countdown-mobile {
     }
 }
 
+// Style bloku Gutenberg: Opinie Produktowe
+.opinieproduktowe {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .opinieproduktowe__inner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .opinieproduktowe__title {
+        max-width: 1300px;
+        width: 100%;
+        margin: 0 auto $space-32 auto;
+        padding: 0;
+        text-align: left;
+        // Wymuszamy domyślną czcionkę z H2 (zmienne z theme.json powinny to pokryć, ale wymuszamy kontener)
+    }
+}
 // sekcje produktu (opis + opinie)
 .shav-product-sections {
     display: flex;

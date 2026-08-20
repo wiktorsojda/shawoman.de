@@ -7,7 +7,11 @@ if (!isset($attributes)) {
     $attributes = [];
 }
 
-$title = $attributes['title'] ?? 'Opinie naszych klientek';
+// Wymuszamy język niemiecki w przypadku domyślnej polskiej wartości
+$default_title = 'Opinie naszych klientek';
+$title = !empty($attributes['title']) && $attributes['title'] !== $default_title 
+    ? $attributes['title'] 
+    : 'Kundenbewertungen';
 ?>
 
 <div <?php echo get_block_wrapper_attributes(['class' => 'opinieproduktowe']); ?>>
