@@ -2,8 +2,53 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/faqshavwomen",
-  "title": "FAQ shavwomen",
+  "title": "FAQ Produktowa",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": false
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "showTopTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "topTitle": {
+      "type": "string",
+      "default": "Często zadawane pytania"
+    },
+    "question1": { "type": "string", "default": "Czy Golarka do bikini Shav Woman naprawdę goli na zero?" },
+    "answer1": { "type": "string", "default": "Tak. Shav Woman została zaprojektowana tak, by golić na absolutne zero – bez szarpania i bez zostawiania krótkich, widocznych włosków." },
+    "question2": { "type": "string", "default": "Czy Shav Woman jest delikatna dla wrażliwej skóry?" },
+    "answer2": { "type": "string", "default": "Zdecydowanie. Dzięki technologii CutFree golenie jest niezwykle łagodne – bez zacięć, bez podrażnień, bez czerwonych kropek, nawet w tak wrażliwych miejscach jak bikini czy pachy." },
+    "question3": { "type": "string", "default": "Czy Golarka dla kobiet Shav Woman nadaje się tylko do okolic bikini?" },
+    "answer3": { "type": "string", "default": "Nie tylko. Choć stworzona została z myślą o delikatnych miejscach, sprawdza się doskonale także na nogach, pachach i w innych trudno dostępnych obszarach. To uniwersalne urządzenie do całego ciała." },
+    "question4": { "type": "string", "default": "" },
+    "answer4": { "type": "string", "default": "" },
+    "question5": { "type": "string", "default": "" },
+    "answer5": { "type": "string", "default": "" },
+    "question6": { "type": "string", "default": "" },
+    "answer6": { "type": "string", "default": "" },
+    "question7": { "type": "string", "default": "" },
+    "answer7": { "type": "string", "default": "" },
+    "question8": { "type": "string", "default": "" },
+    "answer8": { "type": "string", "default": "" },
+    "question9": { "type": "string", "default": "" },
+    "answer9": { "type": "string", "default": "" },
+    "question10": { "type": "string", "default": "" },
+    "answer10": { "type": "string", "default": "" },
+    "faqItems": {
+      "type": "array",
+      "default": []
+    }
+  },
   "editorScript": "file:./index.js",
   "render": "file:./render.php"
 }
-
