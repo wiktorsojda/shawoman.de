@@ -957,7 +957,7 @@ p#countdown-mobile {
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
             #respond {
                 display: flex;
@@ -974,7 +974,7 @@ p#countdown-mobile {
                     text-transform: none; // Spójnie z resztą nagłówków
                     margin-bottom: 8px;
                     display: block;
-                    
+
                     small {
                         display: none; // Ukrywamy "Cancel reply" bo mamy X
                     }
@@ -1033,7 +1033,7 @@ p#countdown-mobile {
                     p,
                     div {
                         margin: 0;
-                        
+
                         label {
                             color: $color-neutral-900;
                             font-family: $font-family-base;
@@ -1070,7 +1070,7 @@ p#countdown-mobile {
                         input {
                             height: 48px;
                         }
-                        
+
                         textarea {
                             min-height: 120px;
                             resize: vertical;
@@ -2272,4 +2272,13 @@ ul.flex-direction-nav li a:hover {
 
 .shav-product-pattern:first-of-type {
     margin-top: 15px;
+}
+
+// ukrycie elementów wtyczki od swaych
+.woosg-products .woosg-product .woosg-thumb img {
+    display: none !important;
+}
+
+.woosg-wrap .woosg-text {
+    display: none !important;
 }
