@@ -3184,12 +3184,19 @@ add_action('woocommerce_proceed_to_checkout', 'add_icons_below_checkout_button',
 //     echo '<p>Here\'s a custom description</p>';
 // }
 
-add_filter('woocommerce_product_tabs', 'woo_custom_reviews_tab', 98);
-function woo_custom_reviews_tab($tabs)
+add_filter('woocommerce_product_tabs', 'woo_custom_remove_product_tabs', 98);
+function woo_custom_remove_product_tabs($tabs)
 {
-
     if (isset($tabs['reviews'])) {
         unset($tabs['reviews']);
+    }
+    
+    if (isset($tabs['additional_information'])) {
+        unset($tabs['additional_information']);
+    }
+    
+    if (isset($tabs['description'])) {
+        unset($tabs['description']);
     }
 
     return $tabs;
