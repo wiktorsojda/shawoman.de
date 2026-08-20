@@ -1948,25 +1948,31 @@ text-transform: uppercase;
     // karty opinii (masonry pluginu)
     .wcpr-grid-item {
         background: transparent !important;
-        padding: 0 0 $space-16 !important;
+        padding: 0 16px 32px 16px !important; // spacing dla masonry
         border: none !important;
         box-shadow: none !important;
     }
 
     .wcpr-content {
-        background: $color-neutral-100 !important;
+        background: #F1F2F3 !important;
         border: none !important;
-        border-radius: $radius-xs !important;
-        padding: $space-16 !important;
+        border-radius: $radius-m !important; // 24px
+        padding: $space-32 !important; // 32px
         box-shadow: none !important;
+        display: flex;
+        flex-direction: column;
     }
 
     .wcpr-comment-author {
         color: $color-neutral-900 !important;
         font-family: $font-family-base !important;
-        font-size: $font-size-body-l !important;
-        font-weight: 600 !important;
-        letter-spacing: -0.02em;
+        font-size: $font-size-h4 !important;
+        font-weight: 400 !important;
+        line-height: 1 !important;
+        letter-spacing: 0 !important;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 8px;
 
         // ikona dymka przed imieniem — zbedna (::before z fontem pluginu)
         &::before {
@@ -1979,25 +1985,49 @@ text-transform: uppercase;
     }
 
     .wcpr-review-rating {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: $space-8;
         margin: $space-4 0 $space-8;
+        
+        &::before {
+            content: "|";
+            color: $color-neutral-300;
+            margin: 0 4px;
+        }
     }
 
     .wcpr-review-date {
         color: $color-neutral-500 !important;
         font-family: $font-family-base !important;
         font-size: 12px !important;
+        display: none !important; // W nowym designie nie ma daty, chyba że chcemy zachować
     }
 
     .wcpr-review-content {
-        color: $color-neutral-700 !important;
+        color: $color-neutral-900 !important;
         font-family: $font-family-base !important;
-        font-size: 14px !important;
-        line-height: 1.5 !important;
-        letter-spacing: -0.02em;
-        text-align: left !important;   // plugin daje justify — wyglada zle w waskich kolumnach
+        font-size: $font-size-body-l !important;
+        font-weight: 300 !important;
+        line-height: 22px !important;
+        letter-spacing: 0 !important;
+        text-align: left !important;
+        margin-top: 16px !important;
+        margin-bottom: 24px !important;
+    }
+    
+    // Obrazki dodane przez użytkowników
+    .wcpr-review-images {
+        display: flex !important;
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+        
+        img, .wcpr-review-image {
+            width: 80px !important;
+            height: 80px !important;
+            border-radius: 8px !important;
+            object-fit: cover !important;
+        }
     }
 }
 
