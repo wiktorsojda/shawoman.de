@@ -1,5 +1,5 @@
 import { useBlockProps, RichText, InspectorControls } from "@wordpress/block-editor";
-import { PanelBody, ToggleControl, SelectControl, TextareaControl, Button } from "@wordpress/components";
+import { PanelBody, ToggleControl, SelectControl, TextareaControl, TextControl, Button } from "@wordpress/components";
 import { useState, useEffect } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
@@ -52,6 +52,46 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Lista pytań (Pasek boczny)" initialOpen={true}>
+          {items.map((item, index) => (
+            <div key={index} style={{ marginBottom: 24, padding: 12, border: "1px solid #ddd", borderRadius: 4 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+                <strong>Pytanie {index + 1}</strong>
+                <Button isDestructive isSmall variant="link" onClick={() => removeItem(index)}>Usuń</Button>
+              </div>
+              <TextControl
+                label="Treść pytania"
+                value={item.question}
+                onChange={(v) => updateItem(index, 'question', v)}
+              />
+              <TextareaControl
+                label="Odpowiedź"
+                value={item.answer}
+                onChange={(v) => updateItem(index, 'answer', v)}
+                rows={4}
+              />
+            </div>
+          ))}
+          <Button variant="secondary" onClick={addItem} style={{ width: '100%', justifyContent: 'center' }}>
+            + Dodaj kolejne pytanie
+          </Button>
+        </PanelBody>
+
+        <PanelBody title="Ustawienia FAQ" initialOpen={false}>
+          <ToggleControl label="Pokaż główny tytuł sekcji" checked={a.showTopTitle} onChange={(v) => setAttributes({ showTopTitle: v })} />
+          <SelectControl
+            label="Tag nagłówka pytania"
+            value={a.headingTag}
+            options={[
+              { label: "h2", value: "h2" },
+              { label: "h3", value: "h3" },
+              { label: "h4", value: "h4" },
+              { label: "div", value: "div" },
+            ]}
+            onChange={(v) => setAttributes({ headingTag: v })}
+          />
+        </PanelBody>
+
         <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
           <TextareaControl
             label="Skopiuj ten JSON dla AI"
@@ -90,20 +130,6 @@ export default function Edit({ attributes, setAttributes }) {
             Importuj tłumaczenie
           </Button>
         </PanelBody>
-        <PanelBody title="Ustawienia FAQ" initialOpen={true}>
-          <ToggleControl label="Pokaż główny tytuł sekcji" checked={a.showTopTitle} onChange={(v) => setAttributes({ showTopTitle: v })} />
-          <SelectControl
-            label="Tag nagłówka pytania"
-            value={a.headingTag}
-            options={[
-              { label: "h2", value: "h2" },
-              { label: "h3", value: "h3" },
-              { label: "h4", value: "h4" },
-              { label: "div", value: "div" },
-            ]}
-            onChange={(v) => setAttributes({ headingTag: v })}
-          />
-        </PanelBody>
       </InspectorControls>
       
       <div className="faq-wrapper container--narrow2-important" style={{ maxWidth: '1300px' }}>
@@ -115,22 +141,19 @@ export default function Edit({ attributes, setAttributes }) {
           {items.map((item, index) => {
             return (
               <div key={index} className="faq" style={{ position: "relative", marginBottom: "16px", border: "1px dashed #ccc", padding: "16px", borderRadius: "8px" }}>
-                <div style={{ position: "absolute", right: 0, top: 0, zIndex: 10 }}>
-                  <Button isDestructive variant="link" onClick={() => removeItem(index)}>Usuń</Button>
-                </div>
                 <div className="faq-accordion" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16 }}>
-                  <RichText tagName={Heading} className="faq-header" value={item.question} onChange={(v) => updateItem(index, 'question', v)} placeholder="Wpisz pytanie..." style={{ margin: 0 }} />
+                  <RichText tagName={Heading} className="faq-header" value={item.question} onChange={(v) => updateItem(index, 'question', v)} placeholder={`Pytanie ${index + 1}...`} style={{ margin: 0 }} />
                   <i className="fas fa-chevron-down"></i>
                 </div>
                 <div className="faq-pannel" style={panelEditorStyle}>
-                  <RichText tagName="p" value={item.answer} onChange={(v) => updateItem(index, 'answer', v)} placeholder="Wpisz odpowiedź..." style={{ margin: "10px 0 0 0" }} />
+                  <RichText tagName="p" value={item.answer} onChange={(v) => updateItem(index, 'answer', v)} placeholder={`Odpowiedź ${index + 1}...`} style={{ margin: "10px 0 0 0" }} />
                 </div>
               </div>
             );
           })}
-          <Button variant="secondary" onClick={addItem} style={{ marginTop: 16 }}>Dodaj pozycję FAQ</Button>
         </div>
       </div>
     </div>
   );
 }
+

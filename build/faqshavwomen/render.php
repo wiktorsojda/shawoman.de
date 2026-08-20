@@ -41,32 +41,3 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
             <?php endforeach; ?>
         </div>
     </div>
-</section>
-
-<script>
-(function() {
-    document.querySelectorAll('.faq-container .faq').forEach((item) => {
-        const trigger = item.querySelector('.faq-accordion');
-        if (!trigger) return;
-        // Sprawdzamy czy to ma obsługę click uogólnioną w głównym main.js motywu
-        // Jeśli nie, dodajemy własną logikę toggle. Zazwyczaj stare faq-accordion mają globalny skrypt.
-        // Ale dla bezpieczeństwa lepiej dodać:
-        if (!trigger.dataset.initialized) {
-            trigger.dataset.initialized = 'true';
-            trigger.addEventListener('click', () => {
-                item.classList.toggle('active');
-                trigger.classList.toggle('active');
-                
-                const panel = item.querySelector('.faq-pannel');
-                if (panel) {
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
-                    } else {
-                        panel.style.maxHeight = panel.scrollHeight + "px";
-                    }
-                }
-            });
-        }
-    });
-})();
-</script>
