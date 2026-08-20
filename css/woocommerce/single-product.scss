@@ -1027,7 +1027,7 @@ p#countdown-mobile {
         .commentlist {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 82px 32px; // row-gap: 82px (jak w Figmie), column-gap: 32px
+            gap: 16px; // Zmiana na 16px wg instrukcji
             padding: 0 !important;
             margin: 0 !important;
 
