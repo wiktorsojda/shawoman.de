@@ -891,15 +891,15 @@ p#countdown-mobile {
             align-items: center;
             gap: 12px;
             border-radius: 60px;
-            background: $color-neutral-900;
-            color: #F5F5F5;
+            background: #F4E1D9;
+            color: $color-neutral-900;
             font-size: 16px;
             font-weight: 500;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
 
             &:hover {
-                background: $color-neutral-800;
+                background: darken(#F4E1D9, 5%);
             }
         }
     }
