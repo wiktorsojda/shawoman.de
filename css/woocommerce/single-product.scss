@@ -734,6 +734,7 @@ p#countdown-mobile {
     background-color: #F1F2F3;
     border-radius: $radius-m; // 24px
     padding: $space-64; // 64px
+    box-sizing: border-box;
     max-width: 1300px;
     width: 100%;
     margin: 0 auto $space-32 auto;

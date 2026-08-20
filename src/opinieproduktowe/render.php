@@ -20,9 +20,7 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
             <?php
             // Sprawdzamy czy funkcja z functions.php istnieje i wywołujemy podsumowanie
             if (function_exists('custom_review_summary')) {
-                echo '<div style="max-width: 1300px; margin: 0 auto; width: 100%;">';
                 custom_review_summary();
-                echo '</div>';
             }
             
             // Nagłówek ląduje bezposrednio nad siatką opinii
