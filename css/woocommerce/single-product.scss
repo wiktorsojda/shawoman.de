@@ -988,7 +988,8 @@ p#countdown-mobile {
                         }
                     }
 
-                    p, div {
+                    p,
+                    div {
                         label {
                             color: $color-neutral-900;
                             font-family: $font-family-base;
@@ -1007,7 +1008,8 @@ p#countdown-mobile {
                             }
                         }
 
-                        input, textarea {
+                        input,
+                        textarea {
                             border-radius: $radius-xs;
                             border: 1px solid $color-neutral-300;
                         }
@@ -1025,60 +1027,35 @@ p#countdown-mobile {
         width: 100%;
 
         .commentlist {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            padding: 0 0 48px 0 !important; // 48px na dole rekompensuje przesunięcie schodków
+            column-count: 3;
+            column-gap: 16px;
+            padding: 0 !important;
             margin: 0 !important;
-            align-items: start; // zapobiega rozciąganiu w pionie, by karty trzymały naturalną wysokość
 
             @media (max-width: 1024px) {
-                grid-template-columns: repeat(2, 1fr);
+                column-count: 2;
             }
 
             @media (max-width: 768px) {
-                grid-template-columns: 1fr;
-                padding-bottom: 0 !important; // Na telefonie wyłączamy schodki
+                column-count: 1;
             }
 
             li {
                 display: block;
+                break-inside: avoid;
+                page-break-inside: avoid;
                 background: transparent !important;
                 padding: 0 !important;
-                margin: 0 !important;
+                margin: 0 0 16px 0 !important; // odstęp pionowy 16px
                 border: none !important;
                 box-shadow: none !important;
                 width: 100%;
-                transition: transform 0.3s ease;
-
-                // Efekt schodków dla 3 kolumn (środkowa kolumna zjeżdża w dół)
-                &:nth-child(3n + 2) {
-                    transform: translateY(48px);
-                }
-
-                @media (max-width: 1024px) {
-                    // Resetujemy schodki z 3 kolumn
-                    &:nth-child(3n + 2) {
-                        transform: none;
-                    }
-                    // Efekt schodków dla 2 kolumn (druga kolumna zjeżdża w dół)
-                    &:nth-child(even) {
-                        transform: translateY(48px);
-                    }
-                }
-
-                @media (max-width: 768px) {
-                    // Reset na telefonach
-                    &:nth-child(even) {
-                        transform: none;
-                    }
-                }
 
                 .comment_container {
                     width: 100%;
                     display: block;
                 }
-                
+
                 img.avatar {
                     display: none !important;
                 }
@@ -1092,7 +1069,7 @@ p#countdown-mobile {
                     margin: 0 !important;
                     box-sizing: border-box !important; // To naprawia problem poziomego nachodzenia kafelków!
                     display: grid !important; // !important żeby wymusić grid
-                    grid-template-areas: 
+                    grid-template-areas:
                         "author rating"
                         "divider divider"
                         "desc desc"
@@ -1121,10 +1098,11 @@ p#countdown-mobile {
                         font-size: 16px;
                         justify-self: start;
                         width: 5.4em;
-                        
+
                         &::before {
                             color: $color-neutral-300;
                         }
+
                         span::before {
                             color: #FDBF07;
                         }
@@ -1134,7 +1112,7 @@ p#countdown-mobile {
                         display: contents;
                     }
 
-                    strong.woocommerce-review__author, 
+                    strong.woocommerce-review__author,
                     strong[itemprop="author"] {
                         grid-area: author;
                         font-family: $font-family-base;
@@ -1154,7 +1132,7 @@ p#countdown-mobile {
                         }
                     }
 
-                    .woocommerce-review__dash, 
+                    .woocommerce-review__dash,
                     time.woocommerce-review__published-date,
                     time[itemprop="datePublished"] {
                         display: none !important;
@@ -1184,7 +1162,7 @@ p#countdown-mobile {
                             background-repeat: no-repeat;
                             background-position: center;
                         }
-                        
+
                         &::after {
                             content: "Verifizierte Käufe";
                             font-size: 12px;
@@ -1195,7 +1173,7 @@ p#countdown-mobile {
                         grid-area: desc;
                         padding: 0;
                         border: none;
-                        
+
                         p {
                             font-family: $font-family-base;
                             font-size: $font-size-body-l;
@@ -1250,6 +1228,7 @@ p#countdown-mobile {
         // Wymuszamy domyślną czcionkę z H2 (zmienne z theme.json powinny to pokryć, ale wymuszamy kontener)
     }
 }
+
 // sekcje produktu (opis + opinie)
 .shav-product-sections {
     display: flex;
