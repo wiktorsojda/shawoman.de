@@ -3258,11 +3258,11 @@ function custom_review_summary()
                 <span class="rating-number"><?php echo esc_html(number_format($average, 1, ',', '')); ?></span><span class="rating-total">/5,0</span>
             </div>
             <div class="rating-count">
-                <?php printf(__('%d opinii klientów', 'woocommerce'), esc_html($review_count)); ?>
+                <?php printf(__('%d Kundenbewertungen', 'woocommerce'), esc_html($review_count)); ?>
             </div>
             <div class="rating-verified">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Opinie potwierdzone zakupem
+                Verifizierte Käufe
             </div>
         </div>
         
@@ -3287,7 +3287,7 @@ function custom_review_summary()
         </div>
 
         <div class="review-action">
-            <a href="#review_form_wrapper" class="woocommerce-review-link btn-add-review">Dodaj opinię +</a>
+            <a href="#review_form_wrapper" class="woocommerce-review-link btn-add-review">Bewertung schreiben +</a>
         </div>
     </div>
     <?php
