@@ -2276,7 +2276,8 @@ ul.flex-direction-nav li a:hover {
 
 // ukrycie elementów wtyczki od swaych
 body .woosg-wrap .woosg-products .woosg-item-product .woosg-thumb,
-body .woosg-wrap .woosg-products .woosg-item-product .woosg-thumb img {
+body .woosg-wrap .woosg-products .woosg-item-product .woosg-thumb img,
+body .woosg-wrap .woosg-thumb {
     display: none !important;
 }
 
