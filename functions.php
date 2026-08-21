@@ -1631,8 +1631,8 @@ add_action('woocommerce_product_options_advanced', function () {
         return;
     }
     echo '<div class="options_group shav-woosg-images-group">';
-    echo '<p class="form-field"><strong>Zdjęcie zestawu per wariant</strong><br>';
-    echo '<span class="description">Wybierz zdjęcie całego zestawu pokazywanego w galerii po wyborze wariantu.</span></p>';
+    echo '<p style="padding: 10px 20px 0 20px; margin: 0;"><strong>Zdjęcie zestawu per wariant</strong><br>';
+    echo '<span class="description" style="display:inline-block; margin-top:4px;">Wybierz zdjęcie całego zestawu pokazywanego w galerii po wyborze wariantu.</span></p>';
     
     $placeholder = wc_placeholder_img_src();
     foreach ($keys as $meta_key => $info) {
