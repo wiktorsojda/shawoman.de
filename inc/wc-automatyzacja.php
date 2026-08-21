@@ -1168,10 +1168,15 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
 
         if ( ! empty( $items ) ) {
             echo '<ul class="shav-bundle__list">';
-            $items_array = explode( "\n", $items );
+            if (strpos($items, "\n") !== false) {
+                $items_array = explode( "\n", $items );
+            } else {
+                $items_array = preg_split( '/[,\s]+/', trim( $items ), -1, PREG_SPLIT_NO_EMPTY );
+            }
             foreach ( $items_array as $item ) {
-                if ( trim( $item ) !== '' ) {
-                    echo '<li>' . esc_html( trim( $item ) ) . '</li>';
+                $item = trim( $item );
+                if ( $item !== '' && $item !== '+' ) {
+                    echo '<li>' . esc_html( $item ) . '</li>';
                 }
             }
             echo '</ul>';
