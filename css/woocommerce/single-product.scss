@@ -1008,12 +1008,12 @@ p#countdown-mobile {
                         p.stars {
                             margin: 0;
 
-                            a, a::before, span, span::before {
-                                color: #FFC107 !important; // Żółty kolor gwiazdek
+                            a, a::before, span, span::before, span a, span a::before {
+                                color: #FFD700 !important; // Złoty kolor gwiazdek
                             }
 
-                            a:hover, a.active, a:hover::before, a.active::before {
-                                color: #FFB300 !important; // Ciemniejszy żółty po najechaniu
+                            a:hover, a.active, a:hover::before, a.active::before, span a:hover::before, span a.active::before {
+                                color: #F5C518 !important; // Ciemniejszy złoty po najechaniu
                             }
                         }
                     }
