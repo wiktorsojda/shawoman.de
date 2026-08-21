@@ -1048,6 +1048,36 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
 
         if (!$cpt_found || empty($target_id))
             return;
+            
+        $target_product = wc_get_product($target_id);
+        if (!$target_product) return;
+
+        // --- DYNAMIC FALLBACKS ---
+        if ($target_product->is_type('woosg')) {
+            if (empty($title)) $title = 'Spar-Set';
+            if (empty($items)) {
+                $items = get_post_meta($target_id, 'product_subtitle', true);
+            }
+            if (empty($price_reg) && empty($price_pro)) {
+                if (function_exists('shav_get_woosg_totals')) {
+                    $totals = shav_get_woosg_totals($target_product);
+                    if ($totals) {
+                        $price_reg = (string) $totals['regular'];
+                        $price_pro = (string) $totals['bundle'];
+                    }
+                }
+            }
+        } else {
+            if (empty($title)) $title = $target_product->get_name();
+            if (empty($price_reg) && empty($price_pro)) {
+                $reg = $target_product->get_regular_price();
+                if ($reg === '') $reg = $target_product->get_price();
+                $price_reg = (string) wc_get_price_to_display($target_product, ['price' => $reg]);
+                $price_pro = (string) wc_get_price_to_display($target_product);
+            }
+        }
+        // -------------------------
+
         $product_url = get_permalink($target_id);
 
         // POBRANIE SEPARATORÓW I WALUTY
