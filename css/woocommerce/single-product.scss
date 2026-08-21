@@ -2275,21 +2275,23 @@ ul.flex-direction-nav li a:hover {
 }
 
 // ukrycie elementów wtyczki od swaych
-.woosg-products .woosg-item-product .woosg-thumb,
-.woosg-products .woosg-item-product .woosg-thumb img {
+body .woosg-wrap .woosg-products .woosg-item-product .woosg-thumb,
+body .woosg-wrap .woosg-products .woosg-item-product .woosg-thumb img {
     display: none !important;
 }
 
-.woosg-wrap .woosg-text {
+body .woosg-wrap .woosg-text {
     display: none !important;
 }
 
-.woosg-price-ori,
-.woosg-price-old {
+body .woosg-wrap .woosg-products .woosg-item-product .woosg-title .woosg-price .woosg-price-ori,
+body .woosg-wrap .woosg-price-ori,
+body .woosg-wrap .woosg-price-old {
     display: none !important;
 }
 
-.woosg-products .woosg-item-product .woosg-price,
-.woosg-price {
+body .woosg-wrap .woosg-products .woosg-item-product .woosg-title .woosg-price,
+body .woosg-wrap .woosg-products .woosg-item-product .woosg-price,
+body .woosg-wrap .woosg-price {
     display: none !important;
 }
