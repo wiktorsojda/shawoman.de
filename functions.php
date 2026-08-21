@@ -1644,17 +1644,16 @@ add_action('woocommerce_product_options_advanced', function () {
             $image_url = $image_id;
         }
         ?>
-        <div class="form-field">
-            <label><?php echo esc_html($info['label']); ?></label>
-            <div class="shav-image-upload-wrapper" style="float:left; margin-bottom: 15px;">
+        <p class="form-field" style="display:flex; align-items:center;">
+            <label style="width:150px; float:left; margin:0; padding:0;"><?php echo esc_html($info['label']); ?></label>
+            <span class="shav-image-upload-wrapper" style="display:inline-block; margin-left:10px;">
                 <a href="#" class="shav-upload-image-button" data-target="<?php echo esc_attr($meta_key); ?>">
-                    <img src="<?php echo esc_url($image_url ? $image_url : $placeholder); ?>" style="width:60px;height:60px;object-fit:cover;border:1px solid #ddd;border-radius:4px;" />
+                    <img src="<?php echo esc_url($image_url ? $image_url : $placeholder); ?>" style="width:60px;height:60px;object-fit:cover;border:1px solid #ddd;border-radius:4px;display:block;" />
                 </a>
                 <input type="hidden" name="<?php echo esc_attr($meta_key); ?>" id="<?php echo esc_attr($meta_key); ?>" value="<?php echo esc_attr($image_id); ?>" />
                 <a href="#" class="shav-remove-image-button" style="display:block;text-align:center;color:#a00;font-size:12px;margin-top:4px;">Usuń</a>
-            </div>
-            <div style="clear:both;"></div>
-        </div>
+            </span>
+        </p>
         <?php
     }
     echo '</div>';
