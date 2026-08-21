@@ -493,11 +493,35 @@ function custom_element_inside_cart_left_column() {
                     $variation_data .= ' data-variation_id="' . esc_attr( $cross_sell_product_id ) . '"';
                 }
 
-                $title        = ! empty($selected_rule['title']) ? $selected_rule['title'] : $product->get_name();
-                $attr_1       = isset($selected_rule['attr_1']) ? $selected_rule['attr_1'] : '';
+                $title        = ! empty($selected_rule['title']) ? $selected_rule['title'] : '';
+                if (empty($title)) {
+                    $title = $product->is_type('woosg') ? 'Spar-Set' : $product->get_name();
+                }
+
+                $attr_1       = isset($selected_rule['attr_1']) && $selected_rule['attr_1'] !== '' ? $selected_rule['attr_1'] : '';
+                if (empty($attr_1)) {
+                    $attr_1 = get_post_meta($product->get_id(), 'product_subtitle', true);
+                }
+
                 $attr_2       = isset($selected_rule['attr_2']) ? $selected_rule['attr_2'] : '';
+                
                 $price_reg    = isset($selected_rule['price_reg']) ? $selected_rule['price_reg'] : '';
                 $price_promo  = isset($selected_rule['price_promo']) ? $selected_rule['price_promo'] : '';
+
+                if (empty($price_reg) && empty($price_promo)) {
+                    if ($product->is_type('woosg') && function_exists('shav_get_woosg_totals')) {
+                        $totals = shav_get_woosg_totals($product);
+                        if ($totals) {
+                            $price_reg = (string) $totals['regular'];
+                            $price_promo = (string) $totals['bundle'];
+                        }
+                    } else {
+                        $reg = $product->get_regular_price();
+                        if ($reg === '') $reg = $product->get_price();
+                        $price_reg = (string) wc_get_price_to_display($product, ['price' => $reg]);
+                        $price_promo = (string) wc_get_price_to_display($product);
+                    }
+                }
                 $custom_img   = isset($selected_rule['custom_image']) ? $selected_rule['custom_image'] : '';
                 
                 $rule_uid_to_log = isset($selected_rule['uid']) ? $selected_rule['uid'] : $selected_rule['_rule_index'];
