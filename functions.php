@@ -53,9 +53,9 @@ function add_lowest_price_field()
     woocommerce_wp_text_input(
         array(
             'id' => 'lowest_price_30_days',
-            'label' => __('Najniższa cena z 30 dni przed obniżką:', 'woocommerce'),
+            'label' => __('Niedrigster Preis der letzten 30 Tage:', 'woocommerce'),
             'desc_tip' => 'true',
-            'description' => __('Enter the lowest price from the last 30 days before the discount.', 'woocommerce')
+            'description' => __('Geben Sie den niedrigsten Preis der letzten 30 Tage vor der Rabattierung ein.', 'woocommerce')
         )
     );
 
@@ -108,7 +108,7 @@ function display_lowest_price_30_days()
     echo '<p class="lowest-price" style="font-size: 14px; color: #7A7A7A; margin-top: 10px;">';
     
     // Fraza objęta systemem tłumaczeń (np. do pliku .po na język DE)
-    echo esc_html__('Najniższa cena z 30 dni przed obniżką:', 'woocommerce') . ' ';
+    echo esc_html__('Niedrigster Preis der letzten 30 Tage:', 'woocommerce') . ' ';
     
     // Wyświetlamy cenę natywnym formatowaniem (automatycznie dobra waluta np. €)
     if (!$is_manual || is_numeric(str_replace(array(',', '.'), '', $lowest_price))) {
