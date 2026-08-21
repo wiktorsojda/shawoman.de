@@ -62,6 +62,17 @@ if (!empty($shav_grid_product_gradients) && isset($shav_grid_product_gradients[$
     }
 }
 
+// Odbiór ustawień dla pillu "OSZCZĘDZASZ" z bloku shav-product-grid
+global $shav_grid_global_savings;
+global $shav_grid_product_savings;
+$enable_savings = false;
+if (!empty($shav_grid_global_savings)) {
+    $enable_savings = true;
+}
+if (!empty($shav_grid_product_savings) && isset($shav_grid_product_savings[$product_id]) && $shav_grid_product_savings[$product_id]) {
+    $enable_savings = true;
+}
+
 // Klasy karty
 $classes = ['product-card'];
 if ($frame_variant) {
@@ -145,6 +156,10 @@ if ($is_set) {
             }
         }
     }
+}
+
+if ($enable_savings && $product->is_on_sale()) {
+    $show_savings = true;
 }
 
 // Ceny — produkt wielowariantowy nie ma wlasnych cen (get_regular_price()

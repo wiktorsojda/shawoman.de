@@ -11,6 +11,11 @@ $limit = isset($attributes['limit']) ? (int) $attributes['limit'] : 12;
 global $shav_grid_product_gradients;
 $shav_grid_product_gradients = isset($attributes['productGradients']) ? $attributes['productGradients'] : array();
 
+global $shav_grid_global_savings;
+$shav_grid_global_savings = isset($attributes['globalSavingsPill']) ? $attributes['globalSavingsPill'] : false;
+
+global $shav_grid_product_savings;
+$shav_grid_product_savings = isset($attributes['productSavingsPills']) ? $attributes['productSavingsPills'] : array();
 $args = array(
     'post_type' => 'product',
     'post_status' => 'publish',

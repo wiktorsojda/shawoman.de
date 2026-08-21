@@ -1,10 +1,10 @@
 import { useBlockProps, InspectorControls } from "@wordpress/block-editor";
-import { PanelBody, TextControl, SelectControl, RangeControl, RadioControl, FormTokenField } from "@wordpress/components";
+import { PanelBody, TextControl, SelectControl, RangeControl, RadioControl, FormTokenField, ToggleControl } from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-    const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit, productGradients } = attributes;
+    const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit, productGradients, globalSavingsPill, productSavingsPills } = attributes;
     const blockProps = useBlockProps();
     const [selectedProductId, setSelectedProductId] = useState(null);
 
@@ -193,6 +193,12 @@ export default function Edit({ attributes, setAttributes }) {
                         min={1}
                         max={24}
                     />
+
+                    <ToggleControl
+                        label="Włącz pill 'Oszczędzasz' dla całej siatki (jeśli w promocji)"
+                        checked={globalSavingsPill}
+                        onChange={(val) => setAttributes({ globalSavingsPill: val })}
+                    />
                 </PanelBody>
 
                 {selectedProductId && (
@@ -263,6 +269,16 @@ export default function Edit({ attributes, setAttributes }) {
                                 }}
                             />
                         )}
+
+                        <ToggleControl
+                            label="Włącz pill 'Oszczędzasz' dla tego produktu (jeśli w promocji)"
+                            checked={!!(productSavingsPills || {})[selectedProductId]}
+                            onChange={(val) => {
+                                const newPills = { ...(productSavingsPills || {}) };
+                                newPills[selectedProductId] = val;
+                                setAttributes({ productSavingsPills: newPills });
+                            }}
+                        />
                     </PanelBody>
                 )}
             </InspectorControls>

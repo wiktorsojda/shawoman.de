@@ -42,6 +42,14 @@
         "productGradients": {
             "type": "object",
             "default": {}
+        },
+        "globalSavingsPill": {
+            "type": "boolean",
+            "default": false
+        },
+        "productSavingsPills": {
+            "type": "object",
+            "default": {}
         }
     },
     "textdomain": "shav",
