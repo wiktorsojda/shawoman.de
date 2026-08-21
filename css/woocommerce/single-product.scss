@@ -2295,3 +2295,8 @@ body .woosg-wrap .woosg-products .woosg-item-product .woosg-price,
 body .woosg-wrap .woosg-price {
     display: none !important;
 }
+
+body .woosg-wrap .woocommerce-Price-amount.amount,
+body .woosg-wrap bdi {
+    display: none !important;
+}
