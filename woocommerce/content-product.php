@@ -91,10 +91,9 @@ $badge_label  = '';
 $badge_kind   = '';
 $badge_style  = ''; // inline-style dla wlasnego badge'a
 $show_savings = false;
+$wants_savings_pill = $is_set || $enable_savings;
 
-if ($is_set) {
-    $show_savings = $product->is_on_sale();
-} else {
+if (!$is_set) {
     // 1. Sprawdzamy nowy silnik z kokpitu (JSON)
     $active_text_badge = shav_get_active_text_badge($product);
     if ($active_text_badge && !empty($active_text_badge['text'])) {
@@ -158,9 +157,7 @@ if ($is_set) {
     }
 }
 
-if ($enable_savings && $product->is_on_sale()) {
-    $show_savings = true;
-}
+
 
 // Ceny — produkt wielowariantowy nie ma wlasnych cen (get_regular_price()
 // zwraca pusty string), wiec bierzemy min z wariacji.
@@ -189,7 +186,8 @@ if ($product->is_type('variable')) {
     $current_price = wc_get_price_to_display($product);
 }
 $savings_amount = 0;
-if ($show_savings && $is_on_sale && $regular_price > 0 && $current_price < $regular_price) {
+if ($wants_savings_pill && $is_on_sale && $regular_price > 0 && $current_price < $regular_price) {
+    $show_savings = true;
     $savings_amount = $regular_price - $current_price;
 }
 ?>
@@ -245,7 +243,7 @@ if ($show_savings && $is_on_sale && $regular_price > 0 && $current_price < $regu
         <div class="product-card__pricing">
             <?php if ($savings_amount > 0) : ?>
                 <span class="product-card__savings">
-                    <span class="product-card__savings-label"><?php esc_html_e('OSZCZĘDZASZ', 'shav'); ?></span>
+                    <span class="product-card__savings-label"><?php esc_html_e('DU SPARST', 'shav'); ?></span>
                     <span class="product-card__savings-amount"><?php echo wp_kses_post(wc_price($savings_amount)); ?></span>
                 </span>
             <?php endif; ?>
