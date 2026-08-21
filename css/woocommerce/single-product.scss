@@ -996,6 +996,28 @@ p#countdown-mobile {
                         display: none;
                     }
 
+                    .comment-form-rating {
+                        display: flex;
+                        flex-direction: column;
+                        gap: $space-8;
+
+                        label {
+                            margin-bottom: 0;
+                        }
+
+                        p.stars {
+                            margin: 0;
+
+                            a, a::before, span, span::before {
+                                color: #FFC107 !important; // Żółty kolor gwiazdek
+                            }
+
+                            a:hover, a.active, a:hover::before, a.active::before {
+                                color: #FFB300 !important; // Ciemniejszy żółty po najechaniu
+                            }
+                        }
+                    }
+
                     p.form-submit {
                         display: flex;
                         flex-direction: column;
