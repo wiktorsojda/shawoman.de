@@ -1644,9 +1644,9 @@ add_action('woocommerce_product_options_advanced', function () {
             $image_url = $image_id;
         }
         ?>
-        <p class="form-field" style="display:flex; align-items:center;">
-            <label style="width:150px; float:left; margin:0; padding:0;"><?php echo esc_html($info['label']); ?></label>
-            <span class="shav-image-upload-wrapper" style="display:inline-block; margin-left:10px;">
+        <p class="form-field">
+            <label for="<?php echo esc_attr($meta_key); ?>"><?php echo esc_html($info['label']); ?></label>
+            <span class="shav-image-upload-wrapper" style="display:inline-block;">
                 <a href="#" class="shav-upload-image-button" data-target="<?php echo esc_attr($meta_key); ?>">
                     <img src="<?php echo esc_url($image_url ? $image_url : $placeholder); ?>" style="width:60px;height:60px;object-fit:cover;border:1px solid #ddd;border-radius:4px;display:block;" />
                 </a>
