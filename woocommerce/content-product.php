@@ -154,6 +154,21 @@ $is_on_sale    = $product->is_on_sale();
 if ($product->is_type('variable')) {
     $regular_price = (float) $product->get_variation_regular_price('min', true);
     $current_price = (float) $product->get_variation_price('min', true);
+} elseif ($product->is_type('woosg')) {
+    if (function_exists('shav_get_woosg_totals')) {
+        $totals = shav_get_woosg_totals($product);
+        if ($totals) {
+            $regular_price = $totals['regular'];
+            $current_price = $totals['bundle'];
+            $is_on_sale = ($regular_price > $current_price);
+        } else {
+            $regular_price = wc_get_price_to_display($product, ['price' => $product->get_regular_price()]);
+            $current_price = wc_get_price_to_display($product);
+        }
+    } else {
+        $regular_price = wc_get_price_to_display($product, ['price' => $product->get_regular_price()]);
+        $current_price = wc_get_price_to_display($product);
+    }
 } else {
     $regular_price = wc_get_price_to_display($product, ['price' => $product->get_regular_price()]);
     $current_price = wc_get_price_to_display($product);
