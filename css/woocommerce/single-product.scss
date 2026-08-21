@@ -2275,7 +2275,8 @@ ul.flex-direction-nav li a:hover {
 }
 
 // ukrycie elementów wtyczki od swaych
-.woosg-products .woosg-product .woosg-thumb img {
+.woosg-products .woosg-item-product .woosg-thumb,
+.woosg-products .woosg-item-product .woosg-thumb img {
     display: none !important;
 }
 
@@ -2283,10 +2284,12 @@ ul.flex-direction-nav li a:hover {
     display: none !important;
 }
 
+.woosg-price-ori,
 .woosg-price-old {
     display: none !important;
 }
 
-.woosg-products .woosg-product .woosg-price {
+.woosg-products .woosg-item-product .woosg-price,
+.woosg-price {
     display: none !important;
 }
