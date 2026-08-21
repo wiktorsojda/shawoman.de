@@ -1630,26 +1630,87 @@ add_action('woocommerce_product_options_advanced', function () {
     if (empty($keys)) {
         return;
     }
-    echo '<div class="options_group">';
+    echo '<div class="options_group shav-woosg-images-group">';
     echo '<p class="form-field"><strong>Zdjęcie zestawu per wariant</strong><br>';
-    echo '<span class="description">URL zdjęcia całego zestawu pokazywanego w galerii po wyborze wariantu (puste = zdjęcie się nie zmienia).</span></p>';
+    echo '<span class="description">Wybierz zdjęcie całego zestawu pokazywanego w galerii po wyborze wariantu.</span></p>';
+    
+    $placeholder = wc_placeholder_img_src();
     foreach ($keys as $meta_key => $info) {
-        woocommerce_wp_text_input(array(
-            'id' => $meta_key,
-            'label' => $info['label'],
-            'placeholder' => 'https://... (URL z biblioteki mediów)',
-            'desc_tip' => false,
-            'value' => get_post_meta($post->ID, $meta_key, true),
-        ));
+        $image_id = get_post_meta($post->ID, $meta_key, true);
+        $image_url = '';
+        if ($image_id && is_numeric($image_id)) {
+            $image_url = wp_get_attachment_image_url($image_id, 'thumbnail');
+        } elseif ($image_id) {
+            $image_url = $image_id;
+        }
+        ?>
+        <div class="form-field">
+            <label><?php echo esc_html($info['label']); ?></label>
+            <div class="shav-image-upload-wrapper" style="float:left; margin-bottom: 15px;">
+                <a href="#" class="shav-upload-image-button" data-target="<?php echo esc_attr($meta_key); ?>">
+                    <img src="<?php echo esc_url($image_url ? $image_url : $placeholder); ?>" style="width:60px;height:60px;object-fit:cover;border:1px solid #ddd;border-radius:4px;" />
+                </a>
+                <input type="hidden" name="<?php echo esc_attr($meta_key); ?>" id="<?php echo esc_attr($meta_key); ?>" value="<?php echo esc_attr($image_id); ?>" />
+                <a href="#" class="shav-remove-image-button" style="display:block;text-align:center;color:#a00;font-size:12px;margin-top:4px;">Usuń</a>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <?php
     }
     echo '</div>';
+
+    ?>
+    <script type="text/javascript">
+    jQuery(document).ready(function($){
+        var mediaFrame;
+        $('.shav-woosg-images-group').on('click', '.shav-upload-image-button', function(e){
+            e.preventDefault();
+            var $btn = $(this);
+            var targetId = $btn.data('target');
+            
+            if ( mediaFrame ) {
+                mediaFrame.targetBtn = $btn;
+                mediaFrame.targetId = targetId;
+                mediaFrame.open();
+                return;
+            }
+            
+            mediaFrame = wp.media({
+                title: 'Wybierz zdjęcie zestawu',
+                button: { text: 'Użyj tego zdjęcia' },
+                multiple: false
+            });
+            
+            mediaFrame.targetBtn = $btn;
+            mediaFrame.targetId = targetId;
+            
+            mediaFrame.on('select', function() {
+                var attachment = mediaFrame.state().get('selection').first().toJSON();
+                $('#' + mediaFrame.targetId).val(attachment.id);
+                var url = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+                mediaFrame.targetBtn.find('img').attr('src', url);
+            });
+            
+            mediaFrame.open();
+        });
+        
+        $('.shav-woosg-images-group').on('click', '.shav-remove-image-button', function(e){
+            e.preventDefault();
+            var $wrapper = $(this).closest('.shav-image-upload-wrapper');
+            $wrapper.find('input[type="hidden"]').val('');
+            $wrapper.find('img').attr('src', '<?php echo esc_url($placeholder); ?>');
+        });
+    });
+    </script>
+    <?php
 });
 
 // Zapis pol
 add_action('woocommerce_process_product_meta', function ($post_id) {
     foreach (array_keys(shav_woosg_variant_image_keys($post_id)) as $meta_key) {
         if (isset($_POST[$meta_key])) {
-            update_post_meta($post_id, $meta_key, esc_url_raw(wp_unslash($_POST[$meta_key])));
+            $val = sanitize_text_field($_POST[$meta_key]);
+            update_post_meta($post_id, $meta_key, $val);
         }
     }
 });
@@ -1665,9 +1726,12 @@ add_action('wp_footer', function () {
     }
     $map = array();
     foreach (shav_woosg_variant_image_keys($product->get_id()) as $meta_key => $info) {
-        $url = get_post_meta($product->get_id(), $meta_key, true);
-        if ($url) {
-            $map[$info['attr_field']][$info['option']] = esc_url_raw($url);
+        $val = get_post_meta($product->get_id(), $meta_key, true);
+        if ($val) {
+            $url = is_numeric($val) ? wp_get_attachment_image_url($val, 'full') : $val;
+            if ($url) {
+                $map[$info['attr_field']][$info['option']] = esc_url_raw($url);
+            }
         }
     }
     if (!empty($map)) {
