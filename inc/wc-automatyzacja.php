@@ -1171,12 +1171,15 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
             if (strpos($items, "\n") !== false) {
                 $items_array = explode( "\n", $items );
             } else {
+                $items = str_ireplace('Shav Woman', '___SHAVWOMAN___', $items);
                 $items_array = preg_split( '/[,\s]+/', trim( $items ), -1, PREG_SPLIT_NO_EMPTY );
             }
             foreach ( $items_array as $item ) {
                 $item = trim( $item );
                 if ( $item !== '' && $item !== '+' ) {
-                    echo '<li>' . esc_html( $item ) . '</li>';
+                    $html_item = esc_html( $item );
+                    $html_item = str_replace('___SHAVWOMAN___', 'Shav Woman', $html_item);
+                    echo '<li>' . $html_item . '</li>';
                 }
             }
             echo '</ul>';
