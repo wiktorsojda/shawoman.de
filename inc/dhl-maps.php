@@ -51,7 +51,7 @@ add_action('cfw_checkout_after_shipping_methods', function () {
         #dhl_parcel_finder_form {
             max-width: 1000px !important;
             width: 95vw !important;
-            padding: 40px !important;
+            padding: 24px !important;
             border-radius: 16px !important;
             box-sizing: border-box !important;
             background-color: #ffffff !important;
@@ -65,8 +65,8 @@ add_action('cfw_checkout_after_shipping_methods', function () {
             content: "";
             display: block !important;
             width: 100% !important;
-            height: 40px !important;
-            margin-top: 24px !important;
+            height: 32px !important;
+            margin-top: 16px !important;
             background: url('http://shav.de/wp-content/uploads/automaty_poziomo_15042026.png') no-repeat center center !important;
             background-size: contain !important;
         }
@@ -187,7 +187,9 @@ add_action('cfw_checkout_after_shipping_methods', function () {
         #dhl_parcel_finder_form #map,
         #dhl_parcel_finder_form .leaflet-container {
             width: 100% !important;
-            height: 550px !important;
+            height: 50vh !important;
+            min-height: 350px !important;
+            max-height: 500px !important;
             border-radius: 12px !important;
             border: 1px solid #EBEBEB !important;
             overflow: hidden !important;
