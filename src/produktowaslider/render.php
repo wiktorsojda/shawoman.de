@@ -18,6 +18,33 @@ if (empty($slides)) {
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
+    <style>
+        .produktowaslider-block .blendygo-gallery-container {
+            margin-bottom: 20px;
+        }
+        .produktowaslider-block .blendygo-gallery-slider-desktop {
+            display: none;
+        }
+        .produktowaslider-block .blendygo-gallery-slider-mobile {
+            display: block;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .produktowaslider-block .blendygo-gallery-slider-desktop {
+                display: block;
+                width: 100%;
+            }
+            .produktowaslider-block .blendygo-gallery-slider-mobile {
+                display: none;
+            }
+        }
+        .produktowaslider-block img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+    </style>
+
     <div class="blendygo-gallery-container">
         
             <!-- Desktop Slider -->
@@ -62,6 +89,8 @@ if (empty($slides)) {
                     slidesPerView: 'auto',
                     loop: true,
                     initialSlide: 1,
+                    observer: true,
+                    observeParents: true,
                     autoplay: {
                         delay: 3000,
                         pauseOnMouseEnter: false,
@@ -89,6 +118,8 @@ if (empty($slides)) {
                     slidesPerView: 'auto',
                     loop: true,
                     initialSlide: 1,
+                    observer: true,
+                    observeParents: true,
                     autoplay: {
                         delay: 3000,
                         pauseOnMouseEnter: false,
