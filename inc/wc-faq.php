@@ -239,7 +239,7 @@ function display_product_faq() {
     
     if (empty($faq_data) || !is_array($faq_data)) return;
     
-    echo '<h3 class="shav-faq-heading" style="font-size: 16px; font-weight: 600; margin: 0 0 24px 0; color: #3F3F3F;">FAQ</h3>';
+    echo '<h3 class="shav-faq-heading" style="font-family: \'Be Vietnam Pro\', sans-serif; font-size: 16px; font-weight: 500; line-height: 1.2; letter-spacing: -0.04em; margin: 0 0 24px 0; color: #3F3F3F;">FAQ</h3>';
     echo '<div class="shav-product-faq" style="margin-bottom: 20px; border: 1px solid #EAEAEA; border-radius: 8px; padding: 24px;">';
     
     foreach ($faq_data as $item) {
