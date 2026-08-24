@@ -1,5 +1,4 @@
 <?php
-// Placeholder dla kodu DHL MAPS
 // 1. Sekcja wyboru i modal mapy na frontendzie CheckoutWC
 add_action('cfw_checkout_after_shipping_methods', function () {
     $dhl_logo = 'http://shav.de/wp-content/uploads/automaty_poziomo_15042026.png';
