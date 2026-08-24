@@ -2,7 +2,7 @@
 // Placeholder dla kodu DHL MAPS
 // 1. Sekcja wyboru i modal mapy na frontendzie CheckoutWC
 add_action('cfw_checkout_after_shipping_methods', function () {
-    $dhl_logo = defined('PR_DHL_PLUGIN_DIR_URL') ? PR_DHL_PLUGIN_DIR_URL . '/assets/img/dhl-official.png' : '';
+    $dhl_logo = 'http://shav.de/wp-content/uploads/automaty_poziomo_15042026.png';
     ?>
     <div id="dhl-packstation-section"
         style="margin: 20px 0; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px; background-color: #f9fafb; font-family: inherit;">
