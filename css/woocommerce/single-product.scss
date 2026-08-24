@@ -2324,3 +2324,10 @@ body .woosg-wrap .woocommerce-Price-amount.amount,
 body .woosg-wrap bdi {
     display: none !important;
 }
+.shav-svg-features {
+    margin-bottom: 45px !important;
+    @media (max-width: 768px) {
+        margin-bottom: 32px !important;
+    }
+}
+
