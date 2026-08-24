@@ -95,7 +95,7 @@ $wants_savings_pill = $is_set || $enable_savings;
 
 if (!$is_set) {
     // 1. Sprawdzamy nowy silnik z kokpitu (JSON)
-    $active_text_badge = shav_get_active_text_badge($product);
+    $active_text_badge = shav_get_active_text_badge($product, 'card');
     if ($active_text_badge && !empty($active_text_badge['text'])) {
         $badge_label = $active_text_badge['text'];
         $badge_kind  = 'custom';

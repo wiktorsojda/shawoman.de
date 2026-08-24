@@ -3,7 +3,7 @@
 /**
  * Zwraca pierwszą pasującą regułę etykiety tekstowej dla danego produktu.
  */
-function shav_get_active_text_badge($product) {
+function shav_get_active_text_badge($product, $context = 'both') {
     if (!$product) return null;
     
     $product_id = $product->get_id();
@@ -14,9 +14,20 @@ function shav_get_active_text_badge($product) {
     
     if (!is_array($rules)) return null;
     
-    // Pass 1: Products
+    // Filter rules by context
+    $filtered_rules = [];
     foreach ($rules as $rule) {
         if (empty(trim($rule['text']))) continue;
+        
+        $location = isset($rule['displayLocation']) ? $rule['displayLocation'] : 'both';
+        if ($context !== 'both' && $location !== 'both' && $location !== $context) {
+            continue; // Skip if location doesn't match the current context
+        }
+        $filtered_rules[] = $rule;
+    }
+    
+    // Pass 1: Products
+    foreach ($filtered_rules as $rule) {
         if ($rule['type'] === 'products' && !empty($rule['products'])) {
             foreach ($rule['products'] as $p) {
                 if (intval($p['id']) === $product_id) return $rule;
@@ -24,16 +35,14 @@ function shav_get_active_text_badge($product) {
         }
     }
     // Pass 2: Categories
-    foreach ($rules as $rule) {
-        if (empty(trim($rule['text']))) continue;
+    foreach ($filtered_rules as $rule) {
         if ($rule['type'] === 'categories' && !empty($rule['categories'])) {
             $intersect = array_intersect($cat_ids, array_map('intval', $rule['categories']));
             if (!empty($intersect)) return $rule;
         }
     }
     // Pass 3: Global
-    foreach ($rules as $rule) {
-        if (empty(trim($rule['text']))) continue;
+    foreach ($filtered_rules as $rule) {
         if ($rule['type'] === 'global') return $rule;
     }
     
@@ -200,7 +209,7 @@ function display_new_promotional_element()
         return;
 
     // 1. Sprawdzamy nowy silnik z kokpitu (JSON)
-    $active_text_badge = shav_get_active_text_badge($product);
+    $active_text_badge = shav_get_active_text_badge($product, 'product');
     if ($active_text_badge && !empty($active_text_badge['text'])) {
         $badge_label = $active_text_badge['text'];
         $custom_bg   = $active_text_badge['color'];

@@ -1578,6 +1578,15 @@ function shav_render_store_settings_page() {
                             </select>
                         </div>
                         
+                        <div class="shav-field-group" style="border:none; padding:0; margin-bottom:15px;">
+                            <label class="shav-label">Miejsce wyświetlania:</label>
+                            <select class="shav-input-text tb-display-location-select" data-index="${index}" style="max-width:300px;">
+                                <option value="both" ${(!rule.displayLocation || rule.displayLocation === 'both') ? 'selected' : ''}>Karta produktu oraz Kafel (Wszędzie)</option>
+                                <option value="product" ${rule.displayLocation === 'product' ? 'selected' : ''}>Tylko na Karcie Produktu</option>
+                                <option value="card" ${rule.displayLocation === 'card' ? 'selected' : ''}>Tylko na Kaflu (Archiwum/Loop)</option>
+                            </select>
+                        </div>
+                        
                         <div class="shav-field-group target-container-categories" style="border:none; padding:0; margin-bottom:15px; ${rule.type === 'categories' ? '' : 'display:none;'}">
                             <label class="shav-label">Wybierz kategorie:</label>
                             <select class="shav-input-text tb-cats-select" multiple="multiple" data-index="${index}" style="max-width:600px; height:80px;">
@@ -1748,6 +1757,7 @@ function shav_render_store_settings_page() {
                 textBadgeData = [];
                 rows.forEach((row, idx) => {
                     const type = row.querySelector('.tb-type-select')?.value || 'global';
+                    const displayLocation = row.querySelector('.tb-display-location-select')?.value || 'both';
                     const text = row.querySelector('.tb-text-input')?.value || '';
                     const color = row.querySelector('.tb-color-input')?.value || '';
                     const textColor = row.querySelector('.tb-text-color-select')?.value || '';
@@ -1773,7 +1783,7 @@ function shav_render_store_settings_page() {
                         }
                     }
 
-                    textBadgeData.push({ type, categories, products, text, color, textColor, isFolded });
+                    textBadgeData.push({ type, displayLocation, categories, products, text, color, textColor, isFolded });
                 });
             }
 
@@ -1781,7 +1791,7 @@ function shav_render_store_settings_page() {
                 addBtnTextBadges.addEventListener('click', function(e) {
                     e.preventDefault();
                     syncTextBadgeDataFromDOM();
-                    textBadgeData.push({ type: 'global', categories: [], products: [], text: '', color: '', textColor: '#ffffff', isFolded: false });
+                    textBadgeData.push({ type: 'global', displayLocation: 'both', categories: [], products: [], text: '', color: '', textColor: '#ffffff', isFolded: false });
                     renderTextBadgeRows();
                 });
             }
