@@ -11,6 +11,14 @@ $slides = $attributes['slides'] ?? [];
 if (empty($slides)) {
     return;
 }
+
+// Ensure enough slides for a seamless infinite loop (Swiper needs more slides for 'auto' width)
+if (count($slides) > 0 && count($slides) < 6) {
+    $original_slides = $slides;
+    while(count($slides) < 6) {
+        $slides = array_merge($slides, $original_slides);
+    }
+}
 ?>
 
 <div <?php echo get_block_wrapper_attributes(['class' => 'produktowaslider-block']); ?>>
