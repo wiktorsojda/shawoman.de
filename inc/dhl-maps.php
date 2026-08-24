@@ -1,6 +1,6 @@
 <?php
 // 1. Sekcja wyboru i modal mapy na frontendzie CheckoutWC
-add_action('cfw_after_delivery_method', function () {
+add_action('cfw_checkout_after_shipping_address', function () {
     $dhl_logo = 'http://shav.de/wp-content/uploads/automaty_poziomo_15042026.png';
     ?>
     <div id="dhl-packstation-section"
@@ -54,11 +54,11 @@ add_action('cfw_after_delivery_method', function () {
             border-radius: 16px !important;
             box-sizing: border-box !important;
             background-color: #ffffff !important;
-            box-shadow: 0 24px 48px rgba(0,0,0,0.12) !important;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12) !important;
             font-family: inherit !important;
             position: relative !important;
         }
-        
+
         /* LOGO POD MAPĄ (CSS injection) */
         #dhl_parcel_finder_form::after {
             content: "";
@@ -69,9 +69,9 @@ add_action('cfw_after_delivery_method', function () {
             background: url('http://shav.de/wp-content/uploads/automaty_poziomo_15042026.png') no-repeat center center !important;
             background-size: contain !important;
         }
-        
+
         /* Tytuł modala jeśli generuje go DHL */
-        #dhl_parcel_finder_form h2, 
+        #dhl_parcel_finder_form h2,
         #dhl_parcel_finder_form h3 {
             font-size: 22px !important;
             font-weight: 600 !important;
@@ -87,7 +87,7 @@ add_action('cfw_after_delivery_method', function () {
             color: #111111 !important;
             border-radius: 50% !important;
             border: 1px solid #EBEBEB !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
             width: 36px !important;
             height: 36px !important;
             padding: 0 !important;
@@ -100,12 +100,14 @@ add_action('cfw_after_delivery_method', function () {
             opacity: 1 !important;
             z-index: 9999 !important;
         }
+
         #dhl_parcel_finder_form .fancybox-close-small svg {
             fill: currentColor !important;
             width: 20px !important;
             height: 20px !important;
             opacity: 1 !important;
         }
+
         #dhl_parcel_finder_form .fancybox-close-small:hover {
             background-color: #f1f1f1 !important;
             transform: scale(1.05) !important;
@@ -138,7 +140,7 @@ add_action('cfw_after_delivery_method', function () {
             flex: 0 0 auto !important;
             gap: 8px !important;
         }
-        
+
         #dhl_parcel_finder_form form#checkout_dhl_parcel_finder p.form-row label {
             margin: 0 !important;
             font-size: 14px !important;
@@ -179,7 +181,7 @@ add_action('cfw_after_delivery_method', function () {
         #dhl_parcel_finder_form input[type="submit"].button:hover {
             background-color: #333333 !important;
             transform: translateY(-1px) !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
         }
 
         /* --- MAPA LEAFLET --- */
@@ -192,17 +194,18 @@ add_action('cfw_after_delivery_method', function () {
             border-radius: 12px !important;
             border: 1px solid #EBEBEB !important;
             overflow: hidden !important;
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.03) !important;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.03) !important;
             z-index: 1 !important;
         }
 
         /* --- KONTROLKI MAPY (Zoom itp.) --- */
         .leaflet-bar {
             border: none !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
             border-radius: 8px !important;
             overflow: hidden !important;
         }
+
         .leaflet-bar a {
             background-color: #ffffff !important;
             color: #111111 !important;
@@ -211,41 +214,48 @@ add_action('cfw_after_delivery_method', function () {
             height: 32px !important;
             line-height: 32px !important;
         }
+
         .leaflet-bar a:hover {
             background-color: #FAFAFA !important;
         }
-        
+
         /* --- POPUP WEWNĄTRZ MAPY (Leaflet Popup) --- */
         .leaflet-popup-content-wrapper {
             border-radius: 12px !important;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15) !important;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15) !important;
             padding: 8px 4px !important;
         }
+
         .leaflet-popup-content {
             font-family: inherit !important;
             color: #333333 !important;
             margin: 16px !important;
             line-height: 1.6 !important;
             font-size: 14px !important;
-            min-width: 250px !important; /* Nadpisuje inline style z Leaflet (ok. 172px) dając oddech */
+            min-width: 250px !important;
+            /* Nadpisuje inline style z Leaflet (ok. 172px) dając oddech */
             width: auto !important;
         }
+
         @media (max-width: 480px) {
             .leaflet-popup-content {
                 min-width: 200px !important;
             }
         }
+
         .leaflet-popup-content .parcel-title {
             font-size: 16px !important;
             font-weight: 700 !important;
             color: #111111 !important;
             margin: 0 0 8px 0 !important;
         }
-        .leaflet-popup-content strong, 
+
+        .leaflet-popup-content strong,
         .leaflet-popup-content b {
             color: #111111 !important;
             font-weight: 600 !important;
         }
+
         /* Przycisk wyboru wewnątrz popupu mapy */
         .leaflet-popup-content button,
         .leaflet-popup-content a.pr-dhl-set-location {
@@ -253,7 +263,8 @@ add_action('cfw_after_delivery_method', function () {
             width: 100% !important;
             text-align: center !important;
             margin-top: 20px !important;
-            background-color: #ffcc00 !important; /* DHL Yellow dla akcji na mapie */
+            background-color: #ffcc00 !important;
+            /* DHL Yellow dla akcji na mapie */
             color: #111111 !important;
             border-radius: 6px !important;
             padding: 12px 16px !important;
@@ -265,12 +276,14 @@ add_action('cfw_after_delivery_method', function () {
             transition: all 0.2s ease !important;
             box-shadow: 0 2px 4px rgba(255, 204, 0, 0.2) !important;
         }
+
         .leaflet-popup-content button:hover,
         .leaflet-popup-content a.pr-dhl-set-location:hover {
             background-color: #e6b800 !important;
             transform: translateY(-1px) !important;
             box-shadow: 0 4px 8px rgba(255, 204, 0, 0.3) !important;
         }
+
         .leaflet-popup-tip-container {
             margin-top: -2px !important;
         }
@@ -316,7 +329,7 @@ add_action('cfw_after_delivery_method', function () {
                 postNummerField.addEventListener('input', function () {
                     var addr2 = document.getElementById('shipping_address_2');
                     var company = document.getElementById('shipping_company');
-                    
+
                     if (addr2) {
                         addr2.value = this.value;
                     }
@@ -350,7 +363,7 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
             $order->set_shipping_postcode($ps_zip);
         if (!empty($ps_city))
             $order->set_shipping_city($ps_city);
-        
+
         $order->set_shipping_company('');
 
         // Zapisujemy pod wszystkie możliwe klucze, z których korzystają wtyczki DHL i DPD w systemie

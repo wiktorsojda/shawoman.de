@@ -18,7 +18,6 @@ require_once get_template_directory() . '/inc/theme-wyglad.php';
 require_once get_template_directory() . '/inc/wc-badges.php';
 require_once get_template_directory() . '/inc/ceny-w-zestawie.php';
 require_once get_template_directory() . '/inc/ceny-front.php';
-require_once get_template_directory() . '/inc/dhl-maps.php';
 
 // adobe font babe neue pro
 function add_resource_hints_and_fonts()
@@ -107,10 +106,10 @@ function display_lowest_price_30_days()
     }
 
     echo '<p class="lowest-price" style="font-size: 14px; color: #7A7A7A; margin-top: 10px;">';
-    
+
     // Fraza objęta systemem tłumaczeń (np. do pliku .po na język DE)
     echo esc_html__('Niedrigster Preis der letzten 30 Tage:', 'woocommerce') . ' ';
-    
+
     // Wyświetlamy cenę natywnym formatowaniem (automatycznie dobra waluta np. €)
     if (!$is_manual || is_numeric(str_replace(array(',', '.'), '', $lowest_price))) {
         echo wc_price((float) str_replace(',', '.', $lowest_price));
@@ -965,7 +964,7 @@ add_action('admin_bar_menu', function ($wp_admin_bar) {
     if (!is_admin() && is_product()) {
         $ids = (array) get_post_meta(get_the_ID(), '_shav_product_block_ids', true);
         $ids = array_filter($ids);
-        
+
         if (!empty($ids)) {
             $first_id = reset($ids);
             $edit_url = get_edit_post_link($first_id);
@@ -974,12 +973,12 @@ add_action('admin_bar_menu', function ($wp_admin_bar) {
             $edit_url = admin_url('edit.php?post_type=wp_block');
             $title = '✏️ Dodaj opis blokowy';
         }
-        
+
         $wp_admin_bar->add_node([
-            'id'    => 'shav_edit_product_description',
+            'id' => 'shav_edit_product_description',
             'title' => $title,
-            'href'  => $edit_url,
-            'meta'  => [
+            'href' => $edit_url,
+            'meta' => [
                 'class' => 'shav-edit-desc-btn'
             ]
         ]);
@@ -1452,22 +1451,23 @@ function shav_enqueue_header_script()
 }
 add_action('wp_enqueue_scripts', 'shav_enqueue_header_script');
 
-if ( ! function_exists( 'shavwoman_support' ) ) :
-	function shavwoman_support() {
-		add_theme_support( 'wp-block-styles' );
-		add_editor_style( 'style.css' );
-	}
+if (!function_exists('shavwoman_support')):
+    function shavwoman_support()
+    {
+        add_theme_support('wp-block-styles');
+        add_editor_style('style.css');
+    }
 endif;
-add_action( 'after_setup_theme', 'shavwoman_support' );
+add_action('after_setup_theme', 'shavwoman_support');
 
 // Force translations and link overrides for Single Post
-add_filter('previous_post_link', function($output) {
+add_filter('previous_post_link', function ($output) {
     return str_replace(['Poprzedni wpis:', 'Poprzedni:', 'Previous:', 'Poprzedni wpis', 'Poprzedni', 'Previous'], 'Vorheriger Beitrag:', $output);
 });
-add_filter('next_post_link', function($output) {
+add_filter('next_post_link', function ($output) {
     return str_replace(['Następny wpis:', 'Następny:', 'Next:', 'Następny wpis', 'Następny', 'Next'], 'Nächster Beitrag:', $output);
 });
-add_filter('render_block', function($block_content, $block) {
+add_filter('render_block', function ($block_content, $block) {
     // Override back button link
     if (strpos($block_content, 'blog-hero-back-btn') !== false) {
         $block_content = str_replace('href="/unser-blog/"', 'href="/blog"', $block_content);
@@ -1634,7 +1634,7 @@ add_action('woocommerce_product_options_advanced', function () {
     echo '<div class="options_group shav-woosg-images-group">';
     echo '<p style="padding: 10px 20px 0 20px; margin: 0;"><strong>Zdjęcie zestawu per wariant</strong><br>';
     echo '<span class="description" style="display:inline-block; margin-top:4px;">Wybierz zdjęcie całego zestawu pokazywanego w galerii po wyborze wariantu.</span></p>';
-    
+
     $placeholder = wc_placeholder_img_src();
     foreach ($keys as $meta_key => $info) {
         $image_id = get_post_meta($post->ID, $meta_key, true);
@@ -1649,10 +1649,13 @@ add_action('woocommerce_product_options_advanced', function () {
             <label for="<?php echo esc_attr($meta_key); ?>"><?php echo esc_html($info['label']); ?></label>
             <span class="shav-image-upload-wrapper" style="display:inline-block;">
                 <a href="#" class="shav-upload-image-button" data-target="<?php echo esc_attr($meta_key); ?>">
-                    <img src="<?php echo esc_url($image_url ? $image_url : $placeholder); ?>" style="width:60px;height:60px;object-fit:cover;border:1px solid #ddd;border-radius:4px;display:block;" />
+                    <img src="<?php echo esc_url($image_url ? $image_url : $placeholder); ?>"
+                        style="width:60px;height:60px;object-fit:cover;border:1px solid #ddd;border-radius:4px;display:block;" />
                 </a>
-                <input type="hidden" name="<?php echo esc_attr($meta_key); ?>" id="<?php echo esc_attr($meta_key); ?>" value="<?php echo esc_attr($image_id); ?>" />
-                <a href="#" class="shav-remove-image-button" style="display:block;text-align:center;color:#a00;font-size:12px;margin-top:4px;">Usuń</a>
+                <input type="hidden" name="<?php echo esc_attr($meta_key); ?>" id="<?php echo esc_attr($meta_key); ?>"
+                    value="<?php echo esc_attr($image_id); ?>" />
+                <a href="#" class="shav-remove-image-button"
+                    style="display:block;text-align:center;color:#a00;font-size:12px;margin-top:4px;">Usuń</a>
             </span>
         </p>
         <?php
@@ -1661,46 +1664,46 @@ add_action('woocommerce_product_options_advanced', function () {
 
     ?>
     <script type="text/javascript">
-    jQuery(document).ready(function($){
-        var mediaFrame;
-        $('.shav-woosg-images-group').on('click', '.shav-upload-image-button', function(e){
-            e.preventDefault();
-            var $btn = $(this);
-            var targetId = $btn.data('target');
-            
-            if ( mediaFrame ) {
+        jQuery(document).ready(function ($) {
+            var mediaFrame;
+            $('.shav-woosg-images-group').on('click', '.shav-upload-image-button', function (e) {
+                e.preventDefault();
+                var $btn = $(this);
+                var targetId = $btn.data('target');
+
+                if (mediaFrame) {
+                    mediaFrame.targetBtn = $btn;
+                    mediaFrame.targetId = targetId;
+                    mediaFrame.open();
+                    return;
+                }
+
+                mediaFrame = wp.media({
+                    title: 'Wybierz zdjęcie zestawu',
+                    button: { text: 'Użyj tego zdjęcia' },
+                    multiple: false
+                });
+
                 mediaFrame.targetBtn = $btn;
                 mediaFrame.targetId = targetId;
+
+                mediaFrame.on('select', function () {
+                    var attachment = mediaFrame.state().get('selection').first().toJSON();
+                    $('#' + mediaFrame.targetId).val(attachment.id);
+                    var url = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
+                    mediaFrame.targetBtn.find('img').attr('src', url);
+                });
+
                 mediaFrame.open();
-                return;
-            }
-            
-            mediaFrame = wp.media({
-                title: 'Wybierz zdjęcie zestawu',
-                button: { text: 'Użyj tego zdjęcia' },
-                multiple: false
             });
-            
-            mediaFrame.targetBtn = $btn;
-            mediaFrame.targetId = targetId;
-            
-            mediaFrame.on('select', function() {
-                var attachment = mediaFrame.state().get('selection').first().toJSON();
-                $('#' + mediaFrame.targetId).val(attachment.id);
-                var url = attachment.sizes && attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url;
-                mediaFrame.targetBtn.find('img').attr('src', url);
+
+            $('.shav-woosg-images-group').on('click', '.shav-remove-image-button', function (e) {
+                e.preventDefault();
+                var $wrapper = $(this).closest('.shav-image-upload-wrapper');
+                $wrapper.find('input[type="hidden"]').val('');
+                $wrapper.find('img').attr('src', '<?php echo esc_url($placeholder); ?>');
             });
-            
-            mediaFrame.open();
         });
-        
-        $('.shav-woosg-images-group').on('click', '.shav-remove-image-button', function(e){
-            e.preventDefault();
-            var $wrapper = $(this).closest('.shav-image-upload-wrapper');
-            $wrapper.find('input[type="hidden"]').val('');
-            $wrapper.find('img').attr('src', '<?php echo esc_url($placeholder); ?>');
-        });
-    });
     </script>
     <?php
 });
@@ -3256,11 +3259,11 @@ function woo_custom_remove_product_tabs($tabs)
     if (isset($tabs['reviews'])) {
         unset($tabs['reviews']);
     }
-    
+
     if (isset($tabs['additional_information'])) {
         unset($tabs['additional_information']);
     }
-    
+
     if (isset($tabs['description'])) {
         unset($tabs['description']);
     }
@@ -3321,17 +3324,21 @@ function custom_review_summary()
     <div class="review-summary">
         <div class="average-rating">
             <div class="rating-number-container">
-                <span class="rating-number"><?php echo esc_html(number_format($average, 1, ',', '')); ?></span><span class="rating-total">/5,0</span>
+                <span class="rating-number"><?php echo esc_html(number_format($average, 1, ',', '')); ?></span><span
+                    class="rating-total">/5,0</span>
             </div>
             <div class="rating-count">
                 <?php printf(__('%d Kundenbewertungen', 'woocommerce'), esc_html($review_count)); ?>
             </div>
             <div class="rating-verified">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
                 Verifizierte Käufe
             </div>
         </div>
-        
+
         <div class="rating-breakdown">
             <?php
             // Reverse the order of the $ratings array
@@ -3341,7 +3348,8 @@ function custom_review_summary()
             <?php foreach ($ratings as $stars => $count): ?>
                 <div class="rating-bar">
                     <span class="bar-star-num"><?php echo esc_html($stars); ?></span>
-                    <div class="star-rating" role="img" aria-label="<?php printf(__('Rated %d out of 5', 'woocommerce'), $stars); ?>">
+                    <div class="star-rating" role="img"
+                        aria-label="<?php printf(__('Rated %d out of 5', 'woocommerce'), $stars); ?>">
                         <span style="width:<?php echo esc_attr(($stars / 5) * 100); ?>%"></span>
                     </div>
                     <div class="bar">
@@ -3705,34 +3713,34 @@ function shav_render_back_to_top_button()
         </svg>
     </button>
     <script>
-            (function () {
-                const btn = document.querySelector('.back-to-top');
-                if (!btn) return;
-                btn.hidden = false;
+        (function () {
+            const btn = document.querySelector('.back-to-top');
+            if (!btn) return;
+            btn.hidden = false;
 
-                const threshold = Math.max(400, window.innerHeight * 0.4);
+            const threshold = Math.max(400, window.innerHeight * 0.4);
 
-                function onScroll() {
-                    if (window.scrollY > threshold) {
-                        btn.classList.add('back-to-top--visible');
-                    } else {
-                        btn.classList.remove('back-to-top--visible');
-                    }
+            function onScroll() {
+                if (window.scrollY > threshold) {
+                    btn.classList.add('back-to-top--visible');
+                } else {
+                    btn.classList.remove('back-to-top--visible');
                 }
+            }
 
-                window.addEventListener('scroll', onScroll, { passive: true });
-                onScroll();
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
 
-                btn.addEventListener('click', () => {
-                    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
-                        window.lenis.scrollTo(0, { duration: 1.5 });
-                    } else {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                });
-            })();
-        </script>
-        <?php
+            btn.addEventListener('click', () => {
+                if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+                    window.lenis.scrollTo(0, { duration: 1.5 });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        })();
+    </script>
+    <?php
 }
 add_action('wp_footer', 'shav_render_back_to_top_button');
 
@@ -3789,9 +3797,10 @@ add_action('wp_enqueue_scripts', 'disable_wc_cart_fragments', 11);
 function disable_wc_cart_fragments()
 {
     wp_dequeue_script('wc-cart-fragments');
-}require get_template_directory() . '/inc/licznik-bloga.php';
+}
+require get_template_directory() . '/inc/licznik-bloga.php';
 require get_template_directory() . '/inc/category-image.php';
 
 // Wymuszenie wyświetlania adresu dostawy w mailach WooCommerce (dla paczkomatów na rynku DE)
-add_filter( 'woocommerce_order_needs_shipping_address', '__return_true', 999 );
+add_filter('woocommerce_order_needs_shipping_address', '__return_true', 999);
 require_once get_theme_file_path('/inc/shav-reviews.php');
