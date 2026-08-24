@@ -300,6 +300,24 @@ function shav_faq_scripts() {
                 vLine.style.opacity = '1';
                 icon.style.transform = 'rotate(0deg)';
             } else {
+                // Zwiń pozostałe zakładki w tej samej sekcji FAQ
+                const container = header.closest('.shav-product-faq');
+                if (container) {
+                    const allHeaders = container.querySelectorAll('.shav-faq-header');
+                    allHeaders.forEach(otherHeader => {
+                        if (otherHeader !== header) {
+                            const otherContent = otherHeader.nextElementSibling;
+                            const otherIcon = otherHeader.querySelector('.shav-faq-icon');
+                            if (otherContent && otherIcon) {
+                                const otherVLine = otherIcon.querySelector('.v-line');
+                                otherContent.style.display = 'none';
+                                otherVLine.style.opacity = '1';
+                                otherIcon.style.transform = 'rotate(0deg)';
+                            }
+                        }
+                    });
+                }
+
                 content.style.display = 'block';
                 vLine.style.opacity = '0';
                 icon.style.transform = 'rotate(180deg)';
