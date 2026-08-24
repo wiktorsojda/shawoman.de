@@ -8,12 +8,13 @@ if (!isset($attributes)) {
     $attributes = [];
 }
 $slides = $attributes['slides'] ?? [];
+$original_count = count($slides);
 if (empty($slides)) {
     return;
 }
 
 // Ensure enough slides for a seamless infinite loop (Swiper needs more slides for 'auto' width)
-if (count($slides) > 0 && count($slides) < 6) {
+if ($original_count > 0 && $original_count < 6) {
     $original_slides = $slides;
     while(count($slides) < 6) {
         $slides = array_merge($slides, $original_slides);
@@ -89,6 +90,25 @@ if (count($slides) > 0 && count($slides) < 6) {
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             if (typeof Swiper !== 'undefined') {
+                const originalCount = <?php echo $original_count; ?>;
+                
+                function fixPagination(swiper) {
+                    if (!swiper.pagination || !swiper.pagination.bullets) return;
+                    const bullets = Array.from(swiper.pagination.bullets);
+                    const targetIndex = swiper.realIndex % originalCount;
+                    
+                    bullets.forEach((b, i) => {
+                        if (i >= originalCount) {
+                            b.style.display = 'none';
+                        }
+                        b.classList.remove('swiper-pagination-bullet-active');
+                    });
+                    
+                    if (bullets[targetIndex]) {
+                        bullets[targetIndex].classList.add('swiper-pagination-bullet-active');
+                    }
+                }
+
                 // Inicjalizacja slidera dla widoku desktop
                 const blendygoDesktopSlider = new Swiper('.blendygo-gallery-slider-desktop', {
                     effect: 'slide',
@@ -105,7 +125,6 @@ if (count($slides) > 0 && count($slides) < 6) {
                         delay: 3000,
                         pauseOnMouseEnter: false,
                         disableOnInteraction: false,
-                        reverseDirection: true,
                     },
                     spaceBetween: 25,
                     speed: 700,
@@ -116,6 +135,11 @@ if (count($slides) > 0 && count($slides) < 6) {
                     breakpoints: {
                         1000: {
                             spaceBetween: 30,
+                        }
+                    },
+                    on: {
+                        paginationUpdate: function (swiper) {
+                            fixPagination(swiper);
                         }
                     }
                 });
@@ -136,7 +160,6 @@ if (count($slides) > 0 && count($slides) < 6) {
                         delay: 3000,
                         pauseOnMouseEnter: false,
                         disableOnInteraction: false,
-                        reverseDirection: true,
                     },
                     spaceBetween: 15,
                     speed: 700,
@@ -144,6 +167,11 @@ if (count($slides) > 0 && count($slides) < 6) {
                         el: '.blendygo-gallery-slider-mobile .swiper-pagination',
                         clickable: true,
                     },
+                    on: {
+                        paginationUpdate: function (swiper) {
+                            fixPagination(swiper);
+                        }
+                    }
                 });
             }
         });
