@@ -1,6 +1,6 @@
 <?php
 // 1. Sekcja wyboru i modal mapy na frontendzie CheckoutWC
-add_action('cfw_checkout_after_shipping_address', function () {
+add_action('cfw_after_delivery_method', function () {
     $dhl_logo = 'http://shav.de/wp-content/uploads/automaty_poziomo_15042026.png';
     ?>
     <div id="dhl-packstation-section"
