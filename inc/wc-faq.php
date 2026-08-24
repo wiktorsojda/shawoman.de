@@ -261,7 +261,7 @@ function display_product_faq() {
         $answer = do_shortcode($answer);
         
         echo '<div class="shav-faq-item" style="background: #F2F2F2; border-radius: 8px; margin-bottom: 10px; overflow: hidden;">';
-            echo '<div class="shav-faq-header" onclick="shavToggleFaq(this)" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 15px 20px;">';
+            echo '<div class="shav-faq-header" onclick="shavToggleFaq(this)" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 32px 24px;">';
                 echo '<span class="shav-faq-question" style="font-size: 15px; font-weight: 500; color: #3F3F3F;">' . $question . '</span>';
                 // Ikona SVG plusa
                 echo '<svg class="shav-faq-icon shav-faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" style="transition: transform 0.3s ease; flex-shrink: 0; margin-left: 10px;">';
@@ -269,7 +269,7 @@ function display_product_faq() {
                     echo '<path class="v-line" d="M10 4v12" stroke="#3F3F3F" stroke-width="2" stroke-linecap="round"/>';
                 echo '</svg>';
             echo '</div>';
-            echo '<div class="shav-faq-content" style="display: none; padding: 0 20px 20px 20px; font-size: 14px; color: #555; line-height: 1.5;">';
+            echo '<div class="shav-faq-content" style="display: none; padding: 0 24px 32px 24px; font-size: 14px; color: #555; line-height: 1.5;">';
                 echo $answer;
                 if (!empty($item['image'])) {
                     echo '<img src="' . esc_url($item['image']) . '" alt="FAQ Image" style="max-width: 100%; height: auto; border-radius: 8px; margin-top: 15px; display: block;">';
