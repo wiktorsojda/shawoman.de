@@ -3651,7 +3651,7 @@ function display_product_accordion()
         return;
     }
 
-    echo '<div class="shav-svg-features" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin: 20px 0; border: 1px solid #EAEAEA; border-radius: 8px; padding: 15px;">';
+    echo '<div class="shav-svg-features" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin: 20px 0;">';
 
     foreach ($features as $feature) {
         $title = $feature['title'];
@@ -3669,7 +3669,7 @@ function display_product_accordion()
                 echo '<a href="' . esc_url($link) . '" style="display: flex; flex-direction: column; align-items: center; text-decoration: none;">';
             }
 
-            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; background: #F2F2F2; border-radius: 8px; color: #3F3F3F; overflow: hidden;">';
+            echo '<span class="shav-svg-feature-icon" style="margin-bottom: 8px; display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; color: #3F3F3F;">';
             if ($icon_type === 'image' && !empty($image)) {
                 echo '<img src="' . esc_url($image) . '" alt="' . esc_attr($title) . '" style="max-width: 40px; max-height: 40px; object-fit: contain;">';
             } else {
