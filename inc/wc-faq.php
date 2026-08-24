@@ -22,6 +22,48 @@ function shav_faq_product_data_tab($tabs) {
     return $tabs;
 }
 
+// =============================================================================
+// 1.5. ZARZĄDZANIE WZORCAMI FAQ (AJAX)
+// =============================================================================
+
+add_action('wp_ajax_shav_save_faq_preset', 'shav_save_faq_preset');
+function shav_save_faq_preset() {
+    check_ajax_referer('shav_faq_preset_nonce', 'nonce');
+    if (!current_user_can('edit_products')) wp_send_json_error('Brak uprawnień');
+
+    $preset_name = sanitize_text_field($_POST['preset_name']);
+    $preset_data = sanitize_text_field($_POST['preset_data']); // zakodowany JSON (base64)
+    
+    if (empty($preset_name) || empty($preset_data)) wp_send_json_error('Puste dane');
+
+    $presets = get_option('shav_faq_presets', []);
+    if (!is_array($presets)) $presets = [];
+
+    // Dodaj lub nadpisz wzorzec
+    $presets[$preset_name] = $preset_data;
+    
+    update_option('shav_faq_presets', $presets);
+    wp_send_json_success(['presets' => $presets]);
+}
+
+add_action('wp_ajax_shav_delete_faq_preset', 'shav_delete_faq_preset');
+function shav_delete_faq_preset() {
+    check_ajax_referer('shav_faq_preset_nonce', 'nonce');
+    if (!current_user_can('edit_products')) wp_send_json_error('Brak uprawnień');
+
+    $preset_name = sanitize_text_field($_POST['preset_name']);
+    
+    $presets = get_option('shav_faq_presets', []);
+    if (!is_array($presets)) $presets = [];
+
+    if (isset($presets[$preset_name])) {
+        unset($presets[$preset_name]);
+        update_option('shav_faq_presets', $presets);
+    }
+    
+    wp_send_json_success(['presets' => $presets]);
+}
+
 // Renderowanie zawartości panelu
 add_action('woocommerce_product_data_panels', 'shav_faq_product_data_panel');
 function shav_faq_product_data_panel() {
@@ -33,6 +75,9 @@ function shav_faq_product_data_panel() {
         $faq_json = '[]';
     }
     
+    $presets = get_option('shav_faq_presets', []);
+    if (!is_array($presets)) $presets = [];
+
     // Bezpieczne wstrzyknięcie JSON-a do JS
     ?>
     <div id="shav_faq_product_data" class="panel woocommerce_options_panel hidden">
@@ -41,6 +86,25 @@ function shav_faq_product_data_panel() {
                 <strong>Dynamiczne FAQ dla produktu</strong><br>
                 Dodawaj pytania i odpowiedzi. Wyświetlą się na karcie produktu w formie zwijanego akordeonu.
             </p>
+            
+            <div id="shav-faq-presets-container" style="background: #eef; padding: 15px; border-radius: 4px; border: 1px solid #ccd; margin: 10px 12px 20px;">
+                <h4 style="margin-top: 0;">Wzorce FAQ</h4>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px; align-items: center;">
+                    <select id="shav_faq_preset_select" style="min-width: 200px;">
+                        <option value="">-- Wybierz wzorzec --</option>
+                        <?php foreach ($presets as $name => $data): ?>
+                            <option value="<?php echo esc_attr($name); ?>" data-json="<?php echo esc_attr($data); ?>"><?php echo esc_html($name); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <button type="button" class="button" id="shav_faq_load_preset">Wczytaj wzorzec</button>
+                    <button type="button" class="button" id="shav_faq_delete_preset" style="color: red; border-color: red;">Usuń wzorzec</button>
+                </div>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="shav_faq_preset_name" placeholder="Nazwa nowego wzorca" style="min-width: 200px;">
+                    <button type="button" class="button" id="shav_faq_save_preset">Zapisz jako wzorzec</button>
+                </div>
+                <span class="spinner" id="shav_faq_preset_spinner" style="float: none; margin: 0 10px;"></span>
+            </div>
             
             <div id="shav-faq-repeater-container" style="padding: 0 12px 10px;">
                 <div id="shav-faq-rows" style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px;">
@@ -195,6 +259,109 @@ function shav_faq_product_data_panel() {
                 $('#post').on('submit', function() {
                     syncData();
                 });
+                
+                // Wzorce FAQ
+                const presetSelect = document.getElementById('shav_faq_preset_select');
+                const loadPresetBtn = document.getElementById('shav_faq_load_preset');
+                const savePresetBtn = document.getElementById('shav_faq_save_preset');
+                const deletePresetBtn = document.getElementById('shav_faq_delete_preset');
+                const presetNameInput = document.getElementById('shav_faq_preset_name');
+                const spinner = document.getElementById('shav_faq_preset_spinner');
+                
+                const ajaxUrl = '<?php echo admin_url("admin-ajax.php"); ?>';
+                const presetNonce = '<?php echo wp_create_nonce("shav_faq_preset_nonce"); ?>';
+
+                loadPresetBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selected = presetSelect.options[presetSelect.selectedIndex];
+                    if (!selected.value) return alert('Wybierz wzorzec z listy.');
+                    
+                    if (confirm('Wczytanie wzorca nadpisze obecne pytania. Ewentualne kolejne pytania będziesz mógł dopisać po jego wczytaniu. Kontynuować?')) {
+                        const rawVal = selected.getAttribute('data-json');
+                        try {
+                            if (rawVal.startsWith('[')) {
+                                faqData = JSON.parse(rawVal);
+                            } else {
+                                faqData = JSON.parse(decodeURIComponent(escape(atob(rawVal)))) || [];
+                            }
+                            renderRows();
+                            syncData();
+                            alert('Wzorzec pomyślnie wczytany.');
+                        } catch(err) {
+                            alert('Błąd wczytywania wzorca.');
+                            console.error(err);
+                        }
+                    }
+                });
+
+                savePresetBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const name = presetNameInput.value.trim();
+                    if (!name) return alert('Podaj nazwę wzorca.');
+                    
+                    syncData();
+                    const dataToSave = hiddenInput.value;
+                    if (!dataToSave || dataToSave === 'W10=' || faqData.length === 0) return alert('Brak danych do zapisania (FAQ jest puste).');
+                    
+                    spinner.classList.add('is-active');
+                    $.post(ajaxUrl, {
+                        action: 'shav_save_faq_preset',
+                        nonce: presetNonce,
+                        preset_name: name,
+                        preset_data: dataToSave
+                    }, function(res) {
+                        spinner.classList.remove('is-active');
+                        if (res.success) {
+                            alert('Wzorzec zapisany!');
+                            updatePresetSelect(res.data.presets);
+                            presetNameInput.value = '';
+                            // Auto-wybierz świeżo zapisany
+                            presetSelect.value = name;
+                        } else {
+                            alert('Błąd: ' + res.data);
+                        }
+                    }).fail(function() {
+                        spinner.classList.remove('is-active');
+                        alert('Błąd połączenia z serwerem.');
+                    });
+                });
+
+                deletePresetBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const name = presetSelect.value;
+                    if (!name) return alert('Wybierz wzorzec do usunięcia.');
+                    
+                    if (confirm('Czy na pewno usunąć wzorzec: ' + name + '?')) {
+                        spinner.classList.add('is-active');
+                        $.post(ajaxUrl, {
+                            action: 'shav_delete_faq_preset',
+                            nonce: presetNonce,
+                            preset_name: name
+                        }, function(res) {
+                            spinner.classList.remove('is-active');
+                            if (res.success) {
+                                alert('Wzorzec usunięty.');
+                                updatePresetSelect(res.data.presets);
+                            } else {
+                                alert('Błąd: ' + res.data);
+                            }
+                        }).fail(function() {
+                            spinner.classList.remove('is-active');
+                            alert('Błąd połączenia z serwerem.');
+                        });
+                    }
+                });
+                
+                function updatePresetSelect(presetsObj) {
+                    presetSelect.innerHTML = '<option value="">-- Wybierz wzorzec --</option>';
+                    for (const [key, val] of Object.entries(presetsObj)) {
+                        const opt = document.createElement('option');
+                        opt.value = key;
+                        opt.textContent = key;
+                        opt.setAttribute('data-json', val);
+                        presetSelect.appendChild(opt);
+                    }
+                }
                 
                 // Initial render
                 renderRows();
