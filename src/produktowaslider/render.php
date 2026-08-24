@@ -88,7 +88,9 @@ if (empty($slides)) {
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     loop: true,
-                    initialSlide: 1,
+                    loopAdditionalSlides: 5,
+                    loopedSlides: 5,
+                    initialSlide: 0,
                     observer: true,
                     observeParents: true,
                     autoplay: {
@@ -117,7 +119,9 @@ if (empty($slides)) {
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     loop: true,
-                    initialSlide: 1,
+                    loopAdditionalSlides: 5,
+                    loopedSlides: 5,
+                    initialSlide: 0,
                     observer: true,
                     observeParents: true,
                     autoplay: {
