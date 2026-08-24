@@ -1,7 +1,7 @@
 <?php
 $title           = isset($attributes['title'])           ? $attributes['title']           : 'Dołącz do społeczności +100 tysięcy zadowolonych klientów';
-$videoURL        = isset($attributes['videoURL'])        ? $attributes['videoURL']        : '';
-$backgroundImage = isset($attributes['backgroundImage']) ? $attributes['backgroundImage'] : '';
+$videoURL        = isset($attributes['videoURL'])        ? str_replace('http://', 'https://', $attributes['videoURL'])        : '';
+$backgroundImage = isset($attributes['backgroundImage']) ? str_replace('http://', 'https://', $attributes['backgroundImage']) : '';
 $overlayColor    = isset($attributes['overlayColor'])    ? $attributes['overlayColor']    : '#00000057';
 
 $wrapper_style_parts = [];
