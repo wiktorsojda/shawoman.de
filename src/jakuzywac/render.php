@@ -18,15 +18,22 @@ $steps = !empty($a['steps']) && is_array($a['steps']) ? $a['steps'] : [];
       <?php foreach ($steps as $index => $step) : ?>
         <figure class="jakuzywac__step">
           <div class="jakuzywac__image-wrapper">
-            <?php if (!empty($step['image'])) : ?>
-              <img src="<?php echo esc_url($step['image']); ?>" alt="<?php echo esc_attr(strip_tags($step['label'])); ?>" class="jakuzywac__image" />
+            <?php if (!empty($step['image']) || !empty($step['imageMobile'])) : ?>
+              <picture>
+                <?php if (!empty($step['imageMobile'])) : ?>
+                  <source media="(max-width: 767px)" srcset="<?php echo esc_url($step['imageMobile']); ?>" />
+                <?php endif; ?>
+                <?php if (!empty($step['image'])) : ?>
+                  <source media="(min-width: 768px)" srcset="<?php echo esc_url($step['image']); ?>" />
+                  <img src="<?php echo esc_url($step['image']); ?>" alt="Krok <?php echo $index + 1; ?>" class="jakuzywac__image" />
+                <?php elseif (!empty($step['imageMobile'])) : ?>
+                  <img src="<?php echo esc_url($step['imageMobile']); ?>" alt="Krok <?php echo $index + 1; ?>" class="jakuzywac__image" />
+                <?php endif; ?>
+              </picture>
             <?php else : ?>
               <div class="jakuzywac__image-placeholder"></div>
             <?php endif; ?>
           </div>
-          <figcaption class="jakuzywac__caption">
-            <span class="jakuzywac__label"><?php echo wp_kses_post($step['label']); ?></span>
-          </figcaption>
         </figure>
       <?php endforeach; ?>
     </div>

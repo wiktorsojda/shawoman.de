@@ -17,7 +17,6 @@ export default function Edit({ attributes, setAttributes }) {
     const data = {
       title,
       description,
-      steps: steps.map((s) => ({ label: s.label })),
     };
     return JSON.stringify(data, null, 2);
   };
@@ -29,13 +28,6 @@ export default function Edit({ attributes, setAttributes }) {
         const updates = {};
         if (data.title !== undefined) updates.title = data.title;
         if (data.description !== undefined) updates.description = data.description;
-        if (data.steps && Array.isArray(data.steps) && data.steps.length === steps.length) {
-          const newSteps = [...steps];
-          data.steps.forEach((s, i) => {
-            if (s.label !== undefined) newSteps[i].label = s.label;
-          });
-          updates.steps = newSteps;
-        }
         setAttributes(updates);
         alert('Tłumaczenia zostały zaimportowane pomyślnie.');
         setJsonInput('');
@@ -90,7 +82,7 @@ export default function Edit({ attributes, setAttributes }) {
         <div className="jakuzywac__gallery">
           {(steps || []).map((step, index) => (
             <figure key={index} className="jakuzywac__step">
-              <div className="jakuzywac__image-wrapper">
+              <div className="jakuzywac__image-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <MediaUploadCheck>
                   <MediaUpload
                     onSelect={(media) => updateStep(index, 'image', media.url)}
@@ -105,26 +97,42 @@ export default function Edit({ attributes, setAttributes }) {
                         {step.image ? (
                           <img
                             src={step.image}
-                            alt={`Krok ${index + 1}`}
+                            alt={`Krok Desktop ${index + 1}`}
                             style={{ width: '100%', height: 'auto', display: 'block' }}
                           />
                         ) : (
-                          `Wybierz zdjęcie ${index + 1}`
+                          `Wybierz zdjęcie Desktop ${index + 1}`
+                        )}
+                      </Button>
+                    )}
+                  />
+                </MediaUploadCheck>
+                
+                <MediaUploadCheck>
+                  <MediaUpload
+                    onSelect={(media) => updateStep(index, 'imageMobile', media.url)}
+                    allowedTypes={['image']}
+                    value={step.imageMobile}
+                    render={({ open }) => (
+                      <Button
+                        onClick={open}
+                        className={step.imageMobile ? 'image-button' : 'button button-large'}
+                        style={step.imageMobile ? { padding: 0, border: 'none', background: 'transparent' } : {}}
+                      >
+                        {step.imageMobile ? (
+                          <img
+                            src={step.imageMobile}
+                            alt={`Krok Mobile ${index + 1}`}
+                            style={{ width: '50%', height: 'auto', display: 'block', margin: '0 auto' }}
+                          />
+                        ) : (
+                          `Wybierz zdjęcie Mobile ${index + 1}`
                         )}
                       </Button>
                     )}
                   />
                 </MediaUploadCheck>
               </div>
-              <figcaption className="jakuzywac__caption">
-                <RichText
-                  tagName="div"
-                  className="jakuzywac__label"
-                  value={step.label}
-                  onChange={(val) => updateStep(index, 'label', val)}
-                  placeholder="Wpisz etykietę na dole zdjęcia..."
-                />
-              </figcaption>
             </figure>
           ))}
         </div>
