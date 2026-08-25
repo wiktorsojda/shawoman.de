@@ -1,0 +1,161 @@
+@import "../base/tokens";
+
+.porownanieprodukty {
+  background-color: $color-neutral-100;
+  padding: clamp(60px, 8vw, 120px) 20px;
+  display: flex;
+  justify-content: center;
+
+  @media (min-width: $breakpoint-tablet) {
+    padding: 120px clamp(20px, 10vw, 150px);
+  }
+
+  &__inner {
+    background-color: $color-neutral-50;
+    width: 100%;
+    max-width: 1428px;
+    border-radius: 40px;
+    padding: 32px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    @media (min-width: $breakpoint-tablet) {
+      border-radius: 82px;
+      padding: 64px;
+      gap: 64px;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+
+  &__product {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__image {
+    max-width: 120px;
+    height: auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      max-width: 200px;
+    }
+  }
+
+  &__title {
+    @include type-h4;
+    color: $color-neutral-900;
+  }
+
+  &__vs {
+    @include type-h2;
+    color: $color-neutral-900;
+    padding: 0 10px;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0 40px;
+      @include type-h1;
+    }
+  }
+
+  &__features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: $color-white;
+    border-radius: $radius-m;
+    padding: 16px;
+    gap: 16px;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 0; // The cards will have their own padding
+      background-color: transparent;
+      gap: 32px;
+      align-items: center;
+    }
+  }
+
+  &__feature {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @media (min-width: $breakpoint-tablet) {
+      background-color: $color-white;
+      padding: 24px;
+      border-radius: $radius-s;
+      min-height: 80px;
+    }
+
+    &--left {
+      // Shav Woman side
+    }
+
+    &--right {
+      // Competitor side
+    }
+  }
+
+  &__label {
+    display: none; // Hidden on mobile
+
+    @media (min-width: $breakpoint-tablet) {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      @include type-body-l;
+      font-weight: $font-weight-medium;
+      color: $color-neutral-800;
+      background-color: $color-neutral-400; // grey pill
+      padding: 24px;
+      border-radius: $radius-s;
+      min-height: 80px;
+      max-width: 320px;
+      color: $color-white;
+    }
+  }
+
+  &__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      display: none; // Hidden on desktop (unless needed, but the design didn't show them on desktop, wait design does not show them? I will leave them hidden on desktop just in case, but let's check the screenshot)
+    }
+
+    &--green {
+      background-color: #2e8b57;
+    }
+
+    &--red {
+      background-color: $color-red-500;
+    }
+  }
+
+  &__text {
+    @include type-body-m;
+    color: $color-neutral-700;
+  }
+}
+
+// Adjust dots on desktop if they are visible in design. The first design shows grey pill in the middle, and no dots. The mobile design shows dots. So hiding on desktop is correct.

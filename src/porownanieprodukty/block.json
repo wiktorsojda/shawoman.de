@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/porownanieprodukty",
+  "title": "Porównanie produktów",
+  "category": "design",
+  "icon": "columns",
+  "attributes": {
+    "leftImage":    { "type": "string", "default": "" },
+    "leftTitle":    { "type": "string", "default": "Shav Woman" },
+    "rightImage":   { "type": "string", "default": "" },
+    "rightTitle":   { "type": "string", "default": "Jednorazówka" },
+    "features": {
+      "type": "array",
+      "default": [
+        { "left": "Foliowe ostrza ograniczają bezpośredni kontakt ostrzy ze skórą.", "center": "Technologia CutFree", "right": "Odkryte ostrza przesuwają się bezpośrednio po skórze." },
+        { "left": "Możesz używać jej pod prysznicem albo bez wody i pianki.", "center": "Golenie na mokro i na sucho", "right": "Najczęściej wymaga wody oraz produktu do golenia." },
+        { "left": "Możesz sięgnąć po nią od razu, nawet gdy nie masz dostępu do prysznica.", "center": "Szybkie golenie bez przygotowania", "right": "Wymaga zwilżenia skóry i odpowiedniego przygotowania." },
+        { "left": "Dopasujesz sposób golenia do długości włosków i wybranego obszaru ciała.", "center": "2 wymienne głowice", "right": "Jedna głowica służy do każdego etapu golenia." },
+        { "left": "Jedno urządzenie może służyć przez długi czas.", "center": "Wielokrotne użytkowanie", "right": "Wymaga regularnej wymiany na kolejną." },
+        { "left": "Zamiast wyrzucać całą maszynkę po kilku użyciach, wymieniasz jedynie zużywające się elementy.", "center": "Mniej jednorazowych odpadów", "right": "Każda kolejna maszynka generuje następny plastikowy odpad." }
+      ]
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": { "html": false, "anchor": true, "align": ["wide", "full"] }
+}

@@ -1342,7 +1342,7 @@ function our_new_blocks()
     register_block_type_from_metadata(__DIR__ . '/build/textkariera');
     register_block_type_from_metadata(__DIR__ . '/build/karieraikony');
     register_block_type_from_metadata(__DIR__ . '/build/karieraoferty');
-
+    register_block_type_from_metadata(__DIR__ . '/build/porownanieprodukty');
 }
 
 add_action('init', 'our_new_blocks');
