@@ -250,12 +250,18 @@ body.has-mobile-menu-open {
       &:hover {
         opacity: 0.7;
       }
+      
+      &.header__nav-whatsapp-mobile {
+        @media (min-width: $breakpoint-tablet) {
+          display: none;
+        }
+      }
     }
   }
 
   &__whatsapp {
     position: relative;
-    display: inline-flex;
+    display: none; // Hidden on mobile, moved to nav menu
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
@@ -264,6 +270,7 @@ body.has-mobile-menu-open {
     margin-left: auto;
 
     @media (min-width: $breakpoint-tablet) {
+      display: inline-flex;
       margin-left: $header-nav-gap;
     }
 
