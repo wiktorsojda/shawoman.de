@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/eksperci",
+  "version": "0.1.0",
+  "title": "Eksperci (Zespół)",
+  "category": "shav",
+  "icon": "groups",
+  "description": "Sekcja z ekspertami Shav Woman",
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Kilka słów od naszego zespołu"
+    },
+    "experts": {
+      "type": "array",
+      "default": [
+        {
+          "image": "",
+          "name": "Ola",
+          "role": "Kierowniczka Relacji z Klientkami",
+          "desc1": "Pozostaje w stałym kontakcie z naszymi klientkami i dba o to, aby ich opinie miały realny wpływ na rozwój Shav Woman.",
+          "desc2": "\"Każdego dnia rozmawiamy z naszymi klientkami i słuchamy, co mówią o produkcie. Cieszy nas, że są z niego tak zadowolone, ale równie ważne są dla nas wszystkie sugestie, dzięki którym możemy stale go udoskonalać.\""
+        },
+        {
+          "image": "",
+          "name": "Kacper",
+          "role": "Lider Rozwoju Produktu",
+          "desc1": "Odpowiada za rozwój i dopracowywanie produktów Shav Woman - od pierwszych koncepcji, przez testy, aż po finalną wersję.",
+          "desc2": "\"Do każdego szczegółu podchodzimy bardzo serio. Testujemy, poprawiamy i szukamy najlepszych rozwiązań tak długo, aż mamy pewność, że produkt jest naprawdę wygodny, skuteczny i dopracowany.\""
+        }
+      ]
+    }
+  },
+  "textdomain": "shavwoman",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

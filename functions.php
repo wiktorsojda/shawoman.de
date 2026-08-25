@@ -1241,6 +1241,7 @@ function our_new_blocks()
     wp_localize_script('wp-editor', 'ourThemeData', array('themePath' => get_stylesheet_directory_uri()));
 
     // --- Bloki dropu / Rose Gold (reużywalne pod promocje) ---
+    register_block_type_from_metadata(__DIR__ . '/build/eksperci');
     register_block_type_from_metadata(__DIR__ . '/build/opinieproduktowe');
     register_block_type_from_metadata(__DIR__ . '/build/produktowaslider');
     register_block_type_from_metadata(__DIR__ . '/build/rosegoldhero');
