@@ -1,7 +1,7 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl, ToggleControl, SelectControl } from "@wordpress/components";
+import { PanelBody, Button, TextControl, ToggleControl, SelectControl, TextareaControl } from "@wordpress/components";
 import { useSelect } from "@wordpress/data";
 
 const NAV_NUMS = [1, 2, 3, 4];
@@ -34,6 +34,20 @@ export default function Edit({ attributes, setAttributes }) {
     return menu ? menu.name : "Wybierz menu w panelu bocznym";
   };
 
+  const aiJson = JSON.stringify({
+    logoAlt: a.logoAlt,
+    hamburgerLabel: a.hamburgerLabel
+  }, null, 2);
+
+  const handleAiJsonChange = (val) => {
+    try {
+      const parsed = JSON.parse(val);
+      setAttributes(parsed);
+    } catch (e) {
+      // ignore invalid json during typing
+    }
+  };
+
   return (
     <header {...blockProps}>
       <InspectorControls>
@@ -64,7 +78,7 @@ export default function Edit({ attributes, setAttributes }) {
             <div style={{ marginBottom: 16 }}>
               <TextControl label="URL WhatsApp" value={a.whatsappUrl} onChange={(v) => setAttributes({ whatsappUrl: v })} />
               <MediaUploadCheck>
-                <MediaUpload onSelect={(media) => setAttributes({ whatsappQrImage: media.url })} allowedTypes={["image"]} value={a.whatsappQrImage}
+                <MediaUpload onSelect={(media) => setAttributes({ whatsappQrImage: media.url })} allowedTypes={["image"]}
                   render={({ open }) => (<Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>{a.whatsappQrImage ? "Zmień QR code" : "Wybierz QR code"}</Button>)} />
               </MediaUploadCheck>
               {a.whatsappQrImage && <img src={a.whatsappQrImage} alt="QR" style={{width: '100px', marginTop: '10px', borderRadius: 4}} />}
@@ -74,6 +88,15 @@ export default function Edit({ attributes, setAttributes }) {
           <ToggleControl label="Pokaż ikonę koszyka" checked={a.showCart} onChange={(v) => setAttributes({ showCart: v })} />
           <TextControl label="URL koszyka" value={a.cartURL} onChange={(v) => setAttributes({ cartURL: v })} />
           <TextControl label="Aria-label dla Hamburgera" value={a.hamburgerLabel} onChange={(v) => setAttributes({ hamburgerLabel: v })} />
+        </PanelBody>
+
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl 
+            label="JSON z atrybutami (skopiuj i przetłumacz)" 
+            value={aiJson} 
+            onChange={handleAiJsonChange} 
+            rows={6}
+          />
         </PanelBody>
       </InspectorControls>
 
