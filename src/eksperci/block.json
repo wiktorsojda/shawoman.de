@@ -18,6 +18,7 @@
     },
     "experts": {
       "type": "array",
+      "items": { "type": "object" },
       "default": [
         {
           "image": "",

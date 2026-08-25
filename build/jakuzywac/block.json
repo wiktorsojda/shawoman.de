@@ -17,6 +17,9 @@
     },
     "steps": {
       "type": "array",
+      "items": {
+        "type": "object"
+      },
       "default": [
         {
           "image": "",
