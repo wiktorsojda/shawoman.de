@@ -316,6 +316,25 @@ body.has-mobile-menu-open {
         margin: 0 auto;
       }
 
+      .header__whatsapp-btn {
+        display: block;
+        margin-top: $space-12;
+        padding: $space-8 $space-12;
+        background-color: #F4E1D9;
+        color: $color-neutral-900;
+        border-radius: 8px;
+        font-family: $font-family-base;
+        font-weight: $font-weight-bold;
+        font-size: 13px;
+        text-align: center;
+        text-decoration: none;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+          opacity: 0.85;
+        }
+      }
+
       &::before {
         content: '';
         position: absolute;

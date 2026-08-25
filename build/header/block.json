@@ -36,6 +36,10 @@
       "type": "string",
       "default": ""
     },
+    "whatsappButtonText": {
+      "type": "string",
+      "default": "Napisz do nas"
+    },
     "cartURL": {
       "type": "string",
       "default": "/koszyk"

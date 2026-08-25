@@ -37,7 +37,8 @@ export default function Edit({ attributes, setAttributes }) {
   const aiJson = JSON.stringify({
     logoAlt: a.logoAlt,
     hamburgerLabel: a.hamburgerLabel,
-    whatsappQrText: a.whatsappQrText
+    whatsappQrText: a.whatsappQrText,
+    whatsappButtonText: a.whatsappButtonText
   }, null, 2);
 
   const handleAiJsonChange = (val) => {
@@ -79,14 +80,16 @@ export default function Edit({ attributes, setAttributes }) {
             <div style={{ marginBottom: 16 }}>
               <TextControl label="URL WhatsApp" value={a.whatsappUrl} onChange={(v) => setAttributes({ whatsappUrl: v })} />
               <TextControl label="Tekst nad QR kodem" value={a.whatsappQrText} onChange={(v) => setAttributes({ whatsappQrText: v })} />
+              <TextControl label="Tekst przycisku pod QR" value={a.whatsappButtonText} onChange={(v) => setAttributes({ whatsappButtonText: v })} />
               <MediaUploadCheck>
                 <MediaUpload onSelect={(media) => setAttributes({ whatsappQrImage: media.url })} allowedTypes={["image"]}
                   render={({ open }) => (<Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>{a.whatsappQrImage ? "Zmień QR code" : "Wybierz QR code"}</Button>)} />
               </MediaUploadCheck>
-              {(a.whatsappQrText || a.whatsappQrImage) && (
+              {(a.whatsappQrText || a.whatsappQrImage || a.whatsappButtonText) && (
                 <div style={{ marginTop: '10px', padding: '10px', border: '1px solid #ccc', borderRadius: '8px', width: 'fit-content' }}>
                   {a.whatsappQrText && <div style={{ fontSize: '13px', fontWeight: '600', marginBottom: '8px', textAlign: 'center', color: '#1a1a1a' }}>{a.whatsappQrText}</div>}
                   {a.whatsappQrImage && <img src={a.whatsappQrImage} alt="QR" style={{width: '100px', display: 'block', margin: '0 auto', borderRadius: 4}} />}
+                  {a.whatsappButtonText && <div style={{ marginTop: '8px', padding: '6px 12px', background: '#F4E1D9', color: '#1a1a1a', borderRadius: '8px', fontSize: '12px', fontWeight: '600', textAlign: 'center' }}>{a.whatsappButtonText}</div>}
                 </div>
               )}
             </div>
