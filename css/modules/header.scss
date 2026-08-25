@@ -253,7 +253,7 @@ body.has-mobile-menu-open {
       
       &.header__nav-whatsapp-mobile {
         @media (min-width: $breakpoint-tablet) {
-          display: none;
+          display: none !important;
         }
       }
     }
@@ -354,7 +354,7 @@ body.has-mobile-menu-open {
 
     @media (min-width: $breakpoint-tablet) {
       &:hover &-dropdown {
-        display: block;
+        display: block !important;
       }
     }
   }

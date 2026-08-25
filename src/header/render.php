@@ -81,12 +81,12 @@ $menu_items = $menuId ? wp_get_nav_menu_items($menuId) : false;
                     <?php echo $whatsapp_svg; ?>
                 </a>
                 <?php if ($whatsappQrImage || $whatsappQrText || $whatsappButtonText): ?>
-                    <div class="header__whatsapp-dropdown">
+                    <div class="header__whatsapp-dropdown" style="display: none;">
                         <?php if ($whatsappQrText): ?>
                             <span class="header__whatsapp-text"><?php echo wp_kses_post($whatsappQrText); ?></span>
                         <?php endif; ?>
                         <?php if ($whatsappQrImage): ?>
-                            <img src="<?php echo esc_url($whatsappQrImage); ?>" alt="WhatsApp QR Code">
+                            <img src="<?php echo esc_url($whatsappQrImage); ?>" alt="WhatsApp QR Code" style="max-width: 200px; width: 100%; height: auto;">
                         <?php endif; ?>
                         <?php if ($whatsappButtonText): ?>
                             <a class="header__whatsapp-btn" href="<?php echo esc_url($whatsappUrl); ?>" target="_blank">
