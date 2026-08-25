@@ -252,6 +252,16 @@ Zbudowano **6 generycznych bloków promocji/dropu** (reużywalne pod dowolną ko
 
 **Tokens kluczowe:**
 - Kolory: `$color-peach-{50..900}`, `$color-neutral-{50..900}`, `$color-info-{light,medium,dark}`, `$color-accent-*`, `$color-success-*`, `$color-warning-*`
+- Typografia z Figmy (Be Vietnam Pro, Letter spacing -4% dla wszystkich):
+  - **H1**: Desktop 64px, Mobile 44px (Line Height 120%)
+  - **H2**: Desktop 42px, Mobile 32px (Line Height 120%)
+  - **H3**: Desktop 32px, Mobile 28px (Line Height 120%)
+  - **H4**: Desktop 20px, Mobile 16px (Line Height 120%)
+  - **Subtitle L**: Desktop 16px, Mobile 14px (Line Height 120%)
+  - **Subtitle S**: Desktop 14px, Mobile 12px (Line Height 120%)
+  - **Body L**: Desktop 16px, Mobile 16px (Line Height 140%)
+  - **Body M**: Desktop 14px, Mobile 14px (Line Height 140%)
+  - **Body S**: Desktop 12px, Mobile 12px (Line Height 140%)
 - Fonty: `$font-family-base` (Be Vietnam Pro), `$font-family-accent` (Dolce — kursywa)
 - Wagi: `$font-weight-{light,regular,medium,semibold,bold,extrabold}`, `$font-weight-accent-{thin,regular,medium,bold,black}`
 - Rozmiary: `$font-size-{h1,h2,h3,h4,subtitle-l,subtitle-s,body-l,body-m,body-s}` + `-mob` warianty

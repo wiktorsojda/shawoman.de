@@ -43,16 +43,14 @@
   }
 
   &__image {
-    max-width: 120px;
-    height: auto;
-
-    @media (min-width: $breakpoint-tablet) {
-      max-width: 200px;
-    }
+    max-width: 155px;
+    height: 260px;
+    object-fit: contain;
   }
 
   &__title {
-    @include type-h4;
+    @include type-h2;
+    font-weight: $font-weight-medium;
     color: $color-neutral-900;
   }
 
