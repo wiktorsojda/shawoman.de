@@ -107,9 +107,9 @@ export default function Edit({ attributes, setAttributes }) {
                 allowedTypes={["image"]}
                 value={leftImage}
                 render={({ open }) => (
-                  <Button onClick={open} className={leftImage ? "image-button" : "button button-large"}>
+                  <Button onClick={open} className={leftImage ? "image-button" : "button button-large"} style={leftImage ? { padding: 0, border: 'none', background: 'transparent' } : {}}>
                     {leftImage ? (
-                      <img src={leftImage} alt="Left Product" className="porownanieprodukty__image" />
+                      <img src={leftImage} alt="Left Product" className="porownanieprodukty__image" style={{ width: '155px', height: '260px', objectFit: 'contain' }} />
                     ) : (
                       "Wybierz zdjęcie lewe"
                     )}
@@ -133,9 +133,9 @@ export default function Edit({ attributes, setAttributes }) {
                 allowedTypes={["image"]}
                 value={rightImage}
                 render={({ open }) => (
-                  <Button onClick={open} className={rightImage ? "image-button" : "button button-large"}>
+                  <Button onClick={open} className={rightImage ? "image-button" : "button button-large"} style={rightImage ? { padding: 0, border: 'none', background: 'transparent' } : {}}>
                     {rightImage ? (
-                      <img src={rightImage} alt="Right Product" className="porownanieprodukty__image" />
+                      <img src={rightImage} alt="Right Product" className="porownanieprodukty__image" style={{ width: '155px', height: '260px', objectFit: 'contain' }} />
                     ) : (
                       "Wybierz zdjęcie prawe"
                     )}
