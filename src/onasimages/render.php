@@ -1,10 +1,12 @@
 <?php
-function get_onas_image($attributes, $i, $default_filename) {
-    $key = "item{$i}Image";
-    if (isset($attributes[$key]) && $attributes[$key]) {
-        return $attributes[$key];
+if (!function_exists('get_onas_image')) {
+    function get_onas_image($attributes, $i, $default_filename) {
+        $key = "item{$i}Image";
+        if (isset($attributes[$key]) && $attributes[$key]) {
+            return $attributes[$key];
+        }
+        return esc_url(home_url('/wp-content/uploads/' . $default_filename));
     }
-    return esc_url(home_url('/wp-content/uploads/' . $default_filename));
 }
 
 $defaults = [
