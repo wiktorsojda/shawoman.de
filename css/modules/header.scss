@@ -253,81 +253,6 @@ body.has-mobile-menu-open {
     }
   }
 
-  &__whatsapp {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: $header-cart-icon;
-    height: $header-cart-icon;
-    margin-left: auto;
-
-    @media (min-width: $breakpoint-tablet) {
-      margin-left: $header-nav-gap;
-    }
-
-    &-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-      color: $header-text-color;
-      text-decoration: none;
-
-      svg, img {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-    }
-
-    &-dropdown {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: -10px;
-      padding: $space-12;
-      background: $color-neutral-50;
-      border: 1px solid $color-neutral-200;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-      z-index: 10;
-      width: 200px;
-      margin-top: $space-12;
-      
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        bottom: 100%;
-        left: 0;
-        width: 100%;
-        height: $space-12;
-      }
-    }
-
-    @media (min-width: $breakpoint-tablet) {
-      &:hover &-dropdown {
-        display: block;
-      }
-    }
-  }
-
-  &__whatsapp ~ &__cart {
-    margin-left: $space-12;
-    @media (min-width: $breakpoint-tablet) {
-      margin-left: $header-nav-gap;
-    }
-  }
-
   &__cart {
     position: relative;
     display: inline-flex;
@@ -338,12 +263,9 @@ body.has-mobile-menu-open {
     height: $header-cart-icon;
     color: $header-text-color;
     text-decoration: none;
+    margin-left: auto;          // mobile: przepycha cart + hamburger na prawo
 
-    // Mobile: margin-left depends on if Whatsapp is present. 
-    // If Whatsapp is NOT present, Cart needs margin-left: auto to push right.
-    // We can just use margin-left: auto as default, and the sibling selector ~ overrides it to $space-12.
-    margin-left: auto;
-
+    // Desktop: gap od nav (24px), nav juz ma margin-left:auto wiec auto tu zbedne
     @media (min-width: $breakpoint-tablet) {
       margin-left: $header-nav-gap;
     }
