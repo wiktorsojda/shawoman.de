@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/jakuzywac",
+  "title": "Shav - Jak używać",
+  "category": "shav-theme",
+  "icon": "welcome-learn-more",
+  "description": "Blok pokazujący instrukcję obsługi / jak używać (3 kroki).",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Wie funktioniert's?"
+    },
+    "description": {
+      "type": "string",
+      "default": "Shav Woman kommt mit 2 wechselbaren Klingen für ein maßgeschneidertes Ergebnis an jeder Körperstelle:\n<ul><li><strong>Hauptklinge</strong> – stutzt längere Härchen zuverlässig und sorgt anschließend für eine seidenweiche Haut.</li><li><strong>Rundkopfklinge</strong> – ermöglicht ein sanftes, präzises Ergebnis an schwer erreichbaren Stellen.</li></ul>"
+    },
+    "steps": {
+      "type": "array",
+      "default": [
+        {
+          "image": "",
+          "imageMobile": ""
+        },
+        {
+          "image": "",
+          "imageMobile": ""
+        },
+        {
+          "image": "",
+          "imageMobile": ""
+        }
+      ]
+    }
+  },
+  "textdomain": "shav",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./style-index.css",
+  "render": "file:./render.php"
+}
