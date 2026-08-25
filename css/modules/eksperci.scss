@@ -108,7 +108,6 @@
   &__desc1 {
     @include type-body-l;
     color: $color-neutral-700;
-    margin-top: 16px;
   }
 
   &__desc2 {
@@ -116,7 +115,6 @@
     font-style: italic;
     color: $color-neutral-600;
     max-width: 506px;
-    margin-top: auto; // Wypycha element do dołu (oddziela go od desc1)
     padding-top: 24px; // 24px od ramki do tekstu cytatu
   }
 }
