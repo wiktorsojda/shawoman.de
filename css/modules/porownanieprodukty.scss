@@ -42,8 +42,9 @@
     gap: 24px;
 
     @media (min-width: $breakpoint-tablet) {
-      flex: 0 0 520.5px;
+      flex: 1 1 520.5px;
       max-width: 520.5px;
+      min-width: 0;
     }
   }
 
@@ -111,8 +112,9 @@
       padding: 24px;
       border-radius: $radius-xs; // 8px
       min-height: 68px;
-      flex: 0 0 509px;
+      flex: 1 1 509px;
       max-width: 509px;
+      min-width: 0;
       box-sizing: border-box;
       justify-content: center;
       text-align: center;
