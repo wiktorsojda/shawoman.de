@@ -115,7 +115,8 @@
     @include type-body-m;
     font-style: italic;
     color: $color-neutral-600;
-    margin-top: auto; // pushes quote to bottom if card is taller
-    padding-top: 24px; // dodano padding by tekst nie przyklejal sie do obramowania
+    max-width: 506px;
+    margin-top: auto; // Wypycha element do dołu (oddziela go od desc1)
+    padding-top: 24px; // 24px od ramki do tekstu cytatu
   }
 }
