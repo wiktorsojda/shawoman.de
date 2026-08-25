@@ -13,14 +13,14 @@ $features = !empty($a['features']) && is_array($a['features']) ? $a['features'] 
     <div class="porownanieprodukty__header">
       <div class="porownanieprodukty__product porownanieprodukty__product--left">
         <?php if ($leftImage) : ?>
-          <img src="<?php echo esc_url($leftImage); ?>" alt="Shav Woman" class="porownanieprodukty__image" />
+          <img src="<?php echo esc_url($leftImage); ?>" alt="Shav Woman" class="porownanieprodukty__image" style="max-width: 155px; height: 260px; object-fit: contain; width: 100%;" />
         <?php endif; ?>
         <h3 class="porownanieprodukty__title"><?php echo wp_kses_post($leftTitle); ?></h3>
       </div>
       <div class="porownanieprodukty__vs">VS</div>
       <div class="porownanieprodukty__product porownanieprodukty__product--right">
         <?php if ($rightImage) : ?>
-          <img src="<?php echo esc_url($rightImage); ?>" alt="Jednorazówka" class="porownanieprodukty__image" />
+          <img src="<?php echo esc_url($rightImage); ?>" alt="Jednorazówka" class="porownanieprodukty__image" style="max-width: 155px; height: 260px; object-fit: contain; width: 100%;" />
         <?php endif; ?>
         <h3 class="porownanieprodukty__title"><?php echo wp_kses_post($rightTitle); ?></h3>
       </div>
