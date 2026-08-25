@@ -1,0 +1,121 @@
+.eksperci {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+
+  &__inner {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 64px;
+  }
+
+  &__title {
+    font-family: $font-family-base;
+    @include type-h1;
+    font-weight: 500;
+    text-align: center;
+    color: $color-neutral-900;
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    justify-content: center;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+    }
+  }
+
+  &__card {
+    background-color: $color-neutral-100; // #F2F2F2
+    border-radius: 46px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 634px;
+    min-height: 479px;
+    box-sizing: border-box;
+
+    @media (min-width: $breakpoint-tablet) {
+      padding: 64px;
+    }
+
+    &:nth-child(odd) {
+      .eksperci__role {
+        color: #C68E7A;
+      }
+      .eksperci__desc2 {
+        border-top: 1px solid #EDE3DE;
+      }
+    }
+
+    &:nth-child(even) {
+      .eksperci__role {
+        color: #027FDA;
+      }
+      .eksperci__desc2 {
+        border-top: 1px solid #DEE8ED;
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__avatar {
+    width: 124px;
+    height: 124px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    
+    &--placeholder {
+      background-color: $color-neutral-300;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__name {
+    @include type-h3;
+    font-weight: 500;
+    color: $color-neutral-900;
+  }
+
+  &__role {
+    font-family: $font-family-base;
+    font-size: 16px; // Subtitle L
+    font-weight: 300; // Light
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+  }
+
+  &__desc1 {
+    @include type-body-l;
+    color: $color-neutral-700;
+    margin-top: 16px;
+  }
+
+  &__desc2 {
+    @include type-body-m;
+    font-style: italic;
+    color: $color-neutral-600;
+    margin-top: auto; // pushes quote to bottom if card is taller
+    padding-top: 24px; // dodano padding by tekst nie przyklejal sie do obramowania
+  }
+}
