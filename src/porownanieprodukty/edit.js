@@ -109,7 +109,7 @@ export default function Edit({ attributes, setAttributes }) {
                 render={({ open }) => (
                   <Button onClick={open} className={leftImage ? "image-button" : "button button-large"}>
                     {leftImage ? (
-                      <img src={leftImage} alt="Left Product" />
+                      <img src={leftImage} alt="Left Product" className="porownanieprodukty__image" />
                     ) : (
                       "Wybierz zdjęcie lewe"
                     )}
@@ -135,7 +135,7 @@ export default function Edit({ attributes, setAttributes }) {
                 render={({ open }) => (
                   <Button onClick={open} className={rightImage ? "image-button" : "button button-large"}>
                     {rightImage ? (
-                      <img src={rightImage} alt="Right Product" />
+                      <img src={rightImage} alt="Right Product" className="porownanieprodukty__image" />
                     ) : (
                       "Wybierz zdjęcie prawe"
                     )}
