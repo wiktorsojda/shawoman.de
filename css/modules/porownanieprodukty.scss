@@ -154,21 +154,12 @@
   }
 
   &__dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
 
     @media (min-width: 1280px) {
       display: none; // Hidden on desktop (unless needed, but the design didn't show them on desktop, wait design does not show them? I will leave them hidden on desktop just in case, but let's check the screenshot)
-    }
-
-    &--green {
-      background-color: #2e8b57;
-    }
-
-    &--red {
-      background-color: $color-red-500;
     }
   }
 
