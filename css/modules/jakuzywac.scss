@@ -1,0 +1,143 @@
+.jakuzywac {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px; // Default section padding
+  
+  &__inner {
+    width: 100%;
+    max-width: 1300px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    @include type-h1;
+    color: $color-neutral-900;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  &__desc {
+    @include type-body-l;
+    color: $color-neutral-700;
+    text-align: left;
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+  }
+
+  &__gallery {
+    display: flex;
+    flex-direction: column; // Mobile stacked
+    gap: 16px;
+
+    @media (min-width: $breakpoint-tablet) {
+      flex-direction: row;
+      gap: 0; // No gap on desktop
+    }
+  }
+
+  &__step {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    // Obrazki mają się odpowiednio zaokrąglać
+    // Mobile: pierwszy ma górę, ostatni ma dół.
+    // Desktop: pierwszy ma lewą, ostatni ma prawą.
+    @media (min-width: $breakpoint-tablet) {
+      &:first-child {
+        .jakuzywac__image {
+          border-top-left-radius: 82px;
+          border-bottom-left-radius: 82px;
+          border-top-right-radius: 0;
+        }
+      }
+      
+      &:last-child {
+        .jakuzywac__image {
+          border-top-right-radius: 82px;
+          border-bottom-right-radius: 82px;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      // Middle item has no border radius
+      &:not(:first-child):not(:last-child) {
+        .jakuzywac__image {
+          border-radius: 0;
+        }
+      }
+    }
+    
+    @media (max-width: $breakpoint-tablet - 1px) {
+      &:first-child {
+        .jakuzywac__image {
+          border-top-left-radius: 24px;
+          border-top-right-radius: 24px;
+        }
+      }
+      
+      &:last-child {
+        .jakuzywac__image {
+          border-bottom-left-radius: 24px;
+          border-bottom-right-radius: 24px;
+        }
+      }
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    /* Odpowiedni aspect ratio lub height by dopasowac do zdjecia - zalezy od wgranych obrazkow */
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__image-placeholder {
+    background-color: $color-neutral-300;
+    height: 300px;
+    width: 100%;
+  }
+
+  // W edytorze przyciski w image-wrapper mogą potrzebować miejsca
+  .image-button {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &__caption {
+    // Etykiety wydają się być wyśrodkowane na samym dole zdjęcia
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__label {
+    // Zakładam styl tekstu na zdjęciu (biały z ew. drop shadow dla czytelności)
+    @include type-body-l; // Or whatever it is, Figma says Body L? No wait, for description it was Body L.
+    color: #FFFFFF;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); // Opcjonalnie dla czytelności
+  }
+}
