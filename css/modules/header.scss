@@ -360,7 +360,7 @@ body.has-mobile-menu-open {
   }
 
   &__whatsapp ~ &__cart {
-    margin-left: $space-12;
+    margin-left: auto;
     @media (min-width: $breakpoint-tablet) {
       margin-left: calc(#{$header-nav-gap} - 5px);
     }
