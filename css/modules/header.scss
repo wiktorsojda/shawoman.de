@@ -296,12 +296,24 @@ body.has-mobile-menu-open {
       z-index: 10;
       width: 200px;
       margin-top: $space-12;
+      text-align: center;
       
+      .header__whatsapp-text {
+        display: block;
+        margin-bottom: $space-8;
+        font-family: $font-family-base;
+        font-weight: $font-weight-bold;
+        font-size: 13px;
+        color: $header-text-color;
+        line-height: 1.2;
+      }
+
       img {
         width: 100%;
         height: auto;
         display: block;
         border-radius: 8px;
+        margin: 0 auto;
       }
 
       &::before {

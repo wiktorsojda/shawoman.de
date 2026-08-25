@@ -32,6 +32,10 @@
       "type": "string",
       "default": ""
     },
+    "whatsappQrText": {
+      "type": "string",
+      "default": ""
+    },
     "cartURL": {
       "type": "string",
       "default": "/koszyk"
