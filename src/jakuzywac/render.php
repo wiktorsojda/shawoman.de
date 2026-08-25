@@ -3,7 +3,12 @@ $a = $attributes;
 
 $title = !empty($a['title']) ? $a['title'] : "Wie funktioniert's?";
 $description = !empty($a['description']) ? $a['description'] : '';
-$steps = !empty($a['steps']) && is_array($a['steps']) ? $a['steps'] : [];
+
+$steps = [
+  ['image' => !empty($a['image1']) ? $a['image1'] : '', 'imageMobile' => !empty($a['imageMobile1']) ? $a['imageMobile1'] : ''],
+  ['image' => !empty($a['image2']) ? $a['image2'] : '', 'imageMobile' => !empty($a['imageMobile2']) ? $a['imageMobile2'] : ''],
+  ['image' => !empty($a['image3']) ? $a['image3'] : '', 'imageMobile' => !empty($a['imageMobile3']) ? $a['imageMobile3'] : ''],
+];
 ?>
 <section <?php echo get_block_wrapper_attributes(['class' => 'jakuzywac']); ?>>
   <div class="jakuzywac__inner">

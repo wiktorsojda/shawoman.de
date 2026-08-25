@@ -15,24 +15,12 @@
       "type": "string",
       "default": "Shav Woman kommt mit 2 wechselbaren Klingen für ein maßgeschneidertes Ergebnis an jeder Körperstelle:\n<ul><li><strong>Hauptklinge</strong> – stutzt längere Härchen zuverlässig und sorgt anschließend für eine seidenweiche Haut.</li><li><strong>Rundkopfklinge</strong> – ermöglicht ein sanftes, präzises Ergebnis an schwer erreichbaren Stellen.</li></ul>"
     },
-    "steps": {
-      "type": "array",
-      "items": { "type": "object" },
-      "default": [
-        {
-          "image": "",
-          "imageMobile": ""
-        },
-        {
-          "image": "",
-          "imageMobile": ""
-        },
-        {
-          "image": "",
-          "imageMobile": ""
-        }
-      ]
-    }
+    "image1": { "type": "string", "default": "" },
+    "imageMobile1": { "type": "string", "default": "" },
+    "image2": { "type": "string", "default": "" },
+    "imageMobile2": { "type": "string", "default": "" },
+    "image3": { "type": "string", "default": "" },
+    "imageMobile3": { "type": "string", "default": "" }
   },
   "textdomain": "shav",
   "editorScript": "file:./index.js",

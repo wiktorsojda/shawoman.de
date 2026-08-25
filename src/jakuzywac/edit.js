@@ -3,15 +3,9 @@ import { PanelBody, Button, TextareaControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 
 export default function Edit({ attributes, setAttributes }) {
-  const { title, description, steps } = attributes;
+  const { title, description, image1, imageMobile1, image2, imageMobile2, image3, imageMobile3 } = attributes;
   const [jsonInput, setJsonInput] = useState('');
   const blockProps = useBlockProps({ className: 'jakuzywac' });
-
-  const updateStep = (index, key, value) => {
-    const newSteps = [...steps];
-    newSteps[index] = { ...newSteps[index], [key]: value };
-    setAttributes({ steps: newSteps });
-  };
 
   const getJsonForAi = () => {
     const data = {
@@ -36,6 +30,12 @@ export default function Edit({ attributes, setAttributes }) {
       alert('Błąd: Nieprawidłowy format JSON.');
     }
   };
+
+  const steps = [
+    { image: image1, imageMobile: imageMobile1, keyImage: 'image1', keyMobile: 'imageMobile1' },
+    { image: image2, imageMobile: imageMobile2, keyImage: 'image2', keyMobile: 'imageMobile2' },
+    { image: image3, imageMobile: imageMobile3, keyImage: 'image3', keyMobile: 'imageMobile3' },
+  ];
 
   return (
     <section {...blockProps}>
@@ -80,12 +80,12 @@ export default function Edit({ attributes, setAttributes }) {
         </div>
 
         <div className="jakuzywac__gallery">
-          {(steps || []).map((step, index) => (
+          {steps.map((step, index) => (
             <figure key={index} className="jakuzywac__step">
               <div className="jakuzywac__image-wrapper" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <MediaUploadCheck>
                   <MediaUpload
-                    onSelect={(media) => updateStep(index, 'image', media.url)}
+                    onSelect={(media) => setAttributes({ [step.keyImage]: media.url })}
                     allowedTypes={['image']}
                     value={step.image}
                     render={({ open }) => (
@@ -110,7 +110,7 @@ export default function Edit({ attributes, setAttributes }) {
                 
                 <MediaUploadCheck>
                   <MediaUpload
-                    onSelect={(media) => updateStep(index, 'imageMobile', media.url)}
+                    onSelect={(media) => setAttributes({ [step.keyMobile]: media.url })}
                     allowedTypes={['image']}
                     value={step.imageMobile}
                     render={({ open }) => (
