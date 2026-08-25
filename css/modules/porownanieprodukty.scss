@@ -47,9 +47,7 @@
     }
   }
 
-  // Use !important and nested selector to override any global theme img styles
   & .porownanieprodukty__image {
-    width: 100% !important;
     max-width: 155px !important;
     height: 260px !important;
     object-fit: contain !important;
