@@ -26,18 +26,18 @@ add_action('cfw_checkout_after_shipping_methods', function () {
         </div>
 
         <div id="dhl-postnummer-wrap" style="margin-top: 10px; display: none;">
-            <label id="dhl-postnummer-label" for="dhl_custom_postnummer_field" style="display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 4px;">
+            <label id="dhl-postnummer-label" style="display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 4px;">
                 DHL Postnummer (Ihre Kundennummer)
             </label>
-            <input type="text" id="dhl_custom_postnummer_field" class="input-text" name="dhl_packstation_postnummer_temp"
+            <input type="text" id="dhl_custom_postnummer_field" name="dhl_packstation_postnummer_temp"
                 placeholder="z.B. 12345678"
-                style="width: 100%; max-width: 300px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; outline: none; transition: border-color 0.2s ease;">
+                style="width: 100%; max-width: 300px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
         </div>
 
         <div id="dhl-selected-info"
             style="display: none; padding: 10px 14px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; font-size: 13px; color: #1e40af; margin-top: 12px; margin-bottom: 12px; align-items: center; justify-content: space-between;">
             <div><strong>Ausgewählt:</strong> <span id="dhl-selected-text"></span></div>
-            <a href="javascript:;" onclick="window.clearDhlSelection()" style="color: #d40511; font-weight: 600; text-decoration: underline; font-size: 12px; cursor: pointer; margin-left: 10px; white-space: nowrap;">Ändern / Löschen</a>
+            <a href="javascript:;" onclick="window.clearDhlSelection()" style="color: #d40511; font-weight: 600; text-decoration: underline; font-size: 12px; cursor: pointer; margin-left: 10px; white-space: nowrap;">Löschen (Zmień)</a>
         </div>
         
         <!-- Ukryte pola do przekazania danych w formularzu CheckoutWC -->
@@ -113,15 +113,14 @@ add_action('wp_footer', function () {
                     var isPackstation = /Packstation/i.test(psName);
                     var pnWrap = document.getElementById('dhl-postnummer-wrap');
                     var pnLabel = document.getElementById('dhl-postnummer-label');
-                    var pnField = document.getElementById('dhl_custom_postnummer_field');
-                    
-                    if(pnWrap && pnLabel && pnField) {
+                    if(pnWrap && pnLabel) {
                         pnWrap.style.display = 'block';
-                        pnField.setAttribute('data-is-packstation', isPackstation ? 'true' : 'false');
                         if (isPackstation) {
                             pnLabel.innerHTML = 'DHL Postnummer (Ihre Kundennummer) <span style="color:red;">*</span>';
                         } else {
                             pnLabel.innerHTML = 'DHL Postnummer (Optional)';
+                            pnField.removeAttribute('required');
+                            pnField.removeAttribute('pattern');
                         }
                     }
 
@@ -133,13 +132,13 @@ add_action('wp_footer', function () {
                     var hidCity = document.getElementById('dhl_hidden_ps_city');
                     if(hidCity) hidCity.value = psCity;
 
-                    // Próba wypełnienia natywnych pól WooCommerce bez loopów AJAX
+                    // Próba wypełnienia natywnych pól WooCommerce
                     var wcAddr1 = document.getElementById('shipping_address_1');
-                    if(wcAddr1) { wcAddr1.value = psName; }
+                    if(wcAddr1) { wcAddr1.value = psName; wcAddr1.dispatchEvent(new Event('change', {bubbles: true})); }
                     var wcZip = document.getElementById('shipping_postcode');
-                    if(wcZip) { wcZip.value = psZip; }
+                    if(wcZip) { wcZip.value = psZip; wcZip.dispatchEvent(new Event('change', {bubbles: true})); }
                     var wcCity = document.getElementById('shipping_city');
-                    if(wcCity) { wcCity.value = psCity; }
+                    if(wcCity) { wcCity.value = psCity; wcCity.dispatchEvent(new Event('change', {bubbles: true})); }
                     var wcDiffAddr = document.getElementById('ship-to-different-address-checkbox');
                     if(wcDiffAddr && !wcDiffAddr.checked) { wcDiffAddr.click(); }
 
@@ -156,7 +155,7 @@ add_action('wp_footer', function () {
                     });
                     
                     var wcAddr2 = document.getElementById('shipping_address_2');
-                    if(wcAddr2) { wcAddr2.value = postNummer; }
+                    if(wcAddr2) { wcAddr2.value = postNummer; wcAddr2.dispatchEvent(new Event('change', {bubbles: true})); }
 
                     setDhlCookie('dhl_postnummer', postNummer);
                 }
@@ -188,17 +187,6 @@ add_action('wp_footer', function () {
                 if(hidZip) hidZip.value = '';
                 var hidCity = document.getElementById('dhl_hidden_ps_city');
                 if(hidCity) hidCity.value = '';
-                
-                var wcAddr1 = document.getElementById('shipping_address_1');
-                if (wcAddr1) { wcAddr1.value = ''; }
-                var wcZip = document.getElementById('shipping_postcode');
-                if (wcZip) { wcZip.value = ''; }
-                var wcCity = document.getElementById('shipping_city');
-                if (wcCity) { wcCity.value = ''; }
-
-                // Wymuś twarde przeładowanie strony. To najzdrowsza opcja, która
-                // czyści cały stan CheckoutWC bez ryzykownych pętli AJAX.
-                window.location.reload();
             };
 
             // Delegacja dla głównego przycisku otwierającego mapę (w razie gdy AJAX usunie eventy)
@@ -254,11 +242,6 @@ add_action('wp_footer', function () {
                             
                             window.restoreDhlState();
 
-                            // Trigger checkout update to save data naturally, only once per map selection
-                            if (typeof jQuery !== 'undefined') {
-                                jQuery(document.body).trigger('update_checkout');
-                            }
-
                             if (typeof jQuery !== 'undefined' && jQuery.fancybox) {
                                 jQuery.fancybox.close();
                             }
@@ -273,9 +256,6 @@ add_action('wp_footer', function () {
                     var val = e.target.value;
                     sessionStorage.setItem('dhl_postnummer', val);
                     setDhlCookie('dhl_postnummer', val);
-                    
-                    // Trigger zmianę dla CheckoutWC na bieżąco
-                    e.target.dispatchEvent(new Event('change', {bubbles: true}));
                 }
             });
 
