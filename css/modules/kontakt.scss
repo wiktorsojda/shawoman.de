@@ -3,13 +3,14 @@
 .kontakt {
   background-color: $color-neutral-100;
   width: 100%;
-  padding: 96px 150px;
+  padding: 60px 15px; // Reduced side padding to avoid overflow, or keep 150px but add box-sizing
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  @media (max-width: $breakpoint-tablet) {
-    padding: 64px 20px;
+  @media (min-width: $breakpoint-tablet) {
+    padding: 60px 150px;
   }
 
   &__inner {
