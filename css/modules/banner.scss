@@ -36,8 +36,8 @@
 
     // ----- Desktop (Figma 1003:2949 — 1428x450) -----
     @media (min-width: 900px) {
+        width: calc(100% - 32px) !important;
         max-width: 1428px !important;
-        width: 100% !important;
         height: 450px !important;
         min-height: 0 !important;
         margin: 32px auto !important;

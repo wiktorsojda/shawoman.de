@@ -34,6 +34,7 @@ $shav-fullbleed-sections:
     // tytulach) mialy pierwszenstwo. Z !important zostaja tylko margin i padding,
     // ktore sa ramowe dla layoutu.
     > * {
+      width: calc(100% - 32px) !important;
       max-width: 1428px;
       margin-left: auto !important;
       margin-right: auto !important;
@@ -77,12 +78,8 @@ $shav-fullbleed-sections:
 .header {
   @media (min-width: $breakpoint-tablet) {
     box-sizing: border-box;
+    width: calc(100% - 32px) !important;
     max-width: 1428px !important;
-    margin-left: 20px !important;
-    margin-right: 20px !important;
-  }
-
-  @media (min-width: 1340px) {
     margin-left: auto !important;
     margin-right: auto !important;
   }
