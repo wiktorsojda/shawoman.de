@@ -81,14 +81,19 @@
 
   &__tiles {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
     gap: 24px;
     width: 100%;
+    
+    @media (max-width: 1100px) {
+      flex-wrap: wrap;
+    }
   }
 
   &__tile {
-    width: 348px;
+    flex: 1;
+    max-width: 348px;
     height: 100px;
     background-color: $color-neutral-50; // #FAFAFA
     border-radius: $radius-xs; // 8px
@@ -108,10 +113,10 @@
     &-link {
       @include type-body-m;
       color: $color-blue-700; // #0464ab
-      text-decoration: underline;
+      text-decoration: underline !important;
       
       &:hover {
-        text-decoration: none;
+        text-decoration: none !important;
       }
     }
   }
