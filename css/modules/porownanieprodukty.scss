@@ -30,8 +30,13 @@
   &__header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
+    gap: 8px; // match the row gap
+
+    @media (min-width: 1280px) {
+      gap: 32px; // match the row gap
+    }
   }
 
   &__product {
@@ -86,7 +91,7 @@
 
   &__row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
     background-color: transparent;
     padding: 0;
@@ -140,11 +145,11 @@
       font-family: $font-family-base;
       font-size: 16px;
       font-weight: 400;
-      line-height: 1.4;
+      line-height: 1; // Strict line height to avoid extra vertical space
       letter-spacing: -0.04em;
       color: #fafafa;
       background-color: $color-neutral-400; // grey pill
-      padding: 16px;
+      padding: 8px 16px; // Exactly 8px top/bottom and 16px left/right
       border-radius: $radius-xs; // 8px
       box-sizing: border-box;
     }
