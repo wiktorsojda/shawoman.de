@@ -66,6 +66,7 @@
     font-weight: 500;
     text-align: center;
     color: $color-neutral-900;
+    margin: 0; // Usunięcie domyślnych marginesów nagłówka h3
   }
 
   &__vs {
@@ -73,6 +74,7 @@
     color: $color-neutral-900;
     padding: 0 10px;
     text-align: center;
+    margin: 0;
 
     @media (min-width: 1280px) {
       padding: 0 40px;
