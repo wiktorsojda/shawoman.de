@@ -12,6 +12,21 @@
       "type": "array",
       "default": []
     },
+    "contactMethods": {
+      "type": "array",
+      "default": [
+        {
+          "type": "phone",
+          "label": "690 801 270",
+          "link": "tel:+48690801270"
+        },
+        {
+          "type": "email",
+          "label": "kontakt@shavwoman.pl - na de what's up?",
+          "link": "mailto:kontakt@shavwoman.pl"
+        }
+      ]
+    },
     "title": {
       "type": "string",
       "default": "Kontakt"
