@@ -38,13 +38,30 @@ $svg_whatsapp = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xml
                     elseif ($type === 'whatsapp') $svg = $svg_whatsapp;
                     elseif ($type === 'custom') $svg = $customSvg;
                 ?>
-                <div class="kontakt__method">
-                    <?php if ($svg): ?>
-                        <span class="kontakt__method-icon"><?php echo $svg; ?></span>
+                <div class="kontakt__method-wrapper">
+                    <div class="kontakt__method">
+                        <?php if ($svg): ?>
+                            <span class="kontakt__method-icon"><?php echo $svg; ?></span>
+                        <?php endif; ?>
+                        <a href="<?php echo esc_url($link); ?>" class="kontakt__method-text">
+                            <?php echo wp_kses_post($label); ?>
+                        </a>
+                    </div>
+                    <?php if ($type === 'whatsapp' && (!empty($method['qrText']) || !empty($method['qrImage']) || !empty($method['qrButton']))): ?>
+                        <div class="kontakt__method-qr">
+                            <?php if (!empty($method['qrText'])): ?>
+                                <span class="kontakt__method-qr-text"><?php echo wp_kses_post($method['qrText']); ?></span>
+                            <?php endif; ?>
+                            <?php if (!empty($method['qrImage'])): ?>
+                                <img src="<?php echo esc_url($method['qrImage']); ?>" alt="WhatsApp QR Code" class="kontakt__method-qr-img">
+                            <?php endif; ?>
+                            <?php if (!empty($method['qrButton'])): ?>
+                                <a href="<?php echo esc_url($link); ?>" class="kontakt__method-qr-btn" target="_blank">
+                                    <?php echo wp_kses_post($method['qrButton']); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     <?php endif; ?>
-                    <a href="<?php echo esc_url($link); ?>" class="kontakt__method-text">
-                        <?php echo wp_kses_post($label); ?>
-                    </a>
                 </div>
                 <?php endforeach; ?>
             </div>

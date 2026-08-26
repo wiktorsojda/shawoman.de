@@ -1,4 +1,4 @@
-import { useBlockProps, RichText, InspectorControls } from "@wordpress/block-editor";
+import { useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck } from "@wordpress/block-editor";
 import { PanelBody, TextControl, TextareaControl, Button, SelectControl } from "@wordpress/components";
 import { useState, useEffect } from "@wordpress/element";
 
@@ -162,7 +162,20 @@ export default function Edit({ attributes, setAttributes }) {
               )}
               <TextControl label="Etykieta (tekst)" value={item.label} onChange={(v) => updateContactMethod(i, "label", v)} />
               <TextControl label="Link (href)" value={item.link} onChange={(v) => updateContactMethod(i, "link", v)} help="np. tel:+48690801270 lub mailto:kontakt@shavwoman.pl" />
-              <Button isDestructive variant="link" onClick={() => removeContactMethod(i)} style={{ padding: 0 }}>Usuń</Button>
+              
+              {item.type === 'whatsapp' && (
+                <div style={{ marginTop: 12, padding: 12, background: '#fff', border: '1px solid #ccc', borderRadius: 4 }}>
+                  <TextControl label="Tekst nad QR" value={item.qrText || ''} onChange={(v) => updateContactMethod(i, "qrText", v)} />
+                  <MediaUploadCheck>
+                    <MediaUpload onSelect={(media) => updateContactMethod(i, "qrImage", media.url)} allowedTypes={["image"]} value={item.qrImage}
+                      render={({ open }) => (<Button variant="secondary" onClick={open}>{item.qrImage ? "Zmień QR code" : "Wybierz QR code"}</Button>)} />
+                  </MediaUploadCheck>
+                  {item.qrImage && <img src={item.qrImage} style={{ width: '100px', display: 'block', marginTop: 8 }} />}
+                  <TextControl label="Tekst przycisku pod QR" value={item.qrButton || ''} onChange={(v) => updateContactMethod(i, "qrButton", v)} style={{ marginTop: 12 }} />
+                </div>
+              )}
+
+              <Button isDestructive variant="link" onClick={() => removeContactMethod(i)} style={{ padding: 0, marginTop: 12 }}>Usuń</Button>
             </div>
           ))}
           <Button variant="secondary" onClick={addContactMethod} style={{ width: "100%", justifyContent: "center" }}>+ Dodaj metodę kontaktu</Button>
@@ -254,17 +267,26 @@ export default function Edit({ attributes, setAttributes }) {
         
         <div className="kontakt__methods">
           {contactMethods.map((item, i) => (
-            <div key={i} className="kontakt__method">
-              <span className="kontakt__method-icon">
-                {getIconSvg(item)}
-              </span>
-              <RichText 
-                tagName="span" 
-                className="kontakt__method-text" 
-                value={item.label} 
-                onChange={(v) => updateContactMethod(i, "label", v)} 
-                placeholder="Wpisz kontakt (np. numer telefonu)..." 
-              />
+            <div key={i} className="kontakt__method-wrapper" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+              <div className="kontakt__method">
+                <span className="kontakt__method-icon">
+                  {getIconSvg(item)}
+                </span>
+                <RichText 
+                  tagName="span" 
+                  className="kontakt__method-text" 
+                  value={item.label} 
+                  onChange={(v) => updateContactMethod(i, "label", v)} 
+                  placeholder="Wpisz kontakt (np. numer telefonu)..." 
+                />
+              </div>
+              {item.type === 'whatsapp' && (item.qrText || item.qrImage || item.qrButton) && (
+                <div className="kontakt__method-qr" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, padding: 16, background: '#fff', border: '1px solid #eee', borderRadius: 8 }}>
+                  {item.qrText && <span style={{ fontSize: 13, fontWeight: 600 }}>{item.qrText}</span>}
+                  {item.qrImage && <img src={item.qrImage} alt="QR" style={{ maxWidth: 150 }} />}
+                  {item.qrButton && <span style={{ background: '#F4E1D9', padding: '6px 12px', borderRadius: 8, fontSize: 12, fontWeight: 600 }}>{item.qrButton}</span>}
+                </div>
+              )}
             </div>
           ))}
         </div>
