@@ -5,18 +5,18 @@
 
 .shop-archive {
     // Tlo strony (Figma — neutral/100). Container ma 150px po bokach na desktop.
-    // Mobile: pelna szerokosc z 16px bocznym paddingiem.
+    // Mobile: pelna szerokosc z clampowanym paddingiem (dopasowanym do reszty widokow)
     background: $color-neutral-50;
-    padding: 0;
+    padding-left: clamp(20px, 2vw, 32px);
+    padding-right: clamp(20px, 2vw, 32px);
+    box-sizing: border-box;
 
     @media (min-width: 900px) {
        margin: 0 auto;
         max-width: 1428px;
-        padding: 0;
     }
 
     @media (min-width: 1728px) {
-        padding: 0;
         max-width: 1428px;
         margin: 0 auto;
     }
