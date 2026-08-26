@@ -10,7 +10,28 @@
     },
     "infoTiles": {
       "type": "array",
-      "default": []
+      "default": [
+        {
+          "title": "Dostępne metody płatności.",
+          "buttonLabel": "Dowiedz się więcej",
+          "buttonURL": "/metody-platnosci"
+        },
+        {
+          "title": "Dostępne metody wysyłki.",
+          "buttonLabel": "Dowiedz się więcej",
+          "buttonURL": "/metody-wysylki"
+        },
+        {
+          "title": "Chcesz zwrócić produkt?",
+          "buttonLabel": "Dowiedz się więcej",
+          "buttonURL": "/zwrot"
+        },
+        {
+          "title": "Chcesz dowiedzieć się jak złożyć reklamację?",
+          "buttonLabel": "Dowiedz się więcej",
+          "buttonURL": "/reklamacje"
+        }
+      ]
     },
     "contactMethods": {
       "type": "array",
