@@ -1,8 +1,11 @@
 .jakuzywac {
   display: flex;
   justify-content: center;
-  padding: 80px 20px; // Default section padding
+  padding: 45px 20px;
   
+  @media (min-width: $breakpoint-tablet) {
+    padding: 120px 20px;
+  }
   &__inner {
     width: 100%;
     max-width: 1428px;
