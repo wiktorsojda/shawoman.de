@@ -11,6 +11,7 @@ $steps = [
 ];
 ?>
 <section <?php echo get_block_wrapper_attributes(['class' => 'jakuzywac']); ?>>
+  <pre style="background: red; color: white; padding: 10px; z-index: 9999; position: relative; font-size: 12px;"><?php var_export($attributes); ?></pre>
   <div class="jakuzywac__inner">
     <div class="jakuzywac__content">
       <h2 class="jakuzywac__title"><?php echo wp_kses_post($title); ?></h2>
