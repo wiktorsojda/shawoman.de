@@ -5,14 +5,14 @@
 // =============================================================================
 
 .shop-banner-container {
-    width: 100%;
-    margin: 0 18px; // Mobile: odstęp jak w headerze
+    width: auto !important;
+    margin: 0 20px !important; // Mobile: odstęp 20px
     box-sizing: border-box;
 
-    @media (min-width: 900px) {
-        width: calc(100% - 32px) !important;
-        margin: 0 auto;
-        max-width: 1428px;
+    @media (min-width: 768px) {
+        width: calc(100% - 40px) !important;
+        margin: 0 auto !important;
+        max-width: 1428px !important;
     }
 }
 

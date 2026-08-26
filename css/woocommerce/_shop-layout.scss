@@ -7,14 +7,15 @@
     // Tlo strony (Figma — neutral/100).
     // Mobile: zachowujemy taki sam odstep od ekranu jak header (18px)
     background: $color-neutral-50;
-    margin: 0 18px; // Odstep boczny taki jak header na mobile
+    width: auto !important;
+    margin: 0 20px !important; // Mobile: odstęp 20px (wg PROJECT_STATE.md)
     padding: 0;
     box-sizing: border-box;
 
-    @media (min-width: 900px) {
-        width: calc(100% - 32px) !important;
-        max-width: 1428px;
-        margin: 0 auto;
+    @media (min-width: 768px) {
+        width: calc(100% - 40px) !important;
+        max-width: 1428px !important;
+        margin: 0 auto !important;
     }
 }
 
