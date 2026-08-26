@@ -7,12 +7,17 @@
 // =============================================================================
 
 .footer {
-  width: 100%;
+  width: auto;
   max-width: 1428px;
-  margin: 0 auto;
+  margin: 0 20px;
   // Padding pionowy
   padding: $space-32 0;
   box-sizing: border-box;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
 
   // ---------------------------------------------------------------------------
   // Wrapper — fluid padding 24-64
