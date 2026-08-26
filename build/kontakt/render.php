@@ -47,5 +47,31 @@ $svg_whatsapp = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xml
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+
+        <?php 
+        $infoTiles = isset($attributes['infoTiles']) ? $attributes['infoTiles'] : [];
+        if (!empty($infoTiles)): 
+        ?>
+            <div class="kontakt__tiles">
+                <?php foreach ($infoTiles as $tile): 
+                    $t = isset($tile['title']) ? $tile['title'] : '';
+                    $label = isset($tile['buttonLabel']) ? $tile['buttonLabel'] : '';
+                    $url = isset($tile['buttonURL']) ? $tile['buttonURL'] : '';
+
+                    if (!$t && !$label) continue;
+                ?>
+                <div class="kontakt__tile">
+                    <?php if ($t): ?>
+                        <p class="kontakt__tile-title"><?php echo wp_kses_post($t); ?></p>
+                    <?php endif; ?>
+                    <?php if ($label && $url): ?>
+                        <a href="<?php echo esc_url($url); ?>" class="kontakt__tile-link">
+                            <?php echo wp_kses_post($label); ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
     </div>
 </section>

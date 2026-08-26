@@ -166,11 +166,11 @@ export default function Edit({ attributes, setAttributes }) {
           <Button variant="secondary" onClick={addFaqItem} style={{ width: "100%", justifyContent: "center" }}>+ Dodaj nowe pytanie FAQ</Button>
         </PanelBody>
 
-        <PanelBody title="Legacy Kafelki (Prawa strona)" initialOpen={false}>
+        <PanelBody title="Kafelki (Dolne boxy informacyjne)" initialOpen={false}>
           {infoTiles.map((item, i) => (
             <div key={i} style={{ border: '1px solid #ddd', padding: '12px', marginBottom: '12px', borderRadius: '4px', backgroundColor: '#f9f9f9' }}>
               <TextControl label={`Tytuł ${i + 1}`} value={item.title} onChange={(v) => updateInfoTile(i, "title", v)} />
-              <TextareaControl label={`Wprowadzenie ${i + 1}`} value={item.intro} onChange={(v) => updateInfoTile(i, "intro", v)} rows={3} />
+              {/* Ukryto pole intro dla nowych kafelków, ale dane mogą być zachowane */}
               <TextControl label={`Etykieta przycisku ${i + 1}`} value={item.buttonLabel} onChange={(v) => updateInfoTile(i, "buttonLabel", v)} />
               <TextControl label={`URL przycisku ${i + 1}`} value={item.buttonURL} onChange={(v) => updateInfoTile(i, "buttonURL", v)} />
               <Button isDestructive variant="link" onClick={() => removeInfoTile(i)} style={{ padding: 0 }}>Usuń ten kafelek</Button>
@@ -251,6 +251,27 @@ export default function Edit({ attributes, setAttributes }) {
                 value={item.label} 
                 onChange={(v) => updateContactMethod(i, "label", v)} 
                 placeholder="Wpisz kontakt (np. numer telefonu)..." 
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="kontakt__tiles">
+          {infoTiles.map((item, i) => (
+            <div key={i} className="kontakt__tile">
+              <RichText 
+                tagName="p" 
+                className="kontakt__tile-title" 
+                value={item.title} 
+                onChange={(v) => updateInfoTile(i, "title", v)} 
+                placeholder="Wpisz nazwę (np. Shav Woman)" 
+              />
+              <RichText 
+                tagName="span" 
+                className="kontakt__tile-link" 
+                value={item.buttonLabel} 
+                onChange={(v) => updateInfoTile(i, "buttonLabel", v)} 
+                placeholder="Wpisz nazwę linku..." 
               />
             </div>
           ))}

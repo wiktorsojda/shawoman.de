@@ -44,6 +44,7 @@
     flex-direction: column;
     align-items: center;
     gap: $space-16;
+    margin-bottom: 65px;
   }
 
   &__method {
@@ -74,6 +75,43 @@
       
       &:hover {
         text-decoration: underline;
+      }
+    }
+  }
+
+  &__tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+  }
+
+  &__tile {
+    width: 348px;
+    height: 100px;
+    background-color: $color-neutral-50; // #FAFAFA
+    border-radius: $radius-xs; // 8px
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    box-sizing: border-box;
+    
+    &-title {
+      @include type-body-m;
+      color: $color-neutral-700; // #585858
+      margin: 0;
+    }
+    
+    &-link {
+      @include type-body-m;
+      color: $color-blue-700; // #0464ab
+      text-decoration: underline;
+      
+      &:hover {
+        text-decoration: none;
       }
     }
   }
