@@ -23,6 +23,7 @@
 
   &__title {
     @include type-h1;
+    font-weight: $font-weight-medium;
     color: $color-neutral-900;
     text-align: center;
     margin: 0;
@@ -106,8 +107,12 @@
     
     &-title {
       @include type-body-m;
+      font-weight: $font-weight-regular;
       color: $color-neutral-700; // #585858
       margin: 0;
+      text-decoration: underline;
+      text-decoration-style: solid;
+      text-decoration-skip-ink: auto;
     }
     
     &-link {
