@@ -9,9 +9,14 @@ $steps = [
   ['image' => !empty($a['image2']) ? $a['image2'] : '', 'imageMobile' => !empty($a['imageMobile2']) ? $a['imageMobile2'] : ''],
   ['image' => !empty($a['image3']) ? $a['image3'] : '', 'imageMobile' => !empty($a['imageMobile3']) ? $a['imageMobile3'] : ''],
 ];
+
+// Helper to force https for mixed content issues
+function shav_force_https($url) {
+    if (empty($url)) return '';
+    return str_replace('http://', 'https://', $url);
+}
 ?>
 <section <?php echo get_block_wrapper_attributes(['class' => 'jakuzywac']); ?>>
-  <pre style="background: red; color: white; padding: 10px; z-index: 9999; position: relative; font-size: 12px;"><?php var_export($attributes); ?></pre>
   <div class="jakuzywac__inner">
     <div class="jakuzywac__content">
       <h2 class="jakuzywac__title"><?php echo wp_kses_post($title); ?></h2>
@@ -22,18 +27,22 @@ $steps = [
     
     <div class="jakuzywac__gallery">
       <?php foreach ($steps as $index => $step) : ?>
+        <?php 
+          $imgDesktop = shav_force_https($step['image']);
+          $imgMobile = shav_force_https($step['imageMobile']);
+        ?>
         <figure class="jakuzywac__step">
           <div class="jakuzywac__image-wrapper">
-            <?php if (!empty($step['image']) || !empty($step['imageMobile'])) : ?>
-              <picture>
-                <?php if (!empty($step['imageMobile'])) : ?>
-                  <source media="(max-width: 767px)" srcset="<?php echo esc_url($step['imageMobile']); ?>" />
+            <?php if (!empty($imgDesktop) || !empty($imgMobile)) : ?>
+              <picture style="display: block; width: 100%; height: 100%;">
+                <?php if (!empty($imgMobile)) : ?>
+                  <source media="(max-width: 767px)" srcset="<?php echo esc_url($imgMobile); ?>" />
                 <?php endif; ?>
-                <?php if (!empty($step['image'])) : ?>
-                  <source media="(min-width: 768px)" srcset="<?php echo esc_url($step['image']); ?>" />
-                  <img src="<?php echo esc_url($step['image']); ?>" alt="Krok <?php echo $index + 1; ?>" class="jakuzywac__image" />
-                <?php elseif (!empty($step['imageMobile'])) : ?>
-                  <img src="<?php echo esc_url($step['imageMobile']); ?>" alt="Krok <?php echo $index + 1; ?>" class="jakuzywac__image" />
+                <?php if (!empty($imgDesktop)) : ?>
+                  <source media="(min-width: 768px)" srcset="<?php echo esc_url($imgDesktop); ?>" />
+                  <img src="<?php echo esc_url($imgDesktop); ?>" alt="Krok <?php echo $index + 1; ?>" class="jakuzywac__image" />
+                <?php elseif (!empty($imgMobile)) : ?>
+                  <img src="<?php echo esc_url($imgMobile); ?>" alt="Krok <?php echo $index + 1; ?>" class="jakuzywac__image" />
                 <?php endif; ?>
               </picture>
             <?php else : ?>
