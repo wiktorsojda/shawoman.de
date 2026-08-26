@@ -133,7 +133,7 @@
 
     @media (min-width: 1280px) {
       display: flex;
-      flex: 1;
+      flex: 0 0 auto;
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -144,10 +144,8 @@
       letter-spacing: -0.04em;
       color: #fafafa;
       background-color: $color-neutral-400; // grey pill
-      padding: 16px 24px;
+      padding: 16px;
       border-radius: $radius-xs; // 8px
-      min-height: 68px;
-      max-width: 320px;
       box-sizing: border-box;
     }
   }
