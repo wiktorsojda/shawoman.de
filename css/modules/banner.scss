@@ -1,0 +1,135 @@
+// =============================================================================
+// METHODS HEAD — banner naglowkowy dla `metodywysylkihead` i `metodyplatnoscihead`
+// Figma desktop: 1003:2949 (1428x450, padding 0 100, gap 32, title 64/63.36)
+// Figma mobile:  1003:3025 (390x243.75, margin 20px po bokach)
+//
+// Markup (render.php) — tytul (h1) nad glass button (svg). Tlo z CSS vars
+// --bg-desktop i --bg-mobile (z atrybutow bloku).
+// =============================================================================
+
+.video-background-container-banner {
+    position: relative !important;
+    display: block !important;
+    width: auto !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-radius: 24px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+     @media (max-width: 900px) { 
+            border-radius: 12px !important;
+     }
+
+    // ----- Mobile (Figma 1003:3025 — 390x244, ratio 1.6:1) -----
+    // UWAGA: NIE uzywamy `aspect-ratio`! W trybie width:auto + content
+    // wiekszy niz aspect-driven height, browser EKSPANDUJE width by zachowac
+    // ratio (badania: 200px height + ratio 1.6 = 320 width minimalny, ale
+    // gdy content forces 434 height → width forsowane do 693). Lepiej:
+    // `padding-bottom: 62.56%` jako CSS ratio-trick + content absolute.
+    // ALBO prosciej: bez ratio, content rozklada się naturalnie i background
+    // cover skaluje obraz. Wybieramy proste.
+    margin: 24px 20px !important;
+    padding: 24px !important;
+    min-height: 244px !important;
+    background-image: var(--bg-mobile) !important;
+
+    // ----- Desktop (Figma 1003:2949 — 1428x450) -----
+    @media (min-width: 900px) {
+        max-width: 1300px !important;
+        width: auto !important;
+        height: 450px !important;
+        min-height: 0 !important;
+        margin: 32px auto !important;
+        padding: 0 100px !important;
+        background-image: var(--bg-desktop) !important;
+    }
+}
+
+// Section wewnatrz — layout flex column items-end justify-center
+.about-us-second-banner {
+    position: relative !important;
+    z-index: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: start !important;
+    gap: 16px !important;
+
+    @media (min-width: 900px) {
+        gap: 32px !important;
+    }
+}
+
+// Title H1 — Figma 64/63.36 Medium white drop-shadow, text-right
+.about-us-second-title-banner {
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: $font-family-base !important;
+    font-weight: 500 !important;
+    line-height: 0.99 !important;              // Figma: 63.36 / 64
+    letter-spacing: -0.04em !important;
+    text-align: right !important;
+    color: $color-white !important;
+    filter: drop-shadow(0 1px 0.5px rgba(0, 0, 0, 0.25)) !important;
+    text-shadow: none !important;
+    text-transform: none !important;
+
+    // Mobile: ~44px (z proporcji Figmy)
+    font-size: 44px !important;
+
+    @media (min-width: 900px) {
+        font-size: 64px !important;
+    }
+}
+
+// Scroll button — glass SVG (cale stylowanie jest w SVG: gradient, blur filter).
+// Tu tylko kontener i hover.
+.about-us-second-scroll {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    cursor: pointer !important;
+    transition: transform 0.2s ease !important;
+
+    &:hover {
+        transform: translateY(2px) !important;
+    }
+
+    &:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.6) !important;
+        outline-offset: 4px !important;
+        border-radius: 50% !important;
+    }
+
+    svg {
+        display: block !important;
+        margin-top: 15px !important;
+        // Mobile: troszke mniejszy (~44px zamiast 55)
+        width: 44px !important;
+        height: 44px !important;
+
+        @media (min-width: 900px) {
+            width: 55px !important;
+            height: 55px !important;
+        }
+    }
+}
+
+// Wsteczna kompatybilnosc — stare klasy zostaja na fallback (gdy ktos uzywal
+// starszej wersji bloku); ukrywamy bo nowy markup ich nie generuje.
+.about-us-span-banner-first,
+.about-us-span-banner-container,
+.about-us-span-banner-second {
+    // Nowy render.php ich nie wstawia. Stare instancje ukrywamy.
+    // (Jezeli chcesz przywrocic stary look, usun te 3 linijki.)
+}

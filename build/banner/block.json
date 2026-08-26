@@ -2,24 +2,64 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/banner",
-  "title": "Fictional University Banner",
-  "supports": {
-    "align": [
-      "full"
-    ]
-  },
+  "title": "Banner",
   "attributes": {
-    "align": {
+    "videoURL": {
       "type": "string",
-      "default": "full"
+      "default": ""
     },
-    "imgID": {
-      "type": "number"
+    "title": {
+      "type": "string",
+      "default": "Metody Wysyłki"
     },
-    "imgURL": {
-      "type": "string"
+    "subtitle": {
+      "type": "string",
+      "default": "Poznaj szczegóły"
+    },
+    "backgroundImage": {
+      "type": "string",
+      "default": ""
+    },
+    "backgroundImageMobile": {
+      "type": "string",
+      "default": ""
     }
   },
   "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true,
+      "gradients": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontFamily": true,
+      "__experimentalFontWeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalTextTransform": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  }
 }
