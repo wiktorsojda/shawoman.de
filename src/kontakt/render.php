@@ -26,6 +26,7 @@ $svg_whatsapp = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xml
             <div class="kontakt__methods">
                 <?php foreach ($contactMethods as $method): 
                     $type = isset($method['type']) ? $method['type'] : 'other';
+                    $customSvg = isset($method['customSvg']) ? $method['customSvg'] : '';
                     $label = isset($method['label']) ? $method['label'] : '';
                     $link = isset($method['link']) ? $method['link'] : '';
 
@@ -35,6 +36,7 @@ $svg_whatsapp = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xml
                     if ($type === 'phone') $svg = $svg_phone;
                     elseif ($type === 'email') $svg = $svg_email;
                     elseif ($type === 'whatsapp') $svg = $svg_whatsapp;
+                    elseif ($type === 'custom') $svg = $customSvg;
                 ?>
                 <div class="kontakt__method">
                     <?php if ($svg): ?>

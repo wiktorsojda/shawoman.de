@@ -107,10 +107,15 @@ export default function Edit({ attributes, setAttributes }) {
     { label: 'Telefon', value: 'phone' },
     { label: 'E-mail', value: 'email' },
     { label: 'WhatsApp', value: 'whatsapp' },
+    { label: 'Własny SVG (kod)', value: 'custom' },
     { label: 'Inne (Brak)', value: 'other' }
   ];
 
-  const getIconSvg = (type) => {
+  const getIconSvg = (item) => {
+    const type = item.type;
+    if (type === 'custom' && item.customSvg) {
+      return <span dangerouslySetInnerHTML={{ __html: item.customSvg }} style={{ display: 'flex' }} />;
+    }
     if (type === 'phone') {
       return (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,6 +152,14 @@ export default function Edit({ attributes, setAttributes }) {
                 options={iconOptions}
                 onChange={(v) => updateContactMethod(i, "type", v)}
               />
+              {item.type === 'custom' && (
+                <TextareaControl
+                  label="Wklej kod SVG"
+                  value={item.customSvg || ""}
+                  onChange={(v) => updateContactMethod(i, "customSvg", v)}
+                  help="Wklej pełny kod <svg>...</svg>"
+                />
+              )}
               <TextControl label="Etykieta (tekst)" value={item.label} onChange={(v) => updateContactMethod(i, "label", v)} />
               <TextControl label="Link (href)" value={item.link} onChange={(v) => updateContactMethod(i, "link", v)} help="np. tel:+48690801270 lub mailto:kontakt@shavwoman.pl" />
               <Button isDestructive variant="link" onClick={() => removeContactMethod(i)} style={{ padding: 0 }}>Usuń</Button>
@@ -243,7 +256,7 @@ export default function Edit({ attributes, setAttributes }) {
           {contactMethods.map((item, i) => (
             <div key={i} className="kontakt__method">
               <span className="kontakt__method-icon">
-                {getIconSvg(item.type)}
+                {getIconSvg(item)}
               </span>
               <RichText 
                 tagName="span" 
