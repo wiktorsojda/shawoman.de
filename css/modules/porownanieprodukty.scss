@@ -86,7 +86,7 @@
   &__features {
     display: flex;
     flex-direction: column;
-    gap: 8px; // "8 px gora dol"
+    gap: 8px;
   }
 
   &__row {
@@ -98,7 +98,7 @@
     gap: 8px;
 
     @media (min-width: 1280px) {
-      gap: 16px; // "16 lewo prawo dla srodkowej sekcji"
+      gap: 16px;
       align-items: center;
     }
   }
@@ -138,7 +138,7 @@
 
     @media (min-width: 1280px) {
       display: flex;
-      flex: 1;
+      flex: 0 0 280px;
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -149,11 +149,8 @@
       letter-spacing: -0.04em;
       color: #fafafa;
       background-color: $color-neutral-400; // grey pill
-      padding: 16px 24px;
+      padding: 8px 16px;
       border-radius: $radius-xs; // 8px
-      min-height: 68px;
-      max-width: 320px;
-      white-space: nowrap; // Prevent text from wrapping into multiple lines
       box-sizing: border-box;
     }
   }
