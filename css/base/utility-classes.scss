@@ -1,5 +1,5 @@
 .container {
-  // max-width: 1300px;
+  // max-width: 1428px;
   margin: 0 auto;
   // padding: 0 16px;
   position: relative;
@@ -7,14 +7,14 @@
 }
 
 // =============================================================================
-// SHAV: globalne ograniczenie content do 1300px
+// SHAV: globalne ograniczenie content do 1428px
 // =============================================================================
 // Zasada: tla sekcji (background-color, background-image) na cala szerokosc,
-// ale wewnetrzny content max 1300px wysrodkowany.
+// ale wewnetrzny content max 1428px wysrodkowany.
 // Realizacja: wszystkie nasze sekcje strony glownej dostaja max-width:none na
 // wrapperze (full-bleed dla tla), a ich bezposrednie dzieci sa ograniczone.
 // =============================================================================
-// Sekcje gdzie content stack-uje sie pionowo — tlo full, content centrowany do 1300
+// Sekcje gdzie content stack-uje sie pionowo — tlo full, content centrowany do 1428
 $shav-fullbleed-sections:
   '.glownacechy',
   '.glownagrid',
@@ -29,15 +29,15 @@ $shav-fullbleed-sections:
     max-width: none !important;
     width: 100%;
 
-    // Bezposredni content sekcji — constrained do 1300px.
+    // Bezposredni content sekcji — constrained do 1428px.
     // BEZ !important na max-width — zeby lokalne mniejsze max-width (np. 746px na
     // tytulach) mialy pierwszenstwo. Z !important zostaja tylko margin i padding,
     // ktore sa ramowe dla layoutu.
     > * {
-      max-width: 1300px;
+      max-width: 1428px;
       margin-left: auto !important;
       margin-right: auto !important;
-      // Fluid horizontal padding 20-32 — bez "skoku" na granicy 1024-1300
+      // Fluid horizontal padding 20-32 — bez "skoku" na granicy 1024-1428
       padding-left: clamp(20px, 2vw, 32px) !important;
       padding-right: clamp(20px, 2vw, 32px) !important;
       box-sizing: border-box;
@@ -46,14 +46,14 @@ $shav-fullbleed-sections:
 }
 
 // Szachglass + whoweareshavwomen — sekcja jest full-width (tlo z bg-image / overlay),
-// ale content (.szachglass__card / .about-us-second-title) ma byc constrained do 1300.
+// ale content (.szachglass__card / .about-us-second-title) ma byc constrained do 1428.
 // Tutaj NIE uzywamy `> *` bo positioning jest oparty o flex/absolute.
 .szachglass {
   max-width: none !important;
   width: 100%;
 }
 .szachglass__card {
-  max-width: min(1300px, 100%) !important; // respektuje glassWidth jesli mniejsze
+  max-width: min(1428px, 100%) !important; // respektuje glassWidth jesli mniejsze
 }
 
 .video-background-container {
@@ -62,7 +62,7 @@ $shav-fullbleed-sections:
 }
 .about-us-second {
   > * {
-    max-width: 1300px;
+    max-width: 1428px;
     margin-left: auto !important;
     margin-right: auto !important;
     padding-left: 20px !important;
@@ -71,13 +71,13 @@ $shav-fullbleed-sections:
   }
 }
 
-// Header — wyjatek: cala ramka header pill ma byc 1300px (a nie inner).
+// Header — wyjatek: cala ramka header pill ma byc 1428px (a nie inner).
 // 768-1340px: 20px marginesu po bokach (jak content sekcji).
-// >1340px: marginesy auto — header pinuje na 1300px, viewport ma rezerwe.
+// >1340px: marginesy auto — header pinuje na 1428px, viewport ma rezerwe.
 .header {
   @media (min-width: $breakpoint-tablet) {
     box-sizing: border-box;
-    max-width: 1300px !important;
+    max-width: 1428px !important;
     margin-left: 20px !important;
     margin-right: 20px !important;
   }
@@ -206,11 +206,11 @@ ins {
 }
 
 .container--narrow2 {
-  max-width: 1300px;
+  max-width: 1428px;
 }
 
 .container--narrow2-important {
-  max-width: 1300px !important;
+  max-width: 1428px !important;
   margin: 0 auto;
 }
 
@@ -228,7 +228,7 @@ ins {
 
 
 .container--test {
-  max-width: 1300px;
+  max-width: 1428px;
   
 }
 

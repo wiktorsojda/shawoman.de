@@ -159,7 +159,7 @@ $rg-badge-gradient: linear-gradient(105deg, #e9c1b9 0%, #bc8d80 26%, #8d6154 62%
   }
 
   // Header wtopiony w hero (reużywa klasy .header z modułu header).
-  // Szerokość równa sekcjom (max 1428), nie 1300 z globalnego headera.
+  // Szerokość równa sekcjom (max 1428), nie 1428 z globalnego headera.
   &__header {
     position: relative;
     z-index: 2;

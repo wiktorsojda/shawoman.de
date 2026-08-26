@@ -588,7 +588,7 @@ p#countdown-mobile {
 
 //banner single product - top
 .custom-banner-section {
-    max-width: 1300px;
+    max-width: 1428px;
     margin: 0 auto;
     // height: 110px;
     margin-bottom: 0px !important;
@@ -735,7 +735,7 @@ p#countdown-mobile {
     border-radius: $radius-m; // 24px
     padding: $space-64; // 64px
     box-sizing: border-box;
-    max-width: 1300px;
+    max-width: 1428px;
     width: 100%;
     margin: 40px auto $space-32 auto;
     gap: 82px;
@@ -909,7 +909,7 @@ p#countdown-mobile {
 #tab-reviews {
     margin: 0 auto;
     position: relative;
-    max-width: 1300px;
+    max-width: 1428px;
     width: 100%;
 }
 
@@ -917,7 +917,7 @@ p#countdown-mobile {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1300px;
+    max-width: 1428px;
     margin: 0 auto;
 
     #comments ol.commentlist::before {
@@ -1300,7 +1300,7 @@ p#countdown-mobile {
     }
 
     .opinieproduktowe__title {
-        max-width: 1300px;
+        max-width: 1428px;
         width: 100%;
         margin: 0 auto $space-32 auto;
         padding: 0;
@@ -1323,7 +1323,7 @@ p#countdown-mobile {
         width: 100%;
         max-width: 100% !important;
 
-        // Nadpisanie stylów Gutenberga (theme.json contentSize 1300px), 
+        // Nadpisanie stylów Gutenberga (theme.json contentSize 1428px), 
         // by bloki w opisie zawsze miały 100% szerokości, chyba że same mają wbudowany kontener.
         &>* {
             max-width: 100% !important;
@@ -1412,7 +1412,7 @@ p#countdown-mobile {
     // border-radius: 10px; /* Optional: Add some rounding to the corners */
     margin: 0 auto;
     margin-bottom: $space-64;
-    max-width: 1300px;
+    max-width: 1428px;
 }
 
 
