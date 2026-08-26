@@ -40,7 +40,7 @@ $shav-fullbleed-sections:
       // Fluid horizontal padding 20-32 — bez "skoku" na granicy 1024-1428
       padding-left: clamp(20px, 2vw, 32px) !important;
       padding-right: clamp(20px, 2vw, 32px) !important;
-      box-sizing: border-box;
+      box-sizing: content-box;
     }
   }
 }
