@@ -153,6 +153,7 @@
       border-radius: $radius-xs; // 8px
       min-height: 68px;
       max-width: 320px;
+      white-space: nowrap; // Prevent text from wrapping into multiple lines
       box-sizing: border-box;
     }
   }
