@@ -4,9 +4,25 @@
 // Markup generowany przez display_shop_banner_image_with_text() w functions.php.
 // =============================================================================
 
+.shop-banner-container {
+    width: 100%;
+    margin: 0 18px; // Mobile: odstęp jak w headerze
+    box-sizing: border-box;
+
+    @media (min-width: 900px) {
+        margin: 0 auto;
+        max-width: 1428px;
+    }
+
+    @media (min-width: 1340px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 .shop-banner-image {
     position: relative;
-    width: auto;
+    width: 100%;
     margin: 24px 0 32px 0;       // margin pionowy
     border-radius: 24px;
     overflow: hidden;

@@ -2454,7 +2454,7 @@ function display_shop_banner_image_with_text()
         $link_url = get_option('shav_shop_banner_link');
 
         if ($desktop_banner_url || $mobile_banner_url) {
-            echo '<div class="shop-banner-container" style="max-width: 1428px; margin: 0 auto; width: 100%; box-sizing: border-box; padding-left: clamp(20px, 2vw, 32px); padding-right: clamp(20px, 2vw, 32px);">';
+            echo '<div class="shop-banner-container">';
             if (!empty($link_url)) {
                 echo '<a href="' . esc_url($link_url) . '" style="display: block;">';
             }
