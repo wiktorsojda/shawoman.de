@@ -90,11 +90,13 @@
 
   &__tile {
     flex: 1;
+    min-width: 0;
     max-width: 348px;
-    height: 100px;
+    min-height: 100px;
+    height: auto;
     background-color: $color-neutral-50; // #FAFAFA
     border-radius: $radius-xs; // 8px
-    padding: 24px;
+    padding: clamp(16px, 3vw, 24px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,8 +112,12 @@
     
     &-link {
       @include type-body-m;
+      font-size: clamp(12px, 3.5vw, 14px);
+      word-break: break-word;
       color: $color-blue-700; // #0464ab
       text-decoration: underline !important;
+      text-decoration-style: solid;
+      text-decoration-skip-ink: auto;
       
       &:hover {
         text-decoration: none !important;
