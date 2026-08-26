@@ -8,6 +8,8 @@
 
 .footer {
   width: 100%;
+  max-width: 1428px;
+  margin: 0 auto;
   // Padding boczny fluid: 20px → 32px (clamp)
   padding: $space-32 clamp(20px, 3vw, $space-32);
   box-sizing: border-box;

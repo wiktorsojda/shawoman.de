@@ -21,8 +21,7 @@ $shav-fullbleed-sections:
   '.glownaoceny',
   '.glownaopinie',
   '.glownainstagram',
-  '.faqglowna',
-  '.footer';
+  '.faqglowna';
 
 @each $sel in $shav-fullbleed-sections {
   #{$sel} {
