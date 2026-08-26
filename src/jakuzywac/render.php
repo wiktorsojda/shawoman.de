@@ -34,7 +34,7 @@ function shav_force_https($url) {
         <figure class="jakuzywac__step">
           <div class="jakuzywac__image-wrapper">
             <?php if (!empty($imgDesktop) || !empty($imgMobile)) : ?>
-              <picture style="display: block; width: 100%; height: 100%;">
+              <picture style="display: block; width: 100%; height: auto;">
                 <?php if (!empty($imgMobile)) : ?>
                   <source media="(max-width: 767px)" srcset="<?php echo esc_url($imgMobile); ?>" />
                 <?php endif; ?>
