@@ -88,14 +88,11 @@
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    background-color: #F2F2F2;
-    border-radius: $radius-m;
-    padding: 16px;
-    gap: 16px;
+    background-color: transparent;
+    padding: 0;
+    gap: 8px;
 
     @media (min-width: 1280px) {
-      padding: 0; // The cards will have their own padding
-      background-color: transparent;
       gap: 32px;
       align-items: center;
     }
@@ -106,9 +103,11 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    background-color: #F2F2F2;
+    padding: 16px;
+    border-radius: $radius-m;
 
     @media (min-width: 1280px) {
-      background-color: #F2F2F2;
       padding: 24px;
       border-radius: $radius-xs; // 8px
       min-height: 68px;
