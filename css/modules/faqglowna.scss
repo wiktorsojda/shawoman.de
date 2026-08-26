@@ -8,7 +8,7 @@
 .glownafaq {
   width: 100%;
   padding: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 
   @media (min-width: $breakpoint-tablet) {
     padding: $space-32 $space-120;

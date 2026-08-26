@@ -11,7 +11,7 @@
   gap: $space-32;
   width: 100%;
   padding: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 
   @media (min-width: $breakpoint-tablet) {
     gap: $space-64;

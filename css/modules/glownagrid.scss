@@ -10,7 +10,7 @@
 .glownagrid {
   width: 100%;
   padding: 32px 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 
   @media (min-width: $breakpoint-tablet) {
     padding: $space-32 0;
