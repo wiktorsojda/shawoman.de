@@ -32,6 +32,7 @@
         max-width: 1200px;
         margin: 0 auto;
         width: 100%;
+        transition: gap 0.5s ease;
 
         @media (min-width: $breakpoint-tablet) {
             flex-direction: row;
@@ -83,6 +84,30 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+        }
+    }
+
+    &__separator,
+    &__coupon {
+        transition: opacity 0.5s ease, max-width 0.5s ease, margin 0.5s ease, padding 0.5s ease;
+        max-width: 400px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    &.is-copied-hidden {
+        .shav-topbar__inner {
+            gap: 0 !important;
+        }
+        .shav-topbar__separator,
+        .shav-topbar__coupon {
+            opacity: 0;
+            max-width: 0;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+            pointer-events: none;
         }
     }
 }

@@ -70,8 +70,9 @@ if ($topbar_data):
 </div>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const topbar = document.querySelector('.shav-topbar');
     const couponBtn = document.querySelector('.shav-topbar__coupon');
-    if (couponBtn) {
+    if (couponBtn && topbar) {
         couponBtn.addEventListener('click', function() {
             const code = this.getAttribute('data-coupon');
             navigator.clipboard.writeText(code).then(() => {
@@ -79,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const originalHTML = textEl.innerHTML;
                 textEl.innerText = 'Kopiert!';
                 setTimeout(() => {
-                    textEl.innerHTML = originalHTML;
-                }, 2000);
+                    topbar.classList.add('is-copied-hidden');
+                }, 1500);
             });
         });
     }
