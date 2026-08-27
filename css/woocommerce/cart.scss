@@ -911,19 +911,16 @@ max-width: none;
         display: none;
     }
 
-/* DHL Shipping Logo (CheckoutWC / WooCommerce) */
-label[for*="dhl"]::after,
-label[for*="DHL"]::after,
-.cfw-shipping-method-dhl label::after,
-label[for="shipping_method_0_flat_rate5"]::after {
-    content: '';
-    display: inline-block;
+/* DHL Shipping Logo (CheckoutWC) */
+ul.cfw-shipping-methods-list .cfw-shipping-method-inner label[for="shipping_method_0_flat_rate5"]::before {
+    content: " ";
+    display: block;
     width: 60px;
     height: 18px;
-    margin-left: 10px;
+    min-width: 60px;
+    margin-right: 15px;
     background-image: url('../images/dhl.svg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    vertical-align: middle;
 }
