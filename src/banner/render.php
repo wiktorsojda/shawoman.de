@@ -2,6 +2,7 @@
 $backgroundImage       = isset($attributes['backgroundImage'])       ? $attributes['backgroundImage']       : '';
 $backgroundImageMobile = isset($attributes['backgroundImageMobile']) ? $attributes['backgroundImageMobile'] : '';
 $title                 = isset($attributes['title'])                 ? $attributes['title']                 : 'Metody dostawy';
+$subtitle              = isset($attributes['subtitle'])              ? $attributes['subtitle']              : 'Poznaj szczegóły';
 
 // CSS vars — desktop i mobile osobne. Mobile fallback na desktop.
 $style_parts = [];
@@ -21,6 +22,9 @@ $wrapper_attrs = get_block_wrapper_attributes([
 ?>
 <div <?php echo $wrapper_attrs; ?>>
     <section class="about-us-second-banner">
+        <?php if (!empty($subtitle)): ?>
+            <p class="about-us-second-subtitle-banner"><?php echo wp_kses_post($subtitle); ?></p>
+        <?php endif; ?>
         <h1 class="about-us-second-title-banner"><?php echo wp_kses_post($title); ?></h1>
         <button class="about-us-second-scroll" type="button" aria-label="Przewiń w dół" onclick="this.closest('.video-background-container-banner').nextElementSibling?.scrollIntoView({behavior:'smooth',block:'start'})">
             <svg width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

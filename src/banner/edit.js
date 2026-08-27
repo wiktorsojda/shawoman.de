@@ -9,7 +9,7 @@ import { PanelBody, Button, TextareaControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-  const { backgroundImage, backgroundImageMobile, title } = attributes;
+  const { backgroundImage, backgroundImageMobile, title, subtitle } = attributes;
   const [importJson, setImportJson] = useState("");
 
   const wrapperStyle = {
@@ -31,25 +31,27 @@ export default function Edit({ attributes, setAttributes }) {
             label="Skopiuj ten JSON dla AI"
             value={(() => {
               const data = {
-                title: title || ''
+                title: title || '',
+                subtitle: subtitle || ''
               };
               return JSON.stringify(data, null, 2);
             })()}
             readOnly
-            rows={4}
+            rows={5}
             help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
           />
           <TextareaControl
             label="Wklej przetłumaczony JSON"
             value={importJson}
             onChange={setImportJson}
-            rows={4}
+            rows={5}
           />
           <Button variant="primary" onClick={() => {
             try {
               const parsed = JSON.parse(importJson);
               const updates = {};
               if (parsed.title !== undefined) updates.title = parsed.title;
+              if (parsed.subtitle !== undefined) updates.subtitle = parsed.subtitle;
               setAttributes(updates);
               alert('Zaktualizowano pomyślnie!');
               setImportJson('');
@@ -105,6 +107,14 @@ export default function Edit({ attributes, setAttributes }) {
       </InspectorControls>
 
       <section className="about-us-second-banner">
+        <RichText
+          tagName="p"
+          className="about-us-second-subtitle-banner"
+          value={subtitle}
+          onChange={(v) => setAttributes({ subtitle: v })}
+          placeholder="Podtytuł"
+          allowedFormats={["core/bold", "core/italic"]}
+        />
         <RichText
           tagName="h1"
           className="about-us-second-title-banner"

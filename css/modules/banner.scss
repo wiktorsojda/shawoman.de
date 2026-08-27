@@ -56,12 +56,33 @@
     flex-direction: column !important;
     align-items: flex-end !important;
     justify-content: start !important;
-    gap: 16px !important;
+    gap: 16px !important; // dotyczy przerwy miedzy title a scroll buttonem, bo na subtitle damy margin-bottom
 
     @media (min-width: 900px) {
         gap: 32px !important;
     }
 }
+
+// Subtitle L — Figma 16px/14px Medium
+.about-us-second-subtitle-banner {
+    margin: 0 0 24px 0 !important;
+    padding: 0 !important;
+
+    font-family: $font-family-base !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;              // Figma: 120%
+    letter-spacing: -0.04em !important;
+    text-align: right !important;
+    color: $color-white !important;
+    filter: drop-shadow(0 1px 0.5px rgba(0, 0, 0, 0.25)) !important;
+    
+    font-size: 14px !important;
+
+    @media (min-width: 900px) {
+        font-size: 16px !important;
+    }
+}
+
 
 // Title H1 — Figma 64/63.36 Medium white drop-shadow, text-right
 .about-us-second-title-banner {
