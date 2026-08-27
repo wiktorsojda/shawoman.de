@@ -96,10 +96,12 @@ function shav_render_store_settings_page() {
         .shav-header { background: #fff; padding: 20px 30px; border-radius: 8px 8px 0 0; border: 1px solid #ccd0d4; border-bottom: none; display: flex; align-items: center; gap: 15px; }
         .shav-header h1 { margin: 0; font-size: 22px; font-weight: 600; color: #1d2327; }
         
-        .shav-tabs { display: flex; background: #f0f0f1; border-left: 1px solid #ccd0d4; border-right: 1px solid #ccd0d4; padding: 0 15px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
-        .shav-tabs::-webkit-scrollbar { height: 6px; }
-        .shav-tabs::-webkit-scrollbar-thumb { background: #ccd0d4; border-radius: 4px; }
-        .shav-tab { padding: 15px 25px; cursor: pointer; border-bottom: 3px solid transparent; font-weight: 600; color: #50575e; transition: all 0.2s ease; }
+        .shav-tabs-wrapper { display: flex; align-items: stretch; background: #f0f0f1; border-left: 1px solid #ccd0d4; border-right: 1px solid #ccd0d4; position: relative; overflow: hidden; }
+        .shav-tabs { flex: 1; display: flex; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+        .shav-tabs::-webkit-scrollbar { display: none; }
+        .shav-tab-nav { background: none; border: none; font-size: 24px; color: #50575e; cursor: pointer; padding: 0 12px; height: 100%; display: flex; align-items: center; transition: color 0.2s; line-height: 1; }
+        .shav-tab-nav:hover { color: #2271b1; }
+        .shav-tab { padding: 15px 20px; cursor: pointer; border-bottom: 3px solid transparent; font-weight: 600; color: #50575e; transition: all 0.2s ease; }
         .shav-tab:hover { color: #1d2327; }
         .shav-tab.active { color: #2271b1; border-bottom-color: #2271b1; background: #fff; }
 
@@ -165,14 +167,18 @@ function shav_render_store_settings_page() {
             <h1>Opcje Globalne Sklepu</h1>
         </div>
 
-        <div class="shav-tabs">
-            <div class="shav-tab active" data-target="tab-banner">Banery Sklepu</div>
-            <div class="shav-tab" data-target="tab-stock">Paski Magazynowe</div>
-            <div class="shav-tab" data-target="tab-accordions">Atuty (3 Ikony)</div>
-            <div class="shav-tab" data-target="tab-badges">Odznaki Procentowe</div>
-            <div class="shav-tab" data-target="tab-text-badges">Etykiety Tekstowe</div>
-            <div class="shav-tab" data-target="tab-svg-badges">Pill/SVG (Pod ratingiem)</div>
-            <div class="shav-tab" data-target="tab-topbar">Pasek Pozapromocyjny</div>
+        <div class="shav-tabs-wrapper">
+            <button type="button" class="shav-tab-nav" id="shav-tabs-left" aria-label="Przewiń w lewo">&lsaquo;</button>
+            <div class="shav-tabs" id="shav-tabs">
+                <div class="shav-tab active" data-target="tab-banner">Banery Sklepu</div>
+                <div class="shav-tab" data-target="tab-stock">Paski Magazynowe</div>
+                <div class="shav-tab" data-target="tab-accordions">Atuty (3 Ikony)</div>
+                <div class="shav-tab" data-target="tab-badges">Odznaki Procentowe</div>
+                <div class="shav-tab" data-target="tab-text-badges">Etykiety Tekstowe</div>
+                <div class="shav-tab" data-target="tab-svg-badges">Pill/SVG (Pod ratingiem)</div>
+                <div class="shav-tab" data-target="tab-topbar">Pasek Pozapromocyjny</div>
+            </div>
+            <button type="button" class="shav-tab-nav" id="shav-tabs-right" aria-label="Przewiń w prawo">&rsaquo;</button>
         </div>
 
         <div class="shav-content">
@@ -587,6 +593,14 @@ function shav_render_store_settings_page() {
             // Zakładki
             const tabs = document.querySelectorAll('.shav-tab');
             const contents = document.querySelectorAll('.shav-tab-content');
+            const tabsContainer = document.getElementById('shav-tabs');
+            const leftBtn = document.getElementById('shav-tabs-left');
+            const rightBtn = document.getElementById('shav-tabs-right');
+
+            if (leftBtn && rightBtn && tabsContainer) {
+                leftBtn.addEventListener('click', () => tabsContainer.scrollBy({ left: -250, behavior: 'smooth' }));
+                rightBtn.addEventListener('click', () => tabsContainer.scrollBy({ left: 250, behavior: 'smooth' }));
+            }
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
