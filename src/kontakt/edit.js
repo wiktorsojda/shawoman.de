@@ -108,6 +108,7 @@ export default function Edit({ attributes, setAttributes }) {
     { label: 'E-mail', value: 'email' },
     { label: 'WhatsApp', value: 'whatsapp' },
     { label: 'Własny SVG (kod)', value: 'custom' },
+    { label: 'Własny obraz/SVG (biblioteka)', value: 'image' },
     { label: 'Inne (Brak)', value: 'other' }
   ];
 
@@ -115,6 +116,9 @@ export default function Edit({ attributes, setAttributes }) {
     const type = item.type;
     if (type === 'custom' && item.customSvg) {
       return <span dangerouslySetInnerHTML={{ __html: item.customSvg }} style={{ display: 'flex' }} />;
+    }
+    if (type === 'image' && item.customImage) {
+      return <img src={item.customImage} alt="icon" style={{ width: 24, height: 24, objectFit: 'contain' }} />;
     }
     if (type === 'phone') {
       return (
@@ -160,20 +164,37 @@ export default function Edit({ attributes, setAttributes }) {
                   help="Wklej pełny kod <svg>...</svg>"
                 />
               )}
+              {item.type === 'image' && (
+                <div style={{ marginBottom: 16 }}>
+                  <MediaUploadCheck>
+                    <MediaUpload
+                      onSelect={(media) => updateContactMethod(i, "customImage", media.url)}
+                      allowedTypes={["image"]}
+                      value={item.customImage}
+                      render={({ open }) => (
+                        <Button variant="secondary" onClick={open}>
+                          {item.customImage ? "Zmień ikonę" : "Wybierz ikonę z biblioteki"}
+                        </Button>
+                      )}
+                    />
+                  </MediaUploadCheck>
+                  {item.customImage && <img src={item.customImage} style={{ width: 24, display: 'block', marginTop: 8 }} />}
+                </div>
+              )}
               <TextControl label="Etykieta (tekst)" value={item.label} onChange={(v) => updateContactMethod(i, "label", v)} />
               <TextControl label="Link (href)" value={item.link} onChange={(v) => updateContactMethod(i, "link", v)} help="np. tel:+48690801270 lub mailto:kontakt@shavwoman.pl" />
               
-              {item.type === 'whatsapp' && (
-                <div style={{ marginTop: 12, padding: 12, background: '#fff', border: '1px solid #ccc', borderRadius: 4 }}>
-                  <TextControl label="Tekst nad QR" value={item.qrText || ''} onChange={(v) => updateContactMethod(i, "qrText", v)} />
-                  <MediaUploadCheck>
-                    <MediaUpload onSelect={(media) => updateContactMethod(i, "qrImage", media.url)} allowedTypes={["image"]} value={item.qrImage}
-                      render={({ open }) => (<Button variant="secondary" onClick={open}>{item.qrImage ? "Zmień QR code" : "Wybierz QR code"}</Button>)} />
-                  </MediaUploadCheck>
-                  {item.qrImage && <img src={item.qrImage} style={{ width: '100px', display: 'block', marginTop: 8 }} />}
-                  <TextControl label="Tekst przycisku pod QR" value={item.qrButton || ''} onChange={(v) => updateContactMethod(i, "qrButton", v)} style={{ marginTop: 12 }} />
-                </div>
-              )}
+              <div style={{ marginTop: 12, padding: 12, background: '#fff', border: '1px solid #ccc', borderRadius: 4 }}>
+                <strong>Rozszerzone szczegóły (opcjonalnie)</strong>
+                <p style={{ fontSize: 12, color: '#666' }}>Zdjęcie lub dodatkowy tekst pod metodą kontaktu.</p>
+                <TextControl label="Tekst nad zdjęciem" value={item.qrText || ''} onChange={(v) => updateContactMethod(i, "qrText", v)} />
+                <MediaUploadCheck>
+                  <MediaUpload onSelect={(media) => updateContactMethod(i, "qrImage", media.url)} allowedTypes={["image"]} value={item.qrImage}
+                    render={({ open }) => (<Button variant="secondary" onClick={open}>{item.qrImage ? "Zmień zdjęcie" : "Wybierz zdjęcie"}</Button>)} />
+                </MediaUploadCheck>
+                {item.qrImage && <img src={item.qrImage} style={{ width: '100px', display: 'block', marginTop: 8 }} />}
+                <TextControl label="Tekst przycisku pod zdjęciem" value={item.qrButton || ''} onChange={(v) => updateContactMethod(i, "qrButton", v)} style={{ marginTop: 12 }} />
+              </div>
 
               <Button isDestructive variant="link" onClick={() => removeContactMethod(i)} style={{ padding: 0, marginTop: 12 }}>Usuń</Button>
             </div>
