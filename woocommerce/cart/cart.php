@@ -120,7 +120,7 @@ do_action('woocommerce_before_cart'); ?>
 												esc_attr(sprintf(__('Remove %s from cart', 'woocommerce'), wp_strip_all_tags($product_name))),
 												esc_attr($product_id),
 												esc_attr($_product->get_sku()),
-												__('USUŃ', 'woocommerce') // This is where you replace the icon with the text "USUŃ"
+												__('Remove', 'woocommerce') // This is where you replace the icon with the text "USUŃ"
 											),
 											$cart_item_key
 										);
@@ -149,7 +149,7 @@ do_action('woocommerce_before_cart'); ?>
 
 			<div class="coupon">
 				<label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label>
-				<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Wpisz kod kuponu', 'woocommerce' ); ?>">
+				<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>">
 				<button type="submit" class="button wp-element-button button-cart" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply', 'woocommerce' ); ?></button>
 			</div>
 
