@@ -54,3 +54,10 @@ if (!function_exists('shav_get_topbar_data')) {
         return false;
     }
 }
+
+add_filter('body_class', function($classes) {
+    if (function_exists('shav_get_topbar_data') && shav_get_topbar_data()) {
+        $classes[] = 'has-shav-topbar';
+    }
+    return $classes;
+});
