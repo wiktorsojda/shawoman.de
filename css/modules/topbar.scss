@@ -32,9 +32,9 @@
 
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: auto;
         justify-items: center;
-        gap: 4px;
+        gap: 0;
 
         @media (min-width: $breakpoint-tablet) {
             width: calc(100% - 40px);
@@ -47,29 +47,29 @@
     }
 
     &__main {
-        display: contents;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        @media (max-width: 767px) {
+            grid-row: 1;
+            grid-column: 1;
+            animation: fadeAlternate 8s infinite;
+            flex-wrap: wrap;
+            justify-content: center;
+            row-gap: 4px;
+        }
     }
 
     &__text {
         text-align: center;
         margin: 0;
         padding: 0;
-
-        @media (max-width: 767px) {
-            grid-row: 1;
-            grid-column: 1;
-        }
     }
 
     &__coupon-wrapper {
         display: flex;
         align-items: center;
-
-        @media (max-width: 767px) {
-            grid-row: 2;
-            grid-column: 1;
-            animation: fadeAlternate 8s infinite;
-        }
     }
 
 
@@ -139,7 +139,7 @@
                 opacity: 1 !important;
                 pointer-events: auto !important;
             }
-            .shav-topbar__coupon-wrapper {
+            .shav-topbar__main {
                 display: none !important;
                 animation: none !important;
             }
@@ -159,7 +159,7 @@
         }
 
         @media (max-width: 767px) {
-            grid-row: 2;
+            grid-row: 1;
             grid-column: 1;
             animation: fadeAlternate 8s infinite;
             animation-delay: 4s;
