@@ -5,7 +5,7 @@
     position: relative;
     z-index: 1001;
     text-align: center;
-    padding: $space-8 $space-12;
+    padding: $space-8 0;
     font-family: 'Be Vietnam Pro', sans-serif;
     font-weight: 300;
     font-size: 16px;
@@ -16,7 +16,7 @@
     margin-bottom: 16px;
 
     @media (min-width: $breakpoint-tablet) {
-        padding: 0 $space-16;
+        padding: 0;
         height: 40px;
         display: flex;
         align-items: center;
@@ -25,48 +25,51 @@
 
     &__inner {
         position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        max-width: 1200px;
-        margin: 0 auto;
-        width: 100%;
+        width: auto;
+        margin: 0 20px;
+        max-width: 1428px;
         transition: gap 0.5s ease;
 
-        @media (max-width: 767px) {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto;
-            justify-items: center;
-            gap: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        justify-items: center;
+        gap: 4px;
+
+        @media (min-width: $breakpoint-tablet) {
+            width: calc(100% - 40px);
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
         }
     }
 
     &__main {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-
-        @media (max-width: 767px) {
-            grid-row: 1;
-            grid-column: 1;
-            animation: fadeAlternate 8s infinite;
-            flex-wrap: wrap;
-            justify-content: center;
-            row-gap: 4px;
-        }
+        display: contents;
     }
 
     &__text {
         text-align: center;
         margin: 0;
         padding: 0;
+
+        @media (max-width: 767px) {
+            grid-row: 1;
+            grid-column: 1;
+        }
     }
 
     &__coupon-wrapper {
         display: flex;
         align-items: center;
+
+        @media (max-width: 767px) {
+            grid-row: 2;
+            grid-column: 1;
+            animation: fadeAlternate 8s infinite;
+        }
     }
 
 
@@ -136,7 +139,7 @@
                 opacity: 1 !important;
                 pointer-events: auto !important;
             }
-            .shav-topbar__main {
+            .shav-topbar__coupon-wrapper {
                 display: none !important;
                 animation: none !important;
             }
@@ -150,13 +153,13 @@
 
         @media (min-width: $breakpoint-tablet) {
             position: absolute;
-            right: 16px;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
         }
 
         @media (max-width: 767px) {
-            grid-row: 1;
+            grid-row: 2;
             grid-column: 1;
             animation: fadeAlternate 8s infinite;
             animation-delay: 4s;
