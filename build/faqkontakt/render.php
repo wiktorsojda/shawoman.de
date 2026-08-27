@@ -11,8 +11,14 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
     <style>
         .faq-kontakt-container {
             max-width: 992px !important;
-            margin: 0 auto;
-            width: 100%;
+            width: auto;
+            margin: 0 20px;
+        }
+        @media (min-width: 768px) {
+            .faq-kontakt-container {
+                width: calc(100% - 40px);
+                margin: 0 auto;
+            }
         }
         .faq-kontakt-container .faq-title {
             text-align: center;
