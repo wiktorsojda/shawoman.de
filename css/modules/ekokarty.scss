@@ -70,8 +70,8 @@
       position: absolute;
       top: $space-32;
       right: $space-32;
-      max-width: 32px; // Default size, adjust as needed
-      max-height: 32px;
+      width: 96px;
+      height: 24px;
       object-fit: contain;
     }
 
@@ -92,6 +92,7 @@
     &-title {
       @include type-h4;
       font-weight: 500;
+      font-style: normal;
       color: $color-neutral-900;
       margin: 0;
 
@@ -102,6 +103,8 @@
 
     &-text {
       @include type-body-m;
+      font-weight: 400;
+      font-style: normal;
       color: $color-neutral-800;
       margin: 0;
       
