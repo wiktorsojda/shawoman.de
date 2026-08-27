@@ -166,7 +166,7 @@
       text-decoration-skip-ink: auto;
       
       &:hover {
-        text-decoration: none !important;
+        color: #034b80; // slightly darkened $color-blue-700
       }
     }
   }
