@@ -14,7 +14,7 @@
     },
     "subtitle": {
       "type": "string",
-      "default": "Poznaj szczegóły"
+      "default": ""
     },
     "backgroundImage": {
       "type": "string",

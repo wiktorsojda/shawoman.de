@@ -2,7 +2,7 @@
 $backgroundImage       = isset($attributes['backgroundImage'])       ? $attributes['backgroundImage']       : '';
 $backgroundImageMobile = isset($attributes['backgroundImageMobile']) ? $attributes['backgroundImageMobile'] : '';
 $title                 = isset($attributes['title'])                 ? $attributes['title']                 : 'Metody dostawy';
-$subtitle              = isset($attributes['subtitle'])              ? $attributes['subtitle']              : 'Poznaj szczegóły';
+$subtitle              = isset($attributes['subtitle'])              ? $attributes['subtitle']              : '';
 
 // CSS vars — desktop i mobile osobne. Mobile fallback na desktop.
 $style_parts = [];

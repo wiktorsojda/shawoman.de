@@ -13,9 +13,8 @@ export default function Edit({ attributes, setAttributes }) {
   const [importJson, setImportJson] = useState("");
 
   const wrapperStyle = {
-    ...(backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}),
-    backgroundSize: "cover",
-    backgroundPosition: "center",
+    ...(backgroundImage ? { '--bg-desktop': `url(${backgroundImage})` } : {}),
+    ...(backgroundImageMobile || backgroundImage ? { '--bg-mobile': `url(${backgroundImageMobile || backgroundImage})` } : {}),
   };
 
   const blockProps = useBlockProps({
