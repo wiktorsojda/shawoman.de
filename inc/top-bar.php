@@ -29,6 +29,7 @@ if (!function_exists('shav_get_topbar_data')) {
                 'coupon' => $coupon,
                 'bg' => $bg,
                 'color' => $color,
+                'trustpilot' => get_option('shav_topbar_trustpilot_link', ''),
             ];
         }
 
@@ -40,13 +41,16 @@ if (!function_exists('shav_get_topbar_data')) {
             $bg = get_option('shav_topbar_bg', '#252525');
             $color = get_option('shav_topbar_color', '#FAFAFA');
 
-            if (!empty($text) || !empty($coupon)) {
+            $trustpilot = get_option('shav_topbar_trustpilot_link', '');
+
+            if (!empty($text) || !empty($coupon) || !empty($trustpilot)) {
                 return [
                     'mode' => 'daily',
                     'text' => $text,
                     'coupon' => $coupon,
                     'bg' => $bg,
                     'color' => $color,
+                    'trustpilot' => $trustpilot,
                 ];
             }
         }

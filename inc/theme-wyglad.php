@@ -53,6 +53,7 @@ function shav_register_store_settings() {
     register_setting($settings_group, 'shav_topbar_coupon');
     register_setting($settings_group, 'shav_topbar_bg');
     register_setting($settings_group, 'shav_topbar_color');
+    register_setting($settings_group, 'shav_topbar_trustpilot_link');
 }
 
 // 3. Załadowanie skryptów (Media Uploader + WooCommerce Select2)
@@ -553,6 +554,12 @@ function shav_render_store_settings_page() {
                     <div class="shav-field-group">
                         <label class="shav-label">Kolor Tekstu</label>
                         <input type="text" name="shav_topbar_color" class="shav-input-text" placeholder="np. #000000" value="<?php echo esc_attr(get_option('shav_topbar_color', '#FAFAFA')); ?>">
+                    </div>
+                    
+                    <div class="shav-field-group">
+                        <label class="shav-label">Link do Trustpilot</label>
+                        <input type="text" name="shav_topbar_trustpilot_link" class="shav-input-text" placeholder="Opcjonalny link, np. https://www.trustpilot.com/..." value="<?php echo esc_attr(get_option('shav_topbar_trustpilot_link', '')); ?>">
+                        <p class="description">Jeśli zostawisz puste, element wyświetli się bez linku.</p>
                     </div>
                 </div>
                 <div class="shav-submit-wrap">
