@@ -918,6 +918,7 @@
         width: 100%;
         justify-content: space-between;
 
+
         .coupon {
             display: flex;
             width: 100%;
@@ -935,31 +936,10 @@
         }
     }
 
+
 }
+
 
 small.includes_tax {
     display: none;
-}
-
-/* Coupon Inputs Visibility */
-#coupon_code,
-.cfw-input-wrap input[id^="component-"] {
-    border: 1px solid #bcbcbc !important;
-    background-color: #ffffff !important;
-    border-radius: 8px !important;
-}
-
-/* Checkout Coupon Button Color */
-.cfw-discount-form button[type="submit"],
-.cfw-coupon-form button[type="submit"],
-form.checkout_coupon button[type="submit"],
-.cfw-discount-form .cfw-secondary-btn,
-.cfw-coupon-form .cfw-secondary-btn,
-button.cfw-secondary-btn[name="apply_coupon"],
-.cfw-apply-coupon-btn,
-.cfw-secondary-btn.cfw-secondary-btn-inactive {
-    background-color: #ac0000 !important;
-    color: #ffffff !important;
-    border-radius: 8px !important;
-    border: none !important;
 }
