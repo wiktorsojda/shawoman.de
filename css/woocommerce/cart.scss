@@ -910,3 +910,19 @@ max-width: none;
     small.includes_tax {
         display: none;
     }
+
+/* DHL Shipping Logo (CheckoutWC / WooCommerce) */
+label[for*="dhl"]::after,
+label[for*="DHL"]::after,
+.cfw-shipping-method-dhl label::after {
+    content: '';
+    display: inline-block;
+    width: 60px;
+    height: 18px;
+    margin-left: 10px;
+    background-image: url('../images/dhl.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
