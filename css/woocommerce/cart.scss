@@ -952,7 +952,12 @@ small.includes_tax {
 /* Checkout Coupon Button Color */
 .cfw-discount-form button[type="submit"],
 .cfw-coupon-form button[type="submit"],
-form.checkout_coupon button[type="submit"] {
+form.checkout_coupon button[type="submit"],
+.cfw-discount-form .cfw-secondary-btn,
+.cfw-coupon-form .cfw-secondary-btn,
+button.cfw-secondary-btn[name="apply_coupon"],
+.cfw-apply-coupon-btn,
+.cfw-secondary-btn.cfw-secondary-btn-inactive {
     background-color: #ac0000 !important;
     color: #ffffff !important;
     border-radius: 8px !important;
