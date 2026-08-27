@@ -15,6 +15,7 @@ require_once get_template_directory() . '/inc/cart-cross-sell.php';
 require_once get_template_directory() . '/inc/wc-automatyzacja.php';
 require_once get_template_directory() . '/inc/wc-faq.php';
 require_once get_template_directory() . '/inc/theme-wyglad.php';
+require_once get_template_directory() . '/inc/top-bar.php';
 require_once get_template_directory() . '/inc/wc-badges.php';
 require_once get_template_directory() . '/inc/ceny-w-zestawie.php';
 require_once get_template_directory() . '/inc/ceny-front.php';

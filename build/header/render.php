@@ -40,6 +40,39 @@ $hamburger_svg = '<svg aria-hidden="true" focusable="false" xmlns="http://www.w3
 
 $menu_items = $menuId ? wp_get_nav_menu_items($menuId) : false;
 ?>
+<?php 
+$topbar_data = function_exists('shav_get_topbar_data') ? shav_get_topbar_data() : false;
+if ($topbar_data): 
+?>
+<div class="shav-topbar" style="background: <?php echo esc_attr($topbar_data['bg']); ?>; color: <?php echo esc_attr($topbar_data['color']); ?>;">
+    <div class="shav-topbar__inner">
+        <span class="shav-topbar__text"><?php echo wp_kses_post($topbar_data['text']); ?></span>
+        <?php if (!empty($topbar_data['coupon'])): ?>
+            <button type="button" class="shav-topbar__coupon" data-coupon="<?php echo esc_attr($topbar_data['coupon']); ?>">
+                <strong class="shav-topbar__coupon-code"><?php echo esc_html($topbar_data['coupon']); ?></strong>
+            </button>
+        <?php endif; ?>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const couponBtn = document.querySelector('.shav-topbar__coupon');
+    if (couponBtn) {
+        couponBtn.addEventListener('click', function() {
+            const code = this.getAttribute('data-coupon');
+            navigator.clipboard.writeText(code).then(() => {
+                const textEl = this.querySelector('.shav-topbar__coupon-code');
+                const originalText = textEl.innerText;
+                textEl.innerText = 'Skopiowano!';
+                setTimeout(() => {
+                    textEl.innerText = originalText;
+                }, 2000);
+            });
+        });
+    }
+});
+</script>
+<?php endif; ?>
 <header class="header" id="top-menu">
     <div class="header__inner">
         <a class="header__logo" href="<?php echo esc_url(site_url($logoURL)); ?>">

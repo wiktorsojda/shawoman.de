@@ -465,6 +465,10 @@ function render_promocje_meta_box($post) {
         echo '<div class="promo-field-group"><label class="main-label">Kupon rabatowy</label><input type="text" name="promo_coupon_code" class="promo-input-text" placeholder="np. BLENDYGO10" value="'.(isset($meta['promo_coupon_code']) ? esc_attr($meta['promo_coupon_code'][0]) : '').'"></div>';
     echo '</div>';
 
+    echo '<div class="promo-flex-row" style="margin-top: 10px;">';
+        echo '<div class="promo-field-group" style="flex:2;"><label class="main-label">Tekst na Górnym Pasku (Top Bar)</label><input type="text" name="promo_topbar_text" class="promo-input-text" placeholder="Wpisz tekst na pasek..." value="'.(isset($meta['promo_topbar_text']) ? esc_attr($meta['promo_topbar_text'][0]) : '').'"></div>';
+    echo '</div>';
+
     // SWITCHER: Ukryj w blokach FSE
     $hide_fse = isset($meta['promo_hide_fse_btn']) ? esc_attr($meta['promo_hide_fse_btn'][0]) : 'no';
     echo '<div class="promo-flex-row" style="margin-top: 10px;">';
@@ -2980,7 +2984,7 @@ function save_promocje_meta_data($post_id) {
     }
 
     $text_fields = [
-        'promo_is_active', 'promo_coupon_code', 'promo_priority', 
+        'promo_is_active', 'promo_coupon_code', 'promo_topbar_text', 'promo_priority', 
         'promo_small_text', 'promo_percentage_text', 'promo_badge_bg', 
         'promo_badge_color', 'promo_hide_fse_btn',
         'promo_banner_desk', 'promo_banner_mob',

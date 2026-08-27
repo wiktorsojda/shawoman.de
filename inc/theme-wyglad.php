@@ -46,6 +46,13 @@ function shav_register_store_settings() {
     // Zakładka 5: Etykiety Tekstowe (JSON Repeater)
     register_setting($settings_group, 'shav_text_badges_json');
     register_setting($settings_group, 'shav_svg_badges_json');
+
+    // Zakładka 6: Pasek Pozapromocyjny
+    register_setting($settings_group, 'shav_topbar_enabled');
+    register_setting($settings_group, 'shav_topbar_text');
+    register_setting($settings_group, 'shav_topbar_coupon');
+    register_setting($settings_group, 'shav_topbar_bg');
+    register_setting($settings_group, 'shav_topbar_color');
 }
 
 // 3. Załadowanie skryptów (Media Uploader + WooCommerce Select2)
@@ -89,7 +96,9 @@ function shav_render_store_settings_page() {
         .shav-header { background: #fff; padding: 20px 30px; border-radius: 8px 8px 0 0; border: 1px solid #ccd0d4; border-bottom: none; display: flex; align-items: center; gap: 15px; }
         .shav-header h1 { margin: 0; font-size: 22px; font-weight: 600; color: #1d2327; }
         
-        .shav-tabs { display: flex; background: #f0f0f1; border-left: 1px solid #ccd0d4; border-right: 1px solid #ccd0d4; padding: 0 15px; }
+        .shav-tabs { display: flex; background: #f0f0f1; border-left: 1px solid #ccd0d4; border-right: 1px solid #ccd0d4; padding: 0 15px; overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+        .shav-tabs::-webkit-scrollbar { height: 6px; }
+        .shav-tabs::-webkit-scrollbar-thumb { background: #ccd0d4; border-radius: 4px; }
         .shav-tab { padding: 15px 25px; cursor: pointer; border-bottom: 3px solid transparent; font-weight: 600; color: #50575e; transition: all 0.2s ease; }
         .shav-tab:hover { color: #1d2327; }
         .shav-tab.active { color: #2271b1; border-bottom-color: #2271b1; background: #fff; }
@@ -163,6 +172,7 @@ function shav_render_store_settings_page() {
             <div class="shav-tab" data-target="tab-badges">Odznaki Procentowe</div>
             <div class="shav-tab" data-target="tab-text-badges">Etykiety Tekstowe</div>
             <div class="shav-tab" data-target="tab-svg-badges">Pill/SVG (Pod ratingiem)</div>
+            <div class="shav-tab" data-target="tab-topbar">Pasek Pozapromocyjny</div>
         </div>
 
         <div class="shav-content">
@@ -502,6 +512,42 @@ function shav_render_store_settings_page() {
 
                     <!-- Ukryte pole trzymające JSON ze wszystkimi regułami -->
                     <textarea name="shav_svg_badges_json" id="shav_svg_badges_json" style="display:none;"><?php echo esc_textarea(get_option('shav_svg_badges_json', '[]')); ?></textarea>
+                </div>
+                
+                <!-- ZAKŁADKA 6: PASEK POZAPROMOCYJNY -->
+                <div id="tab-topbar" class="shav-tab-content">
+                    <h2>Pasek Pozapromocyjny (Top Bar)</h2>
+                    <p class="shav-desc">Pasek widoczny nad głównym menu. Tryb "Daily" włącza się automatycznie, gdy brak aktywnej kampanii w CPT Promocje.</p>
+                    
+                    <div class="shav-field-group">
+                        <label class="shav-label">Status paska (Tryb Daily)</label>
+                        <select name="shav_topbar_enabled" class="shav-input-text" style="max-width: 200px;">
+                            <option value="yes" <?php selected(get_option('shav_topbar_enabled', 'yes'), 'yes'); ?>>Włączony</option>
+                            <option value="no" <?php selected(get_option('shav_topbar_enabled', 'yes'), 'no'); ?>>Wyłączony</option>
+                        </select>
+                        <span class="shav-desc" style="margin-top:5px;">Jeśli wyłączysz, pasek w trybie pozapromocyjnym nie będzie się wyświetlał.</span>
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Tekst Główny</label>
+                        <input type="text" name="shav_topbar_text" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_topbar_text', 'Skorzystaj z rabatu na całe zamówienie')); ?>">
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Kupon Rabatowy (opcjonalnie)</label>
+                        <input type="text" name="shav_topbar_coupon" class="shav-input-text" placeholder="np. DAILY10" value="<?php echo esc_attr(get_option('shav_topbar_coupon', '')); ?>">
+                        <span class="shav-desc">Jeśli wpiszesz kupon, pojawi się obok tekstu z możliwością kliknięcia by skopiować.</span>
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Kolor Tła</label>
+                        <input type="text" name="shav_topbar_bg" class="shav-input-text" placeholder="np. #F4F4F4 lub linear-gradient(...)" value="<?php echo esc_attr(get_option('shav_topbar_bg', '#EBC299')); ?>">
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Kolor Tekstu</label>
+                        <input type="text" name="shav_topbar_color" class="shav-input-text" placeholder="np. #000000" value="<?php echo esc_attr(get_option('shav_topbar_color', '#1D1D1D')); ?>">
+                    </div>
                 </div>
                 <div class="shav-submit-wrap">
                     <?php submit_button('Zapisz Globalne Ustawienia', 'primary', 'submit', false, array('style' => 'font-size: 16px; padding: 6px 24px;', 'id' => 'shav-main-submit')); ?>
