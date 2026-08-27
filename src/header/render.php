@@ -48,58 +48,56 @@ if ($topbar_data):
     <div class="shav-topbar__inner">
         <span class="shav-topbar__text"><?php echo wp_kses_post($topbar_data['text']); ?></span>
         
-        <div class="shav-topbar__right">
-            <?php if (!empty($topbar_data['coupon'])): ?>
-                <div class="shav-topbar__coupon-wrapper">
-                    <span class="shav-topbar__separator">|</span>
-                    <button type="button" class="shav-topbar__coupon" data-coupon="<?php echo esc_attr($topbar_data['coupon']); ?>">
-                        <span class="shav-topbar__coupon-label">
-                            Code kopieren
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_1809_5814)">
-                                <path d="M10 13.3333H3.33333C2.4496 13.3323 1.60237 12.9807 0.97748 12.3559C0.352588 11.731 0.00105857 10.8837 0 10L0 3.33333C0.00105857 2.4496 0.352588 1.60237 0.97748 0.97748C1.60237 0.352588 2.4496 0.00105857 3.33333 0L10 0C10.8837 0.00105857 11.731 0.352588 12.3559 0.97748C12.9807 1.60237 13.3323 2.4496 13.3333 3.33333V10C13.3323 10.8837 12.9807 11.731 12.3559 12.3559C11.731 12.9807 10.8837 13.3323 10 13.3333ZM3.33333 1.33333C2.8029 1.33333 2.29419 1.54405 1.91912 1.91912C1.54405 2.29419 1.33333 2.8029 1.33333 3.33333V10C1.33333 10.5304 1.54405 11.0391 1.91912 11.4142C2.29419 11.7893 2.8029 12 3.33333 12H10C10.5304 12 11.0391 11.7893 11.4142 11.4142C11.7893 11.0391 12 10.5304 12 10V3.33333C12 2.8029 11.7893 2.29419 11.4142 1.91912C11.0391 1.54405 10.5304 1.33333 10 1.33333H3.33333ZM16 12.6667V4C16 3.82319 15.9298 3.65362 15.8047 3.5286C15.6797 3.40357 15.5101 3.33333 15.3333 3.33333C15.1565 3.33333 14.987 3.40357 14.8619 3.5286C14.7369 3.65362 14.6667 3.82319 14.6667 4V12.6667C14.6667 13.1971 14.456 13.7058 14.0809 14.0809C13.7058 14.456 13.1971 14.6667 12.6667 14.6667H4C3.82319 14.6667 3.65362 14.7369 3.5286 14.8619C3.40357 14.987 3.33333 15.1565 3.33333 15.3333C3.33333 15.5101 3.40357 15.6797 3.5286 15.8047C3.65362 15.9298 3.82319 16 4 16H12.6667C13.5504 15.9989 14.3976 15.6474 15.0225 15.0225C15.6474 14.3976 15.9989 13.5504 16 12.6667Z" fill="currentColor"/>
-                                </g>
-                                <defs>
-                                <clipPath id="clip0_1809_5814">
-                                <rect width="16" height="16" fill="white"/>
-                                </clipPath>
-                                </defs>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
-            <?php endif; ?>
-
-            <div class="shav-topbar__trustpilot">
-                <?php 
-                $tp_link = isset($topbar_data['trustpilot']) ? $topbar_data['trustpilot'] : '';
-                if (!empty($tp_link)): ?>
-                    <a href="<?php echo esc_url($tp_link); ?>" target="_blank" rel="noopener noreferrer" class="shav-topbar__trustpilot-link">
-                <?php else: ?>
-                    <span class="shav-topbar__trustpilot-link">
-                <?php endif; ?>
-                
-                <span class="shav-topbar__trustpilot-rating">4.9</span>
-                <div class="shav-topbar__trustpilot-stars">
-                    <?php for($i=0; $i<5; $i++): ?>
-                        <svg class="star-small" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M21.5546 7.79727H13.3236L10.7812 0L8.23093 7.79727L0 7.78936L6.66578 12.6132L4.11547 20.4026L10.7812 15.5866L17.4391 20.4026L14.8967 12.6132L21.5546 7.79727Z" fill="currentColor"/>
+        <?php if (!empty($topbar_data['coupon'])): ?>
+            <div class="shav-topbar__coupon-wrapper">
+                <span class="shav-topbar__separator">|</span>
+                <button type="button" class="shav-topbar__coupon" data-coupon="<?php echo esc_attr($topbar_data['coupon']); ?>">
+                    <span class="shav-topbar__coupon-label">
+                        Code kopieren
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1809_5814)">
+                            <path d="M10 13.3333H3.33333C2.4496 13.3323 1.60237 12.9807 0.97748 12.3559C0.352588 11.731 0.00105857 10.8837 0 10L0 3.33333C0.00105857 2.4496 0.352588 1.60237 0.97748 0.97748C1.60237 0.352588 2.4496 0.00105857 3.33333 0L10 0C10.8837 0.00105857 11.731 0.352588 12.3559 0.97748C12.9807 1.60237 13.3323 2.4496 13.3333 3.33333V10C13.3323 10.8837 12.9807 11.731 12.3559 12.3559C11.731 12.9807 10.8837 13.3323 10 13.3333ZM3.33333 1.33333C2.8029 1.33333 2.29419 1.54405 1.91912 1.91912C1.54405 2.29419 1.33333 2.8029 1.33333 3.33333V10C1.33333 10.5304 1.54405 11.0391 1.91912 11.4142C2.29419 11.7893 2.8029 12 3.33333 12H10C10.5304 12 11.0391 11.7893 11.4142 11.4142C11.7893 11.0391 12 10.5304 12 10V3.33333C12 2.8029 11.7893 2.29419 11.4142 1.91912C11.0391 1.54405 10.5304 1.33333 10 1.33333H3.33333ZM16 12.6667V4C16 3.82319 15.9298 3.65362 15.8047 3.5286C15.6797 3.40357 15.5101 3.33333 15.3333 3.33333C15.1565 3.33333 14.987 3.40357 14.8619 3.5286C14.7369 3.65362 14.6667 3.82319 14.6667 4V12.6667C14.6667 13.1971 14.456 13.7058 14.0809 14.0809C13.7058 14.456 13.1971 14.6667 12.6667 14.6667H4C3.82319 14.6667 3.65362 14.7369 3.5286 14.8619C3.40357 14.987 3.33333 15.1565 3.33333 15.3333C3.33333 15.5101 3.40357 15.6797 3.5286 15.8047C3.65362 15.9298 3.82319 16 4 16H12.6667C13.5504 15.9989 14.3976 15.6474 15.0225 15.0225C15.6474 14.3976 15.9989 13.5504 16 12.6667Z" fill="currentColor"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_1809_5814">
+                            <rect width="16" height="16" fill="white"/>
+                            </clipPath>
+                            </defs>
                         </svg>
-                    <?php endfor; ?>
-                </div>
-                <div class="shav-topbar__trustpilot-logo">
-                    <svg class="star-big" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    </span>
+                </button>
+            </div>
+        <?php endif; ?>
+
+        <div class="shav-topbar__trustpilot">
+            <?php 
+            $tp_link = isset($topbar_data['trustpilot']) ? $topbar_data['trustpilot'] : '';
+            if (!empty($tp_link)): ?>
+                <a href="<?php echo esc_url($tp_link); ?>" target="_blank" rel="noopener noreferrer" class="shav-topbar__trustpilot-link">
+            <?php else: ?>
+                <span class="shav-topbar__trustpilot-link">
+            <?php endif; ?>
+            
+            <span class="shav-topbar__trustpilot-rating">4.9</span>
+            <div class="shav-topbar__trustpilot-stars">
+                <?php for($i=0; $i<5; $i++): ?>
+                    <svg class="star-small" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21.5546 7.79727H13.3236L10.7812 0L8.23093 7.79727L0 7.78936L6.66578 12.6132L4.11547 20.4026L10.7812 15.5866L17.4391 20.4026L14.8967 12.6132L21.5546 7.79727Z" fill="currentColor"/>
                     </svg>
-                    <span class="shav-topbar__trustpilot-text">Trustpilot</span>
-                </div>
-
-                <?php if (!empty($tp_link)): ?>
-                    </a>
-                <?php else: ?>
-                    </span>
-                <?php endif; ?>
+                <?php endfor; ?>
             </div>
+            <div class="shav-topbar__trustpilot-logo">
+                <svg class="star-big" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.5546 7.79727H13.3236L10.7812 0L8.23093 7.79727L0 7.78936L6.66578 12.6132L4.11547 20.4026L10.7812 15.5866L17.4391 20.4026L14.8967 12.6132L21.5546 7.79727Z" fill="currentColor"/>
+                </svg>
+                <span class="shav-topbar__trustpilot-text">Trustpilot</span>
+            </div>
+
+            <?php if (!empty($tp_link)): ?>
+                </a>
+            <?php else: ?>
+                </span>
+            <?php endif; ?>
         </div>
     </div>
 </div>

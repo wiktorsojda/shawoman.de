@@ -24,20 +24,22 @@
     }
 
     &__inner {
+        position: relative;
         display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
-        gap: 8px;
+        align-items: center;
+        gap: 12px;
         max-width: 1200px;
         margin: 0 auto;
         width: 100%;
         transition: gap 0.5s ease;
-        position: relative;
 
-        @media (min-width: $breakpoint-tablet) {
-            flex-direction: row;
-            gap: 12px;
+        @media (max-width: 767px) {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
+            justify-items: center;
+            gap: 8px;
         }
     }
 
@@ -45,32 +47,25 @@
         text-align: center;
         margin: 0;
         padding: 0;
-    }
-
-    &__right {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-
-        @media (min-width: $breakpoint-tablet) {
-            position: absolute;
-            right: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
 
         @media (max-width: 767px) {
-            position: relative;
-            height: 24px;
-            width: 100%;
+            grid-row: 1;
+            grid-column: 1;
         }
     }
 
     &__coupon-wrapper {
         display: flex;
         align-items: center;
+
+        @media (max-width: 767px) {
+            grid-row: 2;
+            grid-column: 1;
+            animation: fadeAlternate 4s infinite;
+        }
     }
+
+
 
     &__separator {
         display: none;
@@ -149,6 +144,21 @@
         align-items: center;
         gap: 8px;
 
+        @media (min-width: $breakpoint-tablet) {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 767px) {
+            grid-row: 2;
+            grid-column: 1;
+            animation: fadeAlternate 4s infinite;
+            animation-delay: 2s;
+            opacity: 0;
+        }
+
         &-link {
             display: flex;
             align-items: center;
@@ -192,22 +202,6 @@
             font-weight: 700;
             font-size: 14px;
             letter-spacing: -0.04em;
-        }
-    }
-
-    @media (max-width: 767px) {
-        &__coupon-wrapper,
-        &__trustpilot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: fadeAlternate 4s infinite;
-        }
-
-        &__trustpilot {
-            animation-delay: 2s;
-            opacity: 0;
         }
     }
 }
