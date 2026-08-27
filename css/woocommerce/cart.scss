@@ -943,3 +943,121 @@
 small.includes_tax {
     display: none;
 }
+
+/* ----------------------------------------- */
+/* Order Received / Thank You Page Styling   */
+/* ----------------------------------------- */
+
+.woocommerce-order,
+.cfw-thank-you,
+#cfw-thank-you,
+.woocommerce-checkout.woocommerce-order-received .woocommerce {
+    max-width: 1428px !important;
+    margin: 40px auto !important;
+    padding: clamp(20px, 4vw, 40px) !important;
+    color: #3f3f3f;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+
+    /* Nagłówki */
+    h1, h2, h3, .woocommerce-order-details__title, .woocommerce-column__title {
+        color: #252525;
+        font-family: 'Be Vietnam Pro', sans-serif;
+        font-weight: 600;
+        margin-bottom: 24px;
+        text-transform: uppercase;
+        font-size: 24px;
+    }
+
+    /* Krótki tekst podziękowania */
+    .woocommerce-notice, .woocommerce-thankyou-order-received {
+        background-color: #F2F2F2;
+        color: #ac0000;
+        font-weight: 500;
+        padding: 16px 24px;
+        border-radius: 8px;
+        margin-bottom: 32px;
+        border-left: 4px solid #ac0000;
+    }
+
+    /* Lista szczegółów (numer, data, itd.) */
+    ul.order_details {
+        background-color: #F2F2F2;
+        border-radius: 8px;
+        padding: 24px;
+        border: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        
+        li {
+            border-right: none;
+            color: #585858;
+            margin: 0;
+            padding: 0;
+            text-transform: uppercase;
+            font-size: 14px;
+            
+            strong {
+                display: block;
+                color: #252525;
+                font-size: 16px;
+                margin-top: 4px;
+            }
+        }
+    }
+
+    /* Tabela szczegółów zamówienia */
+    .woocommerce-table--order-details {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #d9d9d9;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 32px;
+
+        th, td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #d9d9d9;
+            background-color: #fff;
+            text-align: left;
+        }
+
+        tr:last-child th, tr:last-child td {
+            border-bottom: none;
+        }
+
+        th {
+            background-color: #F2F2F2;
+            color: #252525;
+            font-weight: 600;
+        }
+
+        tfoot {
+            th {
+                background-color: #ffffff;
+                border-right: 1px solid #d9d9d9;
+            }
+            tr:nth-child(odd) th,
+            tr:nth-child(odd) td {
+                background-color: #F9F9F9;
+            }
+        }
+    }
+
+    /* Dane klienta (adres) */
+    .woocommerce-customer-details {
+        address {
+            background-color: #F2F2F2;
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid #d9d9d9;
+            color: #3f3f3f;
+            font-style: normal;
+            line-height: 1.6;
+        }
+    }
+}
