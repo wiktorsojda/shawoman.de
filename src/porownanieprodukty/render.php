@@ -29,7 +29,12 @@ $features = !empty($a['features']) && is_array($a['features']) ? $a['features'] 
     </div>
 
     <div class="porownanieprodukty__features">
-      <?php foreach ($features as $feature): ?>
+      <?php foreach ($features as $feature):
+        if (!is_array($feature)) continue;
+        $f_left = isset($feature['left']) ? $feature['left'] : '';
+        $f_center = isset($feature['center']) ? $feature['center'] : '';
+        $f_right = isset($feature['right']) ? $feature['right'] : '';
+      ?>
         <div class="porownanieprodukty__row">
           <!-- Desktop: Pokazuje nagłówek na środku. Mobile: Ukryte -->
           <div class="porownanieprodukty__feature porownanieprodukty__feature--left">
@@ -50,11 +55,11 @@ $features = !empty($a['features']) && is_array($a['features']) ? $a['features'] 
                 </clipPath>
               </defs>
             </svg>
-            <span class="porownanieprodukty__text"><?php echo wp_kses_post($feature['left']); ?></span>
+            <span class="porownanieprodukty__text"><?php echo wp_kses_post($f_left); ?></span>
           </div>
 
           <div class="porownanieprodukty__label">
-            <?php echo wp_kses_post($feature['center']); ?>
+            <?php echo wp_kses_post($f_center); ?>
           </div>
 
           <div class="porownanieprodukty__feature porownanieprodukty__feature--right">
@@ -75,7 +80,7 @@ $features = !empty($a['features']) && is_array($a['features']) ? $a['features'] 
                 </clipPath>
               </defs>
             </svg>
-            <span class="porownanieprodukty__text"><?php echo wp_kses_post($feature['right']); ?></span>
+            <span class="porownanieprodukty__text"><?php echo wp_kses_post($f_right); ?></span>
           </div>
         </div>
       <?php endforeach; ?>

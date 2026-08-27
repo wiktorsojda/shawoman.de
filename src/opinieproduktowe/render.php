@@ -28,9 +28,13 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
                 <h2 class="opinieproduktowe__title" style="max-width: 1300px; margin: 0 auto 32px auto;"><?php echo esc_html($title); ?></h2>
             <?php endif;
 
-            // Standardowy mechanizm WC do renderowania opinii (jeśli włączone)
-            if (comments_open() || get_comments_number()) {
-                comments_template();
+            // Zabezpieczenie przed fatal errorem w edytorze wp_block / REST API
+            if (is_product() && !is_admin() && !wp_is_json_request()) {
+                if (comments_open() || get_comments_number()) {
+                    comments_template();
+                }
+            } else {
+                echo '<div style="padding:20px; border:1px dashed #ccc; text-align:center;">[Sekcja opinii - widoczna na żywej stronie produktu]</div>';
             }
             ?>
         </div>
