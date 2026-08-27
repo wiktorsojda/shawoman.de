@@ -944,117 +944,153 @@ small.includes_tax {
     display: none;
 }
 
+cfw-secondary-btn.cfw-secondary-btn-inactive {
+    background-color: #ac0000 !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    border: none !important;
+}
+
 /* ----------------------------------------- */
-/* Order Received / Thank You Page Styling   */
+/* Order Received (WooCommerce Blocks)       */
 /* ----------------------------------------- */
 
-.woocommerce-order,
-.cfw-thank-you,
-#cfw-thank-you,
-.woocommerce-checkout.woocommerce-order-received .woocommerce {
+/* Główny kontener strony podziękowania */
+.wp-block-woocommerce-order-confirmation-status,
+.wp-block-woocommerce-order-confirmation-summary,
+.wp-block-woocommerce-order-confirmation-totals-wrapper,
+.wp-block-woocommerce-order-confirmation-downloads-wrapper,
+.wp-block-woocommerce-order-confirmation-address-wrapper {
     max-width: 1428px !important;
-    margin: 40px auto !important;
-    padding: clamp(20px, 4vw, 40px) !important;
-    color: #3f3f3f;
-    background-color: #ffffff;
-    border-radius: 12px;
+    margin-left: auto !important;
+    margin-right: auto !important;
     box-sizing: border-box;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    color: #3f3f3f;
+    padding-left: clamp(20px, 4vw, 40px) !important;
+    padding-right: clamp(20px, 4vw, 40px) !important;
+}
 
-    /* Nagłówki */
-    h1, h2, h3, .woocommerce-order-details__title, .woocommerce-column__title {
-        color: #252525;
-        font-family: 'Be Vietnam Pro', sans-serif;
-        font-weight: 600;
-        margin-bottom: 24px;
-        text-transform: uppercase;
-        font-size: 24px;
+/* Nagłówki wspólne */
+.wp-block-woocommerce-order-confirmation-status h1,
+.wp-block-woocommerce-order-confirmation-totals-wrapper h2,
+.wp-block-woocommerce-order-confirmation-downloads-wrapper h2,
+.wp-block-woocommerce-order-confirmation-address-wrapper h2,
+.wc-block-order-confirmation-address-wrapper__title {
+    color: #252525;
+    font-family: 'Be Vietnam Pro', sans-serif !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+}
+
+/* Status (Nagłówek główny) */
+.wp-block-woocommerce-order-confirmation-status {
+    background-color: #F2F2F2 !important;
+    padding: 24px !important;
+    border-radius: 8px !important;
+    border-left: 4px solid #ac0000 !important;
+    margin-bottom: 32px !important;
+    margin-top: 40px !important;
+
+    h1 {
+        font-size: 24px !important;
+        margin-bottom: 8px !important;
+        color: #ac0000 !important;
     }
-
-    /* Krótki tekst podziękowania */
-    .woocommerce-notice, .woocommerce-thankyou-order-received {
-        background-color: #F2F2F2;
-        color: #ac0000;
+    p {
+        color: #585858;
         font-weight: 500;
-        padding: 16px 24px;
-        border-radius: 8px;
-        margin-bottom: 32px;
-        border-left: 4px solid #ac0000;
+        margin: 0;
     }
+}
 
-    /* Lista szczegółów (numer, data, itd.) */
-    ul.order_details {
-        background-color: #F2F2F2;
-        border-radius: 8px;
-        padding: 24px;
-        border: none;
+/* Podsumowanie (lista) */
+.wp-block-woocommerce-order-confirmation-summary {
+    background-color: #F2F2F2 !important;
+    padding: 24px !important;
+    border-radius: 8px !important;
+    margin-bottom: 32px !important;
+
+    .wc-block-order-confirmation-summary-list {
         display: flex;
         flex-wrap: wrap;
         gap: 24px;
-        
-        li {
-            border-right: none;
-            color: #585858;
-            margin: 0;
-            padding: 0;
-            text-transform: uppercase;
-            font-size: 14px;
-            
-            strong {
-                display: block;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        .wc-block-order-confirmation-summary-list-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            .wc-block-order-confirmation-summary-list-item__key {
+                color: #585858;
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+            .wc-block-order-confirmation-summary-list-item__value {
                 color: #252525;
                 font-size: 16px;
-                margin-top: 4px;
+                font-weight: 600;
             }
         }
     }
+}
 
-    /* Tabela szczegółów zamówienia */
-    .woocommerce-table--order-details {
+/* Tabela z podsumowaniem i produktami */
+.wp-block-woocommerce-order-confirmation-totals-wrapper {
+    margin-bottom: 32px !important;
+
+    .wc-block-order-confirmation-totals__table {
+        width: 100%;
         border-collapse: separate;
         border-spacing: 0;
-        width: 100%;
         border: 1px solid #d9d9d9;
         border-radius: 8px;
         overflow: hidden;
-        margin-bottom: 32px;
 
         th, td {
-            padding: 16px 24px;
-            border-bottom: 1px solid #d9d9d9;
-            background-color: #fff;
-            text-align: left;
+            padding: 16px 24px !important;
+            border-bottom: 1px solid #d9d9d9 !important;
+            background-color: #fff !important;
+            color: #3f3f3f !important;
         }
 
         tr:last-child th, tr:last-child td {
-            border-bottom: none;
+            border-bottom: none !important;
         }
 
         th {
-            background-color: #F2F2F2;
-            color: #252525;
-            font-weight: 600;
+            background-color: #F2F2F2 !important;
+            color: #252525 !important;
+            font-weight: 600 !important;
+            text-align: left !important;
         }
-
+        
         tfoot {
             th {
-                background-color: #ffffff;
-                border-right: 1px solid #d9d9d9;
+                background-color: #ffffff !important;
+                border-right: 1px solid #d9d9d9 !important;
             }
             tr:nth-child(odd) th,
             tr:nth-child(odd) td {
-                background-color: #F9F9F9;
+                background-color: #F9F9F9 !important;
             }
         }
     }
+}
 
-    /* Dane klienta (adres) */
-    .woocommerce-customer-details {
+/* Adresy */
+.wp-block-woocommerce-order-confirmation-address-wrapper {
+    margin-bottom: 40px !important;
+
+    .wc-block-order-confirmation-address-wrapper__content {
+        background-color: #F2F2F2 !important;
+        padding: 24px !important;
+        border-radius: 8px !important;
+        border: 1px solid #d9d9d9 !important;
+
         address {
-            background-color: #F2F2F2;
-            padding: 24px;
-            border-radius: 8px;
-            border: 1px solid #d9d9d9;
             color: #3f3f3f;
             font-style: normal;
             line-height: 1.6;
