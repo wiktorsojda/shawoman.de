@@ -85,46 +85,53 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
         </div>
     </div>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var headers = document.querySelectorAll(".faq-kontakt-container .shav-faq-header");
-        headers.forEach(function(header) {
-            if (header.dataset.faqListener) return;
-            header.dataset.faqListener = 'true';
-            
-            header.addEventListener("click", function() {
-                var content = this.nextElementSibling;
-                var icon = this.querySelector(".shav-faq-icon");
-                var vLine = icon ? icon.querySelector(".v-line") : null;
+    (function() {
+        function initFAQ() {
+            var headers = document.querySelectorAll(".faq-kontakt-container .shav-faq-header");
+            headers.forEach(function(header) {
+                if (header.dataset.faqListener) return;
+                header.dataset.faqListener = 'true';
                 
-                var isOpen = (content.style.display !== "none" && content.style.display !== "");
-                
-                if (isOpen) {
-                    content.style.display = "none";
-                    if (vLine) vLine.style.opacity = "1";
-                    if (icon) icon.style.transform = "rotate(0deg)";
-                } else {
-                    var container = this.closest(".shav-product-faq");
-                    if (container) {
-                        var allHeaders = container.querySelectorAll(".shav-faq-header");
-                        allHeaders.forEach(function(otherHeader) {
-                            if (otherHeader !== header) {
-                                var otherContent = otherHeader.nextElementSibling;
-                                var otherIcon = otherHeader.querySelector(".shav-faq-icon");
-                                var otherVLine = otherIcon ? otherIcon.querySelector(".v-line") : null;
-                                
-                                if (otherContent) otherContent.style.display = "none";
-                                if (otherVLine) otherVLine.style.opacity = "1";
-                                if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
-                            }
-                        });
-                    }
+                header.addEventListener("click", function() {
+                    var content = this.nextElementSibling;
+                    var icon = this.querySelector(".shav-faq-icon");
+                    var vLine = icon ? icon.querySelector(".v-line") : null;
                     
-                    content.style.display = "block";
-                    if (vLine) vLine.style.opacity = "0";
-                    if (icon) icon.style.transform = "rotate(180deg)";
-                }
+                    var isOpen = (content.style.display !== "none" && content.style.display !== "");
+                    
+                    if (isOpen) {
+                        content.style.display = "none";
+                        if (vLine) vLine.style.opacity = "1";
+                        if (icon) icon.style.transform = "rotate(0deg)";
+                    } else {
+                        var container = this.closest(".shav-product-faq");
+                        if (container) {
+                            var allHeaders = container.querySelectorAll(".shav-faq-header");
+                            allHeaders.forEach(function(otherHeader) {
+                                if (otherHeader !== header) {
+                                    var otherContent = otherHeader.nextElementSibling;
+                                    var otherIcon = otherHeader.querySelector(".shav-faq-icon");
+                                    var otherVLine = otherIcon ? otherIcon.querySelector(".v-line") : null;
+                                    
+                                    if (otherContent) otherContent.style.display = "none";
+                                    if (otherVLine) otherVLine.style.opacity = "1";
+                                    if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
+                                }
+                            });
+                        }
+                        
+                        content.style.display = "block";
+                        if (vLine) vLine.style.opacity = "0";
+                        if (icon) icon.style.transform = "rotate(180deg)";
+                    }
+                });
             });
-        });
-    });
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener("DOMContentLoaded", initFAQ);
+        } else {
+            initFAQ();
+        }
+    })();
     </script>
 </section>
