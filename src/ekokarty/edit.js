@@ -11,9 +11,9 @@ import { useState } from "@wordpress/element";
 export default function Edit({ attributes, setAttributes }) {
   const {
     title,
-    card1Icon, card1Title, card1Text,
-    card2Icon, card2Title, card2Text,
-    card3Icon, card3Title, card3Text,
+    card1Icon, card1TopIcon, card1Title, card1Text,
+    card2Icon, card2TopIcon, card2Title, card2Text,
+    card3Icon, card3TopIcon, card3Title, card3Text,
   } = attributes;
 
   const [importJson, setImportJson] = useState("");
@@ -74,14 +74,31 @@ export default function Edit({ attributes, setAttributes }) {
               value={card1Icon}
               render={({ open }) => (
                 <Button variant="secondary" onClick={open}>
-                  {card1Icon ? "Zmień ikonę 1" : "Wybierz ikonę 1"}
+                  {card1Icon ? "Zmień ikonę główną 1" : "Wybierz ikonę główną 1"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card1Icon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card1Icon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń ikonę 1
+              Usuń ikonę główną 1
+            </Button>
+          )}
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) => setAttributes({ card1TopIcon: media.url })}
+              allowedTypes={["image"]}
+              value={card1TopIcon}
+              render={({ open }) => (
+                <Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>
+                  {card1TopIcon ? "Zmień górną ikonę 1" : "Wybierz górną ikonę 1"}
+                </Button>
+              )}
+            />
+          </MediaUploadCheck>
+          {card1TopIcon && (
+            <Button variant="link" isDestructive onClick={() => setAttributes({ card1TopIcon: "" })} style={{ display: 'block', marginTop: 8 }}>
+              Usuń górną ikonę 1
             </Button>
           )}
           
@@ -93,14 +110,31 @@ export default function Edit({ attributes, setAttributes }) {
               value={card2Icon}
               render={({ open }) => (
                 <Button variant="secondary" onClick={open}>
-                  {card2Icon ? "Zmień ikonę 2" : "Wybierz ikonę 2"}
+                  {card2Icon ? "Zmień ikonę główną 2" : "Wybierz ikonę główną 2"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card2Icon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card2Icon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń ikonę 2
+              Usuń ikonę główną 2
+            </Button>
+          )}
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) => setAttributes({ card2TopIcon: media.url })}
+              allowedTypes={["image"]}
+              value={card2TopIcon}
+              render={({ open }) => (
+                <Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>
+                  {card2TopIcon ? "Zmień górną ikonę 2" : "Wybierz górną ikonę 2"}
+                </Button>
+              )}
+            />
+          </MediaUploadCheck>
+          {card2TopIcon && (
+            <Button variant="link" isDestructive onClick={() => setAttributes({ card2TopIcon: "" })} style={{ display: 'block', marginTop: 8 }}>
+              Usuń górną ikonę 2
             </Button>
           )}
 
@@ -112,14 +146,31 @@ export default function Edit({ attributes, setAttributes }) {
               value={card3Icon}
               render={({ open }) => (
                 <Button variant="secondary" onClick={open}>
-                  {card3Icon ? "Zmień ikonę 3" : "Wybierz ikonę 3"}
+                  {card3Icon ? "Zmień ikonę główną 3" : "Wybierz ikonę główną 3"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card3Icon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card3Icon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń ikonę 3
+              Usuń ikonę główną 3
+            </Button>
+          )}
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) => setAttributes({ card3TopIcon: media.url })}
+              allowedTypes={["image"]}
+              value={card3TopIcon}
+              render={({ open }) => (
+                <Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>
+                  {card3TopIcon ? "Zmień górną ikonę 3" : "Wybierz górną ikonę 3"}
+                </Button>
+              )}
+            />
+          </MediaUploadCheck>
+          {card3TopIcon && (
+            <Button variant="link" isDestructive onClick={() => setAttributes({ card3TopIcon: "" })} style={{ display: 'block', marginTop: 8 }}>
+              Usuń górną ikonę 3
             </Button>
           )}
         </PanelBody>
@@ -138,6 +189,9 @@ export default function Edit({ attributes, setAttributes }) {
         <div className="ekokarty__grid">
           {/* Card 1 */}
           <div className="ekokarty__card">
+            {card1TopIcon && (
+              <img src={card1TopIcon} className="ekokarty__card-top-icon" alt="" />
+            )}
             <div className="ekokarty__card-icon">
               {card1Icon && <img src={card1Icon} alt="" />}
             </div>
@@ -160,6 +214,9 @@ export default function Edit({ attributes, setAttributes }) {
 
           {/* Card 2 */}
           <div className="ekokarty__card">
+            {card2TopIcon && (
+              <img src={card2TopIcon} className="ekokarty__card-top-icon" alt="" />
+            )}
             <div className="ekokarty__card-icon">
               {card2Icon && <img src={card2Icon} alt="" />}
             </div>
@@ -182,6 +239,9 @@ export default function Edit({ attributes, setAttributes }) {
 
           {/* Card 3 */}
           <div className="ekokarty__card ekokarty__card--green">
+            {card3TopIcon && (
+              <img src={card3TopIcon} className="ekokarty__card-top-icon" alt="" />
+            )}
             <div className="ekokarty__card-icon">
               {card3Icon && <img src={card3Icon} alt="" />}
             </div>

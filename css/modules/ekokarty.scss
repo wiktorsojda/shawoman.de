@@ -60,14 +60,24 @@
     gap: $space-24;
     height: 100%;
     box-sizing: border-box;
+    position: relative; // For top-icon
 
     &--green {
       background-color: $color-green-50;
     }
+    
+    &-top-icon {
+      position: absolute;
+      top: $space-32;
+      right: $space-32;
+      max-width: 32px; // Default size, adjust as needed
+      max-height: 32px;
+      object-fit: contain;
+    }
 
     &-icon {
-      width: 72px;
-      height: 72px;
+      width: 82px;
+      height: 82px;
       display: flex;
       align-items: center;
       justify-content: center;
