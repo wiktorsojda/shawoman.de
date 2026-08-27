@@ -104,6 +104,11 @@ if ($topbar_data):
     </div>
 </div>
 <script>
+    if (sessionStorage.getItem('shav_coupon_copied') === 'true') {
+        document.querySelector('.shav-topbar').classList.add('is-copied-hidden');
+    }
+</script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const topbar = document.querySelector('.shav-topbar');
     const couponBtn = document.querySelector('.shav-topbar__coupon');
@@ -112,8 +117,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const code = this.getAttribute('data-coupon');
             navigator.clipboard.writeText(code).then(() => {
                 const textEl = this.querySelector('.shav-topbar__coupon-label');
-                const originalHTML = textEl.innerHTML;
                 textEl.innerText = 'Kopiert!';
+                sessionStorage.setItem('shav_coupon_copied', 'true');
                 setTimeout(() => {
                     topbar.classList.add('is-copied-hidden');
                 }, 1500);

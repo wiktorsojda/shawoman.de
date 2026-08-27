@@ -15,7 +15,7 @@
     margin-top: 0 !important;
     margin-bottom: 16px;
 
-    @media (min-width: $breakpoint-tablet) {
+    @media (min-width: 859px) {
         padding: 0;
         height: 40px;
         display: flex;
@@ -36,7 +36,7 @@
         justify-items: center;
         gap: 0;
 
-        @media (min-width: $breakpoint-tablet) {
+        @media (min-width: 859px) {
             width: calc(100% - 40px);
             margin: 0 auto;
             display: flex;
@@ -51,7 +51,7 @@
         align-items: center;
         gap: 12px;
 
-        @media (max-width: 767px) {
+        @media (max-width: 858px) {
             grid-row: 1;
             grid-column: 1;
             animation: fadeAlternate 8s infinite;
@@ -76,7 +76,7 @@
 
     &__separator {
         display: none;
-        @media (min-width: $breakpoint-tablet) {
+        @media (min-width: 859px) {
             display: inline-block;
             margin: 0 4px;
             opacity: 0.5;
@@ -133,7 +133,7 @@
             pointer-events: none;
         }
         
-        @media (max-width: 767px) {
+        @media (max-width: 858px) {
             .shav-topbar__trustpilot {
                 animation: none !important;
                 opacity: 1 !important;
@@ -151,14 +151,14 @@
         align-items: center;
         gap: 8px;
 
-        @media (min-width: $breakpoint-tablet) {
+        @media (min-width: 859px) {
             position: absolute;
             right: 0;
             top: 50%;
             transform: translateY(-50%);
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 858px) {
             grid-row: 1;
             grid-column: 1;
             animation: fadeAlternate 8s infinite;
