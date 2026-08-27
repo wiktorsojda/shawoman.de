@@ -21,12 +21,18 @@ export default function Edit({ attributes, setAttributes }) {
           <TextareaControl
             label="Skopiuj ten JSON dla AI"
             value={(() => {
-              const data = { title: a.title || '' };
+              const data = { topTitle: a.title || '' };
+              const faqItems = [];
               for (let i = 1; i <= 10; i++) {
                 if (a[`question${i}`] || a[`answer${i}`]) {
-                  data[`question${i}`] = a[`question${i}`] || '';
-                  data[`answer${i}`] = a[`answer${i}`] || '';
+                  faqItems.push({
+                    question: a[`question${i}`] || '',
+                    answer: a[`answer${i}`] || ''
+                  });
                 }
+              }
+              if (faqItems.length > 0) {
+                 data.faqItems = faqItems;
               }
               return JSON.stringify(data, null, 2);
             })()}
@@ -44,11 +50,26 @@ export default function Edit({ attributes, setAttributes }) {
             try {
               const parsed = JSON.parse(importJson);
               const updates = {};
-              if (parsed.title !== undefined) updates.title = parsed.title;
-              for (let i = 1; i <= 10; i++) {
-                if (parsed[`question${i}`] !== undefined) updates[`question${i}`] = parsed[`question${i}`];
-                if (parsed[`answer${i}`] !== undefined) updates[`answer${i}`] = parsed[`answer${i}`];
+              
+              if (parsed.topTitle !== undefined) {
+                updates.title = parsed.topTitle;
+              } else if (parsed.title !== undefined) {
+                updates.title = parsed.title;
               }
+              
+              if (parsed.faqItems && Array.isArray(parsed.faqItems)) {
+                for (let i = 0; i < 10; i++) {
+                  const item = parsed.faqItems[i];
+                  if (item) {
+                    updates[`question${i+1}`] = item.question || '';
+                    updates[`answer${i+1}`] = item.answer || '';
+                  } else {
+                    updates[`question${i+1}`] = '';
+                    updates[`answer${i+1}`] = '';
+                  }
+                }
+              }
+              
               setAttributes(updates);
               alert('Zaktualizowano pomyślnie!');
               setImportJson('');
