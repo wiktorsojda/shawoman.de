@@ -10,10 +10,11 @@ $steps = [
   ['image' => !empty($a['image3']) ? $a['image3'] : '', 'imageMobile' => !empty($a['imageMobile3']) ? $a['imageMobile3'] : ''],
 ];
 
-// Helper to force https for mixed content issues
-function shav_force_https($url) {
-    if (empty($url)) return '';
-    return str_replace('http://', 'https://', $url);
+if (!function_exists('shav_force_https')) {
+    function shav_force_https($url) {
+        if (empty($url)) return '';
+        return str_replace('http://', 'https://', $url);
+    }
 }
 ?>
 <section <?php echo get_block_wrapper_attributes(['class' => 'jakuzywac']); ?>>
