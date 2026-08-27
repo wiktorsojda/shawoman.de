@@ -83,13 +83,13 @@ if ($topbar_data):
             <span class="shav-topbar__trustpilot-rating">4.9</span>
             <div class="shav-topbar__trustpilot-stars">
                 <?php for($i=0; $i<5; $i++): ?>
-                    <svg class="star-small" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="star-small" width="12" height="12" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M21.5546 7.79727H13.3236L10.7812 0L8.23093 7.79727L0 7.78936L6.66578 12.6132L4.11547 20.4026L10.7812 15.5866L17.4391 20.4026L14.8967 12.6132L21.5546 7.79727Z" fill="currentColor"/>
                     </svg>
                 <?php endfor; ?>
             </div>
             <div class="shav-topbar__trustpilot-logo">
-                <svg class="star-big" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg class="star-big" width="18" height="18" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.5546 7.79727H13.3236L10.7812 0L8.23093 7.79727L0 7.78936L6.66578 12.6132L4.11547 20.4026L10.7812 15.5866L17.4391 20.4026L14.8967 12.6132L21.5546 7.79727Z" fill="currentColor"/>
                 </svg>
                 <span class="shav-topbar__trustpilot-text">Trustpilot</span>
@@ -128,6 +128,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php endif; ?>
+<style>
+    .header__whatsapp { display: none; }
+    @media (min-width: 859px) {
+        .header__nav-whatsapp-mobile { display: none; }
+        .header__whatsapp { display: inline-flex; }
+    }
+</style>
 <header class="header" id="top-menu">
     <div class="header__inner">
         <a class="header__logo" href="<?php echo esc_url(site_url($logoURL)); ?>">
