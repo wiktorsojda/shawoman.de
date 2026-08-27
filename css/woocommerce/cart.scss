@@ -914,7 +914,8 @@ max-width: none;
 /* DHL Shipping Logo (CheckoutWC / WooCommerce) */
 label[for*="dhl"]::after,
 label[for*="DHL"]::after,
-.cfw-shipping-method-dhl label::after {
+.cfw-shipping-method-dhl label::after,
+label[for="shipping_method_0_flat_rate5"]::after {
     content: '';
     display: inline-block;
     width: 60px;
