@@ -5,7 +5,7 @@ import {
   MediaUpload,
   MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextareaControl } from "@wordpress/components";
+import { PanelBody, Button, TextareaControl, TextControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
@@ -65,8 +65,20 @@ export default function Edit({ attributes, setAttributes }) {
             Importuj tłumaczenie
           </Button>
         </PanelBody>
-        <PanelBody title="Ikony" initialOpen={true}>
-          <p>Karta 1</p>
+        <PanelBody title="Karta 1" initialOpen={true}>
+          <TextControl
+            label="Tytuł karty 1"
+            value={card1Title}
+            onChange={(v) => setAttributes({ card1Title: v })}
+          />
+          <TextareaControl
+            label="Treść karty 1"
+            value={card1Text}
+            onChange={(v) => setAttributes({ card1Text: v })}
+            rows={5}
+            help="Możesz używać znaczników HTML takich jak <strong> czy <br>"
+          />
+          <p style={{ marginTop: 16 }}>Ikona główna</p>
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) => setAttributes({ card1Icon: media.url })}
@@ -74,35 +86,50 @@ export default function Edit({ attributes, setAttributes }) {
               value={card1Icon}
               render={({ open }) => (
                 <Button variant="secondary" onClick={open}>
-                  {card1Icon ? "Zmień ikonę główną 1" : "Wybierz ikonę główną 1"}
+                  {card1Icon ? "Zmień ikonę" : "Wybierz ikonę"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card1Icon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card1Icon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń ikonę główną 1
+              Usuń ikonę główną
             </Button>
           )}
+          <p style={{ marginTop: 16 }}>Ikona w prawym górnym rogu</p>
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) => setAttributes({ card1TopIcon: media.url })}
               allowedTypes={["image"]}
               value={card1TopIcon}
               render={({ open }) => (
-                <Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>
-                  {card1TopIcon ? "Zmień górną ikonę 1" : "Wybierz górną ikonę 1"}
+                <Button variant="secondary" onClick={open}>
+                  {card1TopIcon ? "Zmień ikonę" : "Wybierz ikonę"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card1TopIcon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card1TopIcon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń górną ikonę 1
+              Usuń ikonę z rogu
             </Button>
           )}
-          
-          <p style={{ marginTop: 16 }}>Karta 2</p>
+        </PanelBody>
+
+        <PanelBody title="Karta 2" initialOpen={false}>
+          <TextControl
+            label="Tytuł karty 2"
+            value={card2Title}
+            onChange={(v) => setAttributes({ card2Title: v })}
+          />
+          <TextareaControl
+            label="Treść karty 2"
+            value={card2Text}
+            onChange={(v) => setAttributes({ card2Text: v })}
+            rows={5}
+            help="Możesz używać znaczników HTML takich jak <strong> czy <br>"
+          />
+          <p style={{ marginTop: 16 }}>Ikona główna</p>
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) => setAttributes({ card2Icon: media.url })}
@@ -110,35 +137,50 @@ export default function Edit({ attributes, setAttributes }) {
               value={card2Icon}
               render={({ open }) => (
                 <Button variant="secondary" onClick={open}>
-                  {card2Icon ? "Zmień ikonę główną 2" : "Wybierz ikonę główną 2"}
+                  {card2Icon ? "Zmień ikonę" : "Wybierz ikonę"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card2Icon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card2Icon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń ikonę główną 2
+              Usuń ikonę główną
             </Button>
           )}
+          <p style={{ marginTop: 16 }}>Ikona w prawym górnym rogu</p>
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) => setAttributes({ card2TopIcon: media.url })}
               allowedTypes={["image"]}
               value={card2TopIcon}
               render={({ open }) => (
-                <Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>
-                  {card2TopIcon ? "Zmień górną ikonę 2" : "Wybierz górną ikonę 2"}
+                <Button variant="secondary" onClick={open}>
+                  {card2TopIcon ? "Zmień ikonę" : "Wybierz ikonę"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card2TopIcon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card2TopIcon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń górną ikonę 2
+              Usuń ikonę z rogu
             </Button>
           )}
+        </PanelBody>
 
-          <p style={{ marginTop: 16 }}>Karta 3</p>
+        <PanelBody title="Karta 3" initialOpen={false}>
+          <TextControl
+            label="Tytuł karty 3"
+            value={card3Title}
+            onChange={(v) => setAttributes({ card3Title: v })}
+          />
+          <TextareaControl
+            label="Treść karty 3"
+            value={card3Text}
+            onChange={(v) => setAttributes({ card3Text: v })}
+            rows={5}
+            help="Możesz używać znaczników HTML takich jak <strong> czy <br>"
+          />
+          <p style={{ marginTop: 16 }}>Ikona główna</p>
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) => setAttributes({ card3Icon: media.url })}
@@ -146,31 +188,32 @@ export default function Edit({ attributes, setAttributes }) {
               value={card3Icon}
               render={({ open }) => (
                 <Button variant="secondary" onClick={open}>
-                  {card3Icon ? "Zmień ikonę główną 3" : "Wybierz ikonę główną 3"}
+                  {card3Icon ? "Zmień ikonę" : "Wybierz ikonę"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card3Icon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card3Icon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń ikonę główną 3
+              Usuń ikonę główną
             </Button>
           )}
+          <p style={{ marginTop: 16 }}>Ikona w prawym górnym rogu</p>
           <MediaUploadCheck>
             <MediaUpload
               onSelect={(media) => setAttributes({ card3TopIcon: media.url })}
               allowedTypes={["image"]}
               value={card3TopIcon}
               render={({ open }) => (
-                <Button variant="secondary" onClick={open} style={{ marginTop: 8 }}>
-                  {card3TopIcon ? "Zmień górną ikonę 3" : "Wybierz górną ikonę 3"}
+                <Button variant="secondary" onClick={open}>
+                  {card3TopIcon ? "Zmień ikonę" : "Wybierz ikonę"}
                 </Button>
               )}
             />
           </MediaUploadCheck>
           {card3TopIcon && (
             <Button variant="link" isDestructive onClick={() => setAttributes({ card3TopIcon: "" })} style={{ display: 'block', marginTop: 8 }}>
-              Usuń górną ikonę 3
+              Usuń ikonę z rogu
             </Button>
           )}
         </PanelBody>
