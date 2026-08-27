@@ -1298,6 +1298,7 @@ function our_new_blocks()
     register_block_type_from_metadata(__DIR__ . '/build/metodyplatnoscitext');
     register_block_type_from_metadata(__DIR__ . '/build/metodyplatnoscihead');
     register_block_type_from_metadata(__DIR__ . '/build/faq');
+    register_block_type_from_metadata(__DIR__ . '/build/faqkontakt');
     register_block_type_from_metadata(__DIR__ . '/build/metodywysylkikup');
     register_block_type_from_metadata(__DIR__ . '/build/metodywysylkitext');
     register_block_type_from_metadata(__DIR__ . '/build/metodywysylkihead');

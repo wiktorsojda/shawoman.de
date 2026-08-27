@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!document.getElementById("close-review-modal")) {
             const closeBtn = document.createElement("button");
             closeBtn.id = "close-review-modal";
-            closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            closeBtn.innerHTML = '<svg style="width: 24px; height: 24px; flex-shrink: 0;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
             closeBtn.style.cssText = "position:absolute; top:24px; right:24px; background:none; border:none; cursor:pointer; color:#111; display:flex; align-items:center; justify-content:center; padding:0; z-index: 10;";
             
             const formContainer = document.getElementById("review_form");

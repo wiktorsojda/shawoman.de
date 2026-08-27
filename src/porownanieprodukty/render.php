@@ -38,7 +38,7 @@ $features = !empty($a['features']) && is_array($a['features']) ? $a['features'] 
         <div class="porownanieprodukty__row">
           <!-- Desktop: Pokazuje nagłówek na środku. Mobile: Ukryte -->
           <div class="porownanieprodukty__feature porownanieprodukty__feature--left">
-            <svg class="porownanieprodukty__dot" width="18" height="18" viewBox="0 0 18 18" fill="none"
+            <svg class="porownanieprodukty__dot" style="width: 18px; height: 18px; flex-shrink: 0;" width="18" height="18" viewBox="0 0 18 18" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <foreignObject x="-4" y="-4" width="26" height="26">
                 <div xmlns="http://www.w3.org/1999/xhtml"
@@ -63,7 +63,7 @@ $features = !empty($a['features']) && is_array($a['features']) ? $a['features'] 
           </div>
 
           <div class="porownanieprodukty__feature porownanieprodukty__feature--right">
-            <svg class="porownanieprodukty__dot" width="18" height="18" viewBox="0 0 18 18" fill="none"
+            <svg class="porownanieprodukty__dot" style="width: 18px; height: 18px; flex-shrink: 0;" width="18" height="18" viewBox="0 0 18 18" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <foreignObject x="-4" y="-4" width="26" height="26">
                 <div xmlns="http://www.w3.org/1999/xhtml"
