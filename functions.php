@@ -767,8 +767,8 @@ function university_files()
 {
     wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
     wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
-    wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'), array(), rand(1, 999));
-    wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'), array(), rand(1, 999));
+    wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'), array(), filemtime(get_theme_file_path('/build/style-index.css')));
+    wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'), array(), filemtime(get_theme_file_path('/build/index.css')));
     // Enqueue Font Awesome
     wp_enqueue_style('font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
@@ -834,8 +834,8 @@ add_action('login_enqueue_scripts', 'ourLoginCSS');
 function ourLoginCSS()
 {
     wp_enqueue_style('custom-google-fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
-    wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'), array(), rand(1, 999));
-    wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'), array(), rand(1, 999));
+    wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'), array(), filemtime(get_theme_file_path('/build/style-index.css')));
+    wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'), array(), filemtime(get_theme_file_path('/build/index.css')));
 
 
 }

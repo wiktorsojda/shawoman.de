@@ -309,7 +309,9 @@ document.addEventListener("DOMContentLoaded", function() {
       const block2 = document.getElementById('block2');
 
       // Zamiana kolejności
-      container.insertBefore(block2, block1);
+      if (container && block1 && block2) {
+          container.insertBefore(block2, block1);
+      }
   }
 });
 

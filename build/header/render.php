@@ -128,22 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php endif; ?>
-<style>
-    .header__whatsapp { display: none; }
-    .star-small { width: 12px !important; height: 12px !important; }
-    .star-big { width: 18px !important; height: 18px !important; }
-    .shav-topbar { width: 100%; text-align: center; }
-    .shav-topbar__inner { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; margin: 0 auto; }
-    .shav-topbar__main { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .shav-topbar__coupon { display: inline-flex; align-items: center; gap: 6px; }
-    .shav-topbar__trustpilot { display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .shav-topbar__trustpilot-stars { display: flex; align-items: center; gap: 2px; }
-    .shav-topbar__trustpilot-logo { display: flex; align-items: center; gap: 4px; }
-    @media (min-width: 859px) {
-        .header__nav-whatsapp-mobile { display: none; }
-        .header__whatsapp { display: inline-flex; }
-    }
-</style>
 <header class="header" id="top-menu">
     <div class="header__inner">
         <a class="header__logo" href="<?php echo esc_url(site_url($logoURL)); ?>">
