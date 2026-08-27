@@ -70,38 +70,7 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
                 if (!$q && !$ans) continue;
             ?>
                 <div class="shav-faq-item">
-                    <div class="shav-faq-header" onclick="
-                        const content = this.nextElementSibling;
-                        const icon = this.querySelector('.shav-faq-icon');
-                        const vLine = icon.querySelector('.v-line');
-                        const isOpen = content.style.display !== 'none' && content.style.display !== '';
-                        
-                        if (isOpen) {
-                            content.style.display = 'none';
-                            vLine.style.opacity = '1';
-                            icon.style.transform = 'rotate(0deg)';
-                        } else {
-                            const container = this.closest('.shav-product-faq');
-                            if (container) {
-                                const allHeaders = container.querySelectorAll('.shav-faq-header');
-                                allHeaders.forEach(otherHeader => {
-                                    if (otherHeader !== this) {
-                                        const otherContent = otherHeader.nextElementSibling;
-                                        const otherIcon = otherHeader.querySelector('.shav-faq-icon');
-                                        if (otherContent && otherIcon) {
-                                            const otherVLine = otherIcon.querySelector('.v-line');
-                                            otherContent.style.display = 'none';
-                                            otherVLine.style.opacity = '1';
-                                            otherIcon.style.transform = 'rotate(0deg)';
-                                        }
-                                    }
-                                });
-                            }
-                            content.style.display = 'block';
-                            vLine.style.opacity = '0';
-                            icon.style.transform = 'rotate(180deg)';
-                        }
-                    ">
+                    <div class="shav-faq-header">
                         <span class="shav-faq-question"><?php echo wp_kses_post($q); ?></span>
                         <svg class="shav-faq-icon shav-faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path class="h-line" d="M4 10h12" stroke="#3F3F3F" stroke-width="2" stroke-linecap="round"/>
@@ -115,4 +84,47 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
             <?php endfor; ?>
         </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var headers = document.querySelectorAll(".faq-kontakt-container .shav-faq-header");
+        headers.forEach(function(header) {
+            if (header.dataset.faqListener) return;
+            header.dataset.faqListener = 'true';
+            
+            header.addEventListener("click", function() {
+                var content = this.nextElementSibling;
+                var icon = this.querySelector(".shav-faq-icon");
+                var vLine = icon ? icon.querySelector(".v-line") : null;
+                
+                var isOpen = (content.style.display !== "none" && content.style.display !== "");
+                
+                if (isOpen) {
+                    content.style.display = "none";
+                    if (vLine) vLine.style.opacity = "1";
+                    if (icon) icon.style.transform = "rotate(0deg)";
+                } else {
+                    var container = this.closest(".shav-product-faq");
+                    if (container) {
+                        var allHeaders = container.querySelectorAll(".shav-faq-header");
+                        allHeaders.forEach(function(otherHeader) {
+                            if (otherHeader !== header) {
+                                var otherContent = otherHeader.nextElementSibling;
+                                var otherIcon = otherHeader.querySelector(".shav-faq-icon");
+                                var otherVLine = otherIcon ? otherIcon.querySelector(".v-line") : null;
+                                
+                                if (otherContent) otherContent.style.display = "none";
+                                if (otherVLine) otherVLine.style.opacity = "1";
+                                if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
+                            }
+                        });
+                    }
+                    
+                    content.style.display = "block";
+                    if (vLine) vLine.style.opacity = "0";
+                    if (icon) icon.style.transform = "rotate(180deg)";
+                }
+            });
+        });
+    });
+    </script>
 </section>
