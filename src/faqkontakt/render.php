@@ -32,13 +32,24 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
             letter-spacing: -0.04em;
             vertical-align: middle;
             color: #252525;
-            margin-bottom: 48px;
+            margin-bottom: 32px;
+        }
+        @media (min-width: 768px) {
+            .faq-kontakt-container .faq-title {
+                margin-bottom: 64px;
+            }
         }
         .faq-kontakt-container .shav-faq-item {
             background: #F2F2F2;
             border-radius: 8px;
             margin-bottom: 10px;
             overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .faq-kontakt-container .shav-faq-item:hover {
+                background: #E8E8E8;
+            }
         }
         .faq-kontakt-container .shav-faq-header {
             display: flex;
