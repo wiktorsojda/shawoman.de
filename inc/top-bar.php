@@ -37,8 +37,8 @@ if (!function_exists('shav_get_topbar_data')) {
         if ($is_enabled === 'yes') {
             $text = get_option('shav_topbar_text', '');
             $coupon = get_option('shav_topbar_coupon', '');
-            $bg = get_option('shav_topbar_bg', '#EBC299');
-            $color = get_option('shav_topbar_color', '#1D1D1D');
+            $bg = get_option('shav_topbar_bg', '#252525');
+            $color = get_option('shav_topbar_color', '#FAFAFA');
 
             if (!empty($text) || !empty($coupon)) {
                 return [

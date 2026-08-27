@@ -547,12 +547,12 @@ function shav_render_store_settings_page() {
 
                     <div class="shav-field-group">
                         <label class="shav-label">Kolor Tła</label>
-                        <input type="text" name="shav_topbar_bg" class="shav-input-text" placeholder="np. #F4F4F4 lub linear-gradient(...)" value="<?php echo esc_attr(get_option('shav_topbar_bg', '#EBC299')); ?>">
+                        <input type="text" name="shav_topbar_bg" class="shav-input-text" placeholder="np. #F4F4F4 lub linear-gradient(...)" value="<?php echo esc_attr(get_option('shav_topbar_bg', '#252525')); ?>">
                     </div>
 
                     <div class="shav-field-group">
                         <label class="shav-label">Kolor Tekstu</label>
-                        <input type="text" name="shav_topbar_color" class="shav-input-text" placeholder="np. #000000" value="<?php echo esc_attr(get_option('shav_topbar_color', '#1D1D1D')); ?>">
+                        <input type="text" name="shav_topbar_color" class="shav-input-text" placeholder="np. #000000" value="<?php echo esc_attr(get_option('shav_topbar_color', '#FAFAFA')); ?>">
                     </div>
                 </div>
                 <div class="shav-submit-wrap">
