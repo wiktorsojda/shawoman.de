@@ -63,7 +63,6 @@ if ($topbar_data):
                         </defs>
                     </svg>
                 </span>
-                <strong class="shav-topbar__coupon-code"><?php echo esc_html($topbar_data['coupon']); ?></strong>
             </button>
         <?php endif; ?>
     </div>
