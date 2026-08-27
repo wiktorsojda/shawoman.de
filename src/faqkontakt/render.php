@@ -51,6 +51,9 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
                 background: #E8E8E8;
             }
         }
+        .faq-kontakt-container .shav-faq-item.is-active {
+            background: #E8E8E8;
+        }
         .faq-kontakt-container .shav-faq-header {
             display: flex;
             justify-content: space-between;
@@ -117,11 +120,13 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
                     var vLine = icon ? icon.querySelector(".v-line") : null;
                     
                     var isOpen = (content.style.display !== "none" && content.style.display !== "");
+                    var parentItem = this.parentElement;
                     
                     if (isOpen) {
                         content.style.display = "none";
                         if (vLine) vLine.style.opacity = "1";
                         if (icon) icon.style.transform = "rotate(0deg)";
+                        if (parentItem) parentItem.classList.remove("is-active");
                     } else {
                         var container = this.closest(".shav-product-faq");
                         if (container) {
@@ -131,10 +136,12 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
                                     var otherContent = otherHeader.nextElementSibling;
                                     var otherIcon = otherHeader.querySelector(".shav-faq-icon");
                                     var otherVLine = otherIcon ? otherIcon.querySelector(".v-line") : null;
+                                    var otherParent = otherHeader.parentElement;
                                     
                                     if (otherContent) otherContent.style.display = "none";
                                     if (otherVLine) otherVLine.style.opacity = "1";
                                     if (otherIcon) otherIcon.style.transform = "rotate(0deg)";
+                                    if (otherParent) otherParent.classList.remove("is-active");
                                 }
                             });
                         }
@@ -142,6 +149,7 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
                         content.style.display = "block";
                         if (vLine) vLine.style.opacity = "0";
                         if (icon) icon.style.transform = "rotate(180deg)";
+                        if (parentItem) parentItem.classList.add("is-active");
                     }
                 });
             });
