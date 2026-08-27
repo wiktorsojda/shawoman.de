@@ -12,6 +12,7 @@
     line-height: 1;
     letter-spacing: -0.04em;
     transition: background-color 0.3s;
+    margin-top: 0 !important;
     margin-bottom: 16px;
 
     @media (min-width: $breakpoint-tablet) {
@@ -40,6 +41,8 @@
 
     &__text {
         text-align: right;
+        margin: 0;
+        padding: 0;
     }
 
     &__separator {
