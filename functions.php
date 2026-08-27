@@ -968,7 +968,7 @@ add_action('admin_bar_menu', function ($wp_admin_bar) {
 
         if (!empty($ids)) {
             $first_id = reset($ids);
-            $edit_url = get_edit_post_link($first_id);
+            $edit_url = get_edit_post_link($first_id, 'raw');
             $title = '✏️ Edytuj opis blokowy';
         } else {
             $edit_url = admin_url('edit.php?post_type=wp_block');
