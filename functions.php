@@ -1295,6 +1295,7 @@ function our_new_blocks()
     register_block_type_from_metadata(__DIR__ . '/build/glownaikony');
     register_block_type_from_metadata(__DIR__ . '/build/whoweareglowna');
     register_block_type_from_metadata(__DIR__ . '/build/glownakup');
+    register_block_type_from_metadata(__DIR__ . '/build/ekokarty');
     register_block_type_from_metadata(__DIR__ . '/build/metodyplatnoscitext');
     register_block_type_from_metadata(__DIR__ . '/build/metodyplatnoscihead');
     register_block_type_from_metadata(__DIR__ . '/build/faq');

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "ourblocktheme/ekokarty",
+  "title": "Eko Karty",
+  "category": "design",
+  "icon": "leaf",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "W Shav Woman stawiamy na rozwiązania, które mogą <br>ograniczać ilość niepotrzebnych odpadów. Dlatego oferujemy <br>wielorazowe maszynki do golenia i korzystamy z bardziej <br>odpowiedzialnych form dostawy."
+    },
+    "card1Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "card1Title": {
+      "type": "string",
+      "default": "Nawet 3 000 000 mniej jednorazowych maszynek"
+    },
+    "card1Text": {
+      "type": "string",
+      "default": "Jako marka Shav do tej pory sprzedaliśmy już około 300 000 wielorazowych maszynek. Jeśli każda z nich zastąpi w czasie użytkowania zaledwie 10 plastikowych jednorazówek, oznacza to nawet 3 miliony jednorazowych maszynek mniej."
+    },
+    "card2Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "card2Title": {
+      "type": "string",
+      "default": "Stworzona do dłuższego użytkowania"
+    },
+    "card2Text": {
+      "type": "string",
+      "default": "Shav Woman nie jest produktem na kilka goleń. To urządzenie wielokrotnego użytku, które może służyć przez długi czas."
+    },
+    "card3Icon": {
+      "type": "string",
+      "default": ""
+    },
+    "card3Title": {
+      "type": "string",
+      "default": "Dostawa z DHL GoGreen"
+    },
+    "card3Text": {
+      "type": "string",
+      "default": "Nasze przesyłki wysyłamy za pośrednictwem usługi DHL GoGreen. DHL realizuje w jej ramach działania mające na celu ograniczenie i kompensowanie emisji związanych z transportem przesyłek."
+    }
+  },
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}
