@@ -10,11 +10,13 @@
   align-items: center;
   gap: $space-48;
   width: 100%;
-  padding: $space-32 0;
+  padding: $space-32 $space-16;
   box-sizing: border-box;
 
   @media (min-width: $breakpoint-tablet) {
     padding: $space-32 0;
+    max-width: 1428px;
+    margin: 0 auto;
   }
 
   // ---------------------------------------------------------------------------
@@ -27,11 +29,12 @@
     font-family: $font-family-base;
     font-weight: $font-weight-medium;
     letter-spacing: $letter-spacing-tight;
-    line-height: 1;
-    font-size: $font-size-h2;            // 42 mobile
+    line-height: 1.1;
+    font-size: 32px;                     // 32 mobile (zamiast 42)
 
     @media (min-width: $breakpoint-tablet) {
       font-size: $font-size-h1;          // 64
+      line-height: 1;
       max-width: 746px !important;
     }
   }
@@ -176,6 +179,12 @@
     letter-spacing: $letter-spacing-tight;
     color: $color-neutral-500;
     white-space: nowrap;
+
+    @media (max-width: $breakpoint-tablet) {
+      padding: $space-8 12px;
+      font-size: 13px;
+      gap: 8px;
+    }
   }
 
   &__card-pill-sep {
