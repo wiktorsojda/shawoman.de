@@ -28,14 +28,22 @@ $allowed_html = array(
     'em' => array(),
     'i' => array(),
     'span' => array(
-        'style' => array(),
-        'class' => array()
+        'style' => true,
+        'class' => true
+    ),
+    'mark' => array(
+        'style' => true,
+        'class' => true
     )
 );
 
 // Alternatywnie dla tekstow gdzie chcemy wspierac wiecej tagow
 $allowed_text_html = array_merge(wp_kses_allowed_html('post'), [
     'span' => [
+        'style' => true,
+        'class' => true
+    ],
+    'mark' => [
         'style' => true,
         'class' => true
     ]
