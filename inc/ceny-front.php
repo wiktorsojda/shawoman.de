@@ -80,7 +80,8 @@ function shav_auto_grouped_product_price_html($price_html, $product)
  * @param WC_Product $product Produkt główny typu woosg
  * @return array|false Tablica ['regular' => float, 'bundle' => float, 'debug' => string] lub false, jeśli błąd
  */
-function shav_get_woosg_totals($product) {
+function shav_get_woosg_totals($product)
+{
     if (!$product || !is_a($product, 'WC_Product') || !$product->is_type('woosg')) {
         return false;
     }
@@ -165,7 +166,41 @@ function shav_get_woosg_totals($product) {
 
     return array(
         'regular' => $total_regular_price,
-        'bundle'  => $total_bundle_price,
-        'debug'   => $debug_log
+        'bundle' => $total_bundle_price,
+        'debug' => $debug_log
     );
+}
+
+/**
+ * Automatyczne uzupełnianie statycznych meta pól (_price, _regular_price, _sale_price) dla zestawów (woosg).
+ * Uruchamia się po zapisaniu produktu (Zestawu) w panelu WP, co pozwala wtyczkom typu Product Feed Pro
+ * (AdTribes) odczytać poprawne wartości z bazy danych, bez ryzyka pętli (loop) lub obciążania serwera.
+ */
+add_action( 'woocommerce_process_product_meta', 'shav_sync_woosg_prices_to_meta', 20, 1 );
+
+function shav_sync_woosg_prices_to_meta( $post_id ) {
+    $product = wc_get_product( $post_id );
+    if ( ! $product || ! is_a( $product, 'WC_Product' ) || ! $product->is_type( 'woosg' ) ) {
+        return;
+    }
+
+    if ( function_exists( 'shav_get_woosg_totals' ) ) {
+        $totals = shav_get_woosg_totals( $product );
+        if ( $totals && isset( $totals['bundle'] ) && isset( $totals['regular'] ) ) {
+            $bundle_price  = $totals['bundle'];
+            $regular_price = $totals['regular'];
+
+            // Aktualizujemy bezpośrednio post meta, aby wtyczki feedów (i ew. inne narzędzia zew.) miały poprawne dane.
+            // Zapis za pomocą update_post_meta jest szybki i unika zapętlenia wywołań w WooCommerce.
+            update_post_meta( $post_id, '_regular_price', wc_format_decimal( $regular_price ) );
+            
+            if ( $regular_price > $bundle_price ) {
+                update_post_meta( $post_id, '_sale_price', wc_format_decimal( $bundle_price ) );
+                update_post_meta( $post_id, '_price', wc_format_decimal( $bundle_price ) );
+            } else {
+                update_post_meta( $post_id, '_sale_price', '' );
+                update_post_meta( $post_id, '_price', wc_format_decimal( $bundle_price ) );
+            }
+        }
+    }
 }
