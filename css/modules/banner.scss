@@ -23,9 +23,9 @@
 
     margin-top: 24px;
     margin-bottom: 24px;
-    margin-left: 20px !important;
-    margin-right: 20px !important;
-    padding: var(--pad-y-mob, 24px) var(--pad-x-mob, 24px) !important;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 24px;
     min-height: 244px !important;
     background-image: var(--bg-mobile) !important;
 
@@ -37,9 +37,9 @@
         min-height: 0 !important;
         margin-top: 32px;
         margin-bottom: 32px;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        padding: var(--pad-top-desk, 128px) var(--pad-x-desk, 100px) var(--pad-bot-desk, 64px) var(--pad-x-desk, 100px) !important;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 128px 100px 64px 100px;
         background-image: var(--bg-desktop) !important;
     }
 }
