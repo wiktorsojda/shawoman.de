@@ -3,6 +3,12 @@ $backgroundImage       = isset($attributes['backgroundImage'])       ? $attribut
 $backgroundImageMobile = isset($attributes['backgroundImageMobile']) ? $attributes['backgroundImageMobile'] : '';
 $title                 = isset($attributes['title'])                 ? $attributes['title']                 : 'Metody dostawy';
 $subtitle              = isset($attributes['subtitle'])              ? $attributes['subtitle']              : '';
+$contentAlign          = isset($attributes['contentAlign'])          ? $attributes['contentAlign']          : 'right';
+$paddingTopDesktop     = isset($attributes['paddingTopDesktop'])     ? $attributes['paddingTopDesktop']     : 128;
+$paddingBottomDesktop  = isset($attributes['paddingBottomDesktop'])  ? $attributes['paddingBottomDesktop']  : 64;
+$paddingXDesktop       = isset($attributes['paddingXDesktop'])       ? $attributes['paddingXDesktop']       : 100;
+$paddingYMobile        = isset($attributes['paddingYMobile'])        ? $attributes['paddingYMobile']        : 24;
+$paddingXMobile        = isset($attributes['paddingXMobile'])        ? $attributes['paddingXMobile']        : 24;
 
 // CSS vars — desktop i mobile osobne. Mobile fallback na desktop.
 $style_parts = [];
@@ -13,6 +19,25 @@ $mobile_url = $backgroundImageMobile ?: $backgroundImage;
 if ($mobile_url) {
     $style_parts[] = '--bg-mobile:url(' . esc_url($mobile_url) . ')';
 }
+
+$alignFlex = 'flex-end';
+$textAlign = 'right';
+if ($contentAlign === 'left') {
+    $alignFlex = 'flex-start';
+    $textAlign = 'left';
+} else if ($contentAlign === 'center') {
+    $alignFlex = 'center';
+    $textAlign = 'center';
+}
+
+$style_parts[] = '--align-flex:' . $alignFlex;
+$style_parts[] = '--text-align:' . $textAlign;
+$style_parts[] = '--pad-top-desk:' . $paddingTopDesktop . 'px';
+$style_parts[] = '--pad-bot-desk:' . $paddingBottomDesktop . 'px';
+$style_parts[] = '--pad-x-desk:' . $paddingXDesktop . 'px';
+$style_parts[] = '--pad-y-mob:' . $paddingYMobile . 'px';
+$style_parts[] = '--pad-x-mob:' . $paddingXMobile . 'px';
+
 $wrapper_style = $style_parts ? implode(';', $style_parts) . ';' : '';
 
 $wrapper_attrs = get_block_wrapper_attributes([

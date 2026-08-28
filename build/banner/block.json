@@ -23,6 +23,30 @@
     "backgroundImageMobile": {
       "type": "string",
       "default": ""
+    },
+    "contentAlign": {
+      "type": "string",
+      "default": "right"
+    },
+    "paddingTopDesktop": {
+      "type": "number",
+      "default": 128
+    },
+    "paddingBottomDesktop": {
+      "type": "number",
+      "default": 64
+    },
+    "paddingXDesktop": {
+      "type": "number",
+      "default": 100
+    },
+    "paddingYMobile": {
+      "type": "number",
+      "default": 24
+    },
+    "paddingXMobile": {
+      "type": "number",
+      "default": 24
     }
   },
   "editorScript": "file:./index.js",

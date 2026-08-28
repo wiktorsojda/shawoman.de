@@ -21,19 +21,11 @@
             border-radius: 12px !important;
      }
 
-    // ----- Mobile (Figma 1003:3025 — 390x244, ratio 1.6:1) -----
-    // UWAGA: NIE uzywamy `aspect-ratio`! W trybie width:auto + content
-    // wiekszy niz aspect-driven height, browser EKSPANDUJE width by zachowac
-    // ratio (badania: 200px height + ratio 1.6 = 320 width minimalny, ale
-    // gdy content forces 434 height → width forsowane do 693). Lepiej:
-    // `padding-bottom: 62.56%` jako CSS ratio-trick + content absolute.
-    // ALBO prosciej: bez ratio, content rozklada się naturalnie i background
-    // cover skaluje obraz. Wybieramy proste.
     margin-top: 24px;
     margin-bottom: 24px;
     margin-left: 20px !important;
     margin-right: 20px !important;
-    padding: 24px !important;
+    padding: var(--pad-y-mob, 24px) var(--pad-x-mob, 24px) !important;
     min-height: 244px !important;
     background-image: var(--bg-mobile) !important;
 
@@ -47,7 +39,7 @@
         margin-bottom: 32px;
         margin-left: auto !important;
         margin-right: auto !important;
-        padding: 128px 100px 64px 100px !important;
+        padding: var(--pad-top-desk, 128px) var(--pad-x-desk, 100px) var(--pad-bot-desk, 64px) var(--pad-x-desk, 100px) !important;
         background-image: var(--bg-desktop) !important;
     }
 }
@@ -60,7 +52,7 @@
     height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: flex-end !important;
+    align-items: var(--align-flex, flex-end) !important;
     justify-content: start !important;
     gap: 16px !important; // dotyczy przerwy miedzy title a scroll buttonem, bo na subtitle damy margin-bottom
 
@@ -78,7 +70,7 @@
     font-weight: 500 !important;
     line-height: 1.2 !important;              // Figma: 120%
     letter-spacing: -0.04em !important;
-    text-align: right !important;
+    text-align: var(--text-align, right) !important;
     color: $color-white !important;
     filter: drop-shadow(0 1px 0.5px rgba(0, 0, 0, 0.25)) !important;
     
@@ -99,7 +91,7 @@
     font-weight: 500 !important;
     line-height: 0.99 !important;              // Figma: 63.36 / 64
     letter-spacing: -0.04em !important;
-    text-align: right !important;
+    text-align: var(--text-align, right) !important;
     color: $color-white !important;
     filter: drop-shadow(0 1px 0.5px rgba(0, 0, 0, 0.25)) !important;
     text-shadow: none !important;
