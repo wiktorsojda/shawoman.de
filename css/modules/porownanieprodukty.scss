@@ -9,17 +9,21 @@
   box-sizing: border-box;
 
   &__inner {
-    background-color: $color-neutral-50;
-    border-radius: clamp(40px, 5vw, 82px);
-    padding: clamp(32px, 4vw, 64px) clamp(20px, 4vw, 64px);
     display: flex;
     flex-direction: column;
-    gap: clamp(40px, 5vw, 64px);
+    gap: 32px;
 
     width: calc(100% - 40px);
     max-width: 1428px;
     margin: 0 auto;
     box-sizing: border-box;
+
+    @media (min-width: 1024px) {
+      background-color: $color-neutral-50;
+      border-radius: clamp(40px, 5vw, 82px);
+      padding: clamp(32px, 4vw, 64px) clamp(20px, 4vw, 64px);
+      gap: clamp(40px, 5vw, 64px);
+    }
   }
 
   &__header {
@@ -35,10 +39,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
 
     @media (min-width: 1024px) {
-      flex: 1 1 509px; // Match feature max-width
+      gap: 24px;
+      flex: 1 1 509px;
       max-width: 509px;
       min-width: 0;
     }
@@ -46,18 +51,26 @@
 
   & .porownanieprodukty__image {
     max-width: 155px !important;
-    height: 260px !important;
+    height: 180px !important;
     object-fit: contain !important;
+    
+    @media (min-width: 1024px) {
+      height: 260px !important;
+    }
   }
 
   &__title {
     font-family: $font-family-base;
-    font-size: 32px;
-    @include type-h2;
+    @include type-body-l;
     font-weight: 500;
     text-align: center;
     color: $color-neutral-900;
-    margin: 0; // Usunięcie domyślnych marginesów nagłówka h3
+    margin: 0;
+
+    @media (min-width: 1024px) {
+      @include type-h2;
+      font-size: 32px;
+    }
   }
 
   &__vs {
@@ -66,6 +79,8 @@
     padding: 0 10px;
     text-align: center;
     margin: 0;
+    @include type-h1;
+    font-weight: 500;
 
     @media (min-width: 1024px) {
       padding: 0 40px;
@@ -79,7 +94,11 @@
   &__features {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+
+    @media (min-width: 1024px) {
+      gap: 8px;
+    }
   }
 
   &__row {
@@ -96,26 +115,21 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    background-color: #F2F2F2;
-    padding: clamp(16px, 2vw, 24px);
-    border-radius: clamp(8px, 1.5vw, 16px);
+    background-color: $color-neutral-50;
+    padding: 12px;
+    border-radius: $radius-s;
     box-sizing: border-box;
 
     @media (min-width: 1024px) {
+      background-color: #F2F2F2;
+      padding: clamp(16px, 2vw, 24px);
+      border-radius: clamp(8px, 1.5vw, 16px);
       min-height: 68px;
       flex: 1 1 509px;
       max-width: 509px;
       min-width: 0;
       justify-content: flex-start;
       text-align: left;
-    }
-
-    &--left {
-      // Shav Woman side
-    }
-
-    &--right {
-      // Competitor side
     }
   }
 
@@ -134,9 +148,9 @@
       line-height: 1.4;
       letter-spacing: -0.04em;
       color: #fafafa;
-      background-color: $color-neutral-400; // grey pill
+      background-color: $color-neutral-400;
       padding: 8px 16px;
-      border-radius: $radius-xs; // 8px
+      border-radius: $radius-xs;
       box-sizing: border-box;
     }
   }
@@ -147,18 +161,22 @@
     flex-shrink: 0;
 
     @media (min-width: 1024px) {
-      display: none; // Hidden on desktop (unless needed, but the design didn't show them on desktop, wait design does not show them? I will leave them hidden on desktop just in case, but let's check the screenshot)
+      display: none; // Hidden on desktop
     }
   }
 
   &__text {
     font-family: $font-family-base;
-    font-size: 16px;
+    @include type-body-s;
     font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: -0.04em;
-    color: #3F3F3F;
+    color: $color-neutral-900;
+    
+    @media (min-width: 1024px) {
+      font-size: 16px;
+      line-height: 1.4;
+      letter-spacing: -0.04em;
+      color: #3F3F3F;
+    }
   }
 }
 
-// Adjust dots on desktop if they are visible in design. The first design shows grey pill in the middle, and no dots. The mobile design shows dots. So hiding on desktop is correct.
