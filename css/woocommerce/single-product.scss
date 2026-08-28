@@ -2331,3 +2331,39 @@ body .woosg-wrap bdi {
     }
 }
 
+// -----------------------------------------------------------------------------
+// FAKE TABS - BUTTON "BEWERTUNGEN"
+// -----------------------------------------------------------------------------
+.shav-product-fake-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: $space-32;
+    margin-bottom: $space-16;
+}
+
+.shav-fake-tab-opinie {
+    min-width: 94px;
+    height: 56px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 16px;
+    border-radius: 48px;
+    background: $color-neutral-200; // #d9d9d9
+    color: $color-white;            // biały tekst
+    border: none;
+    cursor: pointer;
+    font-family: $font-family-base;
+    font-size: $font-size-body-m;
+    font-weight: $font-weight-medium;
+    transition: background 0.2s ease, opacity 0.2s ease;
+    
+    &:hover {
+        background: $color-neutral-300;
+        opacity: 0.9;
+    }
+}
+
+
