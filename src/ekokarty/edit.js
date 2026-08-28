@@ -226,7 +226,6 @@ export default function Edit({ attributes, setAttributes }) {
           value={title}
           onChange={(v) => setAttributes({ title: v })}
           placeholder="Nagłówek sekcji"
-          allowedFormats={["core/bold", "core/italic", "core/text-color"]}
         />
 
         <div className="ekokarty__grid">
