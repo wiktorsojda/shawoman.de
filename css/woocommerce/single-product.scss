@@ -990,20 +990,26 @@ p#countdown-mobile {
                     }
 
                     p.comment-form-author,
-                    p.comment-form-email {
+                    p.comment-form-email,
+                    p.comment-form-image,
+                    p.comment-form-rating {
                         display: flex;
                         flex-direction: column;
+                        justify-content: center;
                         gap: $space-8;
                         margin: 0;
                     }
 
-                    p.comment-form-image,
-                    p.comment-form-rating,
                     p.comment-form-comment,
                     p.form-submit,
                     p.comment-form-cookies-consent {
                         grid-column: 1 / -1;
                         margin: 0;
+                    }
+
+                    p.comment-form-comment textarea {
+                        height: 100px;
+                        resize: vertical;
                     }
 
                     p.comment-form-cookies-consent {
@@ -1013,6 +1019,7 @@ p#countdown-mobile {
                     .comment-form-rating {
                         display: flex;
                         flex-direction: column;
+                        justify-content: center;
                         gap: $space-8;
 
                         label {
