@@ -317,8 +317,8 @@ function display_promotional_element_two_lines()
     $badge = shav_get_active_promo_badge($product);
     if ($badge && !empty($badge['text'])) {
         $pct = $badge['text'];
-        $bg = $badge['color'] ?: '';
-        $color = $badge['textColor'] ?: '';
+        $bg = $badge['color'] ?? '';
+        $color = $badge['textColor'] ?? '';
         
         $style = '';
         if ($bg || $color) {
