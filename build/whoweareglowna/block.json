@@ -2,19 +2,11 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/whoweareglowna",
-  "title": "Who We Are Główna",
+  "title": "Who we are Shav Women",
   "attributes": {
     "title": {
       "type": "string",
-      "default": "Stworzona w jednym celu"
-    },
-    "ctaLabel": {
-      "type": "string",
-      "default": "Zobacz teraz"
-    },
-    "ctaURL": {
-      "type": "string",
-      "default": "/produkt/golarka-shav-maszynka-do-miejsc-intymnych/"
+      "default": "Dołącz do społeczności +100 tysięcy zadowolonych klientów"
     },
     "videoURL": {
       "type": "string",
@@ -23,6 +15,14 @@
     "backgroundImage": {
       "type": "string",
       "default": ""
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "#00000057"
+    },
+    "logos": {
+      "type": "array",
+      "default": []
     }
   },
   "editorScript": "file:./index.js",

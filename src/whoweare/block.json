@@ -2,11 +2,11 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "ourblocktheme/whoweare",
-  "title": "Who We Are",
+  "title": "Who we are Shav Women",
   "attributes": {
     "title": {
       "type": "string",
-      "default": "Dołącz do społeczności 200 tysięcy zadowolonych mężczyzn"
+      "default": "Dołącz do społeczności +100 tysięcy zadowolonych klientów"
     },
     "videoURL": {
       "type": "string",
@@ -15,6 +15,14 @@
     "backgroundImage": {
       "type": "string",
       "default": ""
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "#00000057"
+    },
+    "logos": {
+      "type": "array",
+      "default": []
     }
   },
   "editorScript": "file:./index.js",
@@ -22,10 +30,7 @@
   "supports": {
     "html": false,
     "anchor": true,
-    "align": [
-      "wide",
-      "full"
-    ],
+    "align": ["wide", "full"],
     "color": {
       "background": true,
       "text": true,
