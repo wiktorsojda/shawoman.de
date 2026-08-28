@@ -296,11 +296,13 @@ if (!function_exists('blendygo_get_active_cpt_promo')) {
                 'post_type' => 'promocje',
                 'post_status' => 'publish',
                 'posts_per_page' => -1,
-                'meta_key' => 'promo_priority',
-                'orderby' => 'meta_value_num',
-                'order' => 'DESC',
             ];
             $all_promos = get_posts($args);
+            usort($all_promos, function($a, $b) {
+                $pri_a = (int) get_post_meta($a->ID, 'promo_priority', true);
+                $pri_b = (int) get_post_meta($b->ID, 'promo_priority', true);
+                return $pri_b - $pri_a;
+            });
         }
 
         $product_cats = wp_get_post_terms($product_id, 'product_cat', ['fields' => 'ids']);
@@ -358,11 +360,13 @@ if (!function_exists('blendygo_get_global_active_cpt_promo')) {
             'post_type' => 'promocje',
             'post_status' => 'publish',
             'posts_per_page' => -1,
-            'meta_key' => 'promo_priority',
-            'orderby' => 'meta_value_num',
-            'order' => 'DESC',
         ];
         $promos = get_posts($args);
+        usort($promos, function($a, $b) {
+            $pri_a = (int) get_post_meta($a->ID, 'promo_priority', true);
+            $pri_b = (int) get_post_meta($b->ID, 'promo_priority', true);
+            return $pri_b - $pri_a;
+        });
         foreach ($promos as $promo) {
             if (blendygo_get_promo_phase($promo->ID) !== 0) {
                 if ($can_cache) {
