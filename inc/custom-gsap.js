@@ -15,20 +15,6 @@ function raf(time) {
 requestAnimationFrame(raf);
 
 
-// Marquee logos (.about-us-swiper) — duplikuje zawartosc dla plynnego infinity loop
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.about-us-swiper').forEach((track) => {
-    if (track.dataset.marqueeReady) return;
-    const clone = track.cloneNode(true);
-    clone.setAttribute('aria-hidden', 'true');
-    // Wstaw klonowane dzieci do tego samego trackera (zamiast osobnego elementu)
-    Array.from(clone.children).forEach((child) => {
-      track.appendChild(child);
-    });
-    track.dataset.marqueeReady = '1';
-  });
-});
-
 
 // top bar menu when scrolling down
 document.addEventListener('DOMContentLoaded', function() {
@@ -695,46 +681,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  if ((window.location.pathname.includes("/o-nas")) || (window.location.pathname.includes("/golarka-shav-maszynka-do-miejsc-intymnych")) || (window.location.pathname.includes("/sprzedaz-hurtowa")) || (window.location.pathname.includes("/trymer-do-nosa"))|| (window.location.pathname.includes("/sprzedaz-hurtowa")) || (window.location.pathname.includes("/trymer-do-nosa")) || (window.location.pathname.includes("/golarka-shav-basic-maszynka-do-miejsc-intymnych")) || (window.location.pathname.includes("/balsam-shav")) || (window.location.pathname.includes("/dezodorant-shav")) || (window.location.pathname.includes("/golarka-do-twarzy-handler"))) {
-    const wrapper = document.querySelector('.about-us-swiper');
-    const logos = Array.from(wrapper.children);
-
-    // Ensure each SVG has a defined width if not already set
-    logos.forEach(logo => {
-      if (logo.tagName.toLowerCase() === 'svg') {
-        const width = logo.getBoundingClientRect().width;
-        if (!width) {
-          logo.style.width = '50px'; // Default width
-        }
-      }
-    });
-
-    // Calculate the total width of all logos combined
-    const totalWidth = logos.reduce((acc, logo) => acc + logo.getBoundingClientRect().width, 0);
-
-    // Clone logos to ensure continuous scrolling
-    let cloneCount = Math.ceil(window.innerWidth / totalWidth) + 2; // Add extra clones for smooth looping
-    for (let i = 0; i < cloneCount; i++) {
-      logos.forEach(logo => {
-        const clone = logo.cloneNode(true);
-        wrapper.appendChild(clone);
-      });
-    }
-
-    // Calculate the new total width after cloning
-    const newTotalWidth = totalWidth * cloneCount;
-
-    // Set the animation duration dynamically
-    const scrollSpeed = 50; // You can adjust this for faster/slower scrolling
-    wrapper.style.animationDuration = `130s`;
-
-    // Ensure animation is applied
-    wrapper.style.animation = `slide ${wrapper.style.animationDuration} linear infinite`;
-  }
-});
 
 function animate(selector) {
     const element = document.querySelector(selector);
