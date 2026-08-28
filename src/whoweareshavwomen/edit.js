@@ -5,7 +5,7 @@ import { PanelBody, Button, TextControl, ColorPicker, TextareaControl } from "@w
 import { useState, useEffect } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-  const { title, videoURL, backgroundImage, overlayColor } = attributes;
+  const { title, videoURL, backgroundImage, overlayColor, logos } = attributes;
   const [jsonText, setJsonText] = useState(JSON.stringify({ title }, null, 2));
 
   useEffect(() => {
@@ -79,6 +79,31 @@ export default function Edit({ attributes, setAttributes }) {
           <p style={{ marginTop: 0, fontSize: 12 }}>Kolor + przezroczystość warstwy nad wideo/obrazem (default: #00000057).</p>
           <ColorPicker color={overlayColor} onChange={(v) => setAttributes({ overlayColor: v })} enableAlpha />
         </PanelBody>
+
+        <PanelBody title="Logotypy" initialOpen={true}>
+          <MediaUploadCheck>
+            <MediaUpload
+              onSelect={(media) => {
+                const newLogos = media.map(m => ({ id: m.id, url: m.url, alt: m.alt }));
+                setAttributes({ logos: newLogos });
+              }}
+              allowedTypes={["image"]}
+              multiple={true}
+              gallery={true}
+              value={logos ? logos.map(l => l.id) : []}
+              render={({ open }) => (
+                <Button variant="secondary" onClick={open}>
+                  {logos && logos.length > 0 ? "Zarządzaj logotypami" : "Dodaj logotypy"}
+                </Button>
+              )}
+            />
+          </MediaUploadCheck>
+          {logos && logos.length > 0 && (
+            <Button variant="link" isDestructive onClick={() => setAttributes({ logos: [] })} style={{ marginTop: 8, display: "block" }}>
+              Usuń wszystkie logotypy
+            </Button>
+          )}
+        </PanelBody>
       </InspectorControls>
 
       {videoURL && <video className="video-background" src={videoURL} autoPlay loop muted playsInline />}
@@ -94,8 +119,16 @@ export default function Edit({ attributes, setAttributes }) {
           />
         </div>
         <div className="about-us-logos">
-          <div style={{ padding: 16, color: "#999", fontSize: 12, textAlign: "center" }}>
-            (Logo marek poniżej — zachowane statycznie w renderze)
+          <div className="about-us-swiper">
+            {logos && logos.length > 0 ? (
+              logos.map((logo, idx) => (
+                <img key={idx} src={logo.url} alt={logo.alt || "Logo"} />
+              ))
+            ) : (
+              <div style={{ padding: 16, color: "#999", fontSize: 12, textAlign: "center" }}>
+                Dodaj logotypy w panelu bocznym.
+              </div>
+            )}
           </div>
         </div>
       </section>

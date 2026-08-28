@@ -19,6 +19,10 @@
     "overlayColor": {
       "type": "string",
       "default": "#00000057"
+    },
+    "logos": {
+      "type": "array",
+      "default": []
     }
   },
   "editorScript": "file:./index.js",
