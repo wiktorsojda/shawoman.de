@@ -948,6 +948,73 @@ add_action('woocommerce_after_single_product_summary', function () {
     if (empty($ids))
         return;
 
+    $has_opinie = false;
+    foreach ($ids as $id) {
+        $pattern = get_post($id);
+        if ($pattern && $pattern->post_type === 'wp_block') {
+            if (has_block('ourblocktheme/opinieproduktowe', $pattern->post_content) || strpos($pattern->post_content, 'wp:ourblocktheme/opinieproduktowe') !== false) {
+                $has_opinie = true;
+                break;
+            }
+        }
+    }
+
+    if ($has_opinie) {
+        echo '<div class="shav-product-fake-tabs-wrapper">';
+        echo '  <div class="shav-product-fake-tabs container">';
+        echo '    <button class="shav-fake-tab active" id="tab-opis">Beschreibung</button>';
+        echo '    <button class="shav-fake-tab" id="tab-opinie">Kundenbewertungen</button>';
+        echo '  </div>';
+        echo '</div>';
+        
+        echo '<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tabOpis = document.getElementById("tab-opis");
+            var tabOpinie = document.getElementById("tab-opinie");
+            
+            if (tabOpinie) {
+                tabOpinie.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    var opinieBlock = document.querySelector(".opinieproduktowe");
+                    if (opinieBlock) {
+                        var y = opinieBlock.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({top: y, behavior: "smooth"});
+                        if (tabOpis) tabOpis.classList.remove("active");
+                        tabOpinie.classList.add("active");
+                    }
+                });
+            }
+            if (tabOpis) {
+                tabOpis.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    var descBlock = document.querySelector(".shav-product-pattern");
+                    if (descBlock) {
+                        var y = descBlock.getBoundingClientRect().top + window.scrollY - 150;
+                        window.scrollTo({top: y, behavior: "smooth"});
+                        tabOpinie.classList.remove("active");
+                        tabOpis.classList.add("active");
+                    }
+                });
+            }
+            
+            // Highlight tab on scroll
+            window.addEventListener("scroll", function() {
+                var opinieBlock = document.querySelector(".opinieproduktowe");
+                if (opinieBlock) {
+                    var rect = opinieBlock.getBoundingClientRect();
+                    if (rect.top <= 200) {
+                        if (tabOpis) tabOpis.classList.remove("active");
+                        if (tabOpinie) tabOpinie.classList.add("active");
+                    } else {
+                        if (tabOpinie) tabOpinie.classList.remove("active");
+                        if (tabOpis) tabOpis.classList.add("active");
+                    }
+                }
+            });
+        });
+        </script>';
+    }
+
     foreach ($ids as $id) {
         $pattern = get_post($id);
         if (!$pattern || $pattern->post_type !== 'wp_block')
