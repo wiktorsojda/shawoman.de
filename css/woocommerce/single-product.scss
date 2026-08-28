@@ -1424,16 +1424,20 @@ p#countdown-mobile {
 
 
 #custom-background-wrapper {
-    // background-color: black;
     background-color: $color-neutral-50;
-    // background-color: $color-neutral-100;
-    // background-color: $color-neutral-800;
-    // background: linear-gradient(173deg, rgba($color-black,1) 25%, $color-info-dark 51%, rgba($color-black,1) 75%); /* Replace with your desired background color or image */
     padding-bottom: 0;
-    // border-radius: 10px; /* Optional: Add some rounding to the corners */
-    margin: 0 auto;
-    margin-bottom: $space-64;
     max-width: 1428px;
+    
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: $space-64;
+
+    @media (min-width: $breakpoint-tablet) {
+        width: calc(100% - 40px);
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 
