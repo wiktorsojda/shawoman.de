@@ -27,19 +27,25 @@
   }
 
   &__title {
-    @include type-h2;
-    font-weight: 500;
-    color: $color-neutral-900;
-    text-align: center;
-    margin: 0;
+    font-family: $font-family-base !important;
+    font-size: $font-size-h2-mob !important;
+    line-height: $line-height-tight !important;
+    font-weight: 500 !important;
+    color: $color-neutral-900 !important;
+    text-align: center !important;
+    margin: 0 !important;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: $font-size-h2 !important;
+    }
     
     // Gutenberg editor sometimes adds p tags inside rich text
     p {
-      margin: 0;
+      margin: 0 !important;
     }
 
     mark {
-      background: transparent;
+      background: transparent !important;
     }
   }
 
@@ -99,37 +105,45 @@
     }
 
     &-title {
-      @include type-h4;
-      font-weight: 500;
-      font-style: normal;
-      color: $color-neutral-900;
-      margin: 0;
+      font-family: $font-family-base !important;
+      font-size: $font-size-h4-mob !important;
+      line-height: $line-height-tight !important;
+      font-weight: 500 !important;
+      font-style: normal !important;
+      color: $color-neutral-900 !important;
+      margin: 0 !important;
+
+      @media (min-width: $breakpoint-tablet) {
+        font-size: $font-size-h4 !important;
+      }
 
       &--green {
-        color: $color-green-600;
+        color: $color-green-600 !important;
       }
     }
 
     &-text {
-      @include type-body-m;
-      font-weight: 400;
-      font-style: normal;
-      color: $color-neutral-800;
-      margin: 0;
+      font-family: $font-family-base !important;
+      font-size: $font-size-body-m !important;
+      line-height: $line-height-base !important;
+      font-weight: 400 !important;
+      font-style: normal !important;
+      color: $color-neutral-800 !important;
+      margin: 0 !important;
       
       &--green {
-        color: $color-green-600;
+        color: $color-green-600 !important;
       }
 
       strong, b {
-        font-weight: $font-weight-bold;
+        font-weight: $font-weight-bold !important;
       }
       
       p {
-        margin: 0 0 16px 0;
+        margin: 0 0 16px 0 !important;
         
         &:last-child {
-          margin-bottom: 0;
+          margin-bottom: 0 !important;
         }
       }
     }
