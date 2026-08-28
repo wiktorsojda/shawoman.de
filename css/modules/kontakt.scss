@@ -29,7 +29,7 @@
     @include type-body-m;
     color: $color-neutral-800;
     text-align: center;
-    margin: 24px 0 64px 0;
+    margin: 24px 0 32px 0;
     
     strong, b {
       font-weight: $font-weight-bold;
@@ -40,7 +40,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $space-16;
+    gap: $space-12;
     margin-bottom: 65px;
   }
 
