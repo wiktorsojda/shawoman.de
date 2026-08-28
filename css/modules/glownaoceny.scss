@@ -78,6 +78,7 @@
     border-radius: $radius-s;            // 16
     text-align: center;
     min-height: 280px;
+    min-width: 0;                        // zapobiega "puchnięciu" grida i wypychaniu na prawo
 
     @media (min-width: $breakpoint-tablet) {
       min-height: 375px;
@@ -169,6 +170,7 @@
   &__card-pill {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: $space-16;
     padding: $space-8 $space-16;
     background-color: $color-neutral-50;
@@ -184,6 +186,9 @@
       padding: $space-8 12px;
       font-size: 13px;
       gap: 8px;
+      flex-wrap: wrap;
+      white-space: normal;
+      width: 100%;
     }
   }
 
