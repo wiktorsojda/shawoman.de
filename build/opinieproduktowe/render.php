@@ -126,15 +126,19 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!reviewsList) reviewsList = document.querySelector('.commentlist');
     
     if (reviewsList) {
-        // Woo Photo Reviews ładuje opinie przez AJAX/JS. Czekamy na ich wyrenderowanie.
         let checkExist = setInterval(function() {
             let items = reviewsList.querySelectorAll('.wcpr-grid-item, li.comment');
             if (items.length > 0) {
                 clearInterval(checkExist);
                 
                 if (items.length > 9) {
-                    let clickCount = 0;
-                    const maxClicks = Math.ceil((items.length - 9) / 6);
+                    let visibleCount = 9;
+                    let step = 6;
+                    
+                    // Hide items beyond 9
+                    for (let i = visibleCount; i < items.length; i++) {
+                        items[i].style.setProperty('display', 'none', 'important');
+                    }
                     
                     let btnWrapper = document.createElement('div');
                     btnWrapper.style.cssText = 'display: flex; justify-content: center; margin-top: 32px; width: 100%;';
@@ -145,28 +149,29 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                     btn.addEventListener('click', function(e) {
                         e.preventDefault();
-                        clickCount++;
                         
-                        if (clickCount >= maxClicks) {
-                            reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-max';
-                            btnWrapper.style.display = 'none';
-                        } else {
-                            reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-' + clickCount;
+                        let nextCount = visibleCount + step;
+                        for (let i = visibleCount; i < nextCount && i < items.length; i++) {
+                            items[i].style.setProperty('display', 'block', 'important');
                         }
+                        visibleCount = nextCount;
                         
                         // Triggers resize for masonry layout
                         setTimeout(function() {
                             window.dispatchEvent(new Event('resize'));
                         }, 50);
+                        
+                        if (visibleCount >= items.length) {
+                            btnWrapper.style.display = 'none';
+                        }
                     });
                     
                     btnWrapper.appendChild(btn);
                     reviewsList.parentNode.insertBefore(btnWrapper, reviewsList.nextSibling);
                 }
             }
-        }, 500); // Sprawdzaj co 500ms
+        }, 500); 
         
-        // Zabezpieczenie przed przerwaniem w nieskończoność
         setTimeout(function() { clearInterval(checkExist); }, 10000); 
     }
 });
