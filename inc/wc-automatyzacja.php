@@ -1478,6 +1478,24 @@ if (!function_exists('blendygo_override_fse_block_data')) {
                         $parsed_block['attrs']['arrowColor'] = $meta['promo_fse_arrow_color'][0];
                 }
             }
+        } elseif (isset($parsed_block['blockName']) && $parsed_block['blockName'] === 'ourblocktheme/heroarchiwum') {
+            $promo_id = blendygo_get_global_active_cpt_promo();
+            if ($promo_id) {
+                $meta = get_post_meta($promo_id);
+                
+                if (!empty($meta['promo_banner_shop_desk'][0]) || !empty($meta['promo_banner_shop_mob'][0])) {
+                    if (!empty($meta['promo_banner_shop_desk'][0])) {
+                        $parsed_block['attrs']['imageDesktop'] = $meta['promo_banner_shop_desk'][0];
+                    }
+                    if (!empty($meta['promo_banner_shop_mob'][0])) {
+                        $parsed_block['attrs']['imageMobile'] = $meta['promo_banner_shop_mob'][0];
+                    }
+                    
+                    // Nadpisanie tekstów, domyślnie puste, żeby nie nakładały się na wbudowane w obrazek
+                    $parsed_block['attrs']['text1'] = !empty($meta['promo_banner_shop_text_1'][0]) ? $meta['promo_banner_shop_text_1'][0] : '';
+                    $parsed_block['attrs']['text2'] = !empty($meta['promo_banner_shop_text_2'][0]) ? $meta['promo_banner_shop_text_2'][0] : '';
+                }
+            }
         }
         return $parsed_block;
     }
