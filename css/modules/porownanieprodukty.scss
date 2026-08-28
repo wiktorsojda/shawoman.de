@@ -5,6 +5,8 @@
   padding: clamp(60px, 8vw, 120px) 0;
   display: flex;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
 
   @media (min-width: 1280px) {
     padding: 120px 0;
@@ -18,14 +20,9 @@
     flex-direction: column;
     gap: 40px;
 
-    width: auto;
-    margin: 0 20px;
-
-    @media (min-width: $breakpoint-tablet) {
-      width: calc(100% - 40px);
-      max-width: 1428px;
-      margin: 0 auto;
-    }
+    width: calc(100% - 40px);
+    max-width: 1428px;
+    margin: 0 auto;
 
     @media (min-width: 1024px) {
       border-radius: 82px;
