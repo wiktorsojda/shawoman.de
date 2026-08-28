@@ -3,14 +3,18 @@
 .ekokarty {
   background-color: $color-neutral-100;
   width: 100%;
-  padding: 120px clamp(20px, 3vw, 32px);
+  padding-top: 120px;
+  padding-bottom: 120px;
+  padding-left: max(20px, calc((100vw - 1428px) / 2));
+  padding-right: max(20px, calc((100vw - 1428px) / 2));
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
 
   @media (max-width: $breakpoint-tablet) {
-    padding: 80px clamp(20px, 3vw, 32px);
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   &__inner {
