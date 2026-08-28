@@ -2497,16 +2497,16 @@ function display_shop_banner_image_with_text()
         if (function_exists('blendygo_get_global_active_cpt_promo')) {
             $promo_id = blendygo_get_global_active_cpt_promo();
             if ($promo_id) {
-                $phase = function_exists('blendygo_get_promo_phase') ? blendygo_get_promo_phase($promo_id) : 0;
-                if ($phase === 1 || $phase === 2) {
-                    $promo_desk = get_post_meta($promo_id, 'promo_banner_shop_desk', true);
-                    $promo_mob = get_post_meta($promo_id, 'promo_banner_shop_mob', true);
-                    if (!empty($promo_desk) || !empty($promo_mob)) {
-                        if (!empty($promo_desk)) $desktop_banner_url = $promo_desk;
-                        if (!empty($promo_mob)) $mobile_banner_url = $promo_mob;
-                        $text_1 = '';
-                        $text_2 = '';
-                    }
+                $promo_desk = get_post_meta($promo_id, 'promo_banner_shop_desk', true);
+                $promo_mob = get_post_meta($promo_id, 'promo_banner_shop_mob', true);
+                $promo_text_1 = get_post_meta($promo_id, 'promo_banner_shop_text_1', true);
+                $promo_text_2 = get_post_meta($promo_id, 'promo_banner_shop_text_2', true);
+                
+                if (!empty($promo_desk) || !empty($promo_mob)) {
+                    if (!empty($promo_desk)) $desktop_banner_url = $promo_desk;
+                    if (!empty($promo_mob)) $mobile_banner_url = $promo_mob;
+                    $text_1 = $promo_text_1 ?: '';
+                    $text_2 = $promo_text_2 ?: '';
                 }
             }
         }
