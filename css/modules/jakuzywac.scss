@@ -1,15 +1,11 @@
 @import "../base/tokens";
 
 .jakuzywac {
-  padding: 45px 0;
+  padding: clamp(45px, 8vw, 120px) 0;
   box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
-  
-  @media (min-width: 1280px) {
-    padding: 120px 0;
-  }
   &__inner {
     min-width: 0;
     box-sizing: border-box;
@@ -55,13 +51,11 @@
     display: flex;
     flex-direction: column; // Mobile stacked
     gap: 0; // No gap on mobile as requested
-    margin-top: 40px;
+    margin-top: clamp(40px, 5vw, 64px);
     min-width: 0;
 
     @media (min-width: $breakpoint-tablet) {
       flex-direction: row;
-      gap: 0; // No gap on desktop
-      margin-top: 64px; // 64px from text to image on desktop
     }
   }
 

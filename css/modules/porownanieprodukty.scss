@@ -8,28 +8,18 @@
   width: 100%;
   box-sizing: border-box;
 
-  @media (min-width: 1280px) {
-    padding: 120px 0;
-  }
-
   &__inner {
     background-color: $color-neutral-50;
-    border-radius: 40px;
-    padding: 32px 20px;
-    box-sizing: border-box;
+    border-radius: clamp(40px, 5vw, 82px);
+    padding: clamp(32px, 4vw, 64px) clamp(20px, 4vw, 64px);
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: clamp(40px, 5vw, 64px);
 
     width: calc(100% - 40px);
     max-width: 1428px;
     margin: 0 auto;
-
-    @media (min-width: 1024px) {
-      border-radius: 82px;
-      padding: 64px;
-      gap: 64px;
-    }
+    box-sizing: border-box;
   }
 
   &__header {
@@ -37,11 +27,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 8px;
-
-    @media (min-width: 1024px) {
-      gap: 16px; // Match row gap
-    }
+    gap: clamp(8px, 1.5vw, 16px);
   }
 
   &__product {
@@ -102,12 +88,7 @@
     align-items: stretch;
     background-color: transparent;
     padding: 0;
-    gap: 8px;
-
-    @media (min-width: 1024px) {
-      gap: 16px;
-      align-items: stretch;
-    }
+    gap: clamp(8px, 1.5vw, 16px);
   }
 
   &__feature {
@@ -116,17 +97,15 @@
     align-items: center;
     gap: 12px;
     background-color: #F2F2F2;
-    padding: 16px;
-    border-radius: $radius-m;
+    padding: clamp(16px, 2vw, 24px);
+    border-radius: clamp(8px, 1.5vw, 16px);
+    box-sizing: border-box;
 
     @media (min-width: 1024px) {
-      padding: 24px;
-      border-radius: $radius-xs; // 8px
       min-height: 68px;
       flex: 1 1 509px;
       max-width: 509px;
       min-width: 0;
-      box-sizing: border-box;
       justify-content: flex-start;
       text-align: left;
     }

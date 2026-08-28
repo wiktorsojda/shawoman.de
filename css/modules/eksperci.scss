@@ -11,15 +11,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: clamp(32px, 4.5vw, 64px);
 
     width: calc(100% - 40px);
     max-width: 1428px;
     margin: 0 auto;
-
-    @media (min-width: $breakpoint-tablet) {
-      gap: 64px;
-    }
   }
 
   &__title {
@@ -45,8 +41,8 @@
 
   &__card {
     background-color: $color-neutral-100; // #F2F2F2
-    border-radius: 24px;
-    padding: 32px;
+    border-radius: clamp(24px, 4vw, 46px);
+    padding: clamp(32px, 4vw, 64px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,15 +50,12 @@
     gap: 24px;
     width: 100%;
     max-width: 390px;
-    min-height: 332px;
+    min-height: clamp(332px, 35vw, 479px);
     box-sizing: border-box;
 
     @media (min-width: $breakpoint-tablet) {
-      padding: 64px;
-      border-radius: 46px;
       max-width: none;
       flex: 1;
-      min-height: 479px;
     }
 
     &:nth-child(odd) {
