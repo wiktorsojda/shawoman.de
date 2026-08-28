@@ -33,6 +33,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: clamp(32px, 4vw, 48px);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -116,17 +117,15 @@
   line-height: normal;
   font-family: $font-family-base;
   color: $color-white;
-  padding: $space-24;
+  padding: 0 $space-24;
   margin: 0;
   z-index: 1;
-  margin-top: -$space-120 !important;
   text-transform: uppercase;
 }
 
 @media (max-width: 799px) {
   .about-us-second-title {
     font-size: 22px !important;
-    margin-top: -$space-80 !important;
   }
 }
 
@@ -154,8 +153,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  margin-top: 20rem !important;
   width: 100%;
   z-index: 2;
   padding: 0 20px;
@@ -304,10 +301,6 @@
   }
   .video-background-container {
     height: 70vh !important;
-  }
-
-  .about-us-logos {
-    margin-top: 17rem !important;
   }
 
   .video-background-container-wysylka::before {
