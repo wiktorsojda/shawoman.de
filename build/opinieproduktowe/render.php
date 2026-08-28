@@ -33,7 +33,28 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
 
                 // Standardowy mechanizm WC do renderowania opinii
                 if (comments_open() || get_comments_number()) {
+                    global $wp_query;
+                    $original_comments = $wp_query->comments;
+                    $original_comment_count = $wp_query->comment_count;
+                    
+                    $has_more = false;
+                    if (is_array($wp_query->comments) && count($wp_query->comments) > 9) {
+                        $wp_query->comments = array_slice($wp_query->comments, 0, 9);
+                        $wp_query->comment_count = 9;
+                        $has_more = true;
+                    }
+                    
                     comments_template();
+                    
+                    if ($has_more) {
+                        echo '<div id="shav-ajax-reviews-wrapper" style="display: flex; justify-content: center; margin-top: 32px; width: 100%;">';
+                        echo '  <button class="shav-fake-tab-opinie" id="shav-load-more-reviews" data-product-id="' . esc_attr(get_the_ID()) . '" data-offset="9">Mehr anzeigen</button>';
+                        echo '</div>';
+                    }
+                    
+                    // Przywracamy globalny stan
+                    $wp_query->comments = $original_comments;
+                    $wp_query->comment_count = $original_comment_count;
                 }
                 
             } else {
@@ -50,7 +71,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const addReviewBtns = document.querySelectorAll(".btn-add-review");
 
     if (reviewFormWrapper) {
-        // Zabezpieczenie przed podwójnym dodaniem przycisku
         if (!document.getElementById("close-review-modal")) {
             const closeBtn = document.createElement("button");
             closeBtn.id = "close-review-modal";
@@ -65,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
             closeBtn.addEventListener("click", function(e) {
                 e.preventDefault();
                 reviewFormWrapper.classList.remove("active");
-                document.body.style.overflow = ""; // Przywracamy scrollowanie
+                document.body.style.overflow = "";
             });
         }
 
@@ -73,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
             btn.addEventListener("click", function(e) {
                 e.preventDefault();
                 reviewFormWrapper.classList.add("active");
-                document.body.style.overflow = "hidden"; // Blokujemy scrollowanie tła
+                document.body.style.overflow = "hidden";
             });
         });
 
@@ -91,11 +111,8 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const descriptions = document.querySelectorAll(".commentlist .comment-text div.description p");
     descriptions.forEach(p => {
-        // Obliczamy przybliżoną wysokość 5 linii (line-height w CSS to ok 22px, więc 5 * 22 = 110px)
         const maxHeight = 110; 
-        
         if (p.offsetHeight > maxHeight + 10) {
-            // Zapisujemy oryginalny stan
             p.style.display = "-webkit-box";
             p.style.webkitLineClamp = "5";
             p.style.webkitBoxOrient = "vertical";
@@ -103,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
             p.style.textOverflow = "ellipsis";
             
             const btn = document.createElement("button");
-            btn.innerText = "Mehr anzeigen"; // "Więcej" po niemiecku
+            btn.innerText = "Mehr anzeigen";
             btn.className = "unfold-review-btn";
             btn.style.cssText = "background: none; border: none; color: #111; font-weight: 500; text-decoration: underline; padding: 0; margin-top: 8px; cursor: pointer; font-size: 14px; font-family: inherit;";
             
@@ -122,57 +139,56 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    let reviewsList = document.querySelector('.wcpr-grid');
-    if (!reviewsList) reviewsList = document.querySelector('.commentlist');
-    
-    if (reviewsList) {
-        let checkExist = setInterval(function() {
-            let items = reviewsList.querySelectorAll('.wcpr-grid-item, li.comment');
-            if (items.length > 0) {
-                clearInterval(checkExist);
-                
-                if (items.length > 9) {
-                    let visibleCount = 9;
-                    let step = 6;
-                    
-                    // Hide items beyond 9
-                    for (let i = visibleCount; i < items.length; i++) {
-                        items[i].style.setProperty('display', 'none', 'important');
+    const loadMoreBtn = document.getElementById('shav-load-more-reviews');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const productId = this.getAttribute('data-product-id');
+            const offset = parseInt(this.getAttribute('data-offset'));
+            const limit = 6;
+            const btnText = this.innerText;
+            
+            this.innerText = 'Wird geladen...';
+            this.disabled = true;
+            
+            const formData = new FormData();
+            formData.append('action', 'shav_load_more_reviews');
+            formData.append('product_id', productId);
+            formData.append('offset', offset);
+            formData.append('limit', limit);
+            
+            fetch('/wp-admin/admin-ajax.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success && res.data.html) {
+                    const commentList = document.querySelector('.commentlist');
+                    if (commentList) {
+                        commentList.insertAdjacentHTML('beforeend', res.data.html);
+                        
+                        let newOffset = offset + res.data.count;
+                        loadMoreBtn.setAttribute('data-offset', newOffset);
+                        
+                        if (res.data.count < limit || res.data.is_last) {
+                            document.getElementById('shav-ajax-reviews-wrapper').style.display = 'none';
+                        }
                     }
-                    
-                    let btnWrapper = document.createElement('div');
-                    btnWrapper.style.cssText = 'display: flex; justify-content: center; margin-top: 32px; width: 100%;';
-                    
-                    let btn = document.createElement('button');
-                    btn.className = 'shav-fake-tab-opinie'; 
-                    btn.innerText = 'Mehr anzeigen';
-                    
-                    btn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        
-                        let nextCount = visibleCount + step;
-                        for (let i = visibleCount; i < nextCount && i < items.length; i++) {
-                            items[i].style.setProperty('display', 'block', 'important');
-                        }
-                        visibleCount = nextCount;
-                        
-                        // Triggers resize for masonry layout
-                        setTimeout(function() {
-                            window.dispatchEvent(new Event('resize'));
-                        }, 50);
-                        
-                        if (visibleCount >= items.length) {
-                            btnWrapper.style.display = 'none';
-                        }
-                    });
-                    
-                    btnWrapper.appendChild(btn);
-                    reviewsList.parentNode.insertBefore(btnWrapper, reviewsList.nextSibling);
+                } else {
+                    document.getElementById('shav-ajax-reviews-wrapper').style.display = 'none';
                 }
-            }
-        }, 500); 
-        
-        setTimeout(function() { clearInterval(checkExist); }, 10000); 
+                
+                loadMoreBtn.innerText = btnText;
+                loadMoreBtn.disabled = false;
+            })
+            .catch(err => {
+                console.error(err);
+                loadMoreBtn.innerText = btnText;
+                loadMoreBtn.disabled = false;
+            });
+        });
     }
 });
 </script>

@@ -102,3 +102,43 @@ function shav_display_review_image($comment)
         }
     }
 }
+
+// 5. AJAX handler for loading more reviews
+add_action('wp_ajax_shav_load_more_reviews', 'shav_load_more_reviews');
+add_action('wp_ajax_nopriv_shav_load_more_reviews', 'shav_load_more_reviews');
+function shav_load_more_reviews() {
+    $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
+    $offset = isset($_POST['offset']) ? intval($_POST['offset']) : 0;
+    $limit = isset($_POST['limit']) ? intval($_POST['limit']) : 6;
+    
+    if (!$product_id) {
+        wp_send_json_error();
+    }
+    
+    $comments = get_comments(array(
+        'post_id' => $product_id,
+        'status' => 'approve',
+        'type' => 'review',
+    ));
+    
+    // Sort descending by comment_date logic standard in WC
+    // Since get_comments without order args does standard sorting, we can just slice it to match our PHP slice
+    
+    if (empty($comments)) {
+        wp_send_json_success(array('html' => '', 'count' => 0, 'is_last' => true));
+    }
+    
+    $sliced_comments = array_slice($comments, $offset, $limit);
+    
+    ob_start();
+    wp_list_comments(apply_filters('woocommerce_product_review_list_args', array('callback' => 'woocommerce_comments')), $sliced_comments);
+    $html = ob_get_clean();
+    
+    $is_last = ($offset + $limit >= count($comments));
+    
+    wp_send_json_success(array(
+        'html' => $html,
+        'count' => count($sliced_comments),
+        'is_last' => $is_last
+    ));
+}
