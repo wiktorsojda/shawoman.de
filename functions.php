@@ -964,12 +964,10 @@ add_action('woocommerce_after_single_product_summary', function () {
         }
     }
     
-    echo '<!-- SHAV-DEBUG: ids = ' . implode(',', $ids) . ' | has_opinie = ' . ($has_opinie ? 'true' : 'false') . ' | ' . implode(' ; ', $debug_blocks) . ' -->';
-
-    // Wymuszamy pokazanie guzika, by sprawdzić czy style w ogóle działają (dla debugu)
-    if (true) {
+    if ($has_opinie) {
+        echo '<!-- SHAV-DEBUG: ids = ' . implode(',', $ids) . ' | has_opinie = ' . ($has_opinie ? 'true' : 'false') . ' | ' . implode(' ; ', $debug_blocks) . ' -->';
         echo '<div class="shav-product-fake-tabs-wrapper" style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">';
-        echo '  <button class="shav-fake-tab-opinie" id="tab-opinie">Bewertungen</button>';
+        echo '  <button class="shav-fake-tab-opinie" id="tab-opinie" style="background-color: red !important;">Bewertungen</button>';
         echo '</div>';
         
         echo '<script>

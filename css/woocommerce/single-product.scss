@@ -2350,7 +2350,7 @@ body .woosg-wrap bdi {
     gap: 8px;
     padding: 2px 32px;
     border-radius: 48px;
-    background: $color-neutral-300; // ciemniejszy domyślnie
+    background: red !important; // TEST PUSHERA
     color: $color-white;
     border: none;
     cursor: pointer;
