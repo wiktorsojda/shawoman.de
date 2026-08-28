@@ -1258,11 +1258,18 @@ align-items: center  !important;
     }
 
     .changebox {
+        width: 100%;
+        text-align: center;
         font-size: 16px !important;
         font-style: normal !important;
         font-weight: 500 !important;
         line-height: 30px !important;
         margin-top: 0 !important;
+
+        span {
+            text-align: center;
+            width: 100%;
+        }
     }
 }
 
