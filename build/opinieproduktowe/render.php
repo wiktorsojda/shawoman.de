@@ -33,28 +33,32 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
 
                 // Standardowy mechanizm WC do renderowania opinii
                 if (comments_open() || get_comments_number()) {
-                    global $wp_query;
-                    $original_comments = $wp_query->comments;
-                    $original_comment_count = $wp_query->comment_count;
                     
-                    $has_more = false;
-                    if (is_array($wp_query->comments) && count($wp_query->comments) > 9) {
-                        $wp_query->comments = array_slice($wp_query->comments, 0, 9);
-                        $wp_query->comment_count = 9;
-                        $has_more = true;
-                    }
+                    // Zliczamy całkowitą ilość zaaprobowanych opinii dla guzika
+                    $total_comments = get_comments(array(
+                        'post_id' => get_the_ID(),
+                        'status'  => 'approve',
+                        'type'    => 'review',
+                        'count'   => true,
+                    ));
+                    
+                    $has_more = ($total_comments > 9);
+                    
+                    // Używamy filtra, ponieważ $wp_query->comments może być jeszcze puste (wtedy comments_template() je pobiera)
+                    $limit_filter = function($comments) {
+                        return array_slice($comments, 0, 9);
+                    };
+                    add_filter('comments_array', $limit_filter, 999);
                     
                     comments_template();
+                    
+                    remove_filter('comments_array', $limit_filter, 999);
                     
                     if ($has_more) {
                         echo '<div id="shav-ajax-reviews-wrapper" style="display: flex; justify-content: center; margin-top: 32px; width: 100%;">';
                         echo '  <button class="shav-fake-tab-opinie" id="shav-load-more-reviews" data-product-id="' . esc_attr(get_the_ID()) . '" data-offset="9">Mehr anzeigen</button>';
                         echo '</div>';
                     }
-                    
-                    // Przywracamy globalny stan
-                    $wp_query->comments = $original_comments;
-                    $wp_query->comment_count = $original_comment_count;
                 }
                 
             } else {
