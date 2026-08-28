@@ -461,7 +461,7 @@ function render_promocje_meta_box($post) {
     echo '<div class="promo-flex-row">';
         echo '<div class="promo-field-group"><label class="main-label">Priorytet (wyższa liczba = ważniejsza)</label><input type="number" name="promo_priority" class="promo-input-text" value="'.(isset($meta['promo_priority']) ? esc_attr($meta['promo_priority'][0]) : '0').'"></div>';
         echo '<div class="promo-field-group"><label class="main-label">Procent obniżki (sama liczba)</label><input type="number" name="promo_percentage_text" class="promo-input-text" placeholder="np. 17" value="'.(isset($meta['promo_percentage_text']) ? esc_attr($meta['promo_percentage_text'][0]) : '').'"></div>';
-        echo '<div class="promo-field-group"><label class="main-label">Tekst pod liczbą</label><input type="text" name="promo_small_text" class="promo-input-text" value="'.(isset($meta['promo_small_text']) ? esc_attr($meta['promo_small_text'][0]) : 'PROMOCJA').'"></div>';
+
         echo '<div class="promo-field-group"><label class="main-label">Kupon rabatowy</label><input type="text" name="promo_coupon_code" class="promo-input-text" placeholder="np. BLENDYGO10" value="'.(isset($meta['promo_coupon_code']) ? esc_attr($meta['promo_coupon_code'][0]) : '').'"></div>';
     echo '</div>';
 
@@ -1986,7 +1986,7 @@ function render_promocje_meta_box($post) {
                 gl:  $('input[name="promo_global"]').is(':checked') ? 'yes' : 'no',
                 pri: $('input[name="promo_priority"]').val() || '',
                 pct: $('input[name="promo_percentage_text"]').val() || '',
-                txt: $('input[name="promo_small_text"]').val() || '',
+
                 cup: $('input[name="promo_coupon_code"]').val() || '',
                 bbg: $('input[name="promo_badge_bg"]').val() || '',
                 bc:  $('input[name="promo_badge_color"]').val() || '',
@@ -2207,7 +2207,7 @@ function render_promocje_meta_box($post) {
                     if(c.gl === 'yes') $('input[name="promo_global"]').prop('checked', true); else $('input[name="promo_global"]').prop('checked', false);
                     $('input[name="promo_priority"]').val(c.pri);
                     $('input[name="promo_percentage_text"]').val(c.pct);
-                    $('input[name="promo_small_text"]').val(c.txt);
+
                     if(c.cup !== undefined) $('input[name="promo_coupon_code"]').val(c.cup);
                     $('input[name="promo_badge_bg"]').val(c.bbg);
                     $('input[name="promo_badge_color"]').val(c.bc);
@@ -2725,7 +2725,7 @@ function render_promocje_meta_box($post) {
             var trans = {
                 _ai_prompt: "Jesteś ekspertem e-commerce. Przetłumacz poniższe teksty marketingowe sklepu na język podany w mojej wiadomości (lub zgadnij, jeśli jest to oczywiste). Mają brzmieć naturalnie, sprzedażowo i zachęcająco dla klienta w danym języku. Zwróć WYŁĄCZNIE czysty kod JSON, gotowy do skopiowania. Nie zmieniaj nazw kluczy. Zachowaj ewentualne formatowanie HTML (jak <br> lub <strong>) i znaki nowej linii (\\n).",
                 pct: $('input[name="promo_percentage_text"]').val() || '',
-                txt: $('input[name="promo_small_text"]').val() || '',
+
                 cup: $('input[name="promo_coupon_code"]').val() || '',
                 fl:  $('#val_f_lbl').val() || '',
                 b1t: $('input[name="promo_badge_text_1"]').val() || '',
@@ -2773,7 +2773,7 @@ function render_promocje_meta_box($post) {
                 var c = JSON.parse(val);
                 
                 if(c.pct !== undefined) $('input[name="promo_percentage_text"]').val(c.pct).trigger('input');
-                if(c.txt !== undefined) $('input[name="promo_small_text"]').val(c.txt).trigger('input');
+
                 if(c.cup !== undefined) $('input[name="promo_coupon_code"]').val(c.cup).trigger('input');
                 if(c.fl !== undefined) $('#val_f_lbl').val(c.fl).trigger('input');
                 if(c.b1t !== undefined) $('input[name="promo_badge_text_1"]').val(c.b1t).trigger('input');
@@ -2985,7 +2985,7 @@ function save_promocje_meta_data($post_id) {
 
     $text_fields = [
         'promo_is_active', 'promo_coupon_code', 'promo_topbar_text', 'promo_priority', 
-        'promo_small_text', 'promo_percentage_text', 'promo_badge_bg', 
+        'promo_percentage_text', 'promo_badge_bg', 
         'promo_badge_color', 'promo_hide_fse_btn',
         'promo_banner_desk', 'promo_banner_mob',
         'promo_banner_desk_timer', 'promo_banner_mob_timer',

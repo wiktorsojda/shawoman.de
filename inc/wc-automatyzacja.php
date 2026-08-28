@@ -416,56 +416,7 @@ if (!function_exists('blendygo_get_active_cpt_set_index')) {
     }
 }
 
-if (!function_exists('blendygo_render_cpt_shop_banner')) {
-    function blendygo_render_cpt_shop_banner()
-    {
-        static $executed = false;
-        if ($executed || (!is_shop() && !is_product_category()))
-            return;
-        $executed = true;
 
-        $promo_id = blendygo_get_global_active_cpt_promo();
-        if (!$promo_id)
-            return;
-
-        $img_dsktp = get_post_meta($promo_id, 'promo_banner_shop_desk', true);
-        $img_mobi = get_post_meta($promo_id, 'promo_banner_shop_mob', true);
-        $text_1 = get_post_meta($promo_id, 'promo_banner_shop_text_1', true);
-        $text_2 = get_post_meta($promo_id, 'promo_banner_shop_text_2', true);
-
-        if (empty($img_dsktp) && empty($img_mobi))
-            return;
-
-        echo '<div class="shop-banner-image cpt-shop-banner" style="position: relative; margin-bottom: 20px;">';
-        if ($img_dsktp)
-            echo '<img class="shop-banner-image-desktop" src="' . esc_url($img_dsktp) . '" style="width: 100%; height: auto;">';
-        if ($img_mobi)
-            echo '<img class="shop-banner-image-mobile" src="' . esc_url($img_mobi) . '" style="width: 100%; height: auto; display:none;">';
-
-        if (!empty($text_1) || !empty($text_2)) {
-            echo '<div class="shop-banner-textcontainer" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; z-index: 100;">';
-            if ($text_1)
-                echo '<div class="banner-text banner-text-1">' . wp_kses_post($text_1) . '</div>';
-            if ($text_2)
-                echo '<div class="banner-text banner-text-2">' . esc_html($text_2) . '</div>';
-            echo '</div>';
-        }
-        echo '</div>';
-        ?>
-        <style>
-            @media (max-width: 768px) {
-                .cpt-shop-banner .shop-banner-image-desktop {
-                    display: none !important;
-                }
-
-                .cpt-shop-banner .shop-banner-image-mobile {
-                    display: block !important;
-                }
-            }
-        </style>
-        <?php
-    }
-}
 
 if (!function_exists('blendygo_render_cpt_banner')) {
     function blendygo_render_cpt_banner()
@@ -1437,11 +1388,7 @@ if (!function_exists('blendygo_apply_cpt_overrides')) {
                 }
             }
         }
-        if (is_shop() || is_product_category()) {
-            if (blendygo_get_global_active_cpt_promo()) {
-                remove_action('woocommerce_before_main_content', 'display_shop_banner_image_with_text', 5);
-            }
-        }
+
     }
     add_action('template_redirect', 'blendygo_apply_cpt_overrides');
 }
@@ -1682,7 +1629,7 @@ add_action('save_post_promocje', function ($post_id) {
 
 add_action('wp', function () {
     add_action('woocommerce_before_single_product', 'blendygo_render_cpt_banner', 5);
-    add_action('woocommerce_before_main_content', 'blendygo_render_cpt_shop_banner', 5);
+
     add_action('woocommerce_before_cart', 'blendygo_render_cpt_cart_banner', 1);
 }, 100);
 
