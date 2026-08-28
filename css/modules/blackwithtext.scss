@@ -1247,12 +1247,13 @@ align-items: center  !important;
 
         .kup-text {
             padding-right: 0 !important;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
             text-align: center;
             font-size: 16px !important;
             letter-spacing: 1px;
-            gap: 4px;
+            gap: 8px;
         }
     }
 
