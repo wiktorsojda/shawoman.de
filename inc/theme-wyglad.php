@@ -22,12 +22,7 @@ add_action('admin_init', 'shav_register_store_settings');
 function shav_register_store_settings() {
     $settings_group = 'shav_store_settings_group';
 
-    // Zakładka 1: Baner Sklepu
-    register_setting($settings_group, 'shav_shop_banner_desk');
-    register_setting($settings_group, 'shav_shop_banner_mob');
-    register_setting($settings_group, 'shav_shop_banner_text1');
-    register_setting($settings_group, 'shav_shop_banner_text2');
-    register_setting($settings_group, 'shav_shop_banner_link');
+
 
     // Zakładka 2: Pasek Magazynowy
     register_setting($settings_group, 'shav_stock_strip_enabled');
@@ -171,8 +166,7 @@ function shav_render_store_settings_page() {
         <div class="shav-tabs-wrapper">
             <button type="button" class="shav-tab-nav" id="shav-tabs-left" aria-label="Przewiń w lewo">&lsaquo;</button>
             <div class="shav-tabs" id="shav-tabs">
-                <div class="shav-tab active" data-target="tab-banner">Banery Sklepu</div>
-                <div class="shav-tab" data-target="tab-stock">Paski Magazynowe</div>
+                <div class="shav-tab active" data-target="tab-stock">Paski Magazynowe</div>
                 <div class="shav-tab" data-target="tab-accordions">Atuty (3 Ikony)</div>
                 <div class="shav-tab" data-target="tab-badges">Odznaki Procentowe</div>
                 <div class="shav-tab" data-target="tab-text-badges">Etykiety Tekstowe</div>
@@ -186,49 +180,8 @@ function shav_render_store_settings_page() {
             <form action="options.php" method="post" id="shav-store-settings-form">
                 <?php settings_fields('shav_store_settings_group'); ?>
                 
-                <!-- ZAKŁADKA 1: BANER SKLEPU -->
-                <div id="tab-banner" class="shav-tab-content active">
-                    <h2>Główny baner wyświetlany na listach produktów</h2>
-                    
-                    <div class="shav-field-group">
-                        <label class="shav-label">Zdjęcie (Desktop)</label>
-                        <span class="shav-desc">Grafika dla urządzeń z większym ekranem.</span>
-                        <input type="hidden" name="shav_shop_banner_desk" id="shav_shop_banner_desk" value="<?php echo esc_attr(get_option('shav_shop_banner_desk')); ?>">
-                        <button type="button" class="button button-secondary button-media-upload" data-target="shav_shop_banner_desk">Wybierz z biblioteki</button>
-                        <img class="shav-img-preview" src="<?php echo esc_url(get_option('shav_shop_banner_desk')); ?>" style="<?php echo get_option('shav_shop_banner_desk') ? '' : 'display:none;'; ?>">
-                    </div>
-
-                    <div class="shav-field-group">
-                        <div class="shav-field-group">
-                            <label class="shav-label">Zdjęcie (Mobile)</label>
-                            <span class="shav-desc">Grafika dedykowana dla telefonów.</span>
-                            <input type="hidden" name="shav_shop_banner_mob" id="shav_shop_banner_mob" value="<?php echo esc_attr(get_option('shav_shop_banner_mob')); ?>">
-                            <button type="button" class="button button-secondary button-media-upload" data-target="shav_shop_banner_mob">Wybierz z biblioteki</button>
-                            <img class="shav-img-preview" src="<?php echo esc_url(get_option('shav_shop_banner_mob')); ?>" style="<?php echo get_option('shav_shop_banner_mob') ? '' : 'display:none;'; ?>">
-                        </div>
-                        
-                        <div class="shav-field-group">
-                            <label class="shav-label">Tekst 1 (Główny)</label>
-                            <span class="shav-desc">Opcjonalny tekst główny nakładany na baner.</span>
-                            <input type="text" name="shav_shop_banner_text1" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_shop_banner_text1')); ?>">
-                        </div>
-
-                        <div class="shav-field-group">
-                            <label class="shav-label">Tekst 2 (Dodatkowy)</label>
-                            <span class="shav-desc">Opcjonalny mniejszy tekst nakładany na baner.</span>
-                            <input type="text" name="shav_shop_banner_text2" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_shop_banner_text2')); ?>">
-                        </div>
-
-                        <div class="shav-field-group">
-                            <label class="shav-label">Link URL (Opcjonalnie)</label>
-                            <span class="shav-desc">Jeśli wpiszesz tu link, cały baner będzie klikalny.</span>
-                            <input type="text" name="shav_shop_banner_link" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_shop_banner_link')); ?>">
-                        </div>
-                    </div>
-                </div>
-
                 <!-- ZAKŁADKA 2: PASEK MAGAZYNOWY -->
-                <div id="tab-stock" class="shav-tab-content">
+                <div id="tab-stock" class="shav-tab-content active">
                     <h2>Globalne ustawienia paska</h2>
                     
                     <div class="shav-field-group">
