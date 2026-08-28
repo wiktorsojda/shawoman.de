@@ -126,39 +126,48 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!reviewsList) reviewsList = document.querySelector('.commentlist');
     
     if (reviewsList) {
-        let items = reviewsList.querySelectorAll('.wcpr-grid-item, li.comment');
-        if (items.length > 9) {
-            let clickCount = 0;
-            const maxClicks = Math.ceil((items.length - 9) / 6);
-            
-            // Create "Show more" button
-            let btnWrapper = document.createElement('div');
-            btnWrapper.style.cssText = 'display: flex; justify-content: center; margin-top: 32px; width: 100%;';
-            
-            let btn = document.createElement('button');
-            btn.className = 'shav-fake-tab-opinie'; 
-            btn.innerText = 'Mehr anzeigen';
-            
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                clickCount++;
+        // Woo Photo Reviews ładuje opinie przez AJAX/JS. Czekamy na ich wyrenderowanie.
+        let checkExist = setInterval(function() {
+            let items = reviewsList.querySelectorAll('.wcpr-grid-item, li.comment');
+            if (items.length > 0) {
+                clearInterval(checkExist);
                 
-                if (clickCount >= maxClicks) {
-                    reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-max';
-                    btnWrapper.style.display = 'none';
-                } else {
-                    reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-' + clickCount;
+                if (items.length > 9) {
+                    let clickCount = 0;
+                    const maxClicks = Math.ceil((items.length - 9) / 6);
+                    
+                    let btnWrapper = document.createElement('div');
+                    btnWrapper.style.cssText = 'display: flex; justify-content: center; margin-top: 32px; width: 100%;';
+                    
+                    let btn = document.createElement('button');
+                    btn.className = 'shav-fake-tab-opinie'; 
+                    btn.innerText = 'Mehr anzeigen';
+                    
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        clickCount++;
+                        
+                        if (clickCount >= maxClicks) {
+                            reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-max';
+                            btnWrapper.style.display = 'none';
+                        } else {
+                            reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-' + clickCount;
+                        }
+                        
+                        // Triggers resize for masonry layout
+                        setTimeout(function() {
+                            window.dispatchEvent(new Event('resize'));
+                        }, 50);
+                    });
+                    
+                    btnWrapper.appendChild(btn);
+                    reviewsList.parentNode.insertBefore(btnWrapper, reviewsList.nextSibling);
                 }
-                
-                // Triggers resize for masonry layout
-                setTimeout(function() {
-                    window.dispatchEvent(new Event('resize'));
-                }, 50);
-            });
-            
-            btnWrapper.appendChild(btn);
-            reviewsList.parentNode.insertBefore(btnWrapper, reviewsList.nextSibling);
-        }
+            }
+        }, 500); // Sprawdzaj co 500ms
+        
+        // Zabezpieczenie przed przerwaniem w nieskończoność
+        setTimeout(function() { clearInterval(checkExist); }, 10000); 
     }
 });
 </script>
