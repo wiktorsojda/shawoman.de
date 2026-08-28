@@ -953,45 +953,46 @@ add_action('woocommerce_after_single_product_summary', function () {
     }
 
     $has_opinie = false;
-    $debug_blocks = [];
     foreach ($ids as $id) {
         $pattern = get_post($id);
         if ($pattern && $pattern->post_type === 'wp_block') {
-            $debug_blocks[] = "Pattern ID $id length: " . strlen($pattern->post_content);
-            if (has_block('ourblocktheme/opinieproduktowe', $pattern->post_content) || strpos($pattern->post_content, 'wp:ourblocktheme/opinieproduktowe') !== false || strpos($pattern->post_content, 'opinie') !== false) {
+            if (has_block('ourblocktheme/opinieproduktowe', $pattern->post_content) || strpos($pattern->post_content, 'wp:ourblocktheme/opinieproduktowe') !== false) {
                 $has_opinie = true;
+                break;
             }
         }
     }
-    
-    if ($has_opinie) {
-        echo '<!-- SHAV-DEBUG: ids = ' . implode(',', $ids) . ' | has_opinie = ' . ($has_opinie ? 'true' : 'false') . ' | ' . implode(' ; ', $debug_blocks) . ' -->';
-        echo '<div class="shav-product-fake-tabs-wrapper" style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">';
-        echo '  <button class="shav-fake-tab-opinie" id="tab-opinie" style="background-color: red !important;">Bewertungen</button>';
-        echo '</div>';
-        
-        echo '<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var tabOpinie = document.getElementById("tab-opinie");
-            if (tabOpinie) {
-                tabOpinie.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    var opinieBlock = document.querySelector(".opinieproduktowe");
-                    if (opinieBlock) {
-                        var y = opinieBlock.getBoundingClientRect().top + window.scrollY - 100;
-                        window.scrollTo({top: y, behavior: "smooth"});
-                    }
-                });
-            }
-        });
-        </script>';
-    }
 
+    $first = true;
     foreach ($ids as $id) {
         $pattern = get_post($id);
         if (!$pattern || $pattern->post_type !== 'wp_block')
             continue;
         echo '<div class="shav-product-pattern shav-product-pattern--' . esc_attr($id) . '">';
+        
+        if ($first && $has_opinie) {
+            echo '<div class="shav-product-fake-tabs-wrapper" style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">';
+            echo '  <button class="shav-fake-tab-opinie" id="tab-opinie">Bewertungen</button>';
+            echo '</div>';
+            
+            echo '<script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var tabOpinie = document.getElementById("tab-opinie");
+                if (tabOpinie) {
+                    tabOpinie.addEventListener("click", function(e) {
+                        e.preventDefault();
+                        var opinieBlock = document.querySelector(".opinieproduktowe");
+                        if (opinieBlock) {
+                            var y = opinieBlock.getBoundingClientRect().top + window.scrollY - 100;
+                            window.scrollTo({top: y, behavior: "smooth"});
+                        }
+                    });
+                }
+            });
+            </script>';
+            $first = false;
+        }
+
         echo do_blocks($pattern->post_content);
         echo '</div>';
     }

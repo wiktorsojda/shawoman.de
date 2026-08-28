@@ -128,13 +128,8 @@ document.addEventListener("DOMContentLoaded", function() {
     if (reviewsList) {
         let items = reviewsList.querySelectorAll('.wcpr-grid-item, li.comment');
         if (items.length > 9) {
-            let visibleCount = 9;
-            let step = 6;
-            
-            // Hide items beyond 9
-            for (let i = visibleCount; i < items.length; i++) {
-                items[i].style.display = 'none';
-            }
+            let clickCount = 0;
+            const maxClicks = Math.ceil((items.length - 9) / 6);
             
             // Create "Show more" button
             let btnWrapper = document.createElement('div');
@@ -146,23 +141,22 @@ document.addEventListener("DOMContentLoaded", function() {
             
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                let nextCount = visibleCount + step;
-                for (let i = visibleCount; i < nextCount && i < items.length; i++) {
-                    items[i].style.display = ''; // restore original display
-                }
-                visibleCount = nextCount;
+                clickCount++;
                 
-                // Trigger window resize for masonry layout
-                window.dispatchEvent(new Event('resize'));
-                
-                if (visibleCount >= items.length) {
+                if (clickCount >= maxClicks) {
+                    reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-max';
                     btnWrapper.style.display = 'none';
+                } else {
+                    reviewsList.className = reviewsList.className.replace(/show-all-reviews-\d+/g, '').trim() + ' show-all-reviews-' + clickCount;
                 }
+                
+                // Triggers resize for masonry layout
+                setTimeout(function() {
+                    window.dispatchEvent(new Event('resize'));
+                }, 50);
             });
             
             btnWrapper.appendChild(btn);
-            
-            // Append after the grid
             reviewsList.parentNode.insertBefore(btnWrapper, reviewsList.nextSibling);
         }
     }

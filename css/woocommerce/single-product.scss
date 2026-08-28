@@ -2350,7 +2350,7 @@ body .woosg-wrap bdi {
     gap: 8px;
     padding: 2px 32px;
     border-radius: 48px;
-    background: red !important; // TEST PUSHERA
+    background: $color-neutral-300;
     color: $color-white;
     border: none;
     cursor: pointer;
@@ -2364,5 +2364,34 @@ body .woosg-wrap bdi {
         opacity: 0.9;
     }
 }
+
+/* Ukrywanie opinii > 9 i mechanizm Pokaż więcej */
+.wcpr-grid {
+    .wcpr-grid-item:nth-child(n+10) {
+        display: none !important;
+    }
+}
+.wcpr-grid.show-all-reviews-1 .wcpr-grid-item:nth-child(n+10) {
+    display: block !important;
+}
+.wcpr-grid.show-all-reviews-1 .wcpr-grid-item:nth-child(n+16) {
+    display: none !important;
+}
+.wcpr-grid.show-all-reviews-2 .wcpr-grid-item:nth-child(n+10) {
+    display: block !important;
+}
+.wcpr-grid.show-all-reviews-2 .wcpr-grid-item:nth-child(n+22) {
+    display: none !important;
+}
+.wcpr-grid.show-all-reviews-3 .wcpr-grid-item:nth-child(n+10) {
+    display: block !important;
+}
+.wcpr-grid.show-all-reviews-3 .wcpr-grid-item:nth-child(n+28) {
+    display: none !important;
+}
+.wcpr-grid.show-all-reviews-max .wcpr-grid-item {
+    display: block !important;
+}
+
 
 
