@@ -950,7 +950,7 @@ p#countdown-mobile {
 
         #review_form {
             background: #fff;
-            padding: 40px;
+            padding: 24px;
             border-radius: $radius-m; // 24px
             max-width: 600px;
             width: 100%;
@@ -962,7 +962,7 @@ p#countdown-mobile {
             #respond {
                 display: flex;
                 flex-direction: column;
-                gap: $space-32;
+                gap: $space-16;
 
                 span#reply-title {
                     color: $color-neutral-900;

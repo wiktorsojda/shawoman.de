@@ -29,8 +29,30 @@ function shav_custom_product_review_form_args($comment_form)
     $email_field = '<p class="comment-form-email"><label for="email">' . __('Email', 'woocommerce') . ' <span class="required">*</span></label> ' .
                    '<input id="email" name="email" type="email" value="' . $email_value . '" size="30" required /></p>';
 
-    $image_field = '<p class="comment-form-image"><label for="review_image">' . __('Bild hinzufügen (Optional)', 'woocommerce') . '</label> ' .
-                   '<input id="review_image" name="review_image" type="file" accept="image/jpeg, image/png, image/webp" /></p>';
+    // Niestandardowy input pliku, by uniknąć polskich tekstów "Brak wybranego pliku" z przeglądarki
+    $image_field = '<p class="comment-form-image">' . 
+                   '<label style="display:block; margin-bottom:8px;">Bild hinzufügen (Optional)</label>' .
+                   '<div class="shav-custom-file-upload" style="display:flex; align-items:center; gap:16px;">' .
+                   '  <label for="review_image" class="shav-file-btn" style="cursor:pointer; background:#F1F2F3; padding:8px 16px; border-radius:48px; font-size:14px; font-weight:500;">Datei auswählen</label>' .
+                   '  <span class="shav-file-text" style="font-size:14px; color:#666;">Keine Datei ausgewählt</span>' .
+                   '  <input id="review_image" name="review_image" type="file" accept="image/jpeg, image/png, image/webp" style="display:none;" />' .
+                   '</div>' .
+                   '</p>' . 
+                   '<script>
+                     document.addEventListener("DOMContentLoaded", function() {
+                         const fileInput = document.getElementById("review_image");
+                         const fileText = document.querySelector(".shav-file-text");
+                         if (fileInput && fileText) {
+                             fileInput.addEventListener("change", function() {
+                                 if (fileInput.files.length > 0) {
+                                     fileText.textContent = fileInput.files[0].name;
+                                 } else {
+                                     fileText.textContent = "Keine Datei ausgewählt";
+                                 }
+                             });
+                         }
+                     });
+                   </script>';
 
     // Nadpisujemy comment_field dodając nasze własne pola przed polem z tekstem
     $original_comment_field = isset($comment_form['comment_field']) ? $comment_form['comment_field'] : '';
