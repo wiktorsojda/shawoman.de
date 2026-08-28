@@ -76,7 +76,7 @@
     // height: 100%;
 
        @media (max-width: $breakpoint-tablet) {
-      padding: $space-24 $space-12;
+      padding: $space-12 $space-8;
     }
   }
 
@@ -121,8 +121,11 @@
     max-width: 100%;
 
     @media (max-width: $breakpoint-tablet) {
-      padding: $space-8;
-      font-size: 13px;
+      padding: 4px $space-8;
+      font-size: 11px;
+      gap: 2px;
+      white-space: normal;
+      text-align: left;
     }
   }
 
@@ -155,7 +158,9 @@
     transition: background-color 0.15s ease;
 
        @media (max-width: $breakpoint-tablet) {
-      padding: $space-12;
+      padding: $space-8 $space-12;
+      font-size: 12px;
+      gap: 6px;
     }
 
     .glownagrid__tile:hover & {
@@ -174,5 +179,15 @@
     color: $color-white;
     border-radius: 50%;
     flex-shrink: 0;
+
+    @media (max-width: $breakpoint-tablet) {
+      width: 20px;
+      height: 20px;
+      
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
   }
 }
