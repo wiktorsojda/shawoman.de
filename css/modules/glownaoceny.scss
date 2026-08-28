@@ -10,13 +10,11 @@
   align-items: center;
   gap: $space-48;
   width: 100%;
-  padding: $space-32 $space-16;
+  padding: $space-32 0;
   box-sizing: border-box;
 
   @media (min-width: $breakpoint-tablet) {
     padding: $space-32 0;
-    max-width: 1428px;
-    margin: 0 auto;
   }
 
   // ---------------------------------------------------------------------------
