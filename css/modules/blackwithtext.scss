@@ -1240,20 +1240,28 @@ align-items: center  !important;
     } 
 
     .test-flex {
-        width: 79vw !important;
-        margin-top: $space-48;
+        width: 100% !important;
+        margin-top: $space-32;
+        display: flex;
+        justify-content: center;
 
         .kup-text {
             padding-right: 0 !important;
+            flex-wrap: wrap;
+            justify-content: center;
+            text-align: center;
+            font-size: 16px !important;
+            letter-spacing: 1px;
+            gap: 4px;
         }
     }
 
     .changebox {
-        font-size: $font-size-body-l !important;
-font-style: normal !important;
-font-weight: 400  !important;
-line-height: 30px !important; /* 187.5% */
-margin-top: -$space-4 !important;
+        font-size: 16px !important;
+        font-style: normal !important;
+        font-weight: 500 !important;
+        line-height: 30px !important;
+        margin-top: 0 !important;
     }
 }
 
