@@ -32,11 +32,11 @@ function shav_custom_product_review_form_args($comment_form)
     // Niestandardowy input pliku, by uniknąć polskich tekstów "Brak wybranego pliku" z przeglądarki
     $image_field = '<p class="comment-form-image">' . 
                    '<label style="display:block; margin-bottom:8px;">Bild hinzufügen (Optional)</label>' .
-                   '<div class="shav-custom-file-upload" style="display:flex; align-items:center; gap:16px;">' .
-                   '  <label for="review_image" class="shav-file-btn" style="cursor:pointer; background:#F1F2F3; padding:8px 16px; border-radius:48px; font-size:14px; font-weight:500;">Datei auswählen</label>' .
+                   '<span class="shav-custom-file-upload" style="display:flex; align-items:center; gap:16px;">' .
+                   '  <label for="review_image" class="shav-file-btn" style="cursor:pointer; background:#F1F2F3; padding:8px 16px; border-radius:48px; font-size:14px; font-weight:500; margin:0;">Datei auswählen</label>' .
                    '  <span class="shav-file-text" style="font-size:14px; color:#666;">Keine Datei ausgewählt</span>' .
                    '  <input id="review_image" name="review_image" type="file" accept="image/jpeg, image/png, image/webp" style="display:none;" />' .
-                   '</div>' .
+                   '</span>' .
                    '</p>' . 
                    '<script>
                      document.addEventListener("DOMContentLoaded", function() {
