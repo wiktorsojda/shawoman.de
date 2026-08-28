@@ -35,12 +35,8 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
                 if (comments_open() || get_comments_number()) {
                     
                     // Zliczamy całkowitą ilość zaaprobowanych opinii dla guzika
-                    $total_comments = get_comments(array(
-                        'post_id' => get_the_ID(),
-                        'status'  => 'approve',
-                        'type'    => 'review',
-                        'count'   => true,
-                    ));
+                    // Używamy zcache'owanego licznika WooCommerce zamiast robić pełne zapytanie do bazy, by nie spowalniać strony
+                    $total_comments = get_comments_number();
                     
                     $has_more = ($total_comments > 9);
                     
