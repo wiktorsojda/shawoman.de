@@ -1,17 +1,23 @@
+@import "../base/tokens";
+
 .eksperci {
   display: flex;
   justify-content: center;
-  padding: 80px 20px;
+  padding: 80px 0;
 
   &__inner {
-    width: 100%;
-    max-width: 1428px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 32px;
 
+    width: auto;
+    margin: 0 20px;
+
     @media (min-width: $breakpoint-tablet) {
+      width: calc(100% - 40px);
+      max-width: 1428px;
+      margin: 0 auto;
       gap: 64px;
     }
   }

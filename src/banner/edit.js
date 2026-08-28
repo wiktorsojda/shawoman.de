@@ -9,12 +9,17 @@ import { PanelBody, Button, TextareaControl, RangeControl, SelectControl } from 
 import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-  const { 
-    backgroundImage, 
-    backgroundImageMobile, 
-    title, 
+  const {
+    backgroundImage,
+    backgroundImageMobile,
+    title,
     subtitle,
-    contentAlign
+    contentAlign,
+    paddingTopDesktop,
+    paddingBottomDesktop,
+    paddingXDesktop,
+    paddingYMobile,
+    paddingXMobile
   } = attributes;
   const [importJson, setImportJson] = useState("");
 
@@ -33,6 +38,11 @@ export default function Edit({ attributes, setAttributes }) {
     ...(backgroundImageMobile || backgroundImage ? { '--bg-mobile': `url(${backgroundImageMobile || backgroundImage})` } : {}),
     '--align-flex': alignFlex,
     '--text-align': textAlign,
+    '--pad-top-desk': `${paddingTopDesktop}px`,
+    '--pad-bot-desk': `${paddingBottomDesktop}px`,
+    '--pad-x-desk': `${paddingXDesktop}px`,
+    '--pad-y-mob': `${paddingYMobile}px`,
+    '--pad-x-mob': `${paddingXMobile}px`
   };
 
   const blockProps = useBlockProps({
@@ -121,7 +131,7 @@ export default function Edit({ attributes, setAttributes }) {
             </Button>
           )}
         </PanelBody>
-        <PanelBody title="Układ (Treść)" initialOpen={false}>
+        <PanelBody title="Układ" initialOpen={false}>
           <SelectControl
             label="Wyrównanie treści"
             value={contentAlign}
@@ -131,6 +141,42 @@ export default function Edit({ attributes, setAttributes }) {
               { label: 'Do prawej', value: 'right' },
             ]}
             onChange={(val) => setAttributes({ contentAlign: val })}
+          />
+          <RangeControl
+            label="Padding górny (Desktop)"
+            value={paddingTopDesktop}
+            onChange={(val) => setAttributes({ paddingTopDesktop: val })}
+            min={0}
+            max={300}
+          />
+          <RangeControl
+            label="Padding dolny (Desktop)"
+            value={paddingBottomDesktop}
+            onChange={(val) => setAttributes({ paddingBottomDesktop: val })}
+            min={0}
+            max={300}
+          />
+          <RangeControl
+            label="Padding lewy/prawy (Desktop)"
+            value={paddingXDesktop}
+            onChange={(val) => setAttributes({ paddingXDesktop: val })}
+            min={0}
+            max={200}
+          />
+          <hr style={{ margin: '16px 0' }} />
+          <RangeControl
+            label="Padding góra/dół (Mobile)"
+            value={paddingYMobile}
+            onChange={(val) => setAttributes({ paddingYMobile: val })}
+            min={0}
+            max={200}
+          />
+          <RangeControl
+            label="Padding lewy/prawy (Mobile)"
+            value={paddingXMobile}
+            onChange={(val) => setAttributes({ paddingXMobile: val })}
+            min={0}
+            max={100}
           />
         </PanelBody>
       </InspectorControls>

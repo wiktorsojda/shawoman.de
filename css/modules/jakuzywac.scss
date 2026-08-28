@@ -1,22 +1,29 @@
+@import "../base/tokens";
+
 .jakuzywac {
-  padding: 45px 20px;
+  padding: 45px 0;
   box-sizing: border-box;
   width: 100%;
   display: flex;
   justify-content: center;
   
   @media (min-width: 1280px) {
-    padding: 120px clamp(20px, 10vw, 150px);
+    padding: 120px 0;
   }
   &__inner {
-    width: 100%;
-    max-width: 1428px;
     min-width: 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    // gap: 40px; removed in favor of margin on gallery
+    width: auto;
+    margin: 0 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: calc(100% - 40px);
+      max-width: 1428px;
+      margin: 0 auto;
+    }
   }
 
   &__content {

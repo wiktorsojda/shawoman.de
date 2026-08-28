@@ -2,23 +2,30 @@
 
 .porownanieprodukty {
   background-color: $color-neutral-100;
-  padding: clamp(60px, 8vw, 120px) 20px;
+  padding: clamp(60px, 8vw, 120px) 0;
   display: flex;
   justify-content: center;
 
   @media (min-width: 1280px) {
-    padding: 120px clamp(20px, 10vw, 150px);
+    padding: 120px 0;
   }
 
   &__inner {
     background-color: $color-neutral-50;
-    width: 100%;
-    max-width: 1428px;
     border-radius: 40px;
     padding: 32px 20px;
     display: flex;
     flex-direction: column;
     gap: 40px;
+
+    width: auto;
+    margin: 0 20px;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: calc(100% - 40px);
+      max-width: 1428px;
+      margin: 0 auto;
+    }
 
     @media (min-width: 1024px) {
       border-radius: 82px;
