@@ -1426,7 +1426,7 @@ function enqueue_custom_gsap_scripts()
     wp_enqueue_script('lenis', 'https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js', array(), '1.0.42', true);
 
     // Enqueue slider script
-    wp_enqueue_script('slider-platnosci', get_template_directory_uri() . '/inc/slider-platnosci.js', array('jquery', 'gsap-core', 'gsap-scrolltrigger', 'gsap-draggable', 'gsap-scrollto'), '1.0', true);
+    wp_enqueue_script('slider-platnosci', get_template_directory_uri() . '/inc/slider-platnosci.js', array('jquery', 'gsap-core', 'gsap-scrolltrigger', 'gsap-scrollto'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_gsap_scripts');
 
@@ -1592,13 +1592,11 @@ function remove_image_link($html, $post_id)
     return $html;
 }
 
-// cos nie tak z ta funkcja
-wp_enqueue_script('wc-add-to-cart-variation');
-
 // Swatche wariantow w boxie ceny (produkty wielowariantowe) —
 // markup: woocommerce/single-product/add-to-cart/variable.php
 add_action('wp_enqueue_scripts', function () {
     if (is_product()) {
+        wp_enqueue_script('wc-add-to-cart-variation');
         wp_enqueue_script('shav-variations', get_template_directory_uri() . '/inc/shav-variations.js', array('jquery', 'wc-add-to-cart-variation'), '1.1', true);
     }
 });
