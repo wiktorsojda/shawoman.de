@@ -942,25 +942,33 @@ add_action('save_post_product', function ($post_id) {
 });
 
 add_action('woocommerce_after_single_product_summary', function () {
-    if (!is_product())
+    if (!is_product()) {
+        echo '<!-- SHAV-DEBUG: not a product -->';
         return;
+    }
     $ids = (array) get_post_meta(get_the_ID(), '_shav_product_block_ids', true);
-    if (empty($ids))
+    if (empty($ids)) {
+        echo '<!-- SHAV-DEBUG: empty _shav_product_block_ids -->';
         return;
+    }
 
     $has_opinie = false;
+    $debug_blocks = [];
     foreach ($ids as $id) {
         $pattern = get_post($id);
         if ($pattern && $pattern->post_type === 'wp_block') {
-            if (has_block('ourblocktheme/opinieproduktowe', $pattern->post_content) || strpos($pattern->post_content, 'wp:ourblocktheme/opinieproduktowe') !== false) {
+            $debug_blocks[] = "Pattern ID $id length: " . strlen($pattern->post_content);
+            if (has_block('ourblocktheme/opinieproduktowe', $pattern->post_content) || strpos($pattern->post_content, 'wp:ourblocktheme/opinieproduktowe') !== false || strpos($pattern->post_content, 'opinie') !== false) {
                 $has_opinie = true;
-                break;
             }
         }
     }
+    
+    echo '<!-- SHAV-DEBUG: ids = ' . implode(',', $ids) . ' | has_opinie = ' . ($has_opinie ? 'true' : 'false') . ' | ' . implode(' ; ', $debug_blocks) . ' -->';
 
-    if ($has_opinie) {
-        echo '<div class="shav-product-fake-tabs-wrapper" style="display: flex; justify-content: center; width: 100%;">';
+    // Wymuszamy pokazanie guzika, by sprawdzić czy style w ogóle działają (dla debugu)
+    if (true) {
+        echo '<div class="shav-product-fake-tabs-wrapper" style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">';
         echo '  <button class="shav-fake-tab-opinie" id="tab-opinie">Bewertungen</button>';
         echo '</div>';
         
