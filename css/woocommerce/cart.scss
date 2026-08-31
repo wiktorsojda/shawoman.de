@@ -946,8 +946,10 @@
 }
 
 
+.includes_tax,
+.tax_label,
 small.includes_tax {
-    display: none;
+    display: none !important;
 }
 
 cfw-secondary-btn.cfw-secondary-btn-inactive {
