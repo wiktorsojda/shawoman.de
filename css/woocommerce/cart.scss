@@ -617,6 +617,12 @@
                             border-radius: $radius-xs;
                             background: $color-info-medium;
                         }
+
+                        .woocommerce-error,
+                        .woocommerce-message,
+                        .woocommerce-info {
+                            display: none !important;
+                        }
                     }
                 }
 
