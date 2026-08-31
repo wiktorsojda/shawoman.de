@@ -1,1 +1,429 @@
-(()=>{"use strict";const e=window.React,t=window.wp.blocks,a=window.wp.blockEditor,l=JSON.parse('{"UU":"ourblocktheme/szachshavwomen1"}'),n=window.wp.components,o=window.wp.element;(0,t.registerBlockType)(l.UU,{edit:function({attributes:t,setAttributes:l}){const i=t,[r,s]=(0,o.useState)(""),c={};i.backgroundImage&&(c["--bg-desktop"]=`url(${i.backgroundImage})`),i.backgroundImageMobile&&(c["--bg-mobile"]=`url(${i.backgroundImageMobile})`),i.backgroundImage&&(c.backgroundImage=`url(${i.backgroundImage})`);const m=(0,a.useBlockProps)({className:`szachglass szachglass--x-${i.glassPositionX} szachglass--y-${i.glassPositionY}`,style:c}),d={width:i.glassWidth?`${i.glassWidth}px`:void 0,textAlign:i.textAlign||"left"};return(0,e.createElement)("div",{...m},(0,e.createElement)(a.InspectorControls,null,(0,e.createElement)(n.PanelBody,{title:"Tłumaczenia AI (JSON)",initialOpen:!1},(0,e.createElement)("p",{style:{fontSize:"13px",marginBottom:"12px"}},"Wygeneruj JSON, przetłumacz teksty, a następnie wklej i zastosuj."),(0,e.createElement)(n.Button,{variant:"secondary",onClick:()=>{const e={title:i.title,description:i.description};s(JSON.stringify(e,null,2))},style:{marginBottom:"12px",width:"100%",justifyContent:"center"}},"Wygeneruj JSON"),(0,e.createElement)(n.TextareaControl,{value:r,onChange:e=>s(e),rows:8,help:"Wklej tutaj przetłumaczony JSON"}),(0,e.createElement)(n.Button,{variant:"primary",onClick:()=>{try{const e=JSON.parse(r),t={};void 0!==e.title&&(t.title=e.title),void 0!==e.description&&(t.description=e.description),l(t),alert("Atrybuty zostały zaktualizowane!")}catch(e){alert("Błąd: Nieprawidłowy format JSON.")}},style:{width:"100%",justifyContent:"center"}},"Zastosuj tłumaczenie")),(0,e.createElement)(n.PanelBody,{title:"Tło — obraz",initialOpen:!0},(0,e.createElement)("p",{style:{marginTop:0}},(0,e.createElement)("strong",null,"Desktop")," (≥ 768px)"),(0,e.createElement)(a.MediaUploadCheck,null,(0,e.createElement)(a.MediaUpload,{onSelect:e=>l({backgroundImage:e?.url||""}),allowedTypes:["image"],value:i.backgroundImage,render:({open:t})=>(0,e.createElement)(n.Button,{variant:"secondary",onClick:t},i.backgroundImage?"Zmień zdjęcie desktop":"Wybierz zdjęcie desktop")})),i.backgroundImage&&(0,e.createElement)(n.Button,{variant:"link",isDestructive:!0,onClick:()=>l({backgroundImage:""}),style:{marginTop:4,marginBottom:12,display:"block"}},"Usuń zdjęcie desktop"),(0,e.createElement)("p",{style:{marginBottom:8}},(0,e.createElement)("strong",null,"Mobile")," (< 768px) — opcjonalne, pusto = używa desktop"),(0,e.createElement)(a.MediaUploadCheck,null,(0,e.createElement)(a.MediaUpload,{onSelect:e=>l({backgroundImageMobile:e?.url||""}),allowedTypes:["image"],value:i.backgroundImageMobile,render:({open:t})=>(0,e.createElement)(n.Button,{variant:"secondary",onClick:t},i.backgroundImageMobile?"Zmień zdjęcie mobile":"Wybierz zdjęcie mobile")})),i.backgroundImageMobile&&(0,e.createElement)(n.Button,{variant:"link",isDestructive:!0,onClick:()=>l({backgroundImageMobile:""}),style:{marginTop:4,display:"block"}},"Usuń zdjęcie mobile")),(0,e.createElement)(n.PanelBody,{title:"Pozycja karty",initialOpen:!1},(0,e.createElement)(n.SelectControl,{label:"Pozycja pozioma",value:i.glassPositionX,options:[{label:"Lewa",value:"left"},{label:"Środek",value:"center"},{label:"Prawa",value:"right"}],onChange:e=>l({glassPositionX:e})}),(0,e.createElement)(n.SelectControl,{label:"Pozycja pionowa",value:i.glassPositionY,options:[{label:"Góra",value:"top"},{label:"Środek",value:"middle"},{label:"Dół",value:"bottom"}],onChange:e=>l({glassPositionY:e})}),(0,e.createElement)(n.SelectControl,{label:"Wyrównanie tekstu",value:i.textAlign,options:[{label:"Do lewej",value:"left"},{label:"Do środka",value:"center"},{label:"Do prawej",value:"right"}],onChange:e=>l({textAlign:e})}),(0,e.createElement)(n.RangeControl,{label:"Szerokość karty (px)",min:320,max:1e3,step:10,value:i.glassWidth,onChange:e=>l({glassWidth:e})})),(0,e.createElement)(n.PanelBody,{title:"Rozmiary tekstu",initialOpen:!1},(0,e.createElement)(n.RangeControl,{label:"Tytuł (px)",min:20,max:80,step:1,value:i.titleSize,onChange:e=>l({titleSize:e})}),(0,e.createElement)(n.RangeControl,{label:"Opis (px)",min:12,max:32,step:1,value:i.descriptionSize,onChange:e=>l({descriptionSize:e})}))),(0,e.createElement)("div",{className:"szachglass__card",style:d},(0,e.createElement)(a.RichText,{tagName:"h2",className:"szachglass__title",style:{fontSize:`${i.titleSize}px`},value:i.title,onChange:e=>l({title:e}),placeholder:"Tytuł"}),(0,e.createElement)(a.RichText,{tagName:"p",className:"szachglass__description",style:{fontSize:`${i.descriptionSize}px`},value:i.description,onChange:e=>l({description:e}),placeholder:"Opis"})))},save:()=>{const t=a.useBlockProps.save();return(0,e.createElement)("div",{...t})}})})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/szachshavwomen1/edit.js"
+/*!*************************************!*\
+  !*** ./src/szachshavwomen1/edit.js ***!
+  \*************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const a = attributes;
+  const [jsonText, setJsonText] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)("");
+  const handleGenerateJson = () => {
+    const data = {
+      title: a.title,
+      description: a.description
+    };
+    setJsonText(JSON.stringify(data, null, 2));
+  };
+  const handleApplyJson = () => {
+    try {
+      const parsed = JSON.parse(jsonText);
+      const updates = {};
+      if (parsed.title !== undefined) updates.title = parsed.title;
+      if (parsed.description !== undefined) updates.description = parsed.description;
+      setAttributes(updates);
+      alert("Atrybuty zostały zaktualizowane!");
+    } catch (e) {
+      alert("Błąd: Nieprawidłowy format JSON.");
+    }
+  };
+  const wrapperStyle = {};
+  if (a.backgroundImage) wrapperStyle["--bg-desktop"] = `url(${a.backgroundImage})`;
+  if (a.backgroundImageMobile) wrapperStyle["--bg-mobile"] = `url(${a.backgroundImageMobile})`;
+  // fallback dla edytora (zawsze pokazuje desktop preview)
+  if (a.backgroundImage) wrapperStyle.backgroundImage = `url(${a.backgroundImage})`;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: `szachglass szachglass--x-${a.glassPositionX} szachglass--y-${a.glassPositionY}`,
+    style: wrapperStyle
+  });
+  const cardStyle = {
+    width: a.glassWidth ? `${a.glassWidth}px` : undefined,
+    textAlign: a.textAlign || "left"
+  };
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "T\u0142umaczenia AI (JSON)",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      fontSize: "13px",
+      marginBottom: "12px"
+    }
+  }, "Wygeneruj JSON, przet\u0142umacz teksty, a nast\u0119pnie wklej i zastosuj."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "secondary",
+    onClick: handleGenerateJson,
+    style: {
+      marginBottom: "12px",
+      width: "100%",
+      justifyContent: "center"
+    }
+  }, "Wygeneruj JSON"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    value: jsonText,
+    onChange: value => setJsonText(value),
+    rows: 8,
+    help: "Wklej tutaj przet\u0142umaczony JSON"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: handleApplyJson,
+    style: {
+      width: "100%",
+      justifyContent: "center"
+    }
+  }, "Zastosuj t\u0142umaczenie")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "T\u0142o \u2014 obraz",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 0
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Desktop"), " (\u2265 768px)"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      backgroundImage: media?.url || ""
+    }),
+    allowedTypes: ["image"],
+    value: a.backgroundImage,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, a.backgroundImage ? "Zmień zdjęcie desktop" : "Wybierz zdjęcie desktop")
+  })), a.backgroundImage && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      backgroundImage: ""
+    }),
+    style: {
+      marginTop: 4,
+      marginBottom: 12,
+      display: "block"
+    }
+  }, "Usu\u0144 zdj\u0119cie desktop"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginBottom: 8
+    }
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("strong", null, "Mobile"), " (< 768px) \u2014 opcjonalne, pusto = u\u017Cywa desktop"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      backgroundImageMobile: media?.url || ""
+    }),
+    allowedTypes: ["image"],
+    value: a.backgroundImageMobile,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, a.backgroundImageMobile ? "Zmień zdjęcie mobile" : "Wybierz zdjęcie mobile")
+  })), a.backgroundImageMobile && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      backgroundImageMobile: ""
+    }),
+    style: {
+      marginTop: 4,
+      display: "block"
+    }
+  }, "Usu\u0144 zdj\u0119cie mobile")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Pozycja karty",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: "Pozycja pozioma",
+    value: a.glassPositionX,
+    options: [{
+      label: "Lewa",
+      value: "left"
+    }, {
+      label: "Środek",
+      value: "center"
+    }, {
+      label: "Prawa",
+      value: "right"
+    }],
+    onChange: v => setAttributes({
+      glassPositionX: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: "Pozycja pionowa",
+    value: a.glassPositionY,
+    options: [{
+      label: "Góra",
+      value: "top"
+    }, {
+      label: "Środek",
+      value: "middle"
+    }, {
+      label: "Dół",
+      value: "bottom"
+    }],
+    onChange: v => setAttributes({
+      glassPositionY: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.SelectControl, {
+    label: "Wyr\xF3wnanie tekstu",
+    value: a.textAlign,
+    options: [{
+      label: "Do lewej",
+      value: "left"
+    }, {
+      label: "Do środka",
+      value: "center"
+    }, {
+      label: "Do prawej",
+      value: "right"
+    }],
+    onChange: v => setAttributes({
+      textAlign: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    label: "Szeroko\u015B\u0107 karty (px)",
+    min: 320,
+    max: 1000,
+    step: 10,
+    value: a.glassWidth,
+    onChange: v => setAttributes({
+      glassWidth: v
+    })
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Rozmiary tekstu",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    label: "Tytu\u0142 (px)",
+    min: 20,
+    max: 80,
+    step: 1,
+    value: a.titleSize,
+    onChange: v => setAttributes({
+      titleSize: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.RangeControl, {
+    label: "Opis (px)",
+    min: 12,
+    max: 32,
+    step: 1,
+    value: a.descriptionSize,
+    onChange: v => setAttributes({
+      descriptionSize: v
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "szachglass__card",
+    style: cardStyle
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h2",
+    className: "szachglass__title",
+    style: {
+      fontSize: `${a.titleSize}px`
+    },
+    value: a.title,
+    onChange: v => setAttributes({
+      title: v
+    }),
+    placeholder: "Tytu\u0142"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "p",
+    className: "szachglass__description",
+    style: {
+      fontSize: `${a.descriptionSize}px`
+    },
+    value: a.description,
+    onChange: v => setAttributes({
+      description: v
+    }),
+    placeholder: "Opis"
+  })));
+}
+
+/***/ },
+
+/***/ "react"
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+(module) {
+
+module.exports = window["React"];
+
+/***/ },
+
+/***/ "@wordpress/block-editor"
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+(module) {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ },
+
+/***/ "@wordpress/blocks"
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+(module) {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ },
+
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
+/***/ "@wordpress/element"
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["element"];
+
+/***/ },
+
+/***/ "./src/szachshavwomen1/block.json"
+/*!****************************************!*\
+  !*** ./src/szachshavwomen1/block.json ***!
+  \****************************************/
+(module) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/szachshavwomen1","title":"Szach Shav Women (Uniwersalny)","attributes":{"textAlign":{"type":"string","default":"left"},"backgroundImage":{"type":"string","default":""},"backgroundImageMobile":{"type":"string","default":""},"title":{"type":"string","default":"Najlepsza i najdelikatniejsza"},"description":{"type":"string","default":"Stworzona z myślą o miejscach, które wymagają największej delikatności – jak bikini i pachy.  Świetnie radzi sobie z większymi partiami – jak nogi czy ręce. Technologia CutFree minimalizuje ryzyko zacięć i podrażnień, dając Ci komfort, jakiego wcześniej nie znałaś."},"titleSize":{"type":"number","default":42},"descriptionSize":{"type":"number","default":18},"glassPositionX":{"type":"string","default":"left"},"glassPositionY":{"type":"string","default":"middle"},"glassWidth":{"type":"number","default":726}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"anchor":true,"align":["wide","full"],"color":{"background":true,"text":true,"link":true,"gradients":true},"typography":{"fontSize":true,"lineHeight":true,"__experimentalFontFamily":true,"__experimentalFontWeight":true,"__experimentalFontStyle":true,"__experimentalTextTransform":true,"__experimentalLetterSpacing":true,"__experimentalTextDecoration":true},"spacing":{"padding":true,"margin":true,"blockGap":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true}}}');
+
+/***/ }
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+(() => {
+/*!**************************************!*\
+  !*** ./src/szachshavwomen1/index.js ***!
+  \**************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/szachshavwomen1/block.json");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./edit */ "./src/szachshavwomen1/edit.js");
+
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_4__["default"],
+  save: () => {
+    const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save();
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      ...blockProps
+    });
+  }
+});
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

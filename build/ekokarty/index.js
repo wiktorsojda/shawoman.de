@@ -1,1 +1,671 @@
-(()=>{"use strict";var e,a={7760(){const e=window.wp.blocks,a=window.React,t=window.wp.blockEditor,r=window.wp.components,l=window.wp.element,n=JSON.parse('{"UU":"ourblocktheme/ekokarty"}');(0,e.registerBlockType)(n.UU,{edit:function({attributes:e,setAttributes:n}){const{title:o,card1Icon:c,card1TopIcon:i,card1Title:d,card1Text:m,card2Icon:s,card2TopIcon:k,card2Title:p,card2Text:y,card3Icon:u,card3TopIcon:T,card3Title:g,card3Text:v}=e,[E,h]=(0,l.useState)(""),w=(0,t.useBlockProps)({className:"ekokarty"});return(0,a.createElement)("section",{...w},(0,a.createElement)(t.InspectorControls,null,(0,a.createElement)(r.PanelBody,{title:"Tłumaczenia AI (JSON)",initialOpen:!1},(0,a.createElement)(r.TextareaControl,{label:"Skopiuj ten JSON dla AI",value:(()=>{const e={title:o||"",card1Title:d||"",card1Text:m||"",card2Title:p||"",card2Text:y||"",card3Title:g||"",card3Text:v||""};return JSON.stringify(e,null,2)})(),readOnly:!0,rows:10,help:"Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."}),(0,a.createElement)(r.TextareaControl,{label:"Wklej przetłumaczony JSON",value:E,onChange:h,rows:10}),(0,a.createElement)(r.Button,{variant:"primary",onClick:()=>{try{const e=JSON.parse(E),a={};["title","card1Title","card1Text","card2Title","card2Text","card3Title","card3Text"].forEach(t=>{void 0!==e[t]&&(a[t]=e[t])}),n(a),alert("Zaktualizowano pomyślnie!"),h("")}catch(e){alert("Błąd! Niepoprawny format JSON.")}},style:{width:"100%",justifyContent:"center"}},"Importuj tłumaczenie")),(0,a.createElement)(r.PanelBody,{title:"Karta 1",initialOpen:!0},(0,a.createElement)(r.TextControl,{label:"Tytuł karty 1",value:d,onChange:e=>n({card1Title:e})}),(0,a.createElement)(r.TextareaControl,{label:"Treść karty 1",value:m,onChange:e=>n({card1Text:e}),rows:5,help:"Możesz używać znaczników HTML takich jak <strong> czy <br>"}),(0,a.createElement)("p",{style:{marginTop:16}},"Ikona główna"),(0,a.createElement)(t.MediaUploadCheck,null,(0,a.createElement)(t.MediaUpload,{onSelect:e=>n({card1Icon:e.url}),allowedTypes:["image"],value:c,render:({open:e})=>(0,a.createElement)(r.Button,{variant:"secondary",onClick:e},c?"Zmień ikonę":"Wybierz ikonę")})),c&&(0,a.createElement)(r.Button,{variant:"link",isDestructive:!0,onClick:()=>n({card1Icon:""}),style:{display:"block",marginTop:8}},"Usuń ikonę główną"),(0,a.createElement)("p",{style:{marginTop:16}},"Ikona w prawym górnym rogu"),(0,a.createElement)(t.MediaUploadCheck,null,(0,a.createElement)(t.MediaUpload,{onSelect:e=>n({card1TopIcon:e.url}),allowedTypes:["image"],value:i,render:({open:e})=>(0,a.createElement)(r.Button,{variant:"secondary",onClick:e},i?"Zmień ikonę":"Wybierz ikonę")})),i&&(0,a.createElement)(r.Button,{variant:"link",isDestructive:!0,onClick:()=>n({card1TopIcon:""}),style:{display:"block",marginTop:8}},"Usuń ikonę z rogu")),(0,a.createElement)(r.PanelBody,{title:"Karta 2",initialOpen:!1},(0,a.createElement)(r.TextControl,{label:"Tytuł karty 2",value:p,onChange:e=>n({card2Title:e})}),(0,a.createElement)(r.TextareaControl,{label:"Treść karty 2",value:y,onChange:e=>n({card2Text:e}),rows:5,help:"Możesz używać znaczników HTML takich jak <strong> czy <br>"}),(0,a.createElement)("p",{style:{marginTop:16}},"Ikona główna"),(0,a.createElement)(t.MediaUploadCheck,null,(0,a.createElement)(t.MediaUpload,{onSelect:e=>n({card2Icon:e.url}),allowedTypes:["image"],value:s,render:({open:e})=>(0,a.createElement)(r.Button,{variant:"secondary",onClick:e},s?"Zmień ikonę":"Wybierz ikonę")})),s&&(0,a.createElement)(r.Button,{variant:"link",isDestructive:!0,onClick:()=>n({card2Icon:""}),style:{display:"block",marginTop:8}},"Usuń ikonę główną"),(0,a.createElement)("p",{style:{marginTop:16}},"Ikona w prawym górnym rogu"),(0,a.createElement)(t.MediaUploadCheck,null,(0,a.createElement)(t.MediaUpload,{onSelect:e=>n({card2TopIcon:e.url}),allowedTypes:["image"],value:k,render:({open:e})=>(0,a.createElement)(r.Button,{variant:"secondary",onClick:e},k?"Zmień ikonę":"Wybierz ikonę")})),k&&(0,a.createElement)(r.Button,{variant:"link",isDestructive:!0,onClick:()=>n({card2TopIcon:""}),style:{display:"block",marginTop:8}},"Usuń ikonę z rogu")),(0,a.createElement)(r.PanelBody,{title:"Karta 3",initialOpen:!1},(0,a.createElement)(r.TextControl,{label:"Tytuł karty 3",value:g,onChange:e=>n({card3Title:e})}),(0,a.createElement)(r.TextareaControl,{label:"Treść karty 3",value:v,onChange:e=>n({card3Text:e}),rows:5,help:"Możesz używać znaczników HTML takich jak <strong> czy <br>"}),(0,a.createElement)("p",{style:{marginTop:16}},"Ikona główna"),(0,a.createElement)(t.MediaUploadCheck,null,(0,a.createElement)(t.MediaUpload,{onSelect:e=>n({card3Icon:e.url}),allowedTypes:["image"],value:u,render:({open:e})=>(0,a.createElement)(r.Button,{variant:"secondary",onClick:e},u?"Zmień ikonę":"Wybierz ikonę")})),u&&(0,a.createElement)(r.Button,{variant:"link",isDestructive:!0,onClick:()=>n({card3Icon:""}),style:{display:"block",marginTop:8}},"Usuń ikonę główną"),(0,a.createElement)("p",{style:{marginTop:16}},"Ikona w prawym górnym rogu"),(0,a.createElement)(t.MediaUploadCheck,null,(0,a.createElement)(t.MediaUpload,{onSelect:e=>n({card3TopIcon:e.url}),allowedTypes:["image"],value:T,render:({open:e})=>(0,a.createElement)(r.Button,{variant:"secondary",onClick:e},T?"Zmień ikonę":"Wybierz ikonę")})),T&&(0,a.createElement)(r.Button,{variant:"link",isDestructive:!0,onClick:()=>n({card3TopIcon:""}),style:{display:"block",marginTop:8}},"Usuń ikonę z rogu"))),(0,a.createElement)("div",{className:"ekokarty__inner"},(0,a.createElement)(t.RichText,{tagName:"h2",className:"ekokarty__title",value:o,onChange:e=>n({title:e}),placeholder:"Nagłówek sekcji"}),(0,a.createElement)("div",{className:"ekokarty__grid"},(0,a.createElement)("div",{className:"ekokarty__card"},i&&(0,a.createElement)("img",{src:i,className:"ekokarty__card-top-icon",alt:""}),(0,a.createElement)("div",{className:"ekokarty__card-icon"},c&&(0,a.createElement)("img",{src:c,alt:""})),(0,a.createElement)(t.RichText,{tagName:"h3",className:"ekokarty__card-title",value:d,onChange:e=>n({card1Title:e}),placeholder:"Tytuł karty"}),(0,a.createElement)(t.RichText,{tagName:"div",className:"ekokarty__card-text",value:m,onChange:e=>n({card1Text:e}),placeholder:"Treść karty",allowedFormats:["core/bold","core/italic","core/text-color"]})),(0,a.createElement)("div",{className:"ekokarty__card"},k&&(0,a.createElement)("img",{src:k,className:"ekokarty__card-top-icon",alt:""}),(0,a.createElement)("div",{className:"ekokarty__card-icon"},s&&(0,a.createElement)("img",{src:s,alt:""})),(0,a.createElement)(t.RichText,{tagName:"h3",className:"ekokarty__card-title",value:p,onChange:e=>n({card2Title:e}),placeholder:"Tytuł karty"}),(0,a.createElement)(t.RichText,{tagName:"div",className:"ekokarty__card-text",value:y,onChange:e=>n({card2Text:e}),placeholder:"Treść karty",allowedFormats:["core/bold","core/italic","core/text-color"]})),(0,a.createElement)("div",{className:"ekokarty__card ekokarty__card--green"},T&&(0,a.createElement)("img",{src:T,className:"ekokarty__card-top-icon",alt:""}),(0,a.createElement)("div",{className:"ekokarty__card-icon"},u&&(0,a.createElement)("img",{src:u,alt:""})),(0,a.createElement)(t.RichText,{tagName:"h3",className:"ekokarty__card-title ekokarty__card-title--green",value:g,onChange:e=>n({card3Title:e}),placeholder:"Tytuł karty"}),(0,a.createElement)(t.RichText,{tagName:"div",className:"ekokarty__card-text ekokarty__card-text--green",value:v,onChange:e=>n({card3Text:e}),placeholder:"Treść karty",allowedFormats:["core/bold","core/italic","core/text-color"]})))))}})}},t={};function r(e){var l=t[e];if(void 0!==l)return l.exports;var n=t[e]={exports:{}};return a[e](n,n.exports,r),n.exports}r.m=a,e=[],r.O=(a,t,l,n)=>{if(!t){var o=1/0;for(m=0;m<e.length;m++){for(var[t,l,n]=e[m],c=!0,i=0;i<t.length;i++)(!1&n||o>=n)&&Object.keys(r.O).every(e=>r.O[e](t[i]))?t.splice(i--,1):(c=!1,n<o&&(o=n));if(c){e.splice(m--,1);var d=l();void 0!==d&&(a=d)}}return a}n=n||0;for(var m=e.length;m>0&&e[m-1][2]>n;m--)e[m]=e[m-1];e[m]=[t,l,n]},r.o=(e,a)=>Object.prototype.hasOwnProperty.call(e,a),(()=>{var e={7920:0,984:0};r.O.j=a=>0===e[a];var a=(a,t)=>{var l,n,[o,c,i]=t,d=0;if(o.some(a=>0!==e[a])){for(l in c)r.o(c,l)&&(r.m[l]=c[l]);if(i)var m=i(r)}for(a&&a(t);d<o.length;d++)n=o[d],r.o(e,n)&&e[n]&&e[n][0](),e[n]=0;return r.O(m)},t=globalThis.webpackChunkfictional_university_theme=globalThis.webpackChunkfictional_university_theme||[];t.forEach(a.bind(null,0)),t.push=a.bind(null,t.push.bind(t))})();var l=r.O(void 0,[984],()=>r(7760));l=r.O(l)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/ekokarty/edit.js"
+/*!******************************!*\
+  !*** ./src/ekokarty/edit.js ***!
+  \******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Edit)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    title,
+    card1Icon,
+    card1TopIcon,
+    card1Title,
+    card1Text,
+    card2Icon,
+    card2TopIcon,
+    card2Title,
+    card2Text,
+    card3Icon,
+    card3TopIcon,
+    card3Title,
+    card3Text
+  } = attributes;
+  const [importJson, setImportJson] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)("");
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "ekokarty"
+  });
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("section", {
+    ...blockProps
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "T\u0142umaczenia AI (JSON)",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    label: "Skopiuj ten JSON dla AI",
+    value: (() => {
+      const data = {
+        title: title || '',
+        card1Title: card1Title || '',
+        card1Text: card1Text || '',
+        card2Title: card2Title || '',
+        card2Text: card2Text || '',
+        card3Title: card3Title || '',
+        card3Text: card3Text || ''
+      };
+      return JSON.stringify(data, null, 2);
+    })(),
+    readOnly: true,
+    rows: 10,
+    help: "Skopiuj i wklej do AI z pro\u015Bb\u0105 o przet\u0142umaczenie samych warto\u015Bci."
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    label: "Wklej przet\u0142umaczony JSON",
+    value: importJson,
+    onChange: setImportJson,
+    rows: 10
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "primary",
+    onClick: () => {
+      try {
+        const parsed = JSON.parse(importJson);
+        const updates = {};
+        ['title', 'card1Title', 'card1Text', 'card2Title', 'card2Text', 'card3Title', 'card3Text'].forEach(key => {
+          if (parsed[key] !== undefined) updates[key] = parsed[key];
+        });
+        setAttributes(updates);
+        alert('Zaktualizowano pomyślnie!');
+        setImportJson('');
+      } catch (e) {
+        alert('Błąd! Niepoprawny format JSON.');
+      }
+    },
+    style: {
+      width: '100%',
+      justifyContent: 'center'
+    }
+  }, "Importuj t\u0142umaczenie")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Karta 1",
+    initialOpen: true
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "Tytu\u0142 karty 1",
+    value: card1Title,
+    onChange: v => setAttributes({
+      card1Title: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    label: "Tre\u015B\u0107 karty 1",
+    value: card1Text,
+    onChange: v => setAttributes({
+      card1Text: v
+    }),
+    rows: 5,
+    help: "Mo\u017Cesz u\u017Cywa\u0107 znacznik\xF3w HTML takich jak <strong> czy <br>"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 16
+    }
+  }, "Ikona g\u0142\xF3wna"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      card1Icon: media.url
+    }),
+    allowedTypes: ["image"],
+    value: card1Icon,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, card1Icon ? "Zmień ikonę" : "Wybierz ikonę")
+  })), card1Icon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      card1Icon: ""
+    }),
+    style: {
+      display: 'block',
+      marginTop: 8
+    }
+  }, "Usu\u0144 ikon\u0119 g\u0142\xF3wn\u0105"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 16
+    }
+  }, "Ikona w prawym g\xF3rnym rogu"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      card1TopIcon: media.url
+    }),
+    allowedTypes: ["image"],
+    value: card1TopIcon,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, card1TopIcon ? "Zmień ikonę" : "Wybierz ikonę")
+  })), card1TopIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      card1TopIcon: ""
+    }),
+    style: {
+      display: 'block',
+      marginTop: 8
+    }
+  }, "Usu\u0144 ikon\u0119 z rogu")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Karta 2",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "Tytu\u0142 karty 2",
+    value: card2Title,
+    onChange: v => setAttributes({
+      card2Title: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    label: "Tre\u015B\u0107 karty 2",
+    value: card2Text,
+    onChange: v => setAttributes({
+      card2Text: v
+    }),
+    rows: 5,
+    help: "Mo\u017Cesz u\u017Cywa\u0107 znacznik\xF3w HTML takich jak <strong> czy <br>"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 16
+    }
+  }, "Ikona g\u0142\xF3wna"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      card2Icon: media.url
+    }),
+    allowedTypes: ["image"],
+    value: card2Icon,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, card2Icon ? "Zmień ikonę" : "Wybierz ikonę")
+  })), card2Icon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      card2Icon: ""
+    }),
+    style: {
+      display: 'block',
+      marginTop: 8
+    }
+  }, "Usu\u0144 ikon\u0119 g\u0142\xF3wn\u0105"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 16
+    }
+  }, "Ikona w prawym g\xF3rnym rogu"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      card2TopIcon: media.url
+    }),
+    allowedTypes: ["image"],
+    value: card2TopIcon,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, card2TopIcon ? "Zmień ikonę" : "Wybierz ikonę")
+  })), card2TopIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      card2TopIcon: ""
+    }),
+    style: {
+      display: 'block',
+      marginTop: 8
+    }
+  }, "Usu\u0144 ikon\u0119 z rogu")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
+    title: "Karta 3",
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
+    label: "Tytu\u0142 karty 3",
+    value: card3Title,
+    onChange: v => setAttributes({
+      card3Title: v
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+    label: "Tre\u015B\u0107 karty 3",
+    value: card3Text,
+    onChange: v => setAttributes({
+      card3Text: v
+    }),
+    rows: 5,
+    help: "Mo\u017Cesz u\u017Cywa\u0107 znacznik\xF3w HTML takich jak <strong> czy <br>"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 16
+    }
+  }, "Ikona g\u0142\xF3wna"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      card3Icon: media.url
+    }),
+    allowedTypes: ["image"],
+    value: card3Icon,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, card3Icon ? "Zmień ikonę" : "Wybierz ikonę")
+  })), card3Icon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      card3Icon: ""
+    }),
+    style: {
+      display: 'block',
+      marginTop: 8
+    }
+  }, "Usu\u0144 ikon\u0119 g\u0142\xF3wn\u0105"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    style: {
+      marginTop: 16
+    }
+  }, "Ikona w prawym g\xF3rnym rogu"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+    onSelect: media => setAttributes({
+      card3TopIcon: media.url
+    }),
+    allowedTypes: ["image"],
+    value: card3TopIcon,
+    render: ({
+      open
+    }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      variant: "secondary",
+      onClick: open
+    }, card3TopIcon ? "Zmień ikonę" : "Wybierz ikonę")
+  })), card3TopIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    variant: "link",
+    isDestructive: true,
+    onClick: () => setAttributes({
+      card3TopIcon: ""
+    }),
+    style: {
+      display: 'block',
+      marginTop: 8
+    }
+  }, "Usu\u0144 ikon\u0119 z rogu"))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__inner"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h2",
+    className: "ekokarty__title",
+    value: title,
+    onChange: v => setAttributes({
+      title: v
+    }),
+    placeholder: "Nag\u0142\xF3wek sekcji"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__grid"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__card"
+  }, card1TopIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: card1TopIcon,
+    className: "ekokarty__card-top-icon",
+    alt: ""
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__card-icon"
+  }, card1Icon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: card1Icon,
+    alt: ""
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h3",
+    className: "ekokarty__card-title",
+    value: card1Title,
+    onChange: v => setAttributes({
+      card1Title: v
+    }),
+    placeholder: "Tytu\u0142 karty"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "ekokarty__card-text",
+    value: card1Text,
+    onChange: v => setAttributes({
+      card1Text: v
+    }),
+    placeholder: "Tre\u015B\u0107 karty",
+    allowedFormats: ["core/bold", "core/italic", "core/text-color"]
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__card"
+  }, card2TopIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: card2TopIcon,
+    className: "ekokarty__card-top-icon",
+    alt: ""
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__card-icon"
+  }, card2Icon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: card2Icon,
+    alt: ""
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h3",
+    className: "ekokarty__card-title",
+    value: card2Title,
+    onChange: v => setAttributes({
+      card2Title: v
+    }),
+    placeholder: "Tytu\u0142 karty"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "ekokarty__card-text",
+    value: card2Text,
+    onChange: v => setAttributes({
+      card2Text: v
+    }),
+    placeholder: "Tre\u015B\u0107 karty",
+    allowedFormats: ["core/bold", "core/italic", "core/text-color"]
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__card ekokarty__card--green"
+  }, card3TopIcon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: card3TopIcon,
+    className: "ekokarty__card-top-icon",
+    alt: ""
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "ekokarty__card-icon"
+  }, card3Icon && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: card3Icon,
+    alt: ""
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "h3",
+    className: "ekokarty__card-title ekokarty__card-title--green",
+    value: card3Title,
+    onChange: v => setAttributes({
+      card3Title: v
+    }),
+    placeholder: "Tytu\u0142 karty"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.RichText, {
+    tagName: "div",
+    className: "ekokarty__card-text ekokarty__card-text--green",
+    value: card3Text,
+    onChange: v => setAttributes({
+      card3Text: v
+    }),
+    placeholder: "Tre\u015B\u0107 karty",
+    allowedFormats: ["core/bold", "core/italic", "core/text-color"]
+  })))));
+}
+
+/***/ },
+
+/***/ "./src/ekokarty/index.js"
+/*!*******************************!*\
+  !*** ./src/ekokarty/index.js ***!
+  \*******************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/ekokarty/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/ekokarty/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/ekokarty/block.json");
+
+
+
+
+(0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_3__.name, {
+  edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+
+/***/ },
+
+/***/ "./src/ekokarty/style.scss"
+/*!*********************************!*\
+  !*** ./src/ekokarty/style.scss ***!
+  \*********************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
+/***/ "react"
+/*!************************!*\
+  !*** external "React" ***!
+  \************************/
+(module) {
+
+module.exports = window["React"];
+
+/***/ },
+
+/***/ "@wordpress/block-editor"
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+(module) {
+
+module.exports = window["wp"]["blockEditor"];
+
+/***/ },
+
+/***/ "@wordpress/blocks"
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+(module) {
+
+module.exports = window["wp"]["blocks"];
+
+/***/ },
+
+/***/ "@wordpress/components"
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+(module) {
+
+module.exports = window["wp"]["components"];
+
+/***/ },
+
+/***/ "@wordpress/element"
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+(module) {
+
+module.exports = window["wp"]["element"];
+
+/***/ },
+
+/***/ "./src/ekokarty/block.json"
+/*!*********************************!*\
+  !*** ./src/ekokarty/block.json ***!
+  \*********************************/
+(module) {
+
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ourblocktheme/ekokarty","title":"Eko Karty","category":"design","icon":"leaf","attributes":{"title":{"type":"string","default":"W Shav Woman stawiamy na rozwiązania, które mogą <br>ograniczać ilość niepotrzebnych odpadów. Dlatego oferujemy <br>wielorazowe maszynki do golenia i korzystamy z bardziej <br>odpowiedzialnych form dostawy."},"card1Icon":{"type":"string","default":""},"card1Title":{"type":"string","default":"Nawet 3 000 000 mniej jednorazowych maszynek"},"card1Text":{"type":"string","default":"Jako marka Shav do tej pory sprzedaliśmy już około 300 000 wielorazowych maszynek. Jeśli każda z nich zastąpi w czasie użytkowania zaledwie 10 plastikowych jednorazówek, oznacza to nawet 3 miliony jednorazowych maszynek mniej."},"card1TopIcon":{"type":"string","default":""},"card2Icon":{"type":"string","default":""},"card2Title":{"type":"string","default":"Stworzona do dłuższego użytkowania"},"card2Text":{"type":"string","default":"Shav Woman nie jest produktem na kilka goleń. To urządzenie wielokrotnego użytku, które może służyć przez długi czas."},"card2TopIcon":{"type":"string","default":""},"card3Icon":{"type":"string","default":""},"card3Title":{"type":"string","default":"Dostawa z DHL GoGreen"},"card3Text":{"type":"string","default":"Nasze przesyłki wysyłamy za pośrednictwem usługi DHL GoGreen. DHL realizuje w jej ramach działania mające na celu ograniczenie i kompensowanie emisji związanych z transportem przesyłek."},"card3TopIcon":{"type":"string","default":""}},"editorScript":"file:./index.js","render":"file:./render.php","supports":{"html":false,"color":{"text":true,"background":true},"spacing":{"margin":true,"padding":true}}}');
+
+/***/ }
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		if (!(moduleId in __webpack_modules__)) {
+/******/ 			delete __webpack_module_cache__[moduleId];
+/******/ 			var e = new Error("Cannot find module '" + moduleId + "'");
+/******/ 			e.code = 'MODULE_NOT_FOUND';
+/******/ 			throw e;
+/******/ 		}
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"ekokarty/index": 0,
+/******/ 			"ekokarty/style-index": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = globalThis["webpackChunkfictional_university_theme"] = globalThis["webpackChunkfictional_university_theme"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["ekokarty/style-index"], () => (__webpack_require__("./src/ekokarty/index.js")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

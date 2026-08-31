@@ -984,7 +984,7 @@ p#countdown-mobile {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: $space-24;
-                    
+
                     @media (max-width: 768px) {
                         grid-template-columns: 1fr;
                     }
@@ -1029,11 +1029,21 @@ p#countdown-mobile {
                         p.stars {
                             margin: 0;
 
-                            a, a::before, span, span::before, span a, span a::before {
+                            a,
+                            a::before,
+                            span,
+                            span::before,
+                            span a,
+                            span a::before {
                                 color: #FFD700 !important; // Złoty kolor gwiazdek
                             }
 
-                            a:hover, a.active, a:hover::before, a.active::before, span a:hover::before, span a.active::before {
+                            a:hover,
+                            a.active,
+                            a:hover::before,
+                            a.active::before,
+                            span a:hover::before,
+                            span a.active::before {
                                 color: #F5C518 !important; // Ciemniejszy złoty po najechaniu
                             }
                         }
@@ -1427,10 +1437,10 @@ p#countdown-mobile {
     background-color: $color-neutral-50;
     padding-bottom: 0;
     max-width: 1428px;
-    
+
     width: auto;
-    margin-left: 20px;
-    margin-right: 20px;
+    // margin-left: 20px;
+    // margin-right: 20px;
     margin-bottom: $space-64;
 
     @media (min-width: $breakpoint-tablet) {
@@ -2349,8 +2359,10 @@ body .woosg-wrap .woocommerce-Price-amount.amount,
 body .woosg-wrap bdi {
     display: none !important;
 }
+
 .shav-svg-features {
     margin-bottom: 45px !important;
+
     @media (max-width: 768px) {
         margin-bottom: 32px !important;
     }
@@ -2383,14 +2395,9 @@ body .woosg-wrap bdi {
     font-size: $font-size-body-m;
     font-weight: $font-weight-medium;
     transition: background 0.2s ease, opacity 0.2s ease;
-    
+
     &:hover {
         background: $color-neutral-400;
         opacity: 0.9;
     }
 }
-
-
-
-
-
