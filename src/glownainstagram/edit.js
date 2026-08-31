@@ -1,14 +1,55 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl } from "@wordpress/components";
+import { PanelBody, Button, TextControl, TextareaControl } from "@wordpress/components";
+import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
   const blockProps = useBlockProps({ className: "glownainstagram" });
+  const [importJson, setImportJson] = useState("");
+
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
+          <TextareaControl
+            label="Skopiuj ten JSON dla AI"
+            value={(() => {
+              const data = {
+                sectionTitle: a.sectionTitle || '',
+                profileName: a.profileName || '',
+                profileFollowers: a.profileFollowers || ''
+              };
+              return JSON.stringify(data, null, 2);
+            })()}
+            readOnly
+            rows={6}
+            help="Skopiuj i wklej do AI z prośbą o przetłumaczenie samych wartości."
+          />
+          <TextareaControl
+            label="Wklej przetłumaczony JSON"
+            value={importJson}
+            onChange={setImportJson}
+            rows={6}
+          />
+          <Button variant="primary" onClick={() => {
+            try {
+              const parsed = JSON.parse(importJson);
+              const updates = {};
+              if (parsed.sectionTitle !== undefined) updates.sectionTitle = parsed.sectionTitle;
+              if (parsed.profileName !== undefined) updates.profileName = parsed.profileName;
+              if (parsed.profileFollowers !== undefined) updates.profileFollowers = parsed.profileFollowers;
+              setAttributes(updates);
+              alert('Zaktualizowano pomyślnie!');
+              setImportJson('');
+            } catch (e) {
+              alert('Błąd! Niepoprawny format JSON.');
+            }
+          }} style={{ width: '100%', justifyContent: 'center' }}>
+            Importuj tłumaczenie
+          </Button>
+        </PanelBody>
         <PanelBody title="Logo profilu" initialOpen={true}>
           <MediaUploadCheck>
             <MediaUpload onSelect={(media) => setAttributes({ profileLogo: media.url })} allowedTypes={["image"]} value={a.profileLogo}
