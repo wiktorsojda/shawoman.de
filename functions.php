@@ -3762,3 +3762,14 @@ require get_template_directory() . '/inc/category-image.php';
 // Wymuszenie wyświetlania adresu dostawy w mailach WooCommerce (dla paczkomatów na rynku DE)
 add_filter('woocommerce_order_needs_shipping_address', '__return_true', 999);
 require_once get_theme_file_path('/inc/shav-reviews.php');
+
+// Przepięcie notatek do zamówienia pod dane adresowe
+add_filter( 'woocommerce_checkout_fields', 'shav_move_checkout_order_notes', 9999 );
+function shav_move_checkout_order_notes( $fields ) {
+    if ( isset( $fields['order']['order_comments'] ) ) {
+        $fields['billing']['order_comments'] = $fields['order']['order_comments'];
+        unset( $fields['order']['order_comments'] );
+    }
+    return $fields;
+}
+
