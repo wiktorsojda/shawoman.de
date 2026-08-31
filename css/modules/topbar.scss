@@ -54,7 +54,7 @@
         @media (max-width: 858px) {
             grid-row: 1;
             grid-column: 1;
-            animation: fadeAlternate 8s infinite;
+            animation: fadeAlternate 8s ease-in-out infinite;
             flex-wrap: wrap;
             justify-content: center;
             row-gap: 4px;
@@ -161,7 +161,7 @@
         @media (max-width: 858px) {
             grid-row: 1;
             grid-column: 1;
-            animation: fadeAlternate 8s infinite;
+            animation: fadeAlternate 8s ease-in-out infinite;
             animation-delay: 4s;
             opacity: 0;
         }
