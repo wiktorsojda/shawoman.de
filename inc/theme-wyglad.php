@@ -69,6 +69,8 @@ function shav_store_settings_scripts($hook) {
         wp_enqueue_style('woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), WC_VERSION);
         wp_enqueue_script('wc-enhanced-select');
     }
+
+    wp_enqueue_script('jquery-ui-sortable');
 }
 
 // 4. Renderowanie interfejsu wizualnego (UI)
@@ -128,6 +130,11 @@ function shav_render_store_settings_page() {
         
         .shav-img-preview { max-width: 300px; margin-top: 10px; border-radius: 4px; display: block; border: 1px dashed #ccd0d4; padding: 5px; }
         .button-media-upload { margin-top: 5px !important; }
+
+        .sortable-logo-item { display: inline-flex; position: relative; align-items: center; justify-content: center; border: 1px solid #ccd0d4; border-radius: 4px; padding: 5px; background: #fff; cursor: move; }
+        .sortable-logo-item img { max-width: 60px; max-height: 40px; object-fit: contain; pointer-events: none; }
+        .sortable-logo-item .remove-logo { position: absolute; top: -8px; right: -8px; width: 20px; height: 20px; background: #d63638; color: #fff; border-radius: 50%; text-align: center; line-height: 18px; font-weight: bold; cursor: pointer; text-decoration: none; font-size: 14px; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+        .sortable-logo-item .remove-logo:hover { background: #b32d2e; }
 
         .shav-accordion-item { background: #f6f7f7; border: 1px solid #ccd0d4; border-radius: 6px; padding: 20px; margin-bottom: 20px; position: relative; }
         .shav-accordion-item h3, .shav-repeater-row h3 { margin-top: 0; padding-bottom: 10px; border-bottom: 1px solid #ccd0d4; font-size: 16px; margin-bottom: 20px; }
@@ -537,22 +544,27 @@ function shav_render_store_settings_page() {
                     
                     <div class="shav-field-group">
                         <label class="shav-label">Loga Płatności (PNG/SVG)</label>
-                        <div style="display:flex; align-items: center; gap: 15px;">
-                            <input type="text" name="shav_checkout_payment_logos" id="shav_checkout_payment_logos" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_checkout_payment_logos', '')); ?>" style="width: 300px;">
-                            <button type="button" class="button button-secondary button-media-upload" data-target="shav_checkout_payment_logos" data-multiple="true">Wybierz z biblioteki</button>
-                            <div class="media-upload-preview" style="display:flex; align-items:center; gap: 5px;">
-                                <?php 
-                                $logos_val = get_option('shav_checkout_payment_logos', '');
-                                if (!empty($logos_val)) {
-                                    $urls = explode(',', $logos_val);
-                                    foreach ($urls as $url) {
-                                        echo '<img src="' . esc_url($url) . '" style="max-width: 50px; max-height: 30px; object-fit: contain; margin-right: 5px;" alt="Podgląd">';
-                                    }
-                                }
-                                ?>
-                            </div>
+                        <div style="margin-bottom: 15px;">
+                            <button type="button" class="button button-secondary button-media-upload-sortable" data-target="shav_checkout_payment_logos" data-multiple="true">+ Dodaj / Edytuj Logotypy Płatności</button>
                         </div>
-                        <span class="shav-desc" style="margin-top: 10px;">Wybierz plik PNG lub SVG z logotypami płatności (wyświetlany w koszyku/checkout).</span>
+                        
+                        <input type="hidden" name="shav_checkout_payment_logos" id="shav_checkout_payment_logos" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_checkout_payment_logos', '')); ?>">
+                        
+                        <div class="media-upload-preview-sortable" id="sortable-logos-container" style="display:flex; align-items:center; flex-wrap:wrap; gap: 15px; min-height: 50px; padding: 10px; background: #f6f7f7; border: 1px dashed #ccd0d4; border-radius: 4px;">
+                            <?php 
+                            $logos_val = get_option('shav_checkout_payment_logos', '');
+                            if (!empty($logos_val)) {
+                                $urls = explode(',', $logos_val);
+                                foreach ($urls as $url) {
+                                    if(empty(trim($url))) continue;
+                                    echo '<div class="sortable-logo-item" data-url="'.esc_attr($url).'"><img src="' . esc_url($url) . '" alt="Logo"><span class="remove-logo" title="Usuń">&times;</span></div>';
+                                }
+                            } else {
+                                echo '<span class="empty-logos-msg" style="color:#8c8f94; font-style:italic; font-size:13px;">Brak wybranych logotypów. Kliknij przycisk powyżej, aby dodać.</span>';
+                            }
+                            ?>
+                        </div>
+                        <span class="shav-desc" style="margin-top: 10px;">Przeciągaj logotypy myszką, aby zmienić ich kolejność. Kliknij ✕, aby usunąć wybrany logotyp z listy.</span>
                     </div>
 
                     <div class="shav-field-group">
@@ -662,6 +674,70 @@ function shav_render_store_settings_page() {
                                 previewContainer.style.display = 'block';
                             }
                         }
+                    });
+
+                    frame.open();
+                });
+            });
+
+            // Media Uploader dla płatności (sortowalny)
+            const sortableContainer = jQuery('#sortable-logos-container');
+            const hiddenLogosInput = jQuery('#shav_checkout_payment_logos');
+            
+            function updateSortableLogosInput() {
+                let urls = [];
+                sortableContainer.find('.sortable-logo-item').each(function() {
+                    urls.push(jQuery(this).data('url'));
+                });
+                hiddenLogosInput.val(urls.join(','));
+                
+                if (urls.length === 0) {
+                    if (sortableContainer.find('.empty-logos-msg').length === 0) {
+                        sortableContainer.html('<span class="empty-logos-msg" style="color:#8c8f94; font-style:italic; font-size:13px;">Brak wybranych logotypów. Kliknij przycisk powyżej, aby dodać.</span>');
+                    }
+                } else {
+                    sortableContainer.find('.empty-logos-msg').remove();
+                }
+            }
+            
+            if (sortableContainer.length) {
+                sortableContainer.sortable({
+                    items: '.sortable-logo-item',
+                    cursor: 'move',
+                    update: function(event, ui) {
+                        updateSortableLogosInput();
+                    }
+                });
+                
+                // Usuwanie logo
+                sortableContainer.on('click', '.remove-logo', function(e) {
+                    e.preventDefault();
+                    jQuery(this).closest('.sortable-logo-item').remove();
+                    updateSortableLogosInput();
+                });
+            }
+            
+            document.querySelectorAll('.button-media-upload-sortable').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    let frame = wp.media({
+                        title: 'Wybierz logotypy',
+                        button: { text: 'Dodaj do listy' },
+                        multiple: true
+                    });
+
+                    frame.on('select', function() {
+                        let attachments = frame.state().get('selection').toJSON();
+                        
+                        sortableContainer.find('.empty-logos-msg').remove();
+                        
+                        attachments.forEach(att => {
+                            let itemHtml = '<div class="sortable-logo-item" data-url="' + att.url + '"><img src="' + att.url + '" alt="Logo"><span class="remove-logo" title="Usuń">&times;</span></div>';
+                            sortableContainer.append(itemHtml);
+                        });
+                        
+                        updateSortableLogosInput();
                     });
 
                     frame.open();
