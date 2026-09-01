@@ -37,7 +37,7 @@ function shav_display_payment_logos() {
                 animation: shav-payment-scroll 15s linear infinite;
             }
             .shav-payment-logos-gallery img {
-                height: 17px;
+                height: 20px;
                 width: auto;
                 object-fit: contain;
                 ' . $filter_css . '
@@ -51,17 +51,17 @@ function shav_display_payment_logos() {
                 content: "";
                 display: block;
                 width: 1px;
-                height: 17px;
+                height: 20px;
                 background-color: #A5A5A5;
                 border-radius: 1px;
                 margin: 0 12px;
             }
             @media (max-width: 768px) {
                 .shav-payment-logos-gallery img {
-                    height: 15px;
+                    height: 18px;
                 }
                 .shav-payment-logo-wrap:not(:last-child)::after {
-                    height: 15px;
+                    height: 18px;
                     margin: 0 10px;
                 }
             }
