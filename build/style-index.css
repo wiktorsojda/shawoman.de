@@ -1807,6 +1807,13 @@ p#countdown-mobile .countdown-wrapper {
 
 .woocommerce .woocommerce-product-rating .star-rating {
   margin: 0 12px 0 0 !important;
+  color: #E9BD0D !important;
+}
+.woocommerce .woocommerce-product-rating .star-rating span::before {
+  color: #E9BD0D !important;
+}
+.woocommerce .woocommerce-product-rating .star-rating::before {
+  color: #bcbcbc !important;
 }
 
 .woocommerce .woocommerce-product-rating {
