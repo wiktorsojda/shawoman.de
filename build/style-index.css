@@ -1822,13 +1822,16 @@ p#countdown-mobile .countdown-wrapper {
 
 .woocommerce-review-link {
   line-height: 1;
-  color: #027fda;
+  color: #3f3f3f;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   text-decoration-line: underline;
+}
+.woocommerce-review-link:hover {
+  color: #252525;
 }
 
 .woocommerce div.product .woocommerce-product-rating {
