@@ -60,6 +60,15 @@ function add_lowest_price_field()
         )
     );
 
+    // Checkbox to completely hide the Omnibus price
+    woocommerce_wp_checkbox(
+        array(
+            'id' => 'hide_omnibus_price',
+            'label' => __('Nie pokazuj Omnibus', 'woocommerce'),
+            'description' => __('Zaznacz, aby całkowicie ukryć cenę z ostatnich 30 dni (Omnibus) dla tego produktu.', 'woocommerce')
+        )
+    );
+
     echo '</div>';
 }
 add_action('woocommerce_product_options_pricing', 'add_lowest_price_field');
@@ -72,6 +81,10 @@ function save_lowest_price_field($post_id)
     // Save the lowest price from the last 30 days
     $lowest_price = isset($_POST['lowest_price_30_days']) ? sanitize_text_field($_POST['lowest_price_30_days']) : '';
     $product->update_meta_data('lowest_price_30_days', $lowest_price);
+
+    // Save the hide omnibus checkbox
+    $hide_omnibus = isset($_POST['hide_omnibus_price']) ? 'yes' : 'no';
+    $product->update_meta_data('hide_omnibus_price', $hide_omnibus);
 
     $product->save();
 }
@@ -86,6 +99,11 @@ function display_lowest_price_30_days()
         return;
     if (function_exists('shav_is_hidden') && shav_is_hidden($product->get_id(), 'lowest_price'))
         return;
+
+    // Check if the product has the hide Omnibus checkbox checked
+    if ($product->get_meta('hide_omnibus_price') === 'yes') {
+        return;
+    }
 
     $lowest_price = shav_get_field($product->get_id(), 'lowest_price_30_days', 'lowest_price');
     $is_manual = !empty($lowest_price);
