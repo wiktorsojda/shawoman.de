@@ -681,44 +681,44 @@ function shav_render_store_settings_page() {
             });
 
             // Media Uploader dla płatności (sortowalny)
-            const sortableContainer = jQuery('#sortable-logos-container');
-            const hiddenLogosInput = jQuery('#shav_checkout_payment_logos');
-            
-            function updateSortableLogosInput() {
-                let urls = [];
-                sortableContainer.find('.sortable-logo-item').each(function() {
-                    urls.push(jQuery(this).data('url'));
-                });
-                hiddenLogosInput.val(urls.join(','));
+            jQuery(document).ready(function($) {
+                const sortableContainer = $('#sortable-logos-container');
+                const hiddenLogosInput = $('#shav_checkout_payment_logos');
                 
-                if (urls.length === 0) {
-                    if (sortableContainer.find('.empty-logos-msg').length === 0) {
-                        sortableContainer.html('<span class="empty-logos-msg" style="color:#8c8f94; font-style:italic; font-size:13px;">Brak wybranych logotypów. Kliknij przycisk powyżej, aby dodać.</span>');
+                function updateSortableLogosInput() {
+                    let urls = [];
+                    sortableContainer.find('.sortable-logo-item').each(function() {
+                        urls.push($(this).data('url'));
+                    });
+                    hiddenLogosInput.val(urls.join(','));
+                    
+                    if (urls.length === 0) {
+                        if (sortableContainer.find('.empty-logos-msg').length === 0) {
+                            sortableContainer.html('<span class="empty-logos-msg" style="color:#8c8f94; font-style:italic; font-size:13px;">Brak wybranych logotypów. Kliknij przycisk powyżej, aby dodać.</span>');
+                        }
+                    } else {
+                        sortableContainer.find('.empty-logos-msg').remove();
                     }
-                } else {
-                    sortableContainer.find('.empty-logos-msg').remove();
                 }
-            }
-            
-            if (sortableContainer.length) {
-                sortableContainer.sortable({
-                    items: '.sortable-logo-item',
-                    cursor: 'move',
-                    update: function(event, ui) {
-                        updateSortableLogosInput();
-                    }
-                });
                 
-                // Usuwanie logo
-                sortableContainer.on('click', '.remove-logo', function(e) {
-                    e.preventDefault();
-                    jQuery(this).closest('.sortable-logo-item').remove();
-                    updateSortableLogosInput();
-                });
-            }
-            
-            document.querySelectorAll('.button-media-upload-sortable').forEach(button => {
-                button.addEventListener('click', function(e) {
+                if (sortableContainer.length && typeof sortableContainer.sortable === 'function') {
+                    sortableContainer.sortable({
+                        items: '.sortable-logo-item',
+                        cursor: 'move',
+                        update: function(event, ui) {
+                            updateSortableLogosInput();
+                        }
+                    });
+                    
+                    // Usuwanie logo
+                    sortableContainer.on('click', '.remove-logo', function(e) {
+                        e.preventDefault();
+                        $(this).closest('.sortable-logo-item').remove();
+                        updateSortableLogosInput();
+                    });
+                }
+                
+                $('.button-media-upload-sortable').on('click', function(e) {
                     e.preventDefault();
                     
                     let frame = wp.media({
