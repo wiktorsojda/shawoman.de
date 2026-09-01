@@ -38,11 +38,16 @@ function shav_display_payment_logos()
                 border: none;
                 border-bottom: 1px solid #EAEAEA;
                 width: 100% !important;
-                margin: 10px 0 !important;
+                margin: 30px 0 !important;
                 clear: both;
             }
             .shav-payment-logos-separator + .cart-icons {
                 margin-top: 0 !important;
+            }
+            @media (max-width: 768px) {
+                .shav-payment-logos-separator {
+                    margin: 20px 0 !important;
+                }
             }
             .shav-payment-logos-gallery {
                 display: flex;
