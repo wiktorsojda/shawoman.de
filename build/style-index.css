@@ -2141,6 +2141,10 @@ ul.flex-direction-nav li a:hover {
   padding-bottom: 0;
   margin-bottom: 0px !important;
   border: none;
+  color: #ac0000 !important;
+}
+.custom-price-add-to-cart .price del, .custom-price-add-to-cart .price del .woocommerce-Price-amount {
+  color: #a5a5a5 !important;
 }
 .custom-price-add-to-cart form.cart {
   display: flex !important;
@@ -4169,7 +4173,7 @@ img.shop-banner-image-mobile {
   font-size: 16px !important;
   line-height: 19.2px !important;
   letter-spacing: -0.04em !important;
-  color: #3f3f3f !important;
+  color: #ac0000 !important;
   white-space: nowrap !important;
 }
 .product-card__price--single .woocommerce-Price-amount,
