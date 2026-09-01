@@ -224,8 +224,9 @@
 
         .product-card__body {
             flex: 1 1 auto !important;
-            gap: 4px !important;                  // mobile mniejszy gap miedzy text a price (Figma ~16-32)
-            padding: 20px 12px 12px 12px!important;  // Figma: y=37, x-padding 12
+            justify-content: center !important;
+            gap: 4px !important;
+            padding: 12px !important;
             width: auto !important;
             min-width: 0 !important;
         }
