@@ -18,6 +18,13 @@ function shav_display_payment_logos()
             return;
 
         echo '<style>
+            .wc-proceed-to-checkout .checkout-button, 
+            .woocommerce-checkout .checkout-button,
+            .woocommerce-cart .checkout-button,
+            #place_order {
+                background-color: #AD0000 !important;
+                color: #FFFFFF !important;
+            }
             .shav-payment-logos-wrapper {
                 max-width: 100%;
                 min-width: 0;
@@ -26,6 +33,16 @@ function shav_display_payment_logos()
                 margin-bottom: 0;
                 position: relative;
                 box-sizing: border-box;
+            }
+            .shav-payment-logos-separator {
+                border: none;
+                border-bottom: 1px solid #EAEAEA;
+                width: 100% !important;
+                margin: 10px 0 !important;
+                clear: both;
+            }
+            .shav-payment-logos-separator + .cart-icons {
+                margin-top: 0 !important;
             }
             .shav-payment-logos-gallery {
                 display: flex;
@@ -91,7 +108,7 @@ function shav_display_payment_logos()
 
         // Jeśli to strona koszyka, dodaj separator przed ikonami gwarancyjnymi
         if (doing_action('woocommerce_proceed_to_checkout') || doing_action('woocommerce_review_order_after_submit')) {
-            echo '<hr style="border: none; border-bottom: 1px solid #EAEAEA; width: 100% !important; margin: 10px 0 !important; clear: both;" />';
+            echo '<hr class="shav-payment-logos-separator" />';
         }
     }
 }
