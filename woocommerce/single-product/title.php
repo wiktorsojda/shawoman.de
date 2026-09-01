@@ -21,34 +21,24 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-// Tytul: jesli checkbox `_title_accent_last_word` aktywny w produkcie — ostatnie
-// slowo wyswietl czcionka akcentowa (Dolce, kursywa). Figma 390:1473.
+// Tytul: z globalnych ustawień (Wygląd Sklepu) wyciągamy czy włączony akcent
+// i jakie słowo akcentować.
 global $product;
-$accent_on = false;
-if ($product) {
-    $val = function_exists('shav_get_field')
-        ? shav_get_field($product->get_id(), '_title_accent_last_word', 'title_accent')
-        : $product->get_meta('_title_accent_last_word');
-    $accent_on = ($val === 'yes');
-    
-    $custom_word = function_exists('shav_get_field')
-        ? shav_get_field($product->get_id(), '_title_accent_custom_word', 'title_accent')
-        : $product->get_meta('_title_accent_custom_word');
-}
+$accent_on = (get_option('shav_global_title_accent_enabled', 'yes') === 'yes');
+$custom_word = get_option('shav_global_title_accent_word', 'Woman');
+
 $full_title = get_the_title();
 
 if ($accent_on) {
     $word_to_highlight = '';
     
     if (!empty($custom_word) && stripos($full_title, $custom_word) !== false) {
-        $word_to_highlight = $custom_word;
-    } elseif (stripos($full_title, 'woman') !== false) {
-        // Szukaj dokładnie słowa woman ignorując wielkość liter
-        preg_match('/\bwoman\b/i', $full_title, $matches);
+        // Szukaj dokładnie tego słowa ignorując wielkość liter
+        preg_match('/\b' . preg_quote($custom_word, '/') . '\b/i', $full_title, $matches);
         if (!empty($matches)) {
             $word_to_highlight = $matches[0];
         } else {
-            $word_to_highlight = 'Woman';
+            $word_to_highlight = $custom_word;
         }
     } else {
         $parts = preg_split('/\s+/', trim($full_title));

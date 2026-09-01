@@ -54,6 +54,10 @@ function shav_register_store_settings() {
     // Zakładka 7: Checkout / buybox
     register_setting($settings_group, 'shav_checkout_payment_logos');
     register_setting($settings_group, 'shav_checkout_payment_logos_grayscale');
+
+    // Zakładka 8: Tytuł Produktu
+    register_setting($settings_group, 'shav_global_title_accent_enabled');
+    register_setting($settings_group, 'shav_global_title_accent_word');
 }
 
 // 3. Załadowanie skryptów (Media Uploader + WooCommerce Select2)
@@ -185,6 +189,7 @@ function shav_render_store_settings_page() {
                 <div class="shav-tab" data-target="tab-svg-badges">Pill/SVG (Pod ratingiem)</div>
                 <div class="shav-tab" data-target="tab-topbar">Pasek Pozapromocyjny</div>
                 <div class="shav-tab" data-target="tab-checkout">Checkout / buybox</div>
+                <div class="shav-tab" data-target="tab-product-title">Tytuł Produktu</div>
             </div>
             <button type="button" class="shav-tab-nav" id="shav-tabs-right" aria-label="Przewiń w prawo">&rsaquo;</button>
         </div>
@@ -574,6 +579,27 @@ function shav_render_store_settings_page() {
                             <option value="no" <?php selected(get_option('shav_checkout_payment_logos_grayscale', 'yes'), 'no'); ?>>Wyłączone (oryginalne kolory)</option>
                         </select>
                         <span class="shav-desc" style="margin-top: 5px;">Zmienia kolorowe ikony na szare (oraz delikatnie przezroczyste), aby dopasować do subtelnego layoutu sklepu. Domyślnie włączone.</span>
+                    </div>
+                </div>
+
+                <!-- ZAKŁADKA 8: TYTUŁ PRODUKTU -->
+                <div id="tab-product-title" class="shav-tab-content">
+                    <h2>Tytuł Produktu (Karta Produktu)</h2>
+                    <p class="shav-desc">Globalne ustawienia dla tytułów na karcie produktu.</p>
+                    
+                    <div class="shav-field-group">
+                        <label class="shav-label">Akcent Dolce w tytule (Globalnie)</label>
+                        <select name="shav_global_title_accent_enabled" class="shav-input-text" style="max-width: 200px;">
+                            <option value="yes" <?php selected(get_option('shav_global_title_accent_enabled', 'yes'), 'yes'); ?>>Włączony</option>
+                            <option value="no" <?php selected(get_option('shav_global_title_accent_enabled', 'yes'), 'no'); ?>>Wyłączony</option>
+                        </select>
+                        <span class="shav-desc" style="margin-top: 5px;">Włącza lub wyłącza wyróżnianie wybranego słowa w nazwach produktów w całym sklepie.</span>
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Domyślne słowo do wyróżnienia</label>
+                        <input type="text" name="shav_global_title_accent_word" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_global_title_accent_word', 'Woman')); ?>">
+                        <span class="shav-desc">Słowo, które zostanie wyróżnione fontem Dolce. Jeśli pole będzie puste, domyślnie wyróżnione zostanie ostatnie słowo w tytule. (Wielkość liter nie ma znaczenia).</span>
                     </div>
                 </div>
 
