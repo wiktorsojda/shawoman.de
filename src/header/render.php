@@ -74,12 +74,14 @@ if ($topbar_data):
         <div class="shav-topbar__trustpilot">
             <?php 
             $tp_link = isset($topbar_data['trustpilot']) ? $topbar_data['trustpilot'] : '';
+            $tp_hide_stars = isset($topbar_data['hide_stars']) ? $topbar_data['hide_stars'] : false;
             if (!empty($tp_link)): ?>
                 <a href="<?php echo esc_url($tp_link); ?>" target="_blank" rel="noopener noreferrer" class="shav-topbar__trustpilot-link">
             <?php else: ?>
                 <span class="shav-topbar__trustpilot-link">
             <?php endif; ?>
             
+            <?php if (!$tp_hide_stars): ?>
             <span class="shav-topbar__trustpilot-rating">4.9</span>
             <div class="shav-topbar__trustpilot-stars">
                 <?php for($i=0; $i<5; $i++): ?>
@@ -88,6 +90,7 @@ if ($topbar_data):
                     </svg>
                 <?php endfor; ?>
             </div>
+            <?php endif; ?>
             <div class="shav-topbar__trustpilot-logo">
                 <svg class="star-big" style="width: 18px; height: 18px; flex-shrink: 0;" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21.5546 7.79727H13.3236L10.7812 0L8.23093 7.79727L0 7.78936L6.66578 12.6132L4.11547 20.4026L10.7812 15.5866L17.4391 20.4026L14.8967 12.6132L21.5546 7.79727Z" fill="currentColor"/>

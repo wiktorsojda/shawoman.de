@@ -30,6 +30,7 @@ if (!function_exists('shav_get_topbar_data')) {
                 'bg' => $bg,
                 'color' => $color,
                 'trustpilot' => get_option('shav_topbar_trustpilot_link', ''),
+                'hide_stars' => get_option('shav_topbar_trustpilot_hide_stars', 'no') === 'yes',
             ];
         }
 
@@ -51,6 +52,7 @@ if (!function_exists('shav_get_topbar_data')) {
                     'bg' => $bg,
                     'color' => $color,
                     'trustpilot' => $trustpilot,
+                    'hide_stars' => get_option('shav_topbar_trustpilot_hide_stars', 'no') === 'yes',
                 ];
             }
         }

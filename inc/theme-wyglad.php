@@ -49,6 +49,7 @@ function shav_register_store_settings() {
     register_setting($settings_group, 'shav_topbar_bg');
     register_setting($settings_group, 'shav_topbar_color');
     register_setting($settings_group, 'shav_topbar_trustpilot_link');
+    register_setting($settings_group, 'shav_topbar_trustpilot_hide_stars');
 
     // Zakładka 7: Checkout / buybox
     register_setting($settings_group, 'shav_checkout_payment_logos');
@@ -518,6 +519,14 @@ function shav_render_store_settings_page() {
                         <label class="shav-label">Link do Trustpilot</label>
                         <input type="text" name="shav_topbar_trustpilot_link" class="shav-input-text" placeholder="Opcjonalny link, np. https://www.trustpilot.com/..." value="<?php echo esc_attr(get_option('shav_topbar_trustpilot_link', '')); ?>">
                         <p class="description">Jeśli zostawisz puste, element wyświetli się bez linku.</p>
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Ukryj średnią ocen i gwiazdki Trustpilot</label>
+                        <select name="shav_topbar_trustpilot_hide_stars" class="shav-input-text" style="max-width: 250px;">
+                            <option value="no" <?php selected(get_option('shav_topbar_trustpilot_hide_stars', 'no'), 'no'); ?>>Nie (Pokaż 4.9 i gwiazdki)</option>
+                            <option value="yes" <?php selected(get_option('shav_topbar_trustpilot_hide_stars', 'no'), 'yes'); ?>>Tak (Tylko logo Trustpilot)</option>
+                        </select>
                     </div>
                 </div>
 
