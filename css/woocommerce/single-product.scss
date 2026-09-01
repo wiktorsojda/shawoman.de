@@ -827,7 +827,7 @@ p#countdown-mobile {
                 font-size: 16px;
                 width: 5.4em;
                 font-family: WooCommerce;
-                color: #FDBF07; // Star color z Figmy
+                color: #E9BD0D; // Star color z Figmy
 
                 &::before {
                     content: "\53\53\53\53\53";
@@ -852,7 +852,7 @@ p#countdown-mobile {
                     top: 0;
                     position: absolute;
                     left: 0;
-                    color: #FDBF07;
+                    color: #E9BD0D;
                 }
             }
 
@@ -1205,7 +1205,7 @@ p#countdown-mobile {
                     .star-rating {
                         grid-area: rating;
                         margin: 0;
-                        color: #FDBF07;
+                        color: #E9BD0D;
                         font-size: 16px;
                         justify-self: start;
                         width: 5.4em;
@@ -1215,7 +1215,7 @@ p#countdown-mobile {
                         }
 
                         span::before {
-                            color: #FDBF07;
+                            color: #E9BD0D;
                         }
                     }
 
