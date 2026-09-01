@@ -56,7 +56,8 @@ function add_lowest_price_field()
             'id' => 'lowest_price_30_days',
             'label' => __('Niedrigster Preis der letzten 30 Tage:', 'woocommerce'),
             'desc_tip' => 'true',
-            'description' => __('Geben Sie den niedrigsten Preis der letzten 30 Tage vor der Rabattierung ein.', 'woocommerce')
+            'description' => __('Geben Sie den niedrigsten Preis der letzten 30 Tage vor der Rabattierung ein.', 'woocommerce'),
+            'wrapper_class' => 'show_if_simple show_if_variable show_if_woosg show_if_external show_if_grouped'
         )
     );
 
@@ -65,7 +66,8 @@ function add_lowest_price_field()
         array(
             'id' => 'hide_omnibus_price',
             'label' => __('Nie pokazuj Omnibus', 'woocommerce'),
-            'description' => __('Zaznacz, aby całkowicie ukryć cenę z ostatnich 30 dni (Omnibus) dla tego produktu.', 'woocommerce')
+            'description' => __('Zaznacz, aby całkowicie ukryć cenę z ostatnich 30 dni (Omnibus) dla tego produktu.', 'woocommerce'),
+            'wrapper_class' => 'show_if_simple show_if_variable show_if_woosg show_if_external show_if_grouped'
         )
     );
 
