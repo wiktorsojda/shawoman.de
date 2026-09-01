@@ -19,7 +19,8 @@ function shav_display_payment_logos() {
             .shav-payment-logos-wrapper {
                 width: 100%;
                 overflow: hidden;
-                margin: 15px 0;
+                margin-top: 24px;
+                margin-bottom: 15px;
                 position: relative;
             }
             .shav-payment-logos-gallery {
@@ -57,6 +58,9 @@ function shav_display_payment_logos() {
                 margin: 0 12px;
             }
             @media (max-width: 768px) {
+                .shav-payment-logos-wrapper {
+                    margin-top: 22.5px;
+                }
                 .shav-payment-logos-gallery img {
                     height: 18px;
                 }
