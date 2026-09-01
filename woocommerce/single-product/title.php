@@ -30,18 +30,51 @@ if ($product) {
         ? shav_get_field($product->get_id(), '_title_accent_last_word', 'title_accent')
         : $product->get_meta('_title_accent_last_word');
     $accent_on = ($val === 'yes');
+    
+    $custom_word = function_exists('shav_get_field')
+        ? shav_get_field($product->get_id(), '_title_accent_custom_word', 'title_accent')
+        : $product->get_meta('_title_accent_custom_word');
 }
 $full_title = get_the_title();
-$parts = preg_split('/\s+/', trim($full_title));
 
-if ($accent_on && count($parts) > 1) {
-    $accent = array_pop($parts);
-    $main = implode(' ', $parts);
-    printf(
-        '<h1 class="product_title entry-title"><span class="product_title__main">%s</span> <span class="product_title__accent">%s</span></h1>',
-        esc_html($main),
-        esc_html($accent)
-    );
+if ($accent_on) {
+    $word_to_highlight = '';
+    
+    if (!empty($custom_word) && stripos($full_title, $custom_word) !== false) {
+        $word_to_highlight = $custom_word;
+    } elseif (stripos($full_title, 'woman') !== false) {
+        // Szukaj dokładnie słowa woman ignorując wielkość liter
+        preg_match('/\bwoman\b/i', $full_title, $matches);
+        if (!empty($matches)) {
+            $word_to_highlight = $matches[0];
+        } else {
+            $word_to_highlight = 'Woman';
+        }
+    } else {
+        $parts = preg_split('/\s+/', trim($full_title));
+        if (count($parts) > 1) {
+            $word_to_highlight = array_pop($parts);
+        }
+    }
+    
+    if (!empty($word_to_highlight)) {
+        $pattern = '/' . preg_quote($word_to_highlight, '/') . '/i';
+        $title_html = preg_replace_callback($pattern, function($matches) {
+            return '</span> <span class="product_title__accent">' . esc_html($matches[0]) . '</span><span class="product_title__main">';
+        }, esc_html($full_title), 1);
+        
+        // Zastąpienie dodaje tag zamykający i otwierający wokół akcentu, 
+        // więc musimy owinąć całość w główny tag
+        $final_html = '<span class="product_title__main">' . $title_html . '</span>';
+        
+        // Wyczyść ewentualnie puste spany na początku i końcu
+        $final_html = str_replace('<span class="product_title__main"></span>', '', $final_html);
+        $final_html = str_replace('<span class="product_title__main"> </span>', ' ', $final_html);
+
+        echo '<h1 class="product_title entry-title">' . $final_html . '</h1>';
+    } else {
+        the_title('<h1 class="product_title entry-title">', '</h1>');
+    }
 } else {
     the_title('<h1 class="product_title entry-title">', '</h1>');
 }

@@ -30,7 +30,8 @@ function shav_fields_registry()
         'title_accent' => [
             'label'  => 'Akcent Dolce w tytule',
             'fields' => [
-                ['key' => '_title_accent_last_word', 'label' => 'Wyróżnij ostatnie słowo', 'type' => 'checkbox'],
+                ['key' => '_title_accent_last_word', 'label' => 'Wyróżnij wybrane słowo w tytule (zaznacz, by aktywować)', 'type' => 'checkbox'],
+                ['key' => '_title_accent_custom_word', 'label' => 'Słowo do wyróżnienia (puste = domyślnie "Woman" lub ostatnie słowo)', 'type' => 'text'],
             ],
         ],
         'rating' => [
