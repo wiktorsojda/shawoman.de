@@ -14,7 +14,7 @@ $bannerTitle       = isset($attributes['bannerTitle'])       ? $attributes['bann
 $bannerTitleAccent = isset($attributes['bannerTitleAccent']) ? $attributes['bannerTitleAccent'] : 'WOMAN15';
 $bannerSubtitle    = isset($attributes['bannerSubtitle'])    ? $attributes['bannerSubtitle']    : '';
 $bannerCtaLabel    = isset($attributes['bannerCtaLabel'])    ? $attributes['bannerCtaLabel']    : 'Dowiedz się więcej';
-$bannerCtaLabelMobile = isset($attributes['bannerCtaLabelMobile']) ? $attributes['bannerCtaLabelMobile'] : 'Dowiedz się więcej';
+$bannerCtaLabelMobile = !empty($attributes['bannerCtaLabelMobile']) ? $attributes['bannerCtaLabelMobile'] : $bannerCtaLabel;
 $bannerCtaURL      = isset($attributes['bannerCtaURL'])      ? $attributes['bannerCtaURL']      : '/sklep';
 
 // Atrybuty stylów - Tytuł (Desktop + Mobile)

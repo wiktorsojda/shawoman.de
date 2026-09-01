@@ -24,7 +24,8 @@ export default function Edit({ attributes, setAttributes }) {
                 bannerTitle: a.bannerTitle || '',
                 bannerTitleAccent: a.bannerTitleAccent || '',
                 bannerSubtitle: a.bannerSubtitle || '',
-                bannerCtaLabel: a.bannerCtaLabel || ''
+                bannerCtaLabel: a.bannerCtaLabel || '',
+                bannerCtaLabelMobile: a.bannerCtaLabelMobile || ''
               };
               return JSON.stringify(data, null, 2);
             })()}
@@ -48,6 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
               if (parsed.bannerTitleAccent !== undefined) updates.bannerTitleAccent = parsed.bannerTitleAccent;
               if (parsed.bannerSubtitle !== undefined) updates.bannerSubtitle = parsed.bannerSubtitle;
               if (parsed.bannerCtaLabel !== undefined) updates.bannerCtaLabel = parsed.bannerCtaLabel;
+              if (parsed.bannerCtaLabelMobile !== undefined) updates.bannerCtaLabelMobile = parsed.bannerCtaLabelMobile;
               setAttributes(updates);
               alert('Zaktualizowano pomyślnie!');
               setImportJson('');
@@ -99,7 +101,9 @@ export default function Edit({ attributes, setAttributes }) {
           )}
         </PanelBody>
 
-        <PanelBody title="Banner — link CTA" initialOpen={false}>
+        <PanelBody title="Banner — Teksty i Linki CTA" initialOpen={true}>
+          <TextControl label="Tekst przycisku (Desktop)" value={a.bannerCtaLabel} onChange={(v) => setAttributes({ bannerCtaLabel: v })} />
+          <TextControl label="Tekst przycisku (Mobile)" value={a.bannerCtaLabelMobile} onChange={(v) => setAttributes({ bannerCtaLabelMobile: v })} help="Pozostaw puste, by skopiować tekst z Desktopu" />
           <TextControl label="URL przycisku" value={a.bannerCtaURL} onChange={(v) => setAttributes({ bannerCtaURL: v })} />
         </PanelBody>
       </InspectorControls>
