@@ -2352,7 +2352,7 @@ body .woosg-wrap bdi {
   gap: 8px;
   padding: 2px 32px;
   border-radius: 48px;
-  background: #bcbcbc;
+  background: #252525;
   color: #ffffff;
   border: none;
   cursor: pointer;
@@ -2362,7 +2362,7 @@ body .woosg-wrap bdi {
   transition: background 0.2s ease, opacity 0.2s ease;
 }
 .shav-fake-tab-opinie:hover {
-  background: #a5a5a5;
+  background: #585858;
   opacity: 0.9;
 }
 
