@@ -2154,6 +2154,11 @@ ul.flex-direction-nav li a:hover {
         padding-bottom: $space-0;
         margin-bottom: 0px !important;
         border: none;
+        color: $color-accent-medium !important; // Czerwona cena niezależnie czy promo czy nie
+
+        del, del .woocommerce-Price-amount {
+            color: $color-neutral-400 !important; // Zabezpieczenie starej ceny
+        }
     }
 
     form.cart {
