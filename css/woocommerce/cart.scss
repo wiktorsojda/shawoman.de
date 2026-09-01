@@ -371,17 +371,14 @@
 .woocommerce-cart main .woocommerce,
 .woocommerce-checkout main .woocommerce {
     max-width: 1428px !important;
-    width: auto;
-    margin: 0 20px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 2vw, 32px);
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: $space-32;
     margin-bottom: $space-64;
-
-    @media (min-width: $breakpoint-tablet) {
-        width: calc(100% - 40px);
-        margin: 0 auto;
-    }
 
     .custom-image-section-cart {
         padding-bottom: $space-24;
