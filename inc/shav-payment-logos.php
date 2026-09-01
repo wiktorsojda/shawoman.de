@@ -91,7 +91,7 @@ function shav_display_payment_logos()
 
         // Jeśli to strona koszyka, dodaj separator przed ikonami gwarancyjnymi
         if (doing_action('woocommerce_proceed_to_checkout') || doing_action('woocommerce_review_order_after_submit')) {
-            echo '<div style="border-bottom: 1px solid #EAEAEA; max-width: 100%; margin: 0 0 15px 0; min-width: 0; box-sizing: border-box;"></div>';
+            echo '<div style="border-bottom: 1px solid #EAEAEA; max-width: 100%; margin: 10px 0; min-width: 0; box-sizing: border-box;"></div>';
         }
     }
 }
