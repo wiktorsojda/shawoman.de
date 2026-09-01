@@ -1718,13 +1718,17 @@ p#countdown-mobile {
 
 .woocommerce-review-link {
     line-height: 1;
-    color: $color-info-medium;
+    color: $color-neutral-800;
     font-family: $font-family-base;
     font-size: $font-size-body-m;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     text-decoration-line: underline;
+
+    &:hover {
+        color: $color-neutral-900;
+    }
 }
 
 .woocommerce div.product .woocommerce-product-rating {
