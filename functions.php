@@ -3773,3 +3773,9 @@ function shav_move_checkout_order_notes( $fields ) {
     return $fields;
 }
 
+
+// Zmiana tekstu "(optional)" w polach formularza na rynku DE
+add_filter( 'woocommerce_form_field_optional', 'shav_custom_optional_text', 10, 2 );
+function shav_custom_optional_text( $optional_text, $args ) {
+    return '&nbsp;<span class="optional">(optional)</span>';
+}
