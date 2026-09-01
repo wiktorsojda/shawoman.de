@@ -2642,33 +2642,49 @@ body .woosg-wrap bdi {
   justify-content: space-between;
 }
 
-.woocommerce-cart main .woocommerce {
+.woocommerce-cart main .woocommerce,
+.woocommerce-checkout main .woocommerce {
   max-width: 1428px !important;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 clamp(10px, 2vw, 32px);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 32px;
   margin-bottom: 64px;
 }
-.woocommerce-cart main .woocommerce .custom-image-section-cart {
+@media (max-width: 768px) {
+  .woocommerce-cart main .woocommerce,
+  .woocommerce-checkout main .woocommerce {
+    gap: 16px;
+  }
+}
+.woocommerce-cart main .woocommerce .custom-image-section-cart,
+.woocommerce-checkout main .woocommerce .custom-image-section-cart {
   padding-bottom: 24px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.woocommerce-cart main .woocommerce .cart-icons {
+.woocommerce-cart main .woocommerce .cart-icons,
+.woocommerce-checkout main .woocommerce .cart-icons {
   margin-top: 32px;
 }
-.woocommerce-cart main .woocommerce .col-md-8 {
+.woocommerce-cart main .woocommerce .col-md-8,
+.woocommerce-checkout main .woocommerce .col-md-8 {
   flex-basis: 62%;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   padding-left: 32px;
 }
-.woocommerce-cart main .woocommerce .col-md-4 {
+.woocommerce-cart main .woocommerce .col-md-4,
+.woocommerce-checkout main .woocommerce .col-md-4 {
   flex-basis: 30%;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive {
+.woocommerce-cart main .woocommerce table.shop_table_responsive,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive {
   border: none;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive th {
+.woocommerce-cart main .woocommerce table.shop_table_responsive th,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive th {
   color: #252525;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 12px;
@@ -2678,10 +2694,12 @@ body .woosg-wrap bdi {
   text-transform: uppercase;
   text-align: center;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item {
+.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive .cart_item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item .product-subtotal {
+.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item .product-subtotal,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive .cart_item .product-subtotal {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -2690,7 +2708,8 @@ body .woosg-wrap bdi {
   height: 120px;
   gap: 32px;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item .product-subtotal a {
+.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item .product-subtotal a,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive .cart_item .product-subtotal a {
   color: #252525 !important;
   text-align: left;
   font-family: "Be Vietnam Pro", sans-serif;
@@ -2700,18 +2719,22 @@ body .woosg-wrap bdi {
   line-height: normal;
   text-transform: uppercase;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item .product-subtotal a:hover {
+.woocommerce-cart main .woocommerce table.shop_table_responsive .cart_item .product-subtotal a:hover,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive .cart_item .product-subtotal a:hover {
   background-color: transparent !important;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive td {
+.woocommerce-cart main .woocommerce table.shop_table_responsive td,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive td {
   text-align: center;
   background-color: #fafafa;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive div.quantity input {
+.woocommerce-cart main .woocommerce table.shop_table_responsive div.quantity input,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive div.quantity input {
   margin: 0 !important;
   padding: 4px;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive .product-name {
+.woocommerce-cart main .woocommerce table.shop_table_responsive .product-name,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive .product-name {
   color: #252525;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 16px;
@@ -2721,7 +2744,8 @@ body .woosg-wrap bdi {
   text-decoration: none;
   background-color: #fafafa;
 }
-.woocommerce-cart main .woocommerce table.shop_table_responsive .product-name a {
+.woocommerce-cart main .woocommerce table.shop_table_responsive .product-name a,
+.woocommerce-checkout main .woocommerce table.shop_table_responsive .product-name a {
   color: #252525;
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 16px;
@@ -2730,14 +2754,16 @@ body .woosg-wrap bdi {
   line-height: normal;
   text-decoration: none;
 }
-.woocommerce-cart main .woocommerce .woocommerce-breadcrumb {
+.woocommerce-cart main .woocommerce .woocommerce-breadcrumb,
+.woocommerce-checkout main .woocommerce .woocommerce-breadcrumb {
   margin: 0;
   display: flex;
   align-items: center;
   gap: 8px;
   align-self: stretch;
 }
-.woocommerce-cart main .woocommerce .woocommerce-breadcrumb a:first-child {
+.woocommerce-cart main .woocommerce .woocommerce-breadcrumb a:first-child,
+.woocommerce-checkout main .woocommerce .woocommerce-breadcrumb a:first-child {
   color: #252525;
   text-decoration: none;
   font-family: "Be Vietnam Pro", sans-serif;
@@ -2746,7 +2772,8 @@ body .woosg-wrap bdi {
   font-weight: 700;
   line-height: normal;
 }
-.woocommerce-cart main .woocommerce .woocommerce-breadcrumb a {
+.woocommerce-cart main .woocommerce .woocommerce-breadcrumb a,
+.woocommerce-checkout main .woocommerce .woocommerce-breadcrumb a {
   color: rgba(0, 0, 0, 0.7);
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 12px;
@@ -2755,7 +2782,8 @@ body .woosg-wrap bdi {
   line-height: normal;
   text-decoration: none;
 }
-.woocommerce-cart main .woocommerce .cart-title {
+.woocommerce-cart main .woocommerce .cart-title,
+.woocommerce-checkout main .woocommerce .cart-title {
   margin: 0;
   color: #252525;
   font-family: "Be Vietnam Pro", sans-serif;
@@ -2764,27 +2792,32 @@ body .woosg-wrap bdi {
   font-weight: 600;
   line-height: normal;
 }
-.woocommerce-cart main .woocommerce .row {
+.woocommerce-cart main .woocommerce .row,
+.woocommerce-checkout main .woocommerce .row {
   display: flex;
   gap: 32px;
   justify-content: space-between;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals {
   display: flex;
   flex-direction: column;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals {
   display: flex;
   flex-direction: column;
   gap: 32px;
   width: 100%;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals tr {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals tr,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals tr {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals th {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals th,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals th {
   color: #252525;
   padding: 0 !important;
   margin: 0 !important;
@@ -2798,31 +2831,37 @@ body .woosg-wrap bdi {
   border: none;
   text-transform: none;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals td {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals td,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals td {
   padding: 0 !important;
   margin: 0 !important;
   padding-bottom: 24px !important;
   border: none;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals td p {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals td p,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals td p {
   margin: 0;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .order-total {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .order-total,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .order-total {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .order-total td {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .order-total td,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .order-total td {
   padding-top: 32px !important;
   padding-bottom: 0 !important;
   font-size: 20px;
   font-weight: 600;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .order-total th {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .order-total th,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .order-total th {
   padding-top: 32px !important;
   padding-bottom: 0 !important;
   font-size: 20px;
   font-weight: 600;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals bdi {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals bdi,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals bdi {
   color: #252525;
   text-align: left;
   font-family: "Be Vietnam Pro", sans-serif;
@@ -2830,13 +2869,16 @@ body .woosg-wrap bdi {
   font-style: normal;
   line-height: normal;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions {
   order: 3;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon {
   display: flex;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon button.button .wp-element-button {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon button.button .wp-element-button,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon button.button .wp-element-button {
   display: flex;
   width: 160px;
   height: 36px;
@@ -2848,13 +2890,18 @@ body .woosg-wrap bdi {
 }
 .woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon .woocommerce-error,
 .woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon .woocommerce-message,
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon .woocommerce-info {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon .woocommerce-info,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon .woocommerce-error,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon .woocommerce-message,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .cart-actions .coupon .woocommerce-info {
   display: none !important;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals table {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals table,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals table {
   order: 2 !important;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals h2 {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals h2,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals h2 {
   margin: 0 !important;
   order: 1;
   color: #252525;
@@ -2864,19 +2911,22 @@ body .woosg-wrap bdi {
   font-weight: 600;
   line-height: normal;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .wc-proceed-to-checkout {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .wc-proceed-to-checkout,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .wc-proceed-to-checkout {
   order: 4;
   padding: 0;
   margin: 0;
 }
-.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .wc-proceed-to-checkout a {
+.woocommerce-cart main .woocommerce .row div.cart-collaterals .cart_totals .wc-proceed-to-checkout a,
+.woocommerce-checkout main .woocommerce .row div.cart-collaterals .cart_totals .wc-proceed-to-checkout a {
   width: auto !important;
   margin: 0;
   margin-bottom: 24px;
   border-radius: 8px;
   background: #ac0000;
 }
-.woocommerce-cart main .woocommerce .cart-icons {
+.woocommerce-cart main .woocommerce .cart-icons,
+.woocommerce-checkout main .woocommerce .cart-icons {
   display: flex;
   height: 102px;
   flex-direction: column;
@@ -2884,13 +2934,15 @@ body .woosg-wrap bdi {
   align-items: flex-start;
   align-self: stretch;
 }
-.woocommerce-cart main .woocommerce .cart-icon-item-to-checkout {
+.woocommerce-cart main .woocommerce .cart-icon-item-to-checkout,
+.woocommerce-checkout main .woocommerce .cart-icon-item-to-checkout {
   display: flex;
   justify-content: left;
   align-items: center;
   gap: 16px;
 }
-.woocommerce-cart main .woocommerce .cart-icon-item-to-checkout span {
+.woocommerce-cart main .woocommerce .cart-icon-item-to-checkout span,
+.woocommerce-checkout main .woocommerce .cart-icon-item-to-checkout span {
   font-size: 12px;
   color: #252525;
   font-family: "Be Vietnam Pro", sans-serif;
@@ -10482,6 +10534,11 @@ body.has-mobile-menu-open {
      -moz-user-select: none;
           user-select: none;
 }
+@media (max-width: 768px) {
+  .summary.entry-summary .shav-accordion .shav-accordion__header {
+    padding: 12px !important;
+  }
+}
 .summary.entry-summary .shav-accordion .shav-accordion__left {
   display: flex;
   align-items: center;
@@ -10528,6 +10585,11 @@ body.has-mobile-menu-open {
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 14px;
   line-height: 1.5;
+}
+@media (max-width: 768px) {
+  .summary.entry-summary .shav-accordion .shav-accordion__content {
+    padding: 0 12px 12px !important;
+  }
 }
 .summary.entry-summary .shav-accordion .shav-accordion__content p {
   margin: 0 0 8px;

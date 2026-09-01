@@ -338,6 +338,10 @@
       padding: $space-24 !important;
       cursor: pointer;
       user-select: none;
+
+      @media (max-width: $breakpoint-tablet) {
+        padding: 12px !important;
+      }
     }
 
     .shav-accordion__left {
@@ -395,6 +399,10 @@
       font-family: $font-family-base;
       font-size: 14px;
       line-height: 1.5;
+
+      @media (max-width: $breakpoint-tablet) {
+        padding: 0 12px 12px !important;
+      }
 
       p {
         margin: 0 0 $space-8;
