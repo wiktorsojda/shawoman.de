@@ -971,7 +971,7 @@ add_action('woocommerce_after_single_product_summary', function () {
         echo '<div class="shav-product-pattern shav-product-pattern--' . esc_attr($id) . '">';
         
         if ($first && $has_opinie) {
-            echo '<div class="shav-product-fake-tabs-wrapper" style="display: flex; justify-content: center; width: 100%; margin: 20px 0;">';
+            echo '<div class="shav-product-fake-tabs-wrapper" style="display: flex; justify-content: center; width: 100%; margin-bottom: 20px;">';
             echo '  <button class="shav-fake-tab-opinie" id="tab-opinie">Bewertungen</button>';
             echo '</div>';
             
