@@ -2143,7 +2143,10 @@ ul.flex-direction-nav li a:hover {
   border: none;
   color: #ac0000 !important;
 }
-.custom-price-add-to-cart .price del, .custom-price-add-to-cart .price del .woocommerce-Price-amount {
+.custom-price-add-to-cart .price .woocommerce-Price-amount, .custom-price-add-to-cart .price .amount, .custom-price-add-to-cart .price bdi {
+  color: inherit !important;
+}
+.custom-price-add-to-cart .price del, .custom-price-add-to-cart .price del .woocommerce-Price-amount, .custom-price-add-to-cart .price del bdi {
   color: #a5a5a5 !important;
 }
 .custom-price-add-to-cart form.cart {
