@@ -19,12 +19,13 @@ function shav_display_payment_logos()
 
         echo '<style>
             .shav-payment-logos-wrapper {
-                width: 100%;
+                max-width: 100%;
+                min-width: 0;
                 overflow: hidden;
                 margin-top: 24px;
                 margin-bottom: 15px;
                 position: relative;
-                clear: both;
+                box-sizing: border-box;
             }
             .shav-payment-logos-gallery {
                 display: flex;
@@ -32,7 +33,7 @@ function shav_display_payment_logos()
                 align-items: center;
                 justify-content: center;
                 gap: 0;
-                width: 100%;
+                max-width: 100%;
                 overflow-x: auto;
                 scrollbar-width: none;
                 -ms-overflow-style: none;
@@ -64,6 +65,9 @@ function shav_display_payment_logos()
                 .shav-payment-logos-wrapper {
                     margin-top: 22.5px;
                 }
+                .shav-payment-logos-gallery {
+                    justify-content: flex-start;
+                }
                 .shav-payment-logos-gallery img {
                     height: 18px;
                 }
@@ -87,7 +91,7 @@ function shav_display_payment_logos()
 
         // Jeśli to strona koszyka, dodaj separator przed ikonami gwarancyjnymi
         if (doing_action('woocommerce_proceed_to_checkout') || doing_action('woocommerce_review_order_after_submit')) {
-            echo '<div style="border-bottom: 1px solid #EAEAEA; width: 100%; margin: 0 0 15px 0;"></div>';
+            echo '<div style="border-bottom: 1px solid #EAEAEA; max-width: 100%; margin: 0 0 15px 0; min-width: 0; box-sizing: border-box;"></div>';
         }
     }
 }
