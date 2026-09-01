@@ -1076,7 +1076,7 @@ p#countdown-mobile .countdown-wrapper {
   font-size: 16px;
   width: 5.4em;
   font-family: WooCommerce;
-  color: #FDBF07;
+  color: #E9BD0D;
 }
 .review-summary .rating-breakdown .rating-bar .star-rating::before {
   content: "SSSSS";
@@ -1099,7 +1099,7 @@ p#countdown-mobile .countdown-wrapper {
   top: 0;
   position: absolute;
   right: 0;
-  color: #FDBF07;
+  color: #E9BD0D;
 }
 .review-summary .rating-breakdown .rating-bar .bar {
   flex-grow: 1;
@@ -1430,7 +1430,7 @@ p#countdown-mobile .countdown-wrapper {
   -ms-grid-column: 3;
   grid-area: rating;
   margin: 0;
-  color: #FDBF07;
+  color: #E9BD0D;
   font-size: 16px;
   justify-self: start;
   width: 5.4em;
@@ -1439,7 +1439,7 @@ p#countdown-mobile .countdown-wrapper {
   color: #bcbcbc;
 }
 #reviews #comments .commentlist li .comment-text .star-rating span::before {
-  color: #FDBF07;
+  color: #E9BD0D;
 }
 #reviews #comments .commentlist li .comment-text p.meta {
   display: contents;
