@@ -373,12 +373,16 @@
     max-width: 1428px !important;
     width: 100%;
     margin: 0 auto;
-    padding: 0 clamp(20px, 2vw, 32px);
+    padding: 0 clamp(10px, 2vw, 32px);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: $space-32;
     margin-bottom: $space-64;
+    
+    @media (max-width: 768px) {
+        gap: $space-16;
+    }
 
     .custom-image-section-cart {
         padding-bottom: $space-24;
