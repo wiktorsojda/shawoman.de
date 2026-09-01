@@ -530,8 +530,18 @@ function shav_render_store_settings_page() {
                         <label class="shav-label">Loga Płatności (PNG/SVG)</label>
                         <div style="display:flex; align-items: center; gap: 15px;">
                             <input type="text" name="shav_checkout_payment_logos" id="shav_checkout_payment_logos" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_checkout_payment_logos', '')); ?>" style="width: 300px;">
-                            <button type="button" class="button button-secondary button-media-upload" data-target="shav_checkout_payment_logos">Wybierz z biblioteki</button>
-                            <img src="<?php echo esc_url(get_option('shav_checkout_payment_logos', '')); ?>" style="max-width: 100px; max-height: 40px; object-fit: contain; <?php echo get_option('shav_checkout_payment_logos') ? 'display:block;' : 'display:none;'; ?>" alt="Podgląd">
+                            <button type="button" class="button button-secondary button-media-upload" data-target="shav_checkout_payment_logos" data-multiple="true">Wybierz z biblioteki</button>
+                            <div class="media-upload-preview" style="display:flex; align-items:center; gap: 5px;">
+                                <?php 
+                                $logos_val = get_option('shav_checkout_payment_logos', '');
+                                if (!empty($logos_val)) {
+                                    $urls = explode(',', $logos_val);
+                                    foreach ($urls as $url) {
+                                        echo '<img src="' . esc_url($url) . '" style="max-width: 50px; max-height: 30px; object-fit: contain; margin-right: 5px;" alt="Podgląd">';
+                                    }
+                                }
+                                ?>
+                            </div>
                         </div>
                         <span class="shav-desc" style="margin-top: 10px;">Wybierz plik PNG lub SVG z logotypami płatności (wyświetlany w koszyku/checkout).</span>
                     </div>
@@ -603,37 +613,49 @@ function shav_render_store_settings_page() {
             });
 
             // Media Uploader WordPressa
-            let file_frame;
-            let currentTargetId = '';
-            
             document.querySelectorAll('.button-media-upload').forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
-                    currentTargetId = this.dataset.target;
+                    let currentTargetId = this.dataset.target;
+                    let isMultiple = this.dataset.multiple === 'true';
                     
-                    if (file_frame) {
-                        file_frame.open();
-                        return;
-                    }
-
-                    file_frame = wp.media.frames.file_frame = wp.media({
-                        title: 'Wybierz baner',
-                        button: { text: 'Użyj tego obrazka' },
-                        multiple: false
+                    let frame = wp.media({
+                        title: isMultiple ? 'Wybierz obrazki' : 'Wybierz baner',
+                        button: { text: 'Użyj' },
+                        multiple: isMultiple
                     });
 
-                    file_frame.on('select', function() {
-                        let attachment = file_frame.state().get('selection').first().toJSON();
+                    frame.on('select', function() {
                         let targetInput = document.getElementById(currentTargetId);
-                        targetInput.value = attachment.url;
-                        let previewImg = targetInput.nextElementSibling.nextElementSibling;
-                        if(previewImg && previewImg.tagName === 'IMG') {
-                            previewImg.src = attachment.url;
-                            previewImg.style.display = 'block';
+                        let previewContainer = targetInput.parentNode.querySelector('.media-upload-preview');
+                        
+                        if (isMultiple) {
+                            let attachments = frame.state().get('selection').toJSON();
+                            let urls = attachments.map(att => att.url);
+                            targetInput.value = urls.join(',');
+                            
+                            if (previewContainer) {
+                                previewContainer.innerHTML = '';
+                                urls.forEach(url => {
+                                    previewContainer.innerHTML += '<img src="' + url + '" style="max-width: 50px; max-height: 30px; object-fit: contain; margin-right: 5px;">';
+                                });
+                                previewContainer.style.display = 'block';
+                            }
+                        } else {
+                            let attachment = frame.state().get('selection').first().toJSON();
+                            targetInput.value = attachment.url;
+                            if (previewContainer) {
+                                if (previewContainer.tagName === 'IMG') {
+                                    previewContainer.src = attachment.url;
+                                } else {
+                                    previewContainer.innerHTML = '<img src="' + attachment.url + '" style="max-width: 100px; max-height: 40px; object-fit: contain;">';
+                                }
+                                previewContainer.style.display = 'block';
+                            }
                         }
                     });
 
-                    file_frame.open();
+                    frame.open();
                 });
             });
 

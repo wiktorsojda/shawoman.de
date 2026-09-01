@@ -12,8 +12,54 @@ function shav_display_payment_logos() {
     $filter_css = ($grayscale === 'yes') ? 'filter: grayscale(100%); opacity: 0.7;' : '';
 
     if (!empty($payment_logos)) {
-        echo '<div class="shav-payment-logos" style="margin-top: 20px; margin-bottom: 20px; text-align: center; width: 100%;">';
-        echo '<img src="' . esc_url($payment_logos) . '" alt="Payment methods" style="max-width: 100%; height: auto; max-height: 40px; display: inline-block; ' . esc_attr($filter_css) . '" />';
+        $urls = explode(',', $payment_logos);
+        if (empty($urls)) return;
+
+        echo '<style>
+            .shav-payment-logos-gallery {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 0;
+                margin: 20px 0;
+                width: 100%;
+            }
+            .shav-payment-logos-gallery img {
+                height: 24px;
+                width: auto;
+                object-fit: contain;
+                ' . $filter_css . '
+            }
+            .shav-payment-logo-wrap {
+                display: flex;
+                align-items: center;
+            }
+            .shav-payment-logo-wrap:not(:last-child)::after {
+                content: "";
+                display: block;
+                width: 1px;
+                height: 24px;
+                background-color: #A5A5A5;
+                border-radius: 1px;
+                margin: 0 15px;
+            }
+            @media (max-width: 768px) {
+                .shav-payment-logos-gallery img {
+                    height: 18px;
+                }
+                .shav-payment-logo-wrap:not(:last-child)::after {
+                    height: 18px;
+                    margin: 0 10px;
+                }
+            }
+        </style>';
+        echo '<div class="shav-payment-logos-gallery">';
+        foreach ($urls as $url) {
+            echo '<div class="shav-payment-logo-wrap">';
+            echo '<img src="' . esc_url(trim($url)) . '" alt="Metoda płatności" />';
+            echo '</div>';
+        }
         echo '</div>';
     }
 }
