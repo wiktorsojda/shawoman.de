@@ -81,11 +81,16 @@ function shav_display_payment_logos() {
         
         echo '</div>';
         echo '</div>';
+        
+        // Dodatkowa pozioma kreska (1px) pod logami w checkoucie
+        if (doing_action('woocommerce_review_order_after_submit')) {
+            echo '<div style="border-bottom: 1px solid #EAEAEA; width: 100%; margin: 0 0 15px 0;"></div>';
+        }
     }
 }
 // Wyświetlanie pod przyciskiem add to cart na stronie produktu (buybox)
 add_action('woocommerce_after_add_to_cart_form', 'shav_display_payment_logos', 20);
 // Wyświetlanie w koszyku pod przyciskiem "Przejdź do kasy"
 add_action('woocommerce_proceed_to_checkout', 'shav_display_payment_logos', 30);
-// Wyświetlanie w checkoucie (pod przyciskiem place order)
-add_action('woocommerce_review_order_after_submit', 'shav_display_payment_logos', 10);
+// Wyświetlanie w checkoucie nad ikonami gwarancji (priorytet 5)
+add_action('woocommerce_review_order_after_submit', 'shav_display_payment_logos', 5);
