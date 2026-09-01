@@ -124,5 +124,7 @@ add_action('woocommerce_after_add_to_cart_form', 'shav_display_payment_logos', 2
 // 2. W koszyku pod przyciskiem "Przejdź do kasy" (priorytet 20, by weszło pod przycisk, ale nad 3 ikony z priorytetem 21)
 add_action('woocommerce_proceed_to_checkout', 'shav_display_payment_logos', 20);
 
-// 3. W checkoucie (pod przyciskiem place order)
-add_action('woocommerce_review_order_after_submit', 'shav_display_payment_logos', 10);
+// Zmiana tekstu głównego przycisku w Checkout na "Jetzt kaufen"
+add_filter( 'woocommerce_order_button_text', function( $button_text ) {
+    return 'Jetzt kaufen';
+}, 999 );
