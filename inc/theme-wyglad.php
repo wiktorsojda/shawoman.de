@@ -49,6 +49,9 @@ function shav_register_store_settings() {
     register_setting($settings_group, 'shav_topbar_bg');
     register_setting($settings_group, 'shav_topbar_color');
     register_setting($settings_group, 'shav_topbar_trustpilot_link');
+
+    // Zakładka 7: Checkout / buybox
+    register_setting($settings_group, 'shav_checkout_payment_logos');
 }
 
 // 3. Załadowanie skryptów (Media Uploader + WooCommerce Select2)
@@ -172,6 +175,7 @@ function shav_render_store_settings_page() {
                 <div class="shav-tab" data-target="tab-text-badges">Etykiety Tekstowe</div>
                 <div class="shav-tab" data-target="tab-svg-badges">Pill/SVG (Pod ratingiem)</div>
                 <div class="shav-tab" data-target="tab-topbar">Pasek Pozapromocyjny</div>
+                <div class="shav-tab" data-target="tab-checkout">Checkout / buybox</div>
             </div>
             <button type="button" class="shav-tab-nav" id="shav-tabs-right" aria-label="Przewiń w prawo">&rsaquo;</button>
         </div>
@@ -515,6 +519,23 @@ function shav_render_store_settings_page() {
                         <p class="description">Jeśli zostawisz puste, element wyświetli się bez linku.</p>
                     </div>
                 </div>
+
+                <!-- ZAKŁADKA 7: CHECKOUT / BUYBOX -->
+                <div id="tab-checkout" class="shav-tab-content">
+                    <h2>Checkout / Buybox</h2>
+                    <p class="shav-desc">Ustawienia wyglądu koszyka i strony zamówienia.</p>
+                    
+                    <div class="shav-field-group">
+                        <label class="shav-label">Loga Płatności (PNG/SVG)</label>
+                        <div style="display:flex; align-items: center; gap: 15px;">
+                            <input type="text" name="shav_checkout_payment_logos" id="shav_checkout_payment_logos" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_checkout_payment_logos', '')); ?>" style="width: 300px;">
+                            <button type="button" class="button button-secondary button-media-upload" data-target="shav_checkout_payment_logos">Wybierz z biblioteki</button>
+                            <img src="<?php echo esc_url(get_option('shav_checkout_payment_logos', '')); ?>" style="max-width: 100px; max-height: 40px; object-fit: contain; <?php echo get_option('shav_checkout_payment_logos') ? 'display:block;' : 'display:none;'; ?>" alt="Podgląd">
+                        </div>
+                        <span class="shav-desc" style="margin-top: 10px;">Wybierz plik PNG lub SVG z logotypami płatności (wyświetlany w koszyku/checkout).</span>
+                    </div>
+                </div>
+
                 <div class="shav-submit-wrap">
                     <?php submit_button('Zapisz Globalne Ustawienia', 'primary', 'submit', false, array('style' => 'font-size: 16px; padding: 6px 24px;', 'id' => 'shav-main-submit')); ?>
                 </div>
