@@ -246,6 +246,7 @@
 
         .product-card__pricing {
             gap: 8px !important;
+            margin-top: 0 !important; // Usuwa auto z desktopu, żeby wszystko trzymało się razem
         }
 
         // Mobile cena: 14px (Figma)

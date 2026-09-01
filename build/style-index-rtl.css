@@ -4236,6 +4236,7 @@ img.shop-banner-image-mobile {
   }
   .product-card .product-card__pricing {
     gap: 8px !important;
+    margin-top: 0 !important;
   }
   .product-card .product-card__price--old,
   .product-card .product-card__price--new,
