@@ -439,7 +439,7 @@
     .shav-bundle__top {
       display: flex;
       gap: $space-16;
-      align-items: center !important;
+      align-items: stretch; /* pozwala lewej stronie rozciągnąć się do wysokości prawej */
 
       @media (min-width: $breakpoint-tablet) {
         gap: $space-24;
@@ -454,7 +454,9 @@
       border-radius: 8px;
       overflow: hidden;
       background-color: $color-neutral-100;
-      margin-top: 10px; /* Zmniejszona kompensacja pigułki (24px to było za dużo) */
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       img {
         width: 100% !important;
