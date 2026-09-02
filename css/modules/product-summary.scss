@@ -448,26 +448,18 @@
 
     .shav-bundle__thumb {
       flex-shrink: 0;
-      width: 165px;
-      height: 165px;
+      flex: 0 0 48%; /* szerokość dla mobile */
+      max-width: 48%;
+      height: auto;
       border-radius: 8px;
       overflow: hidden;
       background-color: $color-neutral-100;
       margin-top: 10px; /* Zmniejszona kompensacja pigułki (24px to było za dużo) */
 
-      @media (min-width: $breakpoint-tablet) {
-        width: 180px;
-        height: 180px;
-      }
-       @media (max-width: 400px) {
-        width: 135px;
-        height: 145px;
-      }
-
       img {
         width: 100% !important;
-        height: 100% !important;
-        object-fit: cover;
+        height: auto !important;
+        object-fit: contain; // żeby nie ucinało góry/dołu, jeśli zdjęcie ma inne proporcje
         display: block;
         border-radius: 8px;
         margin: 0 !important;

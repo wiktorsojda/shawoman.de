@@ -10652,30 +10652,19 @@ body.has-mobile-menu-open {
 }
 .summary.entry-summary .shav-bundle .shav-bundle__thumb {
   flex-shrink: 0;
-  width: 165px;
-  height: 165px;
+  flex: 0 0 48%; /* szerokość dla mobile */
+  max-width: 48%;
+  height: auto;
   border-radius: 8px;
   overflow: hidden;
   background-color: #f2f2f2;
   margin-top: 10px; /* Zmniejszona kompensacja pigułki (24px to było za dużo) */
 }
-@media (min-width: 768px) {
-  .summary.entry-summary .shav-bundle .shav-bundle__thumb {
-    width: 180px;
-    height: 180px;
-  }
-}
-@media (max-width: 400px) {
-  .summary.entry-summary .shav-bundle .shav-bundle__thumb {
-    width: 135px;
-    height: 145px;
-  }
-}
 .summary.entry-summary .shav-bundle .shav-bundle__thumb img {
   width: 100% !important;
-  height: 100% !important;
-  -o-object-fit: cover;
-     object-fit: cover;
+  height: auto !important;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: block;
   border-radius: 8px;
   margin: 0 !important;
