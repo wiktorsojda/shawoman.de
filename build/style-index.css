@@ -10747,13 +10747,13 @@ body.has-mobile-menu-open {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 24px;
+  padding: 12px;
   background-color: #f2f2f2;
   border-radius: 8px;
 }
 @media (min-width: 768px) {
   .summary.entry-summary .shav-bundle .shav-bundle__price-box {
-    padding: 24px 12px;
+    padding: 24px;
   }
 }
 .summary.entry-summary .shav-bundle .shav-bundle__price-row {
