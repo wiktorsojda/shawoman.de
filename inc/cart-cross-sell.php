@@ -404,17 +404,56 @@ function custom_element_inside_cart_left_column() {
                 height: auto !important; /* ODBLOKOWUJE ROZCIĄGANIE W PIONIE (STRETCH) NA BAZIE NAJWYŻSZEGO ELEMENTU */
             }
 
-            .my-cart-items, .cs-layout-carousel .my-cart-items, .cs-layout-grid .my-cart-items { display: flex !important; flex-direction: column !important; flex-grow: 1; height: 100%; }
-            .my-cart-product-img, .cs-layout-carousel .my-cart-product-img { height: 160px; padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); flex-shrink: 0; }
+            .my-cart-items, .cs-layout-carousel .my-cart-items, .cs-layout-grid .my-cart-items { 
+                display: grid !important; 
+                grid-template-columns: 130px 1fr !important;
+                grid-template-rows: auto 1fr !important;
+                grid-template-areas: 
+                    "img info" 
+                    "img button" !important;
+                height: 100%; 
+            }
+            .my-cart-product-img, .cs-layout-carousel .my-cart-product-img { 
+                grid-area: img;
+                height: auto !important; 
+                padding: 10px !important; 
+                border-bottom: none !important; 
+                flex-shrink: 0; 
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
             .my-cart-product-img::after { display: none !important; }
             
             /* WYMUSZENIE WYPEŁNIENIA PUSTEJ PRZESTRZENI PRZEZ INFO, CO SPYCHA PRZYCISKI DO JEDNEJ LINI NA DOLE */
-            .my-cart-product-info, .cs-layout-carousel .my-cart-product-info { padding: 15px !important; text-align: center; align-items: center !important; justify-content: flex-start !important; flex-grow: 1; display: flex; flex-direction: column; }
+            .my-cart-product-info, .cs-layout-carousel .my-cart-product-info { 
+                grid-area: info;
+                padding: 15px 15px 5px 0 !important; 
+                text-align: left !important; 
+                align-items: flex-start !important; 
+                justify-content: center !important; 
+                flex-grow: 1; 
+                display: flex; 
+                flex-direction: column; 
+            }
             
             /* WYRÓWNANIE CENY DO DOŁU KONTENERA ABY ZNIWELOWAĆ RÓŻNICE W DŁUGOŚCI TEKSTU */
-            .my-cart-product-price { margin-top: auto !important; }
+            .my-cart-product-price { margin-top: 5px !important; }
 
-            .my-cart-add-to-cart-button, .cs-layout-carousel .my-cart-add-to-cart-button { padding: 15px !important; width: 100%; display: flex; align-items: center; justify-content: center; position: relative !important; bottom: auto !important; right: auto !important; margin-top: auto !important; box-sizing: border-box; flex-shrink: 0; }
+            .my-cart-add-to-cart-button, .cs-layout-carousel .my-cart-add-to-cart-button { 
+                grid-area: button;
+                padding: 5px 15px 15px 0 !important; 
+                width: 100%; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                position: relative !important; 
+                bottom: auto !important; 
+                right: auto !important; 
+                margin-top: auto !important; 
+                box-sizing: border-box; 
+                flex-shrink: 0; 
+            }
             
             /* WYŚRODKOWANIE NAPISU NA PRZYCISKU */
             .my-cart-add-to-cart-button .button, .cs-layout-carousel .my-cart-add-to-cart-button .button { width: 100% !important; max-width: none !important; display: flex !important; justify-content: center !important; align-items: center !important; }
