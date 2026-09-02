@@ -1364,11 +1364,11 @@ function wc_cross_sell_settings_render() {
                                             </div>
                                             <div class="cs-input-group">
                                                 <label>Stara Cena (Przekreślona)</label>
-                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][price_reg]" value="<?php echo esc_attr(isset($p_set['price_reg']) ? $p_set['price_reg'] : ''); ?>" placeholder="np. 99.00">
+                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][price_reg]" value="<?php echo esc_attr(isset($p_set['price_reg']) ? $p_set['price_reg'] : ''); ?>" placeholder="Domyślnie z produktu">
                                             </div>
                                             <div class="cs-input-group">
                                                 <label>Nowa Cena (Promocyjna)</label>
-                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][price_promo]" value="<?php echo esc_attr(isset($p_set['price_promo']) ? $p_set['price_promo'] : ''); ?>" placeholder="np. 49.00">
+                                                <input type="text" name="wc_cs_promo_sets[<?php echo $index; ?>][price_promo]" value="<?php echo esc_attr(isset($p_set['price_promo']) ? $p_set['price_promo'] : ''); ?>" placeholder="Domyślnie z produktu">
                                             </div>
                                             <div class="cs-input-group full-width">
                                                 <label>Składniki (jeden punkt na linię)</label>
@@ -1519,11 +1519,11 @@ function wc_cross_sell_settings_render() {
                                             </div>
                                             <div class="cs-input-group">
                                                 <label>Stara Cena (Przekreślona)</label>
-                                                <input type="text" name="wc_cs_rules[<?php echo $index; ?>][price_reg]" value="<?php echo esc_attr(isset($rule['price_reg']) ? $rule['price_reg'] : ''); ?>" class="wc-cs-price-reg" placeholder="np. 99.00">
+                                                <input type="text" name="wc_cs_rules[<?php echo $index; ?>][price_reg]" value="<?php echo esc_attr(isset($rule['price_reg']) ? $rule['price_reg'] : ''); ?>" class="wc-cs-price-reg" placeholder="Domyślnie z produktu">
                                             </div>
                                             <div class="cs-input-group">
                                                 <label>Nowa Cena (Promocyjna)</label>
-                                                <input type="text" name="wc_cs_rules[<?php echo $index; ?>][price_promo]" value="<?php echo esc_attr(isset($rule['price_promo']) ? $rule['price_promo'] : ''); ?>" placeholder="np. 49.00">
+                                                <input type="text" name="wc_cs_rules[<?php echo $index; ?>][price_promo]" value="<?php echo esc_attr(isset($rule['price_promo']) ? $rule['price_promo'] : ''); ?>" placeholder="Domyślnie z produktu">
                                             </div>
                                         </div>
                                         
@@ -1796,11 +1796,11 @@ function wc_cross_sell_settings_render() {
                                 </div>
                                 <div class="cs-input-group">
                                     <label>Stara Cena (Przekreślona)</label>
-                                    <input type="text" name="wc_cs_rules[{{INDEX}}][price_reg]" class="wc-cs-price-reg" placeholder="np. 99.00">
+                                    <input type="text" name="wc_cs_rules[{{INDEX}}][price_reg]" class="wc-cs-price-reg" placeholder="Domyślnie z produktu">
                                 </div>
                                 <div class="cs-input-group">
                                     <label>Nowa Cena (Promocyjna)</label>
-                                    <input type="text" name="wc_cs_rules[{{INDEX}}][price_promo]" placeholder="np. 49.00">
+                                    <input type="text" name="wc_cs_rules[{{INDEX}}][price_promo]" placeholder="Domyślnie z produktu">
                                 </div>
                             </div>
                             <input type="hidden" name="wc_cs_rules[{{INDEX}}][analytic_name]" value="">
@@ -1958,11 +1958,11 @@ function wc_cross_sell_settings_render() {
                                 </div>
                                 <div class="cs-input-group">
                                     <label>Stara Cena (Przekreślona)</label>
-                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][price_reg]" class="wc-cs-promo-set-price-reg" placeholder="np. 99.00">
+                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][price_reg]" class="wc-cs-promo-set-price-reg" placeholder="Domyślnie z produktu">
                                 </div>
                                 <div class="cs-input-group">
                                     <label>Nowa Cena (Promocyjna)</label>
-                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][price_promo]" placeholder="np. 49.00">
+                                    <input type="text" name="wc_cs_promo_sets[{{INDEX}}][price_promo]" placeholder="Domyślnie z produktu">
                                 </div>
                                 <div class="cs-input-group full-width">
                                     <label>Składniki (jeden punkt na linię)</label>
@@ -2307,10 +2307,11 @@ function wc_cross_sell_settings_render() {
                                 $card.find('.wc_cs_image_preview').html('<img src="'+response.data.url+'" style="max-width:100px; display:block; margin-bottom:5px;">');
                             }
                             
-                            var $priceRegInput = $card.find('.wc-cs-price-reg');
-                            var $pricePromoInput = $card.find('input[name$="[price_promo]"]');
-                            if (!$priceRegInput.val() && response.data.regular_price) { $priceRegInput.val(response.data.regular_price); }
-                            if (!$pricePromoInput.val() && response.data.sale_price) { $pricePromoInput.val(response.data.sale_price); }
+                            // Wyłączone automatyczne wypełnianie cen (żeby działały dynamicznie z produktu, jeśli pole jest puste)
+                            // var $priceRegInput = $card.find('.wc-cs-price-reg');
+                            // var $pricePromoInput = $card.find('input[name$="[price_promo]"]');
+                            // if (!$priceRegInput.val() && response.data.regular_price) { $priceRegInput.val(response.data.regular_price); }
+                            // if (!$pricePromoInput.val() && response.data.sale_price) { $pricePromoInput.val(response.data.sale_price); }
                         }
                     }
                 });
@@ -2391,10 +2392,11 @@ function wc_cross_sell_settings_render() {
                                 $card.find('.wc_cs_image_preview').html('<img src="'+response.data.url+'" style="max-width:150px; display:block; margin-bottom:5px;">');
                             }
                             
-                            var $priceRegInput = $card.find('.wc-cs-promo-set-price-reg');
-                            var $pricePromoInput = $card.find('input[name$="[price_promo]"]');
-                            if (!$priceRegInput.val() && response.data.regular_price) { $priceRegInput.val(response.data.regular_price); }
-                            if (!$pricePromoInput.val() && response.data.sale_price) { $pricePromoInput.val(response.data.sale_price); }
+                            // Wyłączone automatyczne wypełnianie cen (żeby działały dynamicznie z produktu, jeśli pole jest puste)
+                            // var $priceRegInput = $card.find('.wc-cs-promo-set-price-reg');
+                            // var $pricePromoInput = $card.find('input[name$="[price_promo]"]');
+                            // if (!$priceRegInput.val() && response.data.regular_price) { $priceRegInput.val(response.data.regular_price); }
+                            // if (!$pricePromoInput.val() && response.data.sale_price) { $pricePromoInput.val(response.data.sale_price); }
                         }
                     }
                 });
