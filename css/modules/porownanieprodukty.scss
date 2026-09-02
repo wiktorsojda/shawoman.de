@@ -18,8 +18,11 @@
     margin: 0 auto;
     box-sizing: border-box;
 
-    @media (min-width: 1024px) {
+    @media (min-width: $breakpoint-tablet) {
       width: calc(100% - 96px);
+    }
+
+    @media (min-width: 1024px) {
       background-color: $color-neutral-50;
       border-radius: clamp(40px, 5vw, 82px);
       padding: clamp(32px, 4vw, 64px) clamp(20px, 4vw, 64px);
