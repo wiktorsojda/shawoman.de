@@ -33,10 +33,14 @@ if ($mobile_url) {
     // Jeśli mobile image jest pusty, to fallback użyje --bg-mobile z desktop image, ale pozycja mobile
     $style_parts[] = '--bg-pos-mobile:' . esc_attr($bgPositionMobile);
 }
+require_once get_theme_file_path('/src/components/spacing-helper.php');
+$block_id = uniqid('shav-block-');
+shav_render_responsive_spacing_css($block_id, $attributes);
+
 $wrapper_style = $style_parts ? implode(';', $style_parts) . ';' : '';
 
 $wrapper_attributes = get_block_wrapper_attributes( [
-    'class' => "szachglass szachglass--x-" . esc_attr($glassPositionX) . " szachglass--y-" . esc_attr($glassPositionY),
+    'class' => "szachglass szachglass--x-" . esc_attr($glassPositionX) . " szachglass--y-" . esc_attr($glassPositionY) . " " . esc_attr($block_id),
     'style' => $wrapper_style,
 ] );
 

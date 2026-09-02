@@ -16,8 +16,14 @@ if (!function_exists('shav_force_https')) {
         return str_replace('http://', 'https://', $url);
     }
 }
+
+require_once get_theme_file_path('/src/components/spacing-helper.php');
+$block_id = uniqid('shav-block-');
+shav_render_responsive_spacing_css($block_id, $a);
+
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "jakuzywac $block_id"]);
 ?>
-<section <?php echo get_block_wrapper_attributes(['class' => 'jakuzywac']); ?>>
+<section <?php echo $wrapper_attributes; ?>>
   <div class="jakuzywac__inner">
     <div class="jakuzywac__content">
       <h2 class="jakuzywac__title"><?php echo wp_kses_post($title); ?></h2>

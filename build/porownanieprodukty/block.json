@@ -22,6 +22,22 @@
       "type": "string",
       "default": "Jednorazówka"
     },
+    "marginDesktop": {
+      "type": "object",
+      "default": {}
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": {}
+    },
+    "paddingDesktop": {
+      "type": "object",
+      "default": {}
+    },
+    "paddingMobile": {
+      "type": "object",
+      "default": {}
+    },
     "features": {
       "type": "array",
       "default": [
@@ -66,10 +82,6 @@
     "align": [
       "wide",
       "full"
-    ],
-    "spacing": {
-      "margin": true,
-      "padding": true
-    }
+    ]
   }
 }

@@ -8,6 +8,10 @@
       "type": "string",
       "default": "left"
     },
+    "marginDesktop": { "type": "object", "default": {} },
+    "marginMobile": { "type": "object", "default": {} },
+    "paddingDesktop": { "type": "object", "default": {} },
+    "paddingMobile": { "type": "object", "default": {} },
     "backgroundImage": {
       "type": "string",
       "default": ""
@@ -77,11 +81,6 @@
       "__experimentalTextTransform": true,
       "__experimentalLetterSpacing": true,
       "__experimentalTextDecoration": true
-    },
-    "spacing": {
-      "padding": true,
-      "margin": true,
-      "blockGap": true
     },
     "__experimentalBorder": {
       "color": true,

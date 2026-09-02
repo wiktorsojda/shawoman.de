@@ -3,6 +3,7 @@ import {
 } from "@wordpress/block-editor";
 import { PanelBody, Button, RangeControl, SelectControl, TextareaControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
+import ResponsiveSpacingControl from "../components/ResponsiveSpacingControl";
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
@@ -48,6 +49,7 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <ResponsiveSpacingControl attributes={attributes} setAttributes={setAttributes} />
         <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
           <p style={{ fontSize: "13px", marginBottom: "12px" }}>
             Wygeneruj JSON, przetłumacz teksty, a następnie wklej i zastosuj.

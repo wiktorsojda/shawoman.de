@@ -7,6 +7,7 @@ import {
 } from "@wordpress/block-editor";
 import { PanelBody, Button, TextareaControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
+import ResponsiveSpacingControl from "../components/ResponsiveSpacingControl";
 
 export default function Edit({ attributes, setAttributes }) {
   const { leftImage, leftTitle, rightImage, rightTitle, features } = attributes;
@@ -50,6 +51,7 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <section {...blockProps}>
       <InspectorControls>
+        <ResponsiveSpacingControl attributes={attributes} setAttributes={setAttributes} />
         <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
           <TextareaControl
             label="Skopiuj ten JSON dla AI"

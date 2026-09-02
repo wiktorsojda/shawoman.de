@@ -10,6 +10,10 @@
     "leftTitle":    { "type": "string", "default": "Shav Woman" },
     "rightImage":   { "type": "string", "default": "" },
     "rightTitle":   { "type": "string", "default": "Jednorazówka" },
+    "marginDesktop": { "type": "object", "default": {} },
+    "marginMobile": { "type": "object", "default": {} },
+    "paddingDesktop": { "type": "object", "default": {} },
+    "paddingMobile": { "type": "object", "default": {} },
     "features": {
       "type": "array",
       "default": [
@@ -27,10 +31,6 @@
   "supports": { 
     "html": false, 
     "anchor": true, 
-    "align": ["wide", "full"],
-    "spacing": {
-      "margin": true,
-      "padding": true
-    }
+    "align": ["wide", "full"]
   }
 }

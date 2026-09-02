@@ -2,6 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, Button, TextControl, TextareaControl, Modal } from '@wordpress/components';
 import { useState } from '@wordpress/element';
+import ResponsiveSpacingControl from '../components/ResponsiveSpacingControl';
 import './style.scss';
 
 export default function Edit({ attributes, setAttributes }) {
@@ -72,6 +73,8 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <>
       <InspectorControls>
+        <ResponsiveSpacingControl attributes={attributes} setAttributes={setAttributes} />
+
         <PanelBody title="Zarządzaj Ekspertami">
           {experts.map((expert, index) => (
             <div key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
