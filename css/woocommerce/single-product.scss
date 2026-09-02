@@ -2060,6 +2060,10 @@ ul.flex-direction-nav li a:hover {
 }
 
 @media(max-width:1300px) {
+    .woocommerce div.product {
+        flex-wrap: nowrap !important;
+    }
+    
     .woocommerce div.product div.images.woocommerce-product-gallery {
         width: 50% !important;
         flex-basis: 50% !important;
@@ -2072,6 +2076,10 @@ ul.flex-direction-nav li a:hover {
 }
 
 @media(max-width:800px) {
+    .woocommerce div.product {
+        flex-wrap: wrap !important;
+    }
+
     ul.flex-direction-nav {
         top: 43%;
         width: 100%;
