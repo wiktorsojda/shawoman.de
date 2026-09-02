@@ -33,6 +33,12 @@
     font-weight: 500 !important;
 }
 
+.shop-section__title-accent {
+    font-family: $font-family-accent !important;   // Dolce
+    font-weight: $font-weight-accent-medium !important;
+    color: inherit;
+}
+
 // Nagłowek sekcji (wrapper na tytul)
 .shop-section__header {
     margin: 0 0 24px 0 !important;

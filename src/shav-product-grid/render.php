@@ -1,6 +1,7 @@
 <?php
 $mainTitle = isset($attributes['mainTitle']) ? $attributes['mainTitle'] : '';
 $subTitle = isset($attributes['subTitle']) ? $attributes['subTitle'] : '';
+$accentWord = isset($attributes['accentWord']) ? $attributes['accentWord'] : '';
 $selectionType = isset($attributes['selectionType']) ? $attributes['selectionType'] : 'category';
 $categoryId = isset($attributes['categoryId']) ? $attributes['categoryId'] : '';
 $productIds = isset($attributes['productIds']) ? $attributes['productIds'] : array();
@@ -82,11 +83,27 @@ if ($selectionType === 'manual') {
             <header class="shop-section__header">
                 <h2 class="shop-section__title">
                     <?php if (!empty($mainTitle)) : ?>
-                        <span class="shop-section__title-main"><?php echo esc_html($mainTitle); ?></span>
+                        <span class="shop-section__title-main">
+                            <?php
+                            if ($accentWord && function_exists('shav_highlight_accent_word')) {
+                                echo wp_kses_post(shav_highlight_accent_word($mainTitle, $accentWord, 'shop-section__title-accent'));
+                            } else {
+                                echo esc_html($mainTitle);
+                            }
+                            ?>
+                        </span>
                     <?php endif; ?>
-                    
+
                     <?php if (!empty($subTitle)) : ?>
-                        <span class="shop-section__title-brand"><?php echo esc_html($subTitle); ?></span>
+                        <span class="shop-section__title-brand">
+                            <?php
+                            if ($accentWord && function_exists('shav_highlight_accent_word')) {
+                                echo wp_kses_post(shav_highlight_accent_word($subTitle, $accentWord, 'shop-section__title-accent'));
+                            } else {
+                                echo esc_html($subTitle);
+                            }
+                            ?>
+                        </span>
                     <?php endif; ?>
                 </h2>
             </header>

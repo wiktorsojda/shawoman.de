@@ -4046,6 +4046,12 @@ img.shop-banner-image-mobile {
   font-weight: 500 !important;
 }
 
+.shop-section__title-accent {
+  font-family: "dolce", "Be Vietnam Pro", sans-serif !important;
+  font-weight: 500 !important;
+  color: inherit;
+}
+
 .shop-section__header {
   margin: 0 0 24px 0 !important;
   padding: 0 !important;

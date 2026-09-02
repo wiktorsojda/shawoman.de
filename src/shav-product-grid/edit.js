@@ -4,7 +4,7 @@ import { useSelect } from "@wordpress/data";
 import { useState } from "@wordpress/element";
 
 export default function Edit({ attributes, setAttributes }) {
-    const { mainTitle, subTitle, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit, productGradients, globalSavingsPill, productSavingsPills } = attributes;
+    const { mainTitle, subTitle, accentWord, selectionType, categoryId, productIds, customCategoryOrder, orderBy, limit, productGradients, globalSavingsPill, productSavingsPills } = attributes;
     const blockProps = useBlockProps();
     const [selectedProductId, setSelectedProductId] = useState(null);
 
@@ -139,7 +139,13 @@ export default function Edit({ attributes, setAttributes }) {
                         value={subTitle}
                         onChange={(val) => setAttributes({ subTitle: val })}
                     />
-                    
+                    <TextControl
+                        label="Słowo do akcentowania (Dolce font)"
+                        value={accentWord}
+                        onChange={(val) => setAttributes({ accentWord: val })}
+                        help="Wpisz słowo występujące w tytule lub podtytule, które ma zostać wyróżnione fontem Dolce."
+                    />
+
                     <RadioControl
                         label="Wybierz źródło produktów"
                         selected={selectionType}

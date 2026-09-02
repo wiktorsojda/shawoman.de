@@ -15,6 +15,10 @@
             "type": "string",
             "default": "Shav woman"
         },
+        "accentWord": {
+            "type": "string",
+            "default": "woman"
+        },
         "selectionType": {
             "type": "string",
             "default": "category"
