@@ -1105,9 +1105,8 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
         echo '<div class="shav-bundle__card">';
         echo '<div class="shav-bundle__top" style="align-items: center !important;">';
 
-        // OBRAZEK
         if ( ! empty( $img ) ) {
-            echo '<div class="shav-bundle__thumb" style="flex: 0 0 40%; max-width: 40%;">';
+            echo '<div class="shav-bundle__thumb" style="flex: 0 0 43%; max-width: 43%;">';
             echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( $title ) . '">';
             echo '</div>';
         }
