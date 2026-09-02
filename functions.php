@@ -2206,8 +2206,27 @@ function display_shav_product_rating_pill() {
     $product = wc_get_product($post->ID);
     if (!$product)
         return;
+
+    $avatars_val = get_option('shav_rating_avatars', '');
+    $avatars = [];
+    if (!empty($avatars_val)) {
+        $urls = explode(',', $avatars_val);
+        foreach ($urls as $url) {
+            if (!empty(trim($url))) {
+                $avatars[] = trim($url);
+            }
+        }
+    }
     ?>
     <div class="shav-product-rating-pill">
+        <?php if (!empty($avatars)) : ?>
+            <div class="avatars">
+                <?php foreach ($avatars as $av) : ?>
+                    <img class="avatars__item" src="<?php echo esc_url($av); ?>" alt="Avatar">
+                <?php endforeach; ?>
+            </div>
+            <span class="rating-sep" aria-hidden="true"></span>
+        <?php endif; ?>
         <span class="rating-count">+300K Bewertungen</span>
         <span class="rating-sep" aria-hidden="true"></span>
         <span class="rating-score">4.9</span>

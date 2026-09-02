@@ -58,6 +58,9 @@ function shav_register_store_settings() {
     // Zakładka 8: Tytuł Produktu
     register_setting($settings_group, 'shav_global_title_accent_enabled');
     register_setting($settings_group, 'shav_global_title_accent_word');
+
+    // Zakładka 9: Avatary Opinii
+    register_setting($settings_group, 'shav_rating_avatars');
 }
 
 // 3. Załadowanie skryptów (Media Uploader + WooCommerce Select2)
@@ -190,6 +193,7 @@ function shav_render_store_settings_page() {
                 <div class="shav-tab" data-target="tab-topbar">Pasek Pozapromocyjny</div>
                 <div class="shav-tab" data-target="tab-checkout">Checkout / buybox</div>
                 <div class="shav-tab" data-target="tab-product-title">Tytuł Produktu</div>
+                <div class="shav-tab" data-target="tab-avatars">Avatary Opinii</div>
             </div>
             <button type="button" class="shav-tab-nav" id="shav-tabs-right" aria-label="Przewiń w prawo">&rsaquo;</button>
         </div>
@@ -600,6 +604,37 @@ function shav_render_store_settings_page() {
                         <label class="shav-label">Domyślne słowo do wyróżnienia</label>
                         <input type="text" name="shav_global_title_accent_word" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_global_title_accent_word', 'Woman')); ?>">
                         <span class="shav-desc">Słowo, które zostanie wyróżnione fontem Dolce. Jeśli pole będzie puste, domyślnie wyróżnione zostanie ostatnie słowo w tytule. (Wielkość liter nie ma znaczenia).</span>
+                    </div>
+                </div>
+
+                <!-- ZAKŁADKA 9: AVATARY OPINII -->
+                <div id="tab-avatars" class="shav-tab-content">
+                    <h2>Avatary Opinii (Karta Produktu)</h2>
+                    <p class="shav-desc">Wybierz zdjęcia profilowe, które będą wyświetlane w pasku opinii na stronie produktu (tzw. rating pill).</p>
+                    
+                    <div class="shav-field-group">
+                        <label class="shav-label">Avatary Opinii (PNG/JPG)</label>
+                        <div style="margin-bottom: 15px;">
+                            <button type="button" class="button button-secondary button-media-upload-sortable" data-target="shav_rating_avatars" data-multiple="true">+ Dodaj / Edytuj Avatary</button>
+                        </div>
+                        
+                        <input type="hidden" name="shav_rating_avatars" id="shav_rating_avatars" class="shav-input-text" value="<?php echo esc_attr(get_option('shav_rating_avatars', '')); ?>">
+                        
+                        <div class="media-upload-preview-sortable" id="sortable-avatars-container" style="display:flex; align-items:center; flex-wrap:wrap; gap: 15px; min-height: 50px; padding: 10px; background: #f6f7f7; border: 1px dashed #ccd0d4; border-radius: 4px;">
+                            <?php 
+                            $avatars_val = get_option('shav_rating_avatars', '');
+                            if (!empty($avatars_val)) {
+                                $urls = explode(',', $avatars_val);
+                                foreach ($urls as $url) {
+                                    if(empty(trim($url))) continue;
+                                    echo '<div class="sortable-logo-item" data-url="'.esc_attr($url).'"><img src="' . esc_url($url) . '" alt="Avatar" style="border-radius: 50%;"><span class="remove-logo" title="Usuń">&times;</span></div>';
+                                }
+                            } else {
+                                echo '<span class="empty-logos-msg" style="color:#8c8f94; font-style:italic; font-size:13px;">Brak wybranych avatarów. Kliknij przycisk powyżej, aby dodać.</span>';
+                            }
+                            ?>
+                        </div>
+                        <span class="shav-desc" style="margin-top: 10px;">Przeciągaj avatary myszką, aby zmienić ich kolejność. Kliknij ✕, aby usunąć. Do poprawnego efektu zalecamy 3-5 zdjęć profilowych.</span>
                     </div>
                 </div>
 
