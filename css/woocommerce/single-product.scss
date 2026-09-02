@@ -1396,10 +1396,9 @@ p#countdown-mobile {
     
     .product_title__accent {
         font-family: $font-family-accent !important;
-        font-size: 1.6em !important;
-        line-height: 0.5 !important;
-        display: inline-block;
-        vertical-align: baseline; // or middle
+        font-size: 1.6em !important; // Rozmiar można dostosować
+        line-height: 0 !important;
+        display: inline;
         text-transform: none;
     }
 
