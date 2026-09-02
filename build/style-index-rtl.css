@@ -10655,6 +10655,20 @@ body.has-mobile-menu-open {
   flex: 0 0 48%; /* szerokość dla mobile */
   max-width: 48%;
   height: auto;
+}
+@media (min-width: 768px) {
+  .summary.entry-summary .shav-bundle .shav-bundle__thumb {
+    flex: 0 0 200px;
+    max-width: 200px;
+  }
+}
+@media (min-width: 1024px) {
+  .summary.entry-summary .shav-bundle .shav-bundle__thumb {
+    flex: 0 0 240px;
+    max-width: 240px;
+  }
+}
+.summary.entry-summary .shav-bundle .shav-bundle__thumb {
   border-radius: 8px;
   overflow: hidden;
   background-color: #f2f2f2;

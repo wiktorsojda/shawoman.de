@@ -451,6 +451,17 @@
       flex: 0 0 48%; /* szerokość dla mobile */
       max-width: 48%;
       height: auto;
+      
+      @media (min-width: $breakpoint-tablet) {
+        flex: 0 0 200px;
+        max-width: 200px;
+      }
+      
+      @media (min-width: 1024px) {
+        flex: 0 0 240px;
+        max-width: 240px;
+      }
+
       border-radius: 8px;
       overflow: hidden;
       background-color: $color-neutral-100;
