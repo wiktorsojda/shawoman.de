@@ -10658,8 +10658,9 @@ body.has-mobile-menu-open {
 }
 @media (min-width: 768px) {
   .summary.entry-summary .shav-bundle .shav-bundle__thumb {
-    flex: 0 0 clamp(160px, 18vw, 240px);
-    max-width: clamp(160px, 18vw, 240px);
+    flex: 0 0 45%; /* używamy % względem kontenera, a nie okna (vw), żeby w ciasnych siatkach też działało */
+    min-width: 140px;
+    max-width: 240px;
   }
 }
 .summary.entry-summary .shav-bundle .shav-bundle__thumb {
@@ -10685,6 +10686,7 @@ body.has-mobile-menu-open {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  overflow-wrap: break-word; /* żeby długie niemieckie słowa łamały się, a nie ucinały (np. Präzisionsklinge) */
 }
 .summary.entry-summary .shav-bundle .shav-bundle__badge {
   display: inline-flex;
@@ -10701,7 +10703,7 @@ body.has-mobile-menu-open {
   line-height: 1.6;
   letter-spacing: -0.04em;
   text-transform: uppercase;
-  white-space: nowrap;
+  text-align: center;
 }
 @media (min-width: 768px) {
   .summary.entry-summary .shav-bundle .shav-bundle__badge {
