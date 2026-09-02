@@ -78,15 +78,33 @@ if ($selectionType === 'manual') {
 
 <div <?php echo get_block_wrapper_attributes(['class' => 'container--narrow2-important shop-archive']); ?>>
     <section class="shop-section <?php echo esc_attr($title_class); ?>">
-        <?php if (!empty($mainTitle) || !empty($subTitle)) : ?>
+        <?php 
+        $accentWord = isset($attributes['accentWord']) ? $attributes['accentWord'] : '';
+        if (!empty($mainTitle) || !empty($subTitle)) : ?>
             <header class="shop-section__header">
                 <h2 class="shop-section__title">
                     <?php if (!empty($mainTitle)) : ?>
-                        <span class="shop-section__title-main"><?php echo esc_html($mainTitle); ?></span>
+                        <span class="shop-section__title-main">
+                            <?php 
+                            if ($accentWord && function_exists('shav_highlight_accent_word')) {
+                                echo wp_kses_post(shav_highlight_accent_word($mainTitle, $accentWord, 'shop-section__title-accent'));
+                            } else {
+                                echo esc_html($mainTitle);
+                            }
+                            ?>
+                        </span>
                     <?php endif; ?>
                     
                     <?php if (!empty($subTitle)) : ?>
-                        <span class="shop-section__title-brand"><?php echo esc_html($subTitle); ?></span>
+                        <span class="shop-section__title-brand">
+                            <?php 
+                            if ($accentWord && function_exists('shav_highlight_accent_word')) {
+                                echo wp_kses_post(shav_highlight_accent_word($subTitle, $accentWord, 'shop-section__title-accent'));
+                            } else {
+                                echo esc_html($subTitle);
+                            }
+                            ?>
+                        </span>
                     <?php endif; ?>
                 </h2>
             </header>
