@@ -66,6 +66,10 @@
     "align": [
       "wide",
       "full"
-    ]
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
   }
 }

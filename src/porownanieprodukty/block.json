@@ -24,5 +24,13 @@
   },
   "editorScript": "file:./index.js",
   "render": "file:./render.php",
-  "supports": { "html": false, "anchor": true, "align": ["wide", "full"] }
+  "supports": { 
+    "html": false, 
+    "anchor": true, 
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
 }

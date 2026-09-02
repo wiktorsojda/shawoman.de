@@ -6,6 +6,12 @@
   "category": "shav-theme",
   "icon": "welcome-learn-more",
   "description": "Blok pokazujący instrukcję obsługi / jak używać (3 kroki).",
+  "supports": {
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
   "attributes": {
     "title": {
       "type": "string",
