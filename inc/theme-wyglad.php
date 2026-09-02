@@ -741,49 +741,61 @@ function shav_render_store_settings_page() {
                 });
             });
 
-            // Media Uploader dla płatności (sortowalny)
+            // Media Uploader dla galerii (sortowalny) - Generic
             jQuery(document).ready(function($) {
-                const sortableContainer = $('#sortable-logos-container');
-                const hiddenLogosInput = $('#shav_checkout_payment_logos');
-                
-                function updateSortableLogosInput() {
-                    let urls = [];
-                    sortableContainer.find('.sortable-logo-item').each(function() {
-                        urls.push($(this).data('url'));
-                    });
-                    hiddenLogosInput.val(urls.join(','));
+                $('.media-upload-preview-sortable').each(function() {
+                    const sortableContainer = $(this);
+                    // Find the hidden input just before this container, or find by id if needed.
+                    // But we can get it from the button's data-target, which is safer.
+                    // However, we just need to know which input to update.
+                    // We can find the input by checking the previous sibling or via a data attribute.
+                    // Since the button has data-target, let's find the input with that ID.
+                    const targetId = sortableContainer.prev('input[type="hidden"]').attr('id');
+                    const hiddenLogosInput = $('#' + targetId);
                     
-                    if (urls.length === 0) {
-                        if (sortableContainer.find('.empty-logos-msg').length === 0) {
-                            sortableContainer.html('<span class="empty-logos-msg" style="color:#8c8f94; font-style:italic; font-size:13px;">Brak wybranych logotypów. Kliknij przycisk powyżej, aby dodać.</span>');
+                    function updateSortableLogosInput() {
+                        let urls = [];
+                        sortableContainer.find('.sortable-logo-item').each(function() {
+                            urls.push($(this).data('url'));
+                        });
+                        hiddenLogosInput.val(urls.join(','));
+                        
+                        if (urls.length === 0) {
+                            if (sortableContainer.find('.empty-logos-msg').length === 0) {
+                                sortableContainer.html('<span class="empty-logos-msg" style="color:#8c8f94; font-style:italic; font-size:13px;">Brak wybranych obrazków. Kliknij przycisk powyżej, aby dodać.</span>');
+                            }
+                        } else {
+                            sortableContainer.find('.empty-logos-msg').remove();
                         }
-                    } else {
-                        sortableContainer.find('.empty-logos-msg').remove();
                     }
-                }
-                
-                if (sortableContainer.length && typeof sortableContainer.sortable === 'function') {
-                    sortableContainer.sortable({
-                        items: '.sortable-logo-item',
-                        cursor: 'move',
-                        update: function(event, ui) {
-                            updateSortableLogosInput();
-                        }
-                    });
                     
-                    // Usuwanie logo
-                    sortableContainer.on('click', '.remove-logo', function(e) {
-                        e.preventDefault();
-                        $(this).closest('.sortable-logo-item').remove();
-                        updateSortableLogosInput();
-                    });
-                }
+                    if (sortableContainer.length && typeof sortableContainer.sortable === 'function') {
+                        sortableContainer.sortable({
+                            items: '.sortable-logo-item',
+                            cursor: 'move',
+                            update: function(event, ui) {
+                                updateSortableLogosInput();
+                            }
+                        });
+                        
+                        // Usuwanie
+                        sortableContainer.on('click', '.remove-logo', function(e) {
+                            e.preventDefault();
+                            $(this).closest('.sortable-logo-item').remove();
+                            updateSortableLogosInput();
+                        });
+                    }
+                });
                 
                 $('.button-media-upload-sortable').on('click', function(e) {
                     e.preventDefault();
                     
+                    let targetId = $(this).data('target');
+                    let sortableContainer = $('#' + targetId).next('.media-upload-preview-sortable');
+                    let hiddenLogosInput = $('#' + targetId);
+                    
                     let frame = wp.media({
-                        title: 'Wybierz logotypy',
+                        title: 'Wybierz obrazki',
                         button: { text: 'Dodaj do listy' },
                         multiple: true
                     });
@@ -794,11 +806,15 @@ function shav_render_store_settings_page() {
                         sortableContainer.find('.empty-logos-msg').remove();
                         
                         attachments.forEach(att => {
-                            let itemHtml = '<div class="sortable-logo-item" data-url="' + att.url + '"><img src="' + att.url + '" alt="Logo"><span class="remove-logo" title="Usuń">&times;</span></div>';
+                            let itemHtml = '<div class="sortable-logo-item" data-url="' + att.url + '"><img src="' + att.url + '" alt="Media" style="max-width: 60px; max-height: 40px; object-fit: contain; ' + (targetId === 'shav_rating_avatars' ? 'border-radius: 50%;' : '') + '"><span class="remove-logo" title="Usuń">&times;</span></div>';
                             sortableContainer.append(itemHtml);
                         });
                         
-                        updateSortableLogosInput();
+                        let urls = [];
+                        sortableContainer.find('.sortable-logo-item').each(function() {
+                            urls.push($(this).data('url'));
+                        });
+                        hiddenLogosInput.val(urls.join(','));
                     });
 
                     frame.open();
