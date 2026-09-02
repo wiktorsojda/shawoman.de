@@ -2208,7 +2208,7 @@ function display_shav_product_rating_pill() {
         return;
     ?>
     <div class="shav-product-rating-pill">
-        <span class="rating-count">+300K Opinii</span>
+        <span class="rating-count">+300K Bewertungen</span>
         <span class="rating-sep" aria-hidden="true"></span>
         <span class="rating-score">4.9</span>
         <span class="rating-stars" aria-label="5 z 5 gwiazdek">

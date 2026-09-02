@@ -2444,7 +2444,7 @@ body .woosg-wrap bdi {
 .shav-product-rating-pill {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: nowrap;
     gap: $space-12;
     padding: $space-8 $space-12;
@@ -2452,6 +2452,7 @@ body .woosg-wrap bdi {
     border-radius: 72px;
     box-sizing: border-box;
     margin-bottom: $space-16;
+    width: 100%;
 
     @media (max-width: 786px) {
         gap: $space-4;
