@@ -2372,8 +2372,12 @@ ul.flex-direction-nav li a:hover {
     }
 }
 
-.shav-product-pattern:first-of-type {
-    margin-top: 15px;
+.shav-product-pattern {
+    background-color: $color-neutral-50;
+
+    &:first-of-type {
+        margin-top: 15px;
+    }
 }
 
 // ukrycie elementów wtyczki od swaych
