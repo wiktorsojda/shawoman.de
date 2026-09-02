@@ -10771,15 +10771,9 @@ body.has-mobile-menu-open {
 .summary.entry-summary .shav-bundle .shav-bundle__price-value {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
-}
-@media (max-width: 768px) {
-  .summary.entry-summary .shav-bundle .shav-bundle__price-value {
-    justify-content: space-between;
-    width: 100%;
-  }
 }
 .summary.entry-summary .shav-bundle .shav-bundle__savings-pill {
   display: inline-flex;

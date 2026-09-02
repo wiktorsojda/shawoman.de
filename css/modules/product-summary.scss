@@ -570,14 +570,9 @@
     .shav-bundle__price-value {
       display: inline-flex;
       align-items: center;
-      gap: $space-12;
+      gap: $space-8;
       flex-wrap: wrap;
       justify-content: flex-end;
-
-       @media (max-width: $breakpoint-tablet) {
-        justify-content: space-between;
-        width: 100%;
-      }
     }
 
     .shav-bundle__savings-pill {
