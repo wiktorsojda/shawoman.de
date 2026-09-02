@@ -12,7 +12,7 @@ require_once get_theme_file_path('/src/components/spacing-helper.php');
 $block_id = uniqid('shav-block-');
 shav_render_responsive_spacing_css($block_id, $a);
 
-$wrapper_attributes = get_block_wrapper_attributes(['class' => "porownanie-container $block_id"]);
+$wrapper_attributes = get_block_wrapper_attributes(['class' => "porownanieprodukty $block_id"]);
 ?>
 <section <?php echo $wrapper_attributes; ?>>
   <div class="porownanieprodukty__inner">
