@@ -1393,6 +1393,15 @@ p#countdown-mobile {
     // background-clip: text;
     // -webkit-background-clip: text;
     // -webkit-text-fill-color: transparent;
+    
+    .product_title__accent {
+        font-family: $font-family-accent !important;
+        font-size: 1.6em !important;
+        line-height: 0.5 !important;
+        display: inline-block;
+        vertical-align: baseline; // or middle
+        text-transform: none;
+    }
 
 }
 
