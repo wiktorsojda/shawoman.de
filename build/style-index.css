@@ -10657,7 +10657,7 @@ body.has-mobile-menu-open {
   border-radius: 8px;
   overflow: hidden;
   background-color: #f2f2f2;
-  margin-top: 20px; /* Pushed down to align with the text, skipping the pill */
+  margin-top: 24px; /* Kompensacja wysokości pigułki, aby wyśrodkować ze środkiem tekstu */
 }
 @media (min-width: 768px) {
   .summary.entry-summary .shav-bundle .shav-bundle__thumb {
@@ -10711,7 +10711,7 @@ body.has-mobile-menu-open {
 }
 .summary.entry-summary .shav-bundle .shav-bundle__title {
   margin: 0 !important;
-  color: red !important; /* TEMPORARY RED FOR TESTING */
+  color: #3f3f3f !important;
   font-family: "Be Vietnam Pro", sans-serif !important;
   font-weight: 500 !important;
   font-size: 18px !important;

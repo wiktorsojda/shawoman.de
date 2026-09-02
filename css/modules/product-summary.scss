@@ -453,7 +453,7 @@
       border-radius: 8px;
       overflow: hidden;
       background-color: $color-neutral-100;
-      margin-top: 20px; /* Pushed down to align with the text, skipping the pill */
+      margin-top: 24px; /* Kompensacja wysokości pigułki, aby wyśrodkować ze środkiem tekstu */
 
       @media (min-width: $breakpoint-tablet) {
         width: 180px;
@@ -506,7 +506,7 @@
 
     .shav-bundle__title {
       margin: 0 !important;
-      color: red !important; /* TEMPORARY RED FOR TESTING */
+      color: $color-neutral-800 !important;
       font-family: $font-family-base !important;
       font-weight: $font-weight-medium !important;
       font-size: 18px !important;
