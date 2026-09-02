@@ -10773,7 +10773,7 @@ body.has-mobile-menu-open {
 .summary.entry-summary .shav-bundle .shav-bundle__price-value {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px; /* stały odstęp 12px między pigułką a ceną */
   flex-wrap: wrap;
   justify-content: flex-end;
 }

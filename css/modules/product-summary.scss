@@ -572,7 +572,7 @@
     .shav-bundle__price-value {
       display: inline-flex;
       align-items: center;
-      gap: $space-8;
+      gap: 12px; /* stały odstęp 12px między pigułką a ceną */
       flex-wrap: wrap;
       justify-content: flex-end;
     }
