@@ -32,13 +32,13 @@ if (empty($product) || !$product->is_visible()) {
     return;
 }
 
-$product_id   = $product->get_id();
-$permalink    = get_permalink($product_id);
-$title        = get_the_title();
-$subtitle     = $product->get_meta('product_subtitle');
-$shop_image   = $product->get_meta('product_shop_image');
-$thumb_id     = $product->get_image_id();
-$image_url    = $shop_image ?: ($thumb_id ? wp_get_attachment_image_url($thumb_id, 'woocommerce_thumbnail') : wc_placeholder_img_src());
+$product_id = $product->get_id();
+$permalink = get_permalink($product_id);
+$title = get_the_title();
+$subtitle = $product->get_meta('product_subtitle');
+$shop_image = $product->get_meta('product_shop_image');
+$thumb_id = $product->get_image_id();
+$image_url = $shop_image ?: ($thumb_id ? wp_get_attachment_image_url($thumb_id, 'woocommerce_thumbnail') : wc_placeholder_img_src());
 
 $frame_variant = function_exists('shav_get_product_frame_variant')
     ? shav_get_product_frame_variant($product_id)
@@ -87,9 +87,9 @@ if ($frame_variant) {
 // Priorytet badge'a: NOWOSC > BESTSELLER > wlasny (tekst + kolory z meta).
 $is_set = !empty($frame_variant);
 
-$badge_label  = '';
-$badge_kind   = '';
-$badge_style  = ''; // inline-style dla wlasnego badge'a
+$badge_label = '';
+$badge_kind = '';
+$badge_style = ''; // inline-style dla wlasnego badge'a
 $show_savings = false;
 $wants_savings_pill = $is_set || $enable_savings;
 
@@ -98,10 +98,10 @@ if (!$is_set) {
     $active_text_badge = shav_get_active_text_badge($product, 'card');
     if ($active_text_badge && !empty($active_text_badge['text'])) {
         $badge_label = $active_text_badge['text'];
-        $badge_kind  = 'custom';
-        $custom_bg   = $active_text_badge['color'];
+        $badge_kind = 'custom';
+        $custom_bg = $active_text_badge['color'];
         $custom_color = $active_text_badge['textColor'];
-        
+
         $upper_label = mb_strtoupper($badge_label, 'UTF-8');
         if ($upper_label === 'BESTSELLER' || $upper_label === 'NAJCZĘŚCIEJ WYBIERANE') {
             $badge_kind = 'bestseller';
@@ -127,16 +127,16 @@ if (!$is_set) {
         // 2. Fallback na stare pola meta dla kompatybilności wstecznej
         if ($product->get_meta('_shav_badge_nowosc') === 'yes') {
             $badge_label = __('NOWOŚĆ', 'shav');
-            $badge_kind  = 'new';
+            $badge_kind = 'new';
         } elseif ($product->get_meta('_shav_badge_bestseller') === 'yes') {
             $badge_label = __('BESTSELLER', 'shav');
-            $badge_kind  = 'bestseller';
+            $badge_kind = 'bestseller';
         } else {
-            $custom_text  = (string) $product->get_meta('_shav_badge_custom_text');
+            $custom_text = (string) $product->get_meta('_shav_badge_custom_text');
             if ($custom_text !== '') {
-                $badge_label  = $custom_text;
-                $badge_kind   = 'custom';
-                $custom_bg    = (string) $product->get_meta('_shav_badge_custom_bg');
+                $badge_label = $custom_text;
+                $badge_kind = 'custom';
+                $custom_bg = (string) $product->get_meta('_shav_badge_custom_bg');
                 $custom_color = (string) $product->get_meta('_shav_badge_custom_color');
                 $styles = [];
                 if ($custom_bg) {
@@ -161,8 +161,8 @@ if (!$is_set) {
 
 // Ceny — produkt wielowariantowy nie ma wlasnych cen (get_regular_price()
 // zwraca pusty string), wiec bierzemy min z wariacji.
-$price_html    = '';
-$is_on_sale    = $product->is_on_sale();
+$price_html = '';
+$is_on_sale = $product->is_on_sale();
 if ($product->is_type('variable')) {
     $regular_price = (float) $product->get_variation_regular_price('min', true);
     $current_price = (float) $product->get_variation_price('min', true);
@@ -192,26 +192,27 @@ if ($wants_savings_pill && $is_on_sale && $regular_price > 0 && $current_price <
 }
 ?>
 <li <?php wc_product_class(implode(' ', $classes), $product); ?>>
-    <?php if ($frame_variant) : ?>
+    <?php if ($frame_variant): ?>
         <span class="product-card__frame-stripe" aria-hidden="true" <?php echo ($frame_variant === 'custom' && $custom_frame_gradient) ? 'style="background: ' . esc_attr($custom_frame_gradient) . ' !important;"' : ''; ?>></span>
     <?php endif; ?>
 
-    <?php if ($badge_label) : ?>
+    <?php if ($badge_label): ?>
         <div class="product-card__badges">
-            <span class="product-card__badge product-card__badge--<?php echo esc_attr($badge_kind); ?>"<?php echo $badge_style; ?>>
+            <span class="product-card__badge product-card__badge--<?php echo esc_attr($badge_kind); ?>" <?php echo $badge_style; ?>>
                 <?php echo esc_html($badge_label); ?>
             </span>
         </div>
     <?php endif; ?>
 
-    <a class="product-card__media" href="<?php echo esc_url($permalink); ?>" aria-label="<?php echo esc_attr($title); ?>">
-        <?php 
+    <a class="product-card__media" href="<?php echo esc_url($permalink); ?>"
+        aria-label="<?php echo esc_attr($title); ?>">
+        <?php
         echo $product->get_image('woocommerce_thumbnail', [
             'class' => 'product-card__image',
             'loading' => 'lazy',
             'width' => 350,
             'height' => 350
-        ]); 
+        ]);
         ?>
     </a>
 
@@ -236,12 +237,12 @@ if ($wants_savings_pill && $is_on_sale && $regular_price > 0 && $current_price <
             </h3>
         </a>
 
-        <?php if ($subtitle) : ?>
+        <?php if ($subtitle): ?>
             <p class="product-card__subtitle"><?php echo esc_html($subtitle); ?></p>
         <?php endif; ?>
 
         <div class="product-card__pricing">
-            <?php if ($savings_amount > 0) : ?>
+            <?php if ($savings_amount > 0): ?>
                 <span class="product-card__savings">
                     <span class="product-card__savings-label"><?php esc_html_e('DU SPARST', 'shav'); ?></span>
                     <span class="product-card__savings-amount"><?php echo wp_kses_post(wc_price($savings_amount)); ?></span>
@@ -249,10 +250,10 @@ if ($wants_savings_pill && $is_on_sale && $regular_price > 0 && $current_price <
             <?php endif; ?>
 
             <div class="product-card__price">
-                <?php if ($is_on_sale && $regular_price > 0 && $current_price < $regular_price) : ?>
+                <?php if ($is_on_sale && $regular_price > 0 && $current_price < $regular_price): ?>
                     <span class="product-card__price--old"><?php echo wp_kses_post(wc_price($regular_price)); ?></span>
                     <span class="product-card__price--new"><?php echo wp_kses_post(wc_price($current_price)); ?></span>
-                <?php else : ?>
+                <?php else: ?>
                     <span class="product-card__price--single"><?php echo wp_kses_post(wc_price($current_price)); ?></span>
                 <?php endif; ?>
             </div>
