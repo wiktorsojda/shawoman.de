@@ -1,7 +1,13 @@
 <?php
-$titleBefore = isset($attributes['titleBefore']) ? $attributes['titleBefore'] : 'Shav ';
-$titleAccent = isset($attributes['titleAccent']) ? $attributes['titleAccent'] : 'woman.';
-$titleAfter  = isset($attributes['titleAfter'])  ? $attributes['titleAfter']  : ' Dlaczego warto wybrać?';
+$title = isset($attributes['title']) && !empty($attributes['title']) ? $attributes['title'] : '';
+if (!$title) {
+    // Fallback
+    $titleBefore = isset($attributes['titleBefore']) ? $attributes['titleBefore'] : 'Shav ';
+    $titleAccent = isset($attributes['titleAccent']) ? $attributes['titleAccent'] : 'woman.';
+    $titleAfter  = isset($attributes['titleAfter'])  ? $attributes['titleAfter']  : ' Dlaczego warto wybrać?';
+    $title = $titleBefore . ' ' . $titleAccent . $titleAfter;
+}
+$accentWord = isset($attributes['accentWord']) ? $attributes['accentWord'] : 'woman.';
 
 $card1Icon       = isset($attributes['card1Icon'])       ? $attributes['card1Icon']       : '';
 $card1TextStrong = isset($attributes['card1TextStrong']) ? $attributes['card1TextStrong'] : '';
@@ -29,7 +35,13 @@ $icon_swimsuit = '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"
 ?>
 <section class="glownaoceny">
     <h2 class="glownaoceny__title">
-        <span><?php echo wp_kses_post($titleBefore); ?></span><span class="glownaoceny__title-accent"><?php echo wp_kses_post($titleAccent); ?></span><span class="glownaoceny__title-after"><?php echo wp_kses_post($titleAfter); ?></span>
+        <?php 
+        if (function_exists('shav_highlight_accent_word')) {
+            echo wp_kses_post(shav_highlight_accent_word($title, $accentWord, 'glownaoceny__title-accent'));
+        } else {
+            echo wp_kses_post($title);
+        }
+        ?>
     </h2>
 
     <div class="glownaoceny__cards">

@@ -19,9 +19,8 @@ export default function Edit({ attributes, setAttributes }) {
             label="Skopiuj ten JSON dla AI"
             value={(() => {
               const data = {
-                titleBefore: a.titleBefore || '',
-                titleAccent: a.titleAccent || '',
-                titleAfter: a.titleAfter || '',
+                title: a.title || (a.titleBefore + ' ' + a.titleAccent + a.titleAfter),
+                accentWord: a.accentWord || '',
                 card1TextStrong: a.card1TextStrong || '',
                 card1TextLight: a.card1TextLight || '',
                 card2Title: a.card2Title || '',
@@ -46,9 +45,8 @@ export default function Edit({ attributes, setAttributes }) {
             try {
               const parsed = JSON.parse(importJson);
               const updates = {};
-              if (parsed.titleBefore !== undefined) updates.titleBefore = parsed.titleBefore;
-              if (parsed.titleAccent !== undefined) updates.titleAccent = parsed.titleAccent;
-              if (parsed.titleAfter !== undefined) updates.titleAfter = parsed.titleAfter;
+              if (parsed.title !== undefined) updates.title = parsed.title;
+              if (parsed.accentWord !== undefined) updates.accentWord = parsed.accentWord;
               if (parsed.card1TextStrong !== undefined) updates.card1TextStrong = parsed.card1TextStrong;
               if (parsed.card1TextLight !== undefined) updates.card1TextLight = parsed.card1TextLight;
               if (parsed.card2Title !== undefined) updates.card2Title = parsed.card2Title;
@@ -90,12 +88,23 @@ export default function Edit({ attributes, setAttributes }) {
               render={({ open }) => (<Button variant="secondary" onClick={open}>{a.card3Icon ? "Zmień ikonę" : "Wybierz ikonę"}</Button>)} />
           </MediaUploadCheck>
         </PanelBody>
+        <PanelBody title="Akcentowanie (Opcje)" initialOpen={true}>
+          <TextControl 
+            label="Słowo do akcentowania (Dolce font)" 
+            value={a.accentWord} 
+            onChange={(v) => setAttributes({ accentWord: v })} 
+            help="Wpisz słowo występujące w głównym nagłówku, które ma zostać wyróżnione fontem Dolce."
+          />
+        </PanelBody>
       </InspectorControls>
 
       <h2 className="glownaoceny__title">
-        <RichText tagName="span" value={a.titleBefore} onChange={(v) => setAttributes({ titleBefore: v })} placeholder="Shav " />
-        <RichText tagName="span" className="glownaoceny__title-accent" value={a.titleAccent} onChange={(v) => setAttributes({ titleAccent: v })} placeholder="woman." />
-        <RichText tagName="span" className="glownaoceny__title-after" value={a.titleAfter} onChange={(v) => setAttributes({ titleAfter: v })} placeholder=" Dlaczego warto wybrać?" />
+        <RichText 
+          tagName="span" 
+          value={a.title || (a.titleBefore + ' ' + a.titleAccent + a.titleAfter)} 
+          onChange={(v) => setAttributes({ title: v })} 
+          placeholder="Główny nagłówek" 
+        />
       </h2>
 
       <div className="glownaoceny__cards">
