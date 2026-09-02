@@ -1,7 +1,8 @@
 @import "../base/tokens";
 
 .jakuzywac {
-  padding: clamp(45px, 8vw, 120px) 0;
+  padding-top: clamp(45px, 8vw, 120px);
+  padding-bottom: clamp(45px, 8vw, 120px);
   box-sizing: border-box;
   width: 100%;
   display: flex;
@@ -12,14 +13,9 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    width: auto;
-    margin: 0 20px;
-
-    @media (min-width: $breakpoint-tablet) {
-      width: calc(100% - 96px);
-      max-width: 1428px;
-      margin: 0 auto;
-    }
+    width: 100%;
+    max-width: 1428px;
+    margin: 0 auto;
   }
 
   &__content {
