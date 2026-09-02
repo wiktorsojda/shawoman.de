@@ -2169,11 +2169,15 @@ ul.flex-direction-nav li a:hover {
         border: none;
         color: $color-accent-medium !important; // Czerwona cena niezależnie czy promo czy nie
 
-        .woocommerce-Price-amount, .amount, bdi {
+        .woocommerce-Price-amount,
+        .amount,
+        bdi {
             color: inherit !important;
         }
 
-        del, del .woocommerce-Price-amount, del bdi {
+        del,
+        del .woocommerce-Price-amount,
+        del bdi {
             color: $color-neutral-400 !important; // Zabezpieczenie starej ceny
         }
     }
