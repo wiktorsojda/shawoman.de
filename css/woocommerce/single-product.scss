@@ -1449,7 +1449,7 @@ p#countdown-mobile {
     width: auto;
     // margin-left: 20px;
     // margin-right: 20px;
-    margin-bottom: $space-64;
+    margin-bottom: 6px;
 
     @media (min-width: $breakpoint-tablet) {
         width: calc(100% - 40px);
