@@ -19,6 +19,7 @@
     box-sizing: border-box;
 
     @media (min-width: 1024px) {
+      width: calc(100% - 96px);
       background-color: $color-neutral-50;
       border-radius: clamp(40px, 5vw, 82px);
       padding: clamp(32px, 4vw, 64px) clamp(20px, 4vw, 64px);

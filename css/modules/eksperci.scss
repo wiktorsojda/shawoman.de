@@ -16,6 +16,10 @@
     width: calc(100% - 40px);
     max-width: 1428px;
     margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: calc(100% - 96px);
+    }
   }
 
   &__title {
