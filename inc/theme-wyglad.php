@@ -745,13 +745,7 @@ function shav_render_store_settings_page() {
             jQuery(document).ready(function($) {
                 $('.media-upload-preview-sortable').each(function() {
                     const sortableContainer = $(this);
-                    // Find the hidden input just before this container, or find by id if needed.
-                    // But we can get it from the button's data-target, which is safer.
-                    // However, we just need to know which input to update.
-                    // We can find the input by checking the previous sibling or via a data attribute.
-                    // Since the button has data-target, let's find the input with that ID.
-                    const targetId = sortableContainer.prev('input[type="hidden"]').attr('id');
-                    const hiddenLogosInput = $('#' + targetId);
+                    const hiddenLogosInput = sortableContainer.siblings('input[type="hidden"]');
                     
                     function updateSortableLogosInput() {
                         let urls = [];
@@ -790,9 +784,11 @@ function shav_render_store_settings_page() {
                 $('.button-media-upload-sortable').on('click', function(e) {
                     e.preventDefault();
                     
-                    let targetId = $(this).data('target');
-                    let sortableContainer = $('#' + targetId).next('.media-upload-preview-sortable');
-                    let hiddenLogosInput = $('#' + targetId);
+                    let btn = $(this);
+                    let targetId = btn.data('target');
+                    let fieldGroup = btn.closest('.shav-field-group');
+                    let sortableContainer = fieldGroup.find('.media-upload-preview-sortable');
+                    let hiddenLogosInput = fieldGroup.find('input[type="hidden"]');
                     
                     let frame = wp.media({
                         title: 'Wybierz obrazki',
