@@ -79,16 +79,16 @@
     @media (min-width: $breakpoint-tablet) {
       &:first-child {
         .jakuzywac__image {
-          border-top-left-radius: 82px;
-          border-bottom-left-radius: 82px;
+          border-top-left-radius: 46px;
+          border-bottom-left-radius: 46px;
           border-top-right-radius: 0;
         }
       }
       
       &:last-child {
         .jakuzywac__image {
-          border-top-right-radius: 82px;
-          border-bottom-right-radius: 82px;
+          border-top-right-radius: 46px;
+          border-bottom-right-radius: 46px;
           border-bottom-left-radius: 0;
         }
       }
@@ -104,15 +104,15 @@
     @media (max-width: $breakpoint-tablet - 1px) {
       &:first-child {
         .jakuzywac__image {
-          border-top-left-radius: 24px;
-          border-top-right-radius: 24px;
+          border-top-left-radius: 46px;
+          border-top-right-radius: 46px;
         }
       }
       
       &:last-child {
         .jakuzywac__image {
-          border-bottom-left-radius: 24px;
-          border-bottom-right-radius: 24px;
+          border-bottom-left-radius: 46px;
+          border-bottom-right-radius: 46px;
         }
       }
     }
