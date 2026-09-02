@@ -3802,3 +3802,28 @@ function shav_custom_optional_text( $optional_text, $args ) {
 
 // Loga płatności (checkout / buybox)
 require_once get_theme_file_path('/inc/shav-payment-logos.php');
+
+// Helper for FSE blocks to highlight an accent word
+if (!function_exists('shav_highlight_accent_word')) {
+    function shav_highlight_accent_word($full_text, $accent_word, $accent_class) {
+        if (empty($accent_word) || empty($full_text)) {
+            return $full_text; // nothing to do
+        }
+        $pattern = '/\b' . preg_quote(trim($accent_word), '/') . '\b/i';
+        
+        // Wrap with a temporary marker, then replace to avoid breaking HTML if any
+        $replaced = preg_replace_callback($pattern, function($matches) use ($accent_class) {
+            return '<span class="' . esc_attr($accent_class) . '">' . $matches[0] . '</span>';
+        }, $full_text, 1);
+        
+        // If not found as a full word, try normal replace (might be punctuation)
+        if ($replaced === $full_text) {
+             $pattern = '/' . preg_quote(trim($accent_word), '/') . '/i';
+             $replaced = preg_replace_callback($pattern, function($matches) use ($accent_class) {
+                 return '<span class="' . esc_attr($accent_class) . '">' . $matches[0] . '</span>';
+             }, $full_text, 1);
+        }
+        
+        return $replaced;
+    }
+}

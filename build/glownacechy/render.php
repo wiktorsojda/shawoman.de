@@ -1,7 +1,13 @@
 <?php
-$titleLine1 = isset($attributes['titleLine1']) ? $attributes['titleLine1'] : 'Maszynka';
-$titleLine2Before = isset($attributes['titleLine2Before']) ? $attributes['titleLine2Before'] : 'Shav ';
-$titleLine2Accent = isset($attributes['titleLine2Accent']) ? $attributes['titleLine2Accent'] : 'woman.';
+$title = isset($attributes['title']) && !empty($attributes['title']) ? $attributes['title'] : '';
+if (!$title) {
+    // Fallback do starych atrybutów
+    $titleLine1 = isset($attributes['titleLine1']) ? $attributes['titleLine1'] : 'Maszynka';
+    $titleLine2Before = isset($attributes['titleLine2Before']) ? $attributes['titleLine2Before'] : 'Shav ';
+    $titleLine2Accent = isset($attributes['titleLine2Accent']) ? $attributes['titleLine2Accent'] : 'woman.';
+    $title = $titleLine1 . '<br>' . $titleLine2Before . $titleLine2Accent;
+}
+$accentWord = isset($attributes['accentWord']) ? $attributes['accentWord'] : 'woman.';
 
 $image = isset($attributes['image']) && $attributes['image']
     ? $attributes['image']
@@ -12,10 +18,14 @@ $imageAlt = isset($attributes['imageAlt']) ? $attributes['imageAlt'] : '';
     <div class="glownacechy__inner">
         <div class="glownacechy__col">
             <h1 class="glownacechy__title">
-                <span class="glownacechy__title-line"><?php echo wp_kses_post($titleLine1); ?></span>
                 <span class="glownacechy__title-line">
-                    <?php echo wp_kses_post($titleLine2Before); ?><span
-                        class="glownacechy__title-accent"><?php echo wp_kses_post($titleLine2Accent); ?></span>
+                    <?php 
+                    if (function_exists('shav_highlight_accent_word')) {
+                        echo wp_kses_post(shav_highlight_accent_word($title, $accentWord, 'glownacechy__title-accent'));
+                    } else {
+                        echo wp_kses_post($title);
+                    }
+                    ?>
                 </span>
             </h1>
 

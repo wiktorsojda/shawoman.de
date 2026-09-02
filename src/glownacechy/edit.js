@@ -18,9 +18,8 @@ export default function Edit({ attributes, setAttributes }) {
             label="Skopiuj ten JSON dla AI"
             value={(() => {
               const data = {
-                titleLine1: a.titleLine1 || '',
-                titleLine2Before: a.titleLine2Before || '',
-                titleLine2Accent: a.titleLine2Accent || '',
+                title: a.title || (a.titleLine1 + '\\n' + a.titleLine2Before + a.titleLine2Accent),
+                accentWord: a.accentWord || '',
                 feature1Title: a.feature1Title || '',
                 feature1Sub: a.feature1Sub || '',
                 feature2Title: a.feature2Title || '',
@@ -46,9 +45,8 @@ export default function Edit({ attributes, setAttributes }) {
             try {
               const parsed = JSON.parse(importJson);
               const updates = {};
-              if (parsed.titleLine1 !== undefined) updates.titleLine1 = parsed.titleLine1;
-              if (parsed.titleLine2Before !== undefined) updates.titleLine2Before = parsed.titleLine2Before;
-              if (parsed.titleLine2Accent !== undefined) updates.titleLine2Accent = parsed.titleLine2Accent;
+              if (parsed.title !== undefined) updates.title = parsed.title;
+              if (parsed.accentWord !== undefined) updates.accentWord = parsed.accentWord;
               if (parsed.feature1Title !== undefined) updates.feature1Title = parsed.feature1Title;
               if (parsed.feature1Sub !== undefined) updates.feature1Sub = parsed.feature1Sub;
               if (parsed.feature2Title !== undefined) updates.feature2Title = parsed.feature2Title;
@@ -78,16 +76,26 @@ export default function Edit({ attributes, setAttributes }) {
           </MediaUploadCheck>
           <TextControl label="Alt zdjęcia" value={a.imageAlt} onChange={(v) => setAttributes({ imageAlt: v })} />
         </PanelBody>
+        <PanelBody title="Akcentowanie (Opcje)" initialOpen={true}>
+          <TextControl 
+            label="Słowo do akcentowania (Dolce font)" 
+            value={a.accentWord} 
+            onChange={(v) => setAttributes({ accentWord: v })} 
+            help="Wpisz słowo występujące w głównym nagłówku, które ma zostać wyróżnione."
+          />
+        </PanelBody>
       </InspectorControls>
 
       <div className="glownacechy__inner">
         <div className="glownacechy__col">
           <h2 className="glownacechy__title">
-            <RichText tagName="span" className="glownacechy__title-line" value={a.titleLine1} onChange={(v) => setAttributes({ titleLine1: v })} placeholder="Linia 1" />
-            <span className="glownacechy__title-line">
-              <RichText tagName="span" value={a.titleLine2Before} onChange={(v) => setAttributes({ titleLine2Before: v })} placeholder="Część zwykła" />
-              <RichText tagName="span" className="glownacechy__title-accent" value={a.titleLine2Accent} onChange={(v) => setAttributes({ titleLine2Accent: v })} placeholder="Część akcentowana (Dolce)" />
-            </span>
+            <RichText 
+               tagName="span" 
+               className="glownacechy__title-line" 
+               value={a.title || (a.titleLine1 + '<br>' + a.titleLine2Before + a.titleLine2Accent)} 
+               onChange={(v) => setAttributes({ title: v })} 
+               placeholder="Główny nagłówek (użyj Enter/Shift+Enter dla nowej linii)" 
+            />
           </h2>
 
           <ul className="glownacechy__list">

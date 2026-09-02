@@ -8,6 +8,10 @@
       "type": "string",
       "default": "Zobacz"
     },
+    "accentWord": {
+      "type": "string",
+      "default": "woman"
+    },
     "item1Image": {
       "type": "string",
       "default": ""

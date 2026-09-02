@@ -21,16 +21,25 @@ if (!function_exists('glownagrid_render_tile')) {
         $img    = glownagrid_get($attributes, "item{$n}Image");
         if (!$img) { $img = $fallback; }
         $label  = glownagrid_get($attributes, "item{$n}Label");
-        $accent = glownagrid_get($attributes, "item{$n}Accent");
+        $oldAccent = glownagrid_get($attributes, "item{$n}Accent");
+        if ($n === 6 && $oldAccent && !str_contains($label, $oldAccent)) {
+            $label .= ' ' . $oldAccent;
+        }
+        $accentWord = glownagrid_get($attributes, "accentWord", 'woman');
         $url    = glownagrid_get($attributes, "item{$n}URL", '#');
         ?>
         <a class="glownagrid__tile glownagrid__tile--<?php echo (int) $n; ?>" href="<?php echo esc_url(home_url($url)); ?>">
             <img class="glownagrid__bg" src="<?php echo esc_url($img); ?>" alt="">
             <span class="glownagrid__label">
-                <span><?php echo wp_kses_post($label); ?></span>
-                <?php if ($accent): ?>
-                    <span class="glownagrid__label-accent"><?php echo wp_kses_post($accent); ?></span>
-                <?php endif; ?>
+                <span>
+                <?php 
+                if (function_exists('shav_highlight_accent_word')) {
+                    echo wp_kses_post(shav_highlight_accent_word($label, $accentWord, 'glownagrid__label-accent'));
+                } else {
+                    echo wp_kses_post($label);
+                }
+                ?>
+                </span>
             </span>
             <span class="glownagrid__cta">
                 <span><?php echo wp_kses_post($buttonLabel); ?></span>

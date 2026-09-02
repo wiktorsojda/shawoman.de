@@ -68,10 +68,12 @@ export default function Edit({ attributes, setAttributes }) {
           ? <img className="glownagrid__bg" src={a[`item${n}Image`]} alt="" />
           : <div className="glownagrid__bg glownagrid__bg--placeholder">Wybierz zdjęcie kafelka {n} w panelu po prawej</div>}
         <div className="glownagrid__label">
-          <RichText tagName="span" value={a[`item${n}Label`]} onChange={(v) => setAttributes({ [`item${n}Label`]: v })} placeholder={`Etykieta ${n}`} />
-          {n === 6 && (
-            <RichText tagName="span" className="glownagrid__label-accent" value={a[`item${n}Accent`]} onChange={(v) => setAttributes({ [`item${n}Accent`]: v })} placeholder="(Dolce)" />
-          )}
+          <RichText 
+            tagName="span" 
+            value={a[`item${n}Label`] || (n === 6 && a[`item${n}Accent`] ? a[`item${n}Label`] + ' ' + a[`item${n}Accent`] : '')} 
+            onChange={(v) => setAttributes({ [`item${n}Label`]: v })} 
+            placeholder={`Etykieta ${n}`} 
+          />
         </div>
         <div className="glownagrid__cta">
           <RichText tagName="span" value={a.buttonLabel} onChange={(v) => setAttributes({ buttonLabel: v })} placeholder="Zobacz" />
@@ -107,8 +109,8 @@ export default function Edit({ attributes, setAttributes }) {
                 item3Label: a.item3Label || '',
                 item4Label: a.item4Label || '',
                 item5Label: a.item5Label || '',
-                item6Label: a.item6Label || '',
-                item6Accent: a.item6Accent || ''
+                item6Label: a.item6Label || (a.item6Accent ? a.item6Label + ' ' + a.item6Accent : ''),
+                accentWord: a.accentWord || ''
               };
               return JSON.stringify(data, null, 2);
             })()}
@@ -133,7 +135,7 @@ export default function Edit({ attributes, setAttributes }) {
               if (parsed.item4Label !== undefined) updates.item4Label = parsed.item4Label;
               if (parsed.item5Label !== undefined) updates.item5Label = parsed.item5Label;
               if (parsed.item6Label !== undefined) updates.item6Label = parsed.item6Label;
-              if (parsed.item6Accent !== undefined) updates.item6Accent = parsed.item6Accent;
+              if (parsed.accentWord !== undefined) updates.accentWord = parsed.accentWord;
               setAttributes(updates);
               alert('Zaktualizowano pomyślnie!');
               setImportJson('');
@@ -143,6 +145,14 @@ export default function Edit({ attributes, setAttributes }) {
           }} style={{ width: '100%', justifyContent: 'center' }}>
             Importuj tłumaczenie
           </Button>
+        </PanelBody>
+        <PanelBody title="Akcentowanie (Opcje)" initialOpen={true}>
+          <TextControl 
+            label="Słowo do akcentowania (Dolce font)" 
+            value={a.accentWord} 
+            onChange={(v) => setAttributes({ accentWord: v })} 
+            help="Wpisz słowo występujące w etykietach kafelków, które ma zostać wyróżnione fontem Dolce."
+          />
         </PanelBody>
         {ITEM_NUMS.map((n) => (
           <PanelBody key={n} title={`Kafelek ${n}`} initialOpen={false}>

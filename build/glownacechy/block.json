@@ -16,6 +16,14 @@
       "type": "string",
       "default": "woman."
     },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "accentWord": {
+      "type": "string",
+      "default": "woman."
+    },
     "image": {
       "type": "string",
       "default": ""
