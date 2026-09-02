@@ -1,7 +1,7 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextareaControl } from "@wordpress/components";
+import { PanelBody, Button, TextareaControl, TextControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 
 const AVATAR_NUMS = [1, 2, 3, 4, 5];
@@ -18,8 +18,10 @@ export default function Edit({ attributes, setAttributes }) {
           <TextareaControl
             label="Skopiuj ten JSON dla AI"
             value={(() => {
+              const fallbackTitle = [a.titleBefore, a.titleAccent, a.titleAfter].filter(Boolean).join(' ');
+              const currentTitle = (typeof a.title === 'string' && a.title !== '') ? a.title : fallbackTitle;
               const data = {
-                title: a.title || (a.titleBefore + ' ' + a.titleAccent + a.titleAfter),
+                title: currentTitle,
                 accentWord: a.accentWord || '',
                 card1TextStrong: a.card1TextStrong || '',
                 card1TextLight: a.card1TextLight || '',
@@ -91,7 +93,7 @@ export default function Edit({ attributes, setAttributes }) {
         <PanelBody title="Akcentowanie (Opcje)" initialOpen={true}>
           <TextControl 
             label="Słowo do akcentowania (Dolce font)" 
-            value={a.accentWord} 
+            value={a.accentWord || ''} 
             onChange={(v) => setAttributes({ accentWord: v })} 
             help="Wpisz słowo występujące w głównym nagłówku, które ma zostać wyróżnione fontem Dolce."
           />
@@ -101,7 +103,7 @@ export default function Edit({ attributes, setAttributes }) {
       <h2 className="glownaoceny__title">
         <RichText 
           tagName="span" 
-          value={a.title || (a.titleBefore + ' ' + a.titleAccent + a.titleAfter)} 
+          value={(typeof a.title === 'string' && a.title !== '') ? a.title : [a.titleBefore, a.titleAccent, a.titleAfter].filter(Boolean).join(' ')} 
           onChange={(v) => setAttributes({ title: v })} 
           placeholder="Główny nagłówek" 
         />
