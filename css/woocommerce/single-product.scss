@@ -2470,14 +2470,16 @@ body .woosg-wrap bdi {
       height: 36px;
 
        @media (max-width: 786px) { 
-        width: 34px;
-        height: 34px;
+        width: 28px;
+        height: 28px;
        }
     }
 
     @media (max-width: 786px) {
-        gap: $space-4;
-        padding: $space-8 $space-4;
+        gap: 2px;
+        padding: 6px 8px;
+        width: 100%;
+        justify-content: center;
     }
 
     .rating-sep {
@@ -2496,11 +2498,27 @@ body .woosg-wrap bdi {
         white-space: nowrap;
 
         @media (max-width: 786px) {
-            font-size: 15px;
+            font-size: 12px;
+            white-space: normal;
+            line-height: 1.2;
         }
     }
 
     .rating-score {
         text-transform: uppercase;
+    }
+
+    .rating-stars {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 2px;
+        
+        svg {
+            @media (max-width: 786px) {
+                width: 12px;
+                height: 12px;
+            }
+        }
     }
 }
