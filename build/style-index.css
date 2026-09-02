@@ -10781,7 +10781,7 @@ body.has-mobile-menu-open {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 2px 8px;
+  padding: 4px 8px;
   background-color: #2d773d;
   color: #cff2d6;
   border-radius: 24px;
@@ -10796,6 +10796,7 @@ body.has-mobile-menu-open {
 @media (min-width: 768px) {
   .summary.entry-summary .shav-bundle .shav-bundle__savings-pill {
     font-size: 12px;
+    padding: 4px 12px;
   }
 }
 .summary.entry-summary .shav-bundle .shav-bundle__price-sale {
