@@ -377,7 +377,7 @@ function custom_element_inside_cart_left_column() {
         .my-cart-add-to-cart-button .button:hover { background-color: #C68E7A !important; transform: scale(1.05); text-decoration: none !important; }
         
         /* WIDOK MOBILNY - WYMUSZONY SLIDER ZE SCROLLBAREM (PASKIEM PROGRESU) ORAZ PRAWDZIWE EQUAL HEIGHT DLA OBU TRYBÓW */
-        @media (max-width: 768px) {
+        @media (max-width: 899px) {
             .cs-layout-carousel, .cs-layout-grid { 
                 display: flex !important;
                 flex-wrap: nowrap !important; 
