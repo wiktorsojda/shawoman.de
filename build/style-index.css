@@ -10639,7 +10639,7 @@ body.has-mobile-menu-open {
 .summary.entry-summary .shav-bundle .shav-bundle__top {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
+  align-items: center;
 }
 @media (min-width: 768px) {
   .summary.entry-summary .shav-bundle .shav-bundle__top {
