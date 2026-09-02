@@ -31,8 +31,12 @@ export default function Edit({ attributes, setAttributes }) {
   const wrapperStyle = {};
   if (a.backgroundImage) wrapperStyle["--bg-desktop"] = `url(${a.backgroundImage})`;
   if (a.backgroundImageMobile) wrapperStyle["--bg-mobile"] = `url(${a.backgroundImageMobile})`;
+  if (a.bgPositionDesktop) wrapperStyle["--bg-pos-desktop"] = a.bgPositionDesktop;
+  if (a.bgPositionMobile) wrapperStyle["--bg-pos-mobile"] = a.bgPositionMobile;
+  
   // fallback dla edytora (zawsze pokazuje desktop preview)
   if (a.backgroundImage) wrapperStyle.backgroundImage = `url(${a.backgroundImage})`;
+  if (a.bgPositionDesktop) wrapperStyle.backgroundPosition = a.bgPositionDesktop;
   const blockProps = useBlockProps({
     className: `szachglass szachglass--x-${a.glassPositionX} szachglass--y-${a.glassPositionY}`,
     style: wrapperStyle,
@@ -72,6 +76,19 @@ export default function Edit({ attributes, setAttributes }) {
               Usuń zdjęcie desktop
             </Button>
           )}
+          <SelectControl
+            label="Pozycja obrazka Desktop"
+            value={a.bgPositionDesktop}
+            options={[
+              { label: "Środek (Center)", value: "center" },
+              { label: "Góra (Top)", value: "top center" },
+              { label: "Dół (Bottom)", value: "bottom center" },
+              { label: "Lewo (Left)", value: "center left" },
+              { label: "Prawo (Right)", value: "center right" },
+            ]}
+            onChange={(v) => setAttributes({ bgPositionDesktop: v })}
+            style={{ marginBottom: 20 }}
+          />
           <p style={{ marginBottom: 8 }}><strong>Mobile</strong> (&lt; 768px) — opcjonalne, pusto = używa desktop</p>
           <MediaUploadCheck>
             <MediaUpload onSelect={(media) => setAttributes({ backgroundImageMobile: media?.url || "" })} allowedTypes={["image"]} value={a.backgroundImageMobile}
@@ -82,6 +99,18 @@ export default function Edit({ attributes, setAttributes }) {
               Usuń zdjęcie mobile
             </Button>
           )}
+          <SelectControl
+            label="Pozycja obrazka Mobile"
+            value={a.bgPositionMobile}
+            options={[
+              { label: "Środek (Center)", value: "center" },
+              { label: "Góra (Top)", value: "top center" },
+              { label: "Dół (Bottom)", value: "bottom center" },
+              { label: "Lewo (Left)", value: "center left" },
+              { label: "Prawo (Right)", value: "center right" },
+            ]}
+            onChange={(v) => setAttributes({ bgPositionMobile: v })}
+          />
         </PanelBody>
         <PanelBody title="Pozycja karty" initialOpen={false}>
           <SelectControl

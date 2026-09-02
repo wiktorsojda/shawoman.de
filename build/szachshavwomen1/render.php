@@ -18,14 +18,20 @@ if (!in_array($glassPositionX, $allowed_x, true)) $glassPositionX = 'left';
 if (!in_array($glassPositionY, $allowed_y, true)) $glassPositionY = 'middle';
 if (!in_array($textAlign, $allowed_align, true)) $textAlign = 'left';
 
+$bgPositionDesktop = isset($attributes['bgPositionDesktop']) ? $attributes['bgPositionDesktop'] : 'center';
+$bgPositionMobile  = isset($attributes['bgPositionMobile'])  ? $attributes['bgPositionMobile']  : 'center';
+
 $style_parts = [];
 if ($backgroundImage) {
     $style_parts[] = '--bg-desktop:url(' . esc_url($backgroundImage) . ')';
+    $style_parts[] = '--bg-pos-desktop:' . esc_attr($bgPositionDesktop);
 }
 // Mobile fallback: jezeli mobile pusty, uzywa desktop (ten sam URL)
 $mobile_url = $backgroundImageMobile ?: $backgroundImage;
 if ($mobile_url) {
     $style_parts[] = '--bg-mobile:url(' . esc_url($mobile_url) . ')';
+    // Jeśli mobile image jest pusty, to fallback użyje --bg-mobile z desktop image, ale pozycja mobile
+    $style_parts[] = '--bg-pos-mobile:' . esc_attr($bgPositionMobile);
 }
 $wrapper_style = $style_parts ? implode(';', $style_parts) . ';' : '';
 

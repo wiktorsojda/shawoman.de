@@ -21,6 +21,7 @@
 
   // Mobile: zdjecie z --bg-mobile (fallback do --bg-desktop ustawiony inline)
   background-image: var(--bg-mobile);
+  background-position: var(--bg-pos-mobile, center);
 
   @media (min-width: $breakpoint-tablet) {
     min-height: 80vh;
@@ -33,6 +34,7 @@
     padding-right: max(20px, calc((100vw - 1428px) / 2));
     // Desktop: zdjecie z --bg-desktop (osobne, wieksze)
     background-image: var(--bg-desktop);
+    background-position: var(--bg-pos-desktop, center);
   }
 
   // ---------------------------------------------------------------------------
@@ -119,7 +121,10 @@
     width: auto !important;
     min-height: 0 !important;
     padding: 0 !important;
-    margin: 20px 24px 20px !important;            // 20px po bokach (rownanie z headerem), 24px gap miedzy sekcjami
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-left: 24px !important;
+    margin-right: 24px !important;
     background-image: none !important;              // zdejmuje pelnoekranowe tlo desktop
     background-color: $color-neutral-100 !important; // #f2f2f2 (Figma)
     border-radius: 12px !important;
@@ -133,7 +138,7 @@
       width: 100% !important;
       aspect-ratio: 1 / 1 !important;
       background-image: var(--bg-mobile) !important;
-      background-position: center !important;
+      background-position: var(--bg-pos-mobile, center) !important;
       background-size: cover !important;
       background-repeat: no-repeat !important;
       border-radius: 12px 12px 0 0 !important;
