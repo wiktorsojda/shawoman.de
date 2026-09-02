@@ -453,13 +453,8 @@
       height: auto;
       
       @media (min-width: $breakpoint-tablet) {
-        flex: 0 0 200px;
-        max-width: 200px;
-      }
-      
-      @media (min-width: 1024px) {
-        flex: 0 0 240px;
-        max-width: 240px;
+        flex: 0 0 clamp(160px, 18vw, 240px);
+        max-width: clamp(160px, 18vw, 240px);
       }
 
       border-radius: 8px;
@@ -560,8 +555,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: $space-8; // zmniejszam gap żeby łatwiej zmieściło się w jednej linii
-      flex-wrap: nowrap;
+      gap: $space-8;
+      flex-wrap: wrap; /* pozwala elementom przenieść się do nowej linii, żeby uniknąć obcięcia */
     }
 
     .shav-bundle__price-label {
@@ -576,7 +571,7 @@
       display: inline-flex;
       align-items: center;
       gap: $space-8;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       justify-content: flex-end;
     }
 

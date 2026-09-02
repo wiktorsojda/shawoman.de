@@ -10658,14 +10658,8 @@ body.has-mobile-menu-open {
 }
 @media (min-width: 768px) {
   .summary.entry-summary .shav-bundle .shav-bundle__thumb {
-    flex: 0 0 200px;
-    max-width: 200px;
-  }
-}
-@media (min-width: 1024px) {
-  .summary.entry-summary .shav-bundle .shav-bundle__thumb {
-    flex: 0 0 240px;
-    max-width: 240px;
+    flex: 0 0 clamp(160px, 18vw, 240px);
+    max-width: clamp(160px, 18vw, 240px);
   }
 }
 .summary.entry-summary .shav-bundle .shav-bundle__thumb {
@@ -10764,7 +10758,7 @@ body.has-mobile-menu-open {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap; /* pozwala elementom przenieść się do nowej linii, żeby uniknąć obcięcia */
 }
 .summary.entry-summary .shav-bundle .shav-bundle__price-label {
   color: #3f3f3f;
@@ -10777,7 +10771,7 @@ body.has-mobile-menu-open {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: flex-end;
 }
 .summary.entry-summary .shav-bundle .shav-bundle__savings-pill {
