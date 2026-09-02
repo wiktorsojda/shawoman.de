@@ -453,7 +453,7 @@
       border-radius: 8px;
       overflow: hidden;
       background-color: $color-neutral-100;
-      margin-top: 24px; /* Kompensacja wysokości pigułki, aby wyśrodkować ze środkiem tekstu */
+      margin-top: 10px; /* Zmniejszona kompensacja pigułki (24px to było za dużo) */
 
       @media (min-width: $breakpoint-tablet) {
         width: 180px;
