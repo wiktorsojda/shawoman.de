@@ -1103,7 +1103,7 @@ if (!function_exists('blendygo_render_cpt_product_set')) {
         echo '<div class="zestaw-container shav-bundle">';
         echo '<div class="zestaw-title" style="display:none">' . esc_html( $lbl_header ) . '</div>'; 
         echo '<div class="shav-bundle__card">';
-        echo '<div class="shav-bundle__top">';
+        echo '<div class="shav-bundle__top" style="align-items: center !important;">';
 
         // OBRAZEK
         if ( ! empty( $img ) ) {

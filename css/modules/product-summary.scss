@@ -439,7 +439,7 @@
     .shav-bundle__top {
       display: flex;
       gap: $space-16;
-      align-items: center;
+      align-items: center !important;
 
       @media (min-width: $breakpoint-tablet) {
         gap: $space-24;
