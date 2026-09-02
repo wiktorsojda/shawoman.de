@@ -555,8 +555,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: $space-12;
-      flex-wrap: wrap;
+      gap: $space-8; // zmniejszam gap żeby łatwiej zmieściło się w jednej linii
+      flex-wrap: nowrap;
     }
 
     .shav-bundle__price-label {
@@ -571,7 +571,7 @@
       display: inline-flex;
       align-items: center;
       gap: $space-8;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: flex-end;
     }
 

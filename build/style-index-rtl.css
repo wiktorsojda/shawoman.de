@@ -10758,8 +10758,8 @@ body.has-mobile-menu-open {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 8px;
+  flex-wrap: nowrap;
 }
 .summary.entry-summary .shav-bundle .shav-bundle__price-label {
   color: #3f3f3f;
@@ -10772,7 +10772,7 @@ body.has-mobile-menu-open {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
 }
 .summary.entry-summary .shav-bundle .shav-bundle__savings-pill {
