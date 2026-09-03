@@ -1675,7 +1675,12 @@ p#countdown-mobile .countdown-wrapper {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 12px !important;
+  margin-bottom: 32px !important;
+}
+@media (min-width: 768px) {
+  .product-subtitle {
+    margin-bottom: 46px !important;
+  }
 }
 
 .summary .woocommerce-product-details__short-description {
@@ -1904,8 +1909,8 @@ p#countdown-mobile .countdown-wrapper {
 }
 
 .woocommerce div.product .woocommerce-product-rating {
-  margin-bottom: 32px !important;
-  margin-top: 0.65em;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
 }
 
 .woocommerce-product-gallery {
@@ -2180,8 +2185,15 @@ ul.flex-direction-nav li a:hover {
   }
   .product-subtitle {
     font-size: 20px !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 32px !important;
   }
+}
+@media (max-width: 800px) and (min-width: 768px) {
+  .product-subtitle {
+    margin-bottom: 46px !important;
+  }
+}
+@media (max-width: 800px) {
   div#icon-text-wrapper {
     display: none;
   }
@@ -2458,7 +2470,12 @@ body .woosg-wrap bdi {
   background-color: #f2f2f2;
   border-radius: 72px;
   box-sizing: border-box;
-  margin-bottom: 16px;
+  margin-bottom: 8px !important;
+}
+@media (min-width: 768px) {
+  .shav-product-rating-pill {
+    margin-bottom: 12px !important;
+  }
 }
 .shav-product-rating-pill .avatars__item {
   width: 36px;
