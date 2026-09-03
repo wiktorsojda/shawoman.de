@@ -1797,9 +1797,9 @@ p#countdown-mobile .countdown-wrapper {
 }
 .summary .price {
   color: #3f3f3f;
-  padding-bottom: 0 !important;
+  padding-bottom: 24px !important;
   border-bottom: 1px solid #3f3f3f;
-  margin-bottom: 16px !important;
+  margin-bottom: 24px !important;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
