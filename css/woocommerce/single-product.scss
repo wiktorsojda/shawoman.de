@@ -737,7 +737,7 @@ p#countdown-mobile {
     box-sizing: border-box;
     max-width: 1428px;
     width: 100%;
-    margin: 40px auto $space-32 auto;
+    // margin: 40px auto $space-32 auto;
     gap: 82px;
 
     @media (max-width: $breakpoint-tablet) {
@@ -1401,7 +1401,7 @@ p#countdown-mobile {
     // background-clip: text;
     // -webkit-background-clip: text;
     // -webkit-text-fill-color: transparent;
-    
+
     .product_title__accent {
         font-family: $font-family-accent !important;
         font-size: 1.6em !important; // Rozmiar można dostosować
@@ -2083,7 +2083,7 @@ ul.flex-direction-nav li a:hover {
     .woocommerce div.product {
         flex-wrap: nowrap !important;
     }
-    
+
     .woocommerce div.product div.images.woocommerce-product-gallery {
         width: 50% !important;
         flex-basis: 50% !important;
@@ -2477,13 +2477,13 @@ body .woosg-wrap bdi {
     margin-bottom: $space-16;
 
     .avatars__item {
-      width: 36px;
-      height: 36px;
+        width: 36px;
+        height: 36px;
 
-       @media (max-width: 786px) { 
-        width: 28px;
-        height: 28px;
-       }
+        @media (max-width: 786px) {
+            width: 28px;
+            height: 28px;
+        }
     }
 
     @media (max-width: 786px) {
@@ -2524,7 +2524,7 @@ body .woosg-wrap bdi {
         align-items: center;
         flex-wrap: nowrap;
         gap: 2px;
-        
+
         svg {
             @media (max-width: 786px) {
                 width: 12px;
