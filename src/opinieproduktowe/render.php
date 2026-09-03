@@ -28,7 +28,7 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
                 
                 // Nagłówek ląduje bezposrednio nad siatką opinii
                 if (!empty($title)) : ?>
-                    <h2 class="opinieproduktowe__title" style="max-width: 1300px; margin: 0 auto 32px auto;"><?php echo esc_html($title); ?></h2>
+                    <h2 class="opinieproduktowe__title"><?php echo esc_html($title); ?></h2>
                 <?php endif;
 
                 // Standardowy mechanizm WC do renderowania opinii
