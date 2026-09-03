@@ -153,12 +153,13 @@ document.addEventListener("DOMContentLoaded", function() {
     const maxVisible = 10;
     
     function updateStrip() {
-        const images = commentList.querySelectorAll('.iv-comment-image, img:not(.avatar)');
+        // Wykluczamy .avatar oraz .emoji (np. z wp.org)
+        const images = commentList.querySelectorAll('.iv-comment-image, img:not(.avatar):not(.emoji)');
         
         images.forEach(img => {
             if (img.src && !seenSrcs.has(img.src) && !img.closest('.review-images-strip')) {
-                // Jeśli ignorujemy zdjęcia awatarów itp
-                if (img.classList.contains('avatar')) return;
+                // Dodatkowe zabezpieczenie
+                if (img.classList.contains('avatar') || img.classList.contains('emoji')) return;
                 
                 seenSrcs.add(img.src);
                 
@@ -166,6 +167,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     const clone = document.createElement('img');
                     clone.src = img.src;
                     clone.className = 'review-strip-item';
+                    clone.style.cursor = 'pointer'; // Pokazuje, że można kliknąć
+                    
+                    // Klon kliknięty -> klikamy oryginalne zdjęcie (by odpalić wbudowany lightbox)
+                    clone.addEventListener('click', function() {
+                        img.click();
+                    });
                     
                     const moreBtn = strip.querySelector('.review-strip-more');
                     if (moreBtn) {
@@ -174,13 +181,11 @@ document.addEventListener("DOMContentLoaded", function() {
                         strip.appendChild(clone);
                     }
                 } else if (seenSrcs.size === maxVisible + 1) {
-                    // Tworzymy kafelek "plus"
                     const moreCount = document.createElement('div');
                     moreCount.className = 'review-strip-more';
                     moreCount.innerText = '+' + (seenSrcs.size - maxVisible);
                     strip.appendChild(moreCount);
                 } else {
-                    // Aktualizujemy kafelek "plus"
                     const moreCount = strip.querySelector('.review-strip-more');
                     if (moreCount) {
                         moreCount.innerText = '+' + (seenSrcs.size - maxVisible);
