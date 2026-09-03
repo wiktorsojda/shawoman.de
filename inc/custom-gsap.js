@@ -818,8 +818,10 @@ function faqKontaktHelper() {
           var icon = acc[j].querySelector('i');
           panel.style.maxHeight = null;
           panel.style.opacity = 0;
-          icon.classList.remove('fa-chevron-up');
-          icon.classList.add('fa-chevron-down');
+          if (icon) {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+          }
         }
       }
 
@@ -833,13 +835,17 @@ function faqKontaktHelper() {
       if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
           panel.style.opacity = 0;
-          icon.classList.remove('fa-chevron-up');
-          icon.classList.add('fa-chevron-down');
+          if (icon) {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+          }
       } else {
           panel.style.maxHeight = panel.scrollHeight + "px";
           panel.style.opacity = 1;
-          icon.classList.remove('fa-chevron-down');
-          icon.classList.add('fa-chevron-up');
+          if (icon) {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+          }
       }
     });
   }
@@ -867,8 +873,10 @@ function faqHelper() {
           var icon = acc[j].querySelector('i');
           panel.style.maxHeight = null;
           panel.style.opacity = 0;
-          icon.classList.remove('fa-chevron-up');
-          icon.classList.add('fa-chevron-down');
+          if (icon) {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+          }
         }
       }
 
@@ -882,13 +890,17 @@ function faqHelper() {
       if (panel.style.maxHeight) {
           panel.style.maxHeight = null;
           panel.style.opacity = 0;
-          icon.classList.remove('fa-chevron-up');
-          icon.classList.add('fa-chevron-down');
+          if (icon) {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+          }
       } else {
           panel.style.maxHeight = panel.scrollHeight + "px";
           panel.style.opacity = 1;
-          icon.classList.remove('fa-chevron-down');
-          icon.classList.add('fa-chevron-up');
+          if (icon) {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+          }
       }
     });
   }
