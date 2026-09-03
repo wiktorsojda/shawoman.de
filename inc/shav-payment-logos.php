@@ -26,6 +26,7 @@ function shav_display_payment_logos()
                 color: #FFFFFF !important;
             }
             .shav-payment-logos-wrapper {
+                width: 100%;
                 max-width: 100%;
                 min-width: 0;
                 overflow: hidden;
@@ -55,6 +56,7 @@ function shav_display_payment_logos()
                 align-items: center;
                 justify-content: center;
                 gap: 0;
+                width: 100%;
                 max-width: 100%;
                 overflow-x: auto;
                 scrollbar-width: none;
