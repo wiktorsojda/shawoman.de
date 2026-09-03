@@ -139,6 +139,83 @@ document.addEventListener("DOMContentLoaded", function() {
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
+    const commentList = document.querySelector('.commentlist');
+    if (!commentList) return;
+    
+    let strip = document.querySelector('.review-images-strip');
+    if (!strip) {
+        strip = document.createElement('div');
+        strip.className = 'review-images-strip';
+        commentList.parentNode.insertBefore(strip, commentList);
+    }
+    
+    const seenSrcs = new Set();
+    const maxVisible = 10;
+    
+    function updateStrip() {
+        const images = commentList.querySelectorAll('.iv-comment-image, img:not(.avatar)');
+        
+        images.forEach(img => {
+            if (img.src && !seenSrcs.has(img.src) && !img.closest('.review-images-strip')) {
+                // Jeśli ignorujemy zdjęcia awatarów itp
+                if (img.classList.contains('avatar')) return;
+                
+                seenSrcs.add(img.src);
+                
+                if (seenSrcs.size <= maxVisible) {
+                    const clone = document.createElement('img');
+                    clone.src = img.src;
+                    clone.className = 'review-strip-item';
+                    
+                    const moreBtn = strip.querySelector('.review-strip-more');
+                    if (moreBtn) {
+                        strip.insertBefore(clone, moreBtn);
+                    } else {
+                        strip.appendChild(clone);
+                    }
+                } else if (seenSrcs.size === maxVisible + 1) {
+                    // Tworzymy kafelek "plus"
+                    const moreCount = document.createElement('div');
+                    moreCount.className = 'review-strip-more';
+                    moreCount.innerText = '+' + (seenSrcs.size - maxVisible);
+                    strip.appendChild(moreCount);
+                } else {
+                    // Aktualizujemy kafelek "plus"
+                    const moreCount = strip.querySelector('.review-strip-more');
+                    if (moreCount) {
+                        moreCount.innerText = '+' + (seenSrcs.size - maxVisible);
+                    }
+                }
+            }
+        });
+        
+        if (seenSrcs.size > 0) {
+            strip.style.display = 'flex';
+        } else {
+            strip.style.display = 'none';
+        }
+    }
+    
+    updateStrip();
+    
+    // Obserwator do wyłapywania nowych opinii załadowanych przez AJAX
+    const observer = new MutationObserver(function(mutations) {
+        let shouldUpdate = false;
+        for (let mutation of mutations) {
+            if (mutation.addedNodes.length > 0) {
+                shouldUpdate = true;
+                break;
+            }
+        }
+        if (shouldUpdate) updateStrip();
+    });
+    
+    observer.observe(commentList, { childList: true, subtree: true });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
     const loadMoreBtn = document.getElementById('shav-load-more-reviews');
     if (loadMoreBtn) {
         loadMoreBtn.addEventListener('click', function(e) {
