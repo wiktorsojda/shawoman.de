@@ -46,6 +46,17 @@ function shav_dynamic_free_shipping_from_settings( $rates, $package ) {
                 }
             }
         }
-    }
+}
     return $rates;
+}
+
+// 3. Wymuszenie wyświetlania słowa "Kostenlos" (zamiast pusto), gdy cena metody wynosi 0
+add_filter( 'woocommerce_cart_shipping_method_full_label', 'shav_force_kostenlos_label', 10, 2 );
+function shav_force_kostenlos_label( $label, $method ) {
+    // Jeśli koszt metody to 0 (np. wyzerowany przez nasz kod wyżej)
+    if ( $method->cost == 0 ) {
+        // Doklejamy span, żeby nasz wcześniejszy, "lekki CSS" bez problemu go pokazał obok loga
+        $label .= ' <span class="woocommerce-Price-amount amount">Kostenlos</span>';
+    }
+    return $label;
 }
