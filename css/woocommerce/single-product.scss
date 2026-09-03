@@ -1320,9 +1320,18 @@ p#countdown-mobile {
 
 // Style bloku Gutenberg: Opinie Produktowe
 .opinieproduktowe {
-    width: 100%;
+    width: auto;
+    margin: 0 20px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     display: flex;
     flex-direction: column;
+
+    @media (min-width: 768px) {
+        width: calc(100% - 40px);
+        margin: 0 auto;
+        max-width: 1428px;
+    }
 
     .opinieproduktowe__inner {
         width: 100%;
