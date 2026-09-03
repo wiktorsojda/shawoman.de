@@ -18168,6 +18168,7 @@ a:hover {
   color: #252525;
   font-weight: 500;
   text-align: right;
+  margin-top: 0 !important;
 }
 .jakuzywac__desc {
   font-family: "Be Vietnam Pro", sans-serif;
