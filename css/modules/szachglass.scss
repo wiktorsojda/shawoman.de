@@ -69,6 +69,7 @@
     box-sizing: border-box;
     color: $color-neutral-900;        // ciemny tekst (Figma 334:151) — lepszy kontrast na jasnym tle
     text-shadow: none;                 // nadpisuje glass-effect (text-shadow ma sens tylko na ciemnym tle)
+    border: none !important;
 
     @media (min-width: $breakpoint-tablet) {
       padding: $space-64;              // 60-64 (Figma: 60)

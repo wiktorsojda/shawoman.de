@@ -11652,6 +11652,7 @@ body.shav-cartpopup-open {
   box-sizing: border-box;
   color: #252525;
   text-shadow: none;
+  border: none !important;
 }
 @media (min-width: 768px) {
   .szachglass__card {
