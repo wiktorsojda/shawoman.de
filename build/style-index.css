@@ -12397,7 +12397,7 @@ h2.faq-header {
   margin-top: -1px;
 }
 .faq-container .faq-wrapper .faq-wrapper-questions {
-  border-top: 1px solid #d9d9d9;
+  border: none;
 }
 .faq-container .faq-wrapper .faq-title {
   font-family: "Be Vietnam Pro", sans-serif;
@@ -12409,45 +12409,59 @@ h2.faq-header {
   margin-top: 0.67em;
 }
 .faq-container .faq-wrapper .faq {
-  border-bottom: 1px solid #d9d9d9;
-  margin: 8px 0;
+  background: #F2F2F2;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .faq-container .faq-wrapper .faq:hover {
+    background: #E8E8E8;
+  }
 }
 .faq-container .faq-wrapper .faq .faq-accordion {
-  background-color: #fafafa;
-  color: rgba(37, 37, 37, 0.8);
+  background-color: transparent;
+  color: #3F3F3F;
   cursor: pointer;
   width: 100%;
-  padding: 24px 0 24px;
+  padding: 32px 24px;
   border: none;
   outline: none;
   transition: 0.4s;
   display: flex !important;
   justify-content: space-between;
   align-items: center;
-  font-weight: bold;
-  font-size: 20px;
+  font-weight: 500;
+  font-size: 15px;
   line-height: normal;
 }
 .faq-container .faq-wrapper .faq .faq-accordion i {
   font-size: 26px;
+  transition: transform 0.3s ease;
 }
 .faq-container .faq-wrapper .faq .faq-pannel {
-  padding-bottom: 16px;
-  background-color: #fafafa;
+  padding: 0 24px 32px 24px;
+  background-color: transparent;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   transition: max-height 0.6s ease-out, opacity 0.6s ease-out;
 }
 .faq-container .faq-wrapper .faq .faq-pannel p {
-  color: rgba(37, 37, 37, 0.7);
-  font-size: 20px;
-  line-height: normal;
-  margin-bottom: 16px;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .faq.active {
+  background: #E8E8E8;
   border: none;
+}
+.faq.active .faq-accordion i {
+  transform: rotate(180deg);
 }
 
 .faq.active .faq-pannel {
