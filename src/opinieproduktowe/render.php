@@ -146,7 +146,13 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!strip) {
         strip = document.createElement('div');
         strip.className = 'review-images-strip';
-        commentList.parentNode.insertBefore(strip, commentList);
+        
+        const titleEl = document.querySelector('.opinieproduktowe__title');
+        if (titleEl) {
+            titleEl.parentNode.insertBefore(strip, titleEl);
+        } else {
+            commentList.parentNode.insertBefore(strip, commentList);
+        }
     }
     
     const seenSrcs = new Set();
