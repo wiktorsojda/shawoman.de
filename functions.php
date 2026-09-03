@@ -3845,6 +3845,9 @@ function shav_custom_optional_text( $optional_text, $args ) {
 // Loga płatności (checkout / buybox)
 require_once get_theme_file_path('/inc/shav-payment-logos.php');
 
+// Dynamiczna darmowa wysyłka z poziomu ustawień
+require_once get_theme_file_path('/inc/shav-free-shipping.php');
+
 // Helper for FSE blocks to highlight an accent word
 if (!function_exists('shav_highlight_accent_word')) {
     function shav_highlight_accent_word($full_text, $accent_word, $accent_class) {
