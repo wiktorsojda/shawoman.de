@@ -1648,11 +1648,15 @@ p#countdown-mobile {
         color: $color-neutral-800;
         padding-bottom: 0 !important;
         border-bottom: 1px solid $color-neutral-800;
-        margin-bottom: $space-16 !important;
+        margin-bottom: 12px !important;
         font-size: $font-size-h3;
         font-style: normal;
         font-weight: 700;
         line-height: 117.75%;
+
+        @media only screen and (max-width: 768px) {
+            margin-bottom: 8px !important;
+        }
     }
 
     .variations {
