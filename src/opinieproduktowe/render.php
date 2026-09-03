@@ -57,9 +57,9 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
                     $count = 0;
                     foreach ($all_images as $img) {
                         if ($count < $maxVisible) {
-                            echo '<a href="' . esc_url($img['full']) . '" target="_blank" style="text-decoration:none; display:block;">';
-                            echo '<img src="' . esc_url($img['thumb']) . '" class="review-strip-item" style="cursor:pointer; display:block;" />';
-                            echo '</a>';
+                            echo '<div class="review-strip-item-wrapper" style="display:block;">';
+                            echo '<img src="' . esc_url($img['thumb']) . '" data-full="' . esc_url($img['full']) . '" class="review-strip-item shav-strip-lightbox" style="cursor:pointer; display:block;" />';
+                            echo '</div>';
                             $count++;
                         } else {
                             break;
@@ -69,6 +69,49 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
                         echo '<div class="review-strip-more">+' . (count($all_images) - $maxVisible) . '</div>';
                     }
                     echo '</div>';
+                    ?>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const stripImages = document.querySelectorAll('.shav-strip-lightbox');
+                        if (stripImages.length === 0) return;
+                        
+                        stripImages.forEach(img => {
+                            img.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const fullSrc = this.getAttribute('data-full') || this.src;
+                                
+                                const overlay = document.createElement('div');
+                                overlay.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999999; display:flex; align-items:center; justify-content:center; cursor:zoom-out; opacity:0; transition:opacity 0.3s ease;';
+                                
+                                const fullImg = document.createElement('img');
+                                fullImg.src = fullSrc;
+                                fullImg.style.cssText = 'max-width:90%; max-height:90%; object-fit:contain; border-radius:8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform:scale(0.95); transition:transform 0.3s ease;';
+                                
+                                const closeBtn = document.createElement('div');
+                                closeBtn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+                                closeBtn.style.cssText = 'position:absolute; top:24px; right:24px; cursor:pointer; padding:8px;';
+                                
+                                overlay.appendChild(fullImg);
+                                overlay.appendChild(closeBtn);
+                                document.body.appendChild(overlay);
+                                
+                                // Trigger reflow for transition
+                                void overlay.offsetWidth;
+                                overlay.style.opacity = '1';
+                                fullImg.style.transform = 'scale(1)';
+                                
+                                const closeLightbox = () => {
+                                    overlay.style.opacity = '0';
+                                    fullImg.style.transform = 'scale(0.95)';
+                                    setTimeout(() => overlay.remove(), 300);
+                                };
+                                
+                                overlay.addEventListener('click', closeLightbox);
+                            });
+                        });
+                    });
+                    </script>
+                    <?php
                 }
 
                 // Nagłówek ląduje bezposrednio nad siatką opinii
