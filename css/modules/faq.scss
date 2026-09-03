@@ -157,12 +157,12 @@ h2.faq-header {
       }
 
       .faq-pannel {
-        padding: 0 24px 32px 24px;
+        padding: 0 24px 0 24px;
         background-color: transparent;
         overflow: hidden;
         max-height: 0;
         opacity: 0;
-        transition: max-height 0.6s ease-out, opacity 0.6s ease-out;
+        transition: max-height 0.6s ease-out, opacity 0.6s ease-out, padding 0.6s ease-out;
 
         p {
           color: #555;
@@ -190,6 +190,7 @@ h2.faq-header {
 .faq.active .faq-pannel {
   max-height: 500px;
   opacity: 1;
+  padding-bottom: 32px;
 }
 
 

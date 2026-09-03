@@ -30,27 +30,23 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
                 $all_comments = get_comments(array(
                     'post_id' => get_the_ID(),
                     'status' => 'approve',
+                    'type' => 'review',
                 ));
                 
                 $seen_images = array();
                 $all_images = array();
                 
-                foreach ($all_comments as $c) {
-                    $img_id = get_comment_meta($c->comment_ID, 'review_image_id', true);
-                    if ($img_id) {
-                        $img_url = wp_get_attachment_image_url($img_id, 'medium');
-                        $img_full = wp_get_attachment_image_url($img_id, 'full');
-                        if ($img_url && !in_array($img_url, $seen_images)) {
-                            $all_images[] = array('thumb' => $img_url, 'full' => $img_full);
+                // We use ob_start to render all comments to a string, then regex out the images.
+                // This guarantees we find exactly what would be shown in the DOM, including plugin-injected images.
+                ob_start();
+                wp_list_comments(apply_filters('woocommerce_product_review_list_args', array('callback' => 'woocommerce_comments')), $all_comments);
+                $all_html = ob_get_clean();
+                
+                if (preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $all_html, $matches)) {
+                    foreach ($matches[1] as $img_url) {
+                        if (!in_array($img_url, $seen_images) && strpos($img_url, 'emoji') === false && strpos($img_url, 'avatar') === false) {
+                            $all_images[] = array('thumb' => $img_url, 'full' => $img_url);
                             $seen_images[] = $img_url;
-                        }
-                    }
-                    if (preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $c->comment_content, $matches)) {
-                        foreach ($matches[1] as $img_url) {
-                            if (!in_array($img_url, $seen_images) && strpos($img_url, 'emoji') === false && strpos($img_url, 'avatar') === false) {
-                                $all_images[] = array('thumb' => $img_url, 'full' => $img_url);
-                                $seen_images[] = $img_url;
-                            }
                         }
                     }
                 }
