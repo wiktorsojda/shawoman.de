@@ -32,7 +32,10 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
             <div class="faq">
                 <button class="faq-accordion" type="button" aria-expanded="false">
                     <<?php echo $headingTag; ?> class="faq-header"><?php echo wp_kses_post($q); ?></<?php echo $headingTag; ?>>
-                    <i class="fas fa-chevron-down"></i>
+                    <svg class="shav-faq-icon shav-faq-plus" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path class="h-line" d="M4 10h12" stroke="#3F3F3F" stroke-width="2" stroke-linecap="round"/>
+                        <path class="v-line" d="M10 4v12" stroke="#3F3F3F" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
                 </button>
                 <div class="faq-pannel">
                     <p><?php echo wp_kses_post($ans); ?></p>

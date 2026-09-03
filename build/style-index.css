@@ -12437,9 +12437,13 @@ h2.faq-header {
   font-size: 15px;
   line-height: normal;
 }
-.faq-container .faq-wrapper .faq .faq-accordion i {
-  font-size: 26px;
+.faq-container .faq-wrapper .faq .faq-accordion .shav-faq-icon {
   transition: transform 0.3s ease;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+.faq-container .faq-wrapper .faq .faq-accordion .shav-faq-icon .v-line {
+  transition: opacity 0.3s ease;
 }
 .faq-container .faq-wrapper .faq .faq-pannel {
   padding: 0 24px 32px 24px;
@@ -12460,8 +12464,11 @@ h2.faq-header {
   background: #E8E8E8;
   border: none;
 }
-.faq.active .faq-accordion i {
+.faq.active .faq-accordion .shav-faq-icon {
   transform: rotate(180deg);
+}
+.faq.active .faq-accordion .shav-faq-icon .v-line {
+  opacity: 0;
 }
 
 .faq.active .faq-pannel {

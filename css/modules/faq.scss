@@ -130,9 +130,13 @@ h2.faq-header {
         font-size: 15px;
         line-height: normal;
 
-        i {
-          font-size: $font-size-h3-mob;
+        .shav-faq-icon {
           transition: transform 0.3s ease;
+          flex-shrink: 0;
+          margin-left: 10px;
+          .v-line {
+            transition: opacity 0.3s ease;
+          }
         }
       }
 
@@ -159,8 +163,11 @@ h2.faq-header {
   background: #E8E8E8;
   border: none;
 
-  .faq-accordion i {
+  .faq-accordion .shav-faq-icon {
     transform: rotate(180deg);
+    .v-line {
+      opacity: 0;
+    }
   }
 }
 
