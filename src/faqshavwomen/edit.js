@@ -132,7 +132,7 @@ export default function Edit({ attributes, setAttributes }) {
         </PanelBody>
       </InspectorControls>
       
-      <div className="faq-wrapper container--narrow2-important" style={{ maxWidth: '1300px' }}>
+      <div className="faq-wrapper container--narrow2-important">
         {a.showTopTitle && (
           <RichText tagName="div" className="faq-title" value={a.topTitle} onChange={(v) => setAttributes({ topTitle: v })} placeholder="Tytuł sekcji" />
         )}

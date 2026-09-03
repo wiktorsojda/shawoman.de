@@ -18,7 +18,7 @@ $allowed_tags = ['h2', 'h3', 'h4', 'div'];
 if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
 ?>
 <section class="faq-container">
-    <div class="faq-wrapper container--narrow2-important" style="max-width: 1300px !important;">
+    <div class="faq-wrapper container--narrow2-important">
         <?php if ($showTopTitle && $topTitle): ?>
             <div class="faq-title"><?php echo wp_kses_post($topTitle); ?></div>
         <?php endif; ?>
