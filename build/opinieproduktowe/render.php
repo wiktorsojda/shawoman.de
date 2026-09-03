@@ -26,6 +26,55 @@ $title = !empty($attributes['title']) && $attributes['title'] !== $default_title
                     custom_review_summary();
                 }
                 
+                // Build review images strip directly in PHP so it shows all images on load
+                $all_comments = get_comments(array(
+                    'post_id' => get_the_ID(),
+                    'status' => 'approve',
+                ));
+                
+                $seen_images = array();
+                $all_images = array();
+                
+                foreach ($all_comments as $c) {
+                    $img_id = get_comment_meta($c->comment_ID, 'review_image_id', true);
+                    if ($img_id) {
+                        $img_url = wp_get_attachment_image_url($img_id, 'medium');
+                        $img_full = wp_get_attachment_image_url($img_id, 'full');
+                        if ($img_url && !in_array($img_url, $seen_images)) {
+                            $all_images[] = array('thumb' => $img_url, 'full' => $img_full);
+                            $seen_images[] = $img_url;
+                        }
+                    }
+                    if (preg_match_all('/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $c->comment_content, $matches)) {
+                        foreach ($matches[1] as $img_url) {
+                            if (!in_array($img_url, $seen_images) && strpos($img_url, 'emoji') === false && strpos($img_url, 'avatar') === false) {
+                                $all_images[] = array('thumb' => $img_url, 'full' => $img_url);
+                                $seen_images[] = $img_url;
+                            }
+                        }
+                    }
+                }
+                
+                if (!empty($all_images)) {
+                    echo '<div class="review-images-strip" style="display: flex;">';
+                    $maxVisible = 10;
+                    $count = 0;
+                    foreach ($all_images as $img) {
+                        if ($count < $maxVisible) {
+                            echo '<a href="' . esc_url($img['full']) . '" target="_blank" style="text-decoration:none; display:block;">';
+                            echo '<img src="' . esc_url($img['thumb']) . '" class="review-strip-item" style="cursor:pointer; display:block;" />';
+                            echo '</a>';
+                            $count++;
+                        } else {
+                            break;
+                        }
+                    }
+                    if (count($all_images) > $maxVisible) {
+                        echo '<div class="review-strip-more">+' . (count($all_images) - $maxVisible) . '</div>';
+                    }
+                    echo '</div>';
+                }
+
                 // Nagłówek ląduje bezposrednio nad siatką opinii
                 if (!empty($title)) : ?>
                     <h2 class="opinieproduktowe__title"><?php echo esc_html($title); ?></h2>
@@ -137,93 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const commentList = document.querySelector('.commentlist');
-    if (!commentList) return;
-    
-    let strip = document.querySelector('.review-images-strip');
-    if (!strip) {
-        strip = document.createElement('div');
-        strip.className = 'review-images-strip';
-        
-        const titleEl = document.querySelector('.opinieproduktowe__title');
-        if (titleEl) {
-            titleEl.parentNode.insertBefore(strip, titleEl);
-        } else {
-            commentList.parentNode.insertBefore(strip, commentList);
-        }
-    }
-    
-    const seenSrcs = new Set();
-    const maxVisible = 10;
-    
-    function updateStrip() {
-        // Wykluczamy .avatar oraz .emoji (np. z wp.org)
-        const images = commentList.querySelectorAll('.iv-comment-image, img:not(.avatar):not(.emoji)');
-        
-        images.forEach(img => {
-            if (img.src && !seenSrcs.has(img.src) && !img.closest('.review-images-strip')) {
-                // Dodatkowe zabezpieczenie
-                if (img.classList.contains('avatar') || img.classList.contains('emoji')) return;
-                
-                seenSrcs.add(img.src);
-                
-                if (seenSrcs.size <= maxVisible) {
-                    const clone = document.createElement('img');
-                    clone.src = img.src;
-                    clone.className = 'review-strip-item';
-                    clone.style.cursor = 'pointer'; // Pokazuje, że można kliknąć
-                    
-                    // Klon kliknięty -> klikamy oryginalne zdjęcie (by odpalić wbudowany lightbox)
-                    clone.addEventListener('click', function() {
-                        img.click();
-                    });
-                    
-                    const moreBtn = strip.querySelector('.review-strip-more');
-                    if (moreBtn) {
-                        strip.insertBefore(clone, moreBtn);
-                    } else {
-                        strip.appendChild(clone);
-                    }
-                } else if (seenSrcs.size === maxVisible + 1) {
-                    const moreCount = document.createElement('div');
-                    moreCount.className = 'review-strip-more';
-                    moreCount.innerText = '+' + (seenSrcs.size - maxVisible);
-                    strip.appendChild(moreCount);
-                } else {
-                    const moreCount = strip.querySelector('.review-strip-more');
-                    if (moreCount) {
-                        moreCount.innerText = '+' + (seenSrcs.size - maxVisible);
-                    }
-                }
-            }
-        });
-        
-        if (seenSrcs.size > 0) {
-            strip.style.display = 'flex';
-        } else {
-            strip.style.display = 'none';
-        }
-    }
-    
-    updateStrip();
-    
-    // Obserwator do wyłapywania nowych opinii załadowanych przez AJAX
-    const observer = new MutationObserver(function(mutations) {
-        let shouldUpdate = false;
-        for (let mutation of mutations) {
-            if (mutation.addedNodes.length > 0) {
-                shouldUpdate = true;
-                break;
-            }
-        }
-        if (shouldUpdate) updateStrip();
-    });
-    
-    observer.observe(commentList, { childList: true, subtree: true });
-});
-</script>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
