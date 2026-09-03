@@ -742,12 +742,10 @@ p#countdown-mobile {
 
     @media (max-width: $breakpoint-tablet) {
         flex-direction: column;
-        padding: $space-32;
-        gap: $space-32;
+        padding: 20px;
+        gap: 24px;
         align-items: center;
-        max-width: 390px;
-        margin-left: auto;
-        margin-right: auto;
+        width: 100%;
     }
 
     .average-rating {
@@ -1164,12 +1162,6 @@ p#countdown-mobile {
                 border: none !important;
                 box-shadow: none !important;
                 width: 100%;
-                
-                @media (max-width: $breakpoint-tablet) {
-                    max-width: 390px;
-                    margin-left: auto !important;
-                    margin-right: auto !important;
-                }
 
                 .comment_container {
                     width: 100%;
@@ -1184,7 +1176,7 @@ p#countdown-mobile {
                     float: none !important; // Usuwamy natywny float WooCommerce, by kafle nie nachodziły
                     background: #F1F2F3 !important;
                     border-radius: $radius-m !important; // 24px
-                    padding: clamp(20px, 4vw, 32px) !important;
+                    padding: clamp(16px, 4vw, 32px) !important;
                     border: none !important;
                     margin: 0 !important;
                     box-sizing: border-box !important; // To naprawia problem poziomego nachodzenia kafelków!
@@ -1335,7 +1327,7 @@ p#countdown-mobile {
     flex-direction: column;
 
     .opinieproduktowe__inner {
-        width: calc(100% - 40px);
+        width: calc(100% - 32px); // Mniejsze marginesy boczne na mobile
         max-width: 1428px;
         margin: 0 auto;
         display: flex;
