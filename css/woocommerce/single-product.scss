@@ -1350,34 +1350,35 @@ p#countdown-mobile {
         width: 100%;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        
+
         border-top: 1px solid #F1F2F3;
         border-bottom: 1px solid #F1F2F3;
         padding: 24px 0;
         margin: 24px auto;
-        
+
         @media (min-width: 768px) {
             padding: 42px 0;
             margin: 42px auto;
         }
-        
+
         &::-webkit-scrollbar {
             display: none;
         }
-        
-        .review-strip-item, .review-strip-more {
+
+        .review-strip-item,
+        .review-strip-more {
             flex-shrink: 0;
             width: 97px;
             height: 97px;
             border-radius: 16px;
             object-fit: cover;
-            
+
             @media (min-width: 768px) {
                 width: 120px;
                 height: 120px;
             }
         }
-        
+
         .review-strip-more {
             background: #F1F2F3;
             display: flex;
@@ -1474,10 +1475,7 @@ p#countdown-mobile {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-bottom: 32px !important;
-    @media (min-width: 768px) {
-        margin-bottom: 46px !important;
-    }
+    margin-bottom: $space-12 !important;
 }
 
 
@@ -1648,9 +1646,9 @@ p#countdown-mobile {
 
     .price {
         color: $color-neutral-800;
-        padding-bottom: 24px !important;
+        padding-bottom: 0 !important;
         border-bottom: 1px solid $color-neutral-800;
-        margin-bottom: 24px !important;
+        margin-bottom: $space-16 !important;
         font-size: $font-size-h3;
         font-style: normal;
         font-weight: 700;
@@ -1807,7 +1805,7 @@ p#countdown-mobile {
 }
 
 .woocommerce div.product .woocommerce-product-rating {
-    margin-bottom: 0 !important;
+    margin-bottom: 24px !important;
     margin-top: 0 !important;
 }
 
@@ -2187,10 +2185,7 @@ ul.flex-direction-nav li a:hover {
 
     .product-subtitle {
         font-size: $font-size-h4 !important;
-        margin-bottom: 32px !important;
-        @media (min-width: 768px) {
-            margin-bottom: 46px !important;
-        }
+        margin-bottom: $space-12 !important;
     }
 
 
@@ -2531,10 +2526,7 @@ body .woosg-wrap bdi {
     background-color: $color-neutral-100;
     border-radius: 72px;
     box-sizing: border-box;
-    margin-bottom: 8px !important;
-    @media (min-width: 768px) {
-        margin-bottom: 12px !important;
-    }
+    margin-bottom: $space-16;
 
     .avatars__item {
         width: 36px;

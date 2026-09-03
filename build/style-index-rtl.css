@@ -1584,7 +1584,8 @@ p#countdown-mobile .countdown-wrapper {
 .opinieproduktowe .review-images-strip::-webkit-scrollbar {
   display: none;
 }
-.opinieproduktowe .review-images-strip .review-strip-item, .opinieproduktowe .review-images-strip .review-strip-more {
+.opinieproduktowe .review-images-strip .review-strip-item,
+.opinieproduktowe .review-images-strip .review-strip-more {
   flex-shrink: 0;
   width: 97px;
   height: 97px;
@@ -1593,7 +1594,8 @@ p#countdown-mobile .countdown-wrapper {
      object-fit: cover;
 }
 @media (min-width: 768px) {
-  .opinieproduktowe .review-images-strip .review-strip-item, .opinieproduktowe .review-images-strip .review-strip-more {
+  .opinieproduktowe .review-images-strip .review-strip-item,
+  .opinieproduktowe .review-images-strip .review-strip-more {
     width: 120px;
     height: 120px;
   }
@@ -1675,12 +1677,7 @@ p#countdown-mobile .countdown-wrapper {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 32px !important;
-}
-@media (min-width: 768px) {
-  .product-subtitle {
-    margin-bottom: 46px !important;
-  }
+  margin-bottom: 12px !important;
 }
 
 .summary .woocommerce-product-details__short-description {
@@ -1797,9 +1794,9 @@ p#countdown-mobile .countdown-wrapper {
 }
 .summary .price {
   color: #3f3f3f;
-  padding-bottom: 24px !important;
+  padding-bottom: 0 !important;
   border-bottom: 1px solid #3f3f3f;
-  margin-bottom: 24px !important;
+  margin-bottom: 16px !important;
   font-size: 32px;
   font-style: normal;
   font-weight: 700;
@@ -1909,7 +1906,7 @@ p#countdown-mobile .countdown-wrapper {
 }
 
 .woocommerce div.product .woocommerce-product-rating {
-  margin-bottom: 0 !important;
+  margin-bottom: 24px !important;
   margin-top: 0 !important;
 }
 
@@ -2185,15 +2182,8 @@ ul.flex-direction-nav li a:hover {
   }
   .product-subtitle {
     font-size: 20px !important;
-    margin-bottom: 32px !important;
+    margin-bottom: 12px !important;
   }
-}
-@media (max-width: 800px) and (min-width: 768px) {
-  .product-subtitle {
-    margin-bottom: 46px !important;
-  }
-}
-@media (max-width: 800px) {
   div#icon-text-wrapper {
     display: none;
   }
@@ -2470,12 +2460,7 @@ body .woosg-wrap bdi {
   background-color: #f2f2f2;
   border-radius: 72px;
   box-sizing: border-box;
-  margin-bottom: 8px !important;
-}
-@media (min-width: 768px) {
-  .shav-product-rating-pill {
-    margin-bottom: 12px !important;
-  }
+  margin-bottom: 16px;
 }
 .shav-product-rating-pill .avatars__item {
   width: 36px;

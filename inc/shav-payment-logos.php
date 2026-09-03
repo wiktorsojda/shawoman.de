@@ -26,7 +26,6 @@ function shav_display_payment_logos()
                 color: #FFFFFF !important;
             }
             .shav-payment-logos-wrapper {
-                width: 100%;
                 max-width: 100%;
                 min-width: 0;
                 overflow: hidden;
@@ -56,7 +55,6 @@ function shav_display_payment_logos()
                 align-items: center;
                 justify-content: center;
                 gap: 0;
-                width: 100%;
                 max-width: 100%;
                 overflow-x: auto;
                 scrollbar-width: none;
@@ -127,6 +125,6 @@ add_action('woocommerce_after_add_to_cart_form', 'shav_display_payment_logos', 2
 add_action('woocommerce_proceed_to_checkout', 'shav_display_payment_logos', 20);
 
 // Zmiana tekstu głównego przycisku w Checkout na "Jetzt kaufen"
-add_filter( 'woocommerce_order_button_text', function( $button_text ) {
+add_filter('woocommerce_order_button_text', function ($button_text) {
     return 'Jetzt kaufen';
-}, 999 );
+}, 999);
