@@ -26,7 +26,7 @@ const ElementorBoxControl = ({ label, values, onChange }) => {
     const [bottom, setBottom] = useState(initialBottom.num);
     const [left, setLeft] = useState(initialLeft.num);
 
-    const [isLinked, setIsLinked] = useState(true);
+    const [isLinked, setIsLinked] = useState(false); // Zmienione na false, aby zapobiec psuciu marginesów bocznych
 
     // Synchronizacja ze zmianami z zewnątrz (np. przy przełączeniu Mobile/Desktop)
     useEffect(() => {
