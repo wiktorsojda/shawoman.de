@@ -41,3 +41,4 @@ if (!in_array($headingTag, $allowed_tags, true)) $headingTag = 'h2';
             <?php endforeach; ?>
         </div>
     </div>
+</section>
