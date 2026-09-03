@@ -1175,7 +1175,7 @@ p#countdown-mobile {
                     float: none !important; // Usuwamy natywny float WooCommerce, by kafle nie nachodziły
                     background: #F1F2F3 !important;
                     border-radius: $radius-m !important; // 24px
-                    padding: $space-32 !important; // 32px
+                    padding: clamp(20px, 4vw, 32px) !important;
                     border: none !important;
                     margin: 0 !important;
                     box-sizing: border-box !important; // To naprawia problem poziomego nachodzenia kafelków!
@@ -1318,25 +1318,23 @@ p#countdown-mobile {
     }
 }
 
-// Style bloku Gutenberg: Opinie Produktowe
 .opinieproduktowe {
-    width: auto;
-    margin: 0 20px;
+    width: 100%;
     padding-left: 0 !important;
     padding-right: 0 !important;
     display: flex;
     flex-direction: column;
 
-    @media (min-width: 768px) {
-        width: calc(100% - 40px);
-        margin: 0 auto;
-        max-width: 1428px;
-    }
-
     .opinieproduktowe__inner {
-        width: 100%;
+        width: calc(100% - 40px);
+        max-width: 1428px;
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
+
+        @media (min-width: 768px) {
+            width: calc(100% - 96px);
+        }
     }
 
     .opinieproduktowe__title {
