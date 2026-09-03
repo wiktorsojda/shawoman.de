@@ -12393,8 +12393,28 @@ h2.faq-header {
 .faq-container {
   background-color: #fafafa;
   color: #252525;
-  padding: 48px 48px;
+  padding: 48px 0;
   margin-top: -1px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (min-width: 1024px) {
+  .faq-container {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+.faq-container .faq-wrapper {
+  width: calc(100% - 40px);
+  max-width: 1428px !important;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .faq-container .faq-wrapper {
+    width: calc(100% - 96px);
+  }
 }
 .faq-container .faq-wrapper .faq-wrapper-questions {
   border: none;

@@ -82,10 +82,26 @@ h2.faq-header {
 .faq-container {
   background-color: $color-neutral-50;
   color: $color-neutral-900;
-  padding: $space-48 $space-48;
+  padding: $space-48 0;
   margin-top: -1px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+
+  @media (min-width: 1024px) {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
 
   .faq-wrapper {
+    width: calc(100% - 40px);
+    max-width: 1428px !important;
+    margin: 0 auto;
+
+    @media (min-width: $breakpoint-tablet) {
+      width: calc(100% - 96px);
+    }
     .faq-wrapper-questions {
       border: none;
     }
