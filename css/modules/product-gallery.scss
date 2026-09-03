@@ -77,28 +77,43 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
     flex-shrink: 0;
-    background-color: $color-neutral-200;
-    color: $color-neutral-700;
     border: 0;
-    border-radius: 24px;
+    background: transparent;
+    padding: 0;
     cursor: pointer;
-    transition: background-color 0.15s ease;
+    
+    // Mobile first
+    width: 42px;
+    height: 42px;
 
-    &:hover {
-      background-color: $color-neutral-300;
+    @media (min-width: $breakpoint-tablet) {
+      width: 36px;
+      height: 36px;
     }
 
     svg {
       display: block;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.15s ease;
     }
 
-    // Mobile: strzalki to lewo/prawo (rotate o 90deg, bo SVG to up/down)
+    &:hover {
+      background: transparent;
+    }
+
+    &:hover svg {
+      opacity: 0.8;
+    }
+
+    // Default SVG points DOWN.
+    &--up svg { transform: rotate(180deg); }
+
+    // Mobile: strzalki to lewo/prawo
     @media (max-width: ($breakpoint-tablet - 1)) {
-      &--up svg   { transform: rotate(-90deg); }
-      &--down svg { transform: rotate(-90deg); }
+      &--up svg   { transform: rotate(90deg); }   // UP -> LEFT
+      &--down svg { transform: rotate(-90deg); }  // DOWN -> RIGHT
     }
   }
 

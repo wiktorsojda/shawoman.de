@@ -34,8 +34,16 @@ if ($gallery_image_ids && is_array($gallery_image_ids)) {
     <?php if (count($all_image_ids) > 1): ?>
         <div class="product-gallery__thumbs-col">
             <button type="button" class="product-gallery__arrow product-gallery__arrow--up" aria-label="Poprzednie zdjęcie">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <path d="M5 15l7-7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1664_830)">
+                <rect x="36" y="1.57361e-06" width="36" height="36" rx="18" transform="rotate(90 36 1.57361e-06)" fill="#BCBCBC"/>
+                <path d="M17.9982 28.125C18.7873 28.1177 19.5418 27.7997 20.0982 27.24L26.5482 20.805C26.8276 20.524 26.9844 20.1438 26.9844 19.7475C26.9844 19.3512 26.8276 18.971 26.5482 18.69C26.4087 18.5494 26.2428 18.4378 26.0601 18.3617C25.8773 18.2855 25.6812 18.2463 25.4832 18.2463C25.2852 18.2463 25.0891 18.2855 24.9063 18.3617C24.7235 18.4378 24.5576 18.5494 24.4182 18.69L19.4982 23.625L19.4982 8.625C19.4982 8.22718 19.3402 7.84565 19.0588 7.56434C18.7775 7.28304 18.396 7.125 17.9982 7.125C17.6004 7.125 17.2188 7.28304 16.9375 7.56434C16.6562 7.84565 16.4982 8.22718 16.4982 8.625L16.4982 23.625L11.5632 18.69C11.2827 18.4075 10.9015 18.2481 10.5035 18.2467C10.1054 18.2453 9.72314 18.402 9.44069 18.6825C9.15823 18.963 8.99876 19.3442 8.99735 19.7422C8.99594 20.1402 9.15272 20.5225 9.43319 20.805L15.8832 27.24C16.4432 27.8034 17.2038 28.1217 17.9982 28.125Z" fill="#FAFAFA"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1664_830">
+                <rect x="36" y="1.57361e-06" width="36" height="36" rx="18" transform="rotate(90 36 1.57361e-06)" fill="white"/>
+                </clipPath>
+                </defs>
                 </svg>
             </button>
 
@@ -54,8 +62,16 @@ if ($gallery_image_ids && is_array($gallery_image_ids)) {
             </div>
 
             <button type="button" class="product-gallery__arrow product-gallery__arrow--down" aria-label="Następne zdjęcie">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_1664_830)">
+                <rect x="36" y="1.57361e-06" width="36" height="36" rx="18" transform="rotate(90 36 1.57361e-06)" fill="#BCBCBC"/>
+                <path d="M17.9982 28.125C18.7873 28.1177 19.5418 27.7997 20.0982 27.24L26.5482 20.805C26.8276 20.524 26.9844 20.1438 26.9844 19.7475C26.9844 19.3512 26.8276 18.971 26.5482 18.69C26.4087 18.5494 26.2428 18.4378 26.0601 18.3617C25.8773 18.2855 25.6812 18.2463 25.4832 18.2463C25.2852 18.2463 25.0891 18.2855 24.9063 18.3617C24.7235 18.4378 24.5576 18.5494 24.4182 18.69L19.4982 23.625L19.4982 8.625C19.4982 8.22718 19.3402 7.84565 19.0588 7.56434C18.7775 7.28304 18.396 7.125 17.9982 7.125C17.6004 7.125 17.2188 7.28304 16.9375 7.56434C16.6562 7.84565 16.4982 8.22718 16.4982 8.625L16.4982 23.625L11.5632 18.69C11.2827 18.4075 10.9015 18.2481 10.5035 18.2467C10.1054 18.2453 9.72314 18.402 9.44069 18.6825C9.15823 18.963 8.99876 19.3442 8.99735 19.7422C8.99594 20.1402 9.15272 20.5225 9.43319 20.805L15.8832 27.24C16.4432 27.8034 17.2038 28.1217 17.9982 28.125Z" fill="#FAFAFA"/>
+                </g>
+                <defs>
+                <clipPath id="clip0_1664_830">
+                <rect x="36" y="1.57361e-06" width="36" height="36" rx="18" transform="rotate(90 36 1.57361e-06)" fill="white"/>
+                </clipPath>
+                </defs>
                 </svg>
             </button>
         </div>
