@@ -733,11 +733,11 @@ p#countdown-mobile {
     align-items: center;
     background-color: #F1F2F3;
     border-radius: $radius-m; // 24px
-    // padding: $space-64; // 64px
+    padding: $space-64; // 64px
     box-sizing: border-box;
     max-width: 1428px;
     width: 100%;
-    // margin: 40px auto $space-32 auto;
+    margin: 40px auto $space-32 auto;
     gap: 82px;
 
     @media (max-width: $breakpoint-tablet) {
@@ -746,6 +746,7 @@ p#countdown-mobile {
         gap: 24px;
         align-items: center;
         width: 100%;
+        margin: 0 0 20px 0;
     }
 
     .average-rating {
