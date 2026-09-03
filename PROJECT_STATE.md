@@ -216,16 +216,13 @@ Zbudowano **6 generycznych bloków promocji/dropu** (reużywalne pod dowolną ko
 - Otwarte: **Faza 2b — UI w adminie** (Wygląd → Strona sklepu, repeater dla sekcji).
 
 **Otwarte issue (visual):**
-- User zgłosił że `glownagrid` "wygląda średnio" — wrócimy do tego przy końcowych poprawkach
 - Layout strony głównej w real preview może nie pasować 1:1 (cache przeglądarki, niezsynchronizowany webpack-watch)
 
 ## 8. Kolejne kroki (To-Do)
 
 1. **Sprawdź czy webpack-watcher chodzi** (`npm start` w terminalu) — jeśli zatrzymany na błędzie, zrestartuj. Następnie **twardy reload** strony głównej (Cmd+Shift+R) i porównaj z Figmą sekcję po sekcji. Wszystkie sekcje main-page powinny być teraz spójnie ostylowane.
 
-2. **Sprawdź `glownagrid` wizualnie** — user zgłosił że layout się rozjeżdża mimo CSS Grid (`css/modules/glownagrid.scss`). Możliwe przyczyny: cache, `useBlockProps()` dodający paddingi, kafelki bez `aspect-ratio` na mobile. Zdiagnozuj przez DevTools (`grid-template-columns` na `.glownagrid__grid`).
-
-3. **Następna sekcja strony głównej** — po faqglowna zostały: `glownaikony` i `glownakup`. Pobierz Figma node IDs i przerob tym samym wzorcem (Figma → block.json → edit.js → render.php → SCSS module → import w style.scss).
+2. **Następna sekcja strony głównej** — po faqglowna zostały: `glownaikony` i `glownakup`. Pobierz Figma node IDs i przerob tym samym wzorcem (Figma → block.json → edit.js → render.php → SCSS module → import w style.scss).
 
 4. **Zsynchronizować `theme.json` z `_tokens.scss`** — palette w theme.json ma starodawne 4 kolory (pizza/secondary/background/foreground). Przepisać na semantic palette z DS (`primary-medium`, `accent-medium`, `info-medium`, `neutral-*` itd.) plus `fontSizes` z `$font-size-*`. Po tym block-editor UI pokazuje user spójne kolory zamiast losowych.
 

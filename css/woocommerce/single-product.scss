@@ -1437,6 +1437,10 @@ p#countdown-mobile {
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+
+        &::marker {
+            color: #C68E7A;
+        }
     }
 }
 

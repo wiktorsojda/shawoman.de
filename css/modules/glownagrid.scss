@@ -20,9 +20,10 @@
 
   &__grid {
     display: grid;
-    gap: $space-24;                       // mobile
+    gap: $space-24; // mobile
+
     @media (min-width: $breakpoint-tablet) {
-      gap: $space-32;                     // desktop — wieksze odstepy
+      gap: $space-32; // desktop — wieksze odstepy
     }
 
     // ---------- MOBILE: 2 kolumny x 12 wierszy ----------
@@ -39,21 +40,81 @@
 
   // ---------- TILE — placement w gridzie ----------
   // Mobile (default): 2 col x 12 row, nieregularne
-  &__tile--1 { grid-column: 1 / 3; grid-row: 1 / 3;  } // full, 2 row (myjka do ciala)
-  &__tile--2 { grid-column: 1 / 2; grid-row: 3 / 6;  } // lewa, 3 row
-  &__tile--3 { grid-column: 2 / 3; grid-row: 3 / 6;  } // prawa, 3 row
-  &__tile--4 { grid-column: 1 / 2; grid-row: 6 / 9;  } // lewa, 3 row
-  &__tile--5 { grid-column: 2 / 3; grid-row: 6 / 9;  } // prawa, 3 row
-  &__tile--6 { grid-column: 1 / 3; grid-row: 9 / 13; } // full, 4 row (golarka z modelka)
+  &__tile--1 {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+  }
+
+  // full, 2 row (myjka do ciala)
+  &__tile--2 {
+    grid-column: 1 / 2;
+    grid-row: 3 / 6;
+  }
+
+  // lewa, 3 row
+  &__tile--3 {
+    grid-column: 2 / 3;
+    grid-row: 3 / 6;
+  }
+
+  // prawa, 3 row
+  &__tile--4 {
+    grid-column: 1 / 2;
+    grid-row: 6 / 9;
+  }
+
+  // lewa, 3 row
+  &__tile--5 {
+    grid-column: 2 / 3;
+    grid-row: 6 / 9;
+  }
+
+  // prawa, 3 row
+  &__tile--6 {
+    grid-column: 1 / 3;
+    grid-row: 9 / 13;
+  }
+
+  // full, 4 row (golarka z modelka)
 
   // Desktop: precyzyjny 12x12 wg specyfikacji
   @media (min-width: $breakpoint-tablet) {
-    &__tile--1 { grid-column: 1 / 5;  grid-row: 1 / 5;  } // myjka do ciala (lewy gorny)
-    &__tile--2 { grid-column: 1 / 5;  grid-row: 5 / 9;  } // zestaw ostrzy precyzyjnych
-    &__tile--3 { grid-column: 1 / 5;  grid-row: 9 / 13; } // zestaw ostrzy okraglych
-    &__tile--4 { grid-column: 5 / 8;  grid-row: 1 / 6;  } // ostrze precyzyjne (wezszy)
-    &__tile--5 { grid-column: 8 / 13; grid-row: 1 / 6;  } // myjka do glowy
-    &__tile--6 { grid-column: 5 / 13; grid-row: 6 / 13; } // golarka damska (duzy z modelka)
+    &__tile--1 {
+      grid-column: 1 / 5;
+      grid-row: 1 / 5;
+    }
+
+    // myjka do ciala (lewy gorny)
+    &__tile--2 {
+      grid-column: 1 / 5;
+      grid-row: 5 / 9;
+    }
+
+    // zestaw ostrzy precyzyjnych
+    &__tile--3 {
+      grid-column: 1 / 5;
+      grid-row: 9 / 13;
+    }
+
+    // zestaw ostrzy okraglych
+    &__tile--4 {
+      grid-column: 5 / 8;
+      grid-row: 1 / 6;
+    }
+
+    // ostrze precyzyjne (wezszy)
+    &__tile--5 {
+      grid-column: 8 / 13;
+      grid-row: 1 / 6;
+    }
+
+    // myjka do glowy
+    &__tile--6 {
+      grid-column: 5 / 13;
+      grid-row: 6 / 13;
+    }
+
+    // golarka damska (duzy z modelka)
   }
 
   // ---------------------------------------------------------------------------
@@ -66,16 +127,16 @@
     justify-content: space-between;
     align-items: flex-start;
     padding: $space-24;
-    border-radius: $radius-s;             // 16
+    border-radius: $radius-s; // 16
     overflow: hidden;
     text-decoration: none;
     color: inherit;
-    min-width: 0;                         // wymagane w gridzie (inaczej puchnie)
+    min-width: 0; // wymagane w gridzie (inaczej puchnie)
     min-height: 0;
     // width: 100%;
     // height: 100%;
 
-       @media (max-width: $breakpoint-tablet) {
+    @media (max-width: $breakpoint-tablet) {
       padding: $space-12 $space-8;
     }
   }
@@ -110,10 +171,10 @@
     gap: $space-4;
     padding: $space-8 $space-16;
     background-color: $color-neutral-50;
-    border-radius: $radius-xs;            // 8
+    border-radius: $radius-xs; // 8
     font-family: $font-family-base;
     font-weight: $font-weight-semibold;
-    font-size: $font-size-body-l;         // 16
+    font-size: $font-size-body-l; // 16
     line-height: 1.18;
     letter-spacing: $letter-spacing-tight;
     color: $color-neutral-800;
@@ -130,9 +191,9 @@
   }
 
   &__label-accent {
-    font-family: $font-family-accent;     // Dolce
+    font-family: $font-family-accent; // Dolce
     font-weight: $font-weight-accent-bold;
-    font-size: 1.875em;                   // ~ 1.875x (Figma: 30 vs 16)
+    font-size: 1.875em; // ~ 1.875x (Figma: 30 vs 16)
     line-height: 1;
   }
 
@@ -148,16 +209,16 @@
     background-color: rgba($color-white, 0.8);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    border-radius: $radius-xs;            // 8
+    border-radius: $radius-xs; // 8
     font-family: $font-family-base;
     font-weight: $font-weight-medium;
-    font-size: $font-size-body-l;         // 16
+    font-size: $font-size-body-l; // 16
     line-height: 24px;
     letter-spacing: $letter-spacing-tight;
     color: $color-neutral-900;
     transition: background-color 0.15s ease;
 
-       @media (max-width: $breakpoint-tablet) {
+    @media (max-width: $breakpoint-tablet) {
       padding: $space-8 $space-12;
       font-size: 12px;
       gap: 6px;
@@ -183,7 +244,7 @@
     @media (max-width: $breakpoint-tablet) {
       width: 20px;
       height: 20px;
-      
+
       svg {
         width: 12px;
         height: 12px;
