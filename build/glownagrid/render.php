@@ -2,12 +2,12 @@
 $buttonLabel = isset($attributes['buttonLabel']) ? $attributes['buttonLabel'] : 'Zobacz';
 
 $item_fallbacks = [
-    1 => 'http://shavwoman.pl/wp-content/uploads/myjka-1000x1000-uzycie.png',
-    2 => 'http://shavwoman.pl/wp-content/uploads/shav-woman-ostrze-beztla.png',
-    3 => 'http://shavwoman.pl/wp-content/uploads/shav-woman-ostrze2-beztla.png',
-    4 => 'http://shavwoman.pl/wp-content/uploads/4-1.png',
-    5 => 'http://shavwoman.pl/wp-content/uploads/DSC03821-1.png',
-    6 => 'http://shavwoman.pl/wp-content/uploads/golarka-dla-kobiet-produktowe2.jpg',
+    1 => 'https://shavwoman.pl/wp-content/uploads/myjka-1000x1000-uzycie.png',
+    2 => 'https://shavwoman.pl/wp-content/uploads/shav-woman-ostrze-beztla.png',
+    3 => 'https://shavwoman.pl/wp-content/uploads/shav-woman-ostrze2-beztla.png',
+    4 => 'https://shavwoman.pl/wp-content/uploads/4-1.png',
+    5 => 'https://shavwoman.pl/wp-content/uploads/DSC03821-1.png',
+    6 => 'https://shavwoman.pl/wp-content/uploads/golarka-dla-kobiet-produktowe2.jpg',
 ];
 
 if (!function_exists('glownagrid_get')) {
