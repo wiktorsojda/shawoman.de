@@ -17,6 +17,13 @@ $bannerCtaLabel    = isset($attributes['bannerCtaLabel'])    ? $attributes['bann
 $bannerCtaLabelMobile = !empty($attributes['bannerCtaLabelMobile']) ? $attributes['bannerCtaLabelMobile'] : $bannerCtaLabel;
 $bannerCtaURL      = isset($attributes['bannerCtaURL'])      ? $attributes['bannerCtaURL']      : '/sklep';
 
+$positionX    = $attributes['glassPositionX'] ?? 'left';
+$positionY    = $attributes['glassPositionY'] ?? 'middle';
+$textAlign    = $attributes['textAlign'] ?? 'left';
+$glassWidth   = $attributes['glassWidth'] ?? 60;
+$wrapperClass = "glownabaner glownabaner--x-{$positionX} glownabaner--y-{$positionY} glownabaner--align-{$textAlign}";
+$wrapperStyle = "--content-width: {$glassWidth}%;";
+
 // Atrybuty stylów - Tytuł (Desktop + Mobile)
 $titleColor          = isset($attributes['titleColor'])          ? $attributes['titleColor']          : '#ffffff';
 $titleFontSize       = isset($attributes['titleFontSize'])       ? $attributes['titleFontSize']       : '42px';
@@ -135,7 +142,7 @@ $block_id = wp_unique_id('glownabaner-');
     }
 </style>
 
-<section id="<?php echo esc_attr($block_id); ?>" class="glownabaner" style="padding-bottom: 120px;">
+<section id="<?php echo esc_attr($block_id); ?>" class="<?php echo esc_attr($wrapperClass); ?>" style="padding-bottom: 120px; <?php echo esc_attr($wrapperStyle); ?>">
     <?php if ($showRating) : ?>
         <div class="glownabaner__rating">
             <span class="glownabaner__rating-line" aria-hidden="true"></span>

@@ -163,6 +163,22 @@
     "ctaFontSizeMobile": {
       "type": "string",
       "default": "14px"
+    },
+    "glassPositionX": {
+      "type": "string",
+      "default": "left"
+    },
+    "glassPositionY": {
+      "type": "string",
+      "default": "middle"
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "glassWidth": {
+      "type": "number",
+      "default": 60
     }
   },
   "editorScript": "file:./index.js",

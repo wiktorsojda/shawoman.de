@@ -1,14 +1,17 @@
 import {
   useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
 } from "@wordpress/block-editor";
-import { PanelBody, Button, TextControl, ToggleControl, TextareaControl } from "@wordpress/components";
+import { PanelBody, Button, TextControl, ToggleControl, TextareaControl, SelectControl, RangeControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
 
 const AVATAR_NUMS = [1, 2, 3, 4, 5];
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
-  const blockProps = useBlockProps({ className: "glownabaner" });
+  const blockProps = useBlockProps({ 
+    className: `glownabaner glownabaner--x-${a.glassPositionX || 'left'} glownabaner--y-${a.glassPositionY || 'middle'} glownabaner--align-${a.textAlign || 'left'}`,
+    style: { '--content-width': a.glassWidth ? `${a.glassWidth}%` : '60%' }
+  });
   const [importJson, setImportJson] = useState("");
 
   return (
@@ -59,6 +62,39 @@ export default function Edit({ attributes, setAttributes }) {
           }} style={{ width: '100%', justifyContent: 'center' }}>
             Importuj tłumaczenie
           </Button>
+        </PanelBody>
+        <PanelBody title="Układ (Pozycja treści)" initialOpen={false}>
+          <SelectControl
+            label="Pozycja pozioma"
+            value={a.glassPositionX}
+            options={[
+              { label: "Lewa", value: "left" },
+              { label: "Środek", value: "center" },
+              { label: "Prawa", value: "right" },
+            ]}
+            onChange={(v) => setAttributes({ glassPositionX: v })}
+          />
+          <SelectControl
+            label="Pozycja pionowa"
+            value={a.glassPositionY}
+            options={[
+              { label: "Góra", value: "top" },
+              { label: "Środek", value: "middle" },
+              { label: "Dół", value: "bottom" },
+            ]}
+            onChange={(v) => setAttributes({ glassPositionY: v })}
+          />
+          <SelectControl
+            label="Wyrównanie tekstu"
+            value={a.textAlign}
+            options={[
+              { label: "Do lewej", value: "left" },
+              { label: "Do środka", value: "center" },
+              { label: "Do prawej", value: "right" },
+            ]}
+            onChange={(v) => setAttributes({ textAlign: v })}
+          />
+          <RangeControl label="Maksymalna szerokość treści (%)" min={20} max={100} step={1} value={a.glassWidth} onChange={(v) => setAttributes({ glassWidth: v })} />
         </PanelBody>
         <PanelBody title="Pasek opinii" initialOpen={false}>
           <ToggleControl label="Pokaż pasek opinii" checked={a.showRating} onChange={(v) => setAttributes({ showRating: v })} />

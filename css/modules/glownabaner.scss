@@ -166,7 +166,7 @@
 
     @media (min-width: $breakpoint-tablet) {
       padding: $space-64;
-      max-width: 60%;
+      max-width: var(--content-width, 60%);
     }
   }
 
@@ -211,7 +211,6 @@
     display: inline-flex;
     align-items: center;
     gap: $space-12;
-    align-self: flex-start;
     margin-top: $space-24;
     padding: 6px 12px;
     background-color: rgba($color-white, 0.7);
@@ -246,4 +245,22 @@
     border-radius: $radius-m;            // 24
     flex-shrink: 0;
   }
+
+  // Layout Modifiers
+  &--x-left &__hero-content { align-items: flex-start; }
+  &--x-center &__hero-content { align-items: center; }
+  &--x-right &__hero-content { align-items: flex-end; }
+
+  &--y-top &__hero-content { justify-content: flex-start; }
+  &--y-middle &__hero-content { justify-content: center; }
+  &--y-bottom &__hero-content { justify-content: flex-end; }
+
+  &--align-left &__hero-content { text-align: left; }
+  &--align-left &__hero-cta { align-self: flex-start; }
+
+  &--align-center &__hero-content { text-align: center; }
+  &--align-center &__hero-cta { align-self: center; }
+
+  &--align-right &__hero-content { text-align: right; }
+  &--align-right &__hero-cta { align-self: flex-end; }
 }
