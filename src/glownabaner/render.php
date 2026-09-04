@@ -21,7 +21,10 @@ $positionX    = $attributes['glassPositionX'] ?? 'left';
 $positionY    = $attributes['glassPositionY'] ?? 'middle';
 $textAlign    = $attributes['textAlign'] ?? 'left';
 $glassWidth   = $attributes['glassWidth'] ?? 60;
-$wrapperClass = "glownabaner glownabaner--x-{$positionX} glownabaner--y-{$positionY} glownabaner--align-{$textAlign}";
+
+$block_id = wp_unique_id('glownabaner-');
+
+$wrapperClass = "glownabaner glownabaner--x-{$positionX} glownabaner--y-{$positionY} glownabaner--align-{$textAlign} {$block_id}";
 $wrapperStyle = "--content-width: {$glassWidth}%;";
 
 // Atrybuty stylów - Tytuł (Desktop + Mobile)
@@ -63,7 +66,8 @@ for ($i = 1; $i <= 5; $i++) {
 }
 
 // Generowanie unikalnego ID dla bloku, by style w <style> nie nadpisywały się nawzajem przy wielu banerach
-$block_id = wp_unique_id('glownabaner-');
+require_once get_theme_file_path('/src/components/spacing-helper.php');
+shav_render_responsive_spacing_css($block_id, $attributes);
 ?>
 
 <style>

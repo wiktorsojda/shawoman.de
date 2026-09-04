@@ -8,26 +8,26 @@
 // Dwukolumnowy layout na desktopie: galeria | summary
 // (single-product.scss ma flex-basis 60/40, ale parent nie byl flex — naprawione tutaj)
 .woocommerce div.product {
-  @media (min-width: 800px) {
+  @media (min-width: $breakpoint-tablet) {
     display: flex;
     flex-wrap: wrap;
     gap: $space-32;
     align-items: flex-start;
   }
 
-  > .product-gallery,
-  > .images.woocommerce-product-gallery,
-  > .product-gallery.woocommerce-product-gallery {
-    @media (min-width: 800px) {
+  >.product-gallery,
+  >.images.woocommerce-product-gallery,
+  >.product-gallery.woocommerce-product-gallery {
+    @media (min-width: $breakpoint-tablet) {
       flex: 0 0 calc(60% - #{$space-32 / 2});
       max-width: calc(60% - #{$space-32 / 2});
       margin-top: 0 !important;
     }
   }
 
-  > .summary,
-  > .summary.entry-summary {
-    @media (min-width: 800px) {
+  >.summary,
+  >.summary.entry-summary {
+    @media (min-width: $breakpoint-tablet) {
       flex: 0 0 calc(40% - #{$space-32 / 2});
       max-width: calc(40% - #{$space-32 / 2});
       width: auto !important;
@@ -38,14 +38,14 @@
 
 .product-gallery {
   display: flex;
-  flex-direction: column;          // mobile: stack
+  flex-direction: column; // mobile: stack
   gap: $space-16;
   width: 100%;
-  padding: 10px 10px 0 10px;                 // mobile: tyle co reszta sekcji
+  padding: 10px 10px 0 10px; // mobile: tyle co reszta sekcji
   box-sizing: border-box;
 
-  @media (min-width: 800px) {
-    flex-direction: row;             // desktop: thumbs | main
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row; // desktop: thumbs | main
     gap: $space-24;
     align-items: stretch;
     padding: $space-40 0 0;
@@ -55,17 +55,17 @@
   // Kolumna z thumbnails (mobile: pod main / desktop: po lewej)
   // ---------------------------------------------------------------------------
   &__thumbs-col {
-    order: 2;                       // mobile: pod main
+    order: 2; // mobile: pod main
     display: flex;
-    flex-direction: row;             // mobile: poziomy ukladu strzalek + thumbs
+    flex-direction: row; // mobile: poziomy ukladu strzalek + thumbs
     align-items: center;
     gap: $space-8;
-    width: 100%;                    // mobile: ogranicz do parenta
+    width: 100%; // mobile: ogranicz do parenta
     min-width: 0;
 
-    @media (min-width: 800px) {
+    @media (min-width: $breakpoint-tablet) {
       order: 0;
-      flex-direction: column;        // desktop: pionowo
+      flex-direction: column; // desktop: pionowo
       justify-content: space-between;
       gap: $space-16;
       flex-shrink: 0;
@@ -82,12 +82,12 @@
     background: transparent;
     padding: 0;
     cursor: pointer;
-    
+
     // Mobile first
     width: 42px;
     height: 42px;
 
-    @media (min-width: 800px) {
+    @media (min-width: $breakpoint-tablet) {
       width: 36px;
       height: 36px;
     }
@@ -108,50 +108,74 @@
     }
 
     // Default SVG points DOWN.
-    &--up svg { transform: rotate(180deg); }
+    &--up svg {
+      transform: rotate(180deg);
+    }
 
     // Mobile: strzalki to lewo/prawo
-    @media (max-width: 799px) {
-      &--up svg   { transform: rotate(90deg); }   // UP -> LEFT
-      &--down svg { transform: rotate(-90deg); }  // DOWN -> RIGHT
+    @media (max-width: ($breakpoint-tablet - 1)) {
+      &--up svg {
+        transform: rotate(90deg);
+      }
+
+      // UP -> LEFT
+      &--down svg {
+        transform: rotate(-90deg);
+      }
+
+      // DOWN -> RIGHT
     }
   }
 
   &__thumbs {
     display: flex;
-    flex-direction: row;             // mobile: poziomy
+    flex-direction: row; // mobile: poziomy
     gap: $space-4;
-    flex: 1 1 0;                     // mobile: zajmij dostepna przestrzen miedzy strzalkami
-    min-width: 0;                    // pozwol kontenerowi sie zwezac (umozliwia overflow)
+    flex: 1 1 0; // mobile: zajmij dostepna przestrzen miedzy strzalkami
+    min-width: 0; // pozwol kontenerowi sie zwezac (umozliwia overflow)
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
     scrollbar-width: none;
-    touch-action: pan-x;              // swipe palcem na mobile
+    touch-action: pan-x; // swipe palcem na mobile
 
     // Centrowanie przez auto-margin na skrajnych dzieciach — gdy malo thumbs sa
     // wycentrowane, gdy za duzo (overflow) auto = 0 i scroll dziala od poczatku
     // do konca (nie tracimy skrajnych thumbs jak przy justify-content: center).
-    > :first-child { margin-left: auto; }
-    > :last-child  { margin-right: auto; }
+    > :first-child {
+      margin-left: auto;
+    }
 
-    &::-webkit-scrollbar { display: none; }
+    > :last-child {
+      margin-right: auto;
+    }
 
-    @media (min-width: 800px) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: $breakpoint-tablet) {
       flex-direction: column;
       flex: 1 1 auto;
       overflow-x: hidden;
       overflow-y: auto;
       touch-action: pan-y;
 
-      > :first-child { margin-left: 0; margin-top: auto; }
-      > :last-child  { margin-right: 0; margin-bottom: auto; }
+      > :first-child {
+        margin-left: 0;
+        margin-top: auto;
+      }
+
+      > :last-child {
+        margin-right: 0;
+        margin-bottom: auto;
+      }
     }
   }
 
   &__thumb {
     flex-shrink: 0;
-    width: 64px;                     // mobile: mniejsze (Figma: desktop 92px)
+    width: 64px; // mobile: mniejsze (Figma: desktop 92px)
     height: 64px;
     padding: $space-4;
     background: transparent;
@@ -161,7 +185,7 @@
     transition: border-color 0.15s ease;
     box-sizing: border-box;
 
-    @media (min-width: 800px) {
+    @media (min-width: $breakpoint-tablet) {
       width: 92px;
       height: 92px;
       border-radius: 12px;
@@ -192,9 +216,9 @@
     position: relative;
     flex: 1 1 auto;
     min-width: 0;
-    order: 1;                        // mobile: nad thumbs
+    order: 1; // mobile: nad thumbs
 
-    @media (min-width: 800px) {
+    @media (min-width: $breakpoint-tablet) {
       order: 0;
     }
   }
@@ -202,12 +226,12 @@
   &__stage {
     position: relative;
     width: 100%;
-    border-radius: $radius-m;        // 24px (Figma)
+    border-radius: $radius-m; // 24px (Figma)
     overflow: hidden;
     background-color: $color-neutral-50;
 
     // Desktop: aspect-ratio + absolute images z cross-fade
-    @media (min-width: 800px) {
+    @media (min-width: $breakpoint-tablet) {
       aspect-ratio: 1 / 1;
     }
   }
@@ -224,8 +248,8 @@
       display: block;
     }
 
-    @media (min-width: 800px) {
-      display: block;                // wszystkie pokazane, sterowane opacity
+    @media (min-width: $breakpoint-tablet) {
+      display: block; // wszystkie pokazane, sterowane opacity
       position: absolute;
       inset: 0;
       height: 100%;
@@ -269,14 +293,12 @@
 
     &--new {
       // Peach gradient z Figmy (390:1211)
-      background-image: linear-gradient(
-        102deg,
-        #aa6d56 28%,
-        #dfad92 56%,
-        #97604c 127%,
-        #dbaa91 213%,
-        #c3856c 365%
-      );
+      background-image: linear-gradient(102deg,
+          #aa6d56 28%,
+          #dfad92 56%,
+          #97604c 127%,
+          #dbaa91 213%,
+          #c3856c 365%);
     }
 
     &--sale {

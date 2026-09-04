@@ -164,6 +164,22 @@
       "type": "string",
       "default": "14px"
     },
+    "marginDesktop": {
+      "type": "object",
+      "default": {}
+    },
+    "marginMobile": {
+      "type": "object",
+      "default": {}
+    },
+    "paddingDesktop": {
+      "type": "object",
+      "default": {}
+    },
+    "paddingMobile": {
+      "type": "object",
+      "default": {}
+    },
     "glassPositionX": {
       "type": "string",
       "default": "left"

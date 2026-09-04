@@ -3,6 +3,7 @@ import {
 } from "@wordpress/block-editor";
 import { PanelBody, Button, TextControl, ToggleControl, TextareaControl, SelectControl, RangeControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
+import ResponsiveSpacingControl from "../components/ResponsiveSpacingControl";
 
 const AVATAR_NUMS = [1, 2, 3, 4, 5];
 
@@ -17,6 +18,7 @@ export default function Edit({ attributes, setAttributes }) {
   return (
     <div {...blockProps}>
       <InspectorControls>
+        <ResponsiveSpacingControl attributes={attributes} setAttributes={setAttributes} />
         <PanelBody title="Tłumaczenia AI (JSON)" initialOpen={false}>
           <TextareaControl
             label="Skopiuj ten JSON dla AI"
