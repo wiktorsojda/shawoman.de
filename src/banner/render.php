@@ -1,6 +1,6 @@
 <?php
-$backgroundImage = isset($attributes['backgroundImage']) ? $attributes['backgroundImage'] : '';
-$backgroundImageMobile = isset($attributes['backgroundImageMobile']) ? $attributes['backgroundImageMobile'] : '';
+$backgroundImage = isset($attributes['backgroundImage']) ? str_replace('http://', 'https://', $attributes['backgroundImage']) : '';
+$backgroundImageMobile = isset($attributes['backgroundImageMobile']) ? str_replace('http://', 'https://', $attributes['backgroundImageMobile']) : '';
 $title = isset($attributes['title']) ? $attributes['title'] : 'Metody dostawy';
 $subtitle = isset($attributes['subtitle']) ? $attributes['subtitle'] : '';
 $contentAlign = isset($attributes['contentAlign']) ? $attributes['contentAlign'] : 'right';

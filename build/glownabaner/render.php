@@ -4,10 +4,10 @@ $ratingCount     = isset($attributes['ratingCount'])     ? $attributes['ratingCo
 $ratingScore     = isset($attributes['ratingScore'])     ? $attributes['ratingScore']     : '4.9';
 
 $bannerImage     = isset($attributes['bannerImage']) && $attributes['bannerImage']
-    ? $attributes['bannerImage']
+    ? str_replace('http://', 'https://', $attributes['bannerImage'])
     : esc_url(home_url('/wp-content/uploads/2026/05/Frame-7177.png'));
 $bannerImageMobile = isset($attributes['bannerImageMobile']) && $attributes['bannerImageMobile']
-    ? $attributes['bannerImageMobile']
+    ? str_replace('http://', 'https://', $attributes['bannerImageMobile'])
     : $bannerImage;
 
 $bannerTitle       = isset($attributes['bannerTitle'])       ? $attributes['bannerTitle']       : '15% zniżki z kodem:';

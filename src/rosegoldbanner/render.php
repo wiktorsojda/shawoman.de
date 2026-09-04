@@ -4,8 +4,8 @@
 // =============================================================================
 $themeUri = get_template_directory_uri();
 
-$image       = isset($attributes['image']) && $attributes['image'] ? $attributes['image'] : $themeUri . '/images/rosegold/banner.jpg';
-$imageMobile = isset($attributes['imageMobile']) && $attributes['imageMobile'] ? $attributes['imageMobile'] : $themeUri . '/images/rosegold/banner-m.jpg';
+$image       = isset($attributes['image']) && $attributes['image'] ? str_replace('http://', 'https://', $attributes['image']) : $themeUri . '/images/rosegold/banner.jpg';
+$imageMobile = isset($attributes['imageMobile']) && $attributes['imageMobile'] ? str_replace('http://', 'https://', $attributes['imageMobile']) : $themeUri . '/images/rosegold/banner-m.jpg';
 $imageAlt    = isset($attributes['imageAlt']) ? $attributes['imageAlt'] : '';
 $badge       = isset($attributes['badge']) ? $attributes['badge'] : '';
 $title       = isset($attributes['title']) ? $attributes['title'] : '';
