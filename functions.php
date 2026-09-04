@@ -23,19 +23,26 @@ require_once get_template_directory() . '/inc/ceny-front.php';
 // adobe font babe neue pro
 function add_resource_hints_and_fonts()
 {
-    // DNS Prefetch for non-preconnected resources~
+    // DNS Prefetch for non-preconnected resources
     echo '<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">';
+    echo '<link rel="dns-prefetch" href="//cdn.jsdelivr.net">';
 
     // Preconnect for prioritized resources
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">';
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
     echo '<link rel="preconnect" href="https://use.typekit.net" crossorigin>';
+    echo '<link rel="preconnect" href="https://p.typekit.net" crossorigin>';
 
     // Adobe Fonts (Dolce — kit dsg8nwe)
-    echo '<link rel="stylesheet" href="https://use.typekit.net/dsg8nwe.css">';
+    echo '<link rel="preload" as="style" href="https://use.typekit.net/dsg8nwe.css">';
+    echo '<link rel="stylesheet" href="https://use.typekit.net/dsg8nwe.css" media="print" onload="this.media=\'all\'">';
+    echo '<noscript><link rel="stylesheet" href="https://use.typekit.net/dsg8nwe.css"></noscript>';
 
-    // Google Fonts (Be Vietnam Pro — wszystkie wagi 100-900 + italic)
-    echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap">';
+    // Google Fonts (Be Vietnam Pro)
+    $google_fonts_url = 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap';
+    echo '<link rel="preload" as="style" href="' . esc_url($google_fonts_url) . '">';
+    echo '<link rel="stylesheet" href="' . esc_url($google_fonts_url) . '" media="print" onload="this.media=\'all\'">';
+    echo '<noscript><link rel="stylesheet" href="' . esc_url($google_fonts_url) . '"></noscript>';
 }
 add_action('wp_head', 'add_resource_hints_and_fonts');
 
@@ -3871,4 +3878,32 @@ if (!function_exists('shav_highlight_accent_word')) {
         
         return $replaced;
     }
+}
+
+// Async load specific CSS files to prevent render blocking
+add_filter('style_loader_tag', 'shav_async_styles', 10, 4);
+function shav_async_styles($html, $handle, $href, $media) {
+    if (is_admin()) return $html;
+    
+    $async_handles = ['custom-google-fonts', 'font-awesome', 'swiper-css'];
+    if (in_array($handle, $async_handles)) {
+        $html = '<link rel="preload" as="style" href="' . esc_url($href) . '" />' . "\n";
+        $html .= '<link rel="stylesheet" id="' . esc_attr($handle) . '-css" href="' . esc_url($href) . '" media="print" onload="this.media=\'all\'" />' . "\n";
+        $html .= '<noscript><link rel="stylesheet" href="' . esc_url($href) . '" /></noscript>' . "\n";
+    }
+    return $html;
+}
+
+// Defer specific JS files
+add_filter('script_loader_tag', 'shav_defer_scripts', 10, 3);
+function shav_defer_scripts($tag, $handle, $src) {
+    if (is_admin()) return $tag;
+    
+    $defer_handles = ['main-university-js', 'swiper-js'];
+    if (in_array($handle, $defer_handles)) {
+        if (strpos($tag, 'defer') === false) {
+            return str_replace(' src', ' defer="defer" src', $tag);
+        }
+    }
+    return $tag;
 }
