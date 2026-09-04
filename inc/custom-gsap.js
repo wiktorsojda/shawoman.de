@@ -1141,6 +1141,9 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', () => {
   const carousel = document.querySelector('.reviews-list');
   const dotsContainer = document.querySelector('.carousel-dots');
+  
+  if (!carousel || !dotsContainer) return;
+
   const reviews = document.querySelectorAll('.review-item');
   let currentIndex = 0;
   let itemsPerView;
