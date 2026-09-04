@@ -27,7 +27,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <?php /* translators: %s: Customer first name */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $order->get_billing_first_name() ) ); ?></p>
 <?php /* translators: %s: Order number */ ?>
-<p><?php printf( wp_kses_post( __( '<span style="color: #636363;">Vielen Dank für Ihre Bestellung! Wir machen deine Lieferung umgehend versandfertig. <br><br> Hier ist deine kurze Anleitung für die ersten Schritte mit deinem Trimmer. Schau unbedingt rein, damit deine erste Rasur perfekt, sicher und seidenweich wird. <br><br> %s <br><br> Sieh dir an, wie du den Scherkopf für langes und kurzes Haar richtig verwendest.</span>', 'woocommerce' ) ), '<a href="http://shav.de/wp-content/uploads/shavwoman.webp">Klicke hier, um die Anleitung herunterzuladen</a>' ); ?></p>
+<p><?php printf( wp_kses_post( __( '<span style="color: #636363;">Vielen Dank für Ihre Bestellung! Wir machen deine Lieferung umgehend versandfertig. <br><br> Hier ist deine kurze Anleitung für die ersten Schritte mit deinem Trimmer. Schau unbedingt rein, damit deine erste Rasur perfekt, sicher und seidenweich wird. <br><br> %s <br><br> Sieh dir an, wie du den Scherkopf für langes und kurzes Haar richtig verwendest.</span>', 'woocommerce' ) ), '<a href="https://shav.de/wp-content/uploads/shavwoman.webp">Klicke hier, um die Anleitung herunterzuladen</a>' ); ?></p>
 <?php
 
 /*

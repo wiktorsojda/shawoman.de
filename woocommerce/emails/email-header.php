@@ -60,7 +60,7 @@ $header_image_url = apply_filters( 'woocommerce_email_header_image_url', home_ur
 													<tr>
 														<td id="header_wrapper">
 															<div style="text-align: center; margin-bottom: 24px;">
-																<img src="http://shav.de/wp-content/uploads/SW_logo_v1.png.webp" alt="<?php echo esc_attr( $store_name ); ?>" width="160" style="border: none; display: inline-block; max-width: 100%; height: auto;" />
+																<img src="https://shav.de/wp-content/uploads/SW_logo_v1.png.webp" alt="<?php echo esc_attr( $store_name ); ?>" width="160" style="border: none; display: inline-block; max-width: 100%; height: auto;" />
 															</div>
 															<h1><?php echo esc_html( $email_heading ); ?></h1>
 														</td>
