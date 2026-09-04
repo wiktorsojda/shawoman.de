@@ -152,7 +152,7 @@ $block_id = wp_unique_id('glownabaner-');
                 <span class="glownabaner__rating-count"><?php echo wp_kses_post($ratingCount); ?></span>
                 <span class="glownabaner__rating-sep" aria-hidden="true"></span>
                 <span class="glownabaner__rating-score"><?php echo wp_kses_post($ratingScore); ?></span>
-                <span class="glownabaner__rating-stars" aria-label="5 z 5 gwiazdek">
+                <span class="glownabaner__rating-stars" role="img" aria-label="5 z 5 gwiazdek">
                     <?php for ($i = 0; $i < 5; $i++) : ?>
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e9bd0b">
                             <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
