@@ -24,9 +24,12 @@ if (!function_exists('shav_get_topbar_data')) {
             $bg = get_post_meta($active_promo_id, 'promo_badge_bg', true);
             $color = get_post_meta($active_promo_id, 'promo_badge_color', true);
 
-            // Jeśli tekst jest pusty, fallback do promo_small_text
+            // Jeśli tekst jest pusty, używamy globalnego szablonu z zakładki Wygląd (żeby ustawić raz i zapomnieć)
             if (empty($text)) {
-                $text = get_post_meta($active_promo_id, 'promo_small_text', true);
+                $text = get_option('shav_topbar_text', '');
+                if (empty($text)) {
+                    $text = get_post_meta($active_promo_id, 'promo_small_text', true);
+                }
             }
             if (empty($bg)) $bg = 'rgba(224, 224, 224, 0.8)';
             if (empty($color)) $color = 'linear-gradient(90deg, #630303 1.11%, #C90606 96.67%)';
