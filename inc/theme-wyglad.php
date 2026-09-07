@@ -46,6 +46,7 @@ function shav_register_store_settings() {
     register_setting($settings_group, 'shav_topbar_enabled');
     register_setting($settings_group, 'shav_topbar_text');
     register_setting($settings_group, 'shav_topbar_coupon');
+    register_setting($settings_group, 'shav_topbar_percentage');
     register_setting($settings_group, 'shav_topbar_bg');
     register_setting($settings_group, 'shav_topbar_color');
     register_setting($settings_group, 'shav_topbar_trustpilot_link');
@@ -518,7 +519,13 @@ function shav_render_store_settings_page() {
                     <div class="shav-field-group">
                         <label class="shav-label">Kupon Rabatowy (opcjonalnie)</label>
                         <input type="text" name="shav_topbar_coupon" class="shav-input-text" placeholder="np. DAILY10" value="<?php echo esc_attr(get_option('shav_topbar_coupon', '')); ?>">
-                        <span class="shav-desc">Jeśli wpiszesz kupon, pojawi się obok tekstu z możliwością kliknięcia by skopiować.</span>
+                        <span class="shav-desc">Jeśli wpiszesz kupon, pojawi się obok tekstu z możliwością kliknięcia by skopiować. Możesz też użyć w tekście taga <code>{kod}</code>.</span>
+                    </div>
+
+                    <div class="shav-field-group">
+                        <label class="shav-label">Domyślny procent (opcjonalnie)</label>
+                        <input type="text" name="shav_topbar_percentage" class="shav-input-text" placeholder="np. -15%" value="<?php echo esc_attr(get_option('shav_topbar_percentage', '')); ?>">
+                        <span class="shav-desc">Możesz użyć taga <code>{procent}</code> w tekście głównym, a zostanie on zastąpiony tą wartością (lub wartością z CPT w czasie promocji).</span>
                     </div>
 
                     <div class="shav-field-group">
