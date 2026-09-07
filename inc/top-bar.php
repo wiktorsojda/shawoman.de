@@ -6,7 +6,7 @@
 if (!function_exists('shav_get_topbar_data')) {
     function shav_get_topbar_data() {
         // Zabezpieczenie przed błędem, jeśli funkcja automatyzacji nie istnieje
-        $active_promo_id = function_exists('blendygo_get_active_promo') ? blendygo_get_active_promo() : false;
+        $active_promo_id = function_exists('blendygo_get_global_active_cpt_promo') ? blendygo_get_global_active_cpt_promo() : false;
         
         $mode = '';
         $text = '';
