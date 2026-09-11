@@ -224,8 +224,8 @@
     transition: background-color 0.15s ease;
 
     @media (min-width: $breakpoint-tablet) {
-      margin-top: $space-64;
-      padding: $space-16 $space-32;
+      margin-top: $space-24;
+      padding: $space-16 $space-16 $space-16 $space-32;
     }
 
     &:hover {
