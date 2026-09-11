@@ -6,6 +6,11 @@ import { useState } from "@wordpress/element";
 import ResponsiveSpacingControl from "../components/ResponsiveSpacingControl";
 
 const AVATAR_NUMS = [1, 2, 3, 4, 5];
+const FONT_OPTIONS = [
+  { label: 'Be Vietnam Pro', value: 'Be Vietnam Pro' },
+  { label: 'Poppins', value: 'Poppins' },
+  { label: 'Black Mango', value: 'Black Mango' },
+];
 
 export default function Edit({ attributes, setAttributes }) {
   const a = attributes;
@@ -180,17 +185,32 @@ export default function Edit({ attributes, setAttributes }) {
 
         <PanelBody title="Typografia (Fonty)" initialOpen={false}>
           <p style={{ marginTop: 0 }}><strong>Główny tytuł</strong></p>
-          <TextControl label="Rodzina fontu (np. Be Vietnam Pro, Black Mango)" value={a.titleFontFamily} onChange={(v) => setAttributes({ titleFontFamily: v })} />
+          <SelectControl
+            label="Rodzina fontu"
+            value={a.titleFontFamily}
+            options={FONT_OPTIONS}
+            onChange={(v) => setAttributes({ titleFontFamily: v })}
+          />
           <TextControl label="Rozmiar (Desktop)" value={a.titleFontSize} onChange={(v) => setAttributes({ titleFontSize: v })} help="np. 42px" />
           <TextControl label="Rozmiar (Mobile)" value={a.titleFontSizeMobile} onChange={(v) => setAttributes({ titleFontSizeMobile: v })} help="np. 24px" />
 
           <p><strong>Akcent (np. Kod rabatowy)</strong></p>
-          <TextControl label="Rodzina fontu" value={a.accentFontFamily} onChange={(v) => setAttributes({ accentFontFamily: v })} />
+          <SelectControl
+            label="Rodzina fontu"
+            value={a.accentFontFamily}
+            options={FONT_OPTIONS}
+            onChange={(v) => setAttributes({ accentFontFamily: v })}
+          />
           <TextControl label="Rozmiar (Desktop)" value={a.accentFontSize} onChange={(v) => setAttributes({ accentFontSize: v })} help="np. 98px" />
           <TextControl label="Rozmiar (Mobile)" value={a.accentFontSizeMobile} onChange={(v) => setAttributes({ accentFontSizeMobile: v })} help="np. 48px" />
 
           <p><strong>Przycisk (CTA)</strong></p>
-          <TextControl label="Rodzina fontu" value={a.ctaFontFamily} onChange={(v) => setAttributes({ ctaFontFamily: v })} />
+          <SelectControl
+            label="Rodzina fontu"
+            value={a.ctaFontFamily}
+            options={FONT_OPTIONS}
+            onChange={(v) => setAttributes({ ctaFontFamily: v })}
+          />
           <TextControl label="Rozmiar (Desktop)" value={a.ctaFontSize} onChange={(v) => setAttributes({ ctaFontSize: v })} help="np. 16px" />
           <TextControl label="Rozmiar (Mobile)" value={a.ctaFontSizeMobile} onChange={(v) => setAttributes({ ctaFontSizeMobile: v })} help="np. 14px" />
         </PanelBody>
