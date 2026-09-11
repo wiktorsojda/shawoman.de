@@ -1,5 +1,5 @@
 import {
-  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck,
+  useBlockProps, RichText, InspectorControls, MediaUpload, MediaUploadCheck, PanelColorSettings
 } from "@wordpress/block-editor";
 import { PanelBody, Button, TextControl, ToggleControl, TextareaControl, SelectControl, RangeControl } from "@wordpress/components";
 import { useState } from "@wordpress/element";
@@ -28,6 +28,7 @@ export default function Edit({ attributes, setAttributes }) {
                 ratingScore: a.ratingScore || '',
                 bannerTitle: a.bannerTitle || '',
                 bannerTitleAccent: a.bannerTitleAccent || '',
+                badgeText: a.badgeText || '',
                 bannerSubtitle: a.bannerSubtitle || '',
                 bannerCtaLabel: a.bannerCtaLabel || '',
                 bannerCtaLabelMobile: a.bannerCtaLabelMobile || ''
@@ -52,6 +53,7 @@ export default function Edit({ attributes, setAttributes }) {
               if (parsed.ratingScore !== undefined) updates.ratingScore = parsed.ratingScore;
               if (parsed.bannerTitle !== undefined) updates.bannerTitle = parsed.bannerTitle;
               if (parsed.bannerTitleAccent !== undefined) updates.bannerTitleAccent = parsed.bannerTitleAccent;
+              if (parsed.badgeText !== undefined) updates.badgeText = parsed.badgeText;
               if (parsed.bannerSubtitle !== undefined) updates.bannerSubtitle = parsed.bannerSubtitle;
               if (parsed.bannerCtaLabel !== undefined) updates.bannerCtaLabel = parsed.bannerCtaLabel;
               if (parsed.bannerCtaLabelMobile !== undefined) updates.bannerCtaLabelMobile = parsed.bannerCtaLabelMobile;
@@ -144,6 +146,26 @@ export default function Edit({ attributes, setAttributes }) {
           <TextControl label="Tekst przycisku (Mobile)" value={a.bannerCtaLabelMobile} onChange={(v) => setAttributes({ bannerCtaLabelMobile: v })} help="Pozostaw puste, by skopiować tekst z Desktopu" />
           <TextControl label="URL przycisku" value={a.bannerCtaURL} onChange={(v) => setAttributes({ bannerCtaURL: v })} />
         </PanelBody>
+
+        <PanelBody title="Pasek (Badge) nad przyciskiem" initialOpen={false}>
+          <TextControl label="Tekst pastylki" value={a.badgeText} onChange={(v) => setAttributes({ badgeText: v })} help="Jeśli puste, element nie będzie się wyświetlał." />
+          <PanelColorSettings
+            title="Kolory pastylki"
+            initialOpen={false}
+            colorSettings={[
+              {
+                value: a.badgeBgColor,
+                onChange: (c) => setAttributes({ badgeBgColor: c }),
+                label: 'Tło pastylki'
+              },
+              {
+                value: a.badgeTextColor,
+                onChange: (c) => setAttributes({ badgeTextColor: c }),
+                label: 'Kolor tekstu'
+              }
+            ]}
+          />
+        </PanelBody>
       </InspectorControls>
 
       {/* Rating */}
@@ -176,6 +198,11 @@ export default function Edit({ attributes, setAttributes }) {
             <RichText tagName="span" value={a.bannerTitle} onChange={(v) => setAttributes({ bannerTitle: v })} placeholder="Shav " />
             <RichText tagName="span" className="glownabaner__hero-title-accent" value={a.bannerTitleAccent} onChange={(v) => setAttributes({ bannerTitleAccent: v })} placeholder="Days" />
           </h1>
+          {a.badgeText && (
+            <div className="glownabaner__hero-badge" style={{ backgroundColor: a.badgeBgColor, color: a.badgeTextColor }}>
+              <RichText tagName="span" value={a.badgeText} onChange={(v) => setAttributes({ badgeText: v })} placeholder="Badge Text" />
+            </div>
+          )}
           <RichText tagName="p" className="glownabaner__hero-subtitle" value={a.bannerSubtitle} onChange={(v) => setAttributes({ bannerSubtitle: v })} placeholder="Subtitle" />
           <div className="glownabaner__hero-cta">
             <RichText tagName="span" value={a.bannerCtaLabel} onChange={(v) => setAttributes({ bannerCtaLabel: v })} placeholder="Etykieta CTA" />

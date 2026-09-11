@@ -189,6 +189,23 @@
     display: block;
   }
 
+  &__hero-badge {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 6px 34px;                  // ~ Figma padding
+    border-radius: 360px;
+    font-family: $font-family-base;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+    margin: 0;
+
+    @media (min-width: $breakpoint-tablet) {
+      font-size: 16px;
+    }
+  }
+
   &__hero-subtitle {
     margin: 0;
     font-family: $font-family-base;

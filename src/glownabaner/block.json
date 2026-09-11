@@ -52,6 +52,18 @@
       "type": "string",
       "default": "WOMAN15"
     },
+    "badgeText": {
+      "type": "string",
+      "default": ""
+    },
+    "badgeBgColor": {
+      "type": "string",
+      "default": "#6bb3ff"
+    },
+    "badgeTextColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
     "bannerSubtitle": {
       "type": "string",
       "default": ""

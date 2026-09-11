@@ -50,6 +50,10 @@ $replace_tags = function($text) use ($promo_percentage, $promo_coupon) {
 
 $bannerTitle       = isset($attributes['bannerTitle'])       ? $attributes['bannerTitle']       : '15% zniżki z kodem:';
 $bannerTitleAccent = isset($attributes['bannerTitleAccent']) ? $attributes['bannerTitleAccent'] : 'WOMAN15';
+$badgeText         = isset($attributes['badgeText'])         ? $attributes['badgeText']         : '';
+$badgeBgColor      = isset($attributes['badgeBgColor'])      ? $attributes['badgeBgColor']      : '#6bb3ff';
+$badgeTextColor    = isset($attributes['badgeTextColor'])    ? $attributes['badgeTextColor']    : '#ffffff';
+
 $bannerSubtitle    = isset($attributes['bannerSubtitle'])    ? $attributes['bannerSubtitle']    : '';
 
 $bannerTitle       = $replace_tags($bannerTitle);
@@ -232,6 +236,11 @@ shav_render_responsive_spacing_css($block_id, $attributes);
                     <?php echo wp_kses_post($bannerTitleAccent); ?>
                 </span>
             </h2>
+            <?php if (!empty(trim($badgeText))) : ?>
+            <div class="glownabaner__hero-badge" style="background-color: <?php echo esc_attr($badgeBgColor); ?>; color: <?php echo esc_attr($badgeTextColor); ?>;">
+                <?php echo wp_kses_post($replace_tags($badgeText)); ?>
+            </div>
+            <?php endif; ?>
             <?php if (!empty(trim($bannerSubtitle))) : ?>
             <p class="glownabaner__hero-subtitle"><?php echo wp_kses_post($bannerSubtitle); ?></p>
             <?php endif; ?>
