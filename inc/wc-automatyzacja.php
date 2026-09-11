@@ -1380,7 +1380,7 @@ if (!function_exists('blendygo_apply_cpt_overrides')) {
             $promo_id = blendygo_get_active_cpt_promo();
             if ($promo_id) {
                 remove_action('woocommerce_before_single_product_summary', 'display_promotional_element_two_lines', 10);
-                add_action('woocommerce_before_single_product_summary', 'blendygo_render_cpt_badge', 9);
+                // add_action('woocommerce_before_single_product_summary', 'blendygo_render_cpt_badge', 9);
 
                 $atc_desk = get_post_meta($promo_id, 'promo_banner_atc_desk', true);
                 $atc_mob = get_post_meta($promo_id, 'promo_banner_atc_mob', true);
