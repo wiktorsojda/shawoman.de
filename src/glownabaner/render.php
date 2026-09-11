@@ -48,11 +48,11 @@ $replace_tags = function($text) use ($promo_percentage, $promo_coupon) {
     return $text;
 };
 
-$bannerTitle       = isset($attributes['bannerTitle'])       ? $attributes['bannerTitle']       : '15% zniżki z kodem:';
+$bannerTitleMain   = isset($attributes['bannerTitleMain'])   ? $attributes['bannerTitleMain']   : '15% zniżki z kodem:';
 $bannerTitleAccent = isset($attributes['bannerTitleAccent']) ? $attributes['bannerTitleAccent'] : 'WOMAN15';
 $bannerSubtitle    = isset($attributes['bannerSubtitle'])    ? $attributes['bannerSubtitle']    : '';
 
-$bannerTitle       = $replace_tags($bannerTitle);
+$bannerTitleMain   = $replace_tags($bannerTitleMain);
 $bannerTitleAccent = $replace_tags($bannerTitleAccent);
 $bannerSubtitle    = $replace_tags($bannerSubtitle);
 
@@ -222,7 +222,7 @@ shav_render_responsive_spacing_css($block_id, $attributes);
         <div class="glownabaner__hero-content">
             <h2 class="glownabaner__hero-title">
                 <span class="glownabaner__hero-title-main">
-                    <?php echo wp_kses_post($bannerTitle); ?>
+                    <?php echo wp_kses_post($bannerTitleMain); ?>
                 </span>
                 <span class="glownabaner__hero-title-accent">
                     <?php echo wp_kses_post($bannerTitleAccent); ?>
