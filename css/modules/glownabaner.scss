@@ -162,11 +162,11 @@
     flex-direction: column;
     justify-content: center;
     gap: $space-16;                      // tight gap miedzy title i subtitle
-    padding: $space-40;
+    padding: 32px 24px;                  // Mobile padding
     color: $color-green-700;            // (zielen z Figmy: green/900 #15331b nie jest w skali; uzywamy najblizszego)
 
     @media (min-width: $breakpoint-tablet) {
-      padding: $space-64;
+      padding: 88px 80px;                // Desktop padding
       max-width: var(--content-width, 60%);
     }
   }
