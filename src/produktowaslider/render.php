@@ -8,6 +8,30 @@ if (!isset($attributes)) {
     $attributes = [];
 }
 $slides = $attributes['slides'] ?? [];
+
+if (function_exists('is_product') && is_product() && function_exists('blendygo_get_active_cpt_promo')) {
+    global $product;
+    $product_id = $product ? $product->get_id() : get_the_ID();
+    $promo_id = blendygo_get_active_cpt_promo($product_id);
+    if ($promo_id) {
+        $promo_slides = [];
+        for ($i = 1; $i <= 5; $i++) {
+            $desk = get_post_meta($promo_id, 'promo_photo_' . $i, true);
+            $mob = get_post_meta($promo_id, 'promo_photo_mob_' . $i, true);
+            if (!empty($desk) || !empty($mob)) {
+                $promo_slides[] = [
+                    'desktopImage' => !empty($desk) ? $desk : $mob,
+                    'mobileImage' => !empty($mob) ? $mob : $desk,
+                    'altText' => ''
+                ];
+            }
+        }
+        if (!empty($promo_slides)) {
+            $slides = $promo_slides;
+        }
+    }
+}
+
 $original_count = count($slides);
 if (empty($slides)) {
     return;
