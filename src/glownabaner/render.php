@@ -189,7 +189,7 @@ shav_render_responsive_spacing_css($block_id, $attributes);
     }
 </style>
 
-<section id="<?php echo esc_attr($block_id); ?>" class="<?php echo esc_attr($wrapperClass); ?>" style="padding-bottom: 120px; <?php echo esc_attr($wrapperStyle); ?>">
+<section id="<?php echo esc_attr($block_id); ?>" class="<?php echo esc_attr($wrapperClass); ?>" style="<?php echo esc_attr($wrapperStyle); ?>">
     <?php if ($showRating) : ?>
         <div class="glownabaner__rating">
             <span class="glownabaner__rating-line" aria-hidden="true"></span>
