@@ -118,9 +118,10 @@
     border-radius: $radius-s;            // 16px
     display: grid;                       // 1 komorka — picture + content nakladane
     grid-template-areas: "stack";
+    min-height: 400px;                   // mobile min-height
 
     @media (min-width: $breakpoint-tablet) {
-      padding-bottom: 120px;
+      min-height: 560px;                 // desktop min-height
     }
 
     > * {
