@@ -53,6 +53,7 @@ $bannerTitleAccent = isset($attributes['bannerTitleAccent']) ? $attributes['bann
 $badgeText         = isset($attributes['badgeText'])         ? $attributes['badgeText']         : '';
 $badgeBgColor      = isset($attributes['badgeBgColor'])      ? $attributes['badgeBgColor']      : '#6bb3ff';
 $badgeTextColor    = isset($attributes['badgeTextColor'])    ? $attributes['badgeTextColor']    : '#ffffff';
+$badgeAlign        = isset($attributes['badgeAlign'])        ? $attributes['badgeAlign']        : 'flex-start';
 
 $bannerSubtitle    = isset($attributes['bannerSubtitle'])    ? $attributes['bannerSubtitle']    : '';
 
@@ -228,19 +229,21 @@ shav_render_responsive_spacing_css($block_id, $attributes);
 
     <div class="glownabaner__hero">
         <div class="glownabaner__hero-content">
-            <h2 class="glownabaner__hero-title">
-                <span class="glownabaner__hero-title-main">
-                    <?php echo wp_kses_post($bannerTitle); ?>
-                </span>
-                <span class="glownabaner__hero-title-accent">
-                    <?php echo wp_kses_post($bannerTitleAccent); ?>
-                </span>
-            </h2>
-            <?php if (!empty(trim($badgeText))) : ?>
-            <div class="glownabaner__hero-badge" style="background-color: <?php echo esc_attr($badgeBgColor); ?>; color: <?php echo esc_attr($badgeTextColor); ?>;">
-                <?php echo wp_kses_post($replace_tags($badgeText)); ?>
+            <div class="glownabaner__hero-title-group" style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+                <h2 class="glownabaner__hero-title">
+                    <span class="glownabaner__hero-title-main">
+                        <?php echo wp_kses_post($bannerTitle); ?>
+                    </span>
+                    <span class="glownabaner__hero-title-accent">
+                        <?php echo wp_kses_post($bannerTitleAccent); ?>
+                    </span>
+                </h2>
+                <?php if (!empty(trim($badgeText))) : ?>
+                <div class="glownabaner__hero-badge" style="background-color: <?php echo esc_attr($badgeBgColor); ?>; color: <?php echo esc_attr($badgeTextColor); ?>; align-self: <?php echo esc_attr($badgeAlign); ?>;">
+                    <?php echo wp_kses_post($replace_tags($badgeText)); ?>
+                </div>
+                <?php endif; ?>
             </div>
-            <?php endif; ?>
             <?php if (!empty(trim($bannerSubtitle))) : ?>
             <p class="glownabaner__hero-subtitle"><?php echo wp_kses_post($bannerSubtitle); ?></p>
             <?php endif; ?>

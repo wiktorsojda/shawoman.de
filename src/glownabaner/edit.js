@@ -57,6 +57,7 @@ export default function Edit({ attributes, setAttributes }) {
               if (parsed.bannerSubtitle !== undefined) updates.bannerSubtitle = parsed.bannerSubtitle;
               if (parsed.bannerCtaLabel !== undefined) updates.bannerCtaLabel = parsed.bannerCtaLabel;
               if (parsed.bannerCtaLabelMobile !== undefined) updates.bannerCtaLabelMobile = parsed.bannerCtaLabelMobile;
+              if (parsed.badgeAlign !== undefined) updates.badgeAlign = parsed.badgeAlign;
               setAttributes(updates);
               alert('Zaktualizowano pomyślnie!');
               setImportJson('');
@@ -149,6 +150,16 @@ export default function Edit({ attributes, setAttributes }) {
 
         <PanelBody title="Pasek (Badge) nad przyciskiem" initialOpen={false}>
           <TextControl label="Tekst pastylki" value={a.badgeText} onChange={(v) => setAttributes({ badgeText: v })} help="Jeśli puste, element nie będzie się wyświetlał." />
+          <SelectControl
+            label="Wyrównanie pastylki względem tekstu"
+            value={a.badgeAlign || 'left'}
+            options={[
+              { label: "Do lewej", value: "flex-start" },
+              { label: "Do środka", value: "center" },
+              { label: "Do prawej", value: "flex-end" },
+            ]}
+            onChange={(v) => setAttributes({ badgeAlign: v })}
+          />
           <PanelColorSettings
             title="Kolory pastylki"
             initialOpen={false}
@@ -165,6 +176,23 @@ export default function Edit({ attributes, setAttributes }) {
               }
             ]}
           />
+        </PanelBody>
+
+        <PanelBody title="Typografia (Fonty)" initialOpen={false}>
+          <p style={{ marginTop: 0 }}><strong>Główny tytuł</strong></p>
+          <TextControl label="Rodzina fontu (np. Be Vietnam Pro, Black Mango)" value={a.titleFontFamily} onChange={(v) => setAttributes({ titleFontFamily: v })} />
+          <TextControl label="Rozmiar (Desktop)" value={a.titleFontSize} onChange={(v) => setAttributes({ titleFontSize: v })} help="np. 42px" />
+          <TextControl label="Rozmiar (Mobile)" value={a.titleFontSizeMobile} onChange={(v) => setAttributes({ titleFontSizeMobile: v })} help="np. 24px" />
+
+          <p><strong>Akcent (np. Kod rabatowy)</strong></p>
+          <TextControl label="Rodzina fontu" value={a.accentFontFamily} onChange={(v) => setAttributes({ accentFontFamily: v })} />
+          <TextControl label="Rozmiar (Desktop)" value={a.accentFontSize} onChange={(v) => setAttributes({ accentFontSize: v })} help="np. 98px" />
+          <TextControl label="Rozmiar (Mobile)" value={a.accentFontSizeMobile} onChange={(v) => setAttributes({ accentFontSizeMobile: v })} help="np. 48px" />
+
+          <p><strong>Przycisk (CTA)</strong></p>
+          <TextControl label="Rodzina fontu" value={a.ctaFontFamily} onChange={(v) => setAttributes({ ctaFontFamily: v })} />
+          <TextControl label="Rozmiar (Desktop)" value={a.ctaFontSize} onChange={(v) => setAttributes({ ctaFontSize: v })} help="np. 16px" />
+          <TextControl label="Rozmiar (Mobile)" value={a.ctaFontSizeMobile} onChange={(v) => setAttributes({ ctaFontSizeMobile: v })} help="np. 14px" />
         </PanelBody>
       </InspectorControls>
 
@@ -194,15 +222,17 @@ export default function Edit({ attributes, setAttributes }) {
           ? <img className="glownabaner__hero-image" src={a.bannerImage} alt="" />
           : <div className="glownabaner__hero-image glownabaner__hero-image--placeholder">Wybierz zdjęcie tła w panelu po prawej</div>}
         <div className="glownabaner__hero-content">
-          <h1 className="glownabaner__hero-title">
-            <RichText tagName="span" value={a.bannerTitle} onChange={(v) => setAttributes({ bannerTitle: v })} placeholder="Shav " />
-            <RichText tagName="span" className="glownabaner__hero-title-accent" value={a.bannerTitleAccent} onChange={(v) => setAttributes({ bannerTitleAccent: v })} placeholder="Days" />
-          </h1>
-          {a.badgeText && (
-            <div className="glownabaner__hero-badge" style={{ backgroundColor: a.badgeBgColor, color: a.badgeTextColor }}>
-              <RichText tagName="span" value={a.badgeText} onChange={(v) => setAttributes({ badgeText: v })} placeholder="Badge Text" />
-            </div>
-          )}
+          <div className="glownabaner__hero-title-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '10px' }}>
+            <h1 className="glownabaner__hero-title">
+              <RichText tagName="span" value={a.bannerTitle} onChange={(v) => setAttributes({ bannerTitle: v })} placeholder="Shav " />
+              <RichText tagName="span" className="glownabaner__hero-title-accent" value={a.bannerTitleAccent} onChange={(v) => setAttributes({ bannerTitleAccent: v })} placeholder="Days" />
+            </h1>
+            {a.badgeText && (
+              <div className="glownabaner__hero-badge" style={{ backgroundColor: a.badgeBgColor, color: a.badgeTextColor, alignSelf: a.badgeAlign || 'flex-start' }}>
+                <RichText tagName="span" value={a.badgeText} onChange={(v) => setAttributes({ badgeText: v })} placeholder="Badge Text" />
+              </div>
+            )}
+          </div>
           <RichText tagName="p" className="glownabaner__hero-subtitle" value={a.bannerSubtitle} onChange={(v) => setAttributes({ bannerSubtitle: v })} placeholder="Subtitle" />
           <div className="glownabaner__hero-cta">
             <RichText tagName="span" value={a.bannerCtaLabel} onChange={(v) => setAttributes({ bannerCtaLabel: v })} placeholder="Etykieta CTA" />

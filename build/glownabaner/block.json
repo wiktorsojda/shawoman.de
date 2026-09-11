@@ -64,6 +64,10 @@
       "type": "string",
       "default": "#ffffff"
     },
+    "badgeAlign": {
+      "type": "string",
+      "default": "flex-start"
+    },
     "bannerSubtitle": {
       "type": "string",
       "default": ""
