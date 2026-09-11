@@ -121,7 +121,7 @@
     min-height: 400px;                   // mobile min-height
 
     @media (min-width: $breakpoint-tablet) {
-      height: 550px;                     // desktop exact height
+      min-height: 550px;                 // desktop min-height (pozwala urosnac, jesli tresc jest dluga)
     }
 
     > * {
@@ -224,7 +224,7 @@
     transition: background-color 0.15s ease;
 
     @media (min-width: $breakpoint-tablet) {
-      margin-top: $space-24;
+      margin-top: $space-64;             // Przywracamy oryginalny odstęp
       padding: $space-16 $space-16 $space-16 $space-32;
     }
 
