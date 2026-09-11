@@ -9,25 +9,36 @@ if (!isset($attributes)) {
 }
 $slides = $attributes['slides'] ?? [];
 
-if (function_exists('is_product') && is_product() && function_exists('blendygo_get_active_cpt_promo')) {
-    global $product;
-    $product_id = $product ? $product->get_id() : get_the_ID();
-    $promo_id = blendygo_get_active_cpt_promo($product_id);
-    if ($promo_id) {
-        $promo_slides = [];
-        for ($i = 1; $i <= 5; $i++) {
-            $desk = get_post_meta($promo_id, 'promo_photo_' . $i, true);
-            $mob = get_post_meta($promo_id, 'promo_photo_mob_' . $i, true);
-            if (!empty($desk) || !empty($mob)) {
-                $promo_slides[] = [
-                    'desktopImage' => !empty($desk) ? $desk : $mob,
-                    'mobileImage' => !empty($mob) ? $mob : $desk,
-                    'altText' => ''
-                ];
+if (function_exists('blendygo_get_active_cpt_promo')) {
+    $product_id = 0;
+    if (function_exists('is_product') && is_product()) {
+        $product_id = get_queried_object_id();
+    } elseif (get_post_type() === 'product') {
+        $product_id = get_the_ID();
+    }
+    
+    if ($product_id) {
+        $promo_id = blendygo_get_active_cpt_promo($product_id);
+        echo '<!-- DEBUG: Found product_id=' . esc_html($product_id) . ', promo_id=' . esc_html($promo_id) . ' -->';
+        if ($promo_id) {
+            $promo_slides = [];
+            for ($i = 1; $i <= 5; $i++) {
+                $desk = get_post_meta($promo_id, 'promo_photo_' . $i, true);
+                $mob = get_post_meta($promo_id, 'promo_photo_mob_' . $i, true);
+                if (!empty($desk) || !empty($mob)) {
+                    $promo_slides[] = [
+                        'desktopImage' => !empty($desk) ? $desk : $mob,
+                        'mobileImage' => !empty($mob) ? $mob : $desk,
+                        'altText' => ''
+                    ];
+                }
             }
-        }
-        if (!empty($promo_slides)) {
-            $slides = $promo_slides;
+            if (!empty($promo_slides)) {
+                $slides = $promo_slides;
+                echo '<!-- DEBUG: Slides replaced. Count: ' . count($slides) . ' -->';
+            } else {
+                echo '<!-- DEBUG: No promo slides found in post_meta for promo_id=' . esc_html($promo_id) . ' -->';
+            }
         }
     }
 }
