@@ -121,7 +121,7 @@
     min-height: 400px;                   // mobile min-height
 
     @media (min-width: $breakpoint-tablet) {
-      min-height: 560px;                 // desktop min-height
+      height: 550px;                     // desktop exact height
     }
 
     > * {
