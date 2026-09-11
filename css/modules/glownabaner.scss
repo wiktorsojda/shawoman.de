@@ -175,21 +175,19 @@
     margin: 0;
     font-family: $font-family-base;
     font-weight: $font-weight-medium;
-    font-size: 43px;
     line-height: 1.1;
     letter-spacing: $letter-spacing-tight;
     color: inherit;
-
-    @media (min-width: $breakpoint-tablet) {
-      font-size: 108px;
-    }
   }
 
   &__hero-title-accent {
+    display: block;                     // Zeby nie robic wielkiego line-height dla calego H2
     font-family: $font-family-accent;   // Dolce
     font-weight: $font-weight-accent-medium;
-    font-size: 1.5em;                   // ~ 1.5x rozmiaru zwyklego (Figma: 161 vs 107)
-    line-height: 1;
+  }
+  
+  &__hero-title-main {
+    display: block;
   }
 
   &__hero-subtitle {

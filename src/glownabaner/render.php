@@ -152,9 +152,11 @@ shav_render_responsive_spacing_css($block_id, $attributes);
         <?php endif; ?>
     }
 
+    <?php if ($ctaMarginTop !== '0px' && $ctaMarginTop !== '0') : ?>
     #<?php echo esc_attr($block_id); ?> .glownabaner__hero-cta {
         margin-top: <?php echo esc_attr($ctaMarginTop); ?>;
     }
+    <?php endif; ?>
 
     #<?php echo esc_attr($block_id); ?> .glownabaner__hero-cta-text {
         font-family: <?php echo esc_attr($ctaFontFamily); ?>;
@@ -174,9 +176,11 @@ shav_render_responsive_spacing_css($block_id, $attributes);
             font-size: <?php echo esc_attr($accentFontSizeMobile); ?>;
             line-height: <?php echo esc_attr($accentLineHeightMobile); ?>;
         }
+        <?php if ($ctaMarginTopMobile !== '0px' && $ctaMarginTopMobile !== '0') : ?>
         #<?php echo esc_attr($block_id); ?> .glownabaner__hero-cta {
             margin-top: <?php echo esc_attr($ctaMarginTopMobile); ?>;
         }
+        <?php endif; ?>
         #<?php echo esc_attr($block_id); ?> .glownabaner__hero-cta-text {
             font-size: <?php echo esc_attr($ctaFontSizeMobile); ?>;
         }
@@ -228,7 +232,9 @@ shav_render_responsive_spacing_css($block_id, $attributes);
                     <?php echo wp_kses_post($bannerTitleAccent); ?>
                 </span>
             </h2>
+            <?php if (!empty(trim($bannerSubtitle))) : ?>
             <p class="glownabaner__hero-subtitle"><?php echo wp_kses_post($bannerSubtitle); ?></p>
+            <?php endif; ?>
             <a class="glownabaner__hero-cta" href="<?php echo esc_url(home_url($bannerCtaURL)); ?>">
                 <span class="glownabaner__hero-cta-text glownabaner__hero-cta-text-desktop"><?php echo wp_kses_post($bannerCtaLabel); ?></span>
                 <span class="glownabaner__hero-cta-text glownabaner__hero-cta-text-mobile"><?php echo wp_kses_post($bannerCtaLabelMobile); ?></span>
