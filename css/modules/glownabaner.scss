@@ -115,13 +115,13 @@
   &__hero {
     position: relative;
     overflow: hidden;
-    border-radius: $radius-s;            // 16px
+    border-radius: 24px;                 // Figma: border-radius: 24px
     display: grid;                       // 1 komorka — picture + content nakladane
     grid-template-areas: "stack";
     min-height: 400px;                   // mobile min-height
 
     @media (min-width: $breakpoint-tablet) {
-      min-height: 550px;                 // desktop min-height (pozwala urosnac, jesli tresc jest dluga)
+      height: 550px;                     // Figma: height: 550px (sztywno, brak min-height)
     }
 
     > * {
@@ -161,12 +161,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: $space-16;                      // tight gap miedzy title i subtitle
+    gap: 10px;                           // Figma: gap: 10px
     padding: 32px 24px;                  // Mobile padding
     color: $color-green-700;            // (zielen z Figmy: green/900 #15331b nie jest w skali; uzywamy najblizszego)
 
     @media (min-width: $breakpoint-tablet) {
-      padding: 88px 80px;                // Desktop padding
+      padding: 59px 86px 59px 98px;      // Figma: top: 59, right: 86, bottom: 59, left: 98
       max-width: var(--content-width, 60%);
     }
   }
@@ -224,7 +224,7 @@
     transition: background-color 0.15s ease;
 
     @media (min-width: $breakpoint-tablet) {
-      margin-top: $space-64;             // Przywracamy oryginalny odstęp
+      margin-top: 0;                     // Zdejmujemy sztywny margin, odstep reguluje 'gap: 10px' kontenera
       padding: $space-16 $space-16 $space-16 $space-32;
     }
 
