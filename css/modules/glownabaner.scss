@@ -209,7 +209,7 @@
     display: inline-flex;
     align-items: center;
     gap: $space-12;
-    margin-top: $space-24;
+    margin-top: 14px;                    // 14px margin + 10px gap = 24px odstepu na mobile
     padding: 6px 12px;
     background-color: rgba($color-white, 0.7);
     border-radius: $radius-xs;           // 8px
@@ -223,7 +223,7 @@
     transition: background-color 0.15s ease;
 
     @media (min-width: $breakpoint-tablet) {
-      margin-top: 0;                     // Zdejmujemy sztywny margin, odstep reguluje 'gap: 10px' kontenera
+      margin-top: 32px;                  // 32px margin + 10px gap = 42px odstepu na desktop
       padding: $space-16 $space-16 $space-16 $space-32;
     }
 
