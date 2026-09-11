@@ -25,12 +25,21 @@ if (function_exists('blendygo_get_global_active_cpt_promo')) {
         $promo_coupon = get_post_meta($promo_id, 'promo_coupon_code', true);
         $pct_val = get_post_meta($promo_id, 'promo_percentage_text', true);
         $promo_percentage = !empty($pct_val) ? '-' . trim($pct_val, '-%') . '%' : '';
+        
+        $promo_text = get_post_meta($promo_id, 'promo_topbar_text', true);
+        if (empty($promo_text)) {
+            $promo_text = get_option('shav_topbar_text', '');
+            if (empty($promo_text)) {
+                $promo_text = get_post_meta($promo_id, 'promo_small_text', true);
+            }
+        }
     } else {
         // Fallback to topbar settings if no active promo
         $is_enabled = get_option('shav_topbar_enabled', 'yes');
         if ($is_enabled === 'yes') {
             $promo_coupon = get_option('shav_topbar_coupon', '');
             $promo_percentage = get_option('shav_topbar_percentage', '');
+            $promo_text = get_option('shav_topbar_text', '');
         }
     }
 } else {
@@ -38,6 +47,7 @@ if (function_exists('blendygo_get_global_active_cpt_promo')) {
     if ($is_enabled === 'yes') {
         $promo_coupon = get_option('shav_topbar_coupon', '');
         $promo_percentage = get_option('shav_topbar_percentage', '');
+        $promo_text = get_option('shav_topbar_text', '');
     }
 }
 
@@ -51,6 +61,11 @@ $replace_tags = function($text) use ($promo_percentage, $promo_coupon) {
 $bannerTitle       = isset($attributes['bannerTitle'])       ? $attributes['bannerTitle']       : '15% zniżki z kodem:';
 $bannerTitleAccent = isset($attributes['bannerTitleAccent']) ? $attributes['bannerTitleAccent'] : 'WOMAN15';
 $bannerSubtitle    = isset($attributes['bannerSubtitle'])    ? $attributes['bannerSubtitle']    : '';
+
+if (!empty($promo_text)) {
+    $bannerTitle = $promo_text;
+    $bannerTitleAccent = ''; // Wyczyść akcent, by cały tekst z topbara był jednolity
+}
 
 $bannerTitle       = $replace_tags($bannerTitle);
 $bannerTitleAccent = $replace_tags($bannerTitleAccent);
