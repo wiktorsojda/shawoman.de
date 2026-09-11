@@ -10,9 +10,52 @@ $bannerImageMobile = isset($attributes['bannerImageMobile']) && $attributes['ban
     ? str_replace('http://', 'https://', $attributes['bannerImageMobile'])
     : $bannerImage;
 
+$promo_percentage = '';
+$promo_coupon = '';
+
+if (function_exists('blendygo_get_global_active_cpt_promo')) {
+    $promo_id = blendygo_get_global_active_cpt_promo();
+    if ($promo_id) {
+        $promo_desk = get_post_meta($promo_id, 'promo_banner_main_desk', true);
+        $promo_mob = get_post_meta($promo_id, 'promo_banner_main_mob', true);
+        
+        if (!empty($promo_desk)) $bannerImage = $promo_desk;
+        if (!empty($promo_mob)) $bannerImageMobile = $promo_mob;
+
+        $promo_coupon = get_post_meta($promo_id, 'promo_coupon_code', true);
+        $pct_val = get_post_meta($promo_id, 'promo_percentage_text', true);
+        $promo_percentage = !empty($pct_val) ? '-' . trim($pct_val, '-%') . '%' : '';
+    } else {
+        // Fallback to topbar settings if no active promo
+        $is_enabled = get_option('shav_topbar_enabled', 'yes');
+        if ($is_enabled === 'yes') {
+            $promo_coupon = get_option('shav_topbar_coupon', '');
+            $promo_percentage = get_option('shav_topbar_percentage', '');
+        }
+    }
+} else {
+    $is_enabled = get_option('shav_topbar_enabled', 'yes');
+    if ($is_enabled === 'yes') {
+        $promo_coupon = get_option('shav_topbar_coupon', '');
+        $promo_percentage = get_option('shav_topbar_percentage', '');
+    }
+}
+
+$replace_tags = function($text) use ($promo_percentage, $promo_coupon) {
+    if (empty($text)) return $text;
+    $text = str_replace(['{procent}', '{percent}'], esc_html($promo_percentage), $text);
+    $text = str_replace('{kod}', esc_html($promo_coupon), $text);
+    return $text;
+};
+
 $bannerTitle       = isset($attributes['bannerTitle'])       ? $attributes['bannerTitle']       : '15% zniżki z kodem:';
 $bannerTitleAccent = isset($attributes['bannerTitleAccent']) ? $attributes['bannerTitleAccent'] : 'WOMAN15';
 $bannerSubtitle    = isset($attributes['bannerSubtitle'])    ? $attributes['bannerSubtitle']    : '';
+
+$bannerTitle       = $replace_tags($bannerTitle);
+$bannerTitleAccent = $replace_tags($bannerTitleAccent);
+$bannerSubtitle    = $replace_tags($bannerSubtitle);
+
 $bannerCtaLabel    = isset($attributes['bannerCtaLabel'])    ? $attributes['bannerCtaLabel']    : 'Dowiedz się więcej';
 $bannerCtaLabelMobile = !empty($attributes['bannerCtaLabelMobile']) ? $attributes['bannerCtaLabelMobile'] : $bannerCtaLabel;
 $bannerCtaURL      = isset($attributes['bannerCtaURL'])      ? $attributes['bannerCtaURL']      : '/sklep';
