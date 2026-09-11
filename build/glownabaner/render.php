@@ -226,10 +226,10 @@ shav_render_responsive_spacing_css($block_id, $attributes);
         <div class="glownabaner__hero-content">
             <h2 class="glownabaner__hero-title">
                 <span class="glownabaner__hero-title-main">
-                    <?php echo wp_kses_post($bannerTitle); ?>
+                    <?php echo wp_kses_post(str_ireplace(array('<br>', '<br/>', '<br />'), '', $bannerTitle)); ?>
                 </span>
                 <span class="glownabaner__hero-title-accent">
-                    <?php echo wp_kses_post($bannerTitleAccent); ?>
+                    <?php echo wp_kses_post(str_ireplace(array('<br>', '<br/>', '<br />'), '', $bannerTitleAccent)); ?>
                 </span>
             </h2>
             <?php if (!empty(trim($bannerSubtitle))) : ?>
